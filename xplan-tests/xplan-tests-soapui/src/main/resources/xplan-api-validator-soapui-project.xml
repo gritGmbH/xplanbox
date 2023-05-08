@@ -60,8 +60,8 @@ OpenAPI document</con:description>
           <con:request/>
           <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/</con:originalUri>
           <con:credentials>
-            <con:username/>
-            <con:password/>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
             <con:preemptive>false</con:preemptive>
@@ -106,8 +106,8 @@ Show system and application configuration</con:description>
           <con:request/>
           <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/info</con:originalUri>
           <con:credentials>
-            <con:username/>
-            <con:password/>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
             <con:authType>No Authorization</con:authType>
@@ -664,8 +664,8 @@ Validate XPlanGML or XPlanArchive</con:description>
           <con:request/>
           <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
           <con:credentials>
-            <con:username/>
-            <con:password/>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
             <con:authType>No Authorization</con:authType>
@@ -819,8 +819,8 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
               <con:preemptive>false</con:preemptive>
@@ -881,8 +881,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
               <con:authType>No Authorization</con:authType>
@@ -914,8 +914,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -980,8 +980,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1046,8 +1046,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1113,8 +1113,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1180,8 +1180,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1247,8 +1247,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1314,8 +1314,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1399,8 +1399,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1470,8 +1470,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1537,8 +1537,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1603,8 +1603,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1651,8 +1651,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1718,8 +1718,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1766,8 +1766,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1814,8 +1814,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1869,8 +1869,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1917,8 +1917,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -1992,8 +1992,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2058,8 +2058,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2124,8 +2124,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2190,8 +2190,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2256,8 +2256,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2322,8 +2322,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2388,8 +2388,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2436,8 +2436,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2485,8 +2485,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2534,8 +2534,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2609,8 +2609,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2695,8 +2695,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2750,8 +2750,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2834,8 +2834,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -2928,8 +2928,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -3012,8 +3012,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -3106,8 +3106,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -3154,8 +3154,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -3256,8 +3256,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
               <con:authType>No Authorization</con:authType>
@@ -3352,8 +3352,8 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
-              <con:password/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
