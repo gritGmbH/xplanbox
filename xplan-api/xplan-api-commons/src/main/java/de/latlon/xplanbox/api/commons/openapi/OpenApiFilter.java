@@ -87,7 +87,7 @@ public class OpenApiFilter extends AbstractSpecFilter {
 	}
 
 	private String createNewKey(String path) {
-		Pattern pattern = Pattern.compile("\\/(xvalidator|xmanager)\\/api\\/v[\\d_\\-\\.]*(\\/|)");
+		Pattern pattern = Pattern.compile("\\/(xvalidator|xmanager|xdokumente)\\/api\\/v[\\d_\\-\\.]*(\\/|)");
 		Matcher matcher = pattern.matcher(path);
 		return matcher.replaceFirst("/");
 	}

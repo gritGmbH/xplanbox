@@ -1,0 +1,19 @@
+ARG XPLANBOX_VERSION=latest
+ARG XPLANBOX_IMAGE_NAME_PREFIX=xplanbox
+
+FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat:$XPLANBOX_VERSION
+ARG WEB_CONTEXT=ROOT
+
+# set environment variables
+ENV TOMCAT_EXTRA_JAVA_OPTS="-DXPLANBOX_CONFIG=/root/xplan-dokumenten-config -Dlog4j2.configurationFile=classpath:/log4j2.yaml -Duser.timezone=Europe/Berlin"
+
+USER root
+
+# add xplan-api-dokumente
+ADD target/xplan-api-dokumente-*.war /tmp/
+RUN mkdir /opt/bitnami/tomcat/webapps/$WEB_CONTEXT \
+    && cd /opt/bitnami/tomcat/webapps/$WEB_CONTEXT \
+    && jar xf /tmp/xplan-api-dokumente-*.war \
+    && rm /tmp/xplan-api-dokumente-*.war
+
+USER 1001
