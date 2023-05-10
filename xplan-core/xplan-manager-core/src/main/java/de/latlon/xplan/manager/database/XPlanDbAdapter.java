@@ -52,9 +52,10 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.io.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.activation.MimetypesFileTypeMap;
-import javax.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -108,6 +109,7 @@ public class XPlanDbAdapter {
 		this.artefactRepository = artefactRepository;
 	}
 
+	@Transactional(propagation = Propagation.MANDATORY)
 	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc, PlanStatus planStatus,
 			Date beginValidity, Date endValidity, Date sortDate, String internalId, List<String> wfsFeatureIds)
 			throws Exception {
@@ -183,7 +185,7 @@ public class XPlanDbAdapter {
 	 * @param district the new district, may be <code>null</code>
 	 * @throws Exception
 	 */
-	@Transactional(rollbackOn = Exception.class)
+	@Transactional(rollbackFor = Exception.class)
 	public void updateDistrict(int planId, String district) throws Exception {
 		Plan plan = getRequiredPlanById(planId);
 		plan.setDistrict(district);

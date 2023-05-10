@@ -36,8 +36,9 @@ import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import javax.xml.namespace.QName;
 import java.io.File;
 import java.io.InputStream;
@@ -105,7 +106,7 @@ public class XPlanDao {
 	 * @param internalId
 	 * @return database id of the plan
 	 */
-	@Transactional(rollbackOn = Exception.class)
+	@Transactional(propagation = Propagation.MANDATORY)
 	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc, PlanStatus planStatus,
 			Date beginValidity, Date endValidity, Date sortDate, String internalId) throws Exception {
 		try {
@@ -177,7 +178,7 @@ public class XPlanDao {
 	 * @param removedRefs
 	 * @throws Exception
 	 */
-	@Transactional(rollbackOn = Exception.class)
+	@Transactional(rollbackFor = Exception.class)
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
 			List<File> uploadedArtefacts, Set<String> removedRefs) throws Exception {

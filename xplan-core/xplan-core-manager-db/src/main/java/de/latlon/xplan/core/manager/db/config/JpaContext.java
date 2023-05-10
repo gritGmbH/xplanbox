@@ -21,6 +21,8 @@
 package de.latlon.xplan.core.manager.db.config;
 
 import de.latlon.xplan.core.manager.db.DatasourceWrapper;
+import de.latlon.xplan.core.manager.db.SpringConnectionProvider;
+import org.deegree.db.datasource.DataSourceConnectionProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +31,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
@@ -71,10 +72,21 @@ public class JpaContext {
 	}
 
 	@Bean
-	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+	public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		JpaTransactionManager txManager = new JpaTransactionManager();
 		txManager.setEntityManagerFactory(entityManagerFactory);
 		return txManager;
+	}
+
+	@Bean
+	public SpringConnectionProvider springConnectionProvider(DatasourceWrapper datasourceWrapper,
+			JpaTransactionManager jpaTransactionManager) {
+		DataSourceConnectionProvider dataSourceConnectionProvider = datasourceWrapper
+				.retrieveDataSourceConnectionProvider();
+		SpringConnectionProvider springConnectionProvider = new SpringConnectionProvider(dataSourceConnectionProvider,
+				jpaTransactionManager);
+		datasourceWrapper.replaceConnectionProvider(springConnectionProvider);
+		return springConnectionProvider;
 	}
 
 }

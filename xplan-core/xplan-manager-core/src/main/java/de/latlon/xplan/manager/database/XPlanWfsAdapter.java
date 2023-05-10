@@ -54,35 +54,22 @@ public class XPlanWfsAdapter {
 	}
 
 	public List<String> insert(XPlanFeatureCollection fc, PlanStatus planStatus) throws Exception {
-		try {
-			LOG.info("Insert XPlan in XplanWFS/XPlanWMS");
-			FeatureStore xplanFs = managerWorkspaceWrapper.lookupStore(fc.getVersion(), planStatus);
-			LOG.info("- Einfügen von " + fc.getFeatures().size() + " Feature(s) in den FeatureStore (" + fc.getVersion()
-					+ ")...");
-			SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) xplanFs.acquireTransaction();
-			List<String> fids = ta.performInsert(fc.getFeatures(), USE_EXISTING);
-			ta.commit();
-			return fids;
-		}
-		catch (Exception e) {
-			throw new Exception("Fehler beim Einfügen: " + e.getMessage(), e);
-		}
+		LOG.info("Insert XPlan in XplanWFS/XPlanWMS");
+		FeatureStore xplanFs = managerWorkspaceWrapper.lookupStore(fc.getVersion(), planStatus);
+		LOG.info("- Einfügen von " + fc.getFeatures().size() + " Feature(s) in den FeatureStore (" + fc.getVersion()
+				+ ")...");
+		SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) xplanFs.acquireTransaction();
+		return ta.performInsert(fc.getFeatures(), USE_EXISTING);
 	}
 
 	public void deletePlan(int planId, XPlanVersion version, PlanStatus planStatus, Set<String> ids) throws Exception {
-		try {
-			FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
-			SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
+		FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
+		SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
 
-			IdFilter idFilter = new IdFilter(ids);
-			LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (" + version + ")...");
-			ta.performDelete(idFilter, null);
-			ta.commit();
-			LOG.info("OK");
-		}
-		catch (Exception e) {
-			throw new Exception("Fehler beim Löschen des Plans: " + e.getMessage() + ".", e);
-		}
+		IdFilter idFilter = new IdFilter(ids);
+		LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (" + version + ")...");
+		ta.performDelete(idFilter, null);
+		LOG.info("OK");
 	}
 
 	public FeatureCollection restoreFeatureCollection(XPlanVersion version, PlanStatus planStatus, Set<String> ids)
@@ -108,60 +95,36 @@ public class XPlanWfsAdapter {
 
 	public List<String> update(int planId, PlanStatus planStatus, XPlanFeatureCollection fc, Set<String> oldFids)
 			throws Exception {
-		SQLFeatureStoreTransaction ta = null;
-		try {
-			XPlanVersion version = fc.getVersion();
-			FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
+		XPlanVersion version = fc.getVersion();
+		FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
 
-			ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
+		SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
 
-			IdFilter idFilter = new IdFilter(oldFids);
-			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (" + version + ")...");
-			ta.performDelete(idFilter, null);
-			List<String> newFids = ta.performInsert(fc.getFeatures(), USE_EXISTING);
+		IdFilter idFilter = new IdFilter(oldFids);
+		LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (" + version + ")...");
+		ta.performDelete(idFilter, null);
+		List<String> newFids = ta.performInsert(fc.getFeatures(), USE_EXISTING);
 
-			ta.commit();
-			LOG.info("OK");
-			return newFids;
-		}
-		catch (Exception e) {
-			LOG.error("Fehler beim Aktualiseren der Features. Ein Rollback wird durchgeführt.", e);
-			if (ta != null)
-				ta.rollback();
-			throw new Exception("Fehler beim Aktualiseren des Plans: " + e.getMessage() + ".", e);
-		}
+		LOG.info("OK");
+		return newFids;
 	}
 
 	private List<String> update(int planId, XPlanFeatureCollection fc, Set<String> oldFids, PlanStatus oldPlanStatus,
 			PlanStatus newPlanStatus) throws Exception {
-		SQLFeatureStoreTransaction taSource = null;
-		SQLFeatureStoreTransaction taTarget = null;
-		try {
-			XPlanVersion version = fc.getVersion();
+		XPlanVersion version = fc.getVersion();
 
-			FeatureStore fsSource = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus);
-			taSource = (SQLFeatureStoreTransaction) fsSource.acquireTransaction();
-			FeatureStore fsTarget = managerWorkspaceWrapper.lookupStore(version, newPlanStatus);
-			taTarget = (SQLFeatureStoreTransaction) fsTarget.acquireTransaction();
+		FeatureStore fsSource = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus);
+		SQLFeatureStoreTransaction taSource = (SQLFeatureStoreTransaction) fsSource.acquireTransaction();
+		FeatureStore fsTarget = managerWorkspaceWrapper.lookupStore(version, newPlanStatus);
+		SQLFeatureStoreTransaction taTarget = (SQLFeatureStoreTransaction) fsTarget.acquireTransaction();
 
-			IdFilter idFilter = new IdFilter(oldFids);
-			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (" + version + ")...");
-			taSource.performDelete(idFilter, null);
-			List<String> newFids = taTarget.performInsert(fc.getFeatures(), USE_EXISTING);
+		IdFilter idFilter = new IdFilter(oldFids);
+		LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (" + version + ")...");
+		taSource.performDelete(idFilter, null);
+		List<String> newFids = taTarget.performInsert(fc.getFeatures(), USE_EXISTING);
 
-			taSource.commit();
-			taTarget.commit();
-			LOG.info("OK");
-			return newFids;
-		}
-		catch (Exception e) {
-			LOG.error("Fehler beim Aktualiseren der Features. Ein Rollback wird durchgeführt.", e);
-			if (taSource != null)
-				taSource.rollback();
-			if (taTarget != null)
-				taTarget.rollback();
-			throw new Exception("Fehler beim Aktualiseren des Plans: " + e.getMessage() + ".", e);
-		}
+		LOG.info("OK");
+		return newFids;
 	}
 
 }

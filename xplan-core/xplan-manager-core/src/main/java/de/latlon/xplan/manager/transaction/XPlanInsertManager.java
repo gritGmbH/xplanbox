@@ -50,6 +50,7 @@ import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.transaction.Transactional;
 import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -89,6 +90,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 	 * @throws Exception
 	 * @return the id of the plan, never <code>null</code>
 	 */
+	@Transactional(rollbackOn = Exception.class)
 	public List<Integer> importPlan(XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeRasterConfig,
 			String internalId, AdditionalPlanData xPlanMetadata) throws Exception {
 		checkArchive(archive);

@@ -20,6 +20,9 @@
  */
 package de.latlon.xplan.core.manager.db;
 
+import org.deegree.db.ConnectionProvider;
+import org.deegree.db.datasource.DataSourceConnectionProvider;
+
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
@@ -30,5 +33,9 @@ import java.sql.SQLException;
 public interface DatasourceWrapper {
 
 	DataSource retrieveDataSource() throws SQLException;
+
+	DataSourceConnectionProvider retrieveDataSourceConnectionProvider();
+
+	void replaceConnectionProvider(ConnectionProvider dataSourceConnectionProvider);
 
 }

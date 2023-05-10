@@ -18,6 +18,11 @@
       <artifactId>xplan-commons</artifactId>
     </dependency>
     <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-connectionprovider-datasource</artifactId>
+      <version>${deegree3.version}</version>
+    </dependency>
+    <dependency>
       <groupId>jakarta.persistence</groupId>
       <artifactId>jakarta.persistence-api</artifactId>
     </dependency>
