@@ -20,6 +20,7 @@
     <module>xplan-commons-cli</module>
     <module>xplan-core-job</module>
     <module>xplan-core-manager-db</module>
+    <module>xplan-core-manager-deegree</module>
   </modules>
 
 </project>

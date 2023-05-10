@@ -20,8 +20,7 @@
  */
 package de.latlon.xplan.core.manager.db;
 
-import org.deegree.db.ConnectionProvider;
-import org.deegree.db.datasource.DataSourceConnectionProvider;
+import org.springframework.orm.jpa.JpaTransactionManager;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -34,8 +33,6 @@ public interface DatasourceWrapper {
 
 	DataSource retrieveDataSource() throws SQLException;
 
-	DataSourceConnectionProvider retrieveDataSourceConnectionProvider();
-
-	void replaceConnectionProvider(ConnectionProvider dataSourceConnectionProvider);
+	void setJpaTransactionManager(JpaTransactionManager jpaTransactionManager);
 
 }

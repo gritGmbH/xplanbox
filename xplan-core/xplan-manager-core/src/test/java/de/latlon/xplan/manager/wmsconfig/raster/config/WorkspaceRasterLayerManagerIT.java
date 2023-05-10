@@ -21,15 +21,16 @@
 package de.latlon.xplan.manager.wmsconfig.raster.config;
 
 import de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType;
-import de.latlon.xplan.manager.wmsconfig.raster.config.WorkspaceRasterLayerManager;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.utils.DoublePair;
 import org.deegree.layer.persistence.LayerStore;
 import org.deegree.layer.persistence.LayerStoreProvider;
 import org.deegree.layer.persistence.tile.TileLayer;
 import org.deegree.workspace.Workspace;
-import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
 import java.io.IOException;
@@ -62,11 +63,15 @@ public class WorkspaceRasterLayerManagerIT {
 
 	public static final String RASTER_ID = "rasterId";
 
-	private File workspaceDirectory;
+	@ClassRule
+	public final static TemporaryFolder tempFolder = new TemporaryFolder();
 
-	@Before
-	public void createTestWorkspaceFrame() throws Exception {
-		workspaceDirectory = createTmpWorkspace().toFile();
+	private static File workspaceDirectory;
+
+	@BeforeClass
+	public static void setupFakedWorkspace() throws IOException {
+		workspaceDirectory = tempFolder.newFolder("xplan-wms-workspace");
+		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspaceDirectory.getParentFile().toString());
 	}
 
 	@Test
@@ -78,7 +83,7 @@ public class WorkspaceRasterLayerManagerIT {
 		workspaceRasterLayerManager.createRasterConfigurations(RASTER_ID, TIFF_FILE, minScaleDenominator,
 				maxScaleDenominator);
 
-		DeegreeWorkspace workspace = instantiateWorkspace(workspaceDirectory.getName(), workspaceDirectory);
+		DeegreeWorkspace workspace = instantiateWorkspace(workspaceDirectory.getName());
 		Workspace newWorkspace = workspace.getNewWorkspace();
 		newWorkspace.initAll();
 		LayerStore layerStoreMap = newWorkspace.getResource(LayerStoreProvider.class, RASTER_ID);
@@ -96,7 +101,7 @@ public class WorkspaceRasterLayerManagerIT {
 				RasterConfigurationType.geotiff, "EPSG:4326");
 		workspaceRasterLayerManager.createRasterConfigurations(RASTER_ID, TIFF_FILE, Double.NaN, Double.NaN);
 
-		DeegreeWorkspace workspace = instantiateWorkspace(workspaceDirectory.getName(), workspaceDirectory);
+		DeegreeWorkspace workspace = instantiateWorkspace(workspaceDirectory.getName());
 		Workspace newWorkspace = workspace.getNewWorkspace();
 		newWorkspace.initAll();
 		LayerStore layerStoreMap = newWorkspace.getResource(LayerStoreProvider.class, RASTER_ID);

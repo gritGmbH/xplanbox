@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.database;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.core.manager.db.DatasourceWrapper;
+import de.latlon.xplan.core.manager.deegree.jpa.JpaConnectionProvider;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import org.deegree.commons.config.DeegreeWorkspace;
@@ -30,9 +31,9 @@ import org.deegree.db.ConnectionProviderProvider;
 import org.deegree.db.datasource.DataSourceConnectionProvider;
 import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.FeatureStoreProvider;
-import org.deegree.feature.persistence.sql.SQLFeatureStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.orm.jpa.JpaTransactionManager;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -47,7 +48,9 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ManagerWorkspaceWrapper.class);
 
-	private static final String JDBC_POOL_ID = "xplan";
+	private static final String JPA_JDBC_POOL_ID = "xplan";
+
+	private static final String JDBC_POOL_ID = "xplancp";
 
 	private static final String INSPIREPLU_FS_ID = "inspireplu";
 
@@ -77,25 +80,12 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 	}
 
 	@Override
-	public DataSourceConnectionProvider retrieveDataSourceConnectionProvider() {
+	public void setJpaTransactionManager(JpaTransactionManager jpaTransactionManager) {
 		ensureWorkspaceInitialized();
 		ConnectionProvider resource = managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class,
-				JDBC_POOL_ID);
-		if (!(resource instanceof DataSourceConnectionProvider))
-			throw new IllegalArgumentException(
-					"Datasource configuration is not supported, must be an DataSourceConnection");
-		return (DataSourceConnectionProvider) resource;
-	}
-
-	@Override
-	public void replaceConnectionProvider(ConnectionProvider dataSourceConnectionProvider) {
-		ensureWorkspaceInitialized();
-		for (XPlanVersion value : XPlanVersion.values()) {
-			for (PlanStatus planStatus : PlanStatus.values()) {
-				FeatureStore featureStore = lookupStore(value, planStatus);
-				((SQLFeatureStore) featureStore).setConnectionProvider(dataSourceConnectionProvider);
-			}
-		}
+				JPA_JDBC_POOL_ID);
+		if (resource instanceof JpaConnectionProvider)
+			((JpaConnectionProvider) resource).setJpaTransactionManager(jpaTransactionManager);
 	}
 
 	/**

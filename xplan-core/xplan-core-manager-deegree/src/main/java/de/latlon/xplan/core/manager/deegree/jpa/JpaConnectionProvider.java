@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-manager-core - XPlan Manager Core Komponente
+ * xplan-core-manager-deegree
  * %%
  * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.core.manager.db;
+package de.latlon.xplan.core.manager.deegree.jpa;
 
 import org.deegree.db.ConnectionProvider;
 import org.deegree.db.datasource.DataSourceConnectionProvider;
@@ -36,21 +36,23 @@ import java.sql.Connection;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
  */
-public class SpringConnectionProvider implements ConnectionProvider {
+public class JpaConnectionProvider implements ConnectionProvider {
 
 	private final DataSourceConnectionProvider dataSourceConnectionProvider;
 
-	private final JpaTransactionManager transactionManager;
+	private final JpaConnectionProviderMetadata metadata;
 
-	public SpringConnectionProvider(DataSourceConnectionProvider dataSourceConnectionProvider,
-			JpaTransactionManager transactionManager) {
+	private JpaTransactionManager jpaTransactionManager;
+
+	public JpaConnectionProvider(DataSourceConnectionProvider dataSourceConnectionProvider,
+			JpaConnectionProviderMetadata metadata) {
 		this.dataSourceConnectionProvider = dataSourceConnectionProvider;
-		this.transactionManager = transactionManager;
+		this.metadata = metadata;
 	}
 
 	@Override
 	public Connection getConnection() {
-		DataSource dataSource = transactionManager.getDataSource();
+		DataSource dataSource = jpaTransactionManager.getDataSource();
 		Object resource = TransactionSynchronizationManager.getResource(dataSource);
 		return ((ConnectionHolder) resource).getConnection();
 	}
@@ -67,7 +69,7 @@ public class SpringConnectionProvider implements ConnectionProvider {
 
 	@Override
 	public ResourceMetadata<? extends Resource> getMetadata() {
-		return dataSourceConnectionProvider.getMetadata();
+		return metadata;
 	}
 
 	@Override
@@ -78,6 +80,10 @@ public class SpringConnectionProvider implements ConnectionProvider {
 	@Override
 	public void destroy() {
 		dataSourceConnectionProvider.destroy();
+	}
+
+	public void setJpaTransactionManager(JpaTransactionManager jpaTransactionManager) {
+		this.jpaTransactionManager = jpaTransactionManager;
 	}
 
 }
