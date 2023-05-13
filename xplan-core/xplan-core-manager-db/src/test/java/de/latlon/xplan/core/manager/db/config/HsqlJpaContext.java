@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.core.manager.db.config;
 
+import de.latlon.xplan.core.manager.db.DatasourceWrapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,9 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
@@ -42,14 +46,21 @@ import java.sql.SQLException;
 public class HsqlJpaContext {
 
 	@Bean
-	public DataSource dataSource() throws SQLException {
+	public DatasourceWrapper datasourceWrapper(DataSource dataSource) throws SQLException {
+		DatasourceWrapper datasourceWrapper = mock(DatasourceWrapper.class);
+		when(datasourceWrapper.retrieveDataSource()).thenReturn(dataSource);
+		return datasourceWrapper;
+	}
+
+	@Bean
+	public DataSource dataSource() {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
 		return builder.addScript("/create-schema.sql").setType(EmbeddedDatabaseType.HSQL).ignoreFailedDrops(true)
 				.build();
 	}
 
 	@Bean
-	public HibernateJpaVendorAdapter getJpaVendorAdapter(@Value("${hibernate.dialect}") String hibernateDialect) {
+	public HibernateJpaVendorAdapter jpaVendorAdapter(@Value("${hibernate.dialect}") String hibernateDialect) {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		vendorAdapter.setGenerateDdl(true);
 		vendorAdapter.setShowSql(true);
