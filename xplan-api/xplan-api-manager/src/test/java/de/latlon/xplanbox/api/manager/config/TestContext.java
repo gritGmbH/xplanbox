@@ -23,7 +23,7 @@ package de.latlon.xplanbox.api.manager.config;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
-import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
+import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.InternalIdRetrieverConfiguration;
@@ -33,8 +33,11 @@ import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.export.XPlanExporter;
+import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
+import de.latlon.xplan.manager.transaction.XPlanEditManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -124,16 +127,43 @@ public class TestContext {
 	}
 
 	@Bean
-	@Primary
-	public XPlanManager xPlanManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
-			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			WorkspaceReloader workspaceReloader, Optional<InspirePluTransformator> inspirePluTransformator,
-			WmsWorkspaceWrapper wmsWorkspaceWrapper, XPlanRasterEvaluator xPlanRasterEvaluator,
+	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			XPlanExporter xPlanExporter, XPlanRasterEvaluator xPlanRasterEvaluator,
+			XPlanRasterManager xPlanRasterManager, SortPropertyReader sortPropertyReader,
+			XPlanInsertManager xPlanInsertManager, XPlanEditManager xPlanEditManager,
+			XPlanDeleteManager xPlanDeleteManager) throws Exception {
+		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, wmsWorkspaceWrapper, xPlanExporter,
+				xPlanRasterEvaluator, xPlanRasterManager, sortPropertyReader, null, xPlanInsertManager,
+				xPlanEditManager, xPlanDeleteManager);
+	}
+
+	@Bean
+	public XPlanInsertManager xPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
+			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager,
-			StorageCleanUpManager storageCleanUpManager) throws Exception {
-		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager,
-				xPlanDocumentManager.orElse(null), storageCleanUpManager);
+			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
+			SortPropertyReader sortPropertyReader) throws Exception {
+		return new XPlanInsertManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager,
+				xPlanDocumentManager.orElse(null), workspaceReloader, managerConfiguration, managerWorkspaceWrapper,
+				sortPropertyReader);
+	}
+
+	@Bean
+	public XPlanEditManager xPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
+			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			WorkspaceReloader workspaceReloader, XPlanRasterManager xPlanRasterManager,
+			Optional<XPlanDocumentManager> xPlanDocumentManager, SortPropertyReader sortPropertyReader)
+			throws DataServiceCouplingException {
+		return new XPlanEditManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager,
+				xPlanDocumentManager.orElse(null), workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
+				managerWorkspaceWrapper, sortPropertyReader);
+	}
+
+	@Bean
+	public XPlanDeleteManager xPlanDeleteManager(XPlanDao xPlanDao, WorkspaceReloader workspaceReloader,
+			XPlanRasterManager xPlanRasterManager, StorageCleanUpManager storageCleanUpManager) {
+		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, storageCleanUpManager, workspaceReloader);
 	}
 
 	@Bean

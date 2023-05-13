@@ -26,8 +26,6 @@ import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
-import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.Rechtsstand;
@@ -132,15 +130,8 @@ public class XPlanManagerTest {
 		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
 		RasterConfigManager rasterConfigManager = createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
 		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterConfigManager);
-		XPlanSynthesizer xPlanSynthesizer = createXPlanSynthesizer();
-		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null,
-				wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager, null, null);
-	}
-
-	private static XPlanSynthesizer createXPlanSynthesizer() {
-		// TODO turn into autowired field
-		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
-		return new XPlanSynthesizer(synRulesAccessor);
+		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, wmsWorkspaceWrapper, null,
+				xPlanRasterEvaluator, xPlanRasterManager, null, null, null, null, null);
 	}
 
 	private RasterConfigManager createRasterConfigManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,

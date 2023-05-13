@@ -42,11 +42,13 @@ import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.document.config.DocumentStorageContext;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
+import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
 import de.latlon.xplan.manager.storage.config.StorageCleanUpContext;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
+import de.latlon.xplan.manager.transaction.XPlanEditManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
@@ -156,8 +158,8 @@ public class ApplicationContext {
 
 	@Bean
 	public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(Path rulesPath) {
-		RulesVersionParser rulesMetadataParser = new RulesVersionParser();
-		RulesVersion rulesVersion = rulesMetadataParser.parserRulesVersion(rulesPath);
+		RulesVersionParser rulesVersionParser = new RulesVersionParser();
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
 		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
 		return new XQuerySemanticValidatorConfigurationRetriever(rulesPath, rulesMetadata);
 	}
@@ -226,9 +228,7 @@ public class ApplicationContext {
 	public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
 			throws WorkspaceException {
 		DeegreeWorkspace managerWorkspace = instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE);
-		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(managerWorkspace,
-				managerConfiguration);
-		return managerWorkspaceWrapper;
+		return new ManagerWorkspaceWrapper(managerWorkspace, managerConfiguration);
 	}
 
 	@Bean
@@ -249,28 +249,37 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanManager xPlanManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
-			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			WorkspaceReloader workspaceReloader, WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager,
-			Optional<XPlanDocumentManager> xPlanDocumentManager, StorageCleanUpManager storageCleanUpManager)
-			throws Exception {
-		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager, xPlanDocumentManager.orElse(null),
-				storageCleanUpManager);
+	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			XPlanExporter xPlanExporter, XPlanRasterEvaluator xPlanRasterEvaluator,
+			XPlanRasterManager xPlanRasterManager, SortPropertyReader sortPropertyReader,
+			XPlanInsertManager xPlanInsertManager, XPlanEditManager xPlanEditManager,
+			XPlanDeleteManager xPlanDeleteManager) throws Exception {
+		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, wmsWorkspaceWrapper, xPlanExporter,
+				xPlanRasterEvaluator, xPlanRasterManager, sortPropertyReader, null, xPlanInsertManager,
+				xPlanEditManager, xPlanDeleteManager);
 	}
 
 	@Bean
 	public XPlanInsertManager xPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
 			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager,
-			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader) throws Exception {
-		SortConfiguration sortConfiguration = createSortConfiguration(managerConfiguration);
-		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
-
+			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
+			SortPropertyReader sortPropertyReader) throws Exception {
 		return new XPlanInsertManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager,
 				xPlanDocumentManager.orElse(null), workspaceReloader, managerConfiguration, managerWorkspaceWrapper,
 				sortPropertyReader);
+	}
+
+	@Bean
+	public XPlanEditManager xPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
+			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			WorkspaceReloader workspaceReloader, XPlanRasterManager xPlanRasterManager,
+			Optional<XPlanDocumentManager> xPlanDocumentManager, SortPropertyReader sortPropertyReader)
+			throws DataServiceCouplingException {
+		return new XPlanEditManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager,
+				xPlanDocumentManager.orElse(null), workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
+				managerWorkspaceWrapper, sortPropertyReader);
 	}
 
 	@Bean
@@ -282,6 +291,12 @@ public class ApplicationContext {
 	@Bean
 	public XPlanExporter xPlanExporter() {
 		return new XPlanExporter();
+	}
+
+	@Bean
+	public SortPropertyReader sortPropertyReader(ManagerConfiguration managerConfiguration) {
+		SortConfiguration sortConfiguration = createSortConfiguration(managerConfiguration);
+		return new SortPropertyReader(sortConfiguration);
 	}
 
 	@Bean
