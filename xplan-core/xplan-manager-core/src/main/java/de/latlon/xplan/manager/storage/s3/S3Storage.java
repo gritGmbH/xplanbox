@@ -26,6 +26,7 @@ import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
@@ -53,6 +54,16 @@ public abstract class S3Storage {
 		this.bucketName = bucketName;
 	}
 
+	protected S3Object getObject(String key) throws StorageException {
+		try {
+			LOG.info("Get object with key {} from bucket {}.", key, bucketName);
+			return client.getObject(key, bucketName);
+		}
+		catch (AmazonServiceException e) {
+			throw new StorageException("Could not get object with key " + key + " from bucket " + bucketName + ".", e);
+		}
+	}
+
 	protected String insertObject(int planId, String entryName, XPlanArchiveContentAccess archive)
 			throws StorageException {
 		String key = createKey(planId, entryName);
@@ -78,7 +89,18 @@ public abstract class S3Storage {
 		}
 	}
 
-	protected void deleteObject(String prefix) {
+	public void insertObject(String key, InputStream content) throws StorageException {
+		try {
+			LOG.info("Insert object with key {} in bucket {}.", key, bucketName);
+			ObjectMetadata metadata = new ObjectMetadata();
+			client.putObject(bucketName, key, content, metadata);
+		}
+		catch (AmazonServiceException e) {
+			throw new StorageException("Could not insert object with key " + key + " in bucket " + bucketName + ".", e);
+		}
+	}
+
+	public void deleteObject(String prefix) {
 		ObjectListing objectsToDelete = client.listObjects(bucketName, prefix);
 		List<S3ObjectSummary> objects = objectsToDelete.getObjectSummaries();
 		for (S3ObjectSummary object : objects) {

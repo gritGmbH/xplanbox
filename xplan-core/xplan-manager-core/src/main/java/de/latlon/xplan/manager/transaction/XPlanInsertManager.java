@@ -32,7 +32,6 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
-import de.latlon.xplan.manager.edit.EditException;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
@@ -187,7 +186,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 	}
 
 	private void insertDocuments(int planId, XPlanFeatureCollection xPlanInstance, XPlanArchive archive)
-			throws StorageException, EditException {
+			throws StorageException {
 		if (xPlanDocumentManager != null) {
 			xPlanDocumentManager.importDocuments(planId, xPlanInstance.getFeatures(), archive);
 		}

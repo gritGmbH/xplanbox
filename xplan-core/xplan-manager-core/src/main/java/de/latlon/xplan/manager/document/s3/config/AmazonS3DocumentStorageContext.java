@@ -25,6 +25,7 @@ import de.latlon.xplan.manager.document.s3.S3DocumentStorage;
 import de.latlon.xplan.manager.storage.s3.config.AmazonS3Context;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
@@ -38,6 +39,7 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 @Profile("s3doc")
 @Import({ AmazonS3Context.class })
+@ComponentScan("de.latlon.xplan.manager.document.s3.listener")
 public class AmazonS3DocumentStorageContext {
 
 	@Bean

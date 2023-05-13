@@ -28,6 +28,7 @@ import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -43,8 +44,11 @@ public class XPlanDocumentManager {
 
 	private final DocumentStorage documentStorage;
 
-	public XPlanDocumentManager(DocumentStorage documentStorage) {
+	private final ApplicationEventPublisher applicationEventPublisher;
+
+	public XPlanDocumentManager(DocumentStorage documentStorage, ApplicationEventPublisher applicationEventPublisher) {
 		this.documentStorage = documentStorage;
+		this.applicationEventPublisher = applicationEventPublisher;
 	}
 
 	/**
@@ -52,6 +56,7 @@ public class XPlanDocumentManager {
 	 * @param planId the id of the plan, never <code>null</code>
 	 * @param featureCollection the parsed feature collection, never <code>null</code>
 	 * @param xPlanArchive containing the documents, never <code>null</code>
+	 * @return
 	 * @throws StorageException if the documents could not be stored
 	 */
 	public void importDocuments(int planId, FeatureCollection featureCollection, XPlanArchive xPlanArchive)
@@ -60,7 +65,13 @@ public class XPlanDocumentManager {
 		ExternalReferenceInfo externalReferenceInfo = externalReferenceScanner.scan(featureCollection,
 				xPlanArchive.getVersion());
 		List<String> referencesToAdd = collectReferencesToAdd(externalReferenceInfo.getNonRasterRefs());
-		documentStorage.importDocuments(planId, xPlanArchive, referencesToAdd);
+		DocumentStorageEvent documentStorageEvent = new DocumentStorageEvent();
+		try {
+			documentStorage.importDocuments(planId, xPlanArchive, referencesToAdd, documentStorageEvent);
+		}
+		finally {
+			applicationEventPublisher.publishEvent(documentStorageEvent);
+		}
 	}
 
 	/**
@@ -76,19 +87,25 @@ public class XPlanDocumentManager {
 	 */
 	public void updateDocuments(int planId, List<Path> uploadedArtefacts, List<ExternalReference> documentsToAdd,
 			List<ExternalReference> documentsToRemove) throws StorageException {
-		for (String referenceToAdd : collectReferencesToAdd(documentsToAdd)) {
-			Path fileToAdd = getFileToAdd(referenceToAdd, uploadedArtefacts);
-			if (fileToAdd != null) {
-				documentStorage.importDocument(planId, referenceToAdd, fileToAdd);
+		DocumentStorageEvent documentStorageEvent = new DocumentStorageEvent();
+		try {
+			for (String referenceToAdd : collectReferencesToAdd(documentsToAdd)) {
+				Path fileToAdd = getFileToAdd(referenceToAdd, uploadedArtefacts);
+				if (fileToAdd != null) {
+					documentStorage.importDocument(planId, referenceToAdd, fileToAdd, documentStorageEvent);
+				}
+				else {
+					LOG.warn("Could not find document with name {} to import in storage", referenceToAdd);
+				}
 			}
-			else {
-				LOG.warn("Could not find document with name {} to import in storage", referenceToAdd);
+
+			for (ExternalReference referenceToRemove : documentsToRemove) {
+				documentStorage.deleteDocument(planId, referenceToRemove.getReferenzUrl(), documentStorageEvent);
+				documentStorage.deleteDocument(planId, referenceToRemove.getGeoRefUrl(), documentStorageEvent);
 			}
 		}
-
-		for (ExternalReference referenceToRemove : documentsToRemove) {
-			documentStorage.deleteDocument(planId, referenceToRemove.getReferenzUrl());
-			documentStorage.deleteDocument(planId, referenceToRemove.getGeoRefUrl());
+		finally {
+			applicationEventPublisher.publishEvent(documentStorageEvent);
 		}
 	}
 

@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.document.s3;
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.manager.document.DocumentStorageEvent;
 import de.latlon.xplan.manager.document.s3.config.AmazonS3DocumentStorageContext;
 import de.latlon.xplan.manager.storage.s3.config.AmazonS3TestContext;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
@@ -41,6 +42,8 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 /**
  * ATTENTION: Executing this test class can run up the bill for the AWS account
@@ -68,11 +71,13 @@ public class S3DocumentStorageIT {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip("StErhVO_Hamm_60.zip", inputStream);
 
-		List<String> keys = s3DocumentStorage.importDocuments(1, archive,
-				Collections.singletonList("StErhVO_Hamm.pdf"));
+		DocumentStorageEvent documentStorageEvent = mock(DocumentStorageEvent.class);
+		List<String> keys = s3DocumentStorage.importDocuments(1, archive, Collections.singletonList("StErhVO_Hamm.pdf"),
+				documentStorageEvent);
 
 		assertThat(keys.size(), is(1));
 		assertThat(keys.get(0), is("1_StErhVO_Hamm.pdf"));
+		verify(documentStorageEvent).addInsertedKey("1_StErhVO_Hamm.pdf");
 	}
 
 }

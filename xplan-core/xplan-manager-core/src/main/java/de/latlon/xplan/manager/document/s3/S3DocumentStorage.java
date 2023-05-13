@@ -21,8 +21,10 @@
 package de.latlon.xplan.manager.document.s3;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.S3Object;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.manager.document.DocumentStorage;
+import de.latlon.xplan.manager.document.DocumentStorageEvent;
 import de.latlon.xplan.manager.storage.s3.S3Storage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 
@@ -43,26 +45,32 @@ public class S3DocumentStorage extends S3Storage implements DocumentStorage {
 	}
 
 	@Override
-	public List<String> importDocuments(int planId, XPlanArchive xPlanArchive, List<String> documentsToAdd)
-			throws StorageException {
+	public List<String> importDocuments(int planId, XPlanArchive xPlanArchive, List<String> documentsToAdd,
+			DocumentStorageEvent documentStorageEvent) throws StorageException {
 		List<String> keys = new ArrayList<>();
 		for (String documentToAdd : documentsToAdd) {
 			String key = insertObject(planId, documentToAdd, xPlanArchive);
+			documentStorageEvent.addInsertedKey(key);
 			keys.add(key);
 		}
 		return keys;
 	}
 
 	@Override
-	public void importDocument(int planId, String referenceToAdd, Path fileToAdd) throws StorageException {
+	public void importDocument(int planId, String referenceToAdd, Path fileToAdd,
+			DocumentStorageEvent documentStorageEvent) throws StorageException {
 		String key = createKey(planId, referenceToAdd);
 		insertObject(key, fileToAdd);
+		documentStorageEvent.addInsertedKey(key);
 	}
 
 	@Override
-	public void deleteDocument(int planId, String referenzUrl) {
+	public void deleteDocument(int planId, String referenzUrl, DocumentStorageEvent documentStorageEvent)
+			throws StorageException {
 		if (referenzUrl != null) {
 			String key = createKey(planId, referenzUrl);
+			S3Object object = getObject(key);
+			documentStorageEvent.addRemovedDocument(object.getKey(), object.getObjectContent());
 			deleteObject(key);
 		}
 	}

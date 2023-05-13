@@ -37,15 +37,19 @@ public interface DocumentStorage {
 	 * @param planId the id of the plan, never <code>null</code>
 	 * @param xPlanArchive containing the documents, never <code>null</code>
 	 * @param documentsToAdd names of the documents to add, never <code>null</code>
-	 * @return the keys (filenames) of the omported documents, may be empty but never
+	 * @param documentStorageEvent to store keys of imported documents, never
+	 * <code>null</code>
+	 * @return the keys (filenames) of the imported documents, may be empty but never
 	 * <code>null</code>
 	 * @throws StorageException if the documents could not be stored
 	 */
-	List<String> importDocuments(int planId, XPlanArchive xPlanArchive, List<String> documentsToAdd)
+	List<String> importDocuments(int planId, XPlanArchive xPlanArchive, List<String> documentsToAdd,
+			DocumentStorageEvent documentStorageEvent) throws StorageException;
+
+	void importDocument(int planId, String referenceToAdd, Path fileToAdd, DocumentStorageEvent documentStorageEvent)
 			throws StorageException;
 
-	void importDocument(int planId, String referenceToAdd, Path fileToAdd) throws StorageException;
-
-	void deleteDocument(int planId, String referenzUrl);
+	void deleteDocument(int planId, String referenzUrl, DocumentStorageEvent documentStorageEvent)
+			throws StorageException;
 
 }
