@@ -225,7 +225,7 @@ public class ApplicationContext {
 	@Bean
 	public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			XPlanDbAdapter xPlanDbAdapter) {
-		return new XPlanDao(managerWorkspaceWrapper, xPlanDbAdapter);
+		return new XPlanDao(managerWorkspaceWrapper, xPlanDbAdapter, applicationEventPublisher);
 	}
 
 	@Bean

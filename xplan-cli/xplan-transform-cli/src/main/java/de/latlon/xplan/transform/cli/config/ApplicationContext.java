@@ -36,18 +36,15 @@ import de.latlon.xplan.manager.transformation.HaleXplan41ToXplan51Transformer;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
-import de.latlon.xplan.transform.cli.TransformApplicationRunner;
 import de.latlon.xplan.transform.cli.TransformingValidator;
-import de.latlon.xplan.transform.cli.XPlanTransformCLI;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 
 import java.io.File;
@@ -77,6 +74,9 @@ public class ApplicationContext {
 	@Autowired
 	private ArtefactRepository artefactRepository;
 
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
+
 	@Bean
 	public TransformingValidator haleXplan41ToXplan51Transformer(ManagerConfiguration managerConfiguration,
 			XPlanDao xPlanDao) {
@@ -98,7 +98,7 @@ public class ApplicationContext {
 
 	@Bean
 	public XPlanDao xPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDbAdapter xPlanDbAdapter) {
-		return new XPlanDao(managerWorkspaceWrapper, xPlanDbAdapter);
+		return new XPlanDao(managerWorkspaceWrapper, xPlanDbAdapter, applicationEventPublisher);
 	}
 
 	@Bean

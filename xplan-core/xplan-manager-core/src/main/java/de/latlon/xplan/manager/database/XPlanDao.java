@@ -36,6 +36,7 @@ import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -84,11 +85,13 @@ public class XPlanDao {
 	 * </p>
 	 * @param managerWorkspaceWrapper workspace, never <code>null</code>
 	 * @param xPlanDbAdapter never <code>null</code>
+	 * @param applicationEventPublisher
 	 */
-	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDbAdapter xPlanDbAdapter) {
+	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDbAdapter xPlanDbAdapter,
+			ApplicationEventPublisher applicationEventPublisher) {
 		this.xPlanDbAdapter = xPlanDbAdapter;
-		this.xPlanWfsAdapter = new XPlanWfsAdapter(managerWorkspaceWrapper);
-		this.xPlanSynWfsAdapter = new XPlanSynWfsAdapter(managerWorkspaceWrapper);
+		this.xPlanWfsAdapter = new XPlanWfsAdapter(managerWorkspaceWrapper, applicationEventPublisher);
+		this.xPlanSynWfsAdapter = new XPlanSynWfsAdapter(managerWorkspaceWrapper, applicationEventPublisher);
 		this.xPlanInspirePluAdapter = new XPlanInspirePluAdapter(managerWorkspaceWrapper);
 	}
 

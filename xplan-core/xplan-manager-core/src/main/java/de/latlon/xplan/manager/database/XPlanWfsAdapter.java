@@ -22,17 +22,19 @@ package de.latlon.xplan.manager.database;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.core.manager.db.listener.CleanupSqlFeatureStoreEvent;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.query.Query;
+import org.deegree.feature.persistence.sql.SQLFeatureStore;
 import org.deegree.feature.persistence.sql.SQLFeatureStoreTransaction;
 import org.deegree.filter.IdFilter;
 import org.deegree.protocol.wfs.getfeature.TypeName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.util.List;
 import java.util.Set;
@@ -49,13 +51,17 @@ public class XPlanWfsAdapter {
 
 	private final ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
-	public XPlanWfsAdapter(ManagerWorkspaceWrapper managerWorkspaceWrapper) {
+	private final ApplicationEventPublisher applicationEventPublisher;
+
+	public XPlanWfsAdapter(ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			ApplicationEventPublisher applicationEventPublisher) {
 		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
+		this.applicationEventPublisher = applicationEventPublisher;
 	}
 
 	public List<String> insert(XPlanFeatureCollection fc, PlanStatus planStatus) throws Exception {
 		LOG.info("Insert XPlan in XplanWFS/XPlanWMS");
-		FeatureStore xplanFs = managerWorkspaceWrapper.lookupStore(fc.getVersion(), planStatus);
+		SQLFeatureStore xplanFs = lookupStore(fc.getVersion(), planStatus);
 		LOG.info("- Einfügen von " + fc.getFeatures().size() + " Feature(s) in den FeatureStore (" + fc.getVersion()
 				+ ")...");
 		SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) xplanFs.acquireTransaction();
@@ -63,8 +69,8 @@ public class XPlanWfsAdapter {
 	}
 
 	public void deletePlan(int planId, XPlanVersion version, PlanStatus planStatus, Set<String> ids) throws Exception {
-		FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
-		SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
+		SQLFeatureStore xplanFs = lookupStore(version, planStatus);
+		SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) xplanFs.acquireTransaction();
 
 		IdFilter idFilter = new IdFilter(ids);
 		LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (" + version + ")...");
@@ -74,10 +80,10 @@ public class XPlanWfsAdapter {
 
 	public FeatureCollection restoreFeatureCollection(XPlanVersion version, PlanStatus planStatus, Set<String> ids)
 			throws Exception {
-		FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
+		SQLFeatureStore xplanFs = lookupStore(version, planStatus);
 		IdFilter filter = new IdFilter(ids);
 		Query query = new Query(new TypeName[0], filter, null, null, null);
-		return fs.query(query).toCollection();
+		return xplanFs.query(query).toCollection();
 	}
 
 	public List<String> update(int planId, XPlan oldXPlan, AdditionalPlanData newXPlanMetadata,
@@ -96,9 +102,8 @@ public class XPlanWfsAdapter {
 	public List<String> update(int planId, PlanStatus planStatus, XPlanFeatureCollection fc, Set<String> oldFids)
 			throws Exception {
 		XPlanVersion version = fc.getVersion();
-		FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
-
-		SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
+		SQLFeatureStore xplanFs = lookupStore(version, planStatus);
+		SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) xplanFs.acquireTransaction();
 
 		IdFilter idFilter = new IdFilter(oldFids);
 		LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (" + version + ")...");
@@ -113,9 +118,9 @@ public class XPlanWfsAdapter {
 			PlanStatus newPlanStatus) throws Exception {
 		XPlanVersion version = fc.getVersion();
 
-		FeatureStore fsSource = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus);
+		SQLFeatureStore fsSource = lookupStore(version, oldPlanStatus);
 		SQLFeatureStoreTransaction taSource = (SQLFeatureStoreTransaction) fsSource.acquireTransaction();
-		FeatureStore fsTarget = managerWorkspaceWrapper.lookupStore(version, newPlanStatus);
+		SQLFeatureStore fsTarget = lookupStore(version, newPlanStatus);
 		SQLFeatureStoreTransaction taTarget = (SQLFeatureStoreTransaction) fsTarget.acquireTransaction();
 
 		IdFilter idFilter = new IdFilter(oldFids);
@@ -125,6 +130,12 @@ public class XPlanWfsAdapter {
 
 		LOG.info("OK");
 		return newFids;
+	}
+
+	private SQLFeatureStore lookupStore(XPlanVersion version, PlanStatus planStatus) {
+		SQLFeatureStore xplanFs = (SQLFeatureStore) managerWorkspaceWrapper.lookupStore(version, planStatus);
+		applicationEventPublisher.publishEvent(new CleanupSqlFeatureStoreEvent(xplanFs));
+		return xplanFs;
 	}
 
 }

@@ -23,6 +23,7 @@ package de.latlon.xplan.core.manager.db.config;
 import de.latlon.xplan.core.manager.db.DatasourceWrapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -43,6 +44,7 @@ import java.sql.SQLException;
 @EnableJpaRepositories(basePackages = "de.latlon.xplan.core.manager.db.repository")
 @PropertySource("classpath:/jpa.properties")
 @EnableTransactionManagement
+@ComponentScan("de.latlon.xplan.core.manager.db.listener")
 public class JpaContext {
 
 	@Bean

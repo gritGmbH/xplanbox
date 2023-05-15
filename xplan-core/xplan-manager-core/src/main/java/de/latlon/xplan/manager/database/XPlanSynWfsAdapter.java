@@ -20,15 +20,18 @@
  */
 package de.latlon.xplan.manager.database;
 
+import de.latlon.xplan.core.manager.db.listener.CleanupSqlFeatureStoreEvent;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.persistence.FeatureStore;
+import org.deegree.feature.persistence.sql.SQLFeatureStore;
 import org.deegree.feature.persistence.sql.SQLFeatureStoreTransaction;
 import org.deegree.filter.IdFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.util.List;
 import java.util.Set;
@@ -46,13 +49,17 @@ public class XPlanSynWfsAdapter {
 
 	private final ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
-	public XPlanSynWfsAdapter(ManagerWorkspaceWrapper managerWorkspaceWrapper) {
+	private final ApplicationEventPublisher applicationEventPublisher;
+
+	public XPlanSynWfsAdapter(ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			ApplicationEventPublisher applicationEventPublisher) {
 		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
+		this.applicationEventPublisher = applicationEventPublisher;
 	}
 
 	public List<String> insert(FeatureCollection synFc, PlanStatus planStatus) throws Exception {
 		LOG.info("Insert XPlan in XPlanSynWF");
-		FeatureStore synFs = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
+		SQLFeatureStore synFs = lookupStore(planStatus);
 		LOG.info("- Einfügen von " + synFc.size() + " Feature(s) in den FeatureStore (XPLAN_SYN)...");
 		SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) synFs.acquireTransaction();
 		return ta.performInsert(synFc, USE_EXISTING);
@@ -61,8 +68,8 @@ public class XPlanSynWfsAdapter {
 	public void deletePlan(XPlanVersionAndPlanStatus xPlanMetadata, Set<String> ids, int planId) throws Exception {
 		PlanStatus planStatus = xPlanMetadata.planStatus;
 
-		FeatureStore fsSyn = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
-		SQLFeatureStoreTransaction taSyn = (SQLFeatureStoreTransaction) fsSyn.acquireTransaction();
+		SQLFeatureStore synFs = lookupStore(planStatus);
+		SQLFeatureStoreTransaction taSyn = (SQLFeatureStoreTransaction) synFs.acquireTransaction();
 
 		IdFilter idFilter = new IdFilter(ids);
 		LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (XPLAN_SYN)...");
@@ -85,7 +92,7 @@ public class XPlanSynWfsAdapter {
 
 	public List<String> update(int planId, PlanStatus planStatus, FeatureCollection synFc, Set<String> oldFids)
 			throws Exception {
-		FeatureStore synFs = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
+		SQLFeatureStore synFs = lookupStore(planStatus);
 		SQLFeatureStoreTransaction taSyn = (SQLFeatureStoreTransaction) synFs.acquireTransaction();
 		IdFilter idFilter = new IdFilter(oldFids);
 
@@ -98,12 +105,10 @@ public class XPlanSynWfsAdapter {
 
 	private List<String> update(int planId, FeatureCollection synFc, Set<String> oldFids, PlanStatus oldPlanStatus,
 			PlanStatus newPlanStatus) throws Exception {
-		SQLFeatureStoreTransaction taSynSource = null;
-		SQLFeatureStoreTransaction taSynTarget = null;
-		FeatureStore synFsSource = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, oldPlanStatus);
-		taSynSource = (SQLFeatureStoreTransaction) synFsSource.acquireTransaction();
-		FeatureStore synFsTarget = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, newPlanStatus);
-		taSynTarget = (SQLFeatureStoreTransaction) synFsTarget.acquireTransaction();
+		FeatureStore synFsSource = lookupStore(oldPlanStatus);
+		SQLFeatureStoreTransaction taSynSource = (SQLFeatureStoreTransaction) synFsSource.acquireTransaction();
+		FeatureStore synFsTarget = lookupStore(newPlanStatus);
+		SQLFeatureStoreTransaction taSynTarget = (SQLFeatureStoreTransaction) synFsTarget.acquireTransaction();
 		IdFilter idFilter = new IdFilter(oldFids);
 
 		LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
@@ -111,6 +116,12 @@ public class XPlanSynWfsAdapter {
 		List<String> newFids = taSynTarget.performInsert(synFc, USE_EXISTING);
 		LOG.info("OK");
 		return newFids;
+	}
+
+	private SQLFeatureStore lookupStore(PlanStatus planStatus) {
+		SQLFeatureStore synFs = (SQLFeatureStore) managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
+		applicationEventPublisher.publishEvent(new CleanupSqlFeatureStoreEvent(synFs));
+		return synFs;
 	}
 
 }

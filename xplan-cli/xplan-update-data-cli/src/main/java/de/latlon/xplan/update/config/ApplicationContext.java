@@ -39,6 +39,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -70,6 +71,9 @@ public class ApplicationContext {
 	@Autowired
 	private ArtefactRepository artefactRepository;
 
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
+
 	@Bean
 	public ManagerConfiguration managerConfiguration(PropertiesLoader managerPropertiesLoader)
 			throws ConfigurationException {
@@ -88,7 +92,7 @@ public class ApplicationContext {
 
 	@Bean
 	public XPlanDao xPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDbAdapter xPlanDbAdapter) {
-		return new XPlanDao(managerWorkspaceWrapper, xPlanDbAdapter);
+		return new XPlanDao(managerWorkspaceWrapper, xPlanDbAdapter, applicationEventPublisher);
 	}
 
 	@Bean
