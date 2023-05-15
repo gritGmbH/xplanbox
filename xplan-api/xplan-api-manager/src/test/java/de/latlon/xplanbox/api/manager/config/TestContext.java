@@ -73,7 +73,6 @@ import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -97,9 +96,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.ArgumentMatchers.nullable;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -144,17 +141,6 @@ public class TestContext {
 	}
 
 	@Bean
-	public XPlanInsertManager xPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
-			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager,
-			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
-			SortPropertyReader sortPropertyReader) throws Exception {
-		return new XPlanInsertManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager,
-				xPlanDocumentManager.orElse(null), workspaceReloader, managerConfiguration, managerWorkspaceWrapper,
-				sortPropertyReader);
-	}
-
-	@Bean
 	public XPlanEditManager xPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
 			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			WorkspaceReloader workspaceReloader, XPlanRasterManager xPlanRasterManager,
@@ -184,7 +170,7 @@ public class TestContext {
 	@Bean
 	@Primary
 	public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
-			throws WorkspaceException, SQLException {
+			throws SQLException {
 		ManagerWorkspaceWrapper managerWorkspaceWrapper = mock(ManagerWorkspaceWrapper.class);
 		FeatureStore featureStore41 = mock(FeatureStore.class);
 		when(featureStore41.getSchema()).thenReturn(XPlanSchemas.getInstance().getAppSchema(XPLAN_41));
@@ -192,7 +178,7 @@ public class TestContext {
 		when(featureStore51.getSchema()).thenReturn(XPlanSchemas.getInstance().getAppSchema(XPLAN_51));
 		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_41), any(PlanStatus.class))).thenReturn(featureStore41);
 		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_51), any(PlanStatus.class))).thenReturn(featureStore51);
-		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration());
+		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration);
 		Connection connection = mockConnection();
 		when(managerWorkspaceWrapper.openConnection()).thenReturn(connection);
 		return managerWorkspaceWrapper;
@@ -337,10 +323,8 @@ public class TestContext {
 
 	@Bean
 	@Primary
-	public XPlanExporter xPlanExporter(ManagerConfiguration managerConfiguration) {
-		XPlanExporter xPlanExporter = mock(XPlanExporter.class);
-		doNothing().when(xPlanExporter).export(isA(OutputStream.class), isA(List.class));
-		return xPlanExporter;
+	public XPlanExporter xPlanExporter() {
+		return new XPlanExporter();
 	}
 
 	@Bean

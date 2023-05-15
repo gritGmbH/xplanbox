@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.transaction;
 
+import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
@@ -110,7 +111,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		PlanStatus selectedPlanStatus = xPlanMetadata.getPlanStatus();
 		FeatureCollection synFc = createSynFeatures(xPlanInstance, archive.getVersion());
 		if (internalId != null) {
-			AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, selectedPlanStatus).getSchema();
+			AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 			featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
 		}
 		int planId = importPlan(archive, makeRasterConfig, xPlanMetadata, crs, selectedPlanStatus, xPlanInstance,
@@ -152,8 +153,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		reloadWorkspace(planId);
 		LOG.info("XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId);
 		LOG.info("OK.");
-		// return planId;
-		throw new IllegalArgumentException("STOP");
+		return planId;
 	}
 
 	private XPlanFeatureCollections readAndValidateMainDocument(XPlanArchive archive, ICRS crs, boolean force)
@@ -180,7 +180,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 	}
 
 	private void createRasterConfigurations(XPlanArchive archive, boolean makeRasterConfig, XPlanFeatureCollection fc,
-			int planId, PlanStatus planStatus, Date sortDate) throws Exception {
+			int planId, PlanStatus planStatus, Date sortDate) {
 		if (makeRasterConfig) {
 			createRasterConfiguration(archive, fc, planId, archive.getType(), planStatus, null, sortDate);
 		}

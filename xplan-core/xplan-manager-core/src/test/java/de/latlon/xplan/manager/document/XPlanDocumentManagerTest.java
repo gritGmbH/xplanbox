@@ -35,6 +35,7 @@ import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
@@ -61,16 +62,15 @@ public class XPlanDocumentManagerTest {
 
 		xPlanDocumentManager.importDocuments(1, featureCollection, archive);
 
-		StorageEvent storageEvent = mock(StorageEvent.class);
 		verify(storage).importDocuments(eq(1), eq(archive), argThat(list -> list.contains("StErhVO_Hamm.pdf")),
-				storageEvent);
+				any(StorageEvent.class));
+		verify(applicationEventPublisher).publishEvent(any(StorageEvent.class));
 	}
 
 	@Test
 	public void testUpdateDocuments() throws Exception {
 		DocumentStorage storage = mock(DocumentStorage.class);
 		ApplicationEventPublisher applicationEventPublisher = mock(ApplicationEventPublisher.class);
-		StorageEvent storageEvent = mock(StorageEvent.class);
 		XPlanDocumentManager xPlanDocumentManager = new XPlanDocumentManager(storage, applicationEventPublisher);
 
 		String referenceToAdd = "test.png";
@@ -80,8 +80,9 @@ public class XPlanDocumentManagerTest {
 		List<ExternalReference> documentsToRemove = Collections.singletonList(new ExternalReference(referenceToRemove));
 		xPlanDocumentManager.updateDocuments(1, Collections.singletonList(uploadedArtefact), documentsToAdd,
 				documentsToRemove);
-		verify(storage).importDocument(eq(1), eq(referenceToAdd), eq(uploadedArtefact), storageEvent);
-		verify(storage).deleteDocument(eq(1), eq(referenceToRemove), storageEvent);
+		verify(storage).importDocument(eq(1), eq(referenceToAdd), eq(uploadedArtefact), any(StorageEvent.class));
+		verify(storage).deleteDocument(eq(1), eq(referenceToRemove), any(StorageEvent.class));
+		verify(applicationEventPublisher).publishEvent(any(StorageEvent.class));
 	}
 
 	private static Path createMockedPath(String referenceToAdd) {

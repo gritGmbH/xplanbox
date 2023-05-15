@@ -23,6 +23,8 @@ package de.latlon.xplan.manager.wmsconfig.raster.storage.s3;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.storage.StorageEvent;
@@ -71,7 +73,11 @@ public class S3RasterStorageTest {
 	public void testDeleteRasterFile() throws StorageException {
 		AmazonS3 client = spy(AmazonS3.class);
 		ObjectListing objectListing = mock(ObjectListing.class);
+		S3Object object = mock(S3Object.class);
+		when(object.getObjectContent()).thenReturn(mock(S3ObjectInputStream.class));
+		when(object.getKey()).thenReturn("1_test");
 		when(client.listObjects(eq(BUCKET_NAME), eq("1_test"))).thenReturn(objectListing);
+		when(client.getObject(eq("1_test"), eq(BUCKET_NAME))).thenReturn(object);
 
 		S3ObjectSummary objectToDelete = mock(S3ObjectSummary.class);
 		when(objectToDelete.getKey()).thenReturn("1_test");

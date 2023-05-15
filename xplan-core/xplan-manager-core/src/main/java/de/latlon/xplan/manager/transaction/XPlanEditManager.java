@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.transaction;
 
+import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
@@ -121,7 +122,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			FeatureCollection synFc = createSynFeatures(modifiedPlanFc, version);
 			String internalId = xplanDao.retrieveInternalId(planId);
 			if (internalId != null) {
-				AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, oldPlanStatus).getSchema();
+				AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 				featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
 			}
 
