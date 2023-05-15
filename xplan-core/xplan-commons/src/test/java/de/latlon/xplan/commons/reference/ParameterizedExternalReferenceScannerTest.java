@@ -24,29 +24,48 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
-import junitparams.FileParameters;
-import junitparams.JUnitParamsRunner;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-@RunWith(JUnitParamsRunner.class)
+@RunWith(Parameterized.class)
 public class ParameterizedExternalReferenceScannerTest {
 
-	@FileParameters("src/test/resources/de/latlon/xplan/commons/reference/externalReferenceScanner-test-input.csv")
+	private final String resourceUnderTest;
+
+	private final int noOfExternalRefs;
+
+	private final int noOfRasterPlanBaseScans;
+
+	@Parameterized.Parameters
+	public static List<Object[]> data() {
+		return Arrays.asList(new Object[][] { { "xplan40/V4_1_ID_66.zip", 4, 1 }, { "xplan41/BP2070.zip", 0, 0 },
+				{ "xplan41/Demo.zip", 2, 0 }, { "BPlan001_4-1.zip", 1, 1 }, { "xplan50/V4_1_ID_103.zip", 4, 1 },
+				{ "xplan51/V4_1_ID_103.zip", 4, 1 }, { "xplan51/V4_1_ID_103_rasterBasisAlsRefScan.zip", 4, 1 } });
+	}
+
+	public ParameterizedExternalReferenceScannerTest(String resourceUnderTest, int noOfExternalRefs,
+			int noOfRasterPlanBaseScans) {
+		this.resourceUnderTest = resourceUnderTest;
+		this.noOfExternalRefs = noOfExternalRefs;
+		this.noOfRasterPlanBaseScans = noOfRasterPlanBaseScans;
+	}
+
 	@Test
-	public void testValidationOfSingleRule(String resourceUnderTest, int externalRefs, int rasterPlanBaseScans)
-			throws Exception {
+	public void testValidationOfSingleRule() throws Exception {
 		FeatureCollection fc = getMainFileAsFeatureCollection(resourceUnderTest);
 		ExternalReferenceInfo referenceInfo = new ExternalReferenceScanner().scan(fc);
-		assertEquals(externalRefs, referenceInfo.getAllReferences().size());
-		assertEquals(rasterPlanBaseScans, referenceInfo.getRasterPlanBaseScans().size());
-
+		assertEquals(noOfExternalRefs, referenceInfo.getAllReferences().size());
+		assertEquals(noOfRasterPlanBaseScans, referenceInfo.getRasterPlanBaseScans().size());
 	}
 
 	private FeatureCollection getMainFileAsFeatureCollection(String name) throws Exception {

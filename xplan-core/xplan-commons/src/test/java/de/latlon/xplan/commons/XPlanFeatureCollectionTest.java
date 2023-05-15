@@ -165,16 +165,16 @@ public class XPlanFeatureCollectionTest {
 	}
 
 	@Test
-	public void testV4_1_ID_103_41() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan41/V4_1_ID_103.zip");
-		Envelope expectedBbox = createEnvelopeIn4326(13.81519026784244, 51.58617350816596, 13.823968763528068,
-				51.58945636520396);
+	public void testBPlan001_41() throws Exception {
+		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("BPlan001_4-1.zip");
+		Envelope expectedBbox = createEnvelopeIn4326(10.008563938531246, 53.538185265541415, 10.01873241781561,
+				53.5407955356869);
 
-		assertEquals("12062425", fc.getPlanGkz());
-		assertEquals("\"Heideweg\"", fc.getPlanName());
-		assertEquals("Nr.1", fc.getPlanNummer());
-		assertEquals(500, fc.getFeatures().size());
-		assertThat(fc.getPlanReleaseDate(), is(new SimpleDateFormat("yyyy-MM-dd").parse("2002-02-01")));
+		assertEquals("02000000", fc.getPlanGkz());
+		assertEquals("BPlan001_4-1", fc.getPlanName());
+		assertNull(fc.getPlanNummer());
+		assertEquals(206, fc.getFeatures().size());
+		assertNull(fc.getPlanReleaseDate());
 		assertThat(fc.getBboxIn4326().getMin().get0(), is(expectedBbox.getMin().get0()));
 		assertThat(fc.getBboxIn4326().getMin().get1(), is(expectedBbox.getMin().get1()));
 		assertThat(fc.getBboxIn4326().getMax().get0(), is(expectedBbox.getMax().get0()));

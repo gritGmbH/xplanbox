@@ -69,19 +69,6 @@ public class GeltungsbereichInspectorTest {
 	}
 
 	@Test
-	public void testCheck_invalid_41() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_41);
-		readFeaturesFromZip("xplan41/V4_1_ID_103.zip", geltungsbereichInspector);
-
-		boolean isValid = geltungsbereichInspector.checkGeometricRule();
-		assertThat(isValid, is(false));
-		assertThat(geltungsbereichInspector.getErrors().size(), is(1));
-		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
-
-		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getOriginalGeometry(), is(notNullValue()));
-	}
-
-	@Test
 	public void testCheck_invalid_withLine() throws Exception {
 		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
 		readFeaturesFromZip("xplan51/BP2070.zip", geltungsbereichInspector);

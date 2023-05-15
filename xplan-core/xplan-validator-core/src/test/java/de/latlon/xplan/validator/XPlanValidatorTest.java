@@ -103,7 +103,7 @@ public class XPlanValidatorTest {
 
 	@BeforeClass
 	public static void initFileToValidate() throws IOException {
-		InputStream input = ResourceAccessor.readResourceStream("xplan51/V4_1_ID_103.gml");
+		InputStream input = ResourceAccessor.readResourceStream("xplan60/Blankenese29.gml");
 		Path xPlanGml = Files.createTempFile("XPlanValidatorTest", ".gml");
 		FileOutputStream output = new FileOutputStream(xPlanGml.toFile());
 		IOUtils.copy(input, output);
