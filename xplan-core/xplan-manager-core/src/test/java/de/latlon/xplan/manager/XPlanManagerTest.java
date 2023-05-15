@@ -40,6 +40,7 @@ import org.deegree.commons.utils.Pair;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -129,9 +130,15 @@ public class XPlanManagerTest {
 		XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(rasterEvaluation);
 		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
 		RasterConfigManager rasterConfigManager = createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
-		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterConfigManager);
+		ApplicationEventPublisher applicationEventPublisher = createApplicationEventPublisher();
+		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterConfigManager,
+				applicationEventPublisher);
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, wmsWorkspaceWrapper, null,
 				xPlanRasterEvaluator, xPlanRasterManager, null, null, null, null, null);
+	}
+
+	private ApplicationEventPublisher createApplicationEventPublisher() {
+		return mock(ApplicationEventPublisher.class);
 	}
 
 	private RasterConfigManager createRasterConfigManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,

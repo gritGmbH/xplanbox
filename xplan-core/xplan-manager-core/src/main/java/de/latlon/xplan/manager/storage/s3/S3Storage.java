@@ -41,7 +41,7 @@ import java.util.List;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
  */
-public abstract class S3Storage {
+public class S3Storage {
 
 	private static final Logger LOG = LoggerFactory.getLogger(S3Storage.class);
 
@@ -54,7 +54,7 @@ public abstract class S3Storage {
 		this.bucketName = bucketName;
 	}
 
-	protected S3Object getObject(String key) throws StorageException {
+	public S3Object getObject(String key) throws StorageException {
 		try {
 			LOG.info("Get object with key {} from bucket {}.", key, bucketName);
 			return client.getObject(key, bucketName);

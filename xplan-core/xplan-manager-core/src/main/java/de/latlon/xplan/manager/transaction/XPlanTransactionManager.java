@@ -56,7 +56,6 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -140,8 +139,7 @@ public abstract class XPlanTransactionManager {
 	}
 
 	protected List<String> createRasterConfiguration(XPlanArchiveContentAccess archive, XPlanFeatureCollection fc,
-			int planId, XPlanType type, PlanStatus planStatus, PlanStatus newPlanStatus, Date sortDate)
-			throws SQLException {
+			int planId, XPlanType type, PlanStatus planStatus, PlanStatus newPlanStatus, Date sortDate) {
 		String moreRecentPlanId = null;
 		if (sortDate != null) {
 			moreRecentPlanId = xplanDao.getPlanIdOfMoreRecentRasterPlan(sortDate);

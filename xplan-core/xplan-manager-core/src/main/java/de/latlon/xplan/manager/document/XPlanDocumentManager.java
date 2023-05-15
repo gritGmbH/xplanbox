@@ -24,6 +24,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
+import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
@@ -65,12 +66,12 @@ public class XPlanDocumentManager {
 		ExternalReferenceInfo externalReferenceInfo = externalReferenceScanner.scan(featureCollection,
 				xPlanArchive.getVersion());
 		List<String> referencesToAdd = collectReferencesToAdd(externalReferenceInfo.getNonRasterRefs());
-		DocumentStorageEvent documentStorageEvent = new DocumentStorageEvent();
+		StorageEvent storageEvent = new StorageEvent();
 		try {
-			documentStorage.importDocuments(planId, xPlanArchive, referencesToAdd, documentStorageEvent);
+			documentStorage.importDocuments(planId, xPlanArchive, referencesToAdd, storageEvent);
 		}
 		finally {
-			applicationEventPublisher.publishEvent(documentStorageEvent);
+			applicationEventPublisher.publishEvent(storageEvent);
 		}
 	}
 
@@ -87,12 +88,12 @@ public class XPlanDocumentManager {
 	 */
 	public void updateDocuments(int planId, List<Path> uploadedArtefacts, List<ExternalReference> documentsToAdd,
 			List<ExternalReference> documentsToRemove) throws StorageException {
-		DocumentStorageEvent documentStorageEvent = new DocumentStorageEvent();
+		StorageEvent storageEvent = new StorageEvent();
 		try {
 			for (String referenceToAdd : collectReferencesToAdd(documentsToAdd)) {
 				Path fileToAdd = getFileToAdd(referenceToAdd, uploadedArtefacts);
 				if (fileToAdd != null) {
-					documentStorage.importDocument(planId, referenceToAdd, fileToAdd, documentStorageEvent);
+					documentStorage.importDocument(planId, referenceToAdd, fileToAdd, storageEvent);
 				}
 				else {
 					LOG.warn("Could not find document with name {} to import in storage", referenceToAdd);
@@ -100,12 +101,12 @@ public class XPlanDocumentManager {
 			}
 
 			for (ExternalReference referenceToRemove : documentsToRemove) {
-				documentStorage.deleteDocument(planId, referenceToRemove.getReferenzUrl(), documentStorageEvent);
-				documentStorage.deleteDocument(planId, referenceToRemove.getGeoRefUrl(), documentStorageEvent);
+				documentStorage.deleteDocument(planId, referenceToRemove.getReferenzUrl(), storageEvent);
+				documentStorage.deleteDocument(planId, referenceToRemove.getGeoRefUrl(), storageEvent);
 			}
 		}
 		finally {
-			applicationEventPublisher.publishEvent(documentStorageEvent);
+			applicationEventPublisher.publishEvent(storageEvent);
 		}
 	}
 

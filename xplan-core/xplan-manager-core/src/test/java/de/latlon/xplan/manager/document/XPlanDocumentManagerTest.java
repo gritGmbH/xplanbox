@@ -25,6 +25,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReference;
+import de.latlon.xplan.manager.storage.StorageEvent;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 import org.springframework.context.ApplicationEventPublisher;
@@ -60,16 +61,16 @@ public class XPlanDocumentManagerTest {
 
 		xPlanDocumentManager.importDocuments(1, featureCollection, archive);
 
-		DocumentStorageEvent documentStorageEvent = mock(DocumentStorageEvent.class);
+		StorageEvent storageEvent = mock(StorageEvent.class);
 		verify(storage).importDocuments(eq(1), eq(archive), argThat(list -> list.contains("StErhVO_Hamm.pdf")),
-				documentStorageEvent);
+				storageEvent);
 	}
 
 	@Test
 	public void testUpdateDocuments() throws Exception {
 		DocumentStorage storage = mock(DocumentStorage.class);
 		ApplicationEventPublisher applicationEventPublisher = mock(ApplicationEventPublisher.class);
-		DocumentStorageEvent documentStorageEvent = mock(DocumentStorageEvent.class);
+		StorageEvent storageEvent = mock(StorageEvent.class);
 		XPlanDocumentManager xPlanDocumentManager = new XPlanDocumentManager(storage, applicationEventPublisher);
 
 		String referenceToAdd = "test.png";
@@ -79,8 +80,8 @@ public class XPlanDocumentManagerTest {
 		List<ExternalReference> documentsToRemove = Collections.singletonList(new ExternalReference(referenceToRemove));
 		xPlanDocumentManager.updateDocuments(1, Collections.singletonList(uploadedArtefact), documentsToAdd,
 				documentsToRemove);
-		verify(storage).importDocument(eq(1), eq(referenceToAdd), eq(uploadedArtefact), documentStorageEvent);
-		verify(storage).deleteDocument(eq(1), eq(referenceToRemove), documentStorageEvent);
+		verify(storage).importDocument(eq(1), eq(referenceToAdd), eq(uploadedArtefact), storageEvent);
+		verify(storage).deleteDocument(eq(1), eq(referenceToRemove), storageEvent);
 	}
 
 	private static Path createMockedPath(String referenceToAdd) {

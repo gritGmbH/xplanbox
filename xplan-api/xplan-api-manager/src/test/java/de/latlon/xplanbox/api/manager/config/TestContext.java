@@ -64,6 +64,8 @@ import org.deegree.feature.persistence.FeatureStore;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 import org.slf4j.bridge.SLF4JBridgeHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -125,6 +127,9 @@ public class TestContext {
 		jerseyConfig.register(DefaultApi.class);
 		return jerseyConfig;
 	}
+
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
 
 	@Bean
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
@@ -222,7 +227,7 @@ public class TestContext {
 	@Primary
 	public XPlanRasterManager xPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
 			throws WorkspaceException {
-		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
+		return new XPlanRasterManager(rasterStorage, rasterConfigManager, applicationEventPublisher);
 	}
 
 	@Bean

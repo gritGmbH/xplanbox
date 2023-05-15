@@ -87,6 +87,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -147,6 +148,9 @@ public class ApplicationContext {
 	public GeometricValidator geometricValidator() {
 		return new GeometricValidatorImpl(true);
 	}
+
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
 
 	@Bean
 	public SemanticValidator semanticValidator(ManagerConfiguration managerConfiguration,
@@ -245,7 +249,7 @@ public class ApplicationContext {
 	@Bean
 	public XPlanRasterManager xPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
 			throws WorkspaceException {
-		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
+		return new XPlanRasterManager(rasterStorage, rasterConfigManager, applicationEventPublisher);
 	}
 
 	@Bean

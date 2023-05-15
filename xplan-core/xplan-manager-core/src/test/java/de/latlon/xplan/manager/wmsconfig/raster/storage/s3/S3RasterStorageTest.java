@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -25,6 +25,7 @@ import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
+import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.junit.Test;
@@ -57,15 +58,17 @@ public class S3RasterStorageTest {
 		S3RasterStorage s3RasterStorage = createS2RasterStorage(client);
 		XPlanArchiveContentAccess archive = mockArchive();
 
-		String key = s3RasterStorage.addRasterFile(1, "test", archive);
+		StorageEvent storageEvent = mock(StorageEvent.class);
+		String key = s3RasterStorage.addRasterFile(1, "test", archive, storageEvent);
 
 		assertThat(key, is("1_test"));
 		verify(client).doesBucketExistV2(eq(BUCKET_NAME));
 		verify(client).putObject(eq(BUCKET_NAME), eq("1_test"), nullable(InputStream.class), any(ObjectMetadata.class));
+		verify(storageEvent).addInsertedKey(eq("1_test"));
 	}
 
 	@Test
-	public void testDeleteRasterFile() {
+	public void testDeleteRasterFile() throws StorageException {
 		AmazonS3 client = spy(AmazonS3.class);
 		ObjectListing objectListing = mock(ObjectListing.class);
 		when(client.listObjects(eq(BUCKET_NAME), eq("1_test"))).thenReturn(objectListing);
@@ -76,9 +79,11 @@ public class S3RasterStorageTest {
 		when(objectListing.getObjectSummaries()).thenReturn(objectSummaries);
 		S3RasterStorage s3RasterStorage = createS2RasterStorage(client);
 
-		s3RasterStorage.deleteRasterFiles("1", "test");
+		StorageEvent storageEvent = mock(StorageEvent.class);
+		s3RasterStorage.deleteRasterFile("1", "test", storageEvent);
 
 		verify(client).deleteObject(BUCKET_NAME, "1_test");
+		verify(storageEvent).addRemovedDocument(eq("1_test"), any(InputStream.class));
 	}
 
 	private S3RasterStorage createS2RasterStorage(AmazonS3 client) {

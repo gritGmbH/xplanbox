@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.document;
+package de.latlon.xplan.manager.storage;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ import java.util.Map;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
  */
-public class DocumentStorageEvent {
+public class StorageEvent {
 
 	private final List<String> insertedKeys = new ArrayList<>();
 

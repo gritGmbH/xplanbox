@@ -34,6 +34,8 @@ import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3Raster
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.update.dp.SortPropertyDbUpdater;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -48,6 +50,9 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_
 @Configuration
 @Import({ ApplicationContext.class, RasterStorageContext.class, AmazonS3RasterStorageContext.class, })
 public class SortPropertyUpdaterApplicationContext {
+
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
 
 	@Bean
 	public XPlanSynthesizer XPlanSynthesizer(ManagerConfiguration managerConfiguration) {
@@ -78,7 +83,7 @@ public class SortPropertyUpdaterApplicationContext {
 	@Bean
 	public XPlanRasterManager xPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
 			throws WorkspaceException {
-		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
+		return new XPlanRasterManager(rasterStorage, rasterConfigManager, applicationEventPublisher);
 	}
 
 }

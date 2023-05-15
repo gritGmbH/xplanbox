@@ -86,6 +86,7 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.web.server.service.ReportProvider;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -141,6 +142,9 @@ public class BasicSpringConfig {
 	public GeometricValidator geometricValidator() {
 		return new GeometricValidatorImpl(true);
 	}
+
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
 
 	@Bean
 	public SemanticValidator semanticValidator(ManagerConfiguration managerConfiguration,
@@ -239,7 +243,7 @@ public class BasicSpringConfig {
 	@Bean
 	public XPlanRasterManager xPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
 			throws WorkspaceException {
-		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
+		return new XPlanRasterManager(rasterStorage, rasterConfigManager, applicationEventPublisher);
 	}
 
 	@Bean

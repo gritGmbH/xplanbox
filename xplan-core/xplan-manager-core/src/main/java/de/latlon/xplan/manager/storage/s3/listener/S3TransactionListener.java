@@ -18,13 +18,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.document.s3.listener;
+package de.latlon.xplan.manager.storage.s3.listener;
 
-import de.latlon.xplan.manager.document.DocumentStorageEvent;
-import de.latlon.xplan.manager.document.s3.S3DocumentStorage;
+import de.latlon.xplan.manager.storage.StorageEvent;
+import de.latlon.xplan.manager.storage.s3.S3Storage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionalEventListener;
 
@@ -39,25 +40,25 @@ import static org.springframework.transaction.event.TransactionPhase.AFTER_ROLLB
  * @since 6.1
  */
 @Component
-public class S3DocumentTransactionListener {
+public class S3TransactionListener {
 
-	private static final Logger LOG = LoggerFactory.getLogger(S3DocumentTransactionListener.class);
+	private static final Logger LOG = LoggerFactory.getLogger(S3TransactionListener.class);
 
-	private final S3DocumentStorage s3DocumentStorage;
+	private final S3Storage s3Storage;
 
-	public S3DocumentTransactionListener(S3DocumentStorage s3DocumentStorage) {
-		this.s3DocumentStorage = s3DocumentStorage;
+	public S3TransactionListener(@Qualifier("rollbackStorage") S3Storage s3Storage) {
+		this.s3Storage = s3Storage;
 	}
 
 	@TransactionalEventListener(phase = AFTER_ROLLBACK)
-	public void rollbackDocumentS3(DocumentStorageEvent documentStorageEvent) {
-		List<String> insertedKeys = documentStorageEvent.getInsertedKeys();
-		insertedKeys.forEach(insertedKey -> s3DocumentStorage.deleteObject(insertedKey));
+	public void rollbackDocumentS3(StorageEvent storageEvent) {
+		List<String> insertedKeys = storageEvent.getInsertedKeys();
+		insertedKeys.forEach(insertedKey -> s3Storage.deleteObject(insertedKey));
 
-		Map<String, InputStream> deletedKeysToObjects = documentStorageEvent.getDeletedKeysToObjects();
+		Map<String, InputStream> deletedKeysToObjects = storageEvent.getDeletedKeysToObjects();
 		deletedKeysToObjects.entrySet().forEach(deletedKeyAndObject -> {
 			try {
-				s3DocumentStorage.insertObject(deletedKeyAndObject.getKey(), deletedKeyAndObject.getValue());
+				s3Storage.insertObject(deletedKeyAndObject.getKey(), deletedKeyAndObject.getValue());
 			}
 			catch (StorageException e) {
 				LOG.warn("Could not rollback deleted document with id {} from S3 Storage.",

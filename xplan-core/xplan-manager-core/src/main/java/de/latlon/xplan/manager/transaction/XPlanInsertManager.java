@@ -152,7 +152,8 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		reloadWorkspace(planId);
 		LOG.info("XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId);
 		LOG.info("OK.");
-		return planId;
+		// return planId;
+		throw new IllegalArgumentException("STOP");
 	}
 
 	private XPlanFeatureCollections readAndValidateMainDocument(XPlanArchive archive, ICRS crs, boolean force)

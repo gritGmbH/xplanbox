@@ -82,6 +82,7 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -128,6 +129,9 @@ public class ApplicationContext {
 
 	@Autowired
 	private ArtefactRepository artefactRepository;
+
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
 
 	@Bean
 	public SystemConfigHandler systemConfigHandler(XQuerySemanticValidatorConfigurationRetriever configurationRetriever,
@@ -242,7 +246,7 @@ public class ApplicationContext {
 	@Bean
 	public XPlanRasterManager xPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
 			throws WorkspaceException {
-		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
+		return new XPlanRasterManager(rasterStorage, rasterConfigManager, applicationEventPublisher);
 	}
 
 	@Bean
