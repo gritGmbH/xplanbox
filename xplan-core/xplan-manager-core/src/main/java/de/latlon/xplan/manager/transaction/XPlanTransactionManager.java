@@ -199,7 +199,11 @@ public abstract class XPlanTransactionManager {
 				thread.start();
 			}
 			catch (UnsupportedEncodingException e) {
-				LOG.warn("Creation of data services coupling failed. URL could not be created.");
+				LOG.warn("Creation of data services coupling failed. URL could not be created: {}", e.getMessage());
+			}
+			catch (Exception e) {
+				LOG.warn("Creation of data services coupling failed: {}", e.getMessage());
+				LOG.trace(e.getMessage(), e);
 			}
 		}
 		else {
