@@ -65,7 +65,7 @@ public class XPlanDocumentManager {
 		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 		ExternalReferenceInfo externalReferenceInfo = externalReferenceScanner.scan(featureCollection,
 				xPlanArchive.getVersion());
-		List<String> referencesToAdd = collectReferencesToAdd(externalReferenceInfo.getNonRasterRefs());
+		List<String> referencesToAdd = collectNonHttpReferences(externalReferenceInfo.getNonRasterRefs());
 		StorageEvent storageEvent = new StorageEvent();
 		try {
 			documentStorage.importDocuments(planId, xPlanArchive, referencesToAdd, storageEvent);
@@ -90,7 +90,7 @@ public class XPlanDocumentManager {
 			List<ExternalReference> documentsToRemove) throws StorageException {
 		StorageEvent storageEvent = new StorageEvent();
 		try {
-			for (String referenceToAdd : collectReferencesToAdd(documentsToAdd)) {
+			for (String referenceToAdd : collectNonHttpReferences(documentsToAdd)) {
 				Path fileToAdd = getFileToAdd(referenceToAdd, uploadedArtefacts);
 				if (fileToAdd != null) {
 					documentStorage.importDocument(planId, referenceToAdd, fileToAdd, storageEvent);
@@ -100,9 +100,8 @@ public class XPlanDocumentManager {
 				}
 			}
 
-			for (ExternalReference referenceToRemove : documentsToRemove) {
-				documentStorage.deleteDocument(planId, referenceToRemove.getReferenzUrl(), storageEvent);
-				documentStorage.deleteDocument(planId, referenceToRemove.getGeoRefUrl(), storageEvent);
+			for (String referenceToRemove : collectNonHttpReferences(documentsToRemove)) {
+				documentStorage.deleteDocument(planId, referenceToRemove, storageEvent);
 			}
 		}
 		finally {
@@ -118,7 +117,7 @@ public class XPlanDocumentManager {
 		return null;
 	}
 
-	private List<String> collectReferencesToAdd(List<ExternalReference> externalReferences) {
+	private List<String> collectNonHttpReferences(List<ExternalReference> externalReferences) {
 		List<String> referencesToAdd = new ArrayList<>();
 		for (ExternalReference reference : externalReferences) {
 			addReference(reference.getReferenzUrl(), referencesToAdd);

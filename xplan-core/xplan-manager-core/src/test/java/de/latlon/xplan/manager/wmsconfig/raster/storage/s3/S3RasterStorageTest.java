@@ -77,7 +77,7 @@ public class S3RasterStorageTest {
 		when(object.getObjectContent()).thenReturn(mock(S3ObjectInputStream.class));
 		when(object.getKey()).thenReturn("1_test");
 		when(client.listObjects(eq(BUCKET_NAME), eq("1_test"))).thenReturn(objectListing);
-		when(client.getObject(eq("1_test"), eq(BUCKET_NAME))).thenReturn(object);
+		when(client.getObject(eq(BUCKET_NAME), eq("1_test"))).thenReturn(object);
 
 		S3ObjectSummary objectToDelete = mock(S3ObjectSummary.class);
 		when(objectToDelete.getKey()).thenReturn("1_test");

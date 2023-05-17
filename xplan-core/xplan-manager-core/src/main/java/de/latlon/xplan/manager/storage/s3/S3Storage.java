@@ -57,7 +57,7 @@ public class S3Storage {
 	public S3Object getObject(String key) throws StorageException {
 		try {
 			LOG.info("Get object with key {} from bucket {}.", key, bucketName);
-			return client.getObject(key, bucketName);
+			return client.getObject(bucketName, key);
 		}
 		catch (AmazonServiceException e) {
 			throw new StorageException("Could not get object with key " + key + " from bucket " + bucketName + ".", e);
