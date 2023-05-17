@@ -38,8 +38,9 @@ import java.util.Objects;
 public class ArtefactId implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(referencedColumnName = "id", name = "plan", foreignKey = @ForeignKey(name = "artefacts_plan_fkey"))
-	private @Valid Plan plan;
+	@JoinColumn(referencedColumnName = "id", name = "plan", foreignKey = @ForeignKey(name = "artefacts_plan_fkey"),
+			insertable = false, updatable = false)
+	private Plan plan;
 
 	@Column(nullable = false)
 	private @Valid String filename;
