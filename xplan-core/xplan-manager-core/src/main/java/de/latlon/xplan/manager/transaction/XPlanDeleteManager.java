@@ -27,6 +27,8 @@ import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.transaction.Transactional;
+
 import static java.lang.Integer.parseInt;
 
 /**
@@ -58,6 +60,7 @@ public class XPlanDeleteManager {
 	 * @param planId the plan id to delete should be used.
 	 * @throws Exception
 	 */
+	@Transactional(rollbackOn = Exception.class)
 	public void delete(String planId) throws Exception {
 		xPlanDao.deletePlan(planId);
 		xPlanRasterManager.removeRasterLayers(planId);

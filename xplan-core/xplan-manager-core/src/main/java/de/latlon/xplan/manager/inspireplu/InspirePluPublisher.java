@@ -30,6 +30,7 @@ import org.deegree.gml.GMLStreamReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.transaction.Transactional;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import java.io.FileInputStream;
@@ -80,6 +81,7 @@ public class InspirePluPublisher {
 		xPlanDao.insertInspirePlu(featureCollection);
 	}
 
+	@Transactional(rollbackOn = Exception.class)
 	private FeatureCollection parseFeatureCollection(Path inspirePlu) throws Exception {
 		XMLInputFactory xmlInputFactory = XMLInputFactory.newFactory();
 		try (FileInputStream stream = new FileInputStream(inspirePlu.toFile())) {

@@ -120,6 +120,7 @@ public class XPlanDbAdapter {
 		return savedPlan.getId();
 	}
 
+	@Transactional(propagation = Propagation.MANDATORY)
 	public void insertArtefacts(XPlanFeatureCollection xPlanFeatureCollection, XPlanArchive archive, int planId)
 			throws Exception {
 		LOG.info("Insert XPlan in XPlanDB");
@@ -142,6 +143,7 @@ public class XPlanDbAdapter {
 		planwerkWmsMetadataRepository.save(planwerkWmsMetadata);
 	}
 
+	@Transactional(propagation = Propagation.MANDATORY)
 	public void deletePlan(int planId) throws Exception {
 		planRepository.deleteById(planId);
 	}
@@ -159,6 +161,7 @@ public class XPlanDbAdapter {
 	 * @param removedRefs
 	 * @throws Exception
 	 */
+	@Transactional(propagation = Propagation.MANDATORY)
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
 			List<File> uploadedArtefacts, Set<String> removedRefs) throws Exception {
@@ -168,9 +171,9 @@ public class XPlanDbAdapter {
 		updatePlan(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, xPlanToEdit, sortDate, uploadedArtefacts,
 				removedRefs, planId, plan);
 		planRepository.save(plan);
-
 	}
 
+	@Transactional(propagation = Propagation.MANDATORY)
 	public void updateFids(int planId, List<String> fids) throws Exception {
 		LOG.info("- Aktualisierung der XPlan-Features von Plan mit ID '{}'", planId);
 		Plan plan = getRequiredPlanById(planId);
@@ -198,6 +201,7 @@ public class XPlanDbAdapter {
 	 * @param bereiche the bereiche, never <code>null</code>
 	 * @throws Exception
 	 */
+	@Transactional
 	public void updateBereiche(int planId, List<Bereich> bereiche) throws Exception {
 		Plan plan = getRequiredPlanById(planId);
 		plan.setBereiche(createBereiche(bereiche));
@@ -229,12 +233,14 @@ public class XPlanDbAdapter {
 	 * @param planId of the plan to update, never <code>null</code>
 	 * @throws Exception if the sql could not be executed
 	 */
+	@Transactional
 	public void updatePlanWasInspirePublished(int planId) throws Exception {
 		Plan plan = getRequiredPlanById(planId);
 		plan.setInspirepublished(true);
 		planRepository.save(plan);
 	}
 
+	@Transactional(readOnly = true)
 	public XPlanVersionAndPlanStatus selectXPlanMetadata(int planId) throws Exception {
 		Plan plan = getRequiredPlanById(planId);
 		XPlanVersion version = plan.getVersion();
@@ -242,11 +248,13 @@ public class XPlanDbAdapter {
 		return new XPlanVersionAndPlanStatus(version, planStatus);
 	}
 
+	@Transactional(readOnly = true)
 	public Set<String> selectFids(int planId) throws Exception {
 		Plan plan = getRequiredPlanById(planId);
 		return plan.getFeatures().stream().map(feature -> feature.getFid()).collect(Collectors.toSet());
 	}
 
+	@Transactional(readOnly = true)
 	/**
 	 * Retrieve a list of all XPlans.
 	 * @return list of XPlans
@@ -258,6 +266,7 @@ public class XPlanDbAdapter {
 				.collect(Collectors.toList());
 	}
 
+	@Transactional(readOnly = true)
 	/**
 	 * Retrieve a single {@link XPlan} by id.
 	 * @param planId id of a plan, must not be <code>null</code>
@@ -271,19 +280,23 @@ public class XPlanDbAdapter {
 		return convertToXPlan(optionalPlan.get());
 	}
 
+	@Transactional(readOnly = true)
 	public boolean selectPlanWithSameNameAndStatusExists(String planName, String status) {
 		return planRepository.existsPlanByNameAndPlanstatus(planName, status);
 	}
 
+	@Transactional(readOnly = true)
 	public boolean existsPlan(int id) {
 		return planRepository.existsPlanById(id);
 	}
 
+	@Transactional(readOnly = true)
 	public List<XPlan> getXPlanByName(String planName) {
 		List<Plan> plans = planRepository.findByName(planName);
 		return plans.stream().map(plan -> convertToXPlan(plan)).collect(Collectors.toList());
 	}
 
+	@Transactional(readOnly = true)
 	public List<XPlan> getXPlansLikeName(String planName) {
 		List<Plan> plans = planRepository.findByNameLike(planName);
 		return plans.stream().map(plan -> convertToXPlan(plan)).collect(Collectors.toList());
@@ -295,6 +308,7 @@ public class XPlanDbAdapter {
 	 * @return id of plan with minimal release date
 	 * @throws SQLException
 	 */
+	@Transactional(readOnly = true)
 	public String selectXPlanIdOfMoreRecentRasterPlan(Date releaseDate) {
 		List<Plan> plan = planRepository.findByPlanWithMoreRecentRasterPlan(releaseDate);
 		if (plan.isEmpty())
@@ -308,6 +322,7 @@ public class XPlanDbAdapter {
 	 * @return
 	 * @throws Exception
 	 */
+	@Transactional(readOnly = true)
 	public Stream<Artefact> selectAllXPlanArtefacts(int planId) {
 		return artefactRepository.findAllByPlanId(planId);
 	}
@@ -317,6 +332,7 @@ public class XPlanDbAdapter {
 	 * @return the original plan artefact, never <code>null</code>
 	 * @throws Exception
 	 */
+	@Transactional(readOnly = true)
 	public InputStream selectXPlanGmlArtefact(int planId) throws IOException {
 		Optional<Artefact> xPlanGmlByPlan = artefactRepository.findXPlanGmlByPlan(planId);
 		if (xPlanGmlByPlan.isPresent()) {
@@ -333,17 +349,13 @@ public class XPlanDbAdapter {
 	 * @return the internal id of a plan (if available), <code>null</code> if an error
 	 * occurred
 	 */
+	@Transactional(readOnly = true)
 	public String selectInternalId(int planId) {
 		Optional<Plan> plan = planRepository.findById(planId);
 		if (plan.isPresent()) {
 			return plan.get().getInternalid();
 		}
 		return null;
-	}
-
-	public void updateFeatureMetadata(int planId, List<String> fids) throws Exception {
-		LOG.info("- Aktualisiere Features von XPlan " + planId + " in der Manager-DB.");
-		updateFids(planId, fids);
 	}
 
 	private void collectArtefactsToUpdateAndInsert(List<File> uploadedArtefacts, List<String> artefactFileNames,

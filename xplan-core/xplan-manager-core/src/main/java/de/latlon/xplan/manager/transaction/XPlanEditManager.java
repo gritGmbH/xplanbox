@@ -52,6 +52,7 @@ import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Path;
@@ -87,6 +88,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 				managerConfiguration, managerWorkspaceWrapper, sortPropertyReader);
 	}
 
+	@Transactional(rollbackOn = Exception.class)
 	public void editPlan(XPlan oldXplan, XPlanToEdit xPlanToEdit, boolean makeRasterConfig,
 			List<File> uploadedArtefacts) throws Exception {
 		String planId = oldXplan.getId();
@@ -96,7 +98,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 		XPlanVersion version = XPlanVersion.valueOf(oldXplan.getVersion());
 		XPlanType type = XPlanType.valueOf(oldXplan.getType());
 		PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
-		AppSchema appSchema = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus).getSchema();
+		AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(version);
 		try (InputStream originalPlan = xplanDao.retrieveXPlanArtefact(planId)) {
 			XPlanFeatureCollection originalPlanFC = XPlanGmlParserBuilder.newBuilder().build()
 					.parseXPlanFeatureCollection(originalPlan, version, type);

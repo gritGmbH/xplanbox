@@ -39,6 +39,7 @@ import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.file.Path;
@@ -75,6 +76,7 @@ public class TransformationSynchronizer implements Synchronizer {
 	}
 
 	@Override
+	@Transactional(rollbackOn = Exception.class)
 	public void synchronize(Connection conn, int oldid, int newid, int xPlanManagerId, String planVersion,
 			String oldPlanStatus, String newPlanStatus, Operation operation) throws SynchronizationException {
 		if (!XPLAN_41.equals(XPlanVersion.valueOf(planVersion))) {

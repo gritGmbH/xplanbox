@@ -44,6 +44,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
@@ -112,6 +113,7 @@ public class ReSynthesizerApplicationRunner implements ApplicationRunner {
 	 * @param mgrId the id of the plan to synthesize
 	 * @throws IllegalArgumentException if a plan with the passed id is not available
 	 */
+	@Transactional(rollbackOn = Exception.class)
 	public void reSynthesize(int mgrId) throws Exception {
 		XPlan xPlanById = xPlanDao.getXPlanById(mgrId);
 		if (xPlanById == null)

@@ -37,6 +37,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -71,6 +72,7 @@ public class SortPropertyUpdaterApplicationRunner implements ApplicationRunner {
 	 * schema data and reorders the wms rasterlayers.
 	 */
 	@Override
+	@Transactional(rollbackOn = Exception.class)
 	public void run(ApplicationArguments args) throws Exception {
 		Map<String, Date> planId2sortDate = updateColumnsInDB();
 		updateWmsRasterLayerOrder(planId2sortDate);

@@ -34,6 +34,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -55,6 +56,7 @@ public class BereichUpdateApplicationRunner implements ApplicationRunner {
 	 * @throws Exception if an error occurred during update
 	 */
 	@Override
+	@Transactional(rollbackOn = Exception.class)
 	public void run(ApplicationArguments args) throws Exception {
 		List<XPlan> plans = xplanDao.getXPlanList();
 		for (XPlan plan : plans) {

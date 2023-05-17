@@ -149,7 +149,7 @@ public class XPlanDao {
 	 * @throws Exception
 	 */
 	public void insertOrReplacePlanWerkWmsMetadata(int planId, String title, String resourceIdentifier,
-			String datasetMetadataUrl, String serviceMetadataUrl) throws Exception {
+			String datasetMetadataUrl, String serviceMetadataUrl) {
 		xPlanDbAdapter.insertOrReplacePlanWerkWmsMetadata(planId, title, resourceIdentifier, datasetMetadataUrl,
 				serviceMetadataUrl);
 	}
@@ -181,7 +181,6 @@ public class XPlanDao {
 	 * @param removedRefs
 	 * @throws Exception
 	 */
-	@Transactional(rollbackFor = Exception.class)
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
 			List<File> uploadedArtefacts, Set<String> removedRefs) throws Exception {
@@ -247,7 +246,7 @@ public class XPlanDao {
 			}).collect(Collectors.toSet());
 
 			xPlanSynWfsAdapter.update(planId, planStatus, synFc, validIds);
-			xPlanDbAdapter.updateFeatureMetadata(planId, newFids);
+			xPlanDbAdapter.updateFids(planId, newFids);
 		}
 		else {
 			xPlanSynWfsAdapter.update(planId, planStatus, synFc, ids);
@@ -322,7 +321,7 @@ public class XPlanDao {
 	 * @return
 	 * @throws Exception
 	 */
-	@org.springframework.transaction.annotation.Transactional(readOnly = true)
+	@Transactional(readOnly = true)
 	public List<Artefact> retrieveAllXPlanArtefacts(String planId) throws Exception {
 		int xPlanIdAsInt = getXPlanIdAsInt(planId);
 		return xPlanDbAdapter.selectAllXPlanArtefacts(xPlanIdAsInt).collect(Collectors.toList());
