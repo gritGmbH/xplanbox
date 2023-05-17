@@ -89,7 +89,7 @@ public class S3RasterStorageTest {
 		s3RasterStorage.deleteRasterFile("1", "test", storageEvent);
 
 		verify(client).deleteObject(BUCKET_NAME, "1_test");
-		verify(storageEvent).addRemovedDocument(eq("1_test"), any(InputStream.class));
+		verify(storageEvent).addDeletedKey(eq("1_test"), any(InputStream.class));
 	}
 
 	private S3RasterStorage createS2RasterStorage(AmazonS3 client) {

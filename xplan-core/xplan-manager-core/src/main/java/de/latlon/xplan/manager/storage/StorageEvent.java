@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.storage;
 
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +37,10 @@ public class StorageEvent {
 
 	private final Map<String, InputStream> deletedKeysToObjects = new HashMap<>();
 
+	private final List<Path> storedPaths = new ArrayList<>();
+
+	private final Map<Path, byte[]> deletedPathsToObjects = new HashMap<>();
+
 	public void addInsertedKey(String key) {
 		insertedKeys.add(key);
 	}
@@ -44,12 +49,28 @@ public class StorageEvent {
 		return insertedKeys;
 	}
 
-	public void addRemovedDocument(String key, InputStream objectContent) {
+	public void addDeletedKey(String key, InputStream objectContent) {
 		deletedKeysToObjects.put(key, objectContent);
 	}
 
 	public Map<String, InputStream> getDeletedKeysToObjects() {
 		return deletedKeysToObjects;
+	}
+
+	public void addStoredPath(Path path) {
+		storedPaths.add(path);
+	}
+
+	public List<Path> getInsertedPaths() {
+		return storedPaths;
+	}
+
+	public void addDeletedPath(Path path, byte[] objectContent) {
+		deletedPathsToObjects.put(path, objectContent);
+	}
+
+	public Map<Path, byte[]> getDeletedPathsToObjects() {
+		return deletedPathsToObjects;
 	}
 
 }

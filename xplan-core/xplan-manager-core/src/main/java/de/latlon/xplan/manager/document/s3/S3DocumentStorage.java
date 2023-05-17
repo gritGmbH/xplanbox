@@ -70,7 +70,7 @@ public class S3DocumentStorage extends S3Storage implements DocumentStorage {
 			String key = createKey(planId, referenzUrl);
 			S3Object object = getObject(key);
 			if (object != null)
-				storageEvent.addRemovedDocument(object.getKey(), object.getObjectContent());
+				storageEvent.addDeletedKey(object.getKey(), object.getObjectContent());
 			deleteObject(key);
 		}
 	}

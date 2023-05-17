@@ -85,7 +85,7 @@ public class S3RasterStorageIT {
 	public void testDeleteRasterFile() throws StorageException {
 		StorageEvent storageEvent = mock(StorageEvent.class);
 		s3RasterStorage.deleteRasterFile("1", "Blankenese29", storageEvent);
-		verify(storageEvent).addRemovedDocument(eq("1_Blankenese29"), any(InputStream.class));
+		verify(storageEvent).addDeletedKey(eq("1_Blankenese29"), any(InputStream.class));
 	}
 
 }

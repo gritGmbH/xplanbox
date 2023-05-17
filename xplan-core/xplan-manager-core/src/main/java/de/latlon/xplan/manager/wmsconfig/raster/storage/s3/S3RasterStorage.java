@@ -74,7 +74,7 @@ public class S3RasterStorage extends S3Storage implements RasterStorage {
 		String key = planId + "_" + rasterId;
 		S3Object object = getObject(key);
 		if (object != null)
-			storageEvent.addRemovedDocument(object.getKey(), object.getObjectContent());
+			storageEvent.addDeletedKey(object.getKey(), object.getObjectContent());
 		deleteObject(key);
 	}
 

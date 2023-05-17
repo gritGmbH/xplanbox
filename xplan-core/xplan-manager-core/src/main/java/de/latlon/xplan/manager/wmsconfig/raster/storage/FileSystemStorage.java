@@ -56,6 +56,7 @@ public class FileSystemStorage implements RasterStorage {
 			String rasterFileName = createFileName(planId, entryName);
 			Path target = createTargetFile(rasterFileName);
 			Files.copy(archive.retrieveInputStreamFor(entryName), target);
+			storageEvent.addStoredPath(target);
 			return rasterFileName;
 		}
 		return null;
@@ -71,7 +72,7 @@ public class FileSystemStorage implements RasterStorage {
 			if (lastIndexOfDot > 0)
 				nameWithoutPrefix = fileName.substring(0, lastIndexOfDot);
 			return rasterLayerFileName.startsWith(nameWithoutPrefix);
-		});
+		}, storageEvent);
 	}
 
 	protected String createFileName(int planId, String fileName) {
@@ -82,7 +83,8 @@ public class FileSystemStorage implements RasterStorage {
 		return dataDirectory.resolve(newFileName);
 	}
 
-	private void deleteFilesWithPrefix(BiPredicate<Path, BasicFileAttributes> filenameFilter) throws IOException {
+	private void deleteFilesWithPrefix(BiPredicate<Path, BasicFileAttributes> filenameFilter, StorageEvent storageEvent)
+			throws IOException {
 		if (!Files.exists(dataDirectory) || !Files.isDirectory(dataDirectory)) {
 			return;
 		}
@@ -90,7 +92,9 @@ public class FileSystemStorage implements RasterStorage {
 		filesToDelete.forEach(file -> {
 			LOG.info("- Entferne Raster-Datei '" + file + "'...");
 			try {
+				byte[] bytes = Files.readAllBytes(file);
 				Files.delete(file);
+				storageEvent.addDeletedPath(file, bytes);
 				LOG.info("OK");
 			}
 			catch (Exception e) {
