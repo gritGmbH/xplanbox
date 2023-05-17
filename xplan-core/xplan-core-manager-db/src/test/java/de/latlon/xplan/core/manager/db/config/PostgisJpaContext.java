@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.core.manager.db.config;
 
+import de.latlon.xplan.core.manager.db.DatasourceWrapper;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +30,9 @@ import org.springframework.context.annotation.PropertySource;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -40,9 +44,16 @@ import java.sql.SQLException;
 public class PostgisJpaContext {
 
 	@Bean
+	public DatasourceWrapper datasourceWrapper(DataSource dataSource) throws SQLException {
+		DatasourceWrapper datasourceWrapper = mock(DatasourceWrapper.class);
+		when(datasourceWrapper.retrieveDataSource()).thenReturn(dataSource);
+		return datasourceWrapper;
+	}
+
+	@Bean
 	public DataSource dataSource(@Value("${jdbc.driverClassName}") String driverClassName,
 			@Value("${jdbc.url}") String jdbcUrl, @Value("${jdbc.username}") String username,
-			@Value("${jdbc.password}") String password) throws SQLException {
+			@Value("${jdbc.password}") String password) {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(driverClassName);
 		dataSource.setUrl(jdbcUrl);
