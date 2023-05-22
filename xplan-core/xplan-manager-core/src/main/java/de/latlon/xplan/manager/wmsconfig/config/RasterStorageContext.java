@@ -52,7 +52,7 @@ import java.nio.file.Path;
  * @see AmazonS3RasterStorageContext
  */
 @Configuration
-@ComponentScan("de.latlon.xplan.manager.wmsconfig.listener")
+@ComponentScan("de.latlon.xplan.manager.storage.filesystem.listener")
 public class RasterStorageContext {
 
 	@Bean

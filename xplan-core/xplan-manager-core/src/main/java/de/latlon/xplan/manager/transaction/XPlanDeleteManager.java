@@ -22,12 +22,16 @@ package de.latlon.xplan.manager.transaction;
 
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 
 import static java.lang.Integer.parseInt;
 
@@ -42,16 +46,20 @@ public class XPlanDeleteManager {
 
 	private final XPlanRasterManager xPlanRasterManager;
 
-	private StorageCleanUpManager storageCleanUpManager;
+	private final StorageCleanUpManager storageCleanUpManager;
 
 	private final WorkspaceReloader workspaceReloader;
 
+	private final ApplicationEventPublisher applicationEventPublisher;
+
 	public XPlanDeleteManager(XPlanDao xPlanDao, XPlanRasterManager xPlanRasterManager,
-			StorageCleanUpManager storageCleanUpManager, WorkspaceReloader workspaceReloader) {
+			StorageCleanUpManager storageCleanUpManager, WorkspaceReloader workspaceReloader,
+			ApplicationEventPublisher applicationEventPublisher) {
 		this.xPlanDao = xPlanDao;
 		this.xPlanRasterManager = xPlanRasterManager;
 		this.storageCleanUpManager = storageCleanUpManager;
 		this.workspaceReloader = workspaceReloader;
+		this.applicationEventPublisher = applicationEventPublisher;
 	}
 
 	/**
@@ -64,9 +72,19 @@ public class XPlanDeleteManager {
 	public void delete(String planId) throws Exception {
 		xPlanDao.deletePlan(planId);
 		xPlanRasterManager.removeRasterLayers(planId);
-		storageCleanUpManager.deleteAll(planId);
+		deleteFromStorage(planId);
 		reloadWorkspace(planId);
 		LOG.info("XPlanArchiv mit Id {} wurde gelöscht", planId);
+	}
+
+	private void deleteFromStorage(String planId) throws IOException, StorageException {
+		StorageEvent storageEvent = new StorageEvent();
+		try {
+			storageCleanUpManager.deleteAll(planId, storageEvent);
+		}
+		finally {
+			applicationEventPublisher.publishEvent(storageEvent);
+		}
 	}
 
 	private void reloadWorkspace(String planId) {

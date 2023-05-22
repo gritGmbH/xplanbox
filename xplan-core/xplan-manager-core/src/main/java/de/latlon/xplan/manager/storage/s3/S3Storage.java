@@ -64,6 +64,11 @@ public class S3Storage {
 		}
 	}
 
+	public List<S3ObjectSummary> listObjects(String prefix) {
+		ObjectListing objectsToDelete = client.listObjects(bucketName, prefix);
+		return objectsToDelete.getObjectSummaries();
+	}
+
 	protected String insertObject(int planId, String entryName, XPlanArchiveContentAccess archive)
 			throws StorageException {
 		String key = createKey(planId, entryName);
@@ -100,14 +105,17 @@ public class S3Storage {
 		}
 	}
 
-	public void deleteObject(String prefix) {
-		ObjectListing objectsToDelete = client.listObjects(bucketName, prefix);
-		List<S3ObjectSummary> objects = objectsToDelete.getObjectSummaries();
+	public void deleteObjects(String prefix) {
+		List<S3ObjectSummary> objects = listObjects(prefix);
 		for (S3ObjectSummary object : objects) {
-			String key = object.getKey();
-			LOG.info("Delete object with key {} from bucket {}.", key, bucketName);
-			client.deleteObject(bucketName, key);
+			deleteObject(object);
 		}
+	}
+
+	public void deleteObject(S3ObjectSummary object) {
+		String key = object.getKey();
+		LOG.info("Delete object with key {} from bucket {}.", key, bucketName);
+		client.deleteObject(bucketName, key);
 	}
 
 	protected String createKey(int planId, String entry) {

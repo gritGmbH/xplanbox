@@ -53,7 +53,7 @@ public class S3TransactionListener {
 	@TransactionalEventListener(phase = AFTER_ROLLBACK)
 	public void rollbackDocumentS3(StorageEvent storageEvent) {
 		List<String> insertedKeys = storageEvent.getInsertedKeys();
-		insertedKeys.forEach(insertedKey -> s3Storage.deleteObject(insertedKey));
+		insertedKeys.forEach(insertedKey -> s3Storage.deleteObjects(insertedKey));
 
 		Map<String, InputStream> deletedKeysToObjects = storageEvent.getDeletedKeysToObjects();
 		deletedKeysToObjects.entrySet().forEach(deletedKeyAndObject -> {

@@ -283,7 +283,8 @@ public class BasicSpringConfig {
 	@Bean
 	public XPlanDeleteManager xPlanDeleteManager(XPlanDao xPlanDao, WorkspaceReloader workspaceReloader,
 			XPlanRasterManager xPlanRasterManager, StorageCleanUpManager storageCleanUpManager) {
-		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, storageCleanUpManager, workspaceReloader);
+		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, storageCleanUpManager, workspaceReloader,
+				applicationEventPublisher);
 	}
 
 	@Bean
