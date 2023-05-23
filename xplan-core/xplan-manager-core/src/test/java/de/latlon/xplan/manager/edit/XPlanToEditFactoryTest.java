@@ -36,7 +36,6 @@ import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
@@ -72,6 +71,7 @@ import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.INFORMELL;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSPLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.VERORDNUNG;
 import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.SO_SONSTIGES;
@@ -233,10 +233,9 @@ public class XPlanToEditFactoryTest {
 	}
 
 	@Test
-	@Parameters({ "xplan41/V4_1_ID_103.gml, XPLAN_41", "xplan50/V4_1_ID_103.gml, XPLAN_50" })
-	public void testCreateXPlanToEdit_References_Texts(String planResource, String xplanVersion) throws Exception {
-		XPlanVersion version = XPlanVersion.valueOf(xplanVersion);
-		FeatureCollection featureCollection = readXPlanGml(version, planResource);
+	public void testCreateXPlanToEdit_References_Texts_V4_1_ID_103_41() throws Exception {
+		XPlanVersion version = XPLAN_41;
+		FeatureCollection featureCollection = readXPlanGml(version, "xplan41/V4_1_ID_103.gml");
 
 		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(version, BP_Plan), featureCollection);
 
@@ -314,6 +313,61 @@ public class XPlanToEditFactoryTest {
 		assertThat(legend.getBeschreibung(), is("beschreibung"));
 		assertThat(legend.getDatum(), is(asDate("2018-03-01")));
 		assertThat(legend.getArt(), is(DOKUMENT));
+	}
+
+	@Test
+	public void testCreateXPlanToEdit_References_Texts_BPlan004_50() throws Exception {
+		XPlanVersion version = XPLAN_50;
+		FeatureCollection featureCollection = readXPlanArchive(version, "xplan50/BPlan004_5-0.zip");
+
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(version, BP_Plan), featureCollection);
+
+		BaseData baseData = xPlanToEdit.getBaseData();
+		assertThat(baseData.getPlanName(), is("BPlan004_5-0"));
+		assertThat(baseData.getLegislationStatusCode(), is(3000));
+		assertThat(baseData.getPlanTypeCode(), is(3000));
+		assertThat(baseData.getCreationDate(), is(asDate("2017-03-20")));
+
+		List<Change> changes = xPlanToEdit.getChanges();
+		assertThat(changes.size(), is(0));
+
+		List<Reference> references = xPlanToEdit.getReferences();
+		assertThat(references.size(), is(1));
+
+		Reference firstReference = references.get(0);
+		assertThat(firstReference.getGeoReference(), is(nullValue()));
+		assertThat(firstReference.getReference(), is("BPlan004_5-0.pdf"));
+		assertThat(firstReference.getReferenzName(), is(nullValue()));
+		assertThat(firstReference.getType(), is(INFORMELL));
+
+		List<Text> texts = xPlanToEdit.getTexts();
+		assertThat(texts.size(), is(9));
+
+		String featureIdOfText = "GML_c27ab7dd-8e16-4f88-abae-6b23d49e7a90";
+		Text text = texts.stream().filter(t -> featureIdOfText.equals(t.getFeatureId())).findFirst().get();
+		assertThat(text.getFeatureId(), is(featureIdOfText));
+		assertThat(text.getKey(), is("§2 Nr.4"));
+		assertThat(text.getBasis(), is(nullValue()));
+		assertThat(text.getText(), is(
+				"Im allgemeinen Wohngebiet darf die festgesetzte Grundflächenzahl\nfür Tiefgaragen bis zu einer Grundflächenzahl\nvon 1,0 überschritten werden."));
+
+		String bereichNummer = "0";
+		List<RasterBasis> allRasterBasis = xPlanToEdit.getRasterBasis();
+		assertThat(allRasterBasis.size(), is(1));
+
+		RasterBasis rasterBasis = allRasterBasis.get(0);
+		assertThat(rasterBasis.getBereichNummer(), is(bereichNummer));
+		assertThat(rasterBasis.getFeatureId(), is("Gml_FEC4F42F-5D66-4A59-9A47-6E03D1A3139A"));
+
+		List<RasterReference> rasterBasisReferences = rasterBasis.getRasterReferences();
+		assertThat(rasterBasisReferences.size(), is(1));
+
+		RasterReference scan = getByType(rasterBasisReferences, SCAN);
+		assertThat(scan, is(notNullValue()));
+		assertThat(scan.getFeatureId(), nullValue());
+		assertThat(scan.getBereichNummer(), is(bereichNummer));
+		assertThat(scan.getGeoReference(), is("BPlan004_5-0.pgw"));
+		assertThat(scan.getReference(), is("BPlan004_5-0.png"));
 	}
 
 	@Test
