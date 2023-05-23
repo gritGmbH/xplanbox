@@ -20,9 +20,12 @@
  */
 package de.latlon.xplan.transform.cli;
 
+import de.latlon.xplan.transform.cli.config.ApplicationContext;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import static de.latlon.xplan.transform.cli.TransformApplicationRunner.LOG_TABLE_NAME;
 

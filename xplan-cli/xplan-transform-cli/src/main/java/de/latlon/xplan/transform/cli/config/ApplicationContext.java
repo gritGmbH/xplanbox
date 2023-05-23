@@ -78,8 +78,7 @@ public class ApplicationContext {
 	private ApplicationEventPublisher applicationEventPublisher;
 
 	@Bean
-	public TransformingValidator haleXplan41ToXplan51Transformer(ManagerConfiguration managerConfiguration,
-			XPlanDao xPlanDao) {
+	public TransformingValidator transformingValidator(ManagerConfiguration managerConfiguration, XPlanDao xPlanDao) {
 		HaleXplan41ToXplan51Transformer transformer = new HaleXplan41ToXplan51Transformer(
 				managerConfiguration.getPathToHaleCli(), managerConfiguration.getPathToHaleProjectDirectory());
 		XPlanGmlTransformer xPlanGmlTransformer = new XPlanGmlTransformer(transformer);

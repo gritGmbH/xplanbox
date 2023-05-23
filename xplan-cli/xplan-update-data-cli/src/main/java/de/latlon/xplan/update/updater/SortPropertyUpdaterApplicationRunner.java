@@ -35,6 +35,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -55,12 +56,14 @@ public class SortPropertyUpdaterApplicationRunner implements ApplicationRunner {
 	private static final Logger LOG = LoggerFactory.getLogger(SortPropertyUpdaterApplicationRunner.class);
 
 	@Autowired
+	@Lazy
 	private SortPropertyReader sortPropertyReader;
 
 	@Autowired
 	private XPlanDao dao;
 
 	@Autowired
+	@Lazy
 	private SortPropertyDbUpdater sortPropertyDbUpdater;
 
 	@Autowired

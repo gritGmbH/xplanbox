@@ -30,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -66,10 +67,11 @@ public class TransformApplicationRunner implements ApplicationRunner {
 	private static final String OPT_OUT_DIR = "output";
 
 	@Autowired
+	@Lazy
 	private ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
 	@Autowired
-	private TransformingValidator validator;
+	private TransformingValidator transformingValidator;
 
 	@Autowired
 	private XPlanDao xPlanDao;
@@ -88,23 +90,23 @@ public class TransformApplicationRunner implements ApplicationRunner {
 		switch (type) {
 			case ALL:
 				sync(managerWorkspaceWrapper, (conn) -> {
-					TransformationSynchronizer synchronizer = new TransformationSynchronizer(xPlanDao, validator,
-							outDirectory);
+					TransformationSynchronizer synchronizer = new TransformationSynchronizer(xPlanDao,
+							transformingValidator, outDirectory);
 					TransformAllExecutor allExecuter = new TransformAllExecutor(LOG_TABLE_NAME, synchronizer);
 					allExecuter.transformAll(conn);
 				});
 				break;
 			case SYNC:
 				sync(managerWorkspaceWrapper, (conn) -> {
-					TransformationSynchronizer synchronizer = new TransformationSynchronizer(xPlanDao, validator,
-							outDirectory);
+					TransformationSynchronizer synchronizer = new TransformationSynchronizer(xPlanDao,
+							transformingValidator, outDirectory);
 					SynchronizeExecutor executer = new SynchronizeExecutor(LOG_TABLE_NAME, synchronizer);
 					executer.synchronize(conn);
 				});
 				break;
 			case VALIDATE:
 			default:
-				ValidateExecutor validateExecutor = new ValidateExecutor(xPlanDao, validator);
+				ValidateExecutor validateExecutor = new ValidateExecutor(xPlanDao, transformingValidator);
 				validateExecutor.validateAll(outDirectory);
 		}
 		LOG.info("Results was written to {}", outDirectory);
