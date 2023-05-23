@@ -48,7 +48,7 @@ public class ParameterizedSyntacticValidatorTest {
 	public static List<Object[]> data() {
 		return Arrays.asList(new Object[][] { { "xplan41/BP2070.zip" }, { "xplan41/BP2135.zip" },
 				{ "xplan41/Demo.zip" }, { "xplan41/Eidelstedt_4_V4.zip" }, { "xplan41/FPlan.zip" },
-				{ "xplan41/LA22.zip" }, { "xplan41/LA67.zip" }, { "BPlan001_4-1.zip" }, { "xplan40/V4_1_ID_66.zip" },
+				{ "xplan41/LA22.zip" }, { "xplan41/LA67.zip" }, { "BPlan001_4-1.zip" }, { "xplan40/BPlan004_4-0.zip" },
 				{ "xplan50/BP2070.zip" }, { "xplan50/BP2135.zip" }, { "xplan50/FPlan.zip" }, { "xplan50/LA22.zip" },
 				{ "xplan50/LA67.zip" }, { "xplan51/BP2070.zip" }, { "xplan51/BP2135.zip" }, { "xplan51/FPlan.zip" },
 				{ "xplan51/LA22.zip" }, { "xplan51/LA67.zip" } });

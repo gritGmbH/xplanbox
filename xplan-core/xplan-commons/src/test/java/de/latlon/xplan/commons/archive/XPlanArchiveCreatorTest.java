@@ -128,11 +128,11 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataV4_1_ID_66_40() throws IOException {
-		XPlanArchive archive = getTestArchive("xplan40/V4_1_ID_66.zip");
+	public void testMetadataBPlan004_40() throws IOException {
+		XPlanArchive archive = getTestArchive("xplan40/BPlan004_4-0.zip");
 		assertEquals(XPLAN_40, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
-		assertEquals("EPSG:25833", archive.getCrs().getName());
+		assertEquals("EPSG:25832", archive.getCrs().getName());
 	}
 
 	@Test

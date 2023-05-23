@@ -62,7 +62,7 @@ public class ParameterizedXPlanGmlParserTest {
 				{ "xplan41/LA22.zip", "Bebauungsplan LA 22", "02000000", "LA 22", 1349 },
 				{ "xplan41/LA67.zip", "Bebauungsplan LA 22", "1234567", "LA 22", 146 },
 				{ "BPlan001_4-1.zip", "BPlan001_4-1", "02000000", null, 206 },
-				{ "xplan40/V4_1_ID_66.zip", "\"Weinbergstrasse\"", "12062425", "Nr. 2", 545 },
+				{ "xplan40/BPlan004_4-0.zip", "BPlan004_4-0", "02000000", null, 64 },
 				{ "xplan50/BP2070.zip", "BP2070", "4011000", null, 314 },
 				{ "xplan50/BP2135.zip", "Bebauungsplan 2135", "4011000", "2135", 241 },
 				{ "xplan50/FPlan.zip", "FPlan Bad Liebenwerda", "12062024", null, 3602 },
