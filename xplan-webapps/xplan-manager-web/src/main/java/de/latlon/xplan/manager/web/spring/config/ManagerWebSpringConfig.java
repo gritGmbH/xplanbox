@@ -20,12 +20,15 @@
  */
 package de.latlon.xplan.manager.web.spring.config;
 
+import de.latlon.xplan.core.manager.db.config.JpaContext;
+import de.latlon.xplan.manager.document.config.DocumentStorageContext;
+import de.latlon.xplan.manager.storage.config.StorageCleanUpContext;
+import de.latlon.xplan.manager.web.server.service.security.AuthorizationManager;
+import de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-
-import de.latlon.xplan.manager.web.server.service.rest.SecurityController;
-import de.latlon.xplan.manager.web.server.service.security.AuthorizationManager;
 
 /**
  * XPlanManagerWeb Application Configuration.
@@ -34,7 +37,8 @@ import de.latlon.xplan.manager.web.server.service.security.AuthorizationManager;
  * @version $Revision: $, $Date: $
  */
 @Configuration
-@Import(BasicSpringConfig.class)
+@Import({ BasicSpringConfig.class, JpaContext.class, RasterStorageContext.class, AmazonS3RasterStorageContext.class,
+		DocumentStorageContext.class, StorageCleanUpContext.class })
 public class ManagerWebSpringConfig {
 
 	@Bean
