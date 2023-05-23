@@ -57,7 +57,7 @@ public class OptimisedFlaechenschlussInspectorTest {
 	public void testCheckFlaechenschluss() throws Exception {
 		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51,
 				BP_Plan);
-		readFeaturesFromZip("xplan51/V4_1_ID_103.zip", flaechenschlussInspector);
+		readFeaturesFromZip("xplan51/BPlan001_5-1.zip", flaechenschlussInspector);
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));

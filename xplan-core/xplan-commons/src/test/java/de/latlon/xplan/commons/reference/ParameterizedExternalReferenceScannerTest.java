@@ -50,8 +50,8 @@ public class ParameterizedExternalReferenceScannerTest {
 	public static List<Object[]> data() {
 		return Arrays.asList(new Object[][] { { "xplan40/BPlan004_4-0.zip", 2, 1 }, { "xplan41/BP2070.zip", 0, 0 },
 				{ "xplan41/Demo.zip", 2, 0 }, { "xplan41/BPlan001_4-1.zip", 1, 1 },
-				{ "xplan50/BPlan004_5-0.zip", 2, 1 }, { "xplan51/V4_1_ID_103.zip", 4, 1 },
-				{ "xplan51/V4_1_ID_103_rasterBasisAlsRefScan.zip", 4, 1 } });
+				{ "xplan50/BPlan004_5-0.zip", 2, 1 }, { "xplan51/BPlan002_5-1.zip", 2, 2 },
+				{ "xplan51/BPlan002_5-1_rasterBasisAlsRefScan.zip", 1, 1 } });
 	}
 
 	public ParameterizedExternalReferenceScannerTest(String resourceUnderTest, int noOfExternalRefs,

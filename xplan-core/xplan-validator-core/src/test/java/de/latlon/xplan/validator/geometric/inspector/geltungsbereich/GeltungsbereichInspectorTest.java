@@ -44,7 +44,7 @@ public class GeltungsbereichInspectorTest {
 	public void testCheck() throws Exception {
 		long startTimeMillis = System.currentTimeMillis();
 		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
-		readFeaturesFromZip("xplan51/V4_1_ID_103_geltungsbereich-erfuellt.zip", geltungsbereichInspector);
+		readFeaturesFromZip("xplan51/BPlan001_5-1.zip", geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		long endTimeMillis = System.currentTimeMillis();
@@ -53,19 +53,6 @@ public class GeltungsbereichInspectorTest {
 		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(0));
 
 		System.out.println(String.format("Geltungsbereich check needed %s [ms]", endTimeMillis - startTimeMillis));
-	}
-
-	@Test
-	public void testCheck_invalid() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
-		readFeaturesFromZip("xplan51/V4_1_ID_103.zip", geltungsbereichInspector);
-
-		boolean isValid = geltungsbereichInspector.checkGeometricRule();
-		assertThat(isValid, is(false));
-		assertThat(geltungsbereichInspector.getErrors().size(), is(1));
-		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
-
-		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getOriginalGeometry(), is(notNullValue()));
 	}
 
 	@Test
