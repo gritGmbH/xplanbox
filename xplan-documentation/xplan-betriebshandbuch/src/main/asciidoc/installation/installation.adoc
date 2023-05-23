@@ -86,6 +86,8 @@ Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an belie
 
 TIP: Um die Kommandozeilenwerkzeuge von einem beliebigen Ort aufrufen zu können, empfiehlt es sich, die Pfade in die `PATH` Variable mit aufzunehmen.
 
+IMPORTANT: Je nach Kommandozeilenwerkzeug müssen über Umgebungsvariablen wie z. B. `DEEGREE_WORKSPACE_ROOT` der Pfad zum deegree Workspace und mit `LD_LIBRARY_PATH` der Pfad zum Installationsverzeichnis von GDAL gesetzt werden (siehe auch <<installation-gdal>>).
+
 [[install-xplanevaluationschemasynchronize-cli]]
 ===== XPlanAuswerteschemaCLI
 
