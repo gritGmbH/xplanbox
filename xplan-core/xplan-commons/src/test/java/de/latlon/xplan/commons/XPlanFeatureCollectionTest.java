@@ -166,7 +166,7 @@ public class XPlanFeatureCollectionTest {
 
 	@Test
 	public void testBPlan001_41() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("BPlan001_4-1.zip");
+		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan41/BPlan001_4-1.zip");
 		Envelope expectedBbox = createEnvelopeIn4326(10.008563938531246, 53.538185265541415, 10.01873241781561,
 				53.5407955356869);
 

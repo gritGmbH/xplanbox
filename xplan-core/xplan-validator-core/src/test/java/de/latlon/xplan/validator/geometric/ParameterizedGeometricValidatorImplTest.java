@@ -63,7 +63,7 @@ public class ParameterizedGeometricValidatorImplTest {
 				{ "xplan41/BP2135.zip", true, 0, 0, 0 }, { "xplan41/Demo.zip", false, 1, 0, 2 },
 				{ "xplan41/Eidelstedt_4_V4.zip", true, 0, 0, 0 }, { "xplan41/FPlan.zip", false, 141, 0, 347 },
 				{ "xplan41/LA22.zip", false, 24, 0, 55 }, { "xplan41/LA67.zip", false, 7, 0, 16 },
-				{ "BPlan001_4-1.zip", true, 0, 0, 0 }, { "xplan40/BPlan004_4-0.zip", true, 0, 0, 0 },
+				{ "xplan41/BPlan001_4-1.zip", true, 0, 0, 0 }, { "xplan40/BPlan004_4-0.zip", true, 0, 0, 0 },
 				{ "xplan41/PlanWithComplexCurve.zip", true, 0, 0, 0 }, { "xplan50/BP2070.zip", false, 6, 0, 13 },
 				{ "xplan50/BP2135.zip", true, 0, 0, 0 }, { "xplan50/FPlan.zip", false, 141, 0, 347 },
 				{ "xplan50/LA22.zip", false, 24, 0, 55 }, { "xplan50/LA67.zip", false, 7, 0, 16 },

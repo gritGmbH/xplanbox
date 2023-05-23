@@ -104,7 +104,7 @@ public class XPlanArchiveCreatorTest {
 
 	@Test
 	public void testMetadataBPlan001_41() throws IOException {
-		XPlanArchive archive = getTestArchive("BPlan001_4-1.zip");
+		XPlanArchive archive = getTestArchive("xplan41/BPlan001_4-1.zip");
 
 		assertEquals(XPLAN_41, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());

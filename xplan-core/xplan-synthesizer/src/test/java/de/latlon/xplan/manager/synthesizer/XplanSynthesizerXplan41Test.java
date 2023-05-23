@@ -89,7 +89,7 @@ public class XplanSynthesizerXplan41Test extends AbstractXplanSynthesizerTest {
 
 	@Test
 	public void testBPlan001_41() throws Exception {
-		createSynFeatures("BPlan001_4-1.zip");
+		createSynFeatures("xplan41/BPlan001_4-1.zip");
 	}
 
 	private Matcher<? super FeatureCollection> hasFeature(final String featureName) {
