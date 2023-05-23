@@ -38,7 +38,7 @@ Im XPlanValidatorWMS werden die im XPlanValidator hochgeladenen XPlanGML-Dateien
 
 Die Aktivierung des jeweiligen Workspace erfolgt über die Datei _<DEEGREE_WORKSPACE_ROOT>/webapps.properties_.
 
-.Beispiel für den Eintrag in der webapps.properties mit der Auswahl der XPlanDB als Datenhaltung für den XPlanValidatorWMS:
+.Beispiel für den Eintrag in der _webapps.properties_ mit der Auswahl der XPlanDB als Datenhaltung für den XPlanValidatorWMS:
 [source,properties]
 ----
 /xplan-validator-wms=xplan-validator-wms-sql-workspace

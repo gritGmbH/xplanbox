@@ -67,16 +67,17 @@ NOTE: Neben den in den folgenden Abschnitten genannten Dateien können noch weit
 
 ==== XPlanManager Konfiguration
 
-Konfiguration im Verzeichnis _<XPLANBOX_CONFIG>/manager-configuration/_ aktualisieren:
+Konfiguration im Verzeichnis _<XPLANBOX_CONFIG>/xplan-manager-config/_ aktualisieren:
 
 * _managerApiConfiguration.properties, managerConfiguration.properties, managerWebConfiguration und validatorConfiguration.properties_ anpassen
-* _<XPLANBOX_CONFIG>/manager-configuration/synthesizer/_ kopieren
+* _<XPLANBOX_CONFIG>/synthesizer_ kopieren
 
 ==== XPlanValidator Konfiguration
 
 Konfiguration im Verzeichnis _<XPLANBOX_CONFIG>/xplan-validator-config/_ aktualisieren:
 
 * _<XPLANBOX_CONFIG>/xplan-validator-config/validatorConfiguration.properties_ kopieren
+* _<XPLANBOX_CONFIG>/xplan-validator-config/validatorApiConfiguration.properties_ kopieren
 
 ==== XPlanManager Workspace Konfiguration
 

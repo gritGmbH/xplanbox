@@ -51,6 +51,23 @@ Die WAR-Archive der REST-API werden über eine weitere Tomcat-Instanz _API-Tomca
 
 TIP: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp der Instanz _Anwendungs-Tomcat_ zu installieren. Das WAR-Archiv _xplan-root.war_ muss dafür im Verzeichnis _ROOT_ entpackt werden.
 
+==== Verknüpfung von Webapp und Workspace
+
+Für die Tomcat-Instanz _Dienste-Tomcat_ muss eine _webapp.properties_ Datei angelegt werden.
+Diese enthält die Verknüpfung zwischen der Webapp und dem Workspace.
+
+.Beispiel für _webapps.properties_ für den _Dienste-Tomcat_:
+[source,properties]
+----
+/xplan-wms=xplansyn-wms-workspace
+/xplansyn-wfs=xplansyn-wfs-workspace
+/xplan-wfs=xplan-wfs-workspace
+/xplan-validator-wms=xplan-validator-wms-sql-workspace
+/xplan-inspireplu=xplan-inspireplu-workspace
+----
+
+Weitere Informationen zur Konfiguration des XPlanValidatorWMS sind im Kapitel <<konfiguration-xplanvalidatorwms>> zu finden.
+
 [[kommandozeilen-anwendungen]]
 ==== Kommandozeilen-Anwendungen
 
@@ -66,6 +83,8 @@ Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an belie
 ** _xplan-update-data-cli/bin/districtUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** _xplan-update-data-cli/bin/reSynthesizer_ - ermöglicht die Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** _xplan-update-data-cli/bin/sortDateUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Sortierfelder. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+
+TIP: Um die Kommandozeilenwerkzeuge von einem beliebigen Ort aufrufen zu können, empfiehlt es sich, die Pfade in die `PATH` Variable mit aufzunehmen.
 
 [[install-xplanevaluationschemasynchronize-cli]]
 ===== XPlanAuswerteschemaCLI
