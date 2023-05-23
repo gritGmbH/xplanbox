@@ -27,13 +27,14 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.update.config.SortPropertyUpdaterApplicationContext;
-import de.latlon.xplan.update.dp.SortPropertyDbUpdater;
+import de.latlon.xplan.update.db.SortPropertyDbUpdater;
 import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -51,6 +52,7 @@ import java.util.Map;
  */
 @Component
 @Import(SortPropertyUpdaterApplicationContext.class)
+@ComponentScan("de.latlon.xplan.update.db")
 public class SortPropertyUpdaterApplicationRunner implements ApplicationRunner {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SortPropertyUpdaterApplicationRunner.class);
@@ -63,7 +65,6 @@ public class SortPropertyUpdaterApplicationRunner implements ApplicationRunner {
 	private XPlanDao dao;
 
 	@Autowired
-	@Lazy
 	private SortPropertyDbUpdater sortPropertyDbUpdater;
 
 	@Autowired

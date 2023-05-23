@@ -22,7 +22,6 @@ package de.latlon.xplan.update.config;
 
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
@@ -33,7 +32,6 @@ import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
-import de.latlon.xplan.update.dp.SortPropertyDbUpdater;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
@@ -65,12 +63,6 @@ public class SortPropertyUpdaterApplicationContext {
 	@Bean
 	public SortPropertyReader sortPropertyReader(ManagerConfiguration managerConfiguration) {
 		return new SortPropertyReader(managerConfiguration.getSortConfiguration());
-
-	}
-
-	@Bean
-	public SortPropertyDbUpdater sortPropertyDbUpdater(ManagerWorkspaceWrapper managerWorkspaceWrapper) {
-		return new SortPropertyDbUpdater(managerWorkspaceWrapper);
 
 	}
 
