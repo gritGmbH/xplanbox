@@ -60,7 +60,7 @@ public class SortPropertyDbUpdater {
 	}
 
 	private void updateSortPropertyInSynSchema(Date sortDate, XPlan plan) throws Exception {
-		String selectSchemaAndColumnsToModify = "SELECT column_name, table_schema "
+		String selectSchemaAndColumnsToModify = "SELECT table_name, table_schema "
 				+ "FROM information_schema.columns WHERE table_schema like 'xplansyn%' "
 				+ "AND table_name like 'xplan_%' AND column_name = 'xplan_wmssortdate';";
 		List<TableInfo> tableInfos = jdbcTemplate.query(selectSchemaAndColumnsToModify, new TableInfoMapper());

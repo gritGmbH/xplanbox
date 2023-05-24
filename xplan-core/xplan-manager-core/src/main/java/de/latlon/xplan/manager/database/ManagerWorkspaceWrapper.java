@@ -31,6 +31,7 @@ import org.deegree.db.ConnectionProviderProvider;
 import org.deegree.db.datasource.DataSourceConnectionProvider;
 import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.FeatureStoreProvider;
+import org.deegree.feature.persistence.sql.SQLFeatureStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -145,6 +146,8 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 			LOG.debug("Feature Store '" + id + "' is not available");
 			throw new IllegalArgumentException("Wrong FeatureStore Id " + id);
 		}
+		if (sfs instanceof SQLFeatureStore)
+			((SQLFeatureStore) sfs).releaseConnectionFromExternal(true);
 		return sfs;
 	}
 
