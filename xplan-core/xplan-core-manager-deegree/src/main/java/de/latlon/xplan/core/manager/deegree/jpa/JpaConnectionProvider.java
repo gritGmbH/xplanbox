@@ -25,9 +25,8 @@ import org.deegree.db.datasource.DataSourceConnectionProvider;
 import org.deegree.sqldialect.SQLDialect;
 import org.deegree.workspace.Resource;
 import org.deegree.workspace.ResourceMetadata;
-import org.springframework.jdbc.datasource.ConnectionHolder;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -53,8 +52,7 @@ public class JpaConnectionProvider implements ConnectionProvider {
 	@Override
 	public Connection getConnection() {
 		DataSource dataSource = jpaTransactionManager.getDataSource();
-		Object resource = TransactionSynchronizationManager.getResource(dataSource);
-		return ((ConnectionHolder) resource).getConnection();
+		return DataSourceUtils.getConnection(dataSource);
 	}
 
 	@Override
