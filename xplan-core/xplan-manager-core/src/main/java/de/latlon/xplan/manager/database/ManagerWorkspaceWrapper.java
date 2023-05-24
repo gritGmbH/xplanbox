@@ -49,9 +49,11 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ManagerWorkspaceWrapper.class);
 
-	private static final String JPA_JDBC_POOL_ID = "xplan";
+	private static final String JPA_JDBC_ID_XPLAN = "xplan";
 
-	private static final String JDBC_POOL_ID = "xplancp";
+	private static final String JDBC_ID_XPLAN = "xplancp";
+
+	private static final String JPA_JDBC_ID_INSPIREPLU = "inspireplu";
 
 	private static final String INSPIREPLU_FS_ID = "inspireplu";
 
@@ -72,7 +74,7 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 	public DataSource retrieveDataSource() {
 		ensureWorkspaceInitialized();
 		ConnectionProvider resource = managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class,
-				JDBC_POOL_ID);
+				JDBC_ID_XPLAN);
 		if (!(resource instanceof DataSourceConnectionProvider))
 			throw new IllegalArgumentException(
 					"Datasource configuration is not supported, must be an DataSourceConnection");
@@ -83,10 +85,8 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 	@Override
 	public void setJpaTransactionManager(JpaTransactionManager jpaTransactionManager) {
 		ensureWorkspaceInitialized();
-		ConnectionProvider resource = managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class,
-				JPA_JDBC_POOL_ID);
-		if (resource instanceof JpaConnectionProvider)
-			((JpaConnectionProvider) resource).setJpaTransactionManager(jpaTransactionManager);
+		setJpaTransactionManager(jpaTransactionManager, JPA_JDBC_ID_XPLAN);
+		setJpaTransactionManager(jpaTransactionManager, JPA_JDBC_ID_INSPIREPLU);
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 	 */
 	public void ensureWorkspaceInitialized() {
 		try {
-			managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class, JDBC_POOL_ID);
+			managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class, JDBC_ID_XPLAN);
 		}
 		catch (Exception e) {
 			long begin = System.currentTimeMillis();
@@ -112,7 +112,7 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 	public Connection openConnection() {
 		ensureWorkspaceInitialized();
 		ConnectionProvider resource = managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class,
-				JDBC_POOL_ID);
+				JDBC_ID_XPLAN);
 		return resource.getConnection();
 	}
 
@@ -149,6 +149,13 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 		if (sfs instanceof SQLFeatureStore)
 			((SQLFeatureStore) sfs).releaseConnectionFromExternal(true);
 		return sfs;
+	}
+
+	private void setJpaTransactionManager(JpaTransactionManager jpaTransactionManager, String jpaJdbcId) {
+		ConnectionProvider resource = managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class,
+				jpaJdbcId);
+		if (resource instanceof JpaConnectionProvider)
+			((JpaConnectionProvider) resource).setJpaTransactionManager(jpaTransactionManager);
 	}
 
 	public DeegreeWorkspace getWorkspace() {

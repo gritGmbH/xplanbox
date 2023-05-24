@@ -416,7 +416,6 @@ public class XPlanManager {
 		else {
 			String planId = plan.getId();
 			inspirePluPublisher.transformAndPublish(planId, XPlanVersion.valueOf(plan.getVersion()));
-			xplanDao.setPlanWasInspirePublished(planId);
 		}
 	}
 

@@ -103,7 +103,7 @@ public class Plan {
 
 	private @Valid Date gueltigkeitende;
 
-	private @Valid Boolean inspirepublished;
+	private @Valid Boolean inspirepublished = false;
 
 	private @Valid Geometry bbox;
 

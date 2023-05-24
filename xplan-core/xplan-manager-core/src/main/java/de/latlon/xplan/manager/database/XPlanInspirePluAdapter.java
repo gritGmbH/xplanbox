@@ -20,13 +20,15 @@
  */
 package de.latlon.xplan.manager.database;
 
+import de.latlon.xplan.core.manager.db.listener.CleanupSqlFeatureStoreEvent;
+import de.latlon.xplan.manager.inspireplu.InspirePluPublishException;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.persistence.FeatureStore;
-import org.deegree.feature.persistence.FeatureStoreException;
 import org.deegree.feature.persistence.FeatureStoreTransaction;
+import org.deegree.feature.persistence.sql.SQLFeatureStore;
 import org.deegree.protocol.wfs.transaction.action.IDGenMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -38,36 +40,28 @@ public class XPlanInspirePluAdapter {
 
 	private final ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
-	public XPlanInspirePluAdapter(ManagerWorkspaceWrapper managerWorkspaceWrapper) {
+	private final ApplicationEventPublisher applicationEventPublisher;
+
+	public XPlanInspirePluAdapter(ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			ApplicationEventPublisher applicationEventPublisher) {
 		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
+		this.applicationEventPublisher = applicationEventPublisher;
 	}
 
-	public void insertInspirePlu(FeatureCollection featureCollection) throws Exception {
-		FeatureStoreTransaction transaction = null;
+	public void insertInspirePlu(FeatureCollection featureCollection) throws InspirePluPublishException {
+
 		try {
 			LOG.info("Insert INSPIRE PLU dataset");
-			FeatureStore inspirePluStore = managerWorkspaceWrapper.lookupInspirePluStore();
-			transaction = inspirePluStore.acquireTransaction();
+			SQLFeatureStore inspirePluStore = (SQLFeatureStore) managerWorkspaceWrapper.lookupInspirePluStore();
+			applicationEventPublisher.publishEvent(new CleanupSqlFeatureStoreEvent(inspirePluStore));
+			FeatureStoreTransaction transaction = inspirePluStore.acquireTransaction();
 
 			transaction.performInsert(featureCollection, IDGenMode.GENERATE_NEW);
-			transaction.commit();
 		}
-		catch (FeatureStoreException e) {
-			rollbackTransaction(transaction, e);
-			throw new Exception("Fehler beim Einfügen des INSPIRE PLU Datensatz: " + e.getMessage(), e);
+		catch (Exception e) {
+			throw new InspirePluPublishException("Fehler beim Einfügen des INSPIRE PLU Datensatz: " + e.getMessage(),
+					e);
 		}
-	}
-
-	private void rollbackTransaction(FeatureStoreTransaction transaction, FeatureStoreException e) {
-		if (transaction != null)
-			try {
-				transaction.rollback();
-			}
-			catch (FeatureStoreException fse) {
-				LOG.warn("Rollback failed: " + e.getMessage());
-				LOG.trace("Rollback failed.", e);
-
-			}
 	}
 
 }

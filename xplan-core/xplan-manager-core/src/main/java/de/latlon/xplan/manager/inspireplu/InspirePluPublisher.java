@@ -74,14 +74,15 @@ public class InspirePluPublisher {
 	 * @param xPlanVersion the version of the xplan, never <code>null</code>
 	 * @throws Exception if an exception occurs
 	 */
+	@Transactional(rollbackOn = Exception.class)
 	public void transformAndPublish(String planId, XPlanVersion xPlanVersion) throws Exception {
 		Path xPlanGml = retrieveXPlan(planId);
 		Path inspirePlu = transformator.transformToPlu(xPlanGml, xPlanVersion);
 		FeatureCollection featureCollection = parseFeatureCollection(inspirePlu);
 		xPlanDao.insertInspirePlu(featureCollection);
+		xPlanDao.setPlanWasInspirePublished(planId);
 	}
 
-	@Transactional(rollbackOn = Exception.class)
 	private FeatureCollection parseFeatureCollection(Path inspirePlu) throws Exception {
 		XMLInputFactory xmlInputFactory = XMLInputFactory.newFactory();
 		try (FileInputStream stream = new FileInputStream(inspirePlu.toFile())) {

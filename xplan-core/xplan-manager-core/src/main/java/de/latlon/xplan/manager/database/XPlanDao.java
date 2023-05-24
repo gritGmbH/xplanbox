@@ -92,7 +92,7 @@ public class XPlanDao {
 		this.xPlanDbAdapter = xPlanDbAdapter;
 		this.xPlanWfsAdapter = new XPlanWfsAdapter(managerWorkspaceWrapper, applicationEventPublisher);
 		this.xPlanSynWfsAdapter = new XPlanSynWfsAdapter(managerWorkspaceWrapper, applicationEventPublisher);
-		this.xPlanInspirePluAdapter = new XPlanInspirePluAdapter(managerWorkspaceWrapper);
+		this.xPlanInspirePluAdapter = new XPlanInspirePluAdapter(managerWorkspaceWrapper, applicationEventPublisher);
 	}
 
 	/**
