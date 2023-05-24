@@ -468,6 +468,7 @@
             <source>${java.version}</source>
             <target>${java.version}</target>
             <encoding>utf8</encoding>
+            <parameters>true</parameters>
           </configuration>
         </plugin>
         <plugin>
