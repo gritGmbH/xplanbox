@@ -41,4 +41,6 @@ Konfigurationsdatei können wie zuvor beschrieben geändert werden):
 <Property name="maxTotal" value="10"/>
 ----
 
+TIP: Wenn keine Verfahrensdatenbank vorhanden ist, kann die Konfiguration entfernt werden.
+
 IMPORTANT: Die Schnittstelle zur Verfahrensdatenbank ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt.

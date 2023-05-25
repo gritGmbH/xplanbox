@@ -2,9 +2,13 @@
 
 Um die ozgxplanung Builds zu beschleunigen wird ein Build Image verwendet, das schon die meisten benötigten Maven Artefekate enthält, die für das Build benötigt werden. Dieses Image sollte regelmäßig neu erzeugt werden, sodass es synchron zu den benötigten Dependencies bleibt (oder fast). Mit diesem Image ist das normale Maven Build bei den ersten Versuchen eine bis zwei Minuten schneller und das OWASP Dependency Checks Build mehr als 6 Minuten schneller.
 
-Die automatische Erzeugung auf OpenCoDE klappt noch nicht (Speicherprobleme).
+## Automatische Erzeugung
+
+Das Pipeline Schedule [Create Maven Build Image](https://gitlab.opencode.de/diplanung/ozgxplanung/-/pipeline_schedules) ist konfiguriert, um ein mal pro Woche zu laufen.
 
 ## Manuelle Erzeugung
+
+Das Image kann auch manuell gebaut und gepusht werden.
 
 ### Docker Image lokal bauen
 

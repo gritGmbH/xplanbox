@@ -1,57 +1,70 @@
-# XPlanAPI
+# Beschreibung der Schnittstellen von XPlanManagerAPI und XPlanValidatorAPI
 
-## Versionierung der APIs
+Änderungen an den REST-Schnittstellen der Komponenten XPlanManagerAPI und XPlanValidatorAPI werden über Versionsnummern abgebildet.  
 
-Die Versionierung der APIs basiert auf dem Konzept von [Semantic Versioning](https://semver.org/).
+## Aufbau der Versionsnummer
 
-Das Versionierungsschema für die XPlanManagerAPI und XPlanValidatorAPI sieht folgendermaßen aus:
+Die Versionierung der API basiert auf dem Konzept von [Semantic Versioning](https://semver.org/).
 
-    ${MAJOR_VERSION}.${MINOR_VERSION}.${BUGFIX_VERSION}
+Die Versionsnummer für die XPlanManagerAPI und XPlanValidatorAPI setzt sich aus folgenden Teilen zusammen:
+
+    MAJOR_VERSION.MINOR_VERSION.BUGFIX_VERSION
 
 Beispiel:
 
     1.1.0
+    | | +-- Bugfix-Version (Revisionsnummer)
+    | +---- Minor-Version (Nebenversionsnummer)
+    +------ Major-Version (Hauptversionsnummer)
 
-In den URLs der beiden APIs werden jeweils nur die Major-Versionen angegeben:
-
-    /xmanager/api/v${MAJOR_VERSION}
-    /xvalidator/api/v${MAJOR_VERSION}
-
-Beispiel:
+In den Ressourcenpfaden der beiden Komponenten wird nur die Major-Version angegeben:
 
     /xmanager/api/v1
     /xvalidator/api/v1
 
-### Major-Version
+In den OpenAPI-Dokumenten wird die vollständige Versionsnummer im Element `version` ausgegeben:
 
-Hierunter fallen grundlegende Änderungen an der API:
+```json
+"info": {
+...
+"version": "1.1.0"
+}
+```
 
-- Änderungen sind nicht zwingend rückwärtskompatibel.
-- Veränderung oder Entfernen von bestehenden Ressourcen.
-- Entfernen eines HTTP-Verbs (z.B. POST, PUT, DELETE) einer bestehenden Ressource.
-- Veränderung oder Entfernen von Werten von bestehenden Enumerationen.
-- Hinzufügen von neuen verpflichtenden Attributen.
-- Entfernen von zuvor in der Response verfügbaren Informationen.
-- ...
+### Änderungen in einer Major-Version
 
-## Minor-Version
+Mit Einführung einer neuen Major-Version wird ein neuer Ressourcenpfad mit z. B. `/api/v2` eingeführt.
+Änderungen an der API, die nicht abwärts-/rückwärtskompatibel sind, können sein:
 
-Hierunter fallen kleine Änderungen und Ergänzungen an der API:
+- Entfernen von bestehenden Ressourcen
+- Entfernen eines HTTP-Verbs (z.B. POST, PUT, DELETE) zu einer bestehenden Ressource
+- Entfernen von Werten von bestehenden Enumerationen
+- Entfernen von zuvor verfügbaren Typen
+- Entfernen von Datentypen, die in einer vorherigen Version als deprecated markiert worden sind
+- Entfernen von Content-Types
+- Hinzufügen von neuen verpflichtenden Attributen
+- Ändern eines Datentyps
+- Ändern einer "operationId"
 
-- Änderungen sind rückwärtskompatibel.
-- Hinzufügen neuer Ressourcen.
-- Hinzufügen eines HTTP-Verbs (z.B. POST, PUT, DELETE) für eine bestehende Ressource.
-- Hinzufügen neuer Werte für Enumeration.
-- Hinzufügen von neuen optionalen Attributen.
-- Hinzufügen von weiteren in der Response verfügbaren Informationen.
-- ...
 
-## Bugfix-Version
+## Änderungen in einer Minor-Version
 
-Hierunter fallen kosmetische Änderungen an der API:
+Hierunter fallen abwärts-/rückwärtskompatible Änderungen und Ergänzungen an der API:
 
-- Änderungen sind rückwärtskompatibel.
-- Anpassungen an "Description" oder "Example".
-- Korrektur von Rechtschreibfehlern.
-- Korrektur von anderen Fehlern (z.B. falscher Datentyp).
-- ...
+- Hinzufügen neuer Ressourcen
+- Hinzufügen eines HTTP-Verbs (z.B. POST, PUT, DELETE) für eine bestehende Ressource
+- Hinzufügen neuer Werte für Enumerationen
+- Hinzufügen von neuen optionalen Parametern
+- Hinzufügen von neuen optionalen Attributen
+- Hinzufügen von neuen Content-Types
+- Hinzufügen eines neuen Datentyps
+- Hinzufügen weiterer Status-Codes zu einer Antwort
+- Hinzufügen von weiteren Informationen
+
+## Änderungen in einer Bugfix-Version
+
+Hierunter fallen abwärts-/rückwärtskompatible Änderungen an der API:
+
+- Hinzufügen, Entfernen und Ändern von "Summary", "Description" oder "Example" Elementen
+- Hinzufügen, Entfernen und Ändern von Tags
+- Korrektur von Tipp- und Rechtschreibfehlern im OpenAPI-Dokument
