@@ -47,11 +47,7 @@ Unter
 _Systemsteuerung->System und Sicherheit->System->Erweiterte Systemeinstellungen->Erweitert->Umgebungsvariablen_
 müssen folgende Einstellungen vorgenommen werden:
 
-* Setzen der Variable `JAVA_HOME` mit der Referenz zur Java Installation
-(JDK), z. B.: `C:\Program Files\Java\jdk-11.0.11`
-* Setzen der Variable `GDAL_DATA` mit der Referenz auf das Verzeichnis, dass die
-Datei "gcs.csv" enthält, z. B.:
-`C:\Program Files (x86)\gdal\bin\gdal-data`
-* Zur Umgebungsvariable _PATH_ müssen zwei Pfade hinzugefügt
-werden (Annahme: Entpacktes ZIP-Archiv von GISInternals wurde genutzt):
+* Setzen der Umgebungsvariable `JAVA_HOME` mit der Pfadangabe zum Installationsverzeichnis des JDK, z. B.: `C:\Program Files\Java\jdk-11.0.11`
+* Setzen der Umgebungsvariable `GDAL_DATA` mit der Pfadangabe zum Verzeichnis in dem die Datei _gcs.csv_ enthalten ist, z. B.: `C:\Program Files (x86)\gdal\bin\gdal-data`
+* Zur Umgebungsvariable _PATH_ müssen zwei Pfade hinzugefügt werden (Annahme: Entpacktes ZIP-Archiv von GISInternals wurde genutzt):
 `<GDAL-INSTALLATIONSORDNER>\bin;<GDAL-INSTALLATIONSORDNER>\bin\gdal\java`

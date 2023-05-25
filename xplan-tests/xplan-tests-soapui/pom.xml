@@ -37,22 +37,17 @@
 
   <profiles>
     <profile>
-      <id>integration-tests</id>
+      <id>system-tests</id>
       <properties>
         <testFileName />
         <baseUrl />
         <baseUrlInspirePlu />
         <baseUrlManagerApi />
+        <baseUrlMapServer />
         <username />
         <password />
         <endpoint />
       </properties>
-      <pluginRepositories>
-        <pluginRepository>
-          <id>SmartBearPluginRepository</id>
-          <url>http://www.soapui.org/repository/maven2/</url>
-        </pluginRepository>
-      </pluginRepositories>
       <build>
         <plugins>
           <plugin>
@@ -74,7 +69,10 @@
                 </goals>
                 <configuration>
                   <projectFile>${basedir}/src/main/resources/${testFileName}</projectFile>
+                  <settingsFile>${basedir}/src/main/resources/soapui-settings.xml</settingsFile>
                   <outputFolder>${project.build.directory}/soapui</outputFolder>
+                  <junitReport>true</junitReport>
+                  <testFailIgnore>true</testFailIgnore>
                   <endpoint>${endpoint}</endpoint>
                   <username>${username}</username>
                   <password>${password}</password>
@@ -83,6 +81,7 @@
                     <value>baseUrl=${baseUrl}</value>
                     <value>baseUrlInspirePlu=${baseUrlInspirePlu}</value>
                     <value>baseUrlManagerApi=${baseUrlManagerApi}</value>
+                    <value>baseUrlMapServer=${baseUrlMapServer}</value>
                     <value>username=${username}</value>
                     <value>password=${password}</value>
                   </projectProperties>

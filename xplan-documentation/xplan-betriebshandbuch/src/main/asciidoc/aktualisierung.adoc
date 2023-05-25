@@ -85,7 +85,7 @@ Bei der Aktualisierung der Workspaces ist zwischen einer vollständigen und teil
 
 IMPORTANT: Das HTML-Template für die XPlanWMS GFI Ausgabe muss, wie in <<konfiguration-xplanwms-gfi>> beschrieben, angepasst werden.
 
-IMPORTANT: Alle Konfigurationsänderungen in _xplan-manager-config.properties_ und _xplan-validator-config.properties_  müssen manuell übertragen werden.
+IMPORTANT: Alle Konfigurationsänderungen in den Verzeichnissen _xplan-manager-config/_ und _xplan-validator-config/_  müssen manuell übertragen werden.
 
 [[vollstaendige-aktualisierung]]
 ==== Vollständige Aktualisierung der Workspaces

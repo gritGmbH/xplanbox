@@ -120,6 +120,10 @@
       <artifactId>jts-core</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-text</artifactId>
+    </dependency>
+    <dependency>
       <groupId>net.sourceforge.dynamicreports</groupId>
       <artifactId>dynamicreports-core</artifactId>
       <exclusions>
