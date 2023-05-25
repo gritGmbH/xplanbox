@@ -27,14 +27,10 @@ import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
-import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
-import de.latlon.xplan.manager.edit.XPlanManipulator;
-import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
@@ -51,16 +47,9 @@ import org.deegree.geometry.Envelope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 import java.util.UUID;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
@@ -73,13 +62,9 @@ public abstract class XPlanTransactionManager {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanTransactionManager.class);
 
-	private static final DateFormat DATEFORMAT = createDateFormat();
-
 	protected final XPlanSynthesizer xPlanSynthesizer;
 
 	protected final XPlanDao xplanDao;
-
-	protected final XPlanExporter xPlanExporter;
 
 	protected final XPlanRasterManager xPlanRasterManager;
 
@@ -89,11 +74,7 @@ public abstract class XPlanTransactionManager {
 
 	protected final ManagerConfiguration managerConfiguration;
 
-	protected final ManagerWorkspaceWrapper managerWorkspaceWrapper;
-
 	protected final SortPropertyReader sortPropertyReader;
-
-	protected final XPlanManipulator planModifier = new XPlanManipulator();
 
 	protected final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
 
@@ -101,25 +82,18 @@ public abstract class XPlanTransactionManager {
 
 	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 
-	public XPlanTransactionManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao, XPlanExporter xPlanExporter,
+	public XPlanTransactionManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao,
 			XPlanRasterManager xPlanRasterManager, XPlanDocumentManager xPlanDocumentManager,
 			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader)
-			throws DataServiceCouplingException {
+			SortPropertyReader sortPropertyReader, MetadataCouplingHandler metadataCouplingHandler) {
 		this.xPlanSynthesizer = xPlanSynthesizer;
 		this.xplanDao = xplanDao;
-		this.xPlanExporter = xPlanExporter;
 		this.xPlanRasterManager = xPlanRasterManager;
 		this.xPlanDocumentManager = xPlanDocumentManager;
 		this.workspaceReloader = workspaceReloader;
 		this.managerConfiguration = managerConfiguration;
-		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
 		this.sortPropertyReader = sortPropertyReader;
-		if (managerConfiguration != null && managerConfiguration.getCoupledResourceConfiguration() != null)
-			this.metadataCouplingHandler = new MetadataCouplingHandler(xplanDao,
-					managerConfiguration.getCoupledResourceConfiguration());
-		else
-			this.metadataCouplingHandler = null;
+		this.metadataCouplingHandler = metadataCouplingHandler;
 	}
 
 	protected void reloadWorkspace(int planId) {
@@ -148,13 +122,6 @@ public abstract class XPlanTransactionManager {
 				planStatus, newPlanStatus, sortDate);
 	}
 
-	protected byte[] createXPlanGml(XPlanVersion version, FeatureCollection plan) throws Exception {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		String comment = "Zuletzt aktualisiert am: " + DATEFORMAT.format(new Date());
-		xPlanExporter.export(bos, version, plan, comment);
-		return bos.toByteArray();
-	}
-
 	protected void reassignFids(XPlanFeatureCollections fc) {
 		for (XPlanFeatureCollection xplanInstance : fc.getxPlanGmlInstances()) {
 			reassignFids(xplanInstance);
@@ -167,20 +134,6 @@ public abstract class XPlanTransactionManager {
 			String prefix = SYN_FEATURETYPE_PREFIX + synFeatureTypeName.toUpperCase() + "_";
 			String uuid = UUID.randomUUID().toString();
 			f.setId(prefix + uuid);
-		}
-	}
-
-	protected FeatureCollection renewFeatureCollection(XPlanVersion version, FeatureCollection modifiedFeatures)
-			throws Exception {
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		xPlanExporter.export(outputStream, version, modifiedFeatures, null);
-		ByteArrayInputStream originalPlan = new ByteArrayInputStream(outputStream.toByteArray());
-		XMLStreamReader originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
-		try {
-			return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(originalPlanAsXmlReader, version);
-		}
-		finally {
-			originalPlanAsXmlReader.close();
 		}
 	}
 
@@ -249,12 +202,6 @@ public abstract class XPlanTransactionManager {
 			}
 		}
 
-	}
-
-	private static DateFormat createDateFormat() {
-		DateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss z");
-		simpleDateFormat.setTimeZone(TimeZone.getTimeZone("CET"));
-		return simpleDateFormat;
 	}
 
 }

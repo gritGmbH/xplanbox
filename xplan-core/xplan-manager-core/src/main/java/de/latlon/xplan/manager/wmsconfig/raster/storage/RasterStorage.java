@@ -33,7 +33,6 @@ public interface RasterStorage {
 	String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive, StorageEvent storageEvent)
 			throws IOException, StorageException;
 
-	void deleteRasterFile(String planId, String rasterId, StorageEvent storageEvent)
-			throws IOException, StorageException;
+	void deleteRasterFile(int planId, String rasterId, StorageEvent storageEvent) throws IOException, StorageException;
 
 }

@@ -33,12 +33,12 @@ import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.export.XPlanExporter;
-import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
-import de.latlon.xplan.manager.storage.StorageCleanUpManager;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanEditManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
+import de.latlon.xplan.manager.transaction.service.XPlanDeleteService;
+import de.latlon.xplan.manager.transaction.service.XPlanEditService;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
@@ -141,21 +141,42 @@ public class TestContext {
 	}
 
 	@Bean
+	@Primary
+	public XPlanInsertManager xPlanInsertManager() throws Exception {
+		XPlanInsertManager xplanInsertManager = mock(XPlanInsertManager.class);
+		when(xplanInsertManager.importPlan(any(), nullable(ICRS.class), anyBoolean(), anyBoolean(),
+				nullable(String.class), any())).thenReturn(Collections.singletonList(123));
+		return xplanInsertManager;
+	}
+
+	@Primary
+	@Bean
 	public XPlanEditManager xPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
 			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			WorkspaceReloader workspaceReloader, XPlanRasterManager xPlanRasterManager,
-			Optional<XPlanDocumentManager> xPlanDocumentManager, SortPropertyReader sortPropertyReader)
-			throws DataServiceCouplingException {
+			Optional<XPlanDocumentManager> xPlanDocumentManager, SortPropertyReader sortPropertyReader,
+			XPlanEditService xPlanEditService) {
 		return new XPlanEditManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager,
 				xPlanDocumentManager.orElse(null), workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
-				managerWorkspaceWrapper, sortPropertyReader);
+				sortPropertyReader, xPlanEditService, null);
+	}
+
+	@Primary
+	@Bean
+	public XPlanEditService xPlanEditService() {
+		return mock(XPlanEditService.class);
 	}
 
 	@Bean
-	public XPlanDeleteManager xPlanDeleteManager(XPlanDao xPlanDao, WorkspaceReloader workspaceReloader,
-			XPlanRasterManager xPlanRasterManager, StorageCleanUpManager storageCleanUpManager) {
-		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, storageCleanUpManager, workspaceReloader,
-				applicationEventPublisher);
+	public XPlanDeleteManager xPlanDeleteManager(WorkspaceReloader workspaceReloader,
+			XPlanRasterManager xPlanRasterManager, XPlanDeleteService xPlanDeleteService) {
+		return new XPlanDeleteManager(xPlanRasterManager, workspaceReloader, xPlanDeleteService);
+	}
+
+	@Primary
+	@Bean
+	public XPlanDeleteService xPlanDeleteService() {
+		return mock(XPlanDeleteService.class);
 	}
 
 	@Bean
@@ -300,6 +321,11 @@ public class TestContext {
 				.thenReturn(getClass().getResourceAsStream("/xplan51-edited.gml"));
 		when(xplanDao.retrieveXPlanArtefact("7")).thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"))
 				.thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"));
+		when(xplanDao.retrieveXPlanArtefact(2)).thenReturn(getClass().getResourceAsStream("/xplan51.gml"))
+				.thenReturn(getClass().getResourceAsStream("/xplan51.gml"))
+				.thenReturn(getClass().getResourceAsStream("/xplan51-edited.gml"));
+		when(xplanDao.retrieveXPlanArtefact(7)).thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"))
+				.thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"));
 		when(xplanDao.existsPlan("123")).thenReturn(true);
 		List<XPlan> mockList = new ArrayList<>();
 		mockList.add(mockPlan_123);
@@ -309,23 +335,6 @@ public class TestContext {
 		when(xplanDao.retrieveAllXPlanArtefacts(anyString())).thenReturn(mock(List.class));
 		when(xplanDao.retrieveAllXPlanArtefacts("42")).thenThrow(new PlanNotFoundException(42));
 		return xplanDao;
-	}
-
-	@Bean
-	@Primary
-	public XPlanInsertManager xPlanInsertManager(XPlanDao xPlanDao, XPlanExporter xPlanExporter,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanRasterManager xPlanRasterManager,
-			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader) throws Exception {
-		XPlanInsertManager xplanInsertManager = mock(XPlanInsertManager.class);
-		when(xplanInsertManager.importPlan(any(), nullable(ICRS.class), anyBoolean(), anyBoolean(),
-				nullable(String.class), any())).thenReturn(Collections.singletonList(123));
-		return xplanInsertManager;
-	}
-
-	@Bean
-	@Primary
-	public XPlanExporter xPlanExporter() {
-		return new XPlanExporter();
 	}
 
 	@Bean

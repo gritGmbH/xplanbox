@@ -70,7 +70,7 @@ public class S3RasterStorage extends S3Storage implements RasterStorage {
 	}
 
 	@Override
-	public void deleteRasterFile(String planId, String rasterId, StorageEvent storageEvent) throws StorageException {
+	public void deleteRasterFile(int planId, String rasterId, StorageEvent storageEvent) throws StorageException {
 		String key = planId + "_" + rasterId;
 		S3Object object = getObject(key);
 		if (object != null)

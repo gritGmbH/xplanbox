@@ -84,7 +84,7 @@ public class XPlanRasterManager {
 	 * Removes the configuration of the plan with the given id.
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 */
-	public void removeRasterLayers(String planId) {
+	public void removeRasterLayers(int planId) {
 		rasterConfigManager.removeRasterLayers(planId);
 	}
 
@@ -92,7 +92,7 @@ public class XPlanRasterManager {
 	 * Removes the configuration of the plan with the given id.
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 */
-	public void removeRasterLayers(String planId, ExternalReferenceInfo externalReferencesToRemove) {
+	public void removeRasterLayers(int planId, ExternalReferenceInfo externalReferencesToRemove) {
 		StorageEvent storageEvent = new StorageEvent();
 		try {
 			List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferencesToRemove

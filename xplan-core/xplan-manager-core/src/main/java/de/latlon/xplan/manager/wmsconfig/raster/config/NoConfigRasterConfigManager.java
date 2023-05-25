@@ -38,11 +38,11 @@ public class NoConfigRasterConfigManager implements RasterConfigManager {
 	}
 
 	@Override
-	public void removeRasterLayers(String planId) {
+	public void removeRasterLayers(int planId) {
 	}
 
 	@Override
-	public void removeRasterLayer(String planId, String rasterId) {
+	public void removeRasterLayer(int planId, String rasterId) {
 	}
 
 	@Override

@@ -347,7 +347,16 @@ public class XPlanDao {
 	 */
 	public InputStream retrieveXPlanArtefact(String planId) throws Exception {
 		int planIdAsInt = getXPlanIdAsInt(planId);
-		return xPlanDbAdapter.selectXPlanGmlArtefact(planIdAsInt);
+		return retrieveXPlanArtefact(planIdAsInt);
+	}
+
+	/**
+	 * @param planId the id of the requested plan, <code>null</code>
+	 * @return the original plan artefact, never <code>null</code>
+	 * @throws Exception
+	 */
+	public InputStream retrieveXPlanArtefact(int planId) throws Exception {
+		return xPlanDbAdapter.selectXPlanGmlArtefact(planId);
 	}
 
 	/**
@@ -356,9 +365,8 @@ public class XPlanDao {
 	 * @return the internal id of a plan (if available), <code>null</code> if an error
 	 * occurred
 	 */
-	public String retrieveInternalId(String planId) throws Exception {
-		int planIdAsInt = getXPlanIdAsInt(planId);
-		return xPlanDbAdapter.selectInternalId(planIdAsInt);
+	public String retrieveInternalId(int planId) {
+		return xPlanDbAdapter.selectInternalId(planId);
 	}
 
 	/**

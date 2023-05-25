@@ -86,7 +86,7 @@ public class S3RasterStorageTest {
 		S3RasterStorage s3RasterStorage = createS2RasterStorage(client);
 
 		StorageEvent storageEvent = mock(StorageEvent.class);
-		s3RasterStorage.deleteRasterFile("1", "test", storageEvent);
+		s3RasterStorage.deleteRasterFile(1, "test", storageEvent);
 
 		verify(client).deleteObject(BUCKET_NAME, "1_test");
 		verify(storageEvent).addDeletedKey(eq("1_test"), any(InputStream.class));

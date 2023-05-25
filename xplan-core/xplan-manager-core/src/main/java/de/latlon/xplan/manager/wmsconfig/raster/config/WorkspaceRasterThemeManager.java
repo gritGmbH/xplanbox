@@ -133,7 +133,7 @@ public class WorkspaceRasterThemeManager {
 	 * @throws JAXBException
 	 * @throws IOException
 	 */
-	public synchronized void removeLayersForPlan(String type, String planId)
+	public synchronized void removeLayersForPlan(String type, int planId)
 			throws JAXBException, IOException, ConfigurationException {
 		final String prefix = planId + "_";
 		removeLayers(type, toMatch -> toMatch.startsWith(prefix));
@@ -149,7 +149,7 @@ public class WorkspaceRasterThemeManager {
 	 * @throws JAXBException
 	 * @throws IOException
 	 */
-	public synchronized void removeLayersForPlan(String type, String planId, String rasterId)
+	public synchronized void removeLayersForPlan(String type, int planId, String rasterId)
 			throws JAXBException, IOException, ConfigurationException {
 		final String layerId = planId + "_" + rasterId;
 		removeLayers(type, toMatch -> toMatch.equals(layerId));
@@ -165,7 +165,7 @@ public class WorkspaceRasterThemeManager {
 	 * @throws IOException
 	 * @throws ConfigurationException
 	 */
-	public synchronized void moveLayers(String sourceType, String targetType, String planId)
+	public synchronized void moveLayers(String sourceType, String targetType, int planId)
 			throws JAXBException, IOException, ConfigurationException {
 		if (sourceType.equals(targetType))
 			return;
@@ -321,7 +321,7 @@ public class WorkspaceRasterThemeManager {
 		return newRasterLayers;
 	}
 
-	private List<Layer> removeUserLayers(String planId, ThemeType theme) {
+	private List<Layer> removeUserLayers(int planId, ThemeType theme) {
 		String prefix = planId + "_";
 		List<Layer> removedLayers = new ArrayList<>();
 		for (ThemeType subTheme : theme.getTheme()) {

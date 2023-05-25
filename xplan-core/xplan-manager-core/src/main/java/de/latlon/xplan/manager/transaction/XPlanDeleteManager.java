@@ -20,18 +20,11 @@
  */
 package de.latlon.xplan.manager.transaction;
 
-import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.storage.StorageCleanUpManager;
-import de.latlon.xplan.manager.storage.StorageEvent;
+import de.latlon.xplan.manager.transaction.service.XPlanDeleteService;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationEventPublisher;
-
-import javax.transaction.Transactional;
-import java.io.IOException;
 
 import static java.lang.Integer.parseInt;
 
@@ -42,24 +35,17 @@ public class XPlanDeleteManager {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanDeleteManager.class);
 
-	private final XPlanDao xPlanDao;
-
 	private final XPlanRasterManager xPlanRasterManager;
-
-	private final StorageCleanUpManager storageCleanUpManager;
 
 	private final WorkspaceReloader workspaceReloader;
 
-	private final ApplicationEventPublisher applicationEventPublisher;
+	private final XPlanDeleteService xPlanDeleteService;
 
-	public XPlanDeleteManager(XPlanDao xPlanDao, XPlanRasterManager xPlanRasterManager,
-			StorageCleanUpManager storageCleanUpManager, WorkspaceReloader workspaceReloader,
-			ApplicationEventPublisher applicationEventPublisher) {
-		this.xPlanDao = xPlanDao;
+	public XPlanDeleteManager(XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
+			XPlanDeleteService xPlanDeleteService) {
 		this.xPlanRasterManager = xPlanRasterManager;
-		this.storageCleanUpManager = storageCleanUpManager;
 		this.workspaceReloader = workspaceReloader;
-		this.applicationEventPublisher = applicationEventPublisher;
+		this.xPlanDeleteService = xPlanDeleteService;
 	}
 
 	/**
@@ -68,23 +54,11 @@ public class XPlanDeleteManager {
 	 * @param planId the plan id to delete should be used.
 	 * @throws Exception
 	 */
-	@Transactional(rollbackOn = Exception.class)
 	public void delete(String planId) throws Exception {
-		xPlanDao.deletePlan(planId);
-		xPlanRasterManager.removeRasterLayers(planId);
-		deleteFromStorage(planId);
+		xPlanDeleteService.deletePlan(planId);
 		reloadWorkspace(planId);
+		xPlanRasterManager.removeRasterLayers(parseInt(planId));
 		LOG.info("XPlanArchiv mit Id {} wurde gelöscht", planId);
-	}
-
-	private void deleteFromStorage(String planId) throws IOException, StorageException {
-		StorageEvent storageEvent = new StorageEvent();
-		try {
-			storageCleanUpManager.deleteAll(planId, storageEvent);
-		}
-		finally {
-			applicationEventPublisher.publishEvent(storageEvent);
-		}
 	}
 
 	private void reloadWorkspace(String planId) {

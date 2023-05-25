@@ -63,7 +63,7 @@ public class FileSystemStorage implements RasterStorage {
 	}
 
 	@Override
-	public void deleteRasterFile(String planId, String rasterId, StorageEvent storageEvent) throws IOException {
+	public void deleteRasterFile(int planId, String rasterId, StorageEvent storageEvent) throws IOException {
 		final String rasterLayerFileName = planId + "_" + rasterId;
 		deleteFilesWithPrefix((path, basicFileAttributes) -> {
 			String fileName = path.getFileName().toString();
