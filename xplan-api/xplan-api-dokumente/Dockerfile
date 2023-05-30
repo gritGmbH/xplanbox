@@ -6,6 +6,7 @@ ARG WEB_CONTEXT=ROOT
 
 # set environment variables
 ENV TOMCAT_EXTRA_JAVA_OPTS="-DXPLANBOX_CONFIG=/root/xplan-dokumenten-config -Dlog4j2.configurationFile=classpath:/log4j2.yaml -Duser.timezone=Europe/Berlin"
+ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree
 
 USER root
 

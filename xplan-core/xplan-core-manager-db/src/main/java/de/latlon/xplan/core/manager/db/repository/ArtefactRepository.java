@@ -44,6 +44,9 @@ import static org.hibernate.jpa.QueryHints.HINT_FETCH_SIZE;
 @Transactional
 public interface ArtefactRepository extends CrudRepository<Artefact, Integer> {
 
+	@Query(value = "from Artefact as a where a.id.plan.id = :plan and a.id.filename = :filename")
+	Optional<Artefact> findByPlanAndFilename(@Param("plan") Integer plan, @Param("filename") String filename);
+
 	@Query(value = "from Artefact as a where a.artefacttype = 'XPLANGML' and a.id.plan.id = :plan")
 	Optional<Artefact> findXPlanGmlByPlan(@Param("plan") Integer plan);
 

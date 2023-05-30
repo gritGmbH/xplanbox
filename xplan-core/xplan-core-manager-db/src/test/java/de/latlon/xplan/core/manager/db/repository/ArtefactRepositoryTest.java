@@ -65,6 +65,17 @@ public class ArtefactRepositoryTest {
 
 	@Test
 	@Commit
+	public void verify_findByPlanIdAndFilename() {
+		assertFalse(TestTransaction.isFlaggedForRollback());
+		Plan plan = createPlan();
+		planRepository.save(plan);
+
+		Optional<Artefact> artefact = artefactRepository.findByPlanAndFilename(plan.getId(), "image.png");
+		assertTrue(artefact.get().getArtefacttype() == RASTERBASIS);
+	}
+
+	@Test
+	@Commit
 	public void verify_findXPlanGmlByPlan() {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		Plan plan = createPlan();

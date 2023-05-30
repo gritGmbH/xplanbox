@@ -18,30 +18,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplanbox.api.manager.exception;
+package de.latlon.xplanbox.api.commons.exception;
 
-import de.latlon.xplanbox.api.commons.exception.XPlanApiException;
-
-import static javax.ws.rs.core.Response.Status.NOT_FOUND;
+import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class InvalidPlanId extends XPlanApiException {
+public class InvalidPlanIdSyntax extends XPlanApiException {
 
-	private static final String EXCEPTION_MESSAGE = "Plan with ID %s is not known!";
+	private static final String EXCEPTION_MESSAGE = "Plan with ID %s is syntactically not correct, must be an 32bit integer!";
 
-	public InvalidPlanId(int planId) {
-		super(String.format(EXCEPTION_MESSAGE, planId));
-	}
-
-	public InvalidPlanId(String planId) {
+	public InvalidPlanIdSyntax(String planId) {
 		super(String.format(EXCEPTION_MESSAGE, planId));
 	}
 
 	@Override
 	public int getStatusCode() {
-		return NOT_FOUND.getStatusCode();
+		return BAD_REQUEST.getStatusCode();
 	}
 
 }
