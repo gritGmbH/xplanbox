@@ -109,7 +109,7 @@ public class ReportArchiveGenerator {
 	private void addShapeDirectoryEntry(ValidatorReport report, String validationName, Path directoryToCreateShapes,
 			ZipOutputStream zipOutStream) throws IOException, ReportGenerationException {
 		if (shapefileGenerator.hasBadGeometry(report)) {
-			shapefileGenerator.generateReport(report, validationName, directoryToCreateShapes.toFile());
+			shapefileGenerator.generateReport(report, validationName, directoryToCreateShapes);
 			ReportUtils.writeShapefilesToZipOS(directoryToCreateShapes.toFile(), zipOutStream);
 			ReportUtils.deleteShapefiles(directoryToCreateShapes.toFile());
 		}

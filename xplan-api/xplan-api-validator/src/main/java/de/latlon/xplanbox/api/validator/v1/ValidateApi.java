@@ -58,6 +58,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.util.List;
 
 import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
@@ -200,8 +201,8 @@ public class ValidateApi {
 					.header("Content-Disposition", "attachment; filename=\"" + validationName + ".zip\"").build();
 		}
 		if (APPLICATION_PDF_TYPE.equals(mediaType)) {
-			File report = validationHandler.writePdfReport(validatorReport);
-			return Response.ok(FileUtils.readFileToByteArray(report)).type(APPLICATION_PDF)
+			java.nio.file.Path report = validationHandler.writePdfReport(validatorReport);
+			return Response.ok(Files.readAllBytes(report)).type(APPLICATION_PDF)
 					.header("Content-Disposition", "attachment; filename=\"" + validationName + ".pdf\"").build();
 		}
 		URI wmsUrl = validationHandler.addToWms(archive);

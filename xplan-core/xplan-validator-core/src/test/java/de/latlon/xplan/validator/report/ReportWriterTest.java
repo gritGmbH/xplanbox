@@ -30,14 +30,17 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -65,11 +68,14 @@ public class ReportWriterTest {
 
 	private ReportWriter reportWriter = new ReportWriter();
 
-	private File targetDirectory;
+	@Rule
+	public TemporaryFolder temporaryFolder = new TemporaryFolder();
+
+	private Path targetDirectory;
 
 	@Before
 	public void createTargetDirectory() throws Exception {
-		targetDirectory = createDirectory();
+		targetDirectory = Paths.get(temporaryFolder.newFolder("ReportWriterTest").toURI());
 	}
 
 	@Test
@@ -93,10 +99,10 @@ public class ReportWriterTest {
 	public void testRetrieveHtmlReport_ShouldExistWithCorrectName() throws Exception {
 		reportWriter.writeArtefacts(createReport(), targetDirectory);
 
-		File htmlReport = reportWriter.retrieveHtmlReport(VALIDATION_NAME, targetDirectory);
+		Path htmlReport = reportWriter.retrieveHtmlReport(VALIDATION_NAME, targetDirectory);
 
-		assertThat(htmlReport.exists(), is(true));
-		assertThat(htmlReport.getName(), is(VALIDATION_NAME + ".html"));
+		assertThat(Files.exists(htmlReport), is(true));
+		assertThat(htmlReport.getFileName().toString(), is(VALIDATION_NAME + ".html"));
 	}
 
 	@Test
@@ -145,18 +151,12 @@ public class ReportWriterTest {
 		return report;
 	}
 
-	private static File createDirectory() throws IOException {
-		File targetDirectory = Files.createTempDirectory("ReportWriterTest").toFile();
-		targetDirectory.deleteOnExit();
-		return targetDirectory;
-	}
-
-	private Matcher<? super File> containsFile(final String fileName) {
-		return new TypeSafeMatcher<File>() {
+	private Matcher<? super Path> containsFile(final String fileName) {
+		return new TypeSafeMatcher<>() {
 
 			@Override
-			public boolean matchesSafely(File directory) {
-				return new File(directory, fileName).isFile();
+			public boolean matchesSafely(Path directory) {
+				return Files.isRegularFile(directory.resolve(fileName));
 			}
 
 			@Override
@@ -166,12 +166,12 @@ public class ReportWriterTest {
 		};
 	}
 
-	private Matcher<? super File> containsDirectory(final String directoryName) {
-		return new TypeSafeMatcher<File>() {
+	private Matcher<? super Path> containsDirectory(final String directoryName) {
+		return new TypeSafeMatcher<>() {
 
 			@Override
-			public boolean matchesSafely(File directory) {
-				return new File(directory, directoryName).isDirectory();
+			public boolean matchesSafely(Path directory) {
+				return Files.isDirectory(directory.resolve(directoryName));
 			}
 
 			@Override
@@ -182,7 +182,7 @@ public class ReportWriterTest {
 	}
 
 	private Matcher<ZipInputStream> hasEntryWithNameAndSize(final String expectedName, final int expectedSize) {
-		return new TypeSafeMatcher<ZipInputStream>() {
+		return new TypeSafeMatcher<>() {
 			@Override
 			protected boolean matchesSafely(ZipInputStream zip) {
 				try {

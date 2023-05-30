@@ -35,10 +35,12 @@ import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.geometry.jts.Geometries;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,6 +57,8 @@ import static org.geotools.data.DataUtilities.createType;
  * @version $Revision: $, $Date: $
  */
 class ShapefileBuilder {
+
+	private static final Logger LOG = LoggerFactory.getLogger(ShapefileBuilder.class);
 
 	private final SimpleFeatureType TYPE;
 
@@ -128,15 +132,14 @@ class ShapefileBuilder {
 	 * @param shapeFile An empty file with ending .shp which will become the shapefile
 	 * @throws ReportGenerationException if the generation of the shapefile failed
 	 */
-	void writeToShapefile(File shapeFile) throws ReportGenerationException {
+	void writeToShapefile(Path shapeFile) throws ReportGenerationException {
 		try {
 			ShapefileDataStoreFactory dataStoreFactory = new ShapefileDataStoreFactory();
-			Map<String, Serializable> params = new HashMap<String, Serializable>();
-			params.put("url", shapeFile.toURI().toURL());
+			Map<String, Serializable> params = new HashMap<>();
+			params.put("url", shapeFile.toUri().toURL());
 			params.put("create spatial index", Boolean.TRUE);
 			ShapefileDataStore newDataStore = (ShapefileDataStore) dataStoreFactory.createNewDataStore(params);
 			newDataStore.setCharset(UTF_8);
-
 			newDataStore.createSchema(TYPE);
 
 			Transaction transaction = new DefaultTransaction("create");

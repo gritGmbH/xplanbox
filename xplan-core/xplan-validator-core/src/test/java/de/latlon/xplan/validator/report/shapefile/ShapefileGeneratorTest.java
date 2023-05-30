@@ -38,9 +38,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_OPTIONS;
 import static java.lang.String.format;
@@ -59,7 +63,7 @@ public class ShapefileGeneratorTest {
 	@Test
 	public void testShapeGeneration() throws Exception {
 		ValidatorReport validatorReport = createArchive();
-		File directoryToCreateShapes = tempDir.newFolder();
+		Path directoryToCreateShapes = Paths.get(tempDir.newFolder().toURI());
 
 		ShapefileGenerator shapefileGenerator = new ShapefileGenerator();
 		shapefileGenerator.generateReport(validatorReport, "testShapeGenerator", directoryToCreateShapes);
@@ -71,26 +75,24 @@ public class ShapefileGeneratorTest {
 
 	@Test
 	public void testGeneratorHasBadGeometry() throws Exception {
-
 		ValidatorReport validatorReport = createArchive();
 		ShapefileGenerator shapefileGenerator = new ShapefileGenerator();
 		assertTrue(shapefileGenerator.hasBadGeometry(validatorReport));
 	}
 
-	private BaseMatcher<File> containsFile(final String fileEnding, final int numberOfOccurences) {
-		return new BaseMatcher<File>() {
+	private BaseMatcher<Path> containsFile(final String fileEnding, final int numberOfOccurences) {
+		return new BaseMatcher<>() {
 			@Override
 			public boolean matches(Object item) {
-				File directory = (File) item;
-				File[] files = directory.listFiles();
-				int countOccurences = 0;
-				if (files == null)
-					return false;
-				for (File file : files) {
-					if (file.getName().endsWith(fileEnding))
-						countOccurences++;
+				Path directory = (Path) item;
+				try {
+					DirectoryStream<Path> paths = Files.newDirectoryStream(directory, "*" + fileEnding);
+					return StreamSupport.stream(paths.spliterator(), false).count() == numberOfOccurences;
 				}
-				return numberOfOccurences == countOccurences;
+				catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+
 			}
 
 			@Override
