@@ -58,7 +58,6 @@ public class SortPropertyUpdaterApplicationRunner implements ApplicationRunner {
 	private static final Logger LOG = LoggerFactory.getLogger(SortPropertyUpdaterApplicationRunner.class);
 
 	@Autowired
-	@Lazy
 	private SortPropertyReader sortPropertyReader;
 
 	@Autowired

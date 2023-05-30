@@ -42,6 +42,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -52,7 +53,6 @@ import java.util.UUID;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
-import static de.latlon.xplan.update.tool.ReSynthesizerTool.OPT_PLAN_ID;
 
 /**
  * Re-synthesizes single or all available plans.
@@ -65,13 +65,18 @@ public class ReSynthesizerApplicationRunner implements ApplicationRunner {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ReSynthesizerApplicationRunner.class);
 
+	private static final String OPT_PLAN_ID = "planId";
+
 	@Autowired
+	@Lazy
 	private XPlanDao xPlanDao;
 
 	@Autowired
+	@Lazy
 	private XPlanSynthesizer xPlanSynthesizer;
 
 	@Autowired
+	@Lazy
 	private SortPropertyReader sortPropertyReader;
 
 	private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
