@@ -26,8 +26,6 @@ import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
-import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.Rechtsstand;
@@ -42,6 +40,7 @@ import org.deegree.commons.utils.Pair;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -131,16 +130,15 @@ public class XPlanManagerTest {
 		XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(rasterEvaluation);
 		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
 		RasterConfigManager rasterConfigManager = createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
-		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterConfigManager);
-		XPlanSynthesizer xPlanSynthesizer = createXPlanSynthesizer();
-		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null,
-				wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager, null, null);
+		ApplicationEventPublisher applicationEventPublisher = createApplicationEventPublisher();
+		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterConfigManager,
+				applicationEventPublisher);
+		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, wmsWorkspaceWrapper, null,
+				xPlanRasterEvaluator, xPlanRasterManager, null, null, null, null, null);
 	}
 
-	private static XPlanSynthesizer createXPlanSynthesizer() {
-		// TODO turn into autowired field
-		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
-		return new XPlanSynthesizer(synRulesAccessor);
+	private ApplicationEventPublisher createApplicationEventPublisher() {
+		return mock(ApplicationEventPublisher.class);
 	}
 
 	private RasterConfigManager createRasterConfigManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,

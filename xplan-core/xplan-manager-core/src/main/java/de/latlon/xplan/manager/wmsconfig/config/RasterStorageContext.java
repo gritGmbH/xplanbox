@@ -34,6 +34,7 @@ import de.latlon.xplan.manager.wmsconfig.raster.storage.GdalRasterStorage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import java.nio.file.Path;
@@ -51,6 +52,7 @@ import java.nio.file.Path;
  * @see AmazonS3RasterStorageContext
  */
 @Configuration
+@ComponentScan("de.latlon.xplan.manager.storage.filesystem.listener")
 public class RasterStorageContext {
 
 	@Bean

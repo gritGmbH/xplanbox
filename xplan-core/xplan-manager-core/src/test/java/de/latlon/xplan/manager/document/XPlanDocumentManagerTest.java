@@ -25,14 +25,17 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReference;
+import de.latlon.xplan.manager.storage.StorageEvent;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
@@ -48,7 +51,8 @@ public class XPlanDocumentManagerTest {
 	@Test
 	public void testImportDocuments() throws Exception {
 		DocumentStorage storage = mock(DocumentStorage.class);
-		XPlanDocumentManager xPlanDocumentManager = new XPlanDocumentManager(storage);
+		ApplicationEventPublisher applicationEventPublisher = mock(ApplicationEventPublisher.class);
+		XPlanDocumentManager xPlanDocumentManager = new XPlanDocumentManager(storage, applicationEventPublisher);
 
 		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/StErhVO_Hamm_60.zip");
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
@@ -57,13 +61,17 @@ public class XPlanDocumentManagerTest {
 				.parseFeatureCollection(archive);
 
 		xPlanDocumentManager.importDocuments(1, featureCollection, archive);
-		verify(storage).importDocuments(eq(1), eq(archive), argThat(list -> list.contains("StErhVO_Hamm.pdf")));
+
+		verify(storage).importDocuments(eq(1), eq(archive), argThat(list -> list.contains("StErhVO_Hamm.pdf")),
+				any(StorageEvent.class));
+		verify(applicationEventPublisher).publishEvent(any(StorageEvent.class));
 	}
 
 	@Test
 	public void testUpdateDocuments() throws Exception {
 		DocumentStorage storage = mock(DocumentStorage.class);
-		XPlanDocumentManager xPlanDocumentManager = new XPlanDocumentManager(storage);
+		ApplicationEventPublisher applicationEventPublisher = mock(ApplicationEventPublisher.class);
+		XPlanDocumentManager xPlanDocumentManager = new XPlanDocumentManager(storage, applicationEventPublisher);
 
 		String referenceToAdd = "test.png";
 		String referenceToRemove = "removed.png";
@@ -72,8 +80,9 @@ public class XPlanDocumentManagerTest {
 		List<ExternalReference> documentsToRemove = Collections.singletonList(new ExternalReference(referenceToRemove));
 		xPlanDocumentManager.updateDocuments(1, Collections.singletonList(uploadedArtefact), documentsToAdd,
 				documentsToRemove);
-		verify(storage).importDocument(eq(1), eq(referenceToAdd), eq(uploadedArtefact));
-		verify(storage).deleteDocument(eq(1), eq(referenceToRemove));
+		verify(storage).importDocument(eq(1), eq(referenceToAdd), eq(uploadedArtefact), any(StorageEvent.class));
+		verify(storage).deleteDocument(eq(1), eq(referenceToRemove), any(StorageEvent.class));
+		verify(applicationEventPublisher).publishEvent(any(StorageEvent.class));
 	}
 
 	private static Path createMockedPath(String referenceToAdd) {

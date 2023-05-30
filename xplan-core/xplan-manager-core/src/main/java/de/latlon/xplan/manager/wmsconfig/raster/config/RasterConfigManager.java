@@ -39,9 +39,9 @@ public interface RasterConfigManager {
 			PlanStatus newPlanStatus, List<String> rasterIds, Date sortDate)
 			throws JAXBException, IOException, ConfigurationException;
 
-	void removeRasterLayers(String planId);
+	void removeRasterLayers(int planId);
 
-	void removeRasterLayer(String planId, String rasterId) throws ConfigurationException, JAXBException, IOException;
+	void removeRasterLayer(int planId, String rasterId) throws ConfigurationException, JAXBException, IOException;
 
 	void updateRasterLayers(int planId, XPlanType type, PlanStatus planStatus, PlanStatus newPlanStatus)
 			throws JAXBException, IOException, ConfigurationException;

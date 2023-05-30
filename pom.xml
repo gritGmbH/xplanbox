@@ -28,6 +28,8 @@
     <spring-boot.version>2.7.10</spring-boot.version>
     <spring-batch.version>4.3.8</spring-batch.version>
     <spring-security.version>5.5.8</spring-security.version>
+    <spring-data.version>2.7.10</spring-data.version>
+    <hibernate.version>5.6.15.Final</hibernate.version>
     <jackson.version>2.14.2</jackson.version>
     <liquibase.version>4.20.0</liquibase.version>
     <postgresql.version>42.5.2</postgresql.version>
@@ -464,6 +466,7 @@
             <source>${java.version}</source>
             <target>${java.version}</target>
             <encoding>utf8</encoding>
+            <parameters>true</parameters>
           </configuration>
         </plugin>
         <plugin>
@@ -647,6 +650,11 @@
         <artifactId>el-api</artifactId>
         <version>2.2.1-b04</version>
         <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.persistence</groupId>
+        <artifactId>jakarta.persistence-api</artifactId>
+        <version>2.2.3</version>
       </dependency>
       <!-- deegree -->
       <dependency>
@@ -880,6 +888,12 @@
         <version>2.6</version>
         <scope>test</scope>
       </dependency>
+      <dependency>
+        <groupId>org.hsqldb</groupId>
+        <artifactId>hsqldb</artifactId>
+        <version>2.7.1</version>
+        <scope>test</scope>
+      </dependency>
       <!-- xerces -->
       <dependency>
         <groupId>xerces</groupId>
@@ -1075,6 +1089,11 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
+        <artifactId>xplan-core-manager-db</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
         <artifactId>xplan-schemas</artifactId>
         <version>${project.version}</version>
         <type>zip</type>
@@ -1227,6 +1246,16 @@
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
         <artifactId>spring-test</artifactId>
         <version>${spring.version}</version>
         <scope>test</scope>
@@ -1320,6 +1349,17 @@
         <artifactId>spring-security-ldap</artifactId>
         <version>${spring-security.version}</version>
       </dependency>
+      <!-- Spring Data -->
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-commons</artifactId>
+        <version>${spring-data.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-jpa</artifactId>
+        <version>${spring-data.version}</version>
+      </dependency>
       <!-- reports -->
       <dependency>
         <groupId>net.sourceforge.dynamicreports</groupId>
@@ -1406,6 +1446,30 @@
         <groupId>org.hibernate.validator</groupId>
         <artifactId>hibernate-validator</artifactId>
         <version>6.1.7.Final</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-entitymanager</artifactId>
+        <version>${hibernate.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-spatial</artifactId>
+        <version>${hibernate.version}</version>
       </dependency>
       <dependency>
         <groupId>jakarta.validation</groupId>

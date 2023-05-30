@@ -29,6 +29,7 @@ import org.deegree.geometry.Envelope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.transaction.Transactional;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -122,6 +123,7 @@ public class MetadataCouplingHandler {
 
 	}
 
+	@Transactional(rollbackOn = Exception.class)
 	private void writePlanwerkCapabilitiesInfo(int planId, String serviceRecordId,
 			PlanwerkServiceMetadata planwerkServiceMetadata, PlanRecordMetadata planRecordMetadata)
 			throws DataServiceCouplingException {

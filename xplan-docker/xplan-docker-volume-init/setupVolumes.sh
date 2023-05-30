@@ -102,9 +102,13 @@ find -iname xplan.xml -exec sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' {} 
 find -iname xplan.xml -exec sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' {} \;
 find -iname xplan.xml -exec sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' {} \;
 
-sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
-sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
-sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
+find -iname xplancp.xml -exec sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' {} \;
+find -iname xplancp.xml -exec sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' {} \;
+find -iname xplancp.xml -exec sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' {} \;
+
+sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
+sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
+sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
 
 if [[ -z "${spring_profiles_active##*s3doc*}" ]]
 then

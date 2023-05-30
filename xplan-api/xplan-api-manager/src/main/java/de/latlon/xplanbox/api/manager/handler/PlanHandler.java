@@ -24,9 +24,9 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
+import de.latlon.xplan.core.manager.db.model.Artefact;
 import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
@@ -36,10 +36,10 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanIdSyntax;
-import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.slf4j.Logger;
@@ -115,21 +115,24 @@ public class PlanHandler {
 		try {
 			checkIdAndConvertIdToInt(planId);
 			LOG.info("Exporting plan with Id '{}'", planId);
-			XPlanArchiveContent archiveContent = xPlanDao.retrieveAllXPlanArtefacts(planId);
-			return outputStream -> xPlanExporter.export(outputStream, archiveContent);
+			if (!xPlanDao.existsPlan(planId)) {
+				throw new InvalidPlanId(planId);
+			}
+			List<Artefact> artefacts = xPlanDao.retrieveAllXPlanArtefacts(planId);
+			return outputStream -> xPlanExporter.export(outputStream, artefacts);
 		}
 		catch (PlanNotFoundException e) {
 			throw new InvalidPlanId(planId);
 		}
 	}
 
-	public XPlan findPlanById(String planId) throws Exception {
+	public XPlan findPlanById(String planId) throws InvalidPlanIdSyntax, InvalidPlanId {
 		LOG.info("Finding plan by Id '{}'", planId);
 		int id = checkIdAndConvertIdToInt(planId);
 		return findPlanById(id);
 	}
 
-	public List<XPlan> findPlansByName(String planName) throws Exception {
+	public List<XPlan> findPlansByName(String planName) {
 		LOG.info("Finding plan by name '{}'", planName);
 		return xPlanDao.getXPlanByName(planName);
 	}
@@ -138,7 +141,7 @@ public class PlanHandler {
 		LOG.info("Searching plan by name '{}'", planName);
 		if (planName != null)
 			return xPlanDao.getXPlansLikeName(planName);
-		return xPlanDao.getXPlanList(false);
+		return xPlanDao.getXPlanList();
 	}
 
 	public List<XPlan> findPlansById(List<Integer> planIds) throws Exception {
@@ -151,7 +154,7 @@ public class PlanHandler {
 		return plans;
 	}
 
-	private XPlan findPlanById(int id) throws Exception {
+	private XPlan findPlanById(int id) throws InvalidPlanId {
 		XPlan xPlanById = xPlanDao.getXPlanById(id);
 		if (xPlanById == null) {
 			throw new InvalidPlanId(id);
