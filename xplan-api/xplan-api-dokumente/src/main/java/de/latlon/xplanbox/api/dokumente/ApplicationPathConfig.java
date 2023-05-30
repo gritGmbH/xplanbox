@@ -91,7 +91,7 @@ public class ApplicationPathConfig extends ResourceConfig {
 	}
 
 	private Tag createTag(ApiConfiguration apiConfiguration) {
-		Tag tag = new Tag().name("dokumente").description("Download XPlanDokumente");
+		Tag tag = new Tag().name("download").description("Download XPlanDokumente");
 		if (apiConfiguration != null && apiConfiguration.getDocumentationUrl() != null) {
 			tag.externalDocs(
 					new ExternalDocumentation().description("xPlanBox").url(apiConfiguration.getDocumentationUrl()));

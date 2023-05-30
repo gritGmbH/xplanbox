@@ -52,7 +52,19 @@ public class DokumentApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsCorrectStatusCode() {
+	public void verifyThat_GetDokumente_Response_ContainsCorrectStatusCode() {
+		final Response response = target("/dokument/1").request().get();
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+	}
+
+	@Test
+	public void verifyThat_HeadDokument_Response_ContainsCorrectStatusCode() {
+		final Response response = target("/dokument/1/test").request().head();
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+	}
+
+	@Test
+	public void verifyThat_GetDokument_Response_ContainsCorrectStatusCode() {
 		final Response response = target("/dokument/1/test").request().get();
 		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
 	}
