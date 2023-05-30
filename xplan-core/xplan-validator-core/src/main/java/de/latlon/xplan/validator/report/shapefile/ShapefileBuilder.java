@@ -40,6 +40,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -129,11 +130,14 @@ class ShapefileBuilder {
 
 	/**
 	 * Writes shapefiles containing the Geometry which was added by addGeometry()
-	 * @param shapeFile An empty file with ending .shp which will become the shapefile
+	 * @param shapeFileDirectory An empty file with ending .shp which will become the
+	 * shapefile
+	 * @param shpName
 	 * @throws ReportGenerationException if the generation of the shapefile failed
 	 */
-	void writeToShapefile(Path shapeFile) throws ReportGenerationException {
+	void writeToShapefile(Path shapeFileDirectory, String shpName) throws ReportGenerationException {
 		try {
+			Path shapeFile = shapeFileDirectory.resolve(shpName + ".shp");
 			ShapefileDataStoreFactory dataStoreFactory = new ShapefileDataStoreFactory();
 			Map<String, Serializable> params = new HashMap<>();
 			params.put("url", shapeFile.toUri().toURL());
@@ -153,11 +157,12 @@ class ShapefileBuilder {
 				featureStore.setTransaction(transaction);
 				try {
 					featureStore.addFeatures(collection);
+					writeCpgFile(shapeFileDirectory, shpName);
 					transaction.commit();
 				}
-				catch (Exception problem) {
-					problem.printStackTrace();
+				catch (Exception e) {
 					transaction.rollback();
+					throw new ReportGenerationException("Shapefile could not be written!", e);
 				}
 				finally {
 					transaction.close();
@@ -170,6 +175,11 @@ class ShapefileBuilder {
 		catch (IOException e) {
 			throw new ReportGenerationException("Shapefile could not be written!", e);
 		}
+	}
+
+	private static void writeCpgFile(Path shapeFileDirectory, String shpName) throws IOException {
+		Path cpgFile = shapeFileDirectory.resolve(shpName + ".cpg");
+		Files.writeString(cpgFile, "UTF-8", UTF_8);
 	}
 
 }

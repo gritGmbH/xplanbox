@@ -31,7 +31,6 @@ import org.geotools.geometry.jts.Geometries;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
@@ -149,11 +148,9 @@ public class ShapefileGenerator {
 	private void writeFile(ShapefileBuilder creator, Path directoryToCreateShapes, String validationName,
 			Geometries geom) {
 		if (creator.hasGeometry()) {
-			String shpFileName = validationName + "_" + geom.getName() + ".shp";
+			String shpFileName = validationName + "_" + geom.getName();
 			try {
-				Path shapeFile = directoryToCreateShapes.resolve(shpFileName);
-				Files.createFile(shapeFile);
-				creator.writeToShapefile(shapeFile);
+				creator.writeToShapefile(directoryToCreateShapes, shpFileName);
 			}
 			catch (Exception e) {
 				LOG.error("Beim Erzeugen des Shapefiles '{}' ist ein Fehler aufgetreten: {}", shpFileName,

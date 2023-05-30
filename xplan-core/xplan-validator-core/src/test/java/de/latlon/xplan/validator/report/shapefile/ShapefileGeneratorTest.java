@@ -71,6 +71,7 @@ public class ShapefileGeneratorTest {
 		assertThat(directoryToCreateShapes, containsFile(".shp", 4));
 		assertThat(directoryToCreateShapes, containsFile(".shx", 4));
 		assertThat(directoryToCreateShapes, containsFile(".dbf", 4));
+		assertThat(directoryToCreateShapes, containsFile(".cpg", 4));
 	}
 
 	@Test
