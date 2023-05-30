@@ -30,7 +30,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -67,7 +66,6 @@ public class TransformApplicationRunner implements ApplicationRunner {
 	private static final String OPT_OUT_DIR = "output";
 
 	@Autowired
-	@Lazy
 	private ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
 	@Autowired

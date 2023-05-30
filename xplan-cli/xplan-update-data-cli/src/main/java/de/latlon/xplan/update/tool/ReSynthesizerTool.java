@@ -21,8 +21,6 @@
 package de.latlon.xplan.update.tool;
 
 import de.latlon.xplan.update.updater.ReSynthesizerApplicationRunner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -34,14 +32,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class ReSynthesizerTool {
-
-	private static final Logger LOG = LoggerFactory.getLogger(ReSynthesizerTool.class);
-
-	private static final String OPT_WORKSPACE_NAME = "workspaceName";
-
-	private static final String OPT_CONFIG_DIR = "configurationDirectory";
-
-	public static final String OPT_PLAN_ID = "planId";
 
 	/**
 	 * CLI entry method.

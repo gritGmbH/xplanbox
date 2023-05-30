@@ -46,6 +46,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Lazy;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -66,12 +67,15 @@ public class ApplicationContext {
 	private static final Logger LOG = LoggerFactory.getLogger(ApplicationContext.class);
 
 	@Autowired
+	@Lazy
 	private PlanRepository planRepository;
 
 	@Autowired
+	@Lazy
 	private PlanwerkWmsMetadataRepository planwerkWmsMetadataRepository;
 
 	@Autowired
+	@Lazy
 	private ArtefactRepository artefactRepository;
 
 	@Autowired
