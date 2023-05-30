@@ -809,10 +809,10 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="jsonPath Match path validationReport externalReferencesResult items type">
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="jsonPath Match path validationReport externalReferencesResult items ref">
               <con:configuration>
-                <path>$.components.schemas.ValidationReport.properties.externalReferencesResult.items.type</path>
-                <content>object</content>
+                <path>$.components.schemas.ValidationReport.properties.externalReferencesResult.items.$ref</path>
+                <content>#/components/schemas/ExternalReferenceResult</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1966,8 +1966,8 @@ assert json.version != null</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="37c2a727-6da3-439f-a453-0b8fa39c15ca" name="Valid Reference Status AVAILABLE">
               <con:configuration>
-                <path>$.externalReferencesResult['BPlan003_5-2.png']</path>
-                <content>AVAILABLE</content>
+                <path>$.externalReferencesResult[?(@.name=='BPlan003_5-2.png')].status</path>
+                <content>[AVAILABLE]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1975,8 +1975,8 @@ assert json.version != null</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="a3407af2-233e-45c5-9895-7e5a853c67a7" name="Valid Reference Status MISSING">
               <con:configuration>
-                <path>$.externalReferencesResult['testreference.png']</path>
-                <content>MISSING</content>
+                <path>$.externalReferencesResult[?(@.name=='testreference.png')].status</path>
+                <content>[MISSING]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1984,8 +1984,8 @@ assert json.version != null</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="bb0dfc6c-c2b8-4341-8021-2d55f729785c" name="Valid Reference Status UNCHECKED">
               <con:configuration>
-                <path>$.externalReferencesResult['https://www.deegree.org/']</path>
-                <content>UNCHECKED</content>
+                <path>$.externalReferencesResult[?(@.name=='https://www.deegree.org/')].status</path>
+                <content>[UNCHECKED]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
