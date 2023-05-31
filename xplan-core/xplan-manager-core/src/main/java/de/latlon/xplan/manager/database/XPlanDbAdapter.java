@@ -217,14 +217,15 @@ public class XPlanDbAdapter {
 	 * @throws SQLException
 	 */
 	@Transactional
-	public void updateArtefacttype(int planId, List<String> fileNames, ArtefactType artefactType) {
+	public void updateArtefacttype(int planId, List<String> fileNames, ArtefactType artefactType) throws IOException {
 		Stream<Artefact> artefacts = artefactRepository.findAllByPlanId(planId);
 		for (String fileName : fileNames) {
 			Optional<Artefact> artefact = artefacts
 					.filter(candidate -> candidate.getId().getFilename().equals(fileName)).findFirst();
 			if (artefact.isPresent()) {
 				Artefact artefactToUpdate = artefact.get();
-				artefactToUpdate.artefacttype(artefactType);
+				long length = detectLength(artefactToUpdate.getData());
+				artefactToUpdate.artefacttype(artefactType).length(length);
 				artefactRepository.save(artefactToUpdate);
 			}
 		}
@@ -338,7 +339,7 @@ public class XPlanDbAdapter {
 		Optional<Artefact> xPlanGmlByPlan = artefactRepository.findXPlanGmlByPlan(planId);
 		if (xPlanGmlByPlan.isPresent()) {
 			Artefact artefact = xPlanGmlByPlan.get();
-			return unzipArtefact(artefact.getData());
+			return unzipArtefactAsStream(artefact.getData());
 		}
 		return null;
 
@@ -494,13 +495,28 @@ public class XPlanDbAdapter {
 		return FESTGESTELLT.getMessage();
 	}
 
-	private InputStream unzipArtefact(byte[] zippedData) throws IOException {
+	private InputStream unzipArtefactAsStream(byte[] zippedData) throws IOException {
 		try (ByteArrayInputStream bis = new ByteArrayInputStream(zippedData);
 				GZIPInputStream is = new GZIPInputStream(bis);
 				ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
 			IOUtils.copy(is, bos);
-			return new ByteArrayInputStream(bos.toByteArray());
+			byte[] byteArray = bos.toByteArray();
+			return new ByteArrayInputStream(byteArray);
 		}
+	}
+
+	private byte[] unzipArtefact(byte[] zippedData) throws IOException {
+		try (ByteArrayInputStream bis = new ByteArrayInputStream(zippedData);
+				GZIPInputStream is = new GZIPInputStream(bis);
+				ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
+			IOUtils.copy(is, bos);
+			return bos.toByteArray();
+		}
+	}
+
+	private long detectLength(byte[] zippedData) throws IOException {
+		byte[] bytes = unzipArtefact(zippedData);
+		return bytes.length;
 	}
 
 	private Plan getRequiredPlanById(int planId) throws PlanNotFoundException {
