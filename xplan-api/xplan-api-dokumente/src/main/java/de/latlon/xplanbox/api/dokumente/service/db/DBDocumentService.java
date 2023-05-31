@@ -10,6 +10,7 @@ import de.latlon.xplanbox.api.dokumente.v1.model.Document;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.ws.rs.core.StreamingOutput;
 import java.io.ByteArrayInputStream;
@@ -31,6 +32,7 @@ public class DBDocumentService implements DocumentService {
 	private ArtefactRepository artefactRepository;
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Document> listDocuments(int planId) {
 		Stream<Artefact> allArtefactsOfPlan = artefactRepository.findAllByPlanId(planId);
 		return allArtefactsOfPlan.map(artefact -> new Document().fileName(artefact.getId().getFilename()))
@@ -53,7 +55,8 @@ public class DBDocumentService implements DocumentService {
 			throw new InvalidDocument(planId, fileName);
 		Artefact artefact = artefactCandidate.get();
 		byte[] data = artefact.getData();
-		try (ByteArrayInputStream bis = new ByteArrayInputStream(data); GZIPInputStream is = new GZIPInputStream(bis)) {
+		try (ByteArrayInputStream bis = new ByteArrayInputStream(data);) {
+			GZIPInputStream is = new GZIPInputStream(bis);
 			StreamingOutput streamingOutput = outputStream -> IOUtils.copy(is, outputStream);
 			return new DocumentHeaderWithStream(data.length, artefact.getMimetype(), streamingOutput);
 		}

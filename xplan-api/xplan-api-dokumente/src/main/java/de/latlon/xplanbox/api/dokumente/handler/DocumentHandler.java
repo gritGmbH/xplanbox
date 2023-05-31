@@ -23,6 +23,7 @@ package de.latlon.xplanbox.api.dokumente.handler;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplanbox.api.commons.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.commons.exception.InvalidPlanIdSyntax;
+import de.latlon.xplanbox.api.dokumente.exception.InvalidDocument;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeader;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeaderWithStream;
 import de.latlon.xplanbox.api.dokumente.service.DocumentService;
@@ -51,26 +52,29 @@ public class DocumentHandler {
 	@Autowired
 	private DocumentService documentService;
 
-	public List<Document> listDocuments(String planId) throws Exception {
-		if (!xPlanDao.existsPlan(planId))
-			throw new InvalidPlanId(planId);
+	public List<Document> listDocuments(String planId) throws InvalidPlanIdSyntax, InvalidPlanId {
 		int planIdAsInt = checkIdAndConvertIdToInt(planId);
+		if (!xPlanDao.existsPlan(planIdAsInt)) {
+			throw new InvalidPlanId(planId);
+		}
 		LOG.debug("List documents of plan with id {}.", planIdAsInt);
 		return documentService.listDocuments(planIdAsInt);
 	}
 
-	public DocumentHeader headDocument(String planId, String fileName) throws Exception {
-		if (!xPlanDao.existsPlan(planId))
-			throw new InvalidPlanId(planId);
+	public DocumentHeader headDocument(String planId, String fileName)
+			throws InvalidPlanIdSyntax, InvalidPlanId, InvalidDocument {
 		int planIdAsInt = checkIdAndConvertIdToInt(planId);
+		if (!xPlanDao.existsPlan(planIdAsInt))
+			throw new InvalidPlanId(planId);
 		LOG.debug("Retrieve header of document with filename {} of plan with id {}.", fileName, planIdAsInt);
 		return documentService.retrieveHeaderOfArtefact(planIdAsInt, fileName);
 	}
 
-	public DocumentHeaderWithStream getDocument(String planId, String fileName) throws Exception {
-		if (!xPlanDao.existsPlan(planId))
-			throw new InvalidPlanId(planId);
+	public DocumentHeaderWithStream getDocument(String planId, String fileName)
+			throws InvalidPlanIdSyntax, InvalidPlanId, InvalidDocument {
 		int planIdAsInt = checkIdAndConvertIdToInt(planId);
+		if (!xPlanDao.existsPlan(planIdAsInt))
+			throw new InvalidPlanId(planId);
 		LOG.debug("Retrieve document with filename {} of plan with id {}.", fileName, planIdAsInt);
 		return documentService.writeArtefactToStream(planIdAsInt, fileName);
 	}

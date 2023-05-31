@@ -20,24 +20,37 @@
  */
 package de.latlon.xplanbox.api.dokumente.config;
 
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
+import de.latlon.xplanbox.api.dokumente.handler.DocumentHandler;
+import de.latlon.xplanbox.api.dokumente.service.DocumentHeader;
+import de.latlon.xplanbox.api.dokumente.service.DocumentHeaderWithStream;
 import de.latlon.xplanbox.api.dokumente.v1.DefaultApi;
 import de.latlon.xplanbox.api.dokumente.v1.DokumentApi;
 import de.latlon.xplanbox.api.dokumente.v1.InfoApi;
 import de.latlon.xplanbox.api.dokumente.v1.StatusApi;
+import de.latlon.xplanbox.api.dokumente.v1.model.Document;
+import org.apache.commons.io.IOUtils;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
+
+import javax.ws.rs.core.StreamingOutput;
+import java.util.Collections;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @since 6.1
  */
 @Configuration
+@Import(HsqlJpaContext.class)
 public class TestContext {
 
 	@Bean
-	@Profile("jaxrs")
 	ResourceConfig resourceConfig() {
 		ResourceConfig jerseyConfig = new ResourceConfig();
 		jerseyConfig.register(DokumentApi.class);
@@ -45,6 +58,25 @@ public class TestContext {
 		jerseyConfig.register(DefaultApi.class);
 		jerseyConfig.register(StatusApi.class);
 		return jerseyConfig;
+	}
+
+	@Bean
+	@Primary
+	public DocumentHandler documentHandler() throws Exception {
+		DocumentHandler documentHandler = mock(DocumentHandler.class);
+		when(documentHandler.listDocuments("1"))
+				.thenReturn(Collections.singletonList(new Document().fileName("test.png")));
+		when(documentHandler.headDocument("1", "test.png")).thenReturn(new DocumentHeader(5, "image/png"));
+		StreamingOutput stream = outputStream -> IOUtils.write("test", outputStream);
+		when(documentHandler.getDocument("1", "test.png"))
+				.thenReturn(new DocumentHeaderWithStream(5, "image/png", stream));
+		return documentHandler;
+	}
+
+	@Bean
+	@Primary
+	public ManagerWorkspaceWrapper managerWorkspaceWrapper() {
+		return mock(ManagerWorkspaceWrapper.class);
 	}
 
 }

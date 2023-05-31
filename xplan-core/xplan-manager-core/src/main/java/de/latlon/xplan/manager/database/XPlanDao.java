@@ -416,9 +416,8 @@ public class XPlanDao {
 		return xPlanDbAdapter.selectPlanWithSameNameAndStatusExists(planName, status);
 	}
 
-	public boolean existsPlan(String planId) throws Exception {
-		int planIdAsInt = getXPlanIdAsInt(planId);
-		return xPlanDbAdapter.existsPlan(planIdAsInt);
+	public boolean existsPlan(int planId) {
+		return xPlanDbAdapter.existsPlan(planId);
 	}
 
 	private void addAdditionalProperties(FeatureCollection synFc, Date beginValidity, Date endValidity, int planId,

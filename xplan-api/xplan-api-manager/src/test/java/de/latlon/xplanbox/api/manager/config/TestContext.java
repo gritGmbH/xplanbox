@@ -326,7 +326,7 @@ public class TestContext {
 				.thenReturn(getClass().getResourceAsStream("/xplan51-edited.gml"));
 		when(xplanDao.retrieveXPlanArtefact(7)).thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"))
 				.thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"));
-		when(xplanDao.existsPlan("123")).thenReturn(true);
+		when(xplanDao.existsPlan(123)).thenReturn(true);
 		List<XPlan> mockList = new ArrayList<>();
 		mockList.add(mockPlan_123);
 		when(xplanDao.getXPlanByName("bplan_41")).thenReturn(mockList);
