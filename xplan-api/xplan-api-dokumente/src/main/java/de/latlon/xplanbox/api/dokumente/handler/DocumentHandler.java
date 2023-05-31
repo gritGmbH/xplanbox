@@ -54,35 +54,32 @@ public class DocumentHandler {
 	private DocumentService documentService;
 
 	public List<Document> listDocuments(String planId) throws InvalidPlanIdSyntax, InvalidPlanId {
-		int planIdAsInt = checkIdAndConvertIdToInt(planId);
-		if (!xPlanDao.existsPlan(planIdAsInt)) {
-			throw new InvalidPlanId(planId);
-		}
+		int planIdAsInt = checkPlanIdAndConvertIdToInt(planId);
 		LOG.debug("List documents of plan with id {}.", planIdAsInt);
 		return documentService.listDocuments(planIdAsInt);
 	}
 
 	public DocumentHeader headDocument(String planId, String fileName)
 			throws InvalidPlanIdSyntax, InvalidPlanId, InvalidDocument, StorageException {
-		int planIdAsInt = checkIdAndConvertIdToInt(planId);
-		if (!xPlanDao.existsPlan(planIdAsInt))
-			throw new InvalidPlanId(planId);
+		int planIdAsInt = checkPlanIdAndConvertIdToInt(planId);
 		LOG.debug("Retrieve header of document with filename {} of plan with id {}.", fileName, planIdAsInt);
-		return documentService.retrieveHeaderOfArtefact(planIdAsInt, fileName);
+		return documentService.retrieveHeaderOfDocument(planIdAsInt, fileName);
 	}
 
 	public DocumentHeaderWithStream getDocument(String planId, String fileName)
 			throws InvalidPlanIdSyntax, InvalidPlanId, InvalidDocument, StorageException {
-		int planIdAsInt = checkIdAndConvertIdToInt(planId);
-		if (!xPlanDao.existsPlan(planIdAsInt))
-			throw new InvalidPlanId(planId);
+		int planIdAsInt = checkPlanIdAndConvertIdToInt(planId);
 		LOG.debug("Retrieve document with filename {} of plan with id {}.", fileName, planIdAsInt);
-		return documentService.writeArtefactToStream(planIdAsInt, fileName);
+		return documentService.retrieveDocumentAndHeader(planIdAsInt, fileName);
 	}
 
-	private int checkIdAndConvertIdToInt(String planId) throws InvalidPlanIdSyntax {
+	private int checkPlanIdAndConvertIdToInt(String planId) throws InvalidPlanIdSyntax, InvalidPlanId {
 		try {
-			return Integer.parseInt(planId);
+			int planIdAsInt = Integer.parseInt(planId);
+			if (!xPlanDao.existsPlan(planIdAsInt)) {
+				throw new InvalidPlanId(planId);
+			}
+			return planIdAsInt;
 		}
 		catch (NumberFormatException e) {
 			throw new InvalidPlanIdSyntax(planId);

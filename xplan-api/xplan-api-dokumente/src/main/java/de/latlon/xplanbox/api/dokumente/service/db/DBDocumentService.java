@@ -23,6 +23,9 @@ import java.util.stream.Stream;
 import java.util.zip.GZIPInputStream;
 
 /**
+ * Implementation of a {@link DocumentService} retrieving the documents from the database
+ * (xplanmgr schema).
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
  */
@@ -42,7 +45,7 @@ public class DBDocumentService implements DocumentService {
 	}
 
 	@Override
-	public DocumentHeader retrieveHeaderOfArtefact(int planId, String fileName) throws InvalidDocument {
+	public DocumentHeader retrieveHeaderOfDocument(int planId, String fileName) throws InvalidDocument {
 		Optional<Artefact> artefactCandidate = artefactRepository.findByPlanAndFilename(planId, fileName);
 		if (!artefactCandidate.isPresent())
 			throw new InvalidDocument(planId, fileName);
@@ -51,7 +54,7 @@ public class DBDocumentService implements DocumentService {
 	}
 
 	@Override
-	public DocumentHeaderWithStream writeArtefactToStream(int planId, String fileName) throws InvalidDocument {
+	public DocumentHeaderWithStream retrieveDocumentAndHeader(int planId, String fileName) throws InvalidDocument {
 		Optional<Artefact> artefactCandidate = artefactRepository.findByPlanAndFilename(planId, fileName);
 		if (!artefactCandidate.isPresent())
 			throw new InvalidDocument(planId, fileName);

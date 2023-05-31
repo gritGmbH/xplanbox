@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * Implementation of a {@link DocumentService} retrieving the documents from S3.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
  */
@@ -40,7 +42,7 @@ public class S3DocumentService implements DocumentService {
 	}
 
 	@Override
-	public DocumentHeader retrieveHeaderOfArtefact(int planId, String fileName)
+	public DocumentHeader retrieveHeaderOfDocument(int planId, String fileName)
 			throws InvalidDocument, StorageException {
 		String key = planId + "_" + fileName;
 		S3Object object = documentStorage.getObject(key);
@@ -51,7 +53,7 @@ public class S3DocumentService implements DocumentService {
 	}
 
 	@Override
-	public DocumentHeaderWithStream writeArtefactToStream(int planId, String fileName)
+	public DocumentHeaderWithStream retrieveDocumentAndHeader(int planId, String fileName)
 			throws InvalidDocument, StorageException {
 		String key = planId + "_" + fileName;
 		S3Object object = documentStorage.getObject(key);

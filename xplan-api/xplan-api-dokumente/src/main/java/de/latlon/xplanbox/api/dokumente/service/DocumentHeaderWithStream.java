@@ -3,6 +3,8 @@ package de.latlon.xplanbox.api.dokumente.service;
 import javax.ws.rs.core.StreamingOutput;
 
 /**
+ * Encapsulated the header information of a document and the document itself.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
  */
