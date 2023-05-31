@@ -7,7 +7,6 @@ import de.latlon.xplanbox.api.dokumente.service.DocumentHeader;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeaderWithStream;
 import de.latlon.xplanbox.api.dokumente.service.DocumentService;
 import de.latlon.xplanbox.api.dokumente.v1.model.Document;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -21,6 +20,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.zip.GZIPInputStream;
+
+import static de.latlon.xplan.core.manager.db.model.ArtefactType.XPLANGML;
 
 /**
  * Implementation of a {@link DocumentService} retrieving the documents from the database
@@ -40,8 +41,8 @@ public class DBDocumentService implements DocumentService {
 	@Transactional(readOnly = true)
 	public List<Document> listDocuments(int planId) {
 		Stream<Artefact> allArtefactsOfPlan = artefactRepository.findAllByPlanId(planId);
-		return allArtefactsOfPlan.map(artefact -> new Document().fileName(artefact.getId().getFilename()))
-				.collect(Collectors.toList());
+		return allArtefactsOfPlan.filter(artefact -> XPLANGML != artefact.getArtefacttype())
+				.map(artefact -> new Document().fileName(artefact.getId().getFilename())).collect(Collectors.toList());
 	}
 
 	@Override
@@ -60,9 +61,9 @@ public class DBDocumentService implements DocumentService {
 			throw new InvalidDocument(planId, fileName);
 		Artefact artefact = artefactCandidate.get();
 		byte[] data = artefact.getData();
-		try (ByteArrayInputStream bis = new ByteArrayInputStream(data);) {
+		try (ByteArrayInputStream bis = new ByteArrayInputStream(data)) {
 			GZIPInputStream is = new GZIPInputStream(bis);
-			StreamingOutput streamingOutput = outputStream -> IOUtils.copy(is, outputStream);
+			StreamingOutput streamingOutput = outputStream -> is.transferTo(outputStream);
 			return new DocumentHeaderWithStream(data.length, artefact.getMimetype(), streamingOutput);
 		}
 		catch (IOException e) {
