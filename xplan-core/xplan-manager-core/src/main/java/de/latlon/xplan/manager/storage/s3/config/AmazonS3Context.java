@@ -41,7 +41,7 @@ import org.springframework.context.annotation.Profile;
  * @since 6.1
  */
 @Configuration
-@Profile("s3 | s3doc")
+@Profile("s3img | s3doc")
 public class AmazonS3Context {
 
 	@Bean(destroyMethod = "shutdown")
