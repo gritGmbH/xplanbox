@@ -28,6 +28,7 @@ import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
+import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.slf4j.Logger;
@@ -74,9 +75,14 @@ public class S3Storage {
 		String key = createKey(planId, entryName);
 		try {
 			LOG.info("Insert object with key {} in bucket {}.", key, bucketName);
-			InputStream entry = archive.retrieveInputStreamFor(entryName);
+			ArchiveEntry entry = archive.getEntry(entryName);
+			String contentType = entry.getContentType();
+			long contentLength = entry.getContentLength();
+			InputStream content = archive.retrieveInputStreamFor(entryName);
 			ObjectMetadata metadata = new ObjectMetadata();
-			client.putObject(bucketName, key, entry, metadata);
+			metadata.setContentLength(contentLength);
+			metadata.setContentType(contentType);
+			client.putObject(bucketName, key, content, metadata);
 			return key;
 		}
 		catch (AmazonServiceException e) {

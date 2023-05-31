@@ -23,6 +23,8 @@ package de.latlon.xplan.commons.archive;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
+import static de.latlon.xplan.commons.util.MimeTypeDetector.getArtefactMimeType;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -60,6 +62,11 @@ public class MainZipEntry implements ZipEntryWithContent {
 	@Override
 	public long getContentLength() {
 		return content.length;
+	}
+
+	@Override
+	public String getContentType() {
+		return getArtefactMimeType(getName());
 	}
 
 }

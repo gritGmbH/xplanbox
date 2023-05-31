@@ -33,4 +33,14 @@ public interface ArchiveEntry {
 	 */
 	String getName();
 
+	/**
+	 * @return the length of the content, -1 if not known
+	 */
+	long getContentLength();
+
+	/**
+	 * @return the mime type of the content
+	 */
+	String getContentType();
+
 }

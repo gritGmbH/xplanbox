@@ -24,6 +24,8 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
 
+import static de.latlon.xplan.commons.util.MimeTypeDetector.getArtefactMimeType;
+
 /**
  * ZipEntry implementation where each entry allows access to the content.
  *
@@ -68,6 +70,11 @@ public class ArtefactEntry extends ArchiveZipEntry implements ZipEntryWithConten
 	@Override
 	public long getContentLength() {
 		return content.length;
+	}
+
+	@Override
+	public String getContentType() {
+		return getArtefactMimeType(getName());
 	}
 
 }

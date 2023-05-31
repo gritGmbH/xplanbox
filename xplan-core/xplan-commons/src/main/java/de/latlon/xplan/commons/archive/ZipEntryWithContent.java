@@ -40,6 +40,4 @@ public interface ZipEntryWithContent extends ArchiveEntry {
 	 */
 	boolean isXPlanGml();
 
-	long getContentLength();
-
 }

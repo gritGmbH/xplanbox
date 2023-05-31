@@ -553,7 +553,7 @@ public class XPlanDbAdapter {
 			InputStream is = archiveEntry.retrieveContentAsStream();
 			long contentLength = archiveEntry.getContentLength();
 			byte[] data = createZipArtefact(is);
-			String mimetype = getArtefactMimeType(name);
+			String mimetype = archiveEntry.getContentType();
 			ArtefactType artefactType = detectArtefactType(xPlanFeatureCollection, archiveEntry);
 			ArtefactId id = new ArtefactId().plan(plan).filename(name);
 			Artefact artefact = new Artefact().id(id).data(data).mimetype(mimetype).length(contentLength)
