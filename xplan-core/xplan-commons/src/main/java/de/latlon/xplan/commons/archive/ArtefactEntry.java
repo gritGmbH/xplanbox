@@ -44,6 +44,7 @@ public class ArtefactEntry extends ArchiveZipEntry implements ZipEntryWithConten
 		this.content = content;
 	}
 
+	@Override
 	/**
 	 * @return of the entry, never <code>null</code>
 	 */
@@ -51,6 +52,7 @@ public class ArtefactEntry extends ArchiveZipEntry implements ZipEntryWithConten
 		return content;
 	}
 
+	@Override
 	/**
 	 * @return of the entry, never <code>null</code>
 	 */
@@ -61,6 +63,11 @@ public class ArtefactEntry extends ArchiveZipEntry implements ZipEntryWithConten
 	@Override
 	public boolean isXPlanGml() {
 		return false;
+	}
+
+	@Override
+	public long getContentLength() {
+		return content.length;
 	}
 
 }

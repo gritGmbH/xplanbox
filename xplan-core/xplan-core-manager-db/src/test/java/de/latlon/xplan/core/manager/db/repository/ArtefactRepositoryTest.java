@@ -107,8 +107,9 @@ public class ArtefactRepositoryTest {
 
 	private static Artefact createArtefact(Plan plan, String image, ArtefactType artefactType) {
 		ArtefactId artefactId = new ArtefactId().plan(plan).filename(image);
+		byte[] bytes = "test".getBytes(UTF_8);
 		Artefact artefact = new Artefact().id(artefactId).num(1).artefacttype(artefactType).mimetype("text/xml")
-				.data("test".getBytes(UTF_8));
+				.length(Long.valueOf(bytes.length)).data(bytes);
 		return artefact;
 	}
 

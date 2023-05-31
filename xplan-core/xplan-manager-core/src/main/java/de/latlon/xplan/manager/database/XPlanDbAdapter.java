@@ -62,6 +62,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -548,12 +549,13 @@ public class XPlanDbAdapter {
 		try {
 			String name = archiveEntry.getName();
 			InputStream is = archiveEntry.retrieveContentAsStream();
+			long contentLength = archiveEntry.getContentLength();
 			byte[] data = createZipArtefact(is);
 			String mimetype = getArtefactMimeType(name);
 			ArtefactType artefactType = detectArtefactType(xPlanFeatureCollection, archiveEntry);
 			ArtefactId id = new ArtefactId().plan(plan).filename(name);
-			Artefact artefact = new Artefact().id(id).data(data).mimetype(mimetype).artefacttype(artefactType)
-					.num(i.getAndIncrement());
+			Artefact artefact = new Artefact().id(id).data(data).mimetype(mimetype).length(contentLength)
+					.artefacttype(artefactType).num(i.getAndIncrement());
 			return artefact;
 		}
 		catch (IOException e) {
@@ -599,25 +601,27 @@ public class XPlanDbAdapter {
 		for (Map.Entry<String, File> entry : artefactsToUpdate.entrySet()) {
 			String fileName = entry.getKey();
 			File file = entry.getValue();
+			long size = Files.size(file.toPath());
 			Optional<Artefact> artefactToUpdate = planArtefacts.stream()
 					.filter(artefact -> fileName.equals(artefact.getId().getFilename())).findFirst();
 			if (artefactToUpdate.isPresent()) {
 				try (FileInputStream fileInputStream = new FileInputStream(file)) {
-					artefactToUpdate.get().data(createZipArtefact(fileInputStream));
+					artefactToUpdate.get().data(createZipArtefact(fileInputStream)).length(size);
 				}
 			}
 		}
 		for (Map.Entry<String, File> entry : artefactsToInsert.entrySet()) {
 			String fileName = entry.getKey();
 			File file = entry.getValue();
+			long size = Files.size(file.toPath());
 			try (FileInputStream fileInputStream = new FileInputStream(file)) {
 				byte[] data = createZipArtefact(fileInputStream);
 				String mimetype = getArtefactMimeType(fileName);
 				ArtefactType artefactType = detectNonXPlanGmlArtefactType(fc, fileName);
 
 				ArtefactId id = new ArtefactId().plan(plan).filename(fileName);
-				Artefact artefact = new Artefact().id(id).data(data).mimetype(mimetype).artefacttype(artefactType)
-						.num(num++);
+				Artefact artefact = new Artefact().id(id).data(data).mimetype(mimetype).length(size)
+						.artefacttype(artefactType).num(num++);
 				plan.getArtefacts().add(artefact);
 			}
 		}

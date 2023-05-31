@@ -57,4 +57,9 @@ public class MainZipEntry implements ZipEntryWithContent {
 		return true;
 	}
 
+	@Override
+	public long getContentLength() {
+		return content.length;
+	}
+
 }

@@ -51,7 +51,7 @@ public class DBDocumentService implements DocumentService {
 		if (!artefactCandidate.isPresent())
 			throw new InvalidDocument(planId, fileName);
 		Artefact artefact = artefactCandidate.get();
-		return new DocumentHeader(artefact.getData().length, artefact.getMimetype());
+		return new DocumentHeader(artefact.getLength(), artefact.getMimetype());
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class DBDocumentService implements DocumentService {
 		try (ByteArrayInputStream bis = new ByteArrayInputStream(data)) {
 			GZIPInputStream is = new GZIPInputStream(bis);
 			StreamingOutput streamingOutput = outputStream -> is.transferTo(outputStream);
-			return new DocumentHeaderWithStream(data.length, artefact.getMimetype(), streamingOutput);
+			return new DocumentHeaderWithStream(artefact.getLength(), artefact.getMimetype(), streamingOutput);
 		}
 		catch (IOException e) {
 			throw new RuntimeException(e);

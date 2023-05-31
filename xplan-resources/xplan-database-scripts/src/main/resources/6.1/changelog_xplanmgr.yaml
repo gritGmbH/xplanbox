@@ -20,8 +20,8 @@
 ###
 databaseChangeLog:
   - changeSet:
-      id:  xplanmgr_artefacts_artefacttype
-      author:  latlon
+      id: xplanmgr_artefacts_artefacttype
+      author: latlon
       changes:
         - sql: CREATE TYPE xplanmgr.artefacttype AS ENUM ('XPLANGML', 'RASTERBASIS');
         - addColumn:
@@ -32,8 +32,22 @@ databaseChangeLog:
                   name: artefacttype
                   type: xplanmgr.artefacttype
   - changeSet:
-      id:  xplanmgr_artefacttype_cast
-      author:  latlon
+      id: xplanmgr_artefacttype_cast
+      author: latlon
       changes:
         - sql:
             sql: CREATE CAST (varchar AS xplanmgr.artefacttype) WITH INOUT AS IMPLICIT;
+  - changeSet:
+      id: xplanmgr_length
+      author: latlon
+      changes:
+        - addColumn:
+            schemaName: xplanmgr
+            tableName: artefacts
+            columns:
+              - column:
+                  name: length
+                  type: BIGINT
+                  defaultValue: -1
+                  constraints:
+                    nullable: false

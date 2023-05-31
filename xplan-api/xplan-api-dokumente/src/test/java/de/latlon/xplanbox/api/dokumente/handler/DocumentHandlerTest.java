@@ -35,7 +35,6 @@ import de.latlon.xplanbox.api.dokumente.config.HsqlJpaContext;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeader;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeaderWithStream;
 import de.latlon.xplanbox.api.dokumente.v1.model.Document;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +70,6 @@ import static org.mockito.Mockito.mock;
 @ContextConfiguration(classes = { DocumentHandlerTest.DocumentHandlerTestContext.class, HsqlJpaContext.class,
 		ApplicationContext.class })
 @Transactional
-@Ignore
 public class DocumentHandlerTest {
 
 	@Autowired
@@ -117,16 +115,17 @@ public class DocumentHandlerTest {
 		Bereich bereich = new Bereich().nummer("0").name("test");
 		Feature feature = new Feature().num(1).fid("123");
 		Plan plan = new Plan();
+		byte[] bytes = "test".getBytes(UTF_8);
 		ArtefactId artefactId = new ArtefactId().plan(plan).filename("test.xml");
 		Artefact artefact = new Artefact().id(artefactId).num(1).artefacttype(ArtefactType.XPLANGML)
-				.mimetype("text/xml").data(createZipArtefact());
+				.mimetype("text/xml").length(Long.valueOf(bytes.length)).data(createZipArtefact(bytes));
 		return plan.importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
 				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature))
 				.artefacts(Collections.singleton(artefact));
 	}
 
-	private byte[] createZipArtefact() throws IOException {
-		InputStream is = new ByteArrayInputStream("test".getBytes(UTF_8));
+	private byte[] createZipArtefact(byte[] bytes) throws IOException {
+		InputStream is = new ByteArrayInputStream(bytes);
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		GZIPOutputStream gos = new GZIPOutputStream(bos);
 		copyLarge(is, gos);
