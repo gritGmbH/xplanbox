@@ -9,6 +9,7 @@ import de.latlon.xplanbox.api.dokumente.service.DocumentService;
 import de.latlon.xplanbox.api.dokumente.v1.model.Document;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,7 @@ import java.util.zip.GZIPInputStream;
  * @since 6.1
  */
 @Service
+@Profile("!s3img & !s3doc")
 public class DBDocumentService implements DocumentService {
 
 	@Autowired

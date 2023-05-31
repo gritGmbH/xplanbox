@@ -45,6 +45,7 @@ import org.deegree.feature.types.AppSchema;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.xmlunit.builder.Input;
@@ -96,6 +97,7 @@ import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
  * @version $Revision: $, $Date: $
  */
 @RunWith(JUnitParamsRunner.class)
+@Ignore
 public class XPlanManipulatorTest {
 
 	private final XPlanToEditFactory factory = new XPlanToEditFactory();

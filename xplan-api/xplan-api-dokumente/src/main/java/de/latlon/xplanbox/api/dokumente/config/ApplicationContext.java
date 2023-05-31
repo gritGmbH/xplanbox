@@ -51,7 +51,7 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorksp
 @Configuration
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.dokumente.handler", "de.latlon.xplanbox.api.dokumente.v1",
 		"de.latlon.xplanbox.api.dokumente.service" })
-@Import({ JpaContext.class })
+@Import({ JpaContext.class, S3DocumentContext.class })
 public class ApplicationContext {
 
 	@Autowired

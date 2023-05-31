@@ -21,6 +21,7 @@
 package de.latlon.xplanbox.api.dokumente.handler;
 
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import de.latlon.xplanbox.api.commons.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.commons.exception.InvalidPlanIdSyntax;
 import de.latlon.xplanbox.api.dokumente.exception.InvalidDocument;
@@ -62,7 +63,7 @@ public class DocumentHandler {
 	}
 
 	public DocumentHeader headDocument(String planId, String fileName)
-			throws InvalidPlanIdSyntax, InvalidPlanId, InvalidDocument {
+			throws InvalidPlanIdSyntax, InvalidPlanId, InvalidDocument, StorageException {
 		int planIdAsInt = checkIdAndConvertIdToInt(planId);
 		if (!xPlanDao.existsPlan(planIdAsInt))
 			throw new InvalidPlanId(planId);
@@ -71,7 +72,7 @@ public class DocumentHandler {
 	}
 
 	public DocumentHeaderWithStream getDocument(String planId, String fileName)
-			throws InvalidPlanIdSyntax, InvalidPlanId, InvalidDocument {
+			throws InvalidPlanIdSyntax, InvalidPlanId, InvalidDocument, StorageException {
 		int planIdAsInt = checkIdAndConvertIdToInt(planId);
 		if (!xPlanDao.existsPlan(planIdAsInt))
 			throw new InvalidPlanId(planId);
