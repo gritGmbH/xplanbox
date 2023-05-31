@@ -12,8 +12,8 @@ public class MimeTypeDetectorTest {
 
 	@Test
 	public void testGetArtefactMimeType() {
-		assertEquals("text/xml", getArtefactMimeType("test.xml"));
-		assertEquals("text/xml", getArtefactMimeType("test.gml"));
+		assertEquals("application/xml", getArtefactMimeType("test.xml"));
+		assertEquals("application/xml", getArtefactMimeType("test.gml"));
 		assertEquals("application/pdf", getArtefactMimeType("test.pdf"));
 		assertEquals("application/zip", getArtefactMimeType("test.zip"));
 		assertEquals("image/jpeg", getArtefactMimeType("test.jpg"));
