@@ -55,7 +55,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.activation.MimetypesFileTypeMap;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -81,6 +80,7 @@ import java.util.zip.GZIPOutputStream;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalTypeWert;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstandWert;
+import static de.latlon.xplan.commons.util.MimeTypeDetector.getArtefactMimeType;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.RASTERBASIS;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.XPLANGML;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
@@ -427,20 +427,6 @@ public class XPlanDbAdapter {
 				throw new AmbiguousBereichNummernException(nummer);
 			bereichNummern.add(nummer);
 		}
-	}
-
-	private String getArtefactMimeType(String fileName) {
-		MimetypesFileTypeMap mimeMap = new MimetypesFileTypeMap();
-		mimeMap.addMimeTypes("text/xml gml xml");
-		mimeMap.addMimeTypes("application/pdf pdf");
-		mimeMap.addMimeTypes("application/zip zip");
-		mimeMap.addMimeTypes("image/jpeg jpg jpeg");
-		mimeMap.addMimeTypes("image/png png");
-		mimeMap.addMimeTypes("image/tiff tif tiff");
-		mimeMap.addMimeTypes("image/ecw ecw");
-		mimeMap.addMimeTypes("text/html html");
-		mimeMap.addMimeTypes("text/plain txt text");
-		return mimeMap.getContentType(fileName);
 	}
 
 	private byte[] createZipArtefact(InputStream is) throws IOException {
