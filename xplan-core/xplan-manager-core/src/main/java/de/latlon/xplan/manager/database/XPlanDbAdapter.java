@@ -218,9 +218,9 @@ public class XPlanDbAdapter {
 	@Transactional
 	public void updateArtefacttype(int planId, List<String> fileNames, ArtefactType artefactType) {
 		Stream<Artefact> artefacts = artefactRepository.findAllByPlanId(planId);
-		for (String rasterReference : fileNames) {
-			Optional<Artefact> artefact = artefacts.filter(candidate -> candidate.getData().equals(rasterReference))
-					.findFirst();
+		for (String fileName : fileNames) {
+			Optional<Artefact> artefact = artefacts
+					.filter(candidate -> candidate.getId().getFilename().equals(fileName)).findFirst();
 			if (artefact.isPresent()) {
 				Artefact artefactToUpdate = artefact.get();
 				artefactToUpdate.artefacttype(artefactType);
