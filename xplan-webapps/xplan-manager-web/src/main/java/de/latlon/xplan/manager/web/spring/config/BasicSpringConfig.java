@@ -284,7 +284,9 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public SynRulesAccessor synRulesAccessor() {
+	public SynRulesAccessor synRulesAccessor(ManagerConfiguration managerConfiguration) {
+		if (managerConfiguration != null)
+			return new SynRulesAccessor(managerConfiguration.getSynthesizerConfigurationDirectory());
 		return new SynRulesAccessor();
 	}
 
