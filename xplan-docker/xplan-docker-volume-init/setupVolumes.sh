@@ -71,6 +71,7 @@ XPLAN_INIT_RASTERTYPE="${XPLAN_INIT_RASTERTYPE:-mapserver}"
 XPLAN_INIT_INSPIREPLU="${XPLAN_INIT_INSPIREPLU:-disabled}"
 
 XPLAN_S3_PUBLIC_URL="${XPLAN_S3_PUBLIC_URL}"
+XPLAN_DOWNLOADAPI_URL_PUBLIC="${XPLAN_DOWNLOADAPI_URL_PUBLIC}"
 
 #############################
 # Update content of volumes #
@@ -110,7 +111,11 @@ sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-workspaces/xplan-manager-
 sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
 sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
 
-if [[ -z "${spring_profiles_active##*s3doc*}" ]]
+if [[ ! -z $XPLAN_DOWNLOADAPI_URL_PUBLIC ]]
+then
+  echo "[$(date -Iseconds)] Use XPlanDownloadAPI in HTML GFI: $XPLAN_DOWNLOADAPI_URL_PUBLIC"
+  sed -i 's|var DOWNLOADAPI_URL;|var DOWNLOADAPI_URL="'$XPLAN_DOWNLOADAPI_URL_PUBLIC'";|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
+elif [[ -z "${spring_profiles_active##*s3doc*}" ]]
 then
   echo "[$(date -Iseconds)] Document storage type is S3"
   sed -i 's|var S3_URL;|var S3_URL="'$XPLAN_S3_PUBLIC_URL'";|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
