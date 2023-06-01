@@ -68,15 +68,12 @@ public class ReSynthesizerApplicationRunner implements ApplicationRunner {
 	private static final String OPT_PLAN_ID = "planId";
 
 	@Autowired
-	@Lazy
 	private XPlanDao xPlanDao;
 
 	@Autowired
-	@Lazy
 	private XPlanSynthesizer xPlanSynthesizer;
 
 	@Autowired
-	@Lazy
 	private SortPropertyReader sortPropertyReader;
 
 	private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();

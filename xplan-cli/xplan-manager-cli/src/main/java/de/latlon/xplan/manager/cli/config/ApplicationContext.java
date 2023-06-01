@@ -96,6 +96,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Lazy;
 
 import java.io.File;
 import java.io.IOException;
@@ -135,12 +136,15 @@ public class ApplicationContext {
 	private static final String RULES_DIRECTORY = "/rules";
 
 	@Autowired
+	@Lazy
 	private PlanRepository planRepository;
 
 	@Autowired
+	@Lazy
 	private PlanwerkWmsMetadataRepository planwerkWmsMetadataRepository;
 
 	@Autowired
+	@Lazy
 	private ArtefactRepository artefactRepository;
 
 	@Bean
