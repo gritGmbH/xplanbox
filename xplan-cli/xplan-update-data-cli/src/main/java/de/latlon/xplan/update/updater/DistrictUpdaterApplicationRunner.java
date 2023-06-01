@@ -33,6 +33,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
@@ -56,6 +57,7 @@ public class DistrictUpdaterApplicationRunner implements ApplicationRunner {
 	 * updates the district column in the table xplanmgr.plans.
 	 */
 	@Override
+	@Transactional
 	public void run(ApplicationArguments args) throws Exception {
 		List<XPlan> plans = dao.getXPlanList();
 		for (XPlan plan : plans) {
