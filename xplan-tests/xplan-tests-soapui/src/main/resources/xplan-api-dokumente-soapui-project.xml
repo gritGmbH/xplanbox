@@ -40,7 +40,7 @@ List documents</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>404</con:status>
+          <con:status>404 400</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -129,6 +129,12 @@ Download document</con:description>
           <con:mediaType>application/json</con:mediaType>
           <con:status>404</con:status>
           <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/pdf</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
         </con:representation>
         <con:request name="Request 1" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
           <con:settings/>
@@ -360,7 +366,7 @@ assert json.version != null</scriptText>
     <con:testCase id="52c2be50-f79e-41f7-9d41-4849e540661a" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/dokument/{planId} TestCase" searchProperties="true">
       <con:description>TestCase generated for REST Resource [/dokument/{planId}] located at [/dokument/{planId}]</con:description>
       <con:settings/>
-      <con:testStep type="restrequest" name="Request 1" id="aed3952e-4386-44dc-b1ac-6bc29df690e6">
+      <con:testStep type="restrequest" name="GET SO 5.3 pI getFileList" id="aed3952e-4386-44dc-b1ac-6bc29df690e6">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}" methodName="listDocuments" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="Request 1" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
@@ -370,6 +376,20 @@ assert json.version != null</scriptText>
             <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="bc6247a3-5d0d-47a5-93ea-59d65ed2d3d9" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a583288d-6924-4bc1-988e-ae0e75cc317a" name="JsonPath Match fileName">
+              <con:configuration>
+                <path>$.[0]fileName</path>
+                <content>StErhVo_Eppendorf_Hoheluft-Ost.pdf</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -378,8 +398,26 @@ assert json.version != null</scriptText>
             </con:credentials>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
-            <con:parameters/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#planId}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="e6002a56-1d80-4a90-a3cb-0d8bc601e942">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>fileName</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET SO 5.3 pI getFileList</con:sourceStep>
+            <con:sourcePath>$.[0]fileName</con:sourcePath>
+            <con:targetType>fileName</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:properties/>
@@ -387,21 +425,40 @@ assert json.version != null</scriptText>
     <con:testCase id="a3ba44a4-5d09-4e9d-addb-48411b2c8ca7" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/dokument/{planId}/{fileName} TestCase" searchProperties="true">
       <con:description>TestCase generated for REST Resource [/dokument/{planId}/{fileName}] located at [/dokument/{planId}/{fileName}]</con:description>
       <con:settings/>
-      <con:testStep type="restrequest" name="Request 1" id="ed8e46ba-6735-40de-855d-d254c5d54b80">
+      <con:testStep type="restrequest" name="GET SO 5.3 pI getFile" id="ed8e46ba-6735-40de-855d-d254c5d54b80">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="Request 1" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
-            <con:settings/>
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
             <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//dokument//</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Simple Contains" id="4baa06ab-07bd-418d-8f05-d77167a5394a" name="Contains">
+              <con:configuration>
+                <token>PDF</token>
+                <ignoreCase>false</ignoreCase>
+                <useRegEx>false</useRegEx>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
-            <con:parameters/>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="fileName" value="${#TestSuite#fileName}"/>
+              <con:entry key="planId" value="${#TestSuite#planId}"/>
+            </con:parameters>
           </con:restRequest>
         </con:config>
       </con:testStep>
@@ -435,7 +492,11 @@ assert json.version != null</scriptText>
     <con:properties>
       <con:property>
         <con:name>planId</con:name>
-        <con:value>6</con:value>
+        <con:value>10</con:value>
+      </con:property>
+      <con:property>
+        <con:name>fileName</con:name>
+        <con:value>StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
