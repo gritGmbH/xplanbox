@@ -26,6 +26,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
+import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
@@ -61,12 +62,13 @@ public class S3RasterStorageTest {
 		XPlanArchiveContentAccess archive = mockArchive();
 
 		StorageEvent storageEvent = mock(StorageEvent.class);
-		String key = s3RasterStorage.addRasterFile(1, "test", archive, storageEvent);
+		String key = s3RasterStorage.addRasterFile(1, "test.png", archive, storageEvent);
 
-		assertThat(key, is("1_test"));
+		assertThat(key, is("1_test.png"));
 		verify(client).doesBucketExistV2(eq(BUCKET_NAME));
-		verify(client).putObject(eq(BUCKET_NAME), eq("1_test"), nullable(InputStream.class), any(ObjectMetadata.class));
-		verify(storageEvent).addInsertedKey(eq("1_test"));
+		verify(client).putObject(eq(BUCKET_NAME), eq("1_test.png"), nullable(InputStream.class),
+				any(ObjectMetadata.class));
+		verify(storageEvent).addInsertedKey(eq("1_test.png"));
 	}
 
 	@Test
@@ -75,21 +77,21 @@ public class S3RasterStorageTest {
 		ObjectListing objectListing = mock(ObjectListing.class);
 		S3Object object = mock(S3Object.class);
 		when(object.getObjectContent()).thenReturn(mock(S3ObjectInputStream.class));
-		when(object.getKey()).thenReturn("1_test");
-		when(client.listObjects(eq(BUCKET_NAME), eq("1_test"))).thenReturn(objectListing);
-		when(client.getObject(eq(BUCKET_NAME), eq("1_test"))).thenReturn(object);
+		when(object.getKey()).thenReturn("1_test.png");
+		when(client.listObjects(eq(BUCKET_NAME), eq("1_test.png"))).thenReturn(objectListing);
+		when(client.getObject(eq(BUCKET_NAME), eq("1_test.png"))).thenReturn(object);
 
 		S3ObjectSummary objectToDelete = mock(S3ObjectSummary.class);
-		when(objectToDelete.getKey()).thenReturn("1_test");
+		when(objectToDelete.getKey()).thenReturn("1_test.png");
 		List<S3ObjectSummary> objectSummaries = Collections.singletonList(objectToDelete);
 		when(objectListing.getObjectSummaries()).thenReturn(objectSummaries);
 		S3RasterStorage s3RasterStorage = createS2RasterStorage(client);
 
 		StorageEvent storageEvent = mock(StorageEvent.class);
-		s3RasterStorage.deleteRasterFile(1, "test", storageEvent);
+		s3RasterStorage.deleteRasterFile(1, "test.png", storageEvent);
 
-		verify(client).deleteObject(BUCKET_NAME, "1_test");
-		verify(storageEvent).addDeletedKey(eq("1_test"), any(InputStream.class));
+		verify(client).deleteObject(BUCKET_NAME, "1_test.png");
+		verify(storageEvent).addDeletedKey(eq("1_test.png"), any(InputStream.class));
 	}
 
 	private S3RasterStorage createS2RasterStorage(AmazonS3 client) {
@@ -102,7 +104,12 @@ public class S3RasterStorageTest {
 	}
 
 	private XPlanArchiveContentAccess mockArchive() {
-		return mock(XPlanArchiveContentAccess.class);
+		XPlanArchiveContentAccess mock = mock(XPlanArchiveContentAccess.class);
+		ArchiveEntry entry = mock(ArchiveEntry.class);
+		when(entry.getContentLength()).thenReturn(90l);
+		when(entry.getContentType()).thenReturn("image/png");
+		when(mock.getEntry("test.png")).thenReturn(entry);
+		return mock;
 	}
 
 }
