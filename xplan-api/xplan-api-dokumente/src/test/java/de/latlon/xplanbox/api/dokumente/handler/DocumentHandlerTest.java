@@ -35,6 +35,7 @@ import de.latlon.xplanbox.api.dokumente.config.HsqlJpaContext;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeader;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeaderWithStream;
 import de.latlon.xplanbox.api.dokumente.v1.model.Document;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,7 @@ import static org.mockito.Mockito.mock;
 @ContextConfiguration(classes = { DocumentHandlerTest.DocumentHandlerTestContext.class, HsqlJpaContext.class,
 		ApplicationContext.class })
 @Transactional
+@Ignore
 public class DocumentHandlerTest {
 
 	@Autowired

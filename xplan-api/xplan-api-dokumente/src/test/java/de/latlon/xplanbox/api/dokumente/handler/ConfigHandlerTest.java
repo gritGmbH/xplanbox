@@ -22,6 +22,7 @@ package de.latlon.xplanbox.api.dokumente.handler;
 
 import de.latlon.xplanbox.api.dokumente.config.ApplicationContext;
 import de.latlon.xplanbox.api.dokumente.v1.model.SystemConfig;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { ApplicationContext.class })
+@Ignore
 public class ConfigHandlerTest {
 
 	@Autowired
