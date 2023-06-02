@@ -136,6 +136,12 @@ Download document</con:description>
           <con:params/>
           <con:element>data</con:element>
         </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>text/html;charset=utf-8</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+          <con:element>html</con:element>
+        </con:representation>
         <con:request name="Request 1" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
@@ -203,7 +209,11 @@ OpenAPI document</con:description>
             </con:configuration>
           </con:assertion>
           <con:credentials>
-            <con:authType>No Authorization</con:authType>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
           </con:credentials>
           <con:attachment>
             <con:name>BP_6.0.2.zip</con:name>
@@ -480,7 +490,11 @@ assert json.version != null</scriptText>
             </con:configuration>
           </con:assertion>
           <con:credentials>
-            <con:authType>No Authorization</con:authType>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
@@ -492,7 +506,7 @@ assert json.version != null</scriptText>
     <con:properties>
       <con:property>
         <con:name>planId</con:name>
-        <con:value>10</con:value>
+        <con:value>12</con:value>
       </con:property>
       <con:property>
         <con:name>fileName</con:name>
@@ -504,6 +518,14 @@ assert json.version != null</scriptText>
     <con:property>
       <con:name>baseUrlManagerApi</con:name>
       <con:value>http://localhost:8086/xplan-api-manager</con:value>
+    </con:property>
+    <con:property>
+      <con:name>username</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>password</con:name>
+      <con:value/>
     </con:property>
   </con:properties>
   <con:wssContainer/>
