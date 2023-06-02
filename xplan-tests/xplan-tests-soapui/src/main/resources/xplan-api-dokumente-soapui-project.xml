@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="c0330194-e671-4de1-89fb-fd5cd92eb5af" activeEnvironment="Default" name="xplan-api-dokumente" resourceRoot="" soapui-version="5.7.0" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="c0330194-e671-4de1-89fb-fd5cd92eb5af" activeEnvironment="Default" name="xplan-api-dokumente" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:interface xsi:type="con:RestService" id="da31547e-ee3b-4026-a608-c310a62f70aa" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanDokumentenAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:description>XPlanDokumenten REST API</con:description>
@@ -47,11 +47,13 @@ List documents</con:description>
         <con:request name="Request 1" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -83,11 +85,13 @@ Show system and application configuration</con:description>
         <con:request name="Request 1" id="6fb03af2-8a96-4f90-8577-72945c5ee2cf" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -129,11 +133,13 @@ Download document</con:description>
         <con:request name="Request 1" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -159,11 +165,13 @@ OpenAPI document</con:description>
         <con:request name="Request 1" id="c3d70b20-79d3-4474-928b-deeb1f813de1" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -173,13 +181,61 @@ OpenAPI document</con:description>
     <con:description>TestSuite generated for REST Service [XPlanDokumentenAPI]</con:description>
     <con:settings/>
     <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="48db7f60-5786-44f8-9810-fd9a97d425a7" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Import Data TestCase" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="POST SO 5.3 sF,sG,Ss importPlan" id="08ec223c-1245-443c-8993-b34fbb2c9499">
+        <con:settings/>
+        <con:config method="POST" xsi:type="con:HttpRequest" id="11bcd378-8420-40fd-a2de-2e56a2944269" name="POST SO 5.3 sF,sG,Ss importPlan" postQueryString="false" mediaType="application/octet-stream" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="340c67c6-0955-4688-a83d-e223f565ed87" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>201</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>BP_6.0.2.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>SO_5.3.zip</con:contentId>
+            <con:url>${projectDir}/xplan-api-dokumente/plans/SO_5.3.zip</con:url>
+            <con:id>1ea51185-0d48-44eb-9ac0-3caf101510fa</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="e916652b-f0ef-4325-9ada-53aaa9556fb8">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>POST SO 5.3 sF,sG,Ss importPlan</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
     <con:testCase id="bc6fb828-c3c3-4a7e-9a05-fbb111be9701" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/ TestCase" searchProperties="true">
       <con:description>TestCase generated for REST Resource [/] located at [/]</con:description>
       <con:settings/>
       <con:testStep type="restrequest" name="GET XX X.X XX openAPI" id="1aeeaac4-199b-4534-af9e-e394e963c6d8">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/" methodName="openApi" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Request 1" id="c3d70b20-79d3-4474-928b-deeb1f813de1" mediaType="application/json">
+          <con:restRequest name="GET XX X.X XX openAPI" id="c3d70b20-79d3-4474-928b-deeb1f813de1" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -256,7 +312,7 @@ OpenAPI document</con:description>
       <con:testStep type="restrequest" name="GET XX X.X XX showConfig" id="5689721f-2ab3-4b9b-88ed-1416047f2abf">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/info" methodName="showConfig" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Request 1" id="6fb03af2-8a96-4f90-8577-72945c5ee2cf" mediaType="application/json">
+          <con:restRequest name="GET XX X.X XX showConfig" id="6fb03af2-8a96-4f90-8577-72945c5ee2cf" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -351,9 +407,44 @@ assert json.version != null</scriptText>
       </con:testStep>
       <con:properties/>
     </con:testCase>
-    <con:properties/>
+    <con:testCase id="f0a8362e-1542-4d08-8813-6e56b8e547c0" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Delete Data TestCase" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="DEL SO 5.3 pI deletePlan" id="94c445d4-e769-45e9-846a-32880c14fba1">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="4b54b496-d695-4667-93ba-fa7d6e6991ed" name="DEL SO 5.3 pI deletePlan" postQueryString="false" mediaType="application/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan/${#TestSuite#planId}</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="c95e4b1c-2508-4520-bf83-48d442d982f7" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:properties>
+      <con:property>
+        <con:name>planId</con:name>
+        <con:value>6</con:value>
+      </con:property>
+    </con:properties>
   </con:testSuite>
-  <con:properties/>
+  <con:properties>
+    <con:property>
+      <con:name>baseUrlManagerApi</con:name>
+      <con:value>http://localhost:8086/xplan-api-manager</con:value>
+    </con:property>
+  </con:properties>
   <con:wssContainer/>
   <con:oAuth2ProfileContainer/>
   <con:oAuth1ProfileContainer/>
