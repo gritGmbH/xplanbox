@@ -213,7 +213,8 @@ OpenAPI document</con:description>
             <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
-            <con:authType>Global HTTP Settings</con:authType>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
           </con:credentials>
           <con:attachment>
             <con:name>BP_6.0.2.zip</con:name>
@@ -414,22 +415,6 @@ assert json.version != null</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="transfer" name="Property Transfer" id="e6002a56-1d80-4a90-a3cb-0d8bc601e942">
-        <con:settings/>
-        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
-            <con:name>fileName</con:name>
-            <con:sourceType>Response</con:sourceType>
-            <con:sourceStep>GET SO 5.3 pI getFileList</con:sourceStep>
-            <con:sourcePath>$.[0]fileName</con:sourcePath>
-            <con:targetType>fileName</con:targetType>
-            <con:targetStep>#TestSuite#</con:targetStep>
-            <con:type>JSONPATH</con:type>
-            <con:targetTransferType>JSONPATH</con:targetTransferType>
-            <con:upgraded>true</con:upgraded>
-          </con:transfers>
-        </con:config>
-      </con:testStep>
       <con:properties/>
     </con:testCase>
     <con:testCase id="a3ba44a4-5d09-4e9d-addb-48411b2c8ca7" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/dokument/{planId}/{fileName} TestCase" searchProperties="true">
@@ -466,7 +451,7 @@ assert json.version != null</scriptText>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
             <con:parameters>
-              <con:entry key="fileName" value="${#TestSuite#fileName}"/>
+              <con:entry key="fileName" value="StErhVo_Eppendorf_Hoheluft-Ost.pdf"/>
               <con:entry key="planId" value="${#TestSuite#planId}"/>
             </con:parameters>
           </con:restRequest>
@@ -494,7 +479,8 @@ assert json.version != null</scriptText>
             <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
-            <con:authType>Global HTTP Settings</con:authType>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
@@ -506,11 +492,7 @@ assert json.version != null</scriptText>
     <con:properties>
       <con:property>
         <con:name>planId</con:name>
-        <con:value>12</con:value>
-      </con:property>
-      <con:property>
-        <con:name>fileName</con:name>
-        <con:value>StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:value>
+        <con:value>73</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
