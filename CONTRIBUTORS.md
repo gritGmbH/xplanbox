@@ -6,6 +6,7 @@ An dem Projekt haben folgende Personen mitgearbeitet:
 - Jens Fitzke
 - Julian Zilz
 - Lyn Goltz
+- Marc Guillemot
 - Sabine Schmitz
 - Torsten Friebe
 
