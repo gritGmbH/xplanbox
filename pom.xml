@@ -44,6 +44,7 @@
     <module>xplan-cli</module>
     <module>xplan-configuration</module>
     <module>xplan-core</module>
+    <module>xplan-documentation</module>
     <module>xplan-resources</module>
     <module>xplan-tests</module>
     <module>xplan-webapps</module>
@@ -81,18 +82,6 @@
       <id>distribution</id>
       <modules>
         <module>xplan-distribution</module>
-      </modules>
-    </profile>
-    <profile>
-      <id>documentation</id>
-      <activation>
-        <property>
-          <name>documentation.skip</name>
-          <value>!true</value>
-        </property>
-      </activation>
-      <modules>
-        <module>xplan-documentation</module>
       </modules>
     </profile>
     <profile>
