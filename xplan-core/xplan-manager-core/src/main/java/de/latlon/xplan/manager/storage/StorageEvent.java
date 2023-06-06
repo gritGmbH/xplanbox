@@ -20,7 +20,8 @@
  */
 package de.latlon.xplan.manager.storage;
 
-import java.io.InputStream;
+import de.latlon.xplan.manager.storage.s3.S3Object;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +36,7 @@ public class StorageEvent {
 
 	private final List<String> insertedKeys = new ArrayList<>();
 
-	private final Map<String, InputStream> deletedKeysToObjects = new HashMap<>();
+	private final List<S3Object> deletedKeysToObjects = new ArrayList<>();
 
 	private final List<Path> storedPaths = new ArrayList<>();
 
@@ -49,11 +50,11 @@ public class StorageEvent {
 		return insertedKeys;
 	}
 
-	public void addDeletedKey(String key, InputStream objectContent) {
-		deletedKeysToObjects.put(key, objectContent);
+	public void addDeletedKey(S3Object s3Object) {
+		deletedKeysToObjects.add(s3Object);
 	}
 
-	public Map<String, InputStream> getDeletedKeysToObjects() {
+	public List<S3Object> getDeletedS3Objects() {
 		return deletedKeysToObjects;
 	}
 

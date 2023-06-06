@@ -24,6 +24,7 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.storage.StorageEvent;
+import de.latlon.xplan.manager.storage.s3.S3Object;
 import de.latlon.xplan.manager.storage.s3.config.AmazonS3TestContext;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
@@ -78,14 +79,26 @@ public class S3RasterStorageIT {
 		String key = s3RasterStorage.addRasterFile(1, "Blankenese29.png", archive, storageEvent);
 
 		assertThat(key, is("1_Blankenese29.png"));
-		verify(storageEvent).addInsertedKey(eq("1_Blankenese29"));
+		verify(storageEvent).addInsertedKey(eq("1_Blankenese29.png"));
 	}
 
 	@Test
-	public void testDeleteRasterFile() throws StorageException {
+	public void testDeleteRasterFile() throws StorageException, IOException {
+		importRasterFile();
+
 		StorageEvent storageEvent = mock(StorageEvent.class);
-		s3RasterStorage.deleteRasterFile(1, "Blankenese29", storageEvent);
-		verify(storageEvent).addDeletedKey(eq("1_Blankenese29"), any(InputStream.class));
+		s3RasterStorage.deleteRasterFile(1, "Blankenese29.png", storageEvent);
+		verify(storageEvent).addDeletedKey(any(S3Object.class));
+	}
+
+	private void importRasterFile() throws IOException, StorageException {
+		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/Blankenese29_Test_60.zip");
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		XPlanArchiveContentAccess archive = archiveCreator.createXPlanArchiveFromZip("Blankenese29_Test_60.zip",
+				inputStream);
+
+		StorageEvent storageEvent = mock(StorageEvent.class);
+		s3RasterStorage.addRasterFile(1, "Blankenese29.png", archive, storageEvent);
 	}
 
 }

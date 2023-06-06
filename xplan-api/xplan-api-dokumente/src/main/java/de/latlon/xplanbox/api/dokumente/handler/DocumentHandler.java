@@ -63,7 +63,7 @@ public class DocumentHandler {
 			throws InvalidPlanIdSyntax, InvalidPlanId, InvalidDocument, StorageException {
 		int planIdAsInt = checkPlanIdAndConvertIdToInt(planId);
 		LOG.debug("Retrieve header of document with filename {} of plan with id {}.", fileName, planIdAsInt);
-		return documentService.retrieveHeaderOfDocument(planIdAsInt, fileName);
+		return documentService.retrieveHeader(planIdAsInt, fileName);
 	}
 
 	public DocumentHeaderWithStream getDocument(String planId, String fileName)

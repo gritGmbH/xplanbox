@@ -34,6 +34,9 @@ import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.List;
@@ -55,10 +58,32 @@ public class S3Storage {
 		this.bucketName = bucketName;
 	}
 
-	public S3Object getObject(String key) throws StorageException {
+	public de.latlon.xplan.manager.storage.s3.S3Object getObject(String key) throws StorageException {
+		S3Object object = null;
 		try {
 			LOG.info("Get object with key {} from bucket {}.", key, bucketName);
-			return client.getObject(bucketName, key);
+			object = client.getObject(bucketName, key);
+			ObjectMetadata objectMetadata = object.getObjectMetadata();
+			S3Metadata s3Metadata = new S3Metadata(object.getKey(), objectMetadata.getContentType(),
+					objectMetadata.getContentLength());
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			object.getObjectContent().transferTo(bos);
+			return new de.latlon.xplan.manager.storage.s3.S3Object(s3Metadata, bos.toByteArray());
+		}
+		catch (AmazonServiceException | IOException e) {
+			throw new StorageException("Could not get object with key " + key + " from bucket " + bucketName + ".", e);
+		}
+		finally {
+			closeQuietly(object);
+		}
+	}
+
+	public S3Metadata getObjectMetadata(String key) throws StorageException {
+		try {
+			LOG.info("Get object metadata with key {} from bucket {}.", key, bucketName);
+			S3Object object = client.getObject(bucketName, key);
+			ObjectMetadata objectMetadata = object.getObjectMetadata();
+			return new S3Metadata(object.getKey(), objectMetadata.getContentType(), objectMetadata.getContentLength());
 		}
 		catch (AmazonServiceException e) {
 			throw new StorageException("Could not get object with key " + key + " from bucket " + bucketName + ".", e);
@@ -100,11 +125,15 @@ public class S3Storage {
 		}
 	}
 
-	public void insertObject(String key, InputStream content) throws StorageException {
+	public void insertObject(de.latlon.xplan.manager.storage.s3.S3Object object) throws StorageException {
+		String key = object.getS3Metadata().getKey();
 		try {
 			LOG.info("Insert object with key {} in bucket {}.", key, bucketName);
 			ObjectMetadata metadata = new ObjectMetadata();
-			client.putObject(bucketName, key, content, metadata);
+			metadata.setContentLength(object.getS3Metadata().getContentLength());
+			metadata.setContentType(object.getS3Metadata().getContentType());
+			ByteArrayInputStream bis = new ByteArrayInputStream(object.getContent());
+			client.putObject(bucketName, key, bis, metadata);
 		}
 		catch (AmazonServiceException e) {
 			throw new StorageException("Could not insert object with key " + key + " in bucket " + bucketName + ".", e);
@@ -152,6 +181,18 @@ public class S3Storage {
 			}
 		}
 		return null;
+	}
+
+	private void closeQuietly(S3Object object) {
+		if (object != null) {
+			try {
+				object.close();
+			}
+			catch (IOException e) {
+				LOG.warn("Connection could not be closed: {}", e.getMessage());
+				LOG.trace(e.getMessage(), e);
+			}
+		}
 	}
 
 }

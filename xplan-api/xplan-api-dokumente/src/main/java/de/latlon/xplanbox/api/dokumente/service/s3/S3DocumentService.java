@@ -1,8 +1,8 @@
 package de.latlon.xplanbox.api.dokumente.service.s3;
 
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
+import de.latlon.xplan.manager.storage.s3.S3Metadata;
+import de.latlon.xplan.manager.storage.s3.S3Object;
 import de.latlon.xplan.manager.storage.s3.S3Storage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import de.latlon.xplanbox.api.dokumente.exception.InvalidDocument;
@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.core.StreamingOutput;
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,13 +42,11 @@ public class S3DocumentService implements DocumentService {
 	}
 
 	@Override
-	public DocumentHeader retrieveHeaderOfDocument(int planId, String fileName)
-			throws InvalidDocument, StorageException {
+	public DocumentHeader retrieveHeader(int planId, String fileName) throws InvalidDocument, StorageException {
 		String key = planId + "_" + fileName;
-		S3Object object = documentStorage.getObject(key);
-		if (object == null)
+		S3Metadata objectMetadata = documentStorage.getObjectMetadata(key);
+		if (objectMetadata == null)
 			throw new InvalidDocument(planId, fileName);
-		ObjectMetadata objectMetadata = object.getObjectMetadata();
 		return new DocumentHeader(objectMetadata.getContentLength(), objectMetadata.getContentType());
 	}
 
@@ -58,8 +57,9 @@ public class S3DocumentService implements DocumentService {
 		S3Object object = documentStorage.getObject(key);
 		if (object == null)
 			throw new InvalidDocument(planId, fileName);
-		ObjectMetadata objectMetadata = object.getObjectMetadata();
-		StreamingOutput streamingOutput = outputStream -> object.getObjectContent().transferTo(outputStream);
+		S3Metadata objectMetadata = object.getS3Metadata();
+		StreamingOutput streamingOutput = outputStream -> new ByteArrayInputStream(object.getContent())
+				.transferTo(outputStream);
 		return new DocumentHeaderWithStream(objectMetadata.getContentLength(), objectMetadata.getContentType(),
 				streamingOutput);
 	}

@@ -32,6 +32,7 @@ import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -77,6 +78,10 @@ public class S3RasterStorageTest {
 		ObjectListing objectListing = mock(ObjectListing.class);
 		S3Object object = mock(S3Object.class);
 		when(object.getObjectContent()).thenReturn(mock(S3ObjectInputStream.class));
+		ObjectMetadata objectMetadata = mock(ObjectMetadata.class);
+		when(objectMetadata.getContentType()).thenReturn("image/png");
+		when(objectMetadata.getContentLength()).thenReturn(90l);
+		when(object.getObjectMetadata()).thenReturn(objectMetadata);
 		when(object.getKey()).thenReturn("1_test.png");
 		when(client.listObjects(eq(BUCKET_NAME), eq("1_test.png"))).thenReturn(objectListing);
 		when(client.getObject(eq(BUCKET_NAME), eq("1_test.png"))).thenReturn(object);
@@ -91,7 +96,10 @@ public class S3RasterStorageTest {
 		s3RasterStorage.deleteRasterFile(1, "test.png", storageEvent);
 
 		verify(client).deleteObject(BUCKET_NAME, "1_test.png");
-		verify(storageEvent).addDeletedKey(eq("1_test.png"), any(InputStream.class));
+		ArgumentCaptor<de.latlon.xplan.manager.storage.s3.S3Object> argument = ArgumentCaptor
+				.forClass(de.latlon.xplan.manager.storage.s3.S3Object.class);
+		verify(storageEvent).addDeletedKey(argument.capture());
+		assertThat(argument.getValue().getS3Metadata().getKey(), is("1_test.png"));
 	}
 
 	private S3RasterStorage createS2RasterStorage(AmazonS3 client) {

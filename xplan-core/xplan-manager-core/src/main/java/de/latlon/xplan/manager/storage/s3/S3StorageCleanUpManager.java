@@ -21,7 +21,6 @@
 package de.latlon.xplan.manager.storage.s3;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
 import de.latlon.xplan.manager.storage.StorageEvent;
@@ -46,7 +45,7 @@ public class S3StorageCleanUpManager extends S3Storage implements StorageCleanUp
 			String key = objectSummary.getKey();
 			S3Object object = getObject(key);
 			if (object != null)
-				storageEvent.addDeletedKey(object.getKey(), object.getObjectContent());
+				storageEvent.addDeletedKey(object);
 			deleteObject(objectSummary);
 		}
 	}

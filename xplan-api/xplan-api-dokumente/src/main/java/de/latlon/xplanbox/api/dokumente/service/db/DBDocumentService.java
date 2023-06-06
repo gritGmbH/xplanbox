@@ -46,7 +46,7 @@ public class DBDocumentService implements DocumentService {
 	}
 
 	@Override
-	public DocumentHeader retrieveHeaderOfDocument(int planId, String fileName) throws InvalidDocument {
+	public DocumentHeader retrieveHeader(int planId, String fileName) throws InvalidDocument {
 		Optional<Artefact> artefactCandidate = artefactRepository.findByPlanAndFilename(planId, fileName);
 		if (!artefactCandidate.isPresent())
 			throw new InvalidDocument(planId, fileName);

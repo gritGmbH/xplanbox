@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.storage.s3.listener;
 
 import de.latlon.xplan.manager.storage.StorageEvent;
+import de.latlon.xplan.manager.storage.s3.S3Object;
 import de.latlon.xplan.manager.storage.s3.S3Storage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.slf4j.Logger;
@@ -29,9 +30,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionalEventListener;
 
-import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
 
 import static org.springframework.transaction.event.TransactionPhase.AFTER_ROLLBACK;
 
@@ -55,14 +54,14 @@ public class S3TransactionListener {
 		List<String> insertedKeys = storageEvent.getInsertedKeys();
 		insertedKeys.forEach(insertedKey -> s3Storage.deleteObjects(insertedKey));
 
-		Map<String, InputStream> deletedKeysToObjects = storageEvent.getDeletedKeysToObjects();
-		deletedKeysToObjects.entrySet().forEach(deletedKeyAndObject -> {
+		List<S3Object> deletedKeysToObjects = storageEvent.getDeletedS3Objects();
+		deletedKeysToObjects.forEach(deletedObject -> {
 			try {
-				s3Storage.insertObject(deletedKeyAndObject.getKey(), deletedKeyAndObject.getValue());
+				s3Storage.insertObject(deletedObject);
 			}
 			catch (StorageException e) {
 				LOG.warn("Could not rollback deleted document with id {} from S3 Storage.",
-						deletedKeyAndObject.getKey());
+						deletedObject.getS3Metadata().getKey());
 			}
 		});
 	}

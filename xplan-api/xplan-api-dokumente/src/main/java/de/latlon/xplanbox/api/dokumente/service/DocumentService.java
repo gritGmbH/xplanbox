@@ -29,7 +29,7 @@ public interface DocumentService {
 	 * the passed planId does not exist
 	 * @throws StorageException if the document is not available
 	 */
-	DocumentHeader retrieveHeaderOfDocument(int planId, String fileName) throws InvalidDocument, StorageException;
+	DocumentHeader retrieveHeader(int planId, String fileName) throws InvalidDocument, StorageException;
 
 	/**
 	 * @param planId id of the plan
