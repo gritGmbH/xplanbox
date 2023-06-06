@@ -196,7 +196,7 @@ Die Prüfung beinhaltet das CRS des Rasterplans, sowie das Format.
 Beispiel Aufruf:
 
 ----
-./XPlanManager --import ~/test-data/V4_1_ID_103-25832.zip --managerconfiguration=<XPLANBOX_CONFIG>
+./XPlanManager --import ~/test-data/BPlan002_5-2.zip --managerconfiguration=<XPLANBOX_CONFIG>
 ----
 
 Beispiel Ausgabe:

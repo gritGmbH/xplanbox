@@ -115,7 +115,7 @@ public class XPlanManagerTest {
 
 		Pair<Rechtsstand, PlanStatus> legislationStatus = xPlanManager.determineRechtsstand(pathToArchive);
 
-		assertThat(legislationStatus.first.getCodeNumber(), is(4000));
+		assertThat(legislationStatus.first.getCodeNumber(), is(3000));
 		assertThat(legislationStatus.second, is(PlanStatus.FESTGESTELLT));
 	}
 
@@ -169,7 +169,7 @@ public class XPlanManagerTest {
 	}
 
 	private String copyPlan() throws IOException {
-		InputStream resource = ResourceAccessor.readResourceStream("xplan41/V4_1_ID_103.zip");
+		InputStream resource = ResourceAccessor.readResourceStream("xplan41/BPlan001_4-1.zip");
 		FileOutputStream output = null;
 		try {
 			File resourceFile = File.createTempFile("XPlanManagerTest_", ".zip");

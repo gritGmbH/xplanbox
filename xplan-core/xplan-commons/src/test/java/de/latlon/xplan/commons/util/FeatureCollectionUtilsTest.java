@@ -50,16 +50,16 @@ public class FeatureCollectionUtilsTest {
 
 	@Test
 	public void testFindPlanFeatureWithXPlan40() throws Exception {
-		FeatureCollection fc = getMainFileAsFeatureCollection("xplan40/V4_1_ID_66.zip");
+		FeatureCollection fc = getMainFileAsFeatureCollection("xplan40/BPlan004_4-0.zip");
 		Feature planFeature = findPlanFeature(fc, BP_Plan);
 		String id = planFeature.getId();
 		String name = planFeature.getName().toString();
 		String envelope = planFeature.getEnvelope().toString();
 
-		assertThat(id, is("FEATURE_8f28013a-8756-48cd-8374-9e16edcdcc34"));
+		assertThat(id, is("GML_88bfe952-199f-4bba-bea2-c2b441737144"));
 		assertThat(name, is("{http://www.xplanung.de/xplangml/4/0}BP_Plan"));
 		assertThat(envelope, is(
-				"min: (417894.13,5715502.733), max: (418222.672,5715793.336), span0: 328.54200000001583, span1: 290.6030000001192 , crs: {uri=EPSG:25833, resolved=true}"));
+				"min: (567386.293,5937595.479), max: (567474.996,5937698.959), span0: 88.70300000009593, span1: 103.47999999951571 , crs: {uri=EPSG:25832, resolved=true}"));
 	}
 
 	@Test
