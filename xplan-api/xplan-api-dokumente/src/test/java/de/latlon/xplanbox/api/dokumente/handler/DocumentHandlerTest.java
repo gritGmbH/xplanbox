@@ -26,8 +26,11 @@ import de.latlon.xplan.core.manager.db.model.Bereich;
 import de.latlon.xplan.core.manager.db.model.Feature;
 import de.latlon.xplan.core.manager.db.model.Plan;
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
+import de.latlon.xplanbox.api.commons.exception.InvalidPlanId;
+import de.latlon.xplanbox.api.commons.exception.InvalidPlanIdSyntax;
 import de.latlon.xplanbox.api.dokumente.config.ApplicationContext;
 import de.latlon.xplanbox.api.dokumente.config.HsqlJpaContext;
+import de.latlon.xplanbox.api.dokumente.exception.InvalidDocument;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeader;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeaderWithStream;
 import de.latlon.xplanbox.api.dokumente.v1.model.Document;
@@ -79,6 +82,16 @@ public class DocumentHandlerTest {
 		assertTrue(documents.size() == 1);
 	}
 
+	@Test(expected = InvalidPlanIdSyntax.class)
+	public void test_listDocuments_invalidPlanId() throws Exception {
+		documentHandler.listDocuments("stringid");
+	}
+
+	@Test(expected = InvalidPlanId.class)
+	public void test_listDocuments_unknownPlanId() throws Exception {
+		documentHandler.listDocuments("99");
+	}
+
 	@Test
 	@Commit
 	public void test_headDocument() throws Exception {
@@ -88,6 +101,23 @@ public class DocumentHandlerTest {
 		DocumentHeader documentHeader = documentHandler.headDocument(String.valueOf(plan.getId()), "test.xml");
 		assertTrue(documentHeader.getFileSize() == 4);
 		assertTrue(documentHeader.getMediaType().equals("text/xml"));
+	}
+
+	@Test(expected = InvalidPlanIdSyntax.class)
+	public void test_headDocument_invalidPlanId() throws Exception {
+		documentHandler.headDocument("stringid", "test.xml");
+	}
+
+	@Test(expected = InvalidPlanId.class)
+	public void test_headDocument_unknownPlanId() throws Exception {
+		documentHandler.headDocument("99", "test.xml");
+	}
+
+	@Test(expected = InvalidDocument.class)
+	public void test_headDocument_unknownDocument() throws Exception {
+		Plan plan = createPlanWithArtefact();
+		planRepository.save(plan);
+		documentHandler.headDocument(String.valueOf(plan.getId()), "unknown.xml");
 	}
 
 	@Test
@@ -100,6 +130,23 @@ public class DocumentHandlerTest {
 		assertTrue(documentHeader.getFileSize() == 4);
 		assertTrue(documentHeader.getMediaType().equals("text/xml"));
 		assertTrue(documentHeader.getStreamingOutput() != null);
+	}
+
+	@Test(expected = InvalidPlanIdSyntax.class)
+	public void test_getDocument_invalidPlanId() throws Exception {
+		documentHandler.getDocument("stringid", "test.xml");
+	}
+
+	@Test(expected = InvalidPlanId.class)
+	public void test_getDocument_unknownPlanId() throws Exception {
+		documentHandler.getDocument("99", "test.xml");
+	}
+
+	@Test(expected = InvalidDocument.class)
+	public void test_getDocument_unknownDocument() throws Exception {
+		Plan plan = createPlanWithArtefact();
+		planRepository.save(plan);
+		documentHandler.getDocument(String.valueOf(plan.getId()), "unknown.xml");
 	}
 
 	private Plan createPlanWithArtefact() throws IOException {
