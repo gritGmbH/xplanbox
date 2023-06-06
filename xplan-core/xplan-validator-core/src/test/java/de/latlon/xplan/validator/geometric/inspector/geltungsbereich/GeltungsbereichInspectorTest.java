@@ -77,7 +77,7 @@ public class GeltungsbereichInspectorTest {
 	@Test
 	public void testCheck_valid_tolerance() throws Exception {
 		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
-		readFeaturesFromZip("xplan51/V4_1_ID_103_withtolerance.zip", geltungsbereichInspector);
+		readFeaturesFromGml("V4_1_ID_103_withtolerance.gml", GeltungsbereichInspector.class, geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(true));

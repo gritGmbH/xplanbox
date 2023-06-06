@@ -67,7 +67,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 	public void testCheckFlaechenschluss_wirksamkeit() throws Exception {
 		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51,
 				BP_Plan);
-		readFeaturesFromZip("xplan51/V4_1_ID_103_wirksamkeit.zip", flaechenschlussInspector);
+		readFeaturesFromGml("V4_1_ID_103_wirksamkeit.gml", OptimisedFlaechenschlussInspectorTest.class,
+				flaechenschlussInspector);
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
@@ -77,7 +78,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 	public void testCheckFlaechenschluss_invalid() throws Exception {
 		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51,
 				BP_Plan);
-		readFeaturesFromZip("xplan51/V4_1_ID_103_kein-flaechenschluss.zip", flaechenschlussInspector);
+		readFeaturesFromGml("V4_1_ID_103_kein-flaechenschluss.gml", OptimisedFlaechenschlussInspectorTest.class,
+				flaechenschlussInspector);
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(false));
