@@ -22,26 +22,18 @@ package de.latlon.xplanbox.api.dokumente.handler;
 
 import de.latlon.xplan.core.manager.db.model.Artefact;
 import de.latlon.xplan.core.manager.db.model.ArtefactId;
-import de.latlon.xplan.core.manager.db.model.ArtefactType;
 import de.latlon.xplan.core.manager.db.model.Bereich;
 import de.latlon.xplan.core.manager.db.model.Feature;
 import de.latlon.xplan.core.manager.db.model.Plan;
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplanbox.api.dokumente.config.ApplicationContext;
 import de.latlon.xplanbox.api.dokumente.config.HsqlJpaContext;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeader;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeaderWithStream;
 import de.latlon.xplanbox.api.dokumente.v1.model.Document;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -61,17 +53,14 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.apache.commons.io.IOUtils.copyLarge;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
 
 /**
- * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = { DocumentHandlerTest.DocumentHandlerTestContext.class, HsqlJpaContext.class,
-		ApplicationContext.class })
+@ContextConfiguration(classes = { ApplicationContext.class, HsqlJpaContext.class })
 @Transactional
-@Ignore
 public class DocumentHandlerTest {
 
 	@Autowired
@@ -97,7 +86,7 @@ public class DocumentHandlerTest {
 		planRepository.save(plan);
 
 		DocumentHeader documentHeader = documentHandler.headDocument(String.valueOf(plan.getId()), "test.xml");
-		assertTrue(documentHeader.getFileSize() == 24);
+		assertTrue(documentHeader.getFileSize() == 4);
 		assertTrue(documentHeader.getMediaType().equals("text/xml"));
 	}
 
@@ -108,7 +97,7 @@ public class DocumentHandlerTest {
 		planRepository.save(plan);
 
 		DocumentHeaderWithStream documentHeader = documentHandler.getDocument(String.valueOf(plan.getId()), "test.xml");
-		assertTrue(documentHeader.getFileSize() == 24);
+		assertTrue(documentHeader.getFileSize() == 4);
 		assertTrue(documentHeader.getMediaType().equals("text/xml"));
 		assertTrue(documentHeader.getStreamingOutput() != null);
 	}
@@ -119,8 +108,8 @@ public class DocumentHandlerTest {
 		Plan plan = new Plan();
 		byte[] bytes = "test".getBytes(UTF_8);
 		ArtefactId artefactId = new ArtefactId().plan(plan).filename("test.xml");
-		Artefact artefact = new Artefact().id(artefactId).num(1).artefacttype(ArtefactType.XPLANGML)
-				.mimetype("text/xml").length(Long.valueOf(bytes.length)).data(createZipArtefact(bytes));
+		Artefact artefact = new Artefact().id(artefactId).num(1).mimetype("text/xml").length(Long.valueOf(bytes.length))
+				.data(createZipArtefact(bytes));
 		return plan.importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
 				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature))
 				.artefacts(Collections.singleton(artefact));
@@ -133,18 +122,6 @@ public class DocumentHandlerTest {
 		copyLarge(is, gos);
 		gos.close();
 		return bos.toByteArray();
-	}
-
-	@Configuration
-	static class DocumentHandlerTestContext {
-
-		@Bean
-		@Primary
-		public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
-				throws WorkspaceException {
-			return mock(ManagerWorkspaceWrapper.class);
-		}
-
 	}
 
 }

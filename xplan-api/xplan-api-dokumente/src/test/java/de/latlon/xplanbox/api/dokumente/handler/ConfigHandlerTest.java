@@ -21,6 +21,7 @@
 package de.latlon.xplanbox.api.dokumente.handler;
 
 import de.latlon.xplanbox.api.dokumente.config.ApplicationContext;
+import de.latlon.xplanbox.api.dokumente.config.HsqlJpaContext;
 import de.latlon.xplanbox.api.dokumente.v1.model.SystemConfig;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -32,11 +33,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = { ApplicationContext.class })
+@ContextConfiguration(classes = { ApplicationContext.class, HsqlJpaContext.class })
 @Ignore
 public class ConfigHandlerTest {
 

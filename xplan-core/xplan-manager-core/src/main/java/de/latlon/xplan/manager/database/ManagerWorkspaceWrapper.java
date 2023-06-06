@@ -77,7 +77,7 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 				JDBC_ID_XPLAN);
 		if (!(resource instanceof DataSourceConnectionProvider))
 			throw new IllegalArgumentException(
-					"Datasource configuration is not supported, must be an DataSourceConnection");
+					"Datasource configuration is not supported, must be an deegree DataSourceConnection");
 		DataSourceConnectionProvider dataSourceConnectionProvider = (DataSourceConnectionProvider) resource;
 		return dataSourceConnectionProvider.getDataSource();
 	}

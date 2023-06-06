@@ -1,5 +1,8 @@
 package de.latlon.xplanbox.api.dokumente.config;
 
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
+import de.latlon.xplan.manager.workspace.WorkspaceException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,12 +13,21 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import javax.sql.DataSource;
 
+import static org.mockito.Mockito.mock;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
  */
 @Configuration
 public class HsqlJpaContext {
+
+	@Bean
+	@Primary
+	public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
+			throws WorkspaceException {
+		return mock(ManagerWorkspaceWrapper.class);
+	}
 
 	@Bean
 	@Primary
