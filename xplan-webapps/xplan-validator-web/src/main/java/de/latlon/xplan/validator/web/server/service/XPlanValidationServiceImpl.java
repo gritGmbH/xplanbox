@@ -42,6 +42,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 import static org.springframework.web.context.support.SpringBeanAutowiringSupport.processInjectionBasedOnServletContext;
 
@@ -96,7 +97,7 @@ public class XPlanValidationServiceImpl extends RemoteServiceServlet implements 
 			ValidatorReport report = xPlanValidator.validateNotWriteReport(validationSettings, archive,
 					planToVerify.getName());
 
-			File reportDirectory = planArchiveManager.createReportDirectory(planUuid);
+			Path reportDirectory = planArchiveManager.createReportDirectory(planUuid);
 
 			LOG.debug("Validation report for {} written to file {}", planUuid, reportDirectory);
 			reportWriter.writeArtefacts(report, reportDirectory);

@@ -70,7 +70,6 @@ gitlab-release:
 
 # ---------------------------------------------------------------------------------------------------------------------------  
 # ---------------------------------------------------------------------------------------------------------------------------
-# not working for now
 create-maven-build-image:
   stage: deploy
   image:
@@ -81,6 +80,7 @@ create-maven-build-image:
     --context "${CI_PROJECT_DIR}"
     --dockerfile "${CI_PROJECT_DIR}/ci/mvnBuildImage.Dockerfile"
     --destination "${CI_REGISTRY_IMAGE}/mvn-build-image:latest"
+    --cache=true --compressed-caching=false --use-new-run --cleanup
   rules:
   - if: '$CI_PIPELINE_SOURCE == "schedule" && $OPERATION == "base-image"'
 

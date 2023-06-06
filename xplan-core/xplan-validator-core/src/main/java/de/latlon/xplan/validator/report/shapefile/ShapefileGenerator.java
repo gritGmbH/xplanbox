@@ -20,12 +20,10 @@
  */
 package de.latlon.xplan.validator.report.shapefile;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
+import de.latlon.xplan.validator.geometric.report.BadGeometry;
+import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
+import de.latlon.xplan.validator.report.ReportGenerationException;
+import de.latlon.xplan.validator.report.ValidatorReport;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.standard.AbstractDefaultGeometry;
@@ -33,10 +31,11 @@ import org.geotools.geometry.jts.Geometries;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.validator.geometric.report.BadGeometry;
-import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
-import de.latlon.xplan.validator.report.ReportGenerationException;
-import de.latlon.xplan.validator.report.ValidatorReport;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Creates shape files containing the bad geometries from a {@link ValidatorReport}
@@ -62,11 +61,9 @@ public class ShapefileGenerator {
 		return false;
 	}
 
-	public void generateReport(ValidatorReport report, String validationName, File directoryToCreateShapes)
+	public void generateReport(ValidatorReport report, String validationName, Path directoryToCreateShapes)
 			throws ReportGenerationException {
-
 		checkParameters(report, validationName, directoryToCreateShapes);
-
 		GeometricValidatorResult geometricValidatorResult = report.getGeometricValidatorResult();
 		if (geometricValidatorResult != null) {
 			writeShapefiles(validationName, directoryToCreateShapes, geometricValidatorResult.getBadGeometries(),
@@ -83,7 +80,7 @@ public class ShapefileGenerator {
 	 * @param badGeometries List of the bad geometries
 	 * @throws ReportGenerationException if the generation of the shapefile failed
 	 */
-	void writeShapefiles(String shapefileName, File directoryToCreateShapes, List<BadGeometry> badGeometries, ICRS crs)
+	void writeShapefiles(String shapefileName, Path directoryToCreateShapes, List<BadGeometry> badGeometries, ICRS crs)
 			throws ReportGenerationException {
 		try {
 			Map<Geometries, ShapefileBuilder> geomType2ShapefileBuilders = createShapefileBuilder(crs);
@@ -141,32 +138,29 @@ public class ShapefileGenerator {
 		}
 	}
 
-	private void writeShapefiles(String shapefileName, File directoryToCreateShapes,
-			Map<Geometries, ShapefileBuilder> geomType2ShapefileBuilders) throws Exception {
+	private void writeShapefiles(String shapefileName, Path directoryToCreateShapes,
+			Map<Geometries, ShapefileBuilder> geomType2ShapefileBuilders) {
 		for (Entry<Geometries, ShapefileBuilder> geomType2Builder : geomType2ShapefileBuilders.entrySet()) {
 			writeFile(geomType2Builder.getValue(), directoryToCreateShapes, shapefileName, geomType2Builder.getKey());
 		}
 	}
 
-	private void writeFile(ShapefileBuilder creator, File directoryToCreateShapes, String validationName,
-			Geometries geom) throws Exception {
+	private void writeFile(ShapefileBuilder creator, Path directoryToCreateShapes, String validationName,
+			Geometries geom) {
 		if (creator.hasGeometry()) {
-			String shpFileName = validationName + "_" + geom.getName() + ".shp";
+			String shpFileName = validationName + "_" + geom.getName();
 			try {
-				File shapeFile = new File(directoryToCreateShapes, shpFileName);
-				if (shapeFile.createNewFile())
-					creator.writeToShapefile(shapeFile);
-				else
-					LOG.error("Shapefile '" + shapeFile + "' konnte nicht erzeugt werden");
+				creator.writeToShapefile(directoryToCreateShapes, shpFileName);
 			}
 			catch (Exception e) {
+				LOG.error("Beim Erzeugen des Shapefiles '{}' ist ein Fehler aufgetreten: {}", shpFileName,
+						e.getMessage());
 				LOG.trace("Shapefile could not be created!", e);
-				LOG.error("Beim Erzeugen des Shapefiles '" + shpFileName + "' konnte nicht erzeugt werden");
 			}
 		}
 	}
 
-	private void checkParameters(ValidatorReport report, String validationName, File directoryToCreateShapes) {
+	private void checkParameters(ValidatorReport report, String validationName, Path directoryToCreateShapes) {
 		if (report == null)
 			throw new IllegalArgumentException("ValidationReport must not be null");
 		if (validationName == null)
