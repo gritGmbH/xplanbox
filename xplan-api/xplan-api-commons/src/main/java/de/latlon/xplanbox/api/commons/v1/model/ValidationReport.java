@@ -54,6 +54,8 @@ public class ValidationReport {
 
 	private @Valid Boolean valid;
 
+	private @Valid String status;
+
 	private @Valid List<String> externalReferences = new ArrayList<>();
 
 	private @Valid List<ExternalReferenceResult> externalReferencesResult = new ArrayList<>();
@@ -163,6 +165,23 @@ public class ValidationReport {
 
 	public void setValid(Boolean valid) {
 		this.valid = valid;
+	}
+
+	/**
+	 **/
+	public ValidationReport status(String status) {
+		this.status = status;
+		return this;
+	}
+
+	@Schema(example = "Die Validierung wurde vollst\u00e4ndig ausgef\u00fchrt.")
+	@JsonProperty("status")
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	/**
