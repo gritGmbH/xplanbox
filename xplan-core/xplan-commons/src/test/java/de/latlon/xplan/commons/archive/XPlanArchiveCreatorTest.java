@@ -103,12 +103,12 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataV4_1_ID_103_41() throws IOException {
-		XPlanArchive archive = getTestArchive("xplan41/V4_1_ID_103.zip");
+	public void testMetadataBPlan001_41() throws IOException {
+		XPlanArchive archive = getTestArchive("xplan41/BPlan001_4-1.zip");
 
 		assertEquals(XPLAN_41, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
-		assertEquals("EPSG:25833", archive.getCrs().getName());
+		assertEquals("EPSG:25832", archive.getCrs().getName());
 	}
 
 	@Test
@@ -128,11 +128,11 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataV4_1_ID_66_40() throws IOException {
-		XPlanArchive archive = getTestArchive("xplan40/V4_1_ID_66.zip");
+	public void testMetadataBPlan004_40() throws IOException {
+		XPlanArchive archive = getTestArchive("xplan40/BPlan004_4-0.zip");
 		assertEquals(XPLAN_40, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
-		assertEquals("EPSG:25833", archive.getCrs().getName());
+		assertEquals("EPSG:25832", archive.getCrs().getName());
 	}
 
 	@Test
@@ -152,8 +152,8 @@ public class XPlanArchiveCreatorTest {
 	@Test
 	public void testCreateXPlanArchive_51_GmlFile() throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
-		InputStream gmlAsStream = ResourceAccessor.readResourceStream("xplan51/V4_1_ID_103.gml");
-		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103.gml", gmlAsStream);
+		InputStream gmlAsStream = ResourceAccessor.readResourceStream("xplan51/BPlan001_5-1.gml");
+		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("BPlan001_5-1.gml", gmlAsStream);
 		assertEquals(XPLAN_51, archive.getVersion());
 		assertEquals(null, archive.getDistricts().get(0));
 		assertEquals(BP_Plan, archive.getType());
@@ -164,7 +164,8 @@ public class XPlanArchiveCreatorTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
 		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
 				.getResourceAsStream("../feature/xplan-multipleInstances-withVerbundenerPlan.gml");
-		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103.gml", gmlAsStream);
+		XPlanArchive archive = archiveCreator
+				.createXPlanArchiveFromGml("xplan-multipleInstances-withVerbundenerPlan.gml", gmlAsStream);
 		assertEquals(XPLAN_52, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
 		assertTrue(archive.hasVerbundenerPlanBereich());

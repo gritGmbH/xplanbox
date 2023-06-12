@@ -309,14 +309,14 @@ public class XPlanManipulatorTest {
 	public void testModifyXPlan_RasterReferences() throws Exception {
 		XPlanVersion version = XPLAN_50;
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
-		FeatureCollection featureCollection = readXPlanGml(version, "xplan50/V4_1_ID_103.gml");
+		FeatureCollection featureCollection = readXPlanGmlFromZip("xplan50/BPlan004_5-0.zip");
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
 		RasterReference rasterBasisReference = new RasterReference("0", "ref1", "georef1", SCAN, IMAGE_PNG,
 				PLANMITGEOREFERENZ, "informationssystemeURL", "refName", TEXT_HTML, "beschreibung",
 				asDate("2018-03-01"));
 
-		RasterBasis rasterBasis = new RasterBasis("FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6");
+		RasterBasis rasterBasis = new RasterBasis("Gml_FEC4F42F-5D66-4A59-9A47-6E03D1A3139A");
 		rasterBasis.setBereichNummer("0");
 		rasterBasis.addRasterReference(rasterBasisReference);
 		editedXplan.addRasterBasis(rasterBasis);
@@ -361,7 +361,7 @@ public class XPlanManipulatorTest {
 	public void testModifyXPlan_XPlan50_delete_RasterReferences() throws Exception {
 		XPlanVersion xPlanVersion = XPLAN_50;
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(xPlanVersion);
-		FeatureCollection featureCollection = readXPlanGml(xPlanVersion, "xplan50/V4_1_ID_103.gml");
+		FeatureCollection featureCollection = readXPlanGmlFromZip("xplan50/BPlan002_5-0.zip");
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
 		editedXplan.addRasterBasis(null);
@@ -634,9 +634,7 @@ public class XPlanManipulatorTest {
 	public void testModifyXPlan_RasterBasis_Bereiche() throws Exception {
 		XPlanVersion version = XPlanVersion.XPLAN_41;
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan41/BPlan001_4-1_Bereiche.zip");
-
-		FeatureCollection featureCollection = readXPlanGmlFromZip(inputStream);
+		FeatureCollection featureCollection = readXPlanGmlFromZip("xplan41/BPlan001_4-1_Bereiche.zip");
 
 		XPlanToEditFactory xPlanToEditFactory = new XPlanToEditFactory();
 		XPlan xPlan = mockXPlan(version);
@@ -697,10 +695,8 @@ public class XPlanManipulatorTest {
 	@Test
 	public void testModifyXPlan_FP() throws Exception {
 		XPlanVersion version = XPlanVersion.XPLAN_60;
+		FeatureCollection featureCollection = readXPlanGmlFromZip("xplan60/FNP_Test_60.zip");
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/FNP_Test_60.zip");
-
-		FeatureCollection featureCollection = readXPlanGmlFromZip(inputStream);
 
 		String planName = "newPlanName";
 		String description = "newDescription";
@@ -741,9 +737,7 @@ public class XPlanManipulatorTest {
 	public void testModifyXPlan_LP() throws Exception {
 		XPlanVersion version = XPlanVersion.XPLAN_60;
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/LP-Test_60.zip");
-
-		FeatureCollection featureCollection = readXPlanGmlFromZip(inputStream);
+		FeatureCollection featureCollection = readXPlanGmlFromZip("xplan60/LP-Test_60.zip");
 
 		String planName = "newPlanName";
 		String description = "newDescription";
@@ -784,9 +778,7 @@ public class XPlanManipulatorTest {
 	public void testModifyXPlan_RP() throws Exception {
 		XPlanVersion version = XPLAN_51;
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan51/RROP_Landkreis_Test_51.zip");
-
-		FeatureCollection featureCollection = readXPlanGmlFromZip(inputStream);
+		FeatureCollection featureCollection = readXPlanGmlFromZip("xplan51/RROP_Landkreis_Test_51.zip");
 
 		String planName = "newPlanName";
 		String description = "newDescription";
@@ -827,9 +819,7 @@ public class XPlanManipulatorTest {
 	public void testModifyXPlan_SO() throws Exception {
 		XPlanVersion version = XPlanVersion.XPLAN_60;
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/StErhVO_Hamm_60.zip");
-
-		FeatureCollection featureCollection = readXPlanGmlFromZip(inputStream);
+		FeatureCollection featureCollection = readXPlanGmlFromZip("xplan60/StErhVO_Hamm_60.zip");
 
 		String planName = "newPlanName";
 		String description = "newDescription";
@@ -870,9 +860,7 @@ public class XPlanManipulatorTest {
 	public void testModifyXPlan_RasterBasis_BP_60() throws Exception {
 		XPlanVersion version = XPlanVersion.XPLAN_60;
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/BPlan001_6-0.zip");
-
-		FeatureCollection featureCollection = readXPlanGmlFromZip(inputStream);
+		FeatureCollection featureCollection = readXPlanGmlFromZip("xplan60/BPlan001_6-0.zip");
 
 		XPlanToEditFactory xPlanToEditFactory = new XPlanToEditFactory();
 		XPlan xPlan = mockXPlan(version);
@@ -1187,9 +1175,10 @@ public class XPlanManipulatorTest {
 		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(reader, xplanVersion);
 	}
 
-	private FeatureCollection readXPlanGmlFromZip(InputStream resourceAsStream) throws Exception {
+	private FeatureCollection readXPlanGmlFromZip(String resource) throws Exception {
+		InputStream resourceAsStream = ResourceAccessor.readResourceStream(resource);
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		XPlanArchive xPlanArchive = archiveCreator.createXPlanArchiveFromZip("test", resourceAsStream);
+		XPlanArchive xPlanArchive = archiveCreator.createXPlanArchiveFromZip(resource, resourceAsStream);
 		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(xPlanArchive);
 	}
 

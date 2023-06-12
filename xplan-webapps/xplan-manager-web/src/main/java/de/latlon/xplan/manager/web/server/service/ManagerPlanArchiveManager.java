@@ -28,6 +28,8 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -106,9 +108,10 @@ public class ManagerPlanArchiveManager {
 		return Collections.emptyList();
 	}
 
-	public File createReportDirectory(String planUuid) {
-		File reportDirectory = new File(UPLOAD_FOLDER, planUuid);
-		reportDirectory.mkdir();
+	public Path createReportDirectory(String planUuid) throws IOException {
+		Path reportDirectory = UPLOAD_FOLDER.toPath().resolve(planUuid);
+		if (!Files.exists(reportDirectory))
+			Files.createDirectory(reportDirectory);
 		return reportDirectory;
 	}
 

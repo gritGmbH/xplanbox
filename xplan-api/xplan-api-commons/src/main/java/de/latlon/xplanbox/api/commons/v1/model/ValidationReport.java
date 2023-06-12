@@ -33,9 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
@@ -58,7 +56,7 @@ public class ValidationReport {
 
 	private @Valid List<String> externalReferences = new ArrayList<>();
 
-	private @Valid Map<String, ExternalReferenceStatusEnum> externalReferencesResult = new HashMap<>();
+	private @Valid List<ExternalReferenceResult> externalReferencesResult = new ArrayList<>();
 
 	private @Valid @JsonInclude(Include.NON_NULL) URI wmsUrl;
 
@@ -187,19 +185,18 @@ public class ValidationReport {
 
 	/**
 	 **/
-	public ValidationReport externalReferencesResult(
-			@Valid Map<String, ExternalReferenceStatusEnum> externalReferencesResult) {
+	public ValidationReport externalReferencesResult(@Valid List<ExternalReferenceResult> externalReferencesResult) {
 		this.externalReferencesResult = externalReferencesResult;
 		return this;
 	}
 
-	@ArraySchema(schema = @Schema(example = "stelling.png", description = "since v1.1.0, replaces externalReferences"))
+	@ArraySchema(schema = @Schema(description = "since v1.1.0, replaces externalReferences"))
 	@JsonProperty("externalReferencesResult")
-	public Map<String, ExternalReferenceStatusEnum> getExternalReferencesResult() {
+	public List<ExternalReferenceResult> getExternalReferencesResult() {
 		return externalReferencesResult;
 	}
 
-	public void setExternalReferencesResult(Map<String, ExternalReferenceStatusEnum> externalReferencesResult) {
+	public void setExternalReferencesResult(List<ExternalReferenceResult> externalReferencesResult) {
 		this.externalReferencesResult = externalReferencesResult;
 	}
 

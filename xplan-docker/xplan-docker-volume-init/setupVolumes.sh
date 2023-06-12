@@ -216,6 +216,14 @@ then
   sed -i 's|xplan-validator-wms-memory-workspace|xplan-validator-wms-sql-workspace|g' xplan-validator-workspaces/webapps.properties
 fi
 
+#copy example external codelist
+XPLAN_INIT_EXAMPLE_CODELIST="${XPLAN_INIT_EXAMPLE_CODELIST:-disabled}"
+if [ $XPLAN_INIT_EXAMPLE_CODELIST = "enabled" ]
+then
+  echo "[$(date -Iseconds)] Add example codelist"
+  cp -r /xplan-volume-init/synthesizer/ xplan-manager-config/
+fi
+
 rm $INIT_STARTED_FILE
 echo "Initialization finished at $(date)" > $MARKER_FILE 
 cat $MARKER_FILE

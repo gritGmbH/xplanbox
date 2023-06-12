@@ -42,7 +42,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -68,15 +67,12 @@ public class ReSynthesizerApplicationRunner implements ApplicationRunner {
 	private static final String OPT_PLAN_ID = "planId";
 
 	@Autowired
-	@Lazy
 	private XPlanDao xPlanDao;
 
 	@Autowired
-	@Lazy
 	private XPlanSynthesizer xPlanSynthesizer;
 
 	@Autowired
-	@Lazy
 	private SortPropertyReader sortPropertyReader;
 
 	private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
@@ -84,6 +80,7 @@ public class ReSynthesizerApplicationRunner implements ApplicationRunner {
 	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 
 	@Override
+	@Transactional(rollbackOn = Exception.class)
 	public void run(ApplicationArguments args) throws Exception {
 		if (args.containsOption(OPT_PLAN_ID)) {
 			List<String> planIds = args.getOptionValues(OPT_PLAN_ID);
@@ -106,7 +103,7 @@ public class ReSynthesizerApplicationRunner implements ApplicationRunner {
 	/**
 	 * re-synthesizes all available plans.
 	 */
-	public void reSynthesize() throws Exception {
+	private void reSynthesize() throws Exception {
 		List<XPlan> plans = xPlanDao.getXPlanList();
 		for (XPlan plan : plans) {
 			reSynthesize(plan);
@@ -118,8 +115,7 @@ public class ReSynthesizerApplicationRunner implements ApplicationRunner {
 	 * @param mgrId the id of the plan to synthesize
 	 * @throws IllegalArgumentException if a plan with the passed id is not available
 	 */
-	@Transactional(rollbackOn = Exception.class)
-	public void reSynthesize(int mgrId) throws Exception {
+	private void reSynthesize(int mgrId) throws Exception {
 		XPlan xPlanById = xPlanDao.getXPlanById(mgrId);
 		if (xPlanById == null)
 			throw new IllegalArgumentException("A plan with the id '" + mgrId + "' is not available");
