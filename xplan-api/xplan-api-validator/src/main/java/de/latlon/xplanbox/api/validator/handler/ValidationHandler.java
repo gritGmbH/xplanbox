@@ -99,23 +99,23 @@ public class ValidationHandler {
 		String validationName = validatorReport.getValidationName();
 		LOG.debug("Create zip report in directory {} with validationName {}", workDir, validationName);
 
-		reportWriter.writeArtefacts(validatorReport, workDir.toFile());
+		reportWriter.writeArtefacts(validatorReport, workDir);
 		List<ArtifactType> artifacts = Arrays.asList(PDF, SHP);
 
 		Path zipArchive = workDir.resolve(validationName + ".zip");
 		try (OutputStream zipOutput = Files.newOutputStream(zipArchive)) {
-			reportWriter.writeZipWithArtifacts(zipOutput, validationName, artifacts, workDir.toFile());
+			reportWriter.writeZipWithArtifacts(zipOutput, validationName, artifacts, workDir);
 		}
 		return zipArchive;
 	}
 
-	public File writePdfReport(ValidatorReport validatorReport) throws IOException {
+	public Path writePdfReport(ValidatorReport validatorReport) throws IOException {
 		Path workDir = createWorkDir();
 		String validationName = validatorReport.getValidationName();
 		LOG.debug("Create pdf report in directory {} with validationName {}", workDir, validationName);
 
-		reportWriter.writeArtefacts(validatorReport, workDir.toFile());
-		return reportWriter.retrieveArtifactFile(workDir.toFile(), validationName, PDF);
+		reportWriter.writeArtefacts(validatorReport, workDir);
+		return reportWriter.retrieveArtifactFile(workDir, validationName, PDF);
 	}
 
 	public URI addToWms(XPlanArchive archive) {

@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @since 6.1
  */
 public enum ExternalReferenceStatusEnum {
 

@@ -44,7 +44,7 @@ import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static org.apache.commons.io.IOUtils.copyLarge;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -58,10 +58,9 @@ import static org.mockito.Mockito.when;
  */
 public class XPlanExporterTest {
 
-	private XPlanExporter exporter = new XPlanExporter();
-
 	@Test
 	public void testExport() throws Exception {
+		XPlanExporter exporter = new XPlanExporter();
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		List<Artefact> artefacts = creatertefactStream();
 		exporter.export(outputStream, artefacts);
@@ -86,18 +85,17 @@ public class XPlanExporterTest {
 		assertThat(exportedFiles, hasItems("1.xml", "2.xml"));
 	}
 
-	@SuppressWarnings("unchecked")
 	@Test
 	public void testExport_SchemaConform() throws Exception {
-		FeatureCollection featureCollection = readFeatureCollection("xplan41/V4_1_ID_103.zip");
+		FeatureCollection featureCollection = readFeatureCollection("xplan60/BPlan001_6-0.zip");
 
 		XPlanExporter planExporter = new XPlanExporter();
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		planExporter.export(outputStream, XPLAN_41, featureCollection, null);
+		planExporter.export(outputStream, XPLAN_60, featureCollection, null);
 
 		String exportedPlan = new String(outputStream.toByteArray());
 
-		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(XPLAN_41.getSchemaUrl().toURI())));
+		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(XPLAN_60.getSchemaUrl().toURI())));
 	}
 
 	private List<Artefact> creatertefactStream() throws Exception {

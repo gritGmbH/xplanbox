@@ -95,11 +95,11 @@ public class PlanArchiveManager {
 		checkContentTypesOfXPlanArchiveOrGml(uploadedFile);
 	}
 
-	File createReportDirectory(String planUuid) throws IOException {
+	Path createReportDirectory(String planUuid) throws IOException {
 		Path reportDirectory = UPLOAD_FOLDER.resolve(planUuid);
 		if (!Files.exists(reportDirectory))
 			Files.createDirectory(reportDirectory);
-		return reportDirectory.toFile();
+		return reportDirectory;
 	}
 
 	private String parseSuffix(FileItem uploadedFileItem) {

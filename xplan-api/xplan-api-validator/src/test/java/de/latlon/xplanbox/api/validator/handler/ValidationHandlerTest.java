@@ -26,7 +26,6 @@ import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import de.latlon.xplanbox.api.validator.config.ApplicationContext;
-
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -42,6 +41,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -127,8 +127,8 @@ public class ValidationHandlerTest {
 	public void verifyThat_WritePdfReport_CreatesFile() throws IOException {
 		final ValidatorReport report = Mockito.mock(ValidatorReport.class);
 
-		File file = validationHandler.writePdfReport(report);
-		assertTrue(file.exists());
+		Path file = validationHandler.writePdfReport(report);
+		assertTrue(Files.exists(file));
 	}
 
 	@Test

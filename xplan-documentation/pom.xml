@@ -63,7 +63,21 @@
 
   <modules>
     <module>xplan-benutzerhandbuch</module>
-    <module>xplan-betriebshandbuch</module>
   </modules>
+
+  <profiles>
+    <profile>
+      <id>documentation</id>
+      <activation>
+        <property>
+          <name>documentation.skip</name>
+          <value>!true</value>
+        </property>
+      </activation>
+      <modules>
+        <module>xplan-betriebshandbuch</module>
+      </modules>
+    </profile>
+  </profiles>
 
 </project>

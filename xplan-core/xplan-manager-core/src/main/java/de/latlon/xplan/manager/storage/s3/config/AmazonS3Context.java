@@ -43,7 +43,7 @@ import org.springframework.context.annotation.Profile;
  * @since 6.1
  */
 @Configuration
-@Profile("s3 | s3doc")
+@Profile("s3img | s3doc")
 @ComponentScan("de.latlon.xplan.manager.storage.s3.listener")
 public class AmazonS3Context {
 

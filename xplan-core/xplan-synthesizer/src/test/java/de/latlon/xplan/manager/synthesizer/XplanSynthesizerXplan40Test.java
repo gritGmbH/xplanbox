@@ -29,8 +29,8 @@ import org.junit.Test;
 public class XplanSynthesizerXplan40Test extends AbstractXplanSynthesizerTest {
 
 	@Test
-	public void testId106() throws Exception {
-		createSynFeatures("xplan40/V4_1_ID_66.zip");
+	public void testBPlan004_40() throws Exception {
+		createSynFeatures("xplan40/BPlan004_4-0.zip");
 	}
 
 }
