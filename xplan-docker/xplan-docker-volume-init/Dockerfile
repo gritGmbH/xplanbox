@@ -6,6 +6,7 @@ RUN apk --no-cache add bash curl unzip
 RUN mkdir -p /xplan-volume-init
 ADD target/xplan-docker-volume-init-*.tgz /xplan-volume-init/
 ADD setupVolumes.sh /xplan-volume-init/
+ADD synthesizer /xplan-volume-init/synthesizer/
 
 COPY src/main/resources/xplan-inspireplu-workspaces/webapps.properties /xplan-volume-init/xplan-inspirepluvalidator-workspaces/
 COPY src/main/resources/xplan-validator-workspaces/webapps.properties /xplan-volume-init/xplan-validator-workspaces/
