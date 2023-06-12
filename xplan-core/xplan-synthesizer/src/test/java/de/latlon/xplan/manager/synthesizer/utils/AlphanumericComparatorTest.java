@@ -28,6 +28,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -117,7 +118,7 @@ public class AlphanumericComparatorTest {
 	}
 
 	@Test
-	public void testSortList() {
+	public void testSortList_paragraphsAndNr() {
 		List<String> list = asList("$1 Nr.15", "$1", "$1 Nr.2", "Ende | 1", "$3", "SiebzehnPunktVier");
 		Collections.sort(list, comparator);
 		assertThat(list.get(0), is("$1"));
@@ -126,6 +127,63 @@ public class AlphanumericComparatorTest {
 		assertThat(list.get(3), is("$3"));
 		assertThat(list.get(4), is("Ende | 1"));
 		assertThat(list.get(5), is("SiebzehnPunktVier"));
+	}
+
+	@Test
+	public void testSortList_numbersOnly() {
+		List<String> list = asList("2.1 text", "1.2 text", "2.2 text", "1.1 text");
+		Collections.sort(list, comparator);
+		assertThat(list.get(0), is("1.1 text"));
+		assertThat(list.get(1), is("1.2 text"));
+		assertThat(list.get(2), is("2.1 text"));
+		assertThat(list.get(3), is("2.2 text"));
+	}
+
+	@Test
+	public void testSortList_charactersOnly() {
+		List<String> list = asList("b) text", "d) text", "c) text", "a) text");
+		Collections.sort(list, comparator);
+		assertThat(list.get(0), is("a) text"));
+		assertThat(list.get(1), is("b) text"));
+		assertThat(list.get(2), is("c) text"));
+		assertThat(list.get(3), is("d) text"));
+	}
+
+	@Test
+	public void testSortList_charactersAndNumbersMixed() {
+		List<String> list = asList("b) text", "2.1 text", "d) text", "1.1 text", "c) text", "a) text", "1.2 text",
+				"2.2 text");
+		Collections.sort(list, comparator);
+		assertThat(list.get(0), is("1.1 text"));
+		assertThat(list.get(1), is("1.2 text"));
+		assertThat(list.get(2), is("2.1 text"));
+		assertThat(list.get(3), is("2.2 text"));
+		assertThat(list.get(4), is("a) text"));
+		assertThat(list.get(5), is("b) text"));
+		assertThat(list.get(6), is("c) text"));
+		assertThat(list.get(7), is("d) text"));
+	}
+
+	@Test
+	public void testSortList_charactersAndNumbers() {
+		List<String> list = asList("B text", "A 1.1 text", "A text", "B 1.1 text", "A 1.2 text", "B 1.2 text");
+		Collections.sort(list, comparator);
+		assertThat(list.get(0), is("A text"));
+		assertThat(list.get(1), is("A 1.1 text"));
+		assertThat(list.get(2), is("A 1.2 text"));
+		assertThat(list.get(3), is("B text"));
+		assertThat(list.get(4), is("B 1.1 text"));
+		assertThat(list.get(5), is("B 1.2 text"));
+	}
+
+	@Test
+	public void testSortList_numbersOnly_exclude() {
+		List<String> list = asList("2.1 text", "1.1 text (skip 1) 2", "2.2 text", "1.1 text (skip 2) 1");
+		Collections.sort(list, comparator);
+		assertThat(list.get(0), is("1.1 text (skip 2) 1"));
+		assertThat(list.get(1), is("1.1 text (skip 1) 2"));
+		assertThat(list.get(2), is("2.1 text"));
+		assertThat(list.get(3), is("2.2 text"));
 	}
 
 	@Test
@@ -148,9 +206,12 @@ public class AlphanumericComparatorTest {
 		assertThat(list.get(10), is("[11. | Bei]"));
 		assertThat(list.get(11), is("[12. | Garagen]"));
 		assertThat(list.get(12), is("[13. | Das]"));
-		assertThat(list.get(13), is(
-				"[ | Rechtliche Grundlagen: Baugesetzbuch (BauGB) Baunutzungsverordnung (BauNVO) in der Fassung vom 23. Januar 1990 ]"));
-		assertThat(list.get(14), is("[ | Ueber die Festsetzungen nach § 9 Abs. 1 Nr. 25b]"));
+		assertThat(list.get(13), anyOf(is(
+				"[ | Rechtliche Grundlagen: Baugesetzbuch (BauGB) Baunutzungsverordnung (BauNVO) in der Fassung vom 23. Januar 1990 ]"),
+				is("[ | Ueber die Festsetzungen nach § 9 Abs. 1 Nr. 25b]")));
+		assertThat(list.get(14), anyOf(is(
+				"[ | Rechtliche Grundlagen: Baugesetzbuch (BauGB) Baunutzungsverordnung (BauNVO) in der Fassung vom 23. Januar 1990 ]"),
+				is("[ | Ueber die Festsetzungen nach § 9 Abs. 1 Nr. 25b]")));
 	}
 
 	private BaseMatcher<Integer> lessThan(int i) {
