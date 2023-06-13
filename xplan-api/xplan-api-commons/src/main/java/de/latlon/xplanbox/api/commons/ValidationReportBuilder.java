@@ -88,7 +88,10 @@ public class ValidationReportBuilder {
 	}
 
 	private String status() {
-		if (!validatorReport.getSyntacticValidatorResult().isValid())
+		SyntacticValidatorResult result = validatorReport.getSyntacticValidatorResult();
+		if (result == null)
+			return ValidationMessages.getMessage("status_unfinished");
+		if (!result.isValid())
 			return ValidationMessages.getMessage("status_skipped");
 		return ValidationMessages.getMessage("status_finished");
 	}
