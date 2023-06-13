@@ -24,6 +24,23 @@ Die zu testenden Endpunkte können folgendermaßen geändert werden:
 - Die TestCases der einzelnen TestSuites bauen teilweise aufeinander auf. Dies bedeutet, dass eine TestSuite immer komplett ausgeführt werden sollte.
 - Das SoapUI Projekt kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich diese zum Verifizieren einer Neuinstallation.
 
+### TestSuite "Codelists TestSuite"
+
+Diese TestSuite prüft ob externe Codelisten beim Import über die XPlanManagerAPI übersetzt werden. Es werden per default folgende Übersetzungen angenommen:
+* BP_SonstPlanArt, Code 11002 => TeilbebauungsPlan
+* BP_Status, Code 19999 => 19999
+
+Um diesen Zustand zu erreichen ist eine entsprechende Konfiguration der externen Codeliste **BP_SonstPlanArt** für die XPlanGML Version 5.2 in der Installation der XPlanManagerAPI notwendig. Für die Codeliste **BP_Status** wird angenommen, dass **keine** externe Codeliste konfiguriert ist.
+
+Die default Werte können durch Auswahl der TestSuite und Öffnen des Reiters `Custom Properties` (unten links) angepasst werden. Es handelt sich um folgende Properties:
+* codelistValue_BP_SonstPlanArt_11002
+* codelistValue_BP_Status_19999
+
+Für die Ausführung ist auch die Konfiguration der XPlanDienste URL erforderlich. Dies erfolgt ebenfalls unter  durch Auswahl der TestSuite und Öffnen des Reiters `Custom Properties` (unten links). Dort sind folgende Properties anzupassen:
+* servicesBaseUrl
+* username (optional)
+* password (optional)
+
 ---
 
 ## xplan-api-validator Projekt
