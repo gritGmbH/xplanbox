@@ -2,6 +2,12 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
+[[Aenderungshistorie-6.0.3]]
+=== Version 6.0.3
+
+==== Fehlerbehebungen
+- Externe Codes werden beim Import über den XPlanManagerWeb nicht übersetzt
+
 [[Aenderungshistorie-6.0.2]]
 === Version 6.0.2
 

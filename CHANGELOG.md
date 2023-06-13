@@ -2,6 +2,11 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+## Version 6.0.3 (2023-06-14)
+
+### Fehlerbehebungen
+- Externe Codes werden beim Import über den XPlanManagerWeb nicht übersetzt
+
 ## Version 6.0.2 (2023-04-13)
 
 ### Fehlerbehebungen
