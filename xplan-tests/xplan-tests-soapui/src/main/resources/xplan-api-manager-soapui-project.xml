@@ -14092,17 +14092,17 @@ assert expectedHeader == actualHeader</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>BP_5.2-externalCodelist.zip</con:name>
+              <con:name>BP_5.2_externalCodelist.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>BP_5.2-externalCodelist.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.2-externalCodelist.zip</con:url>
+              <con:contentId>BP_5.2_externalCodelist.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.2_externalCodelist.zip</con:url>
               <con:id>3f5a10c0-777b-4dc6-b2ce-44fcd9a8126e</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="profiles" value=""/>
-              <con:entry key="X-Filename" value="BP_5.2-externalCodelist.zip"/>
+              <con:entry key="X-Filename" value="BP_5.2_externalCodelist.zip"/>
             </con:parameters>
             <con:parameterOrder>
               <con:entry>X-Filename</con:entry>
