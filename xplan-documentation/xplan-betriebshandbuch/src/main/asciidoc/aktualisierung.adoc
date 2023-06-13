@@ -260,6 +260,25 @@ Für die Aktualisierung auf die Version 6.0.1 sind folgende Schritte auszuführe
 ** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_6.0_to_6.0.1_ im Modul _xplan-manager-workspace_
 ** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten ist erforderlich. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
+[[aktualisierung-auf-die-version-6.0.2]]
+=== Aktualisierung auf die Version 6.0.2
+
+Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
+
+* Austausch der Webapps:
+** _xplan-api-validator.war_
+** _xplan-api-manager.war_
+** _xplan-validator-web.war_
+** _xplan-manager-web.war_
+
+[[aktualisierung-auf-die-version-6.0.3]]
+=== Aktualisierung auf die Version 6.0.3
+
+Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
+
+* Austausch der Webapp:
+** _xplan-manager-web.war_
+
 === Troubleshooting
 
 Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:
