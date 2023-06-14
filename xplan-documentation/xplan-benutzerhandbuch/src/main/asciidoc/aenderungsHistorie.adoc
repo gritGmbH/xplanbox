@@ -21,6 +21,12 @@ Neben der Aktualisierung auf die aktuelle deegree webservices Version 3.5.0 sind
 - Fehler in XPlanManagerAPI bei Aufruf von HTTP DELETE für einen Plan behoben
 - Fehler in XPlanWMS bei Aufruf mit GetMap-Anfrage mit WMS 1.1.1 und EPSG:4326 behoben
 
+[[Aenderungshistorie-6.0.3]]
+=== Version 6.0.3
+
+==== Fehlerbehebungen
+- Externe Codes werden beim Import über den XPlanManagerWeb nicht übersetzt
+
 [[Aenderungshistorie-6.0.2]]
 === Version 6.0.2
 

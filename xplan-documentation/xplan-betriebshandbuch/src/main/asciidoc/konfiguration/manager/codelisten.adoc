@@ -1,8 +1,9 @@
 [[konfiguration-von-externen-codelisten]]
 === Konfiguration von externen Codelisten
 
-Externe Codelisten können im Verzeichnis _<XPLANBOX_CONFIG>/synthesizer_ abgelegt werden. Dabei weist die Variable _<XPLANBOX_CONFIG>_ auf das Verzeichnis, in dem sich die Dateien _managerConfiguration.properties_ und _managerWebConfiguration.properties_ befindet (s. auch <<Anwendungs-Tomcat>>).
-Dazu müssen für die Zuordnung zu dem Property im vereinfachten XPlanSyn-Schema und dem komplexen XPlanGML-Regeln konfiguriert werden.
+Externe Codelisten können im Verzeichnis _<XPLANBOX_CONFIG>/synthesizer_ abgelegt werden. Dabei weist die Variable _<XPLANBOX_CONFIG>_ auf das Verzeichnis, in dem sich die Dateien _managerConfiguration.properties_ und _managerWebConfiguration.properties_ befindet (s. auch <<Anwendungs-Tomcat>>). Das Unterverzeichnis _<XPLANBOX_CONFIG>/synthesizer_ muss ggfs. angelegt werden.
+
+Für die Zuordnung zu dem Property im vereinfachten XPlanSyn-Schema und dem komplexen XPlanGML-Schema, müssen Regeln konfiguriert werden.
 Die Regeln müssen abhängig von der XPlanGML-Version in einer der folgenden Dateien angelegt werden (die Dateinamen dürfen dabei nicht verändert werden):
 
 * xplan40.syn
@@ -32,12 +33,12 @@ Aufbau der Regel:
 
 Erläuterungen:
 
-* <XPATH_XPLANSYN>: XPath-Ausdruck im XPlan-Syn-Schema, in der der übersetze Code eingetragen werden soll.
-* <PROPERTY_XPLAN_GML>: Property im XPlan-GML-Schema.
+* <XPATH_XPLANSYN>: XPath-Ausdruck im XPlanSyn-Schema, für den der übersetze Code eingetragen werden soll.
+* <PROPERTY_XPLAN_GML>: Property im XPlanGML-Schema.
 * <CODELIST_DATEI>: Relativer Pfad zur Codelist-Datei.
 * <CODELIST_NAME>: Optionale Angabe des Namens der Codeliste. Wird nur benötigt, wenn die mit <CODELIST_DATEI> angegebene Datei mehr als eine Codeliste enthält.
 
-Änderungen an den Regel-Dateien sowie Codeliste-Dateien werden sofort wirksam.
+Änderungen an den Regel-Dateien sowie Codelist-Dateien werden erst nach einem Neustart des XPlanManagers wirksam.
 Sie gelten für den Import von Plänen und werden auch beim Editieren verwenden.
 Codes aus bereits importierten Plänen werden nicht neu übersetzt, für diese ist der Aufruf des <<kommandozeilen-anwendungen, Kommandozeilenwerkzeugs reSynthesizer>> erforderlich.
 
