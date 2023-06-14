@@ -56,7 +56,7 @@ List documents</con:description>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username/>
+            <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -85,7 +85,7 @@ Show system and application configuration</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>404</con:status>
+          <con:status>404 406</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -94,7 +94,7 @@ Show system and application configuration</con:description>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username/>
+            <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -145,7 +145,7 @@ Download document</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>404</con:status>
+          <con:status>404 400 500</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -154,7 +154,7 @@ Download document</con:description>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username/>
+            <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -189,12 +189,138 @@ Download document</con:description>
           <con:params/>
           <con:element>data</con:element>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>404</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>404</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>404</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
         <con:request name="Request 1" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username/>
+            <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
@@ -223,12 +349,18 @@ OpenAPI document</con:description>
           <con:status>406</con:status>
           <con:params/>
         </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>text/html;charset=utf-8</con:mediaType>
+          <con:status>406</con:status>
+          <con:params/>
+          <con:element>html</con:element>
+        </con:representation>
         <con:request name="Request 1" id="c3d70b20-79d3-4474-928b-deeb1f813de1" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username/>
+            <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -359,7 +491,34 @@ OpenAPI document</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET XX X.X XX formatNotAvailable" id="f7254d73-6f1a-46c4-8e86-30660f451c74">
+        <con:settings/>
+        <con:config service="XPlanDokumentenAPI" resourcePath="/" methodName="openApi" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET XX X.X XX formatNotAvailable" id="c3d70b20-79d3-4474-928b-deeb1f813de1" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="formatNotAvailable" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="ed716dba-fd89-43c2-8ae7-271b19e493ba" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>406</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -410,7 +569,34 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET XX X.X XX formatNotAvailable" id="6022ec49-e1d6-4268-a9fa-0d9124bc998e">
+        <con:settings/>
+        <con:config service="XPlanDokumentenAPI" resourcePath="/info" methodName="showConfig" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET XX X.X XX formatNotAvailable" id="6fb03af2-8a96-4f90-8577-72945c5ee2cf" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="formatNotAvailable" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//info</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="bd5a77c9-81f7-4bd5-827c-ef56ee3b68fe" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>406</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -451,7 +637,7 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
+              <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -460,6 +646,64 @@ assert json.version != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <entry key="planId" value="${#TestSuite#planId}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET SO 5.3 pI invalidInput" id="9ebc6c07-fc50-4fa7-82ea-85246bf12832">
+        <con:settings/>
+        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}" methodName="listDocuments" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET SO 5.3 pI invalidInput" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="bc6247a3-5d0d-47a5-93ea-59d65ed2d3d9" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="invalidInput" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET SO 5.3 pI invalidPlanId" id="274fe0d2-53b0-4de2-bf28-2d327e1952ef">
+        <con:settings/>
+        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}" methodName="listDocuments" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET SO 5.3 pI invalidPlanId" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="bc6247a3-5d0d-47a5-93ea-59d65ed2d3d9" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>404</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="99999999" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -500,7 +744,7 @@ assert contentLength[0].toInteger() > 0</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
+              <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -509,6 +753,96 @@ assert contentLength[0].toInteger() > 0</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="fileName" value="StErhVo_Eppendorf_Hoheluft-Ost.pdf"/>
+              <con:entry key="planId" value="${#TestSuite#planId}"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="HEAD SO 5.3 pI invalidInput" id="9c0d1bf1-9acc-4011-995e-e28759b61022">
+        <con:settings/>
+        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="HEAD SO 5.3 pI invalidInput" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="fileName" value="StErhVo_Eppendorf_Hoheluft-Ost.pdf"/>
+              <con:entry key="planId" value="invalidInput"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="HEAD SO 5.3 pI invalidPlanId" id="8fe33ca1-580c-41c9-9166-5ce822951b8a">
+        <con:settings/>
+        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="HEAD SO 5.3 pI invalidPlanId" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>404</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="fileName" value="StErhVo_Eppendorf_Hoheluft-Ost.pdf"/>
+              <con:entry key="planId" value="99999999"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="HEAD SO 5.3 pI invalidFileName" id="388f5b27-aa27-46f2-ad8a-528e23ebf8d8">
+        <con:settings/>
+        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="HEAD SO 5.3 pI invalidFileName" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>404</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="fileName" value="invalidFileName"/>
               <con:entry key="planId" value="${#TestSuite#planId}"/>
             </con:parameters>
           </con:restRequest>
@@ -552,7 +886,7 @@ assert contentLength[0].toInteger() > 0</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username/>
+              <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -561,6 +895,96 @@ assert contentLength[0].toInteger() > 0</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="fileName" value="StErhVo_Eppendorf_Hoheluft-Ost.pdf"/>
+              <con:entry key="planId" value="${#TestSuite#planId}"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET SO 5.3 pI invalidInput" id="ff33717b-f732-4c81-8479-41018304e8b5">
+        <con:settings/>
+        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET SO 5.3 pI invalidInput" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//dokument//</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="fileName" value="StErhVo_Eppendorf_Hoheluft-Ost.pdf"/>
+              <con:entry key="planId" value="invalidInput"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET SO 5.3 pI invalidPlanId" id="898c28e9-4918-49ae-877a-29be567c909a">
+        <con:settings/>
+        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET SO 5.3 pI invalidPlanId" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//dokument//</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>404</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="fileName" value="StErhVo_Eppendorf_Hoheluft-Ost.pdf"/>
+              <con:entry key="planId" value="99999999"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET SO 5.3 pI invalidFileName" id="5f5584ae-09dd-4533-9255-0edca820de83">
+        <con:settings/>
+        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET SO 5.3 pI invalidFileName" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//dokument//</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>404</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="fileName" value="invalidFileName"/>
               <con:entry key="planId" value="${#TestSuite#planId}"/>
             </con:parameters>
           </con:restRequest>
@@ -601,7 +1025,7 @@ assert contentLength[0].toInteger() > 0</scriptText>
     <con:properties>
       <con:property>
         <con:name>planId</con:name>
-        <con:value>95</con:value>
+        <con:value>107</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
