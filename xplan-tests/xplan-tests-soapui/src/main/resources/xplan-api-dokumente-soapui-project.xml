@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:soapui-project id="c0330194-e671-4de1-89fb-fd5cd92eb5af" activeEnvironment="Default" name="xplan-api-dokumente" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+  <con:description>For local execution use following property values:
+
+baseUrlManagerApi=http://localhost:8086/xplan-api-manager
+
+For execution against test environment use following property values:
+
+baseUrlManagerApi=https://xplanbox.lat-lon.de</con:description>
   <con:settings/>
   <con:interface xsi:type="con:RestService" id="da31547e-ee3b-4026-a608-c310a62f70aa" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanDokumentenAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:description>XPlanDokumenten REST API</con:description>
@@ -49,7 +56,7 @@ List documents</con:description>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -87,7 +94,7 @@ Show system and application configuration</con:description>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -147,11 +154,53 @@ Download document</con:description>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+      <con:method name="getHeader" id="5f528878-9409-4e3e-978a-a3e62b725b7e" method="HEAD">
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:request name="Request 1" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+          <con:request/>
+          <con:credentials>
+            <con:username/>
+            <con:password xsi:nil="true"/>
+            <con:domain xsi:nil="true"/>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -179,7 +228,7 @@ OpenAPI document</con:description>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -310,7 +359,7 @@ OpenAPI document</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -361,7 +410,7 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -380,7 +429,7 @@ assert json.version != null</scriptText>
       <con:testStep type="restrequest" name="GET SO 5.3 pI getFileList" id="aed3952e-4386-44dc-b1ac-6bc29df690e6">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}" methodName="listDocuments" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Request 1" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
+          <con:restRequest name="GET SO 5.3 pI getFileList" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -402,7 +451,7 @@ assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -417,13 +466,58 @@ assert json.version != null</scriptText>
       </con:testStep>
       <con:properties/>
     </con:testCase>
-    <con:testCase id="a3ba44a4-5d09-4e9d-addb-48411b2c8ca7" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/dokument/{planId}/{fileName} TestCase" searchProperties="true">
+    <con:testCase id="a3ba44a4-5d09-4e9d-addb-48411b2c8ca7" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/dokument/{planId}/{fileName} TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/dokument/{planId}/{fileName}] located at [/dokument/{planId}/{fileName}]</con:description>
       <con:settings/>
+      <con:testStep type="restrequest" name="HEAD SO 5.3 pI getHeader" id="ca531168-9f64-47db-afb0-d4c4d192f2d3">
+        <con:settings/>
+        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="head - Request 1" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="5bda49f3-6725-4318-9071-9efc0062f20b" name="Response Header Content-Type">
+              <con:configuration>
+                <scriptText>def expectedHeader = ["application/pdf"]
+def headers = messageExchange.response.responseHeaders
+def actualHeader = headers['Content-Type']
+assert expectedHeader == actualHeader</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="5bda49f3-6725-4318-9071-9efc0062f20b" name="Response Header Content-Length">
+              <con:configuration>
+                <scriptText>def headers = messageExchange.response.responseHeaders
+def contentLength = headers['Content-Length']
+assert contentLength[0].toInteger() > 0</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="fileName" value="StErhVo_Eppendorf_Hoheluft-Ost.pdf"/>
+              <con:entry key="planId" value="${#TestSuite#planId}"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET SO 5.3 pI getFile" id="ed8e46ba-6735-40de-855d-d254c5d54b80">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Request 1" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
+          <con:restRequest name="GET SO 5.3 pI getFile" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -442,8 +536,23 @@ assert json.version != null</scriptText>
                 <useRegEx>false</useRegEx>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="376c651c-f02b-4461-9158-ee4257fb3d09" name="Response Header Content-Type">
+              <con:configuration>
+                <scriptText>def expectedHeader = ["application/pdf"]
+def headers = messageExchange.response.responseHeaders
+def actualHeader = headers['Content-Type']
+assert expectedHeader == actualHeader</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="376c651c-f02b-4461-9158-ee4257fb3d09" name="Response Header Content-Length">
+              <con:configuration>
+                <scriptText>def headers = messageExchange.response.responseHeaders
+def contentLength = headers['Content-Length']
+assert contentLength[0].toInteger() > 0</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -492,7 +601,7 @@ assert json.version != null</scriptText>
     <con:properties>
       <con:property>
         <con:name>planId</con:name>
-        <con:value>73</con:value>
+        <con:value>95</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
