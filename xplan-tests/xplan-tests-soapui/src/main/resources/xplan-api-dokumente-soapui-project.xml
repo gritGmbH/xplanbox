@@ -315,6 +315,18 @@ Download document</con:description>
           <con:params/>
           <con:element>data</con:element>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
         <con:request name="Request 1" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
@@ -716,7 +728,7 @@ assert json.version != null</scriptText>
       <con:testStep type="restrequest" name="HEAD SO 5.3 pI getHeader" id="ca531168-9f64-47db-afb0-d4c4d192f2d3">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="head - Request 1" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
+          <con:restRequest name="HEAD SO 5.3 pI getHeader" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -740,7 +752,7 @@ assert expectedHeader == actualHeader</scriptText>
               <con:configuration>
                 <scriptText>def headers = messageExchange.response.responseHeaders
 def contentLength = headers['Content-Length']
-assert contentLength[0].toInteger() > 0</scriptText>
+assert contentLength[0].toInteger() == 344746</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -882,7 +894,7 @@ assert expectedHeader == actualHeader</scriptText>
               <con:configuration>
                 <scriptText>def headers = messageExchange.response.responseHeaders
 def contentLength = headers['Content-Length']
-assert contentLength[0].toInteger() > 0</scriptText>
+assert contentLength[0].toInteger() == 344746</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -1025,7 +1037,7 @@ assert contentLength[0].toInteger() > 0</scriptText>
     <con:properties>
       <con:property>
         <con:name>planId</con:name>
-        <con:value>107</con:value>
+        <con:value>2</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
