@@ -56,6 +56,7 @@ public class JobContext {
 		SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
 		schedulerFactory.setConfigLocation(new ClassPathResource("quartz.properties"));
 		schedulerFactory.setJobFactory(jobFactory);
+		schedulerFactory.setWaitForJobsToCompleteOnShutdown(true);
 
 		return schedulerFactory;
 	}
