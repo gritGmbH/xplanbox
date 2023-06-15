@@ -277,6 +277,9 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
 
 * Austausch der Webapp:
+** _xplan-api-validator.war_
+** _xplan-api-manager.war_
+** _xplan-validator-web.war_
 ** _xplan-manager-web.war_
 
 === Troubleshooting
