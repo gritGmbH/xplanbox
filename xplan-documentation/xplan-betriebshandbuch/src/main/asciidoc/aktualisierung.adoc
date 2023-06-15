@@ -279,6 +279,11 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 * Austausch der Webapp:
 ** _xplan-manager-web.war_
 
+[[aktualisierung-auf-xplanbox-version-7.0]]
+=== Aktualisierung auf die Version 7.0 der xPlanBox
+
+IMPORTANT: Mit der Version 7.0 der xPlanBox ist die Kartenvorschau im XPlanValidator nicht mehr standardmäßig aktiviert. Hinweise zur Konfiguration der Kartenvorschau sind im Abschnitt <<kartenvorschau-validator>> beschrieben.
+
 === Troubleshooting
 
 Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:
