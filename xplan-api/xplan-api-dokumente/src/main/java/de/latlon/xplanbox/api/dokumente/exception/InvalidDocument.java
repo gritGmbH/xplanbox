@@ -35,7 +35,7 @@ public class InvalidDocument extends XPlanApiException {
 	private static final String EXCEPTION_MESSAGE = "Document with filename %s of Plan with ID %s does not exist!";
 
 	public InvalidDocument(int planId, String fileName) {
-		super(String.format(EXCEPTION_MESSAGE, planId, fileName, planId));
+		super(String.format(EXCEPTION_MESSAGE, fileName, planId));
 	}
 
 	@Override

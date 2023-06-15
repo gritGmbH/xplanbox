@@ -20,17 +20,23 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
+import com.amazonaws.AmazonServiceException;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class StorageException extends Exception {
 
-	public StorageException(String message) {
-		super(message);
-	}
+	private int statusCode = -1;
 
 	public StorageException(String message, Throwable e) {
 		super(message, e);
+		if (e instanceof AmazonServiceException)
+			this.statusCode = ((AmazonServiceException) e).getStatusCode();
+	}
+
+	public int getStatusCode() {
+		return statusCode;
 	}
 
 }

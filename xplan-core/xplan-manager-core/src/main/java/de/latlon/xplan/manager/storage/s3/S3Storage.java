@@ -49,6 +49,8 @@ public class S3Storage {
 
 	private static final Logger LOG = LoggerFactory.getLogger(S3Storage.class);
 
+	public static final int NOT_FOUND = 404;
+
 	private final AmazonS3 client;
 
 	private final String bucketName;
@@ -58,6 +60,12 @@ public class S3Storage {
 		this.bucketName = bucketName;
 	}
 
+	/**
+	 * @param key of the object to return
+	 * @return the S3Object with the passed key, never <code>null</code>
+	 * @throws StorageException if an error occurred requesting the object or an object
+	 * with the passed key was not found
+	 */
 	public de.latlon.xplan.manager.storage.s3.S3Object getObject(String key) throws StorageException {
 		S3Object object = null;
 		try {
@@ -78,6 +86,12 @@ public class S3Storage {
 		}
 	}
 
+	/**
+	 * @param key of the object metadata to return
+	 * @return the S3Metadata of the object with the passed key, never <code>null</code>
+	 * @throws StorageException if an error occurred requesting the object or an object
+	 * with the passed key was not found
+	 */
 	public S3Metadata getObjectMetadata(String key) throws StorageException {
 		try {
 			LOG.info("Get object metadata with key {} from bucket {}.", key, bucketName);

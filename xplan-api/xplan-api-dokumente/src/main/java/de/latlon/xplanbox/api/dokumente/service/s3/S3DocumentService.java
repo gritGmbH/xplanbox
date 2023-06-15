@@ -19,6 +19,8 @@ import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static javax.ws.rs.core.Response.Status.NOT_FOUND;
+
 /**
  * Implementation of a {@link DocumentService} retrieving the documents from S3.
  *
@@ -44,24 +46,34 @@ public class S3DocumentService implements DocumentService {
 	@Override
 	public DocumentHeader retrieveHeader(int planId, String fileName) throws InvalidDocument, StorageException {
 		String key = planId + "_" + fileName;
-		S3Metadata objectMetadata = documentStorage.getObjectMetadata(key);
-		if (objectMetadata == null)
-			throw new InvalidDocument(planId, fileName);
-		return new DocumentHeader(objectMetadata.getContentLength(), objectMetadata.getContentType());
+		try {
+			S3Metadata objectMetadata = documentStorage.getObjectMetadata(key);
+			return new DocumentHeader(objectMetadata.getContentLength(), objectMetadata.getContentType());
+		}
+		catch (StorageException e) {
+			if (e.getStatusCode() == NOT_FOUND.getStatusCode())
+				throw new InvalidDocument(planId, fileName);
+			throw e;
+		}
 	}
 
 	@Override
 	public DocumentHeaderWithStream retrieveDocumentAndHeader(int planId, String fileName)
 			throws InvalidDocument, StorageException {
 		String key = planId + "_" + fileName;
-		S3Object object = documentStorage.getObject(key);
-		if (object == null)
-			throw new InvalidDocument(planId, fileName);
-		S3Metadata objectMetadata = object.getS3Metadata();
-		StreamingOutput streamingOutput = outputStream -> new ByteArrayInputStream(object.getContent())
-				.transferTo(outputStream);
-		return new DocumentHeaderWithStream(objectMetadata.getContentLength(), objectMetadata.getContentType(),
-				streamingOutput);
+		try {
+			S3Object object = documentStorage.getObject(key);
+			S3Metadata objectMetadata = object.getS3Metadata();
+			StreamingOutput streamingOutput = outputStream -> new ByteArrayInputStream(object.getContent())
+					.transferTo(outputStream);
+			return new DocumentHeaderWithStream(objectMetadata.getContentLength(), objectMetadata.getContentType(),
+					streamingOutput);
+		}
+		catch (StorageException e) {
+			if (e.getStatusCode() == NOT_FOUND.getStatusCode())
+				throw new InvalidDocument(planId, fileName);
+			throw e;
+		}
 	}
 
 }
