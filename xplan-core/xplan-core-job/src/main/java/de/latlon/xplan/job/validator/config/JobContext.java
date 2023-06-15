@@ -24,7 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
@@ -34,7 +34,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
-@Import({ MemoryJobContext.class, SqlJobContext.class })
+@Profile("validatorwmssql | validatorwmsmemory")
 public class JobContext {
 
 	public static final String DELETE_AFTER_KEY = "DELETE_AFTER_MINUTES";
