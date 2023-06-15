@@ -5,6 +5,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 ## Version 6.0.3 (2023-06-14)
 
 ### Fehlerbehebungen
+- Aktualisierung der Validierungsregeln auf v1.1.4 mit Korrektur der Regel 5.3.1.2 für Flächennutzungspläne in der Version XPlanGML 5.1
 - Externe Codes werden beim Import über den XPlanManagerWeb nicht übersetzt
 
 ## Version 6.0.2 (2023-04-13)
