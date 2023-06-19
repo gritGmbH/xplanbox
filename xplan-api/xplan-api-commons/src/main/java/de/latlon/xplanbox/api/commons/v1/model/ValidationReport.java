@@ -174,7 +174,7 @@ public class ValidationReport {
 		return this;
 	}
 
-	@Schema(example = "Die Validierung wurde vollst\u00e4ndig ausgef\u00fchrt.")
+	@Schema(example = "Die Validierung wurde ausgef\u00fchrt.")
 	@JsonProperty("status")
 	public String getStatus() {
 		return status;

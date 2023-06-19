@@ -1173,7 +1173,7 @@ assert json.version != null</scriptText>
             <con:assertion type="JsonPath Match" id="bbb944e1-8347-474f-ab9e-3aa8ab78e65b" name="status">
               <con:configuration>
                 <path>$.status</path>
-                <content>Die Validierung wurde vollständig ausgeführt.</content>
+                <content>Die Validierung wurde ausgeführt.</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1383,7 +1383,7 @@ assert json.version != null</scriptText>
             <con:assertion type="JsonPath Match" id="bbb944e1-8347-474f-ab9e-3aa8ab78e65b" name="status">
               <con:configuration>
                 <path>$.status</path>
-                <content>Die Validierung wurde vollständig ausgeführt.</content>
+                <content>Die Validierung wurde ausgeführt.</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -2078,7 +2078,7 @@ assert json.version != null</scriptText>
             <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="status">
               <con:configuration>
                 <path>$.status</path>
-                <content>Die Validierung wurde vollständig ausgeführt.</content>
+                <content>Die Validierung wurde ausgeführt.</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
