@@ -71,7 +71,7 @@ public class ApplicationPathConfig extends ResourceConfig {
 		packages("de.latlon.xplanbox.api.commons.exception");
 		packages("de.latlon.xplanbox.api.commons.converter");
 		OpenAPI openApi = new OpenAPI();
-		openApi.setInfo(new Info().title("XPlanValidatorAPI").version("1.1.1").description("XPlanValidator REST API")
+		openApi.setInfo(new Info().title("XPlanValidatorAPI").version("1.2.0").description("XPlanValidator REST API")
 				.termsOfService(getTermsOfService(validatorApiConfiguration))
 				.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));
 		addContact(openApi, validatorApiConfiguration);

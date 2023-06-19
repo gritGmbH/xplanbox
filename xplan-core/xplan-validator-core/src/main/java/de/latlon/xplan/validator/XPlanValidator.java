@@ -230,22 +230,22 @@ public class XPlanValidator {
 
 	private void validateSemanticProfiles(XPlanArchive archive, List<String> profiles, ValidatorReport report)
 			throws ValidatorException {
-		if (!report.getSyntacticValidatorResult().isValid()) {
-			report.addSemanticProfileValidatorResults(new SemanticValidatorResult(SYNTAX_ERRORS));
-		}
-		else {
-			for (String profileId : profiles) {
-				Optional<SemanticProfileValidator> profileValidator = semanticProfileValidators.stream()
-						.filter(semanticProfileValidator -> semanticProfileValidator.getId().equals(profileId))
-						.findFirst();
-				if (profileValidator.isPresent()) {
+		for (String profileId : profiles) {
+
+			Optional<SemanticProfileValidator> profileValidator = semanticProfileValidators.stream()
+					.filter(semanticProfileValidator -> semanticProfileValidator.getId().equals(profileId)).findFirst();
+			if (profileValidator.isPresent()) {
+				if (!report.getSyntacticValidatorResult().isValid()) {
+					report.addSemanticProfileValidatorResults(new SemanticValidatorResult(SYNTAX_ERRORS));
+				}
+				else {
 					SemanticValidatorResult semanticValidatorResult = validateSemanticallyAndWriteResult(
 							profileValidator.get(), archive, Collections.emptyList());
 					report.addSemanticProfileValidatorResults(semanticValidatorResult);
 				}
-				else {
-					throw new ValidatorException("Profile with id " + profileId + " does not exist");
-				}
+			}
+			else {
+				throw new ValidatorException("Profile with id " + profileId + " does not exist");
 			}
 		}
 	}
