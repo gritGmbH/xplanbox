@@ -1170,6 +1170,15 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="bbb944e1-8347-474f-ab9e-3aa8ab78e65b" name="status">
+              <con:configuration>
+                <path>$.status</path>
+                <content>Die Validierung wurde vollständig ausgeführt.</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:assertion type="JsonPath Match" id="0a3750ed-207e-40f8-a4c9-2d50e525f2b1" name="geometrisch">
               <con:configuration>
                 <path>$..geometrisch</path>
@@ -1366,6 +1375,15 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$.valid</path>
                 <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="bbb944e1-8347-474f-ab9e-3aa8ab78e65b" name="status">
+              <con:configuration>
+                <path>$.status</path>
+                <content>Die Validierung wurde vollständig ausgeführt.</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -2057,6 +2075,15 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="status">
+              <con:configuration>
+                <path>$.status</path>
+                <content>Die Validierung wurde vollständig ausgeführt.</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -2630,6 +2657,110 @@ assert json.version != null</scriptText>
             <con:parameters>
               <con:entry key="profiles" value=""/>
               <con:entry key="skipGeometrisch" value="true"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0 XX validatePlanWithSyntaxError" id="30bd38db-1511-4412-87db-b788f2bbabbe">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0 XX validatePlanWithSyntaxError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/gml+xml" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="filename">
+              <con:configuration>
+                <path>$.filename</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="status">
+              <con:configuration>
+                <path>$.status</path>
+                <content>Aufgrund von syntaktischen Fehlern konnten nicht alle Validierungsschritte ausgeführt werden. Zudem konnte die BBox und externalReferences nicht ermittelt werden.</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="semantisch invalid">
+              <con:configuration>
+                <path>$.validationResult.semantisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch invalid">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="syntaktisch invalid">
+              <con:configuration>
+                <path>$.validationResult.syntaktisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_6.0.zip</con:name>
+              <con:contentType>application/gml+xml</con:contentType>
+              <con:contentId>BP_6.0_syntaxErrors.gml</con:contentId>
+              <con:part xsi:nil="true"/>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0_syntaxErrors.gml</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="profiles" value=""/>
+              <con:entry key="X-Filename" value="BP_6.0_syntaxErrors.gml"/>
             </con:parameters>
             <con:parameterOrder>
               <con:entry>X-Filename</con:entry>

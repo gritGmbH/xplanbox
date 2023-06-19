@@ -3733,6 +3733,73 @@ assert actualHeader != null</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0 XX importPlanWithSyntaxErrorExpectError" id="4987179e-23d8-42fc-a3b2-17aa7fedec43">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0 XX importPlanWithSyntaxErrorExpectError" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/gml+xml" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="JsonPath Match" id="aaecb4c3-ed57-42e9-ab0f-5c8c7f73a674" name="status">
+              <con:configuration>
+                <path>$.status</path>
+                <content>Aufgrund von syntaktischen Fehlern konnten nicht alle Validierungsschritte ausgeführt werden. Zudem konnte die BBox und externalReferences nicht ermittelt werden.</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="aaecb4c3-ed57-42e9-ab0f-5c8c7f73a674" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_6.0.zip</con:name>
+              <con:contentType>application/gml+xml</con:contentType>
+              <con:contentId>BP_6.0_syntaxErrors</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_6.0_syntaxErrors.gml</con:url>
+              <con:id>0c70fade-2e59-43eb-a59a-ee6dcbd05e46</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="skipLaufrichtung" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>internalId</con:entry>
+              <con:entry>planStatus</con:entry>
+              <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="POST FP 5.0 sF,sG,Ss importPlan" id="3b879191-5bde-41bd-bc6a-826b6562055c">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
