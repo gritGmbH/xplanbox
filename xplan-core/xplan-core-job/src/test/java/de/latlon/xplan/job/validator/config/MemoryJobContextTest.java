@@ -37,9 +37,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = { JobContext.class })
-@ActiveProfiles("validatorwmssql")
-public class JobContextTest {
+@ContextConfiguration(classes = { JobContext.class, SqlJobContext.class, MemoryJobContext.class })
+@ActiveProfiles("validatorwmsmemory")
+public class MemoryJobContextTest {
 
 	@Autowired
 	private Scheduler scheduler;
@@ -49,9 +49,9 @@ public class JobContextTest {
 		boolean sqlDeleteJobExists = scheduler.checkExists(new JobKey("sqlDeleteJob", "xplan-validator-wms"));
 		boolean gmlDeleteJobExists = scheduler.checkExists(new JobKey("gmlDeleteJob", "xplan-validator-wms"));
 		boolean gmlImportJobExists = scheduler.checkExists(new JobKey("gmlImportJob", "xplan-validator-wms"));
-		assertThat(sqlDeleteJobExists, is(true));
-		assertThat(gmlDeleteJobExists, is(false));
-		assertThat(gmlImportJobExists, is(false));
+		assertThat(sqlDeleteJobExists, is(false));
+		assertThat(gmlDeleteJobExists, is(true));
+		assertThat(gmlImportJobExists, is(true));
 	}
 
 }
