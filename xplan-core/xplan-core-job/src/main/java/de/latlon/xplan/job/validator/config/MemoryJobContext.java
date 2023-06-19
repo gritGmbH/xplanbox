@@ -45,7 +45,7 @@ import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
-@Profile("!validatorwmssql")
+@Profile("validatorwmsmemory")
 public class MemoryJobContext {
 
 	@Bean
