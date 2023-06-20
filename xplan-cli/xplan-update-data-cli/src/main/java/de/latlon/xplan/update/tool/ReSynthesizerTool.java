@@ -61,7 +61,7 @@ public class ReSynthesizerTool {
 		System.out.println(
 				"      Das Verzeichnis in dem die Konfigurationsdatei managerConfiguration.properties liegt, muss durch Angabe des Verzeichnis in der Datei etc/application.properties oder durch Setzen der Umgebungsvariablen _XPLANBOX_CONFIG_ erfolgen. Andernfalls wird die Konfiguration aus etc/managerConfiguration.properties verwendet.");
 		System.out.println(
-				"     Der Workspace `xplan-manager-workspace` muss im Verzeichnis _.deegree/_ des Home-Verzeichnis des Nutzers liegen, der das TransformTool aufruft. Alternativ kann das Verzeichnis, in dem der Workspace liegt, durch Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ gesetzt werden.");
+				"     Der Workspace `xplan-manager-workspace` muss im Verzeichnis _.deegree/_ des Home-Verzeichnis des Nutzers liegen, der das Tool aufruft. Alternativ kann das Verzeichnis, in dem der Workspace liegt, durch Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ gesetzt werden.");
 		System.exit(0);
 	}
 
