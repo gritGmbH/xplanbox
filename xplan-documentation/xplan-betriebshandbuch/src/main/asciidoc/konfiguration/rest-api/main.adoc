@@ -116,3 +116,4 @@ documentationUrl=
 
 [[konfiguration-document-api]]
 === XPlanDokumentenAPI
+// TODO Teil der Umsetzung von XPLANBOX-1178

@@ -1,7 +1,7 @@
 [[xplandokumenten-api]]
 === XPlanDokumentenAPI
 
-Die REST-API der Komponente XPlanDokumentenAPI ermöglicht es, zu einem Plan zugehörige Dokumente über eine Web-API abzurufen.
+Die REST-API der optionalen Komponente XPlanDokumentenAPI ermöglicht es, zu einem Plan zugehörige Dokumente über eine Web-API abzurufen.
 
 Die REST-API der Komponente XPlanDokumentenAPI stellt folgende Ressourcen bereit:
 
