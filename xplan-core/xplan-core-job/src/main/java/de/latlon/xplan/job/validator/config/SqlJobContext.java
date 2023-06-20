@@ -52,7 +52,7 @@ public class SqlJobContext {
 	private static final Logger LOG = LoggerFactory.getLogger(SqlJobContext.class);
 
 	@Bean
-	public JobDetail deleteJob(@Value("${#{environment.DELETE_AFTER_MINUTES}:5}") int deleteAfterInMinutes) {
+	public JobDetail deleteJob(@Value("#{environment.DELETE_AFTER_MINUTES ?: 5}") int deleteAfterInMinutes) {
 		LOG.info("Delete validated plans after {} minutes.", deleteAfterInMinutes);
 		return JobBuilder.newJob().ofType(SqlDeleteJob.class).withIdentity("sqlDeleteJob", "xplan-validator-wms")
 				.storeDurably().withDescription("Delete features from SQLFeatureStore ...")

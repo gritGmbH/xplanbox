@@ -55,7 +55,7 @@ public class MemoryJobContext {
 	}
 
 	@Bean
-	public JobDetail deleteJob(@Value("${#{environment.DELETE_AFTER_MINUTES}:5}") int deleteAfterInMinutes) {
+	public JobDetail deleteJob(@Value("#{environment.DELETE_AFTER_MINUTES ?: 5}") int deleteAfterInMinutes) {
 		return JobBuilder.newJob().ofType(GmlDeleteJob.class).withIdentity("gmlDeleteJob", "xplan-validator-wms")
 				.storeDurably().withDescription("Delete GML files from MemoryFeatureStore ...")
 				.usingJobData(DELETE_AFTER_KEY, deleteAfterInMinutes).build();
