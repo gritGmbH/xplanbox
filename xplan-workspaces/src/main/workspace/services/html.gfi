@@ -30,6 +30,7 @@
     <script>
         var WMS_URL = "http://localhost:8080/xplan-wms";
         var S3_URL;
+        var DOWNLOADAPI_URL;
 
         window.onload = function () {
           updateComplexProperties();
@@ -116,8 +117,11 @@
         }
 
         function createLink(referenz, xPlanMgrId){
+            var filename = referenz.substring( referenz.indexOf('&filename=') +10, referenz.length );
+            if(DOWNLOADAPI_URL){
+                return DOWNLOADAPI_URL + "/dokument/" + xPlanMgrId + "/" + filename;
+            }
             if(S3_URL){
-                var filename = referenz.substring( referenz.indexOf('&filename=') +10, referenz.length );
                 return S3_URL + "/" + xPlanMgrId + "_" + filename;
             }
             return WMS_URL + referenz;

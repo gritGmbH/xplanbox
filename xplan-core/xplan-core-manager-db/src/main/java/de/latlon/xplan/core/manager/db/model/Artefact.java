@@ -52,6 +52,9 @@ public class Artefact {
 	@NotNull
 	private @Valid String mimetype;
 
+	@NotNull
+	private @Valid Long length;
+
 	@Enumerated(EnumType.STRING)
 	private @Valid ArtefactType artefacttype;
 
@@ -107,6 +110,19 @@ public class Artefact {
 		return this;
 	}
 
+	public Long getLength() {
+		return length;
+	}
+
+	public Artefact length(Long length) {
+		this.length = length;
+		return this;
+	}
+
+	public void setLength(Long length) {
+		this.length = length;
+	}
+
 	public ArtefactType getArtefacttype() {
 		return artefacttype;
 	}
@@ -129,12 +145,12 @@ public class Artefact {
 		Artefact artefact = (Artefact) o;
 		return Objects.equals(getId(), artefact.getId()) && Arrays.equals(getData(), artefact.getData())
 				&& Objects.equals(getNum(), artefact.getNum()) && Objects.equals(getMimetype(), artefact.getMimetype())
-				&& getArtefacttype() == artefact.getArtefacttype();
+				&& Objects.equals(getLength(), artefact.getLength()) && getArtefacttype() == artefact.getArtefacttype();
 	}
 
 	@Override
 	public int hashCode() {
-		int result = Objects.hash(getId(), getNum(), getMimetype(), getArtefacttype());
+		int result = Objects.hash(getId(), getNum(), getMimetype(), getLength(), getArtefacttype());
 		result = 31 * result + Arrays.hashCode(getData());
 		return result;
 	}
@@ -142,7 +158,7 @@ public class Artefact {
 	@Override
 	public String toString() {
 		return "Artefact{" + "id=" + id + ", data=" + Arrays.toString(data) + ", num=" + num + ", mimetype='" + mimetype
-				+ '\'' + ", artefacttype=" + artefacttype + '}';
+				+ ", length='" + length + '\'' + ", artefacttype=" + artefacttype + '}';
 	}
 
 }

@@ -24,6 +24,8 @@ include::XPlanValidator.adoc[]
 
 include::XPlanManager.adoc[]
 
+include::XPlanDokumentenAPI.adoc[]
+
 include::XPlanTransform_CLI.adoc[]
 
 include::XPlanWMS.adoc[]

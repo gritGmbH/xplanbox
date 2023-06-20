@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-api-manager - xplan-api-manager
+ * xplan-api-dokumente - XPlanDokumentenAPI
  * %%
  * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
@@ -8,36 +8,41 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplanbox.api.manager.exception;
+package de.latlon.xplanbox.api.dokumente.v1;
 
-import de.latlon.xplanbox.api.commons.exception.XPlanApiException;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
 
-import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 
 /**
- * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * Minimal end-point for liveness probes. To be replaced by Spring-boot health actuator.
+ *
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
+ * @since 6.1
  */
-public class InvalidPlanIdSyntax extends XPlanApiException {
+@Path("/status")
+@Hidden
+public class StatusApi {
 
-	private static final String EXCEPTION_MESSAGE = "Plan with ID %s is syntactically not correct, must be an 32bit integer!";
-
-	public InvalidPlanIdSyntax(String planId) {
-		super(String.format(EXCEPTION_MESSAGE, planId));
-	}
-
-	@Override
-	public int getStatusCode() {
-		return BAD_REQUEST.getStatusCode();
+	@GET
+	@Produces({ "text/plain" })
+	@Operation(summary = "Internal API")
+	public Response status() {
+		return Response.ok().entity("ok").build();
 	}
 
 }

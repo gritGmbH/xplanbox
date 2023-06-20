@@ -21,10 +21,10 @@
 package de.latlon.xplan.manager.document.s3;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.S3Object;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.manager.document.DocumentStorage;
 import de.latlon.xplan.manager.storage.StorageEvent;
+import de.latlon.xplan.manager.storage.s3.S3Object;
 import de.latlon.xplan.manager.storage.s3.S3Storage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 
@@ -70,7 +70,7 @@ public class S3DocumentStorage extends S3Storage implements DocumentStorage {
 			String key = createKey(planId, referenzUrl);
 			S3Object object = getObject(key);
 			if (object != null)
-				storageEvent.addDeletedKey(object.getKey(), object.getObjectContent());
+				storageEvent.addDeletedKey(object);
 			deleteObjects(key);
 		}
 	}

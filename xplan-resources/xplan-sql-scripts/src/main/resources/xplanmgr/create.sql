@@ -63,6 +63,7 @@ CREATE TABLE artefacts (
     data bytea NOT NULL,
     num integer NOT NULL,
     mimetype text NOT NULL,
+    length bigint NOT NULL default -1,
     artefacttype artefacttype
 );
 COMMENT ON TABLE artefacts IS 'Plan artefacts';

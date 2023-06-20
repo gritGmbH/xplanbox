@@ -93,8 +93,9 @@ public class PlanRepositoryTest {
 		Feature feature = new Feature().num(1).fid("123");
 		Plan plan = new Plan();
 		ArtefactId artefactId = new ArtefactId().plan(plan).filename("test.xml");
+		byte[] bytes = "test".getBytes(UTF_8);
 		Artefact artefact = new Artefact().id(artefactId).num(1).artefacttype(ArtefactType.XPLANGML)
-				.mimetype("text/xml").data("test".getBytes(UTF_8));
+				.mimetype("text/xml").length(Long.valueOf(bytes.length)).data(bytes);
 		plan.importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
 				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature))
 				.artefacts(Collections.singleton(artefact));

@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-api-manager - xplan-api-manager
+ * xplan-api-dokumente - XPlanDokumentenAPI
  * %%
  * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
@@ -18,30 +18,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplanbox.api.manager.exception;
+package de.latlon.xplanbox.api.dokumente.handler;
 
-import de.latlon.xplanbox.api.commons.exception.XPlanApiException;
+import de.latlon.xplanbox.api.dokumente.v1.model.SystemConfig;
+import org.slf4j.Logger;
+import org.springframework.stereotype.Component;
 
-import static javax.ws.rs.core.Response.Status.NOT_FOUND;
+import javax.inject.Singleton;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @since 6.1
  */
-public class InvalidPlanId extends XPlanApiException {
+@Component
+@Singleton
+public class ConfigHandler {
 
-	private static final String EXCEPTION_MESSAGE = "Plan with ID %s is not known!";
+	private static final Logger LOG = getLogger(ConfigHandler.class);
 
-	public InvalidPlanId(int planId) {
-		super(String.format(EXCEPTION_MESSAGE, planId));
+	public SystemConfig describeSystem() {
+		LOG.debug("Generating XPlanDokumenteAPI config information");
+		return new SystemConfig().version(parseVersion());
 	}
 
-	public InvalidPlanId(String planId) {
-		super(String.format(EXCEPTION_MESSAGE, planId));
-	}
-
-	@Override
-	public int getStatusCode() {
-		return NOT_FOUND.getStatusCode();
+	public String parseVersion() {
+		Package thisPackage = getClass().getPackage();
+		return thisPackage.getImplementationVersion();
 	}
 
 }

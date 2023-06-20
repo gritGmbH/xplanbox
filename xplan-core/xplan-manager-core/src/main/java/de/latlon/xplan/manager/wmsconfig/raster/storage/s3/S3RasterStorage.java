@@ -21,9 +21,9 @@
 package de.latlon.xplan.manager.wmsconfig.raster.storage.s3;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.S3Object;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.storage.StorageEvent;
+import de.latlon.xplan.manager.storage.s3.S3Object;
 import de.latlon.xplan.manager.storage.s3.S3Storage;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
@@ -74,7 +74,7 @@ public class S3RasterStorage extends S3Storage implements RasterStorage {
 		String key = planId + "_" + rasterId;
 		S3Object object = getObject(key);
 		if (object != null)
-			storageEvent.addDeletedKey(object.getKey(), object.getObjectContent());
+			storageEvent.addDeletedKey(object);
 		deleteObjects(key);
 	}
 
