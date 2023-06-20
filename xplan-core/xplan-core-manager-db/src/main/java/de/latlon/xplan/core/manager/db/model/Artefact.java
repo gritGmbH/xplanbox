@@ -157,8 +157,8 @@ public class Artefact {
 
 	@Override
 	public String toString() {
-		return "Artefact{" + "id=" + id + ", data=" + Arrays.toString(data) + ", num=" + num + ", mimetype='" + mimetype
-				+ ", length='" + length + '\'' + ", artefacttype=" + artefacttype + '}';
+		return "Artefact{" + "id=" + id + ", num=" + num + ", mimetype='" + mimetype + ", length='" + length + '\''
+				+ ", artefacttype=" + artefacttype + '}';
 	}
 
 }
