@@ -24,10 +24,12 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
+import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -43,8 +45,11 @@ public class XPlanDocumentManager {
 
 	private final DocumentStorage documentStorage;
 
-	public XPlanDocumentManager(DocumentStorage documentStorage) {
+	private final ApplicationEventPublisher applicationEventPublisher;
+
+	public XPlanDocumentManager(DocumentStorage documentStorage, ApplicationEventPublisher applicationEventPublisher) {
 		this.documentStorage = documentStorage;
+		this.applicationEventPublisher = applicationEventPublisher;
 	}
 
 	/**
@@ -52,6 +57,7 @@ public class XPlanDocumentManager {
 	 * @param planId the id of the plan, never <code>null</code>
 	 * @param featureCollection the parsed feature collection, never <code>null</code>
 	 * @param xPlanArchive containing the documents, never <code>null</code>
+	 * @return
 	 * @throws StorageException if the documents could not be stored
 	 */
 	public void importDocuments(int planId, FeatureCollection featureCollection, XPlanArchive xPlanArchive)
@@ -59,8 +65,14 @@ public class XPlanDocumentManager {
 		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 		ExternalReferenceInfo externalReferenceInfo = externalReferenceScanner.scan(featureCollection,
 				xPlanArchive.getVersion());
-		List<String> referencesToAdd = collectReferencesToAdd(externalReferenceInfo.getNonRasterRefs());
-		documentStorage.importDocuments(planId, xPlanArchive, referencesToAdd);
+		List<String> referencesToAdd = collectNonHttpReferences(externalReferenceInfo.getNonRasterRefs());
+		StorageEvent storageEvent = new StorageEvent();
+		try {
+			documentStorage.importDocuments(planId, xPlanArchive, referencesToAdd, storageEvent);
+		}
+		finally {
+			applicationEventPublisher.publishEvent(storageEvent);
+		}
 	}
 
 	/**
@@ -76,19 +88,24 @@ public class XPlanDocumentManager {
 	 */
 	public void updateDocuments(int planId, List<Path> uploadedArtefacts, List<ExternalReference> documentsToAdd,
 			List<ExternalReference> documentsToRemove) throws StorageException {
-		for (String referenceToAdd : collectReferencesToAdd(documentsToAdd)) {
-			Path fileToAdd = getFileToAdd(referenceToAdd, uploadedArtefacts);
-			if (fileToAdd != null) {
-				documentStorage.importDocument(planId, referenceToAdd, fileToAdd);
+		StorageEvent storageEvent = new StorageEvent();
+		try {
+			for (String referenceToAdd : collectNonHttpReferences(documentsToAdd)) {
+				Path fileToAdd = getFileToAdd(referenceToAdd, uploadedArtefacts);
+				if (fileToAdd != null) {
+					documentStorage.importDocument(planId, referenceToAdd, fileToAdd, storageEvent);
+				}
+				else {
+					LOG.warn("Could not find document with name {} to import in storage", referenceToAdd);
+				}
 			}
-			else {
-				LOG.warn("Could not find document with name {} to import in storage", referenceToAdd);
+
+			for (String referenceToRemove : collectNonHttpReferences(documentsToRemove)) {
+				documentStorage.deleteDocument(planId, referenceToRemove, storageEvent);
 			}
 		}
-
-		for (ExternalReference referenceToRemove : documentsToRemove) {
-			documentStorage.deleteDocument(planId, referenceToRemove.getReferenzUrl());
-			documentStorage.deleteDocument(planId, referenceToRemove.getGeoRefUrl());
+		finally {
+			applicationEventPublisher.publishEvent(storageEvent);
 		}
 	}
 
@@ -100,7 +117,7 @@ public class XPlanDocumentManager {
 		return null;
 	}
 
-	private List<String> collectReferencesToAdd(List<ExternalReference> externalReferences) {
+	private List<String> collectNonHttpReferences(List<ExternalReference> externalReferences) {
 		List<String> referencesToAdd = new ArrayList<>();
 		for (ExternalReference reference : externalReferences) {
 			addReference(reference.getReferenzUrl(), referencesToAdd);

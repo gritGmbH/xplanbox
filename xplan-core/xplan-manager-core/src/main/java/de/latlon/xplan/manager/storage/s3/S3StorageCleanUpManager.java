@@ -21,7 +21,13 @@
 package de.latlon.xplan.manager.storage.s3;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.storage.StorageEvent;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
+
+import java.util.List;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -34,8 +40,15 @@ public class S3StorageCleanUpManager extends S3Storage implements StorageCleanUp
 	}
 
 	@Override
-	public void deleteAll(String id) {
-		deleteObject(id + "_");
+	public void deleteAll(String id, StorageEvent storageEvent) throws StorageException {
+		List<S3ObjectSummary> s3ObjectSummaries = listObjects(id + "_");
+		for (S3ObjectSummary objectSummary : s3ObjectSummaries) {
+			String key = objectSummary.getKey();
+			S3Object object = getObject(key);
+			if (object != null)
+				storageEvent.addDeletedKey(object.getKey(), object.getObjectContent());
+			deleteObject(objectSummary);
+		}
 	}
 
 }

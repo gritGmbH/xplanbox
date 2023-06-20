@@ -75,7 +75,7 @@ public class ServiceMetadataRecordCreator {
 	 * written to the XPlanWerkWMS capabilities document.
 	 */
 	public void createServiceMetadataRecords() throws Exception {
-		List<XPlan> plans = xPlanDao.getXPlanList(false);
+		List<XPlan> plans = xPlanDao.getXPlanList();
 		for (XPlan plan : plans) {
 			try {
 				createServiceMetadataRecords(plan);

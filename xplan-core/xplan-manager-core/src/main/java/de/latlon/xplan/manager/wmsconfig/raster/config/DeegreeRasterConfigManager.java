@@ -64,7 +64,7 @@ public class DeegreeRasterConfigManager implements RasterConfigManager {
 		String statusType = detectType(type, planStatus);
 		if (newPlanStatus != null) {
 			String newStatusType = detectType(type, newPlanStatus);
-			rasterThemeManager.moveLayers(statusType, newStatusType, Integer.toString(planId));
+			rasterThemeManager.moveLayers(statusType, newStatusType, planId);
 			statusType = newStatusType;
 		}
 		if (sortDate != null) {
@@ -82,7 +82,7 @@ public class DeegreeRasterConfigManager implements RasterConfigManager {
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 */
 	@Override
-	public void removeRasterLayers(String planId) {
+	public void removeRasterLayers(int planId) {
 		try {
 			for (String type : WmsWorkspaceWrapper.supportedTypes) {
 				rasterThemeManager.removeLayersForPlan(type, planId);
@@ -100,7 +100,7 @@ public class DeegreeRasterConfigManager implements RasterConfigManager {
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 */
 	@Override
-	public void removeRasterLayer(String planId, String rasterId)
+	public void removeRasterLayer(int planId, String rasterId)
 			throws ConfigurationException, JAXBException, IOException {
 		for (String type : WmsWorkspaceWrapper.supportedTypes) {
 			rasterThemeManager.removeLayersForPlan(type, planId, rasterId);
@@ -125,7 +125,7 @@ public class DeegreeRasterConfigManager implements RasterConfigManager {
 		String statusType = detectType(type, planStatus);
 		if (newPlanStatus != null) {
 			String newStatusType = detectType(type, newPlanStatus);
-			rasterThemeManager.moveLayers(statusType, newStatusType, Integer.toString(planId));
+			rasterThemeManager.moveLayers(statusType, newStatusType, planId);
 		}
 	}
 

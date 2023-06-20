@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
+import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,18 +50,20 @@ public class FileSystemStorage implements RasterStorage {
 	}
 
 	@Override
-	public String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive) throws IOException {
+	public String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive,
+			StorageEvent storageEvent) throws IOException {
 		if (rasterEvaluation.isSupportedFile(entryName)) {
 			String rasterFileName = createFileName(planId, entryName);
 			Path target = createTargetFile(rasterFileName);
 			Files.copy(archive.retrieveInputStreamFor(entryName), target);
+			storageEvent.addStoredPath(target);
 			return rasterFileName;
 		}
 		return null;
 	}
 
 	@Override
-	public void deleteRasterFiles(String planId, String rasterId) throws IOException {
+	public void deleteRasterFile(int planId, String rasterId, StorageEvent storageEvent) throws IOException {
 		final String rasterLayerFileName = planId + "_" + rasterId;
 		deleteFilesWithPrefix((path, basicFileAttributes) -> {
 			String fileName = path.getFileName().toString();
@@ -69,7 +72,7 @@ public class FileSystemStorage implements RasterStorage {
 			if (lastIndexOfDot > 0)
 				nameWithoutPrefix = fileName.substring(0, lastIndexOfDot);
 			return rasterLayerFileName.startsWith(nameWithoutPrefix);
-		});
+		}, storageEvent);
 	}
 
 	protected String createFileName(int planId, String fileName) {
@@ -80,7 +83,8 @@ public class FileSystemStorage implements RasterStorage {
 		return dataDirectory.resolve(newFileName);
 	}
 
-	private void deleteFilesWithPrefix(BiPredicate<Path, BasicFileAttributes> filenameFilter) throws IOException {
+	private void deleteFilesWithPrefix(BiPredicate<Path, BasicFileAttributes> filenameFilter, StorageEvent storageEvent)
+			throws IOException {
 		if (!Files.exists(dataDirectory) || !Files.isDirectory(dataDirectory)) {
 			return;
 		}
@@ -88,7 +92,9 @@ public class FileSystemStorage implements RasterStorage {
 		filesToDelete.forEach(file -> {
 			LOG.info("- Entferne Raster-Datei '" + file + "'...");
 			try {
+				byte[] bytes = Files.readAllBytes(file);
 				Files.delete(file);
+				storageEvent.addDeletedPath(file, bytes);
 				LOG.info("OK");
 			}
 			catch (Exception e) {

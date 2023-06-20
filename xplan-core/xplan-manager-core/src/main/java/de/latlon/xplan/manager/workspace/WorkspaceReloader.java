@@ -115,6 +115,7 @@ public class WorkspaceReloader {
 		}
 		catch (IOException e) {
 			LOG.error("Delete XPlanWerkWMS configuration failed!", e);
+			LOG.trace(e.getMessage(), e);
 			return false;
 		}
 	}

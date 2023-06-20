@@ -31,3 +31,9 @@ databaseChangeLog:
               - column:
                   name: artefacttype
                   type: xplanmgr.artefacttype
+  - changeSet:
+      id:  xplanmgr_artefacttype_cast
+      author:  latlon
+      changes:
+        - sql:
+            sql: CREATE CAST (varchar AS xplanmgr.artefacttype) WITH INOUT AS IMPLICIT;

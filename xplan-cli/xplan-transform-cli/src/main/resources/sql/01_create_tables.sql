@@ -29,4 +29,4 @@ CREATE TABLE xplanmgr.transformToolPlanTableLog (
     fids text []
 );
 
-COMMENT ON TABLE xplanmgr.transformToolPlanTableLog IS 'Logs inserted, updated and deleted plans for TransformTool';
+COMMENT ON TABLE xplanmgr.transformToolPlanTableLog IS 'Logs inserted, updated and deleted plans for XPlanTransformCLI';

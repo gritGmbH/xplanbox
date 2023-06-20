@@ -20,8 +20,10 @@
  */
 package de.latlon.xplanbox.api.manager.v1;
 
+import de.latlon.xplan.core.manager.db.config.JpaContext;
 import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
 import de.latlon.xplanbox.api.manager.config.ApplicationContext;
+import de.latlon.xplanbox.api.manager.config.HsqlJpaContext;
 import de.latlon.xplanbox.api.manager.config.TestContext;
 import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -67,7 +69,7 @@ public class PlanApiTest extends JerseyTest {
 		final ResourceConfig resourceConfig = new ResourceConfig(PlanApi.class);
 		resourceConfig.register(XPlanApiExceptionMapper.class);
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class,
-				TestContext.class);
+				JpaContext.class, HsqlJpaContext.class, TestContext.class);
 		resourceConfig.property("contextConfig", context);
 		return resourceConfig;
 	}

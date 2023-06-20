@@ -53,8 +53,6 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
 	private String gkz;
 
-	private int numFeatures = -1;
-
 	private boolean raster;
 
 	private String legislationStatus;
@@ -148,17 +146,6 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
 	public void setGkz(String gkz) {
 		this.gkz = gkz;
-	}
-
-	/**
-	 * @return the number of features of the XPlan feature collection, -1 if not known
-	 */
-	public int getNumFeatures() {
-		return numFeatures;
-	}
-
-	public void setNumFeatures(int numFeatures) {
-		this.numFeatures = numFeatures;
 	}
 
 	public boolean isRaster() {

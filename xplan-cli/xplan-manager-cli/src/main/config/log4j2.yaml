@@ -66,3 +66,5 @@ Configuration:
         level: warn
       - name: org.deegree.gml.schema.GMLSchemaInfoSet
         level: error
+      - name: org.hibernate
+        level: warn

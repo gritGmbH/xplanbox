@@ -101,7 +101,7 @@ public class WorkspaceRasterLayerManager {
 	 * @param planId the id of the plan to remove configuration for, never
 	 * <code>null</code>
 	 */
-	public void deleteDataFilesAndRasterConfigurations(String planId) throws IOException {
+	public void deleteDataFilesAndRasterConfigurations(int planId) throws IOException {
 		final String prefix = planId + "_";
 		deleteDataFilesAndRasterConfigurations(
 				(path, basicFileAttributes) -> path.getFileName().toString().startsWith(prefix));
@@ -118,7 +118,7 @@ public class WorkspaceRasterLayerManager {
 	 * <code>null</code>
 	 * @param rasterId id of the raster to remove, never <code>null</code>
 	 */
-	public void deleteDataFilesAndRasterConfigurations(String planId, String rasterId) throws IOException {
+	public void deleteDataFilesAndRasterConfigurations(int planId, String rasterId) throws IOException {
 		final String rasterLayerFileName = planId + "_" + rasterId;
 		deleteDataFilesAndRasterConfigurations(
 				(path, basicFileAttributes) -> path.getFileName().toString().startsWith(rasterLayerFileName));

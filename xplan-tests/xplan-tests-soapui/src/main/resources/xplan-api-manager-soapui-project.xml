@@ -4831,7 +4831,7 @@ assert actualHeader != null</scriptText>
             </con:assertion>
             <con:assertion type="Simple Contains" id="d5841f16-98fa-401a-bb0b-65a124e6437c" name="Contains">
               <con:configuration>
-                <token>replaceAenderung.arg1.aendert[0].planName: must match</token>
+                <token>replaceAenderung.aenderungen.aendert[0].planName: must match</token>
                 <ignoreCase>false</ignoreCase>
                 <useRegEx>false</useRegEx>
               </con:configuration>
@@ -5775,7 +5775,7 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="Simple Contains" id="c8a22d62-0e66-4f9a-916f-02e8b923f436" name="Contains">
               <con:configuration>
-                <token>replaceBasisdaten.arg1.name: must matc</token>
+                <token>replaceBasisdaten.basisdaten.name: must matc</token>
                 <ignoreCase>false</ignoreCase>
                 <useRegEx>false</useRegEx>
               </con:configuration>
@@ -7218,7 +7218,7 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="Simple Contains" id="a1bef47d-c4a0-4cdc-ad8d-8a474b4fec23" name="Contains">
               <con:configuration>
-                <token>replaceDokumentById.arg2: Model contains invalid content: referenzName size must be between 0 and 100</token>
+                <token>replaceDokumentById.dokumentmodel: Model contains invalid content: referenzName size must be between 0 and 100</token>
                 <ignoreCase>false</ignoreCase>
                 <useRegEx>false</useRegEx>
               </con:configuration>
@@ -9035,7 +9035,7 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="Simple Contains" id="88bfdf9a-153c-4d56-98b2-abdb724014f5" name="Contains">
               <con:configuration>
-                <token>addRasterBasis.arg1: Model contains invalid content: referenzName must match</token>
+                <token>addRasterBasis.rasterbasismodel: Model contains invalid content: referenzName must match</token>
                 <ignoreCase>false</ignoreCase>
                 <useRegEx>false</useRegEx>
               </con:configuration>
