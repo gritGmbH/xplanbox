@@ -57,7 +57,7 @@ public class DistrictUpdaterApplicationRunner implements ApplicationRunner {
 	 * updates the district column in the table xplanmgr.plans.
 	 */
 	@Override
-	@Transactional
+	@Transactional(rollbackOn = Exception.class)
 	public void run(ApplicationArguments args) throws Exception {
 		List<XPlan> plans = dao.getXPlanList();
 		for (XPlan plan : plans) {
