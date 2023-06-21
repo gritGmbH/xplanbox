@@ -35,7 +35,7 @@ public class AttachmentUrlHandlerTest {
 		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
 				.parseXPlanFeatureCollection(archive);
 
-		attachmentUrlHandler.replaceRelativeUrls(10, archive, null, xPlanFeatureCollection);
+		attachmentUrlHandler.replaceRelativeUrls(10, archive, xPlanFeatureCollection);
 
 		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 		List<ExternalReference> externalReferences = externalReferenceScanner.scan(xPlanFeatureCollection.getFeatures())

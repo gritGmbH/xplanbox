@@ -4,8 +4,6 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
-import de.latlon.xplan.manager.edit.EditException;
-import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
 import de.latlon.xplan.manager.transaction.PlanImportData;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -27,8 +25,6 @@ public class XPlanInsertService {
 	private final XPlanDao xplanDao;
 
 	private final XPlanDocumentManager xPlanDocumentManager;
-
-	private AttachmentUrlHandler attachmentUrlHandler;
 
 	public XPlanInsertService(XPlanDao xplanDao, XPlanDocumentManager xPlanDocumentManager) {
 		this.xplanDao = xplanDao;
@@ -55,18 +51,10 @@ public class XPlanInsertService {
 		AdditionalPlanData xPlanMetadata = planToImport.getxPlanMetadata();
 		int planId = xplanDao.insert(archive, xPlanFeatureCollection, planToImport.getSynFc(), planStatus,
 				xPlanMetadata.getStartDateTime(), xPlanMetadata.getEndDateTime(), planToImport.getSortDate(), null);
-		replaceRelativeUrls(archive, xPlanFeatureCollection, xPlanMetadata, planId);
 		insertDocuments(planId, xPlanFeatureCollection, archive);
 		LOG.info("XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId);
 		planToImport.setPlanId(planId);
 		return planToImport;
-	}
-
-	private void replaceRelativeUrls(XPlanArchive archive, XPlanFeatureCollection xPlanFeatureCollection,
-			AdditionalPlanData xPlanMetadata, int planId) throws EditException {
-		if (attachmentUrlHandler != null) {
-			attachmentUrlHandler.replaceRelativeUrls(planId, archive, xPlanMetadata, xPlanFeatureCollection);
-		}
 	}
 
 	private void insertDocuments(int planId, XPlanFeatureCollection xPlanInstance, XPlanArchive archive)

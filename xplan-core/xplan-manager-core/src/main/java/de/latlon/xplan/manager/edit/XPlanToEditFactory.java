@@ -85,13 +85,12 @@ public class XPlanToEditFactory {
 	 * Parses an {@link XPlanToEdit} from the passed {@link FeatureCollection}.
 	 * @param version of the plan, never <code>null</code>
 	 * @param type of the plan, never <code>null</code>
-	 * @param additionalPlanData of the plan, may be <code>null</code>
 	 * @param featureCollection to parse the editable values from, never <code>null</code>
 	 * @return the xPlanToEdit, never <code>null</code>
 	 */
-	public XPlanToEdit createXPlanToEdit(XPlanVersion version, XPlanType type, AdditionalPlanData additionalPlanData,
-			FeatureCollection featureCollection) throws EditException {
-		return createXPlanToEdit(version.name(), type.name(), additionalPlanData, featureCollection);
+	public XPlanToEdit createXPlanToEdit(XPlanVersion version, XPlanType type, FeatureCollection featureCollection)
+			throws EditException {
+		return createXPlanToEdit(version.name(), type.name(), null, featureCollection);
 	}
 
 	/**

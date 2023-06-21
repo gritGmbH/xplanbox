@@ -27,6 +27,8 @@ import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.core.manager.db.model.Artefact;
 import de.latlon.xplan.core.manager.db.model.ArtefactType;
+import de.latlon.xplan.manager.edit.EditException;
+import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -77,6 +79,8 @@ public class XPlanDao {
 
 	private final XPlanInspirePluAdapter xPlanInspirePluAdapter;
 
+	private AttachmentUrlHandler attachmentUrlHandler;
+
 	/**
 	 * Creates a new {@link XPlanDao} instance.
 	 * <p>
@@ -86,10 +90,12 @@ public class XPlanDao {
 	 * @param managerWorkspaceWrapper workspace, never <code>null</code>
 	 * @param xPlanDbAdapter never <code>null</code>
 	 * @param applicationEventPublisher
+	 * @param attachmentUrlHandler
 	 */
 	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDbAdapter xPlanDbAdapter,
-			ApplicationEventPublisher applicationEventPublisher) {
+			ApplicationEventPublisher applicationEventPublisher, AttachmentUrlHandler attachmentUrlHandler) {
 		this.xPlanDbAdapter = xPlanDbAdapter;
+		this.attachmentUrlHandler = attachmentUrlHandler;
 		this.xPlanWfsAdapter = new XPlanWfsAdapter(managerWorkspaceWrapper, applicationEventPublisher);
 		this.xPlanSynWfsAdapter = new XPlanSynWfsAdapter(managerWorkspaceWrapper, applicationEventPublisher);
 		this.xPlanInspirePluAdapter = new XPlanInspirePluAdapter(managerWorkspaceWrapper, applicationEventPublisher);
@@ -119,7 +125,8 @@ public class XPlanDao {
 			List<String> fidsXPlanWfs = xPlanWfsAdapter.insert(fc, planStatus);
 			int planId = xPlanDbAdapter.insert(archive, fc, synFc, planStatus, beginValidity, endValidity, sortDate,
 					internalId, fidsXPlanWfs);
-			addAdditionalProperties(synFc, beginValidity, endValidity, planId, sortDate);
+			manipulateXPlanSynGml(synFc, beginValidity, endValidity, planId, sortDate);
+			manipulateXPlanGml(planId, archive, fc);
 			xPlanSynWfsAdapter.insert(synFc, planStatus);
 			xPlanDbAdapter.insertArtefacts(fc, archive, planId);
 
@@ -193,7 +200,7 @@ public class XPlanDao {
 
 			xPlanDbAdapter.update(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, xPlanToEdit, sortDate,
 					uploadedArtefacts, removedRefs);
-			addAdditionalProperties(synFc, newAdditionalPlanData.getStartDateTime(),
+			manipulateXPlanSynGml(synFc, newAdditionalPlanData.getStartDateTime(),
 					newAdditionalPlanData.getEndDateTime(), planId, sortDate);
 
 			List<String> newFids = xPlanSynWfsAdapter.update(planId, oldXplan, newAdditionalPlanData, synFc, oldFids);
@@ -222,7 +229,7 @@ public class XPlanDao {
 
 		Set<String> ids = xPlanDbAdapter.selectFids(planId);
 
-		addAdditionalProperties(synFc, xplanMetadata.getStartDateTime(), xplanMetadata.getEndDateTime(), planId,
+		manipulateXPlanSynGml(synFc, xplanMetadata.getStartDateTime(), xplanMetadata.getEndDateTime(), planId,
 				sortDate);
 
 		if (updateFeaturesAndBlob) {
@@ -420,11 +427,18 @@ public class XPlanDao {
 		return xPlanDbAdapter.existsPlan(planId);
 	}
 
-	private void addAdditionalProperties(FeatureCollection synFc, Date beginValidity, Date endValidity, int planId,
+	private void manipulateXPlanSynGml(FeatureCollection synFc, Date beginValidity, Date endValidity, int planId,
 			Date sortDate) {
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 		featureCollectionManipulator.addAdditionalPropertiesToFeatures(synFc, schema, planId, sortDate, beginValidity,
 				endValidity);
+	}
+
+	private void manipulateXPlanGml(int planId, XPlanArchive archive, XPlanFeatureCollection xPlanFeatureCollection)
+			throws EditException {
+		if (attachmentUrlHandler != null) {
+			attachmentUrlHandler.replaceRelativeUrls(planId, archive, xPlanFeatureCollection);
+		}
 	}
 
 	private int getXPlanIdAsInt(String planId) throws Exception {
