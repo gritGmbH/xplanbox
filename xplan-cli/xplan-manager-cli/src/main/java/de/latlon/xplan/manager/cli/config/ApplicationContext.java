@@ -48,6 +48,7 @@ import de.latlon.xplan.manager.storage.StorageCleanUpManager;
 import de.latlon.xplan.manager.storage.config.StorageCleanUpContext;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
+import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanEditManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
@@ -108,6 +109,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -232,8 +234,9 @@ public class ApplicationContext {
 
 	@Bean
 	public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			XPlanDbAdapter xPlanDbAdapter) {
-		return new XPlanDao(managerWorkspaceWrapper, xPlanDbAdapter, applicationEventPublisher);
+			XPlanDbAdapter xPlanDbAdapter, Optional<AttachmentUrlHandler> attachmentUrlHandler) {
+		return new XPlanDao(managerWorkspaceWrapper, xPlanDbAdapter, applicationEventPublisher,
+				attachmentUrlHandler.orElse(null));
 	}
 
 	@Bean
@@ -317,6 +320,14 @@ public class ApplicationContext {
 	}
 
 	@Bean
+	public AttachmentUrlHandler attachmentUrlHandler(ManagerConfiguration managerConfiguration) {
+		String documentUrl = managerConfiguration.getEnvironmentVariableValue("XPLAN_DOCUMENT_URL_PUBLIC");
+		if (documentUrl != null)
+			return new AttachmentUrlHandler(documentUrl);
+		return null;
+	}
+
+	@Bean
 	public MetadataCouplingHandler metadataCouplingHandler(XPlanDao xPlanDao, ManagerConfiguration managerConfiguration)
 			throws DataServiceCouplingException {
 		if (managerConfiguration != null && managerConfiguration.getCoupledResourceConfiguration() != null)
@@ -361,9 +372,10 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public ManagerConfiguration managerConfiguration(PropertiesLoader managerPropertiesLoader)
-			throws ConfigurationException {
-		return new ManagerConfiguration(managerPropertiesLoader);
+	public ManagerConfiguration managerConfiguration(PropertiesLoader managerPropertiesLoader,
+			@Value("#{environment.XPLAN_DOCUMENT_URL_PUBLIC}") String downloadUrl) throws ConfigurationException {
+		Map<String, String> environmentVariables = Collections.singletonMap("XPLAN_DOCUMENT_URL_PUBLIC", downloadUrl);
+		return new ManagerConfiguration(managerPropertiesLoader, environmentVariables);
 	}
 
 	@Bean

@@ -90,7 +90,23 @@ public class XPlanDao {
 	 * @param managerWorkspaceWrapper workspace, never <code>null</code>
 	 * @param xPlanDbAdapter never <code>null</code>
 	 * @param applicationEventPublisher
-	 * @param attachmentUrlHandler
+	 */
+	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDbAdapter xPlanDbAdapter,
+			ApplicationEventPublisher applicationEventPublisher) {
+		this(managerWorkspaceWrapper, xPlanDbAdapter, applicationEventPublisher, null);
+	}
+
+	/**
+	 * Creates a new {@link XPlanDao} instance.
+	 * <p>
+	 * The DAO performs the initialization of the JDBC connection and feature stores on
+	 * demand.
+	 * </p>
+	 * @param managerWorkspaceWrapper workspace, never <code>null</code>
+	 * @param xPlanDbAdapter never <code>null</code>
+	 * @param applicationEventPublisher never <code>null</code>
+	 * @param attachmentUrlHandler used to replace relative references with absolute
+	 * references, may be <code>null</code>
 	 */
 	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDbAdapter xPlanDbAdapter,
 			ApplicationEventPublisher applicationEventPublisher, AttachmentUrlHandler attachmentUrlHandler) {

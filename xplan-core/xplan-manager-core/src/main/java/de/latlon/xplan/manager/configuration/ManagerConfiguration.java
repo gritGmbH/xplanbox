@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -36,6 +36,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +82,8 @@ public class ManagerConfiguration {
 
 	private final SortConfiguration sortConfiguration = new SortConfiguration();
 
+	private final Map<String, String> environmentVariables;
+
 	private String rasterConfigurationCrs;
 
 	private RasterConfigurationType rasterConfigurationType;
@@ -104,6 +107,12 @@ public class ManagerConfiguration {
 	private CoupledResourceConfiguration coupledResourceConfiguration;
 
 	public ManagerConfiguration(PropertiesLoader propertiesLoader) throws ConfigurationException {
+		this(propertiesLoader, Collections.emptyMap());
+	}
+
+	public ManagerConfiguration(PropertiesLoader propertiesLoader, Map<String, String> environmentVariables)
+			throws ConfigurationException {
+		this.environmentVariables = environmentVariables;
 		loadProperties(propertiesLoader);
 		verifyConfiguration();
 		logConfiguration();
@@ -207,6 +216,15 @@ public class ManagerConfiguration {
 		return coupledResourceConfiguration;
 	}
 
+	/**
+	 * @param key of the environment variable, must not tbe <code>null</code>
+	 * @return the value of the environment variable, may be <code>null</code> if not
+	 * available
+	 */
+	public String getEnvironmentVariableValue(String key) {
+		return environmentVariables.get(key);
+	}
+
 	private void loadProperties(PropertiesLoader propertiesLoader) throws ConfigurationException {
 		if (propertiesLoader != null) {
 			Properties loadProperties = propertiesLoader.loadProperties(MANAGER_CONFIGURATION);
@@ -286,6 +304,9 @@ public class ManagerConfiguration {
 		sortConfiguration.logConfiguration(LOG);
 		LOG.info("-------------------------------------------");
 		semanticConformityLinkConfiguration.logConfiguration(LOG);
+		LOG.info("-------------------------------------------");
+		LOG.info("Additional environment variables (contains only the variables available via manager configuration)");
+		environmentVariables.entrySet().forEach(entry -> LOG.info("   - {}: {}", entry.getKey(), entry.getValue()));
 		LOG.info("-------------------------------------------");
 	}
 
