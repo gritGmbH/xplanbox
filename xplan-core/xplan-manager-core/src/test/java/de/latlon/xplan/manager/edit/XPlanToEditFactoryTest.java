@@ -428,7 +428,7 @@ public class XPlanToEditFactoryTest {
 	public void testCreateXPlanToEdit_XPlan51_SOPlan() throws Exception {
 		FeatureCollection featureCollection = readXPlanArchive(XPLAN_51, "xplan51/StErhVO_Heidberg_51.zip");
 
-		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_51, SO_Plan), featureCollection);
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(XPLAN_51, SO_Plan, null, featureCollection);
 		assertThat(xPlanToEdit.isHasBereich(), is(true));
 
 		BaseData baseData = xPlanToEdit.getBaseData();
