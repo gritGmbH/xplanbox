@@ -138,11 +138,12 @@ public class XPlanDao {
 			LOG.info("Insert XPlan");
 			long begin = System.currentTimeMillis();
 
-			List<String> fidsXPlanWfs = xPlanWfsAdapter.insert(fc, planStatus);
 			int planId = xPlanDbAdapter.insert(archive, fc, synFc, planStatus, beginValidity, endValidity, sortDate,
-					internalId, fidsXPlanWfs);
+					internalId);
 			manipulateXPlanSynGml(synFc, beginValidity, endValidity, planId, sortDate);
 			manipulateXPlanGml(planId, archive, fc);
+			List<String> fidsXPlanWfs = xPlanWfsAdapter.insert(fc, planStatus);
+			xPlanDbAdapter.updateFids(planId, fidsXPlanWfs);
 			xPlanSynWfsAdapter.insert(synFc, planStatus);
 			xPlanDbAdapter.insertArtefacts(fc, archive, planId);
 

@@ -112,11 +112,9 @@ public class XPlanDbAdapter {
 
 	@Transactional(propagation = Propagation.MANDATORY)
 	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc, PlanStatus planStatus,
-			Date beginValidity, Date endValidity, Date sortDate, String internalId, List<String> wfsFeatureIds)
-			throws Exception {
+			Date beginValidity, Date endValidity, Date sortDate, String internalId) throws Exception {
 		LOG.info("Insert XPlan in XPlanDB");
-		Plan plan = createPlan(archive, fc, synFc, planStatus, beginValidity, endValidity, sortDate, internalId,
-				wfsFeatureIds);
+		Plan plan = createPlan(archive, fc, synFc, planStatus, beginValidity, endValidity, sortDate, internalId);
 		Plan savedPlan = planRepository.save(plan);
 		return savedPlan.getId();
 	}
@@ -513,8 +511,8 @@ public class XPlanDbAdapter {
 	}
 
 	private Plan createPlan(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc,
-			PlanStatus planStatus, Date beginValidity, Date endValidity, Date sortDate, String internalId,
-			List<String> wfsFeatureIds) throws ParseException, AmbiguousBereichNummernException {
+			PlanStatus planStatus, Date beginValidity, Date endValidity, Date sortDate, String internalId)
+			throws ParseException, AmbiguousBereichNummernException {
 		String wktFromBboxIn4326 = createWktFromBboxIn4326(fc);
 		org.locationtech.jts.geom.Geometry bbox = new org.locationtech.jts.io.WKTReader().read(wktFromBboxIn4326);
 		Plan plan = new Plan().importDate(new Date(System.currentTimeMillis())).version(archive.getVersion())
@@ -524,7 +522,7 @@ public class XPlanDbAdapter {
 				.planstatus(retrievePlanStatusMessage(planStatus))
 				.district(retrieveDistrict(fc.getFeatures(), archive.getType())).wmssortdate(sortDate)
 				.gueltigkeitbeginn(beginValidity).gueltigkeitende(endValidity).internalid(internalId).bbox(bbox)
-				.bereiche(createBereiche(synFc)).features(createFeatures(wfsFeatureIds));
+				.bereiche(createBereiche(synFc));
 		return plan;
 	}
 
