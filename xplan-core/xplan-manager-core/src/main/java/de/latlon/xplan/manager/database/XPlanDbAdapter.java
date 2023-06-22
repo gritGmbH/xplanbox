@@ -111,10 +111,10 @@ public class XPlanDbAdapter {
 	}
 
 	@Transactional(propagation = Propagation.MANDATORY)
-	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc, PlanStatus planStatus,
-			Date beginValidity, Date endValidity, Date sortDate, String internalId) throws Exception {
+	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, PlanStatus planStatus, Date beginValidity,
+			Date endValidity, Date sortDate, String internalId) throws Exception {
 		LOG.info("Insert XPlan in XPlanDB");
-		Plan plan = createPlan(archive, fc, synFc, planStatus, beginValidity, endValidity, sortDate, internalId);
+		Plan plan = createPlan(archive, fc, planStatus, beginValidity, endValidity, sortDate, internalId);
 		Plan savedPlan = planRepository.save(plan);
 		return savedPlan.getId();
 	}
@@ -169,6 +169,14 @@ public class XPlanDbAdapter {
 		Plan plan = getRequiredPlanById(planId);
 		updatePlan(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, xPlanToEdit, sortDate, uploadedArtefacts,
 				removedRefs, planId, plan);
+		planRepository.save(plan);
+	}
+
+	@Transactional(propagation = Propagation.MANDATORY)
+	public void update(int planId, XPlanType type, FeatureCollection synFc) throws Exception {
+		LOG.info("- Aktualisierung des Plans mit ID '{}'", planId);
+		Plan plan = getRequiredPlanById(planId).rechtsstand(retrieveRechtsstandWert(synFc, type))
+				.sonstPlanArt(retrieveAdditionalTypeWert(synFc, type)).bereiche(createBereiche(synFc));
 		planRepository.save(plan);
 	}
 
@@ -510,19 +518,16 @@ public class XPlanDbAdapter {
 		return optionalPlan.get();
 	}
 
-	private Plan createPlan(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc,
-			PlanStatus planStatus, Date beginValidity, Date endValidity, Date sortDate, String internalId)
-			throws ParseException, AmbiguousBereichNummernException {
+	private Plan createPlan(XPlanArchive archive, XPlanFeatureCollection fc, PlanStatus planStatus, Date beginValidity,
+			Date endValidity, Date sortDate, String internalId) throws ParseException {
 		String wktFromBboxIn4326 = createWktFromBboxIn4326(fc);
 		org.locationtech.jts.geom.Geometry bbox = new org.locationtech.jts.io.WKTReader().read(wktFromBboxIn4326);
 		Plan plan = new Plan().importDate(new Date(System.currentTimeMillis())).version(archive.getVersion())
 				.type(archive.getType()).name(fc.getPlanName()).nummer(fc.getPlanNummer()).gkz(fc.getPlanGkz())
-				.hasRaster(fc.getHasRaster()).rechtsstand(retrieveRechtsstandWert(synFc, archive.getType()))
-				.releaseDate(fc.getPlanReleaseDate()).sonstPlanArt(retrieveAdditionalTypeWert(synFc, archive.getType()))
+				.hasRaster(fc.getHasRaster()).releaseDate(fc.getPlanReleaseDate())
 				.planstatus(retrievePlanStatusMessage(planStatus))
 				.district(retrieveDistrict(fc.getFeatures(), archive.getType())).wmssortdate(sortDate)
-				.gueltigkeitbeginn(beginValidity).gueltigkeitende(endValidity).internalid(internalId).bbox(bbox)
-				.bereiche(createBereiche(synFc));
+				.gueltigkeitbeginn(beginValidity).gueltigkeitende(endValidity).internalid(internalId).bbox(bbox);
 		return plan;
 	}
 

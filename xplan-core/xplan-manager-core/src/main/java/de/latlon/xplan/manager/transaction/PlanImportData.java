@@ -5,7 +5,6 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.feature.FeatureCollection;
 
 import java.util.Date;
 
@@ -25,20 +24,17 @@ public class PlanImportData {
 
 	private final ICRS crs;
 
-	private final FeatureCollection synFc;
-
 	private final XPlanFeatureCollection xPlanFC;
 
 	private int planId;
 
 	public PlanImportData(XPlanArchive xPlanArchive, PlanStatus planStatus, AdditionalPlanData xPlanMetadata,
-			Date sortDate, ICRS crs, FeatureCollection synFc, XPlanFeatureCollection xPlanFc) {
+			Date sortDate, ICRS crs, XPlanFeatureCollection xPlanFc) {
 		this.xPlanArchive = xPlanArchive;
 		this.planStatus = planStatus;
 		this.xPlanMetadata = xPlanMetadata;
 		this.sortDate = sortDate;
 		this.crs = crs;
-		this.synFc = synFc;
 		this.xPlanFC = xPlanFc;
 	}
 
@@ -60,10 +56,6 @@ public class PlanImportData {
 
 	public ICRS getCrs() {
 		return crs;
-	}
-
-	public FeatureCollection getSynFc() {
-		return synFc;
 	}
 
 	public XPlanFeatureCollection getxPlanFC() {

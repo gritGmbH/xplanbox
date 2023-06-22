@@ -26,7 +26,6 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadataBuilder;
@@ -58,16 +57,16 @@ public class ServiceMetadataRecordCreator {
 	/**
 	 * @param xPlanDao used to access the database, never <code>null</code>
 	 * @param managerConfiguration configuration of the manager, never <code>null</code>
+	 * @param metadataCouplingHandler never <code>null</code>
 	 */
-	public ServiceMetadataRecordCreator(XPlanDao xPlanDao, ManagerConfiguration managerConfiguration)
-			throws DataServiceCouplingException {
+	public ServiceMetadataRecordCreator(XPlanDao xPlanDao, ManagerConfiguration managerConfiguration,
+			MetadataCouplingHandler metadataCouplingHandler) {
 		this.xPlanDao = xPlanDao;
 		this.managerConfiguration = managerConfiguration;
 		if (managerConfiguration == null || managerConfiguration.getCoupledResourceConfiguration() == null)
 			throw new IllegalArgumentException(
 					"The configuration used to create service is invalid. Service metadata records could not be created.");
-		this.metadataCouplingHandler = new MetadataCouplingHandler(xPlanDao,
-				managerConfiguration.getCoupledResourceConfiguration());
+		this.metadataCouplingHandler = metadataCouplingHandler;
 	}
 
 	/**

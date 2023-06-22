@@ -2,7 +2,7 @@ package de.latlon.xplan.manager.transaction.service;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.transaction.PlanImportData;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
@@ -22,11 +22,11 @@ public class XPlanInsertService {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanInsertService.class);
 
-	private final XPlanDao xplanDao;
+	private final XPlanManagerDao xplanDao;
 
 	private final XPlanDocumentManager xPlanDocumentManager;
 
-	public XPlanInsertService(XPlanDao xplanDao, XPlanDocumentManager xPlanDocumentManager) {
+	public XPlanInsertService(XPlanManagerDao xplanDao, XPlanDocumentManager xPlanDocumentManager) {
 		this.xplanDao = xplanDao;
 		this.xPlanDocumentManager = xPlanDocumentManager;
 	}
@@ -49,8 +49,8 @@ public class XPlanInsertService {
 		XPlanFeatureCollection xPlanFeatureCollection = planToImport.getxPlanFC();
 		PlanStatus planStatus = planToImport.getPlanStatus();
 		AdditionalPlanData xPlanMetadata = planToImport.getxPlanMetadata();
-		int planId = xplanDao.insert(archive, xPlanFeatureCollection, planToImport.getSynFc(), planStatus,
-				xPlanMetadata.getStartDateTime(), xPlanMetadata.getEndDateTime(), planToImport.getSortDate(), null);
+		int planId = xplanDao.insert(archive, xPlanFeatureCollection, planStatus, xPlanMetadata.getStartDateTime(),
+				xPlanMetadata.getEndDateTime(), planToImport.getSortDate(), null);
 		insertDocuments(planId, xPlanFeatureCollection, archive);
 		LOG.info("XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId);
 		planToImport.setPlanId(planId);

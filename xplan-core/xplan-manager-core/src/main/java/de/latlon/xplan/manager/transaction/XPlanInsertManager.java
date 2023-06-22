@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.transaction;
 
-import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
@@ -43,8 +42,6 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,7 +52,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 
 /**
@@ -115,23 +111,17 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		}
 		else {
 			XPlanFeatureCollection xPlanInstance = xPlanInstances.getxPlanGmlInstances().get(0);
-			PlanImportData planToImport = importGmlWithSingleInstance(archive, internalId, xPlanMetadata, crs,
-					xPlanInstance);
+			PlanImportData planToImport = importGmlWithSingleInstance(archive, xPlanMetadata, crs, xPlanInstance);
 			return xPlanInsertService.importPlans(Collections.singletonList(planToImport));
 		}
 	}
 
-	private PlanImportData importGmlWithSingleInstance(XPlanArchive archive, String internalId,
-			AdditionalPlanData xPlanMetadata, ICRS crs, XPlanFeatureCollection xPlanInstance) {
+	private PlanImportData importGmlWithSingleInstance(XPlanArchive archive, AdditionalPlanData xPlanMetadata, ICRS crs,
+			XPlanFeatureCollection xPlanInstance) {
 		PlanStatus selectedPlanStatus = xPlanMetadata.getPlanStatus();
-		FeatureCollection synFc = createSynFeatures(xPlanInstance, archive.getVersion());
-		if (internalId != null) {
-			AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
-			featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
-		}
 		Date sortDate = sortPropertyReader.readSortDate(archive.getType(), archive.getVersion(),
 				xPlanInstance.getFeatures());
-		return new PlanImportData(archive, selectedPlanStatus, xPlanMetadata, sortDate, crs, synFc, xPlanInstance);
+		return new PlanImportData(archive, selectedPlanStatus, xPlanMetadata, sortDate, crs, xPlanInstance);
 	}
 
 	private List<PlanImportData> importGmlWithMultipleInstances(XPlanArchive archive, String internalId,
@@ -144,11 +134,10 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		List<PlanImportData> plansImportData = new ArrayList<>();
 		for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
 			PlanStatus planStatusFromPlan = detectPlanStatus(archive.getType(), xPlanInstance);
-			FeatureCollection synFc = createSynFeatures(xPlanInstance, archive.getVersion());
 			Date sortDate = sortPropertyReader.readSortDate(archive.getType(), archive.getVersion(),
 					xPlanInstance.getFeatures());
 			PlanImportData planImportData = new PlanImportData(archive, planStatusFromPlan, xPlanMetadata, sortDate,
-					crs, synFc, xPlanInstance);
+					crs, xPlanInstance);
 
 			plansImportData.add(planImportData);
 		}

@@ -38,6 +38,7 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.database.XPlanDbAdapter;
+import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.document.config.DocumentStorageContext;
 import de.latlon.xplan.manager.export.XPlanExporter;
@@ -233,10 +234,11 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			XPlanDbAdapter xPlanDbAdapter, Optional<AttachmentUrlHandler> attachmentUrlHandler) {
-		return new XPlanDao(managerWorkspaceWrapper, xPlanDbAdapter, applicationEventPublisher,
-				attachmentUrlHandler.orElse(null));
+	public XPlanManagerDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			XPlanDbAdapter xPlanDbAdapter, XPlanSynthesizer xPlanSynthesizer,
+			Optional<AttachmentUrlHandler> attachmentUrlHandler) {
+		return new XPlanManagerDao(managerWorkspaceWrapper, xPlanDbAdapter, xPlanSynthesizer,
+				attachmentUrlHandler.orElse(null), applicationEventPublisher);
 	}
 
 	@Bean
@@ -287,7 +289,7 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanInsertService xPlanInsertService(XPlanDao xPlanDao,
+	public XPlanInsertService xPlanInsertService(XPlanManagerDao xPlanDao,
 			Optional<XPlanDocumentManager> xPlanDocumentManager) {
 		return new XPlanInsertService(xPlanDao, xPlanDocumentManager.orElse(null));
 	}
@@ -304,7 +306,8 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanEditService xPlanEditService(XPlanDao xplanDao, Optional<XPlanDocumentManager> xPlanDocumentManager) {
+	public XPlanEditService xPlanEditService(XPlanManagerDao xplanDao,
+			Optional<XPlanDocumentManager> xPlanDocumentManager) {
 		return new XPlanEditService(xplanDao, xPlanDocumentManager.orElse(null));
 	}
 
@@ -315,21 +318,23 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanDeleteService xPlanDeleteService(XPlanDao xPlanDao, StorageCleanUpManager storageCleanUpManager) {
+	public XPlanDeleteService xPlanDeleteService(XPlanManagerDao xPlanDao,
+			StorageCleanUpManager storageCleanUpManager) {
 		return new XPlanDeleteService(xPlanDao, storageCleanUpManager, applicationEventPublisher);
 	}
 
 	@Bean
-	public AttachmentUrlHandler attachmentUrlHandler(ManagerConfiguration managerConfiguration) {
+	public AttachmentUrlHandler attachmentUrlHandler(ManagerConfiguration managerConfiguration,
+			XPlanExporter xPlanExporter) {
 		String documentUrl = managerConfiguration.getEnvironmentVariableValue("XPLAN_DOCUMENT_URL_PUBLIC");
 		if (documentUrl != null)
-			return new AttachmentUrlHandler(documentUrl);
+			return new AttachmentUrlHandler(documentUrl, xPlanExporter);
 		return null;
 	}
 
 	@Bean
-	public MetadataCouplingHandler metadataCouplingHandler(XPlanDao xPlanDao, ManagerConfiguration managerConfiguration)
-			throws DataServiceCouplingException {
+	public MetadataCouplingHandler metadataCouplingHandler(XPlanManagerDao xPlanDao,
+			ManagerConfiguration managerConfiguration) throws DataServiceCouplingException {
 		if (managerConfiguration != null && managerConfiguration.getCoupledResourceConfiguration() != null)
 			return new MetadataCouplingHandler(xPlanDao, managerConfiguration.getCoupledResourceConfiguration());
 		return null;
@@ -440,9 +445,9 @@ public class ApplicationContext {
 
 	@Bean
 	public ServiceMetadataRecordCreator serviceMetadataRecordCreator(ManagerConfiguration managerConfiguration,
-			XPlanDao xplanDao) {
+			XPlanDao xplanDao, MetadataCouplingHandler metadataCouplingHandler) {
 		try {
-			return new ServiceMetadataRecordCreator(xplanDao, managerConfiguration);
+			return new ServiceMetadataRecordCreator(xplanDao, managerConfiguration, metadataCouplingHandler);
 		}
 		catch (Exception e) {
 			LOG.warn("Could not initialize ServiceMetadataRecordCreator: {}", e.getMessage());

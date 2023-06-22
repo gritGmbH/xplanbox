@@ -7,6 +7,7 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
+import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
 import org.deegree.commons.tom.gml.property.Property;
@@ -29,8 +30,9 @@ public class AttachmentUrlHandlerTest {
 
 	@Test
 	public void testReplaceRelativeUrls() throws Exception {
+		XPlanExporter xPlanExporter = new XPlanExporter();
 		AttachmentUrlHandler attachmentUrlHandler = new AttachmentUrlHandler(
-				"http://test.de/xdokumente/api/v1/dokument/{planId}/{fileName}");
+				"http://test.de/xdokumente/api/v1/dokument/{planId}/{fileName}", xPlanExporter);
 		XPlanArchive archive = getTestArchive();
 		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
 				.parseXPlanFeatureCollection(archive);

@@ -68,7 +68,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.TimeZone;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanName;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
@@ -138,10 +137,6 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			reassignFids(modifiedPlanFc);
 			FeatureCollection synFc = createSynFeatures(modifiedPlanFc, version);
 			String internalId = xplanDao.retrieveInternalId(planId);
-			if (internalId != null) {
-				AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
-				featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
-			}
 
 			// TODO: Validation required?
 			PlanStatus newPlanStatus = detectNewPlanStatus(type, xPlanToEdit, oldLegislationStatus, oldPlanStatus);
@@ -150,7 +145,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			Date sortDate = sortPropertyReader.readSortDate(type, version, modifiedFeatures);
 			xPlanEditService.update(oldXplan, xPlanToEdit, uploadedArtefacts, planId, xPlanGml,
 					externalReferenceInfoToUpdate, externalReferenceInfoToRemove, removedRefs, modifiedPlanFc, synFc,
-					xPlanMetadata, sortDate);
+					xPlanMetadata, sortDate, internalId);
 			startCreationIfPlanNameHasChanged(planId, type, modifiedPlanFc, oldPlanName, oldDescription);
 			updateRasterConfiguration(planId, makeRasterConfig, uploadedArtefacts, type, oldPlanStatus,
 					externalReferenceInfoToRemove, modifiedPlanFc, newPlanStatus, sortDate);

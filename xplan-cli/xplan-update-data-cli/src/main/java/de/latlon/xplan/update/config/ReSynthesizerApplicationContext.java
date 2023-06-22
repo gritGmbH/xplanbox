@@ -22,8 +22,13 @@ package de.latlon.xplan.update.config;
 
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
+import de.latlon.xplan.manager.database.XPlanDbAdapter;
+import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -34,8 +39,18 @@ import org.springframework.context.annotation.Import;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
 @Configuration
-@Import(ApplicationContext.class)
+@Import(CommonContext.class)
 public class ReSynthesizerApplicationContext {
+
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
+
+	@Bean
+	public XPlanManagerDao xPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDbAdapter xPlanDbAdapter,
+			XPlanSynthesizer xPlanSynthesizer) {
+		return new XPlanManagerDao(managerWorkspaceWrapper, xPlanDbAdapter, xPlanSynthesizer, null,
+				applicationEventPublisher);
+	}
 
 	@Bean
 	public XPlanSynthesizer XPlanSynthesizer(ManagerConfiguration managerConfiguration) {
