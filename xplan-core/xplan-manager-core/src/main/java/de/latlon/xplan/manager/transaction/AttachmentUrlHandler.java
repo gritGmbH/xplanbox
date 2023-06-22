@@ -1,10 +1,8 @@
 package de.latlon.xplan.manager.transaction;
 
 import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.edit.XPlanManipulator;
 import de.latlon.xplan.manager.edit.XPlanToEditFactory;
@@ -44,21 +42,20 @@ public class AttachmentUrlHandler {
 		this.xPlanExporter = xPlanExporter;
 	}
 
-	public XPlanFeatureCollection replaceRelativeUrls(int planId, XPlanArchive archive,
-			XPlanFeatureCollection xPlanFeatureCollection) throws Exception {
+	public void replaceRelativeUrls(int planId, XPlanArchive archive, XPlanFeatureCollection xPlanFeatureCollection)
+			throws Exception {
 		FeatureCollection featureCollection = xPlanFeatureCollection.getFeatures();
-		XPlanToEdit xPlanToEdit = xPlanToEditFactory.createXPlanToEdit(archive.getVersion(), archive.getType(),
-				featureCollection);
+		XPlanToEdit xPlanToEdit = xPlanToEditFactory.createXPlanToEdit(archive.getVersion(),
+				xPlanFeatureCollection.getType(), featureCollection);
 		xPlanToEdit.getRasterBasis().stream().forEach(rasterBasis -> {
 			List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
 			rasterReferences.forEach(rasterReference -> replaceRelativeUrl(planId, rasterReference));
 		});
 		xPlanToEdit.getReferences().forEach(reference -> replaceRelativeUrl(planId, reference));
-		AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(archive.getVersion());
-		xPlanManipulator.modifyXPlan(featureCollection, xPlanToEdit, archive.getVersion(), archive.getType(),
-				appSchema);
-		FeatureCollection renewedFc = renewFeatureCollection(archive.getVersion(), featureCollection);
-		return new XPlanFeatureCollectionBuilder(renewedFc, archive.getType()).build();
+		AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(xPlanFeatureCollection.getVersion());
+		xPlanManipulator.modifyXPlan(featureCollection, xPlanToEdit, xPlanFeatureCollection.getVersion(),
+				xPlanFeatureCollection.getType(), appSchema);
+		renewFeatureCollection(xPlanFeatureCollection, featureCollection);
 	}
 
 	private void replaceRelativeUrl(int planId, AbstractReference rasterReference) {
@@ -90,14 +87,16 @@ public class AttachmentUrlHandler {
 		return reference;
 	}
 
-	private FeatureCollection renewFeatureCollection(XPlanVersion version, FeatureCollection modifiedFeatures)
-			throws Exception {
+	private void renewFeatureCollection(XPlanFeatureCollection xPlanFeatureCollection,
+			FeatureCollection modifiedFeatures) throws Exception {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		xPlanExporter.export(outputStream, version, modifiedFeatures, null);
+		xPlanExporter.export(outputStream, xPlanFeatureCollection.getVersion(), modifiedFeatures, null);
 		ByteArrayInputStream originalPlan = new ByteArrayInputStream(outputStream.toByteArray());
 		XMLStreamReader originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
 		try {
-			return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(originalPlanAsXmlReader, version);
+			FeatureCollection renewedFeature = XPlanGmlParserBuilder.newBuilder().build()
+					.parseFeatureCollection(originalPlanAsXmlReader, xPlanFeatureCollection.getVersion());
+			xPlanFeatureCollection.setFeatures(renewedFeature);
 		}
 		finally {
 			originalPlanAsXmlReader.close();

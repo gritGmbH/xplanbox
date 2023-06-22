@@ -73,14 +73,14 @@ public class XPlanManagerDao extends XPlanDao {
 			long begin = System.currentTimeMillis();
 			int planId = xPlanDbAdapter.insert(archive, fc, planStatus, beginValidity, endValidity, sortDate,
 					internalId);
-			XPlanFeatureCollection manipulatedFc = manipulateXPlanGml(planId, archive, fc);
-			FeatureCollection synFc = createSynFeatures(manipulatedFc, archive.getVersion());
+			manipulateXPlanGml(planId, archive, fc);
+			FeatureCollection synFc = createSynFeatures(fc, archive.getVersion());
 			manipulateXPlanSynGml(synFc, beginValidity, endValidity, planId, sortDate, internalId);
-			List<String> fidsXPlanWfs = xPlanWfsAdapter.insert(manipulatedFc, planStatus);
+			List<String> fidsXPlanWfs = xPlanWfsAdapter.insert(fc, planStatus);
 			xPlanDbAdapter.update(planId, archive.getType(), synFc);
 			xPlanDbAdapter.updateFids(planId, fidsXPlanWfs);
 			xPlanSynWfsAdapter.insert(synFc, planStatus);
-			xPlanDbAdapter.insertArtefacts(manipulatedFc, archive, planId);
+			xPlanDbAdapter.insertArtefacts(fc, archive, planId);
 
 			long elapsed = System.currentTimeMillis() - begin;
 			LOG.info("OK [" + elapsed + " ms].");
@@ -198,12 +198,11 @@ public class XPlanManagerDao extends XPlanDao {
 		featureCollectionManipulator.addInternalId(synFc, schema, internalId);
 	}
 
-	private XPlanFeatureCollection manipulateXPlanGml(int planId, XPlanArchive archive,
-			XPlanFeatureCollection xPlanFeatureCollection) throws Exception {
+	private void manipulateXPlanGml(int planId, XPlanArchive archive, XPlanFeatureCollection xPlanFeatureCollection)
+			throws Exception {
 		if (attachmentUrlHandler != null) {
-			return attachmentUrlHandler.replaceRelativeUrls(planId, archive, xPlanFeatureCollection);
+			attachmentUrlHandler.replaceRelativeUrls(planId, archive, xPlanFeatureCollection);
 		}
-		return xPlanFeatureCollection;
 	}
 
 }
