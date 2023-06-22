@@ -56,6 +56,8 @@ public class ManagerSystemConfig extends SystemConfig {
 
 	private @Valid Boolean skipLaufrichtung = false;
 
+	private @Valid String documentUrl;
+
 	/**
 	 * Konfiguriertes CRS für die Rasterdatenhaltung
 	 **/
@@ -180,6 +182,25 @@ public class ManagerSystemConfig extends SystemConfig {
 
 	public void setSkipLaufrichtung(Boolean skipLaufrichtung) {
 		this.skipLaufrichtung = skipLaufrichtung;
+	}
+
+	/**
+	 * Typ der Rasterdatenhaltung: gdal oder tiff
+	 **/
+	public ManagerSystemConfig documentUrl(String documentUrl) {
+		this.documentUrl = documentUrl;
+		return this;
+	}
+
+	@Schema(example = "http://example.org/xdokumente/api/v1/dokument/{planId}/{fileName}",
+			description = "URL ueber die alle Anlagen zu einem Plan heruntergeladen werden koennen")
+	@JsonProperty("documentUrl")
+	public String getDocumentUrl() {
+		return documentUrl;
+	}
+
+	public void setDocumentUrl(String documentUrl) {
+		this.documentUrl = documentUrl;
 	}
 
 	@Override
