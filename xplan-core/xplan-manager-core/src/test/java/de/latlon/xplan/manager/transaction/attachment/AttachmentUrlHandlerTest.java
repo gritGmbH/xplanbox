@@ -32,7 +32,7 @@ public class AttachmentUrlHandlerTest {
 	public void testReplaceRelativeUrls() throws Exception {
 		XPlanExporter xPlanExporter = new XPlanExporter();
 		AttachmentUrlHandler attachmentUrlHandler = new AttachmentUrlHandler(
-				"http://test.de/xdokumente/api/v1/dokument/{planId}/{fileName}", xPlanExporter);
+				"http://test.de/xdokumente/api/v1/dokument/{planId}/{fileName}");
 		XPlanArchive archive = getTestArchive();
 		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
 				.parseXPlanFeatureCollection(archive);

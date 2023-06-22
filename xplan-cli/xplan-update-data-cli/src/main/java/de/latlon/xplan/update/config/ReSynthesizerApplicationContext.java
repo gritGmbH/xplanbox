@@ -48,7 +48,7 @@ public class ReSynthesizerApplicationContext {
 	@Bean
 	public XPlanManagerDao xPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDbAdapter xPlanDbAdapter,
 			XPlanSynthesizer xPlanSynthesizer) {
-		return new XPlanManagerDao(managerWorkspaceWrapper, xPlanDbAdapter, xPlanSynthesizer, null,
+		return new XPlanManagerDao(managerWorkspaceWrapper, xPlanDbAdapter, xPlanSynthesizer, null, null,
 				applicationEventPublisher);
 	}
 

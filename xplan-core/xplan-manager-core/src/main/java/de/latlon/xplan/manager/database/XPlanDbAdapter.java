@@ -119,15 +119,24 @@ public class XPlanDbAdapter {
 		return savedPlan.getId();
 	}
 
+	/**
+	 * @param planId id of the plan to insert artefacts
+	 * @param xPlanFeatureCollection used to retrieve the artefacts to insert, never
+	 * <code>null</code>
+	 * @param archive containing the artefacts to insert, never <code>null</code>
+	 * @param xplanGml overwrites the original XPlanGml from the archive, if
+	 * <code>null</code> the original XPlanGML is inserted
+	 * @throws PlanNotFoundException if a plan with the passed id does not exist
+	 */
 	@Transactional(propagation = Propagation.MANDATORY)
-	public void insertArtefacts(XPlanFeatureCollection xPlanFeatureCollection, XPlanArchive archive, int planId)
-			throws Exception {
+	public void insertArtefacts(int planId, XPlanFeatureCollection xPlanFeatureCollection, XPlanArchive archive,
+			byte[] xplanGml) throws PlanNotFoundException {
 		LOG.info("Insert XPlan in XPlanDB");
 		Plan plan = getRequiredPlanById(planId);
 		List<ZipEntryWithContent> archiveEntries = xPlanFeatureCollection.getArchiveEntries(archive);
 		AtomicInteger i = new AtomicInteger();
 		Set<Artefact> artefacts = archiveEntries.stream()
-				.map(archiveEntry -> createArtefact(plan, xPlanFeatureCollection, i, archiveEntry))
+				.map(archiveEntry -> createArtefact(plan, xPlanFeatureCollection, i, archiveEntry, xplanGml))
 				.collect(Collectors.toSet());
 		plan.setArtefacts(artefacts);
 		planRepository.save(plan);
@@ -550,14 +559,14 @@ public class XPlanDbAdapter {
 	}
 
 	private Artefact createArtefact(Plan plan, XPlanFeatureCollection xPlanFeatureCollection, AtomicInteger i,
-			ZipEntryWithContent archiveEntry) {
+			ZipEntryWithContent archiveEntry, byte[] xplanGml) {
 		try {
 			String name = archiveEntry.getName();
 			InputStream is = archiveEntry.retrieveContentAsStream();
 			long contentLength = archiveEntry.getContentLength();
-			byte[] data = createZipArtefact(is);
 			String mimetype = archiveEntry.getContentType();
 			ArtefactType artefactType = detectArtefactType(xPlanFeatureCollection, archiveEntry);
+			byte[] data = retrieveData(xplanGml, is, artefactType);
 			ArtefactId id = new ArtefactId().plan(plan).filename(name);
 			Artefact artefact = new Artefact().id(id).data(data).mimetype(mimetype).length(contentLength)
 					.artefacttype(artefactType).num(i.getAndIncrement());
@@ -566,6 +575,12 @@ public class XPlanDbAdapter {
 		catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	private byte[] retrieveData(byte[] xplanGml, InputStream is, ArtefactType artefactType) throws IOException {
+		if (artefactType == XPLANGML)
+			return createZipArtefact(new ByteArrayInputStream(xplanGml));
+		return createZipArtefact(is);
 	}
 
 	private void updatePlan(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,

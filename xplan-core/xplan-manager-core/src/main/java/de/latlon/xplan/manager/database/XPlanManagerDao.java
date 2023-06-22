@@ -5,6 +5,8 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
+import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
@@ -20,6 +22,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.xml.namespace.QName;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Date;
@@ -45,12 +51,24 @@ public class XPlanManagerDao extends XPlanDao {
 
 	private final AttachmentUrlHandler attachmentUrlHandler;
 
+	private final XPlanExporter xPlanExporter;
+
+	/**
+	 * @param managerWorkspaceWrapper never <code>null</code>
+	 * @param xPlanDbAdapter never <code>null</code>
+	 * @param xPlanSynthesizer never <code>null</code>
+	 * @param attachmentUrlHandler may be <code>null</code>
+	 * @param xPlanExporter may be <code>null</code> if attachmentHandler ist
+	 * <code>null</code>
+	 * @param applicationEventPublisher never <code>null</code>
+	 */
 	public XPlanManagerDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDbAdapter xPlanDbAdapter,
-			XPlanSynthesizer xPlanSynthesizer, AttachmentUrlHandler attachmentUrlHandler,
+			XPlanSynthesizer xPlanSynthesizer, AttachmentUrlHandler attachmentUrlHandler, XPlanExporter xPlanExporter,
 			ApplicationEventPublisher applicationEventPublisher) {
 		super(managerWorkspaceWrapper, xPlanDbAdapter, applicationEventPublisher);
 		this.xPlanSynthesizer = xPlanSynthesizer;
 		this.attachmentUrlHandler = attachmentUrlHandler;
+		this.xPlanExporter = xPlanExporter;
 	}
 
 	/**
@@ -74,13 +92,15 @@ public class XPlanManagerDao extends XPlanDao {
 			int planId = xPlanDbAdapter.insert(archive, fc, planStatus, beginValidity, endValidity, sortDate,
 					internalId);
 			manipulateXPlanGml(planId, archive, fc);
+			byte[] xPlanGml = createXPlanGml(fc);
+			renewFeatureCollection(fc, xPlanGml);
 			FeatureCollection synFc = createSynFeatures(fc, archive.getVersion());
 			manipulateXPlanSynGml(synFc, beginValidity, endValidity, planId, sortDate, internalId);
 			List<String> fidsXPlanWfs = xPlanWfsAdapter.insert(fc, planStatus);
 			xPlanDbAdapter.update(planId, archive.getType(), synFc);
 			xPlanDbAdapter.updateFids(planId, fidsXPlanWfs);
 			xPlanSynWfsAdapter.insert(synFc, planStatus);
-			xPlanDbAdapter.insertArtefacts(fc, archive, planId);
+			xPlanDbAdapter.insertArtefacts(planId, fc, archive, xPlanGml);
 
 			long elapsed = System.currentTimeMillis() - begin;
 			LOG.info("OK [" + elapsed + " ms].");
@@ -203,6 +223,31 @@ public class XPlanManagerDao extends XPlanDao {
 		if (attachmentUrlHandler != null) {
 			attachmentUrlHandler.replaceRelativeUrls(planId, archive, xPlanFeatureCollection);
 		}
+	}
+
+	private void renewFeatureCollection(XPlanFeatureCollection xPlanFeatureCollection, byte[] xPlanGml)
+			throws Exception {
+		if (xPlanGml == null)
+			return;
+		ByteArrayInputStream originalPlan = new ByteArrayInputStream(xPlanGml);
+		XMLStreamReader originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
+		try {
+			FeatureCollection renewedFeature = XPlanGmlParserBuilder.newBuilder().build()
+					.parseFeatureCollection(originalPlanAsXmlReader, xPlanFeatureCollection.getVersion());
+			xPlanFeatureCollection.setFeatures(renewedFeature);
+		}
+		finally {
+			originalPlanAsXmlReader.close();
+		}
+	}
+
+	private byte[] createXPlanGml(XPlanFeatureCollection xPlanFeatureCollection) throws Exception {
+		if (xPlanExporter == null)
+			return null;
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		FeatureCollection featureCollection = xPlanFeatureCollection.getFeatures();
+		xPlanExporter.export(outputStream, xPlanFeatureCollection.getVersion(), featureCollection, null);
+		return outputStream.toByteArray();
 	}
 
 }

@@ -36,7 +36,6 @@ import de.latlon.xplan.manager.cli.ServiceMetadataRecordCreator;
 import de.latlon.xplan.manager.cli.XPlanManagerCLI;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.database.XPlanDbAdapter;
 import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
@@ -234,11 +233,11 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanManagerDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			XPlanDbAdapter xPlanDbAdapter, XPlanSynthesizer xPlanSynthesizer,
+	public XPlanManagerDao xPlanManagerDao(ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			XPlanDbAdapter xPlanDbAdapter, XPlanSynthesizer xPlanSynthesizer, XPlanExporter xPlanExporter,
 			Optional<AttachmentUrlHandler> attachmentUrlHandler) {
 		return new XPlanManagerDao(managerWorkspaceWrapper, xPlanDbAdapter, xPlanSynthesizer,
-				attachmentUrlHandler.orElse(null), applicationEventPublisher);
+				attachmentUrlHandler.orElse(null), xPlanExporter, applicationEventPublisher);
 	}
 
 	@Bean
@@ -266,49 +265,49 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
+	public XPlanManager xPlanManager(XPlanManagerDao xPlanManagerDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WmsWorkspaceWrapper wmsWorkspaceWrapper,
 			XPlanExporter xPlanExporter, XPlanRasterEvaluator xPlanRasterEvaluator,
 			XPlanRasterManager xPlanRasterManager, SortPropertyReader sortPropertyReader,
 			XPlanInsertManager xPlanInsertManager, XPlanEditManager xPlanEditManager,
 			XPlanDeleteManager xPlanDeleteManager) throws Exception {
-		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, wmsWorkspaceWrapper, xPlanExporter,
-				xPlanRasterEvaluator, xPlanRasterManager, sortPropertyReader, null, xPlanInsertManager,
+		return new XPlanManager(xPlanManagerDao, archiveCreator, managerWorkspaceWrapper, wmsWorkspaceWrapper,
+				xPlanExporter, xPlanRasterEvaluator, xPlanRasterManager, sortPropertyReader, null, xPlanInsertManager,
 				xPlanEditManager, xPlanDeleteManager);
 	}
 
 	@Bean
-	public XPlanInsertManager xPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
+	public XPlanInsertManager xPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanManagerDao xPlanManagerDao,
 			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager,
 			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
 			SortPropertyReader sortPropertyReader, XPlanInsertService xPlanInsertService,
 			Optional<MetadataCouplingHandler> metadataCouplingHandler) {
-		return new XPlanInsertManager(xPlanSynthesizer, xPlanDao, xPlanRasterManager, xPlanDocumentManager.orElse(null),
-				workspaceReloader, managerConfiguration, sortPropertyReader, xPlanInsertService,
-				metadataCouplingHandler.orElse(null));
+		return new XPlanInsertManager(xPlanSynthesizer, xPlanManagerDao, xPlanRasterManager,
+				xPlanDocumentManager.orElse(null), workspaceReloader, managerConfiguration, sortPropertyReader,
+				xPlanInsertService, metadataCouplingHandler.orElse(null));
 	}
 
 	@Bean
-	public XPlanInsertService xPlanInsertService(XPlanManagerDao xPlanDao,
+	public XPlanInsertService xPlanInsertService(XPlanManagerDao xPlanManagerDao,
 			Optional<XPlanDocumentManager> xPlanDocumentManager) {
-		return new XPlanInsertService(xPlanDao, xPlanDocumentManager.orElse(null));
+		return new XPlanInsertService(xPlanManagerDao, xPlanDocumentManager.orElse(null));
 	}
 
 	@Bean
-	public XPlanEditManager xPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
+	public XPlanEditManager xPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanManagerDao xPlanManagerDao,
 			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			WorkspaceReloader workspaceReloader, XPlanRasterManager xPlanRasterManager,
 			Optional<XPlanDocumentManager> xPlanDocumentManager, SortPropertyReader sortPropertyReader,
 			XPlanEditService xPlanEditService, MetadataCouplingHandler metadataCouplingHandler) {
-		return new XPlanEditManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager,
+		return new XPlanEditManager(xPlanSynthesizer, xPlanManagerDao, xPlanExporter, xPlanRasterManager,
 				xPlanDocumentManager.orElse(null), workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
 				sortPropertyReader, xPlanEditService, metadataCouplingHandler);
 	}
 
 	@Bean
-	public XPlanEditService xPlanEditService(XPlanManagerDao xplanDao,
+	public XPlanEditService xPlanEditService(XPlanManagerDao xPlanManagerDao,
 			Optional<XPlanDocumentManager> xPlanDocumentManager) {
-		return new XPlanEditService(xplanDao, xPlanDocumentManager.orElse(null));
+		return new XPlanEditService(xPlanManagerDao, xPlanDocumentManager.orElse(null));
 	}
 
 	@Bean
@@ -318,25 +317,24 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanDeleteService xPlanDeleteService(XPlanManagerDao xPlanDao,
+	public XPlanDeleteService xPlanDeleteService(XPlanManagerDao xPlanManagerDao,
 			StorageCleanUpManager storageCleanUpManager) {
-		return new XPlanDeleteService(xPlanDao, storageCleanUpManager, applicationEventPublisher);
+		return new XPlanDeleteService(xPlanManagerDao, storageCleanUpManager, applicationEventPublisher);
 	}
 
 	@Bean
-	public AttachmentUrlHandler attachmentUrlHandler(ManagerConfiguration managerConfiguration,
-			XPlanExporter xPlanExporter) {
+	public AttachmentUrlHandler attachmentUrlHandler(ManagerConfiguration managerConfiguration) {
 		String documentUrl = managerConfiguration.getEnvironmentVariableValue("XPLAN_DOCUMENT_URL_PUBLIC");
 		if (documentUrl != null)
-			return new AttachmentUrlHandler(documentUrl, xPlanExporter);
+			return new AttachmentUrlHandler(documentUrl);
 		return null;
 	}
 
 	@Bean
-	public MetadataCouplingHandler metadataCouplingHandler(XPlanManagerDao xPlanDao,
+	public MetadataCouplingHandler metadataCouplingHandler(XPlanManagerDao xPlanManagerDao,
 			ManagerConfiguration managerConfiguration) throws DataServiceCouplingException {
 		if (managerConfiguration != null && managerConfiguration.getCoupledResourceConfiguration() != null)
-			return new MetadataCouplingHandler(xPlanDao, managerConfiguration.getCoupledResourceConfiguration());
+			return new MetadataCouplingHandler(xPlanManagerDao, managerConfiguration.getCoupledResourceConfiguration());
 		return null;
 	}
 
@@ -445,9 +443,9 @@ public class ApplicationContext {
 
 	@Bean
 	public ServiceMetadataRecordCreator serviceMetadataRecordCreator(ManagerConfiguration managerConfiguration,
-			XPlanDao xplanDao, MetadataCouplingHandler metadataCouplingHandler) {
+			XPlanManagerDao xPlanManagerDao, MetadataCouplingHandler metadataCouplingHandler) {
 		try {
-			return new ServiceMetadataRecordCreator(xplanDao, managerConfiguration, metadataCouplingHandler);
+			return new ServiceMetadataRecordCreator(xPlanManagerDao, managerConfiguration, metadataCouplingHandler);
 		}
 		catch (Exception e) {
 			LOG.warn("Could not initialize ServiceMetadataRecordCreator: {}", e.getMessage());

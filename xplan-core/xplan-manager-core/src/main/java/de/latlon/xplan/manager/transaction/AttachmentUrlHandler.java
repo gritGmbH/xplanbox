@@ -3,10 +3,8 @@ package de.latlon.xplan.manager.transaction;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.edit.XPlanManipulator;
 import de.latlon.xplan.manager.edit.XPlanToEditFactory;
-import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
@@ -15,10 +13,6 @@ import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 /**
@@ -35,11 +29,8 @@ public class AttachmentUrlHandler {
 
 	private final String documentUrl;
 
-	private final XPlanExporter xPlanExporter;
-
-	public AttachmentUrlHandler(String documentUrl, XPlanExporter xPlanExporter) {
+	public AttachmentUrlHandler(String documentUrl) {
 		this.documentUrl = documentUrl;
-		this.xPlanExporter = xPlanExporter;
 	}
 
 	public void replaceRelativeUrls(int planId, XPlanArchive archive, XPlanFeatureCollection xPlanFeatureCollection)
@@ -55,7 +46,6 @@ public class AttachmentUrlHandler {
 		AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(xPlanFeatureCollection.getVersion());
 		xPlanManipulator.modifyXPlan(featureCollection, xPlanToEdit, xPlanFeatureCollection.getVersion(),
 				xPlanFeatureCollection.getType(), appSchema);
-		renewFeatureCollection(xPlanFeatureCollection, featureCollection);
 	}
 
 	private void replaceRelativeUrl(int planId, AbstractReference rasterReference) {
@@ -85,22 +75,6 @@ public class AttachmentUrlHandler {
 			return newReference;
 		}
 		return reference;
-	}
-
-	private void renewFeatureCollection(XPlanFeatureCollection xPlanFeatureCollection,
-			FeatureCollection modifiedFeatures) throws Exception {
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		xPlanExporter.export(outputStream, xPlanFeatureCollection.getVersion(), modifiedFeatures, null);
-		ByteArrayInputStream originalPlan = new ByteArrayInputStream(outputStream.toByteArray());
-		XMLStreamReader originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
-		try {
-			FeatureCollection renewedFeature = XPlanGmlParserBuilder.newBuilder().build()
-					.parseFeatureCollection(originalPlanAsXmlReader, xPlanFeatureCollection.getVersion());
-			xPlanFeatureCollection.setFeatures(renewedFeature);
-		}
-		finally {
-			originalPlanAsXmlReader.close();
-		}
 	}
 
 }
