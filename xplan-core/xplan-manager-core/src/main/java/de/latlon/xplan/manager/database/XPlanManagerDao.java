@@ -91,7 +91,7 @@ public class XPlanManagerDao extends XPlanDao {
 			long begin = System.currentTimeMillis();
 			int planId = xPlanDbAdapter.insert(archive, fc, planStatus, beginValidity, endValidity, sortDate,
 					internalId);
-			manipulateXPlanGml(planId, archive, fc);
+			manipulateXPlanGml(planId, fc);
 			byte[] xPlanGml = createXPlanGml(fc);
 			renewFeatureCollection(fc, xPlanGml);
 			FeatureCollection synFc = createSynFeatures(fc, archive.getVersion());
@@ -218,10 +218,9 @@ public class XPlanManagerDao extends XPlanDao {
 		featureCollectionManipulator.addInternalId(synFc, schema, internalId);
 	}
 
-	private void manipulateXPlanGml(int planId, XPlanArchive archive, XPlanFeatureCollection xPlanFeatureCollection)
-			throws Exception {
+	private void manipulateXPlanGml(int planId, XPlanFeatureCollection xPlanFeatureCollection) throws Exception {
 		if (attachmentUrlHandler != null) {
-			attachmentUrlHandler.replaceRelativeUrls(planId, archive, xPlanFeatureCollection);
+			attachmentUrlHandler.replaceRelativeUrls(planId, xPlanFeatureCollection);
 		}
 	}
 

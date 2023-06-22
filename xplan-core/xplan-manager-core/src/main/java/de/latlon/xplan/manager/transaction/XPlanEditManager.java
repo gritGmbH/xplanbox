@@ -36,6 +36,7 @@ import de.latlon.xplan.manager.configuration.ConfigurationException;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
+import de.latlon.xplan.manager.edit.EditException;
 import de.latlon.xplan.manager.edit.XPlanManipulator;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
@@ -88,6 +89,8 @@ public class XPlanEditManager extends XPlanTransactionManager {
 
 	private final XPlanEditService xPlanEditService;
 
+	private final AttachmentUrlHandler attachmentUrlHandler;
+
 	protected final XPlanExporter xPlanExporter;
 
 	private final XPlanManipulator planModifier = new XPlanManipulator();
@@ -96,11 +99,12 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			XPlanRasterManager xPlanRasterManager, XPlanDocumentManager xPlanDocumentManager,
 			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
 			SortPropertyReader sortPropertyReader, XPlanEditService xPlanEditService,
-			MetadataCouplingHandler metadataCouplingHandler) {
+			MetadataCouplingHandler metadataCouplingHandler, AttachmentUrlHandler attachmentUrlHandler) {
 		super(xPlanSynthesizer, xplanDao, xPlanRasterManager, xPlanDocumentManager, workspaceReloader,
 				managerConfiguration, sortPropertyReader, metadataCouplingHandler);
 		this.xPlanExporter = xPlanExporter;
 		this.xPlanEditService = xPlanEditService;
+		this.attachmentUrlHandler = attachmentUrlHandler;
 	}
 
 	public void editPlan(XPlan oldXplan, XPlanToEdit xPlanToEdit, boolean makeRasterConfig,
@@ -122,6 +126,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			FeatureCollection featuresToModify = originalPlanFC.getFeatures();
 			ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan(featuresToModify);
 			planModifier.modifyXPlan(featuresToModify, xPlanToEdit, version, type, appSchema);
+			replaceRelativeUrls(planId, version, type, featuresToModify);
 			FeatureCollection modifiedFeatures = renewFeatureCollection(version, featuresToModify);
 			ExternalReferenceInfo externalReferencesModified = new ExternalReferenceScanner().scan(modifiedFeatures);
 
@@ -150,6 +155,13 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			updateRasterConfiguration(planId, makeRasterConfig, uploadedArtefacts, type, oldPlanStatus,
 					externalReferenceInfoToRemove, modifiedPlanFc, newPlanStatus, sortDate);
 			LOG.info("XPlanGML wurde erfolgreich editiert. ID: {}", planId);
+		}
+	}
+
+	private void replaceRelativeUrls(int planId, XPlanVersion version, XPlanType type,
+			FeatureCollection featuresToModify) throws EditException {
+		if (attachmentUrlHandler != null) {
+			attachmentUrlHandler.replaceRelativeUrls(planId, version, type, featuresToModify);
 		}
 	}
 

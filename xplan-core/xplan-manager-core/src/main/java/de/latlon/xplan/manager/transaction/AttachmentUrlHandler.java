@@ -1,8 +1,10 @@
 package de.latlon.xplan.manager.transaction;
 
 import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.manager.edit.EditException;
 import de.latlon.xplan.manager.edit.XPlanManipulator;
 import de.latlon.xplan.manager.edit.XPlanToEditFactory;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
@@ -33,19 +35,23 @@ public class AttachmentUrlHandler {
 		this.documentUrl = documentUrl;
 	}
 
-	public void replaceRelativeUrls(int planId, XPlanArchive archive, XPlanFeatureCollection xPlanFeatureCollection)
-			throws Exception {
+	public void replaceRelativeUrls(int planId, XPlanFeatureCollection xPlanFeatureCollection) throws Exception {
 		FeatureCollection featureCollection = xPlanFeatureCollection.getFeatures();
-		XPlanToEdit xPlanToEdit = xPlanToEditFactory.createXPlanToEdit(archive.getVersion(),
-				xPlanFeatureCollection.getType(), featureCollection);
+		XPlanVersion version = xPlanFeatureCollection.getVersion();
+		XPlanType type = xPlanFeatureCollection.getType();
+		replaceRelativeUrls(planId, version, type, featureCollection);
+	}
+
+	public void replaceRelativeUrls(int planId, XPlanVersion version, XPlanType type,
+			FeatureCollection featureCollection) throws EditException {
+		XPlanToEdit xPlanToEdit = xPlanToEditFactory.createXPlanToEdit(version, type, featureCollection);
 		xPlanToEdit.getRasterBasis().stream().forEach(rasterBasis -> {
 			List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
 			rasterReferences.forEach(rasterReference -> replaceRelativeUrl(planId, rasterReference));
 		});
 		xPlanToEdit.getReferences().forEach(reference -> replaceRelativeUrl(planId, reference));
-		AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(xPlanFeatureCollection.getVersion());
-		xPlanManipulator.modifyXPlan(featureCollection, xPlanToEdit, xPlanFeatureCollection.getVersion(),
-				xPlanFeatureCollection.getType(), appSchema);
+		AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(version);
+		xPlanManipulator.modifyXPlan(featureCollection, xPlanToEdit, version, type, appSchema);
 	}
 
 	private void replaceRelativeUrl(int planId, AbstractReference rasterReference) {

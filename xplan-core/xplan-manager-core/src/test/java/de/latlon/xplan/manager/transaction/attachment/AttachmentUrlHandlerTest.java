@@ -7,16 +7,17 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
-import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
+import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.property.GenericProperty;
 import org.junit.Test;
 
+import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -30,14 +31,11 @@ public class AttachmentUrlHandlerTest {
 
 	@Test
 	public void testReplaceRelativeUrls() throws Exception {
-		XPlanExporter xPlanExporter = new XPlanExporter();
 		AttachmentUrlHandler attachmentUrlHandler = new AttachmentUrlHandler(
 				"http://test.de/xdokumente/api/v1/dokument/{planId}/{fileName}");
-		XPlanArchive archive = getTestArchive();
-		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
-				.parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection xPlanFeatureCollection = getXPlanFeatureCollection();
 
-		attachmentUrlHandler.replaceRelativeUrls(10, archive, xPlanFeatureCollection);
+		attachmentUrlHandler.replaceRelativeUrls(10, xPlanFeatureCollection);
 
 		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 		List<ExternalReference> externalReferences = externalReferenceScanner.scan(xPlanFeatureCollection.getFeatures())
@@ -56,10 +54,14 @@ public class AttachmentUrlHandlerTest {
 				.equals(((PrimitiveValue) referenzURL.getValue()).getAsText()));
 	}
 
-	private static XPlanArchive getTestArchive() throws IOException {
+	private static XPlanFeatureCollection getXPlanFeatureCollection()
+			throws IOException, XMLStreamException, UnknownCRSException {
 		InputStream inputStream = ResourceAccessor.readResourceStream("xplan52/BPlan004_5-2.zip");
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		return archiveCreator.createXPlanArchiveFromZip("BPlan004_5-2.zip", inputStream);
+		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip("BPlan004_5-2.zip", inputStream);
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
+				.parseXPlanFeatureCollection(archive);
+		return xPlanFeatureCollection;
 	}
 
 	private static GenericProperty findExterneReferenzUrl(XPlanFeatureCollection xPlanFeatureCollection) {

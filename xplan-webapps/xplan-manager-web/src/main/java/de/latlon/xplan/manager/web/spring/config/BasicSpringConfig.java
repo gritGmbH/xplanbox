@@ -281,10 +281,11 @@ public class BasicSpringConfig {
 			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			WorkspaceReloader workspaceReloader, XPlanRasterManager xPlanRasterManager,
 			Optional<XPlanDocumentManager> xPlanDocumentManager, SortPropertyReader sortPropertyReader,
-			XPlanEditService xPlanEditService, MetadataCouplingHandler metadataCouplingHandler) {
+			XPlanEditService xPlanEditService, MetadataCouplingHandler metadataCouplingHandler,
+			Optional<AttachmentUrlHandler> attachmentUrlHandler) {
 		return new XPlanEditManager(xPlanSynthesizer, xPlanManagerDao, xPlanExporter, xPlanRasterManager,
 				xPlanDocumentManager.orElse(null), workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
-				sortPropertyReader, xPlanEditService, metadataCouplingHandler);
+				sortPropertyReader, xPlanEditService, metadataCouplingHandler, attachmentUrlHandler.orElse(null));
 	}
 
 	@Bean
