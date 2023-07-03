@@ -23,7 +23,6 @@ package de.latlon.xplan.manager.transaction;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
-import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
@@ -75,8 +74,6 @@ public abstract class XPlanTransactionManager {
 	protected final ManagerConfiguration managerConfiguration;
 
 	protected final SortPropertyReader sortPropertyReader;
-
-	protected final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
 
 	private final MetadataCouplingHandler metadataCouplingHandler;
 
