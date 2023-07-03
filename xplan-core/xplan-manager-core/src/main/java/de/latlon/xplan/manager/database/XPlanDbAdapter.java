@@ -210,28 +210,6 @@ public class XPlanDbAdapter {
 	}
 
 	/**
-	 * Updates the column artefacttype of the table xplanmgr.artefacts.
-	 * @param planId of the plan to update, never <code>null</code>
-	 * @param fileNames the fileNames to update, never <code>null</code>
-	 * @param artefactType the artefactType to set, never <code>null</code>
-	 * @throws SQLException
-	 */
-	@Transactional
-	public void updateArtefacttype(int planId, List<String> fileNames, ArtefactType artefactType) throws IOException {
-		Stream<Artefact> artefacts = artefactRepository.findAllByPlanId(planId);
-		for (String fileName : fileNames) {
-			Optional<Artefact> artefact = artefacts
-					.filter(candidate -> candidate.getId().getFilename().equals(fileName)).findFirst();
-			if (artefact.isPresent()) {
-				Artefact artefactToUpdate = artefact.get();
-				long length = detectLength(artefactToUpdate.getData());
-				artefactToUpdate.artefacttype(artefactType).length(length);
-				artefactRepository.save(artefactToUpdate);
-			}
-		}
-	}
-
-	/**
 	 * @param planId of the plan to update, never <code>null</code>
 	 * @throws Exception if the sql could not be executed
 	 */
@@ -489,20 +467,6 @@ public class XPlanDbAdapter {
 			byte[] byteArray = bos.toByteArray();
 			return new ByteArrayInputStream(byteArray);
 		}
-	}
-
-	private byte[] unzipArtefact(byte[] zippedData) throws IOException {
-		try (ByteArrayInputStream bis = new ByteArrayInputStream(zippedData);
-				GZIPInputStream is = new GZIPInputStream(bis);
-				ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
-			IOUtils.copy(is, bos);
-			return bos.toByteArray();
-		}
-	}
-
-	private long detectLength(byte[] zippedData) throws IOException {
-		byte[] bytes = unzipArtefact(zippedData);
-		return bytes.length;
 	}
 
 	private Plan getRequiredPlanById(int planId) throws PlanNotFoundException {

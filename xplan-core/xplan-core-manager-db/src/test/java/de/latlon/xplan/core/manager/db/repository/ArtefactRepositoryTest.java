@@ -99,7 +99,7 @@ public class ArtefactRepositoryTest {
 	private static Plan createPlan() {
 		Plan plan = new Plan().importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false);
 		Set<Artefact> artefacts = new HashSet<>();
-		artefacts.add(createArtefact(plan, "test.xml", XPLANGML));
+		artefacts.add(createArtefact(plan, "xplan.gml", XPLANGML));
 		artefacts.add(createArtefact(plan, "image.png", RASTERBASIS));
 		plan.artefacts(artefacts);
 		return plan;
@@ -108,9 +108,8 @@ public class ArtefactRepositoryTest {
 	private static Artefact createArtefact(Plan plan, String image, ArtefactType artefactType) {
 		ArtefactId artefactId = new ArtefactId().plan(plan).filename(image);
 		byte[] bytes = "test".getBytes(UTF_8);
-		Artefact artefact = new Artefact().id(artefactId).num(1).artefacttype(artefactType).mimetype("text/xml")
+		return new Artefact().id(artefactId).num(1).artefacttype(artefactType).mimetype("text/xml")
 				.length(Long.valueOf(bytes.length)).data(bytes);
-		return artefact;
 	}
 
 }

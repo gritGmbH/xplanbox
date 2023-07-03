@@ -23,7 +23,6 @@ package de.latlon.xplan.core.manager.db.repository;
 import de.latlon.xplan.core.manager.db.model.Artefact;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.QueryHints;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,7 +41,7 @@ import static org.hibernate.jpa.QueryHints.HINT_FETCH_SIZE;
  */
 @Repository
 @Transactional
-public interface ArtefactRepository extends CrudRepository<Artefact, Integer> {
+public interface ArtefactRepository extends org.springframework.data.repository.Repository<Artefact, Integer> {
 
 	@Query(value = "from Artefact as a where a.id.plan.id = :plan and a.id.filename = :filename")
 	Optional<Artefact> findByPlanAndFilename(@Param("plan") Integer plan, @Param("filename") String filename);
