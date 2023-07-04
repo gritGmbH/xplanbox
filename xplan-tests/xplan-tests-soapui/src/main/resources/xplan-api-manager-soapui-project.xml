@@ -6594,18 +6594,9 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="id">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzURL, id and referenzName">
               <con:configuration>
-                <path>$[?(@.referenzURL == 'postDok.pdf')].id</path>
-                <content>[test-name-dokument-postDokpdf]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzName">
-              <con:configuration>
-                <path>$[?(@.referenzURL == 'postDok.pdf')].referenzName</path>
+                <path>$[?(@.referenzURL contains 'postDok.pdf' &amp;&amp; @.id contains 'postDokpdf')].referenzName</path>
                 <content>[test-name-dokument]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -6766,10 +6757,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="id">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzURL, id and typ">
               <con:configuration>
-                <path>$[?(@.referenzURL == 'postDok.pdf')].id</path>
-                <content>[-postDokpdf]</content>
+                <path>$[?(@.referenzURL contains 'postDok.pdf' &amp;&amp; @.id contains 'postDokpdf')].typ</path>
+                <content>[1010]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -6886,10 +6877,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="id">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzURL, id and typ">
               <con:configuration>
-                <path>$[?(@.referenzURL == 'postDok.pdf')].id</path>
-                <content>[-postDokpdf]</content>
+                <path>$[?(@.referenzURL contains 'postDok.pdf' &amp;&amp; @.id contains 'postDokpdf')].typ</path>
+                <content>[1010]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7006,10 +6997,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="id">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzURL, id and typ">
               <con:configuration>
-                <path>$[?(@.referenzURL == 'postDok.pdf')].id</path>
-                <content>[-postDokpdf]</content>
+                <path>$[?(@.referenzURL contains 'postDok.pdf' &amp;&amp; @.id contains 'postDokpdf')].typ</path>
+                <content>[1010]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7044,10 +7035,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzURL, id and typ">
               <con:configuration>
-                <path>$[0].id</path>
-                <content>-StErhVo_Eppendorf_Hoheluft-Ostpdf</content>
+                <path>$[?(@.referenzURL contains 'StErhVo_Eppendorf_Hoheluft-Ost.pdf' &amp;&amp; @.id contains 'StErhVo_Eppendorf_Hoheluft-Ostpdf')].typ</path>
+                <content>[1065]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7125,19 +7116,19 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="id">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzURL, id and typ">
               <con:configuration>
-                <path>$[?(@.referenzURL == 'StErhVo_Eppendorf_Hoheluft-Ost.pdf')].id</path>
-                <content>[-StErhVo_Eppendorf_Hoheluft-Ostpdf]</content>
+                <path>$[?(@.referenzURL contains 'StErhVo_Eppendorf_Hoheluft-Ost.pdf' &amp;&amp; @.id contains 'StErhVo_Eppendorf_Hoheluft-Ostpdf')].typ</path>
+                <content>[1065]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="newId">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="added referenzURL, id and typ">
               <con:configuration>
-                <path>$[?(@.referenzURL == 'postDok.pdf')].id</path>
-                <content>[-postDokpdf]</content>
+                <path>$[?(@.referenzURL contains 'postDok.pdf' &amp;&amp; @.id contains 'postDokpdf')].typ</path>
+                <content>[1010]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -13857,11 +13848,11 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
       <con:property>
         <con:name>planIdBPXPlanGml602</con:name>
-        <con:value>19</con:value>
+        <con:value>107</con:value>
       </con:property>
       <con:property>
         <con:name>planIdFPXPlanGml602</con:name>
-        <con:value>21</con:value>
+        <con:value>109</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
