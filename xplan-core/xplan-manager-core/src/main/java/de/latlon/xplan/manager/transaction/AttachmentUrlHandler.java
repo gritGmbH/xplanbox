@@ -1,19 +1,18 @@
 package de.latlon.xplan.manager.transaction;
 
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.manager.edit.XPlanManipulator;
-import de.latlon.xplan.manager.edit.XPlanToEditFactory;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import org.deegree.commons.tom.TypedObjectNode;
+import org.deegree.commons.tom.genericxml.GenericXMLElement;
+import org.deegree.commons.tom.gml.property.Property;
+import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,25 +23,18 @@ public class AttachmentUrlHandler {
 
 	private static final Logger LOG = LoggerFactory.getLogger(AttachmentUrlHandler.class);
 
-	private final XPlanToEditFactory xPlanToEditFactory = new XPlanToEditFactory();
-
-	private final XPlanManipulator xPlanManipulator = new XPlanManipulator();
-
 	private final String documentUrl;
 
 	public AttachmentUrlHandler(String documentUrl) {
 		this.documentUrl = documentUrl;
 	}
 
-	public void replaceRelativeUrls(int planId, XPlanFeatureCollection xPlanFeatureCollection) throws Exception {
+	public void replaceRelativeUrls(int planId, XPlanFeatureCollection xPlanFeatureCollection) {
 		FeatureCollection featureCollection = xPlanFeatureCollection.getFeatures();
-		XPlanVersion version = xPlanFeatureCollection.getVersion();
-		XPlanType type = xPlanFeatureCollection.getType();
-
-		XPlanToEdit xPlanToEdit = xPlanToEditFactory.createXPlanToEdit(version, type, featureCollection);
-		replaceRelativeUrls(planId, xPlanToEdit);
-		AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(version);
-		xPlanManipulator.modifyXPlan(featureCollection, xPlanToEdit, version, type, appSchema);
+		featureCollection.stream().iterator().forEachRemaining(feature -> {
+			List<Property> properties = feature.getProperties();
+			properties.forEach(elementNode -> replace(planId, elementNode));
+		});
 	}
 
 	public void replaceRelativeUrls(int planId, XPlanToEdit xPlanToEdit) {
@@ -51,6 +43,43 @@ public class AttachmentUrlHandler {
 			rasterReferences.forEach(rasterReference -> replaceRelativeUrl(planId, rasterReference));
 		});
 		xPlanToEdit.getReferences().forEach(reference -> replaceRelativeUrl(planId, reference));
+	}
+
+	private void replace(int planId, TypedObjectNode elementNode) {
+		if (elementNode instanceof Property) {
+			Property property = (Property) elementNode;
+			TypedObjectNode value = property.getValue();
+			String name = property.getName().getLocalPart();
+			if (("referenzURL".equals(name) || "georefURL".equals(name)) && value instanceof PrimitiveValue) {
+				PrimitiveValue newValue = createNewValue(planId, (PrimitiveValue) value, name);
+				property.setValue(newValue);
+			}
+			else {
+				List<TypedObjectNode> children = property.getChildren();
+				children.forEach(child -> replace(planId, child));
+			}
+		}
+		else if (elementNode instanceof GenericXMLElement) {
+			GenericXMLElement genericXMLElement = (GenericXMLElement) elementNode;
+			String name = genericXMLElement.getName().getLocalPart();
+			if (("referenzURL".equals(name) || "georefURL".equals(name)) && !genericXMLElement.getChildren().isEmpty()
+					&& genericXMLElement.getChildren().get(0) instanceof PrimitiveValue) {
+				PrimitiveValue newValue = createNewValue(planId,
+						(PrimitiveValue) genericXMLElement.getChildren().get(0), name);
+				genericXMLElement.setChildren(Collections.singletonList(newValue));
+			}
+			else {
+				List<TypedObjectNode> children = genericXMLElement.getChildren();
+				children.forEach(child -> replace(planId, child));
+			}
+		}
+	}
+
+	private PrimitiveValue createNewValue(int planId, PrimitiveValue value, String name) {
+		String oldReference = value.getAsText();
+		String newReference = replaceReference(planId, oldReference);
+		LOG.debug("Replace {} {} with {}.", name, oldReference, newReference);
+		return new PrimitiveValue(newReference);
 	}
 
 	private void replaceRelativeUrl(int planId, AbstractReference rasterReference) {
