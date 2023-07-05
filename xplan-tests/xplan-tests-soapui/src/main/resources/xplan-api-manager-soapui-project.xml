@@ -6617,7 +6617,7 @@ assert expectedHeader == actualHeader</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 5.0 pI verifyStatusExpectError" id="1bbfba5d-e485-4576-ba2b-87db4e7619f6">
+      <con:testStep type="restrequest" name="POST BP 5.0 pI expectErrorDokumentAlreadyExists" id="1bbfba5d-e485-4576-ba2b-87db4e7619f6">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument" methodName="addDokument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 5.0 pI verifyStatusExpectError" id="8aad00fe-947f-4b38-bdd9-557d8c930799" mediaType="multipart/form-data" postQueryString="false">
@@ -13848,11 +13848,11 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
       <con:property>
         <con:name>planIdBPXPlanGml602</con:name>
-        <con:value>107</con:value>
+        <con:value>45</con:value>
       </con:property>
       <con:property>
         <con:name>planIdFPXPlanGml602</con:name>
-        <con:value>109</con:value>
+        <con:value>47</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
