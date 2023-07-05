@@ -232,14 +232,8 @@ public class EditRasterbasisHandler extends EditHandler {
 	private void checkRasterbasisId(String planId, Rasterbasis rasterbasisModel, String newRasterbasisId)
 			throws Exception {
 		List<Rasterbasis> rasterbasis = retrieveRasterbasis(planId);
-		boolean rasterbasisWithSameReferenceUrlExists = rasterbasis.stream().anyMatch(rb -> {
-			if (attachmentUrlHandler.isPresent()) {
-				return attachmentUrlHandler.get().isSameReference(planId, rasterbasisModel.getReferenzURL(),
-						rb.getReferenzURL());
-			}
-			return rasterbasisModel.getReferenzURL() == null
-					&& rasterbasisModel.getReferenzURL().equals(rb.getReferenzURL());
-		});
+		boolean rasterbasisWithSameReferenceUrlExists = rasterbasis.stream()
+				.anyMatch(rb -> newRasterbasisId.equals(rb.getId()));
 		if (rasterbasisWithSameReferenceUrlExists) {
 			throw new DuplicateRasterbasis(planId, newRasterbasisId, rasterbasisModel.getReferenzName(),
 					rasterbasisModel.getReferenzURL());

@@ -179,14 +179,8 @@ public class EditDokumentHandler extends EditHandler {
 
 	private void checkDokumentId(String planId, Dokument dokumentModel, String newDokumentId) throws Exception {
 		List<Dokument> dokumente = retrieveDokumente(planId);
-		boolean dokumentWithSameReferenceUrlExists = dokumente.stream().anyMatch(dokument -> {
-			if (attachmentUrlHandler.isPresent()) {
-				return attachmentUrlHandler.get().isSameReference(planId, dokumentModel.getReferenzURL(),
-						dokument.getReferenzURL());
-			}
-			return dokumentModel.getReferenzURL() == null
-					&& dokumentModel.getReferenzURL().equals(dokument.getReferenzURL());
-		});
+		boolean dokumentWithSameReferenceUrlExists = dokumente.stream()
+				.anyMatch(dokument -> newDokumentId.equals(dokument.getId()));
 		if (dokumentWithSameReferenceUrlExists) {
 			throw new DuplicateDokument(planId, newDokumentId, dokumentModel.getReferenzName(),
 					dokumentModel.getReferenzURL());
