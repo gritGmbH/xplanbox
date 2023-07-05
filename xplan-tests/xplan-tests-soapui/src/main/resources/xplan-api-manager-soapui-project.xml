@@ -8230,10 +8230,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="referenzURL, id and bereichNummer">
               <con:configuration>
-                <path>$[0].id</path>
-                <content>-HafenCity13png</content>
+                <path>$[?(@.referenzURL contains 'HafenCity13.png' &amp;&amp; @.id contains 'HafenCity13png')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8306,10 +8306,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8423,18 +8423,9 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="georefURL, id and referenzName">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
-                <content>[postImg-postImgpng]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="referenzName">
-              <con:configuration>
-                <path>$[?(@.id == 'postImg-postImgpng')].referenzName</path>
+                <path>$[?(@.georefURL contains 'postImg.pgw' &amp;&amp; @.id contains 'postImgpng')].referenzName</path>
                 <content>[postImg]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -8580,8 +8571,8 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich1">
               <con:configuration>
-                <path>$[0].id</path>
-                <content>-BPlan001_5-2_Bereich0png</content>
+                <path>$[?(@.referenzURL contains 'BPlan001_5-2_Bereich0.png' &amp;&amp; @.id contains 'BPlan001_5-2_Bereich0png')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8589,8 +8580,8 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich2">
               <con:configuration>
-                <path>$[1].id</path>
-                <content>-BPlan001_5-2_Bereich1png</content>
+                <path>$[?(@.referenzURL contains 'BPlan001_5-2_Bereich1.png' &amp;&amp; @.id contains 'BPlan001_5-2_Bereich1png')].bereichNummer</path>
+                <content>[1]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8625,10 +8616,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8692,8 +8683,8 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich1">
               <con:configuration>
-                <path>$[0].id</path>
-                <content>postImg-postImgpng</content>
+                <path>$[?(@.referenzURL contains 'postImg.png' &amp;&amp; @.id contains 'postImgpng')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8701,8 +8692,8 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich2">
               <con:configuration>
-                <path>$[1].id</path>
-                <content>-BPlan001_5-2_Bereich0png</content>
+                <path>$[?(@.referenzURL contains 'BPlan001_5-2_Bereich0.png' &amp;&amp; @.id contains 'BPlan001_5-2_Bereich0png')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8710,8 +8701,8 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich3">
               <con:configuration>
-                <path>$[2].id</path>
-                <content>-BPlan001_5-2_Bereich1png</content>
+                <path>$[?(@.referenzURL contains 'BPlan001_5-2_Bereich1.png' &amp;&amp; @.id contains 'BPlan001_5-2_Bereich1png')].bereichNummer</path>
+                <content>[1]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8746,10 +8737,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="id">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8809,10 +8800,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="id">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="referenzURL, id and bereichNummer">
               <con:configuration>
-                <path>$[0].id</path>
-                <content>postImg-postImgpng</content>
+                <path>$[?(@.referenzURL contains 'postImg.png' &amp;&amp; @.id contains 'postImgpng')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8885,10 +8876,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8948,10 +8939,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="georefURL, id and bereichNummer">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
-                <content>[postImg-postImgpng]</content>
+                <path>$[?(@.georefURL contains 'postImg.pgw' &amp;&amp; @.id contains 'postImgpng')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9084,10 +9075,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9146,10 +9137,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="georefURL, id and bereichNummer">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
-                <content>[postImg-postImgpng]</content>
+                <path>$[?(@.georefURL contains 'postImg.pgw' &amp;&amp; @.id contains 'postImgpng')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9222,10 +9213,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9284,10 +9275,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="georefURL, id and bereichNummer">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
-                <content>[postImg-postImgpng]</content>
+                <path>$[?(@.georefURL contains 'postImg.pgw' &amp;&amp; @.id contains 'postImgpng')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9360,10 +9351,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9423,10 +9414,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="georefURL, id and bereichNummer">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
-                <content>[postImg-postImgpng]</content>
+                <path>$[?(@.georefURL contains 'postImg.pgw' &amp;&amp; @.id contains 'postImgpng')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -13848,11 +13839,11 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
       <con:property>
         <con:name>planIdBPXPlanGml602</con:name>
-        <con:value>45</con:value>
+        <con:value>19</con:value>
       </con:property>
       <con:property>
         <con:name>planIdFPXPlanGml602</con:name>
-        <con:value>47</con:value>
+        <con:value>21</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
