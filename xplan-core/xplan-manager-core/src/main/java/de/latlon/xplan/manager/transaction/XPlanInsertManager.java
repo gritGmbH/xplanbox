@@ -152,7 +152,6 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		try {
 			XPlanFeatureCollections xPlanInstances = XPlanGmlParserBuilder.newBuilder().withDefaultCrs(crs)
 					.withFixOrientation(true).build().parseXPlanFeatureCollectionAllowMultipleInstances(archive);
-			reassignFids(xPlanInstances);
 			for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
 				long begin = System.currentTimeMillis();
 				new SyntacticValidatorImpl().validateReferences(archive, xPlanInstance.getExternalReferenceInfo(),

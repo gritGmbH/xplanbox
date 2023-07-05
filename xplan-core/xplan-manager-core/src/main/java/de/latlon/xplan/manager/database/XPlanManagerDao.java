@@ -5,7 +5,6 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
@@ -22,9 +21,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.xml.namespace.QName;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.Arrays;
@@ -36,6 +32,7 @@ import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
+import static de.latlon.xplan.manager.transaction.TransactionUtils.reassignFids;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -93,7 +90,7 @@ public class XPlanManagerDao extends XPlanDao {
 					internalId);
 			manipulateXPlanGml(planId, fc);
 			byte[] xPlanGml = createXPlanGml(fc);
-			renewFeatureCollection(fc, xPlanGml);
+			reassignFids(fc);
 			FeatureCollection synFc = createSynFeatures(fc, archive.getVersion());
 			manipulateXPlanSynGml(synFc, beginValidity, endValidity, planId, sortDate, internalId);
 			List<String> fidsXPlanWfs = xPlanWfsAdapter.insert(fc, planStatus);
@@ -221,22 +218,6 @@ public class XPlanManagerDao extends XPlanDao {
 	private void manipulateXPlanGml(int planId, XPlanFeatureCollection xPlanFeatureCollection) throws Exception {
 		if (attachmentUrlHandler != null) {
 			attachmentUrlHandler.replaceRelativeUrls(planId, xPlanFeatureCollection);
-		}
-	}
-
-	private void renewFeatureCollection(XPlanFeatureCollection xPlanFeatureCollection, byte[] xPlanGml)
-			throws Exception {
-		if (xPlanGml == null)
-			return;
-		ByteArrayInputStream originalPlan = new ByteArrayInputStream(xPlanGml);
-		XMLStreamReader originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
-		try {
-			FeatureCollection renewedFeature = XPlanGmlParserBuilder.newBuilder().build()
-					.parseFeatureCollection(originalPlanAsXmlReader, xPlanFeatureCollection.getVersion());
-			xPlanFeatureCollection.setFeatures(renewedFeature);
-		}
-		finally {
-			originalPlanAsXmlReader.close();
 		}
 	}
 

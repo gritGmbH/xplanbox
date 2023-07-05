@@ -25,7 +25,6 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
@@ -40,7 +39,6 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.geometry.Envelope;
 import org.slf4j.Logger;
@@ -49,10 +47,8 @@ import org.slf4j.LoggerFactory;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
-import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -117,21 +113,6 @@ public abstract class XPlanTransactionManager {
 		}
 		return xPlanRasterManager.updateWmsWorkspaceWithRasterLayers(archive, fc, planId, moreRecentPlanId, type,
 				planStatus, newPlanStatus, sortDate);
-	}
-
-	protected void reassignFids(XPlanFeatureCollections fc) {
-		for (XPlanFeatureCollection xplanInstance : fc.getxPlanGmlInstances()) {
-			reassignFids(xplanInstance);
-		}
-	}
-
-	protected void reassignFids(XPlanFeatureCollection fc) {
-		for (Feature f : fc.getFeatures()) {
-			String synFeatureTypeName = featureTypeNameSynthesizer.detectSynFeatureTypeName(f.getName());
-			String prefix = SYN_FEATURETYPE_PREFIX + synFeatureTypeName.toUpperCase() + "_";
-			String uuid = UUID.randomUUID().toString();
-			f.setId(prefix + uuid);
-		}
 	}
 
 	protected void startCreationOfDataServicesCoupling(int planId, XPlanFeatureCollection featureCollection, ICRS crs) {

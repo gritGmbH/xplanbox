@@ -73,6 +73,7 @@ import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanNa
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
+import static de.latlon.xplan.manager.transaction.TransactionUtils.reassignFids;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 import static java.lang.Integer.parseInt;
 import static org.deegree.cs.persistence.CRSManager.lookup;
