@@ -29,6 +29,12 @@ public class AttachmentUrlHandler {
 		this.documentUrl = documentUrl;
 	}
 
+	/**
+	 * Replaces all relative references in the passed xPlanFeatureCollection with absolute
+	 * URLs.
+	 * @param planId the id of the plan, never <code>null</code>
+	 * @param xPlanFeatureCollection never <code>null</code>
+	 */
 	public void replaceRelativeUrls(int planId, XPlanFeatureCollection xPlanFeatureCollection) {
 		FeatureCollection featureCollection = xPlanFeatureCollection.getFeatures();
 		featureCollection.stream().iterator().forEachRemaining(feature -> {
@@ -37,12 +43,46 @@ public class AttachmentUrlHandler {
 		});
 	}
 
+	/**
+	 * Replaces all relative references in the passed xPlanToEdit with absolute URLs.
+	 * @param planId the id of the plan, never <code>null</code>
+	 * @param xPlanToEdit never <code>null</code>
+	 */
 	public void replaceRelativeUrls(int planId, XPlanToEdit xPlanToEdit) {
 		xPlanToEdit.getRasterBasis().stream().forEach(rasterBasis -> {
 			List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
-			rasterReferences.forEach(rasterReference -> replaceRelativeUrl(planId, rasterReference));
+			rasterReferences.forEach(rasterReference -> replaceRelativeUrl(Integer.toString(planId), rasterReference));
 		});
-		xPlanToEdit.getReferences().forEach(reference -> replaceRelativeUrl(planId, reference));
+		xPlanToEdit.getReferences().forEach(reference -> replaceRelativeUrl(Integer.toString(planId), reference));
+	}
+
+	/**
+	 * @param planId the id of the plan, never <code>null</code>
+	 * @param referenceUrl never <code>null</code>
+	 * @return the absolute URL replacing the relative referenceUrl, if the referenceUrl
+	 * is a http url the original url is returned
+	 */
+	public String replaceRelativeUrl(String planId, String referenceUrl) {
+		if (referenceUrl != null && !referenceUrl.startsWith("http")) {
+			String newReference = documentUrl;
+			newReference = newReference.replace("{planId}", planId);
+			newReference = newReference.replace("{fileName}", referenceUrl);
+			return newReference;
+		}
+		return referenceUrl;
+	}
+
+	/**
+	 * @param planId the id of the plan, never <code>null</code>
+	 * @param relativeReferenceUrl never <code>null</code>
+	 * @param referenceUrlToCompare, may be <code>null</code>
+	 * @return <code>true</code> if the replaced reference for planId and
+	 * relativeReferenceUrl is equal to the referenceUrlToCompare, <code>false</code>
+	 * otherwise
+	 */
+	public boolean isSameReference(String planId, String relativeReferenceUrl, String referenceUrlToCompare) {
+		String replacedReference = replaceRelativeUrl(planId, relativeReferenceUrl);
+		return replacedReference.equals(referenceUrlToCompare);
 	}
 
 	private void replace(int planId, TypedObjectNode elementNode) {
@@ -77,38 +117,28 @@ public class AttachmentUrlHandler {
 
 	private PrimitiveValue createNewValue(int planId, PrimitiveValue value, String name) {
 		String oldReference = value.getAsText();
-		String newReference = replaceReference(planId, oldReference);
+		String newReference = replaceRelativeUrl(Integer.toString(planId), oldReference);
 		LOG.debug("Replace {} {} with {}.", name, oldReference, newReference);
 		return new PrimitiveValue(newReference);
 	}
 
-	private void replaceRelativeUrl(int planId, AbstractReference rasterReference) {
+	private void replaceRelativeUrl(String planId, AbstractReference rasterReference) {
 		if (rasterReference != null) {
 			// reference
 			String reference = rasterReference.getReference();
 			if (reference != null) {
-				String newReference = replaceReference(planId, reference);
+				String newReference = replaceRelativeUrl(planId, reference);
 				LOG.debug("Replace reference {} with {}.", reference, newReference);
 				rasterReference.setReference(newReference);
 			}
 			// georeference
 			String geoReference = rasterReference.getGeoReference();
 			if (geoReference != null) {
-				String newGeoReference = replaceReference(planId, geoReference);
+				String newGeoReference = replaceRelativeUrl(planId, geoReference);
 				LOG.debug("Replace georeference {} with {}.", geoReference, newGeoReference);
 				rasterReference.setGeoReference(newGeoReference);
 			}
 		}
-	}
-
-	private String replaceReference(int planId, String reference) {
-		if (reference != null && !reference.startsWith("http")) {
-			String newReference = documentUrl;
-			newReference = newReference.replace("{planId}", Integer.toString(planId));
-			newReference = newReference.replace("{fileName}", reference);
-			return newReference;
-		}
-		return reference;
 	}
 
 }

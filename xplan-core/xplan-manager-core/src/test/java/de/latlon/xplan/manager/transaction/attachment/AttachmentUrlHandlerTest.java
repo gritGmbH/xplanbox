@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -207,7 +208,29 @@ public class AttachmentUrlHandlerTest {
 				.equals((references.get(0).getReference())));
 	}
 
-	private static XPlanFeatureCollection getXPlanFeatureCollection(String resource)
+	@Test
+	public void testReplaceRelativeUrl() {
+		AttachmentUrlHandler attachmentUrlHandler = new AttachmentUrlHandler(
+				"http://test.de/xdokumente/api/v1/dokument/{planId}/{fileName}");
+		String replacedRelativeUrl = attachmentUrlHandler.replaceRelativeUrl("10", "test.pdf");
+		assertTrue("http://test.de/xdokumente/api/v1/dokument/10/test.pdf".equals(replacedRelativeUrl));
+	}
+
+	@Test
+	public void testIsSameReference() {
+		AttachmentUrlHandler attachmentUrlHandler = new AttachmentUrlHandler(
+				"http://test.de/xdokumente/api/v1/dokument/{planId}/{fileName}");
+		boolean isSameReference = attachmentUrlHandler.isSameReference("10", "test.pdf",
+				"http://test.de/xdokumente/api/v1/dokument/10/test.pdf");
+		assertTrue(isSameReference);
+
+		boolean isNotSameReference = attachmentUrlHandler.isSameReference("1", "test.pdf",
+				"http://example.org/test/test.pdf");
+		assertFalse(isNotSameReference);
+
+	}
+
+	private XPlanFeatureCollection getXPlanFeatureCollection(String resource)
 			throws IOException, XMLStreamException, UnknownCRSException {
 		InputStream inputStream = ResourceAccessor.readResourceStream(resource);
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
@@ -217,7 +240,7 @@ public class AttachmentUrlHandlerTest {
 		return xPlanFeatureCollection;
 	}
 
-	private static GenericXMLElement findExterneReferenzUrl(XPlanFeatureCollection xPlanFeatureCollection) {
+	private GenericXMLElement findExterneReferenzUrl(XPlanFeatureCollection xPlanFeatureCollection) {
 		FeatureCollection featureCollection = xPlanFeatureCollection.getFeatures();
 		Feature bpPlan = featureCollection.stream()
 				.filter(feature -> "BP_Plan".equals(feature.getName().getLocalPart())).findFirst().get();
@@ -230,7 +253,7 @@ public class AttachmentUrlHandlerTest {
 				.findFirst().get();
 	}
 
-	private static GenericXMLElement findExterneReferenzUrl_4(XPlanFeatureCollection xPlanFeatureCollection) {
+	private GenericXMLElement findExterneReferenzUrl_4(XPlanFeatureCollection xPlanFeatureCollection) {
 		FeatureCollection featureCollection = xPlanFeatureCollection.getFeatures();
 		Feature bpPlan = featureCollection.stream()
 				.filter(feature -> "BP_Plan".equals(feature.getName().getLocalPart())).findFirst().get();
