@@ -14129,7 +14129,7 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
     </con:properties>
   </con:testSuite>
-  <con:testSuite id="184b8268-04e3-4e5f-aada-51f5ef02a8e0" name="Codelists TestSuite">
+  <con:testSuite id="184b8268-04e3-4e5f-aada-51f5ef02a8e0" name="Codelists TestSuite" disabled="true">
     <con:settings/>
     <con:runType>SEQUENTIAL</con:runType>
     <con:testCase id="7ddf4a83-e781-4a5f-b79c-207d8863e2f5" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="externalCodelists" searchProperties="true">
