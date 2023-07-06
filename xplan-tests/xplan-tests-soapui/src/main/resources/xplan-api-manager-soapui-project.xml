@@ -1310,7 +1310,7 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>500 400 404</con:status>
+          <con:status>500 400 404 405</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -1344,7 +1344,7 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>application/json</con:mediaType>
-          <con:status>406</con:status>
+          <con:status>406 415</con:status>
           <con:params/>
         </con:representation>
         <con:request name="Request 1" id="8c83a30b-1df8-4785-9061-49bab1b2dd62" mediaType="application/json">
@@ -1392,7 +1392,7 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>500 404</con:status>
+          <con:status>500 404 405</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -6620,7 +6620,7 @@ assert expectedHeader == actualHeader</scriptText>
       <con:testStep type="restrequest" name="POST BP 5.0 pI expectErrorDokumentAlreadyExists" id="1bbfba5d-e485-4576-ba2b-87db4e7619f6">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument" methodName="addDokument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 5.0 pI verifyStatusExpectError" id="8aad00fe-947f-4b38-bdd9-557d8c930799" mediaType="multipart/form-data" postQueryString="false">
+          <con:restRequest name="POST BP 5.0 pI expectErrorDokumentAlreadyExists" id="8aad00fe-947f-4b38-bdd9-557d8c930799" mediaType="multipart/form-data" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -9437,6 +9437,99 @@ assert expectedHeader == actualHeader</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="26a6db05-ee42-4b40-a95f-5d1658c25093">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET BP 5.3 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[1]id</con:sourcePath>
+            <con:targetType>rasterbasisId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdBereiche</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET BP 5.3 pI verifyStatusBereiche</con:sourceStep>
+            <con:sourcePath>$.[2]id</con:sourcePath>
+            <con:targetType>rasterbasisIdBereiche</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdBereicheSecond</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET BP 5.3 pI verifyStatusBereiche</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>rasterbasisIdBereicheSecond</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdBP60</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET BP 6.0 pI currentStatusGML</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>rasterbasisIdBP60</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdFP50</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET FP 5.0 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>rasterbasisIdFP50</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdLP60</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET LP 6.0 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>rasterbasisIdLP60</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdRP51</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET RP 5.1 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>rasterbasisIdRP51</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdSO53</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET SO 5.3 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>rasterbasisIdSO53</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:properties/>
     </con:testCase>
     <con:testCase id="edac4391-364e-4b88-8915-79baeb9d98a4" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId}/rasterbasis/{id} TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
@@ -9457,10 +9550,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>-HafenCity13png</content>
+                <content>${#TestSuite#rasterbasisId}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9476,7 +9569,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-HafenCity13png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9528,9 +9621,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-HafenCity13png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer BP 5.3" id="502346e0-0263-4588-a427-7dd4bf8615e6">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT BP 5.3 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>rasterbasisId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="PUT BP 5.3 pI,id modifyStatusUnsupportedContentTypeExpectError" id="06ad277f-e481-40e8-8997-613e2f6934f2">
@@ -9572,7 +9681,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-HafenCity13png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9595,7 +9704,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putImgpng</content>
+                <content>${#TestCase#rasterbasisId}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9611,7 +9720,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9641,7 +9750,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9671,7 +9780,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-HafenCity13png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9701,7 +9810,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9752,7 +9861,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-HafenCity13png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9803,7 +9912,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="2000000000"/>
-              <con:entry key="id" value="-HafenCity13png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9823,10 +9932,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>-BPlan001_5-2_Bereich1png</content>
+                <content>${#TestSuite#rasterbasisIdBereiche}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9842,7 +9951,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdBereiche}"/>
-              <con:entry key="id" value="-BPlan001_5-2_Bereich1png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBereiche}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9872,7 +9981,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdBereiche}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBereicheSecond}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9894,8 +10003,8 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich1">
               <con:configuration>
-                <path>$[0].id</path>
-                <content>-BPlan001_5-2_Bereich0png</content>
+                <path>$[?(@.id contains 'BPlan001_5-2_Bereich0png')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9904,7 +10013,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich2">
               <con:configuration>
                 <path>$[1].id</path>
-                <content>-BPlan001_5-2_Bereich1png</content>
+                <content>${#TestSuite#rasterbasisIdBereiche}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9971,7 +10080,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdBereiche}"/>
-              <con:entry key="id" value="-BPlan001_5-2_Bereich1png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBereiche}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10001,7 +10110,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdBereiche}"/>
-              <con:entry key="id" value="-BPlan001_5-2_Bereich1png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBereiche}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10018,25 +10127,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//rasterbasis/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="801d9d24-d33b-49de-876e-7d0e2b2e37b2" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
-              <con:configuration>
-                <path>$.id</path>
-                <content>-putImgpng</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="bereichNummer">
-              <con:configuration>
-                <path>$.bereichNummer</path>
-                <content>1</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
+                <codes>404</codes>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10049,7 +10140,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdBereiche}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBereicheSecond}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10072,7 +10163,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <content>${#TestSuite#rasterbasisIdBP60}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -10088,7 +10179,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60asGML}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10118,7 +10209,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60asGML}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10170,9 +10261,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdFP50}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer FP 5.0" id="e4321b42-7e73-49e5-8cfe-e2c5af7956f4">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdFP50</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT FP 5.0 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>rasterbasisIdFP50</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET FP 5.0 pI,id currentStatus" id="77b68847-a3db-4465-b8d5-ed9c7eab6185">
@@ -10193,7 +10300,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putImgpng</content>
+                <content>${#TestCase#rasterbasisIdFP50}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -10209,7 +10316,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdFP50}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10239,7 +10346,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdFP50}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10269,7 +10376,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdFP50}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10320,9 +10427,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdLP60}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer LP 6.0" id="63ddf353-0db6-4c7c-99bc-7732d4a737e2">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdLP60</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT LP 6.0 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>rasterbasisIdLP60</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET LP 6.0 pI,id currentStatus" id="afa55a91-11f5-4cc8-93bb-e1a4581140f5">
@@ -10343,7 +10466,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putImgpng</content>
+                <content>${#TestCase#rasterbasisIdLP60}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -10359,7 +10482,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdLP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10389,7 +10512,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdLP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10419,7 +10542,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdLP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10470,9 +10593,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdRP51}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer RP 5.1" id="b6a80b6c-8b95-4320-9208-9711d9be3b03">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdRP51</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT RP 5.1 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>rasterbasisIdRP51</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET RP 5.1 pI,id currentStatus" id="e1db8560-afb6-47e4-b787-3cf5ebb46c7d">
@@ -10493,7 +10632,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putImgpng</content>
+                <content>${#TestCase#rasterbasisIdRP51}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -10509,7 +10648,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdRP51}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10539,7 +10678,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdRP51}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10569,7 +10708,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdRP51}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10620,9 +10759,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdSO53}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer SO 5.3" id="d6c2ee98-0de8-4d24-b27b-1de477e59819">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdSO53</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT SO 5.3 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>rasterbasisIdSO53</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET SO 5.3 pI,id currentStatus" id="4e3cec0d-9592-4ce8-a6a9-db3634063c0a">
@@ -10643,7 +10798,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putImgpng</content>
+                <content>${#TestCase#rasterbasisIdSO53}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -10659,7 +10814,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdSO53}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10689,7 +10844,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdSO53}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10719,12 +10874,33 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdSO53}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:properties/>
+      <con:properties>
+        <con:property>
+          <con:name>rasterbasisId</con:name>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument204putImgpng</con:value>
+        </con:property>
+        <con:property>
+          <con:name>rasterbasisIdFP50</con:name>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument212putImgpng</con:value>
+        </con:property>
+        <con:property>
+          <con:name>rasterbasisIdLP60</con:name>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument214putImgpng</con:value>
+        </con:property>
+        <con:property>
+          <con:name>rasterbasisIdRP51</con:name>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument215putImgpng</con:value>
+        </con:property>
+        <con:property>
+          <con:name>rasterbasisIdSO53</con:name>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument216putImgpng</con:value>
+        </con:property>
+      </con:properties>
     </con:testCase>
     <con:testCase id="ba7af4cb-061c-4b69-b27d-900fd2e4c588" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId}/text/ TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/plan/{planId}/text/] located at [/plan/{planId}/text/]</con:description>
@@ -13839,11 +14015,43 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
       <con:property>
         <con:name>planIdBPXPlanGml602</con:name>
-        <con:value>19</con:value>
+        <con:value>211</con:value>
       </con:property>
       <con:property>
         <con:name>planIdFPXPlanGml602</con:name>
-        <con:value>21</con:value>
+        <con:value>213</con:value>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisId</con:name>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument204HafenCity13png</con:value>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdBereiche</con:name>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument201BPlan001_5-2_Bereich1png</con:value>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdBereicheSecond</con:name>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument201postImgpng</con:value>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdBP60</con:name>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument209postImgpng</con:value>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdFP50</con:name>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument212postImgpng</con:value>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdLP60</con:name>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument214postImgpng</con:value>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdRP51</con:name>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument215postImgpng</con:value>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdSO53</con:name>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument216postImgpng</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
