@@ -72,5 +72,8 @@ pipeline {
       unstable {
          slackSend channel: "${SLACK_CHANNEL}", message: "ACHTUNG: Bei der Ausfuehrung der SoapUI Tests (Branch: ${BRANCH}) gegen die Testumgebung ${SLACK_TESTED_ENVIRONMENT} traten Fehler auf.", teamDomain: "${SLACK_TEAM_DOMAIN}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
       }
+      always {
+          cleanWs notFailBuild: true
+      }
    }
 }

@@ -131,7 +131,8 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		}
 		Date sortDate = sortPropertyReader.readSortDate(archive.getType(), archive.getVersion(),
 				xPlanInstance.getFeatures());
-		return new PlanImportData(archive, selectedPlanStatus, xPlanMetadata, sortDate, crs, synFc, xPlanInstance);
+		return new PlanImportData(archive, selectedPlanStatus, xPlanMetadata, sortDate, crs, synFc, xPlanInstance,
+				internalId);
 	}
 
 	private List<PlanImportData> importGmlWithMultipleInstances(XPlanArchive archive, String internalId,

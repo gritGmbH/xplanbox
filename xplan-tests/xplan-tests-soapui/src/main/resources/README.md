@@ -163,6 +163,7 @@ Abkürzung | Parametername
 **pf** | profiles
 **pN** | planName
 **pI** | planId
+**iI** | internalId
 > **"XX"** ist ein Platzhalter bei nichtvorhandensein eines dieser Werte
 
 ### ADDITIONALINFORTAMTION

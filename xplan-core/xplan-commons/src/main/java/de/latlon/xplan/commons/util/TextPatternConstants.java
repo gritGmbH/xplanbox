@@ -33,7 +33,7 @@ public class TextPatternConstants {
 
 	public final static String SIMPLE_NAME_PATTERN = "^[A-Za-z0-9.()_\\-]*$";
 
-	public final static String INTERNALID_PATTERN = "^[A-Za-z0-9\\-]*$";
+	public final static String INTERNALID_PATTERN = "^[A-Za-z0-9\\-_]*$";
 
 	public final static String NAME_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß\\s]*$";
 
