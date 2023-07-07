@@ -1920,6 +1920,15 @@ assert !(json.isEmpty())
 assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="4f8a1e19-773f-4662-b389-a6cd6dba0e4c" name="documentUrl">
+              <con:configuration>
+                <path>$.documentUrl</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -1930,6 +1939,22 @@ assert json.version != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters/>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="d642ba2e-52b3-4a24-be70-926031e418ea">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrl</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET XX X.X XX showConfig</con:sourceStep>
+            <con:sourcePath>$.documentUrl</con:sourcePath>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:properties/>
@@ -6603,6 +6628,28 @@ assert expectedHeader == actualHeader</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="070a8d72-1f4a-458e-a2d1-e234f61854ea" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+def passed = false
+
+for(singleReferenzURL in json.referenzURL){
+	if (singleReferenzURL.contains(documentUrlShort)){
+		passed = true
+	}
+}
+
+assert passed</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -6766,6 +6813,28 @@ assert expectedHeader == actualHeader</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="cabb8ec5-b3d9-4de8-a349-fba151d89669" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+def passed = false
+
+for(singleReferenzURL in json.referenzURL){
+	if (singleReferenzURL.contains(documentUrlShort)){
+		passed = true
+	}
+}
+
+assert passed</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -6886,6 +6955,28 @@ assert expectedHeader == actualHeader</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="93c1a01a-9ad6-458c-9695-40508b51e07c" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+def passed = false
+
+for(singleReferenzURL in json.referenzURL){
+	if (singleReferenzURL.contains(documentUrlShort)){
+		passed = true
+	}
+}
+
+assert passed</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -7004,6 +7095,28 @@ assert expectedHeader == actualHeader</scriptText>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="d689221f-73ba-4b62-86bb-38c472af86fa" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+def passed = false
+
+for(singleReferenzURL in json.referenzURL){
+	if (singleReferenzURL.contains(documentUrlShort)){
+		passed = true
+	}
+}
+
+assert passed</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7132,6 +7245,28 @@ assert expectedHeader == actualHeader</scriptText>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="245e476d-8b04-4d13-a87c-4605904c7c02" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+def passed = false
+
+for(singleReferenzURL in json.referenzURL){
+	if (singleReferenzURL.contains(documentUrlShort)){
+		passed = true
+	}
+}
+
+assert passed</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7411,13 +7546,27 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="id">
               <con:configuration>
                 <path>$.id</path>
                 <content>${#TestCase#dokumentId}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="02158875-ce20-4759-8c60-7392b1b6830b" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+assert json.referenzURL.contains(documentUrlShort)</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7549,6 +7698,20 @@ assert expectedHeader == actualHeader</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="033bb56f-9377-44bb-8a1b-5c5a77037b24" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+assert json.referenzURL.contains(documentUrlShort)</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -7579,7 +7742,7 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="id">
               <con:configuration>
                 <path>$.id</path>
                 <content>${#TestCase#dokumentIdFP50}</content>
@@ -7717,6 +7880,20 @@ assert expectedHeader == actualHeader</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="0e9af35e-1a56-4a34-b569-c9f4f866eddf" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+assert json.referenzURL.contains(documentUrlShort)</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -7747,7 +7924,7 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="id">
               <con:configuration>
                 <path>$.id</path>
                 <content>${#TestCase#dokumentIdLP60}</content>
@@ -7886,6 +8063,20 @@ assert expectedHeader == actualHeader</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="f84491d9-7734-4886-850f-e56add31d5c3" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+assert json.referenzURL.contains(documentUrlShort)</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -7916,7 +8107,7 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="id">
               <con:configuration>
                 <path>$.id</path>
                 <content>${#TestCase#dokumentIdRP51}</content>
@@ -8054,6 +8245,20 @@ assert expectedHeader == actualHeader</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="762d662d-fe66-4e93-94e1-b43cea2c19ef" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+assert json.referenzURL.contains(documentUrlShort)</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -8084,7 +8289,7 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="id">
               <con:configuration>
                 <path>$.id</path>
                 <content>${#TestCase#dokumentIdSO53}</content>
@@ -8141,23 +8346,23 @@ assert expectedHeader == actualHeader</scriptText>
       <con:properties>
         <con:property>
           <con:name>dokumentId</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument342putDokpdf</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument390putDokpdf</con:value>
         </con:property>
         <con:property>
           <con:name>dokumentIdFP50</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument356putDokpdf</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument404putDokpdf</con:value>
         </con:property>
         <con:property>
           <con:name>dokumentIdLP60</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument358putDokpdf</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument406putDokpdf</con:value>
         </con:property>
         <con:property>
           <con:name>dokumentIdRP51</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument359putDokpdf</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument407putDokpdf</con:value>
         </con:property>
         <con:property>
           <con:name>dokumentIdSO53</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument360putDokpdf</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument408putDokpdf</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -8582,6 +8787,28 @@ assert expectedHeader == actualHeader</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="77680dee-ebd1-4d19-b7c6-c22d51c6790f" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+def passed = false
+
+for(singleReferenzURL in json.referenzURL){
+	if (singleReferenzURL.contains(documentUrlShort)){
+		passed = true
+	}
+}
+
+assert passed</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -8858,6 +9085,28 @@ assert expectedHeader == actualHeader</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="9d1b065e-c1a8-4afe-8d78-083087c7da95" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+def passed = false
+
+for(singleReferenzURL in json.referenzURL){
+	if (singleReferenzURL.contains(documentUrlShort)){
+		passed = true
+	}
+}
+
+assert passed</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -8957,6 +9206,28 @@ assert expectedHeader == actualHeader</scriptText>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="93ff1208-4ecf-46ce-b60a-e5d8eac5ed92" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+def passed = false
+
+for(singleReferenzURL in json.referenzURL){
+	if (singleReferenzURL.contains(documentUrlShort)){
+		passed = true
+	}
+}
+
+assert passed</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9096,6 +9367,28 @@ assert expectedHeader == actualHeader</scriptText>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="05d05768-a825-474b-a512-8230f9f3b7bb" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+def passed = false
+
+for(singleReferenzURL in json.referenzURL){
+	if (singleReferenzURL.contains(documentUrlShort)){
+		passed = true
+	}
+}
+
+assert passed</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9296,6 +9589,28 @@ assert expectedHeader == actualHeader</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="5dcdb963-c9b3-4d80-9c30-22ddd9ff2344" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+def passed = false
+
+for(singleReferenzURL in json.referenzURL){
+	if (singleReferenzURL.contains(documentUrlShort)){
+		passed = true
+	}
+}
+
+assert passed</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -9432,6 +9747,28 @@ assert expectedHeader == actualHeader</scriptText>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="ae6802c0-9e69-48d0-ad2c-598ff1b8225a" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+def passed = false
+
+for(singleReferenzURL in json.referenzURL){
+	if (singleReferenzURL.contains(documentUrlShort)){
+		passed = true
+	}
+}
+
+assert passed</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9571,6 +9908,28 @@ assert expectedHeader == actualHeader</scriptText>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="16967a01-eb5b-43ab-9287-b6422866f523" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+def passed = false
+
+for(singleReferenzURL in json.referenzURL){
+	if (singleReferenzURL.contains(documentUrlShort)){
+		passed = true
+	}
+}
+
+assert passed</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9858,6 +10217,20 @@ assert expectedHeader == actualHeader</scriptText>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="c0d71d89-a27d-4380-87f8-d3c14679734a" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+assert json.referenzURL.contains(documentUrlShort)</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10169,6 +10542,28 @@ assert expectedHeader == actualHeader</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="1b06ed35-be44-4933-8881-ebca85e2a296" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+def passed = false
+
+for(singleReferenzURL in json.referenzURL){
+	if (singleReferenzURL.contains(documentUrlShort)){
+		passed = true
+	}
+}
+
+assert passed</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -10349,6 +10744,20 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="1a7893ad-cd8f-49bc-b6f7-7f7d11213c32" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+assert json.referenzURL.contains(documentUrlShort)</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -10447,13 +10856,27 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
                 <content>${#TestCase#rasterbasisIdFP50}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="ef977676-d216-490e-9a3c-0fbbd27b8682" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+assert json.referenzURL.contains(documentUrlShort)</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10613,13 +11036,27 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
                 <content>${#TestCase#rasterbasisIdLP60}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="9b8cfbb6-3b77-4bc0-a791-98ab562e6c6c" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+assert json.referenzURL.contains(documentUrlShort)</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10779,13 +11216,27 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
                 <content>${#TestCase#rasterbasisIdRP51}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="e0fa4c17-2f27-47d9-b72b-2057fae99c9c" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+assert json.referenzURL.contains(documentUrlShort)</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10945,13 +11396,27 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
                 <content>${#TestCase#rasterbasisIdSO53}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="fe5ad020-63e6-4fcc-bc7d-84018bb562c1" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+assert json.referenzURL.contains(documentUrlShort)</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -11032,23 +11497,23 @@ assert expectedHeader == actualHeader</scriptText>
       <con:properties>
         <con:property>
           <con:name>rasterbasisId</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument348putImgpng</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument396putImgpng</con:value>
         </con:property>
         <con:property>
           <con:name>rasterbasisIdFP50</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument356putImgpng</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument404putImgpng</con:value>
         </con:property>
         <con:property>
           <con:name>rasterbasisIdLP60</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument358putImgpng</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument406putImgpng</con:value>
         </con:property>
         <con:property>
           <con:name>rasterbasisIdRP51</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument359putImgpng</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument407putImgpng</con:value>
         </con:property>
         <con:property>
           <con:name>rasterbasisIdSO53</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument360putImgpng</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument408putImgpng</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -14165,59 +14630,63 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
       <con:property>
         <con:name>planIdBPXPlanGml602</con:name>
-        <con:value>355</con:value>
+        <con:value>403</con:value>
       </con:property>
       <con:property>
         <con:name>planIdFPXPlanGml602</con:name>
-        <con:value>357</con:value>
+        <con:value>405</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisId</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument348HafenCity13png</con:value>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument396HafenCity13png</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdBereiche</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument345BPlan001_5-2_Bereich1png</con:value>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument393BPlan001_5-2_Bereich1png</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdBereicheSecond</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument345postImgpng</con:value>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument393postImgpng</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdBP60</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument353postImgpng</con:value>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument401postImgpng</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdFP50</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument356postImgpng</con:value>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument404postImgpng</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdLP60</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument358postImgpng</con:value>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument406postImgpng</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdRP51</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument359postImgpng</con:value>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument407postImgpng</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdSO53</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument360postImgpng</con:value>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument408postImgpng</con:value>
       </con:property>
       <con:property>
         <con:name>dokumentId</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument356postDokpdf</con:value>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument404postDokpdf</con:value>
       </con:property>
       <con:property>
         <con:name>dokumentIdLP60</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument358postDokpdf</con:value>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument406postDokpdf</con:value>
       </con:property>
       <con:property>
         <con:name>dokumentIdRP51</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument359postDokpdf</con:value>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument407postDokpdf</con:value>
       </con:property>
       <con:property>
         <con:name>dokumentIdSO53</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument360postDokpdf</con:value>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument408postDokpdf</con:value>
+      </con:property>
+      <con:property>
+        <con:name>documentUrl</con:name>
+        <con:value>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1/dokument/{planId}/{fileName}</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
