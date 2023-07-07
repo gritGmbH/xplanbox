@@ -998,7 +998,7 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>404</con:status>
+          <con:status>404 405</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -7148,6 +7148,55 @@ assert expectedHeader == actualHeader</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="b5eaa7eb-eeea-42c8-a712-cda4bed899e0">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET FP 5.0 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>dokumentId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdLP60</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET LP 6.0 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>dokumentIdLP60</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdRP51</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET RP 5.1 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>dokumentIdRP51</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdSO53</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET SO 5.3 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>dokumentIdSO53</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:properties/>
     </con:testCase>
     <con:testCase id="f8bd9db4-54ba-4413-bf50-dbf9bcabe16f" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId}/dokument/{id} TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
@@ -7287,6 +7336,22 @@ assert expectedHeader == actualHeader</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer BP 5.3" id="43d347ca-b625-401c-adc4-0f0a60d811a3">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT BP 5.3 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>dokumentId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="PUT BP 5.3 pI,id modifyStatusExpectError" id="2f67756f-e1cf-4981-a417-c93b531a1975">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument/{id}" methodName="replaceDokumentById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -7349,7 +7414,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentId}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7365,7 +7430,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdDokument}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7395,7 +7460,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdDokument}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7439,9 +7504,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-postDokpdf"/>
+              <con:entry key="id" value="${#TestSuite#dokumentId}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer FP 5.0" id="0eaf1e74-ff0c-4eae-8b09-2b329c35d3f7">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdFP50</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT FP 5.0 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>dokumentIdFP50</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET FP 5.0 pI,id currentStatus" id="bdf197ac-2702-4784-95a9-2d02b69a9176">
@@ -7462,7 +7543,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="3836d339-5fe3-476f-8a0c-9a18ef06c962" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdFP50}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7478,7 +7559,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdFP50}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7501,7 +7582,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdFP50}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7517,7 +7598,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdFP50}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7547,7 +7628,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdFP50}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7591,9 +7672,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-postDokpdf"/>
+              <con:entry key="id" value="${#TestSuite#dokumentIdLP60}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer LP 6.0" id="196bddc7-ab6a-44a5-8e1e-3d9041251dbd">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdLP60</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT LP 6.0 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>dokumentIdLP60</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET LP 6.0 pI,id currentStatus" id="3bf74208-f0bf-4e6d-9e39-991f34c5a3c2">
@@ -7614,7 +7711,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="5ecee9a6-2d37-45a7-8a2d-75015c979f00" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdLP60}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7630,7 +7727,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdLP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7653,7 +7750,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdLP60}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7669,7 +7766,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdLP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7699,7 +7796,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdLP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7744,9 +7841,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-postDokpdf"/>
+              <con:entry key="id" value="${#TestSuite#dokumentIdRP51}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer RP 5.1" id="b43eb4fa-427b-4b68-86b1-303fc2113d81">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdRP51</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT RP 5.1 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>dokumentIdRP51</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET RP 5.1 pI,id currentStatus" id="f22b9367-5968-4ea5-9f4f-5114b4ce4ed7">
@@ -7767,7 +7880,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="aa3a42b2-e101-4a14-8356-9ec9295705b6" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdRP51}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7783,7 +7896,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdRP51}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7806,7 +7919,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdRP51}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7822,7 +7935,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdRP51}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7852,7 +7965,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdRP51}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7896,9 +8009,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-postDokpdf"/>
+              <con:entry key="id" value="${#TestSuite#dokumentIdSO53}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer SO 5.3" id="385d5409-fd1a-456f-8f18-3f5344e329ba">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdSO53</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT SO 5.3 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>dokumentIdSO53</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET SO 5.3 pI,id currentStatus" id="e6c53b99-ee75-444f-93f7-20e1be013624">
@@ -7919,7 +8048,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="7960d9b0-0476-4a5b-a1df-e51533d43a33" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdSO53}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7935,7 +8064,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdSO53}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7958,7 +8087,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdSO53}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7974,7 +8103,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdSO53}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -8004,12 +8133,33 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdSO53}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:properties/>
+      <con:properties>
+        <con:property>
+          <con:name>dokumentId</con:name>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument342putDokpdf</con:value>
+        </con:property>
+        <con:property>
+          <con:name>dokumentIdFP50</con:name>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument356putDokpdf</con:value>
+        </con:property>
+        <con:property>
+          <con:name>dokumentIdLP60</con:name>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument358putDokpdf</con:value>
+        </con:property>
+        <con:property>
+          <con:name>dokumentIdRP51</con:name>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument359putDokpdf</con:value>
+        </con:property>
+        <con:property>
+          <con:name>dokumentIdSO53</con:name>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument360putDokpdf</con:value>
+        </con:property>
+      </con:properties>
     </con:testCase>
     <con:testCase id="3bfb0623-257f-4f28-b076-99c7baabf23d" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId}/gueltigkeit/ TestCase" searchProperties="true">
       <con:description>TestCase generated for REST Resource [/plan/{planId}/gueltigkeit/] located at [/plan/{planId}/gueltigkeit/]</con:description>
@@ -10882,23 +11032,23 @@ assert expectedHeader == actualHeader</scriptText>
       <con:properties>
         <con:property>
           <con:name>rasterbasisId</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument204putImgpng</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument348putImgpng</con:value>
         </con:property>
         <con:property>
           <con:name>rasterbasisIdFP50</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument212putImgpng</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument356putImgpng</con:value>
         </con:property>
         <con:property>
           <con:name>rasterbasisIdLP60</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument214putImgpng</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument358putImgpng</con:value>
         </con:property>
         <con:property>
           <con:name>rasterbasisIdRP51</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument215putImgpng</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument359putImgpng</con:value>
         </con:property>
         <con:property>
           <con:name>rasterbasisIdSO53</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument216putImgpng</con:value>
+          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument360putImgpng</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -14015,43 +14165,59 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
       <con:property>
         <con:name>planIdBPXPlanGml602</con:name>
-        <con:value>211</con:value>
+        <con:value>355</con:value>
       </con:property>
       <con:property>
         <con:name>planIdFPXPlanGml602</con:name>
-        <con:value>213</con:value>
+        <con:value>357</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisId</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument204HafenCity13png</con:value>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument348HafenCity13png</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdBereiche</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument201BPlan001_5-2_Bereich1png</con:value>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument345BPlan001_5-2_Bereich1png</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdBereicheSecond</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument201postImgpng</con:value>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument345postImgpng</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdBP60</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument209postImgpng</con:value>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument353postImgpng</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdFP50</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument212postImgpng</con:value>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument356postImgpng</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdLP60</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument214postImgpng</con:value>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument358postImgpng</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdRP51</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument215postImgpng</con:value>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument359postImgpng</con:value>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdSO53</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument216postImgpng</con:value>
+        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument360postImgpng</con:value>
+      </con:property>
+      <con:property>
+        <con:name>dokumentId</con:name>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument356postDokpdf</con:value>
+      </con:property>
+      <con:property>
+        <con:name>dokumentIdLP60</con:name>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument358postDokpdf</con:value>
+      </con:property>
+      <con:property>
+        <con:name>dokumentIdRP51</con:name>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument359postDokpdf</con:value>
+      </con:property>
+      <con:property>
+        <con:name>dokumentIdSO53</con:name>
+        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument360postDokpdf</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
