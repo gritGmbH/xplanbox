@@ -51,7 +51,6 @@ import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import de.latlon.xplan.validator.wms.config.ValidatorWmsContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -64,6 +63,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.nio.file.Paths.get;
@@ -80,9 +80,6 @@ public class XPlanValidatorWebSpringConfig {
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanValidatorWebSpringConfig.class);
 
 	private static final String RULES_DIRECTORY = "/rules";
-
-	@Autowired(required = false)
-	private ValidatorWmsManager validatorWmsManager;
 
 	@Bean
 	public SyntacticValidator syntacticValidator() {
@@ -185,15 +182,19 @@ public class XPlanValidatorWebSpringConfig {
 	}
 
 	@Bean
-	public MapPreviewManager mapPreviewManager(GeometricValidator geometricValidator,
-			ValidatorConfiguration validatorConfiguration) {
+	public MapPreviewManager mapPreviewManager(Optional<ValidatorWmsManager> validatorWmsManager,
+			GeometricValidator geometricValidator, ValidatorConfiguration validatorConfiguration) {
+		if (!validatorWmsManager.isPresent()) {
+			LOG.warn("ValidatorWmsManager is not configured. Map preview will not be available.");
+			return null;
+		}
 		String validatorWmsEndpoint = validatorConfiguration.getValidatorWmsEndpoint();
 		if (validatorWmsEndpoint == null) {
 			LOG.warn("XPlanValidatorWMS endpoint URL is not configured. Map preview will not be available.");
 			return null;
 		}
 		try {
-			return new MapPreviewManager(validatorWmsManager, geometricValidator, validatorWmsEndpoint);
+			return new MapPreviewManager(validatorWmsManager.get(), geometricValidator, validatorWmsEndpoint);
 		}
 		catch (IllegalArgumentException | MapPreviewCreationException e) {
 			LOG.error("Could not initialise ValidatorWmsManager. WMS resources cannot be created. Reason: {}",

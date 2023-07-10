@@ -22,11 +22,13 @@ package de.latlon.xplanbox.api.manager.handler;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.core.manager.db.config.JpaContext;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.manager.config.ApplicationContext;
+import de.latlon.xplanbox.api.manager.config.HsqlJpaContext;
 import de.latlon.xplanbox.api.manager.config.TestContext;
-import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
+import de.latlon.xplanbox.api.commons.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,7 +52,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = { ApplicationContext.class, TestContext.class })
+@ContextConfiguration(classes = { ApplicationContext.class, JpaContext.class, HsqlJpaContext.class, TestContext.class })
 public class PlanHandlerTest {
 
 	@Autowired

@@ -32,7 +32,6 @@ import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ArtifactType;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
-import de.latlon.xplan.validator.wms.MapPreviewCreationException;
 import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import org.apache.http.client.utils.URIBuilder;
@@ -130,7 +129,7 @@ public class ValidationHandler {
 		catch (XMLStreamException | UnknownCRSException e) {
 			LOG.error("Plan could not be parsed. Reason {}", e.getMessage(), e);
 		}
-		catch (MapPreviewCreationException | URISyntaxException e) {
+		catch (Exception e) {
 			LOG.error("Plan could not be added to the XPlanValidatorWMS. Reason {}", e.getMessage(), e);
 		}
 		return null;

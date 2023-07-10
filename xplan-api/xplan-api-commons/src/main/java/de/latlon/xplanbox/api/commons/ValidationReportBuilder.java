@@ -21,6 +21,7 @@
 package de.latlon.xplanbox.api.commons;
 
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
+import de.latlon.xplan.validator.i18n.ValidationMessages;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
@@ -79,11 +80,20 @@ public class ValidationReportBuilder {
 		if (validatorReport != null) {
 			validationReport.date(validatorReport.getDate()).name(validatorReport.getValidationName())
 					.version(fromXPlanVersion(validatorReport.getXPlanVersion())).valid(validatorReport.isReportValid())
-					.bbox(asBBox(validatorReport.getBBoxIn4326())).filename(filename)
+					.status(status()).bbox(asBBox(validatorReport.getBBoxIn4326())).filename(filename)
 					.externalReferences(externalReferences()).externalReferencesResult(externalReferencesResult())
 					.wmsUrl(wmsUrl).rulesMetadata(rulesMetadata()).validationResult(createValidationResult());
 		}
 		return validationReport;
+	}
+
+	private String status() {
+		SyntacticValidatorResult result = validatorReport.getSyntacticValidatorResult();
+		if (result == null)
+			return ValidationMessages.getMessage("status_unfinished");
+		if (!result.isValid())
+			return ValidationMessages.getMessage("status_skipped");
+		return ValidationMessages.getMessage("status_finished");
 	}
 
 	private PlanInfoBbox asBBox(Envelope bbox) {

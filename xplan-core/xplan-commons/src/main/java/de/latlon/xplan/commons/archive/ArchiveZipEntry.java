@@ -28,7 +28,7 @@ import java.util.zip.ZipEntry;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class ArchiveZipEntry implements ArchiveEntry {
+public abstract class ArchiveZipEntry implements ArchiveEntry {
 
 	private final ZipEntry zipEntry;
 

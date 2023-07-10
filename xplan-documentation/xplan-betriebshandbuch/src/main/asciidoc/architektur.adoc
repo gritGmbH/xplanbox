@@ -14,6 +14,7 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 * <<xplanvalidator-web, XPlanValidatorWeb>> inkl. <<xplanvalidator-wms, XPlanValidatorWMS>>
 * <<xplanvalidator-api, XPlanValidatorAPI>>
 * <<xplanvalidator-cli, XPlanValidatorCLI>>
+* <<xplandokumenten-api, XPlanDokumentAPI>>
 * <<xplantransform-cli, XPlanTransformCLI>>
 * <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>>
 * <<xplanwms, XPlanWMS, XPlanArtWMS und XPlanWerkWMS>>
@@ -73,6 +74,11 @@ Die Komponente XPlanValidatorAPI stellt eine REST-Schnittstelle bereit, über di
 Die Komponente XPlanValidatorCLI ist ein Kommandozeilenwerkzeug,
 welches dem Fachadministrator der xPlanBox ermöglicht,
 XPlanGML-Dokumente über das Terminal zu validieren.
+
+[[xplandokumenten-api]]
+=== XPlanDokumentAPI
+
+Die optionale Komponente XPlanDokumentAPI stellt eine REST-Schnittstelle bereit, über die zu einem Plan zugehörigen Dokumente abgerufen werden können.
 
 [[xplantransform-cli]]
 === XPlanTransformCLI

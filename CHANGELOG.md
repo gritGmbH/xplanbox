@@ -19,6 +19,12 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 - Fehler in XPlanManagerAPI bei Aufruf von HTTP DELETE für einen Plan behoben
 - Fehler in XPlanWMS bei Aufruf mit GetMap-Anfrage mit WMS 1.1.1 und EPSG:4326 behoben
 
+## Version 6.0.3 (2023-06-15)
+
+### Fehlerbehebungen
+- Aktualisierung der Validierungsregeln auf v1.1.4 mit Korrektur der Regel 5.3.1.2 für Flächennutzungspläne in der Version XPlanGML 5.1
+- Externe Codes werden beim Import über den XPlanManagerWeb nicht übersetzt
+
 ## Version 6.0.2 (2023-04-13)
 
 ### Fehlerbehebungen

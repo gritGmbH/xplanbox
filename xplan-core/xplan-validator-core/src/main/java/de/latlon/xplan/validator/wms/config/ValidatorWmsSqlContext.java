@@ -21,6 +21,7 @@
 package de.latlon.xplan.validator.wms.config;
 
 import de.latlon.xplan.job.validator.config.JobContext;
+import de.latlon.xplan.job.validator.config.SqlJobContext;
 import de.latlon.xplan.job.validator.exception.JobConfigException;
 import de.latlon.xplan.job.validator.workspace.ValidatorWorkspaceWrapper;
 import de.latlon.xplan.validator.wms.storage.PlanStorage;
@@ -37,7 +38,7 @@ import org.springframework.context.annotation.Profile;
  */
 @Configuration
 @Profile("validatorwmssql")
-@Import(JobContext.class)
+@Import({ JobContext.class, SqlJobContext.class })
 public class ValidatorWmsSqlContext {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ValidatorWmsWorkspaceContext.class);

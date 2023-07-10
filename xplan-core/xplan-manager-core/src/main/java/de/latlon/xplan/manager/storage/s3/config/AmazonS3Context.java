@@ -27,9 +27,11 @@ import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.storage.s3.S3Storage;
 import de.latlon.xplan.manager.storage.s3.S3StorageCleanUpManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
@@ -42,6 +44,7 @@ import org.springframework.context.annotation.Profile;
  */
 @Configuration
 @Profile("s3img | s3doc")
+@ComponentScan("de.latlon.xplan.manager.storage.s3.listener")
 public class AmazonS3Context {
 
 	@Bean(destroyMethod = "shutdown")
@@ -74,6 +77,12 @@ public class AmazonS3Context {
 	public StorageCleanUpManager storageCleanUpManager(AmazonS3 s3Client,
 			@Value("${s3.bucketName:#{environment.XPLAN_S3_BUCKET_NAME}}") String bucketName) {
 		return new S3StorageCleanUpManager(s3Client, bucketName);
+	}
+
+	@Bean
+	public S3Storage rollbackStorage(AmazonS3 s3Client,
+			@Value("${s3.bucketName:#{environment.XPLAN_S3_BUCKET_NAME}}") String bucketName) {
+		return new S3Storage(s3Client, bucketName);
 	}
 
 }

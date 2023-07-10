@@ -63,6 +63,16 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
 	/**
 	 * Instantiates a {@link SystemPropertyPropertiesLoader} loading properties from files
 	 * specified with by a system property.
+	 * @param configFilePath path to the configFile, never <code>null</code>
+	 */
+	public SystemPropertyPropertiesLoader(String configFilePath) {
+		this.configurationDirectory = findConfigDirectory(configFilePath);
+		this.defaultBaseClass = this.getClass();
+	}
+
+	/**
+	 * Instantiates a {@link SystemPropertyPropertiesLoader} loading properties from files
+	 * specified with by a system property.
 	 */
 	public SystemPropertyPropertiesLoader() {
 		this.configurationDirectory = findConfigDirectory();

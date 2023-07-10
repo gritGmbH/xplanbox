@@ -23,7 +23,7 @@ bereitgestellt werden. Die Bereitstellung des AsciiDoc Quellcode erfolgt über d
 
 Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Dirk Stenger,
 Sebastian Goerke, Lyn Elisa Goltz, Carmen Tawalika, Jeronimo Wanhoff,
-Lena Rippolz.
+Lena Rippolz, Julian Zilz.
 
 Copyright (C) 2010 - 2023, lat/lon GmbH, Bonn.
 

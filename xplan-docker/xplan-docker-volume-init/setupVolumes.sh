@@ -71,6 +71,7 @@ XPLAN_INIT_RASTERTYPE="${XPLAN_INIT_RASTERTYPE:-mapserver}"
 XPLAN_INIT_INSPIREPLU="${XPLAN_INIT_INSPIREPLU:-disabled}"
 
 XPLAN_S3_PUBLIC_URL="${XPLAN_S3_PUBLIC_URL}"
+XPLAN_DOWNLOADAPI_URL_PUBLIC="${XPLAN_DOWNLOADAPI_URL_PUBLIC}"
 
 #############################
 # Update content of volumes #
@@ -102,11 +103,19 @@ find -iname xplan.xml -exec sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' {} 
 find -iname xplan.xml -exec sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' {} \;
 find -iname xplan.xml -exec sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' {} \;
 
-sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
-sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
-sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
+find -iname xplancp.xml -exec sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' {} \;
+find -iname xplancp.xml -exec sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' {} \;
+find -iname xplancp.xml -exec sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' {} \;
 
-if [[ -z "${spring_profiles_active##*s3doc*}" ]]
+sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
+sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
+sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
+
+if [[ ! -z $XPLAN_DOWNLOADAPI_URL_PUBLIC ]]
+then
+  echo "[$(date -Iseconds)] Use XPlanDownloadAPI in HTML GFI: $XPLAN_DOWNLOADAPI_URL_PUBLIC"
+  sed -i 's|var DOWNLOADAPI_URL;|var DOWNLOADAPI_URL="'$XPLAN_DOWNLOADAPI_URL_PUBLIC'";|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
+elif [[ -z "${spring_profiles_active##*s3doc*}" ]]
 then
   echo "[$(date -Iseconds)] Document storage type is S3"
   sed -i 's|var S3_URL;|var S3_URL="'$XPLAN_S3_PUBLIC_URL'";|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
@@ -205,6 +214,14 @@ if [[ -z "${spring_profiles_active##*validatorwmssql*}" ]]
 then
   echo "[$(date -Iseconds)] Configure XPlanValidatorWMS with database"
   sed -i 's|xplan-validator-wms-memory-workspace|xplan-validator-wms-sql-workspace|g' xplan-validator-workspaces/webapps.properties
+fi
+
+#copy example external codelist
+XPLAN_INIT_EXAMPLE_CODELIST="${XPLAN_INIT_EXAMPLE_CODELIST:-disabled}"
+if [ $XPLAN_INIT_EXAMPLE_CODELIST = "enabled" ]
+then
+  echo "[$(date -Iseconds)] Add example codelist"
+  cp -r /xplan-volume-init/synthesizer/ xplan-manager-config/
 fi
 
 rm $INIT_STARTED_FILE

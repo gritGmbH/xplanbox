@@ -20,8 +20,7 @@
  */
 package de.latlon.xplan.manager.transaction;
 
-import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.transaction.service.XPlanDeleteService;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.slf4j.Logger;
@@ -36,20 +35,17 @@ public class XPlanDeleteManager {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanDeleteManager.class);
 
-	private final XPlanDao xPlanDao;
-
 	private final XPlanRasterManager xPlanRasterManager;
-
-	private StorageCleanUpManager storageCleanUpManager;
 
 	private final WorkspaceReloader workspaceReloader;
 
-	public XPlanDeleteManager(XPlanDao xPlanDao, XPlanRasterManager xPlanRasterManager,
-			StorageCleanUpManager storageCleanUpManager, WorkspaceReloader workspaceReloader) {
-		this.xPlanDao = xPlanDao;
+	private final XPlanDeleteService xPlanDeleteService;
+
+	public XPlanDeleteManager(XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
+			XPlanDeleteService xPlanDeleteService) {
 		this.xPlanRasterManager = xPlanRasterManager;
-		this.storageCleanUpManager = storageCleanUpManager;
 		this.workspaceReloader = workspaceReloader;
+		this.xPlanDeleteService = xPlanDeleteService;
 	}
 
 	/**
@@ -59,10 +55,9 @@ public class XPlanDeleteManager {
 	 * @throws Exception
 	 */
 	public void delete(String planId) throws Exception {
-		xPlanDao.deletePlan(planId);
-		xPlanRasterManager.removeRasterLayers(planId);
-		storageCleanUpManager.deleteAll(planId);
+		xPlanDeleteService.deletePlan(planId);
 		reloadWorkspace(planId);
+		xPlanRasterManager.removeRasterLayers(parseInt(planId));
 		LOG.info("XPlanArchiv mit Id {} wurde gelöscht", planId);
 	}
 

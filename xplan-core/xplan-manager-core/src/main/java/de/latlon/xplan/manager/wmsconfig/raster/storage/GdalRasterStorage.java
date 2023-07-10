@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
+import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 
@@ -43,8 +44,9 @@ public class GdalRasterStorage extends FileSystemStorage {
 	}
 
 	@Override
-	public String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive) throws IOException {
-		String rasterFileName = super.addRasterFile(planId, entryName, archive);
+	public String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive,
+			StorageEvent storageEvent) throws IOException {
+		String rasterFileName = super.addRasterFile(planId, entryName, archive, storageEvent);
 		if (rasterFileName != null) {
 			Vector<?> referencedFiles = rasterAdapter.getReferencedFiles(archive, entryName);
 			if (referencedFiles != null) {

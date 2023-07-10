@@ -21,10 +21,15 @@
 package de.latlon.xplan.validator.wms;
 
 import de.latlon.xplan.job.validator.config.JobContext;
+import de.latlon.xplan.job.validator.config.MemoryJobContext;
 import de.latlon.xplan.validator.wms.config.JobWebContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import javax.servlet.*;
+import javax.servlet.Servlet;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 /**
@@ -41,7 +46,8 @@ public class ApplicationContextInitializer implements Servlet {
 
 	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {
-		rootContext = new AnnotationConfigApplicationContext(JobContext.class, JobWebContext.class);
+		rootContext = new AnnotationConfigApplicationContext(JobContext.class, MemoryJobContext.class,
+				JobWebContext.class);
 	}
 
 	@Override

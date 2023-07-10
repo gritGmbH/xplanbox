@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info>
+  <mime-type type="image/ecw">
+    <glob pattern="*.ecw"/>
+  </mime-type>
+  <mime-type type="application/xml">
+    <glob pattern="*.gml"/>
+  </mime-type>
+</mime-info>

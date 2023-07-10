@@ -27,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -35,6 +36,7 @@ import java.nio.file.Paths;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 @Configuration
+@Profile("validatorwmsmemory")
 public class ValidatorWmsWorkspaceContext {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ValidatorWmsWorkspaceContext.class);

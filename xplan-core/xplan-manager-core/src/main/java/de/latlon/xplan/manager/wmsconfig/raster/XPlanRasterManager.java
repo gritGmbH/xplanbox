@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -27,6 +27,7 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.manager.configuration.ConfigurationException;
+import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
@@ -34,6 +35,7 @@ import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -60,25 +62,29 @@ public class XPlanRasterManager {
 
 	private final RasterConfigManager rasterConfigManager;
 
+	private final ApplicationEventPublisher applicationEventPublisher;
+
 	/**
 	 * Instantiates a {@link XPlanRasterManager} with workspace and manager configuration.
 	 * @param rasterStorage the RasterStorage used to write raster files, never
 	 * <code>null</code>
 	 * @param rasterConfigManager the RasterConfigManager used to write config files,
 	 * never <code>null</code>
+	 * @param applicationEventPublisher
 	 * @throws WorkspaceException
 	 */
-	public XPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
-			throws WorkspaceException {
+	public XPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager,
+			ApplicationEventPublisher applicationEventPublisher) throws WorkspaceException {
 		this.rasterStorage = rasterStorage;
 		this.rasterConfigManager = rasterConfigManager;
+		this.applicationEventPublisher = applicationEventPublisher;
 	}
 
 	/**
 	 * Removes the configuration of the plan with the given id.
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 */
-	public void removeRasterLayers(String planId) {
+	public void removeRasterLayers(int planId) {
 		rasterConfigManager.removeRasterLayers(planId);
 	}
 
@@ -86,7 +92,8 @@ public class XPlanRasterManager {
 	 * Removes the configuration of the plan with the given id.
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 */
-	public void removeRasterLayers(String planId, ExternalReferenceInfo externalReferencesToRemove) {
+	public void removeRasterLayers(int planId, ExternalReferenceInfo externalReferencesToRemove) {
+		StorageEvent storageEvent = new StorageEvent();
 		try {
 			List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferencesToRemove
 					.getRasterPlanBaseAndUpdateScans();
@@ -95,13 +102,16 @@ public class XPlanRasterManager {
 				if (referenzUrl != null) {
 					String rasterId = createRasterId(referenzUrl);
 					rasterConfigManager.removeRasterLayer(planId, rasterId);
-					rasterStorage.deleteRasterFiles(planId, rasterId);
+					rasterStorage.deleteRasterFile(planId, rasterId, storageEvent);
 				}
 			}
 		}
 		catch (Exception e) {
 			LOG.trace("Configuration of the plan with id " + planId + " failed.!", e);
 			LOG.error("Modifizierung der Themes-Datei fehlgeschlagen: {}", e.getMessage());
+		}
+		finally {
+			applicationEventPublisher.publishEvent(storageEvent);
 		}
 	}
 
@@ -134,12 +144,13 @@ public class XPlanRasterManager {
 			sortDateAsString = sd.format(sortDate);
 		}
 		LOG.info("- Erzeugen/Einsortieren der Rasterkonfigurationen (nach Datum: {} )...", sortDateAsString);
+		StorageEvent storageEvent = new StorageEvent();
 		try {
 			List<String> scanFiles = collectRasterScanFiles(planFeatureCollection);
 			logScanFiles(begin, scanFiles);
 			List<ArchiveEntry> rasterplanEntries = findRasterplanZipEntries(archive, scanFiles);
 
-			List<String> rasterIds = copyRasterfilesAndCreateConfig(archive, rasterplanEntries, planId);
+			List<String> rasterIds = copyRasterfilesAndCreateConfig(archive, rasterplanEntries, planId, storageEvent);
 			rasterConfigManager.insertRasterLayers(planId, moreRecentPlanId, type, planStatus, newPlanStatus, rasterIds,
 					sortDate);
 			return rasterIds;
@@ -148,6 +159,9 @@ public class XPlanRasterManager {
 			LOG.error("Rasterconfiguration could not be created!", e);
 			LOG.trace("Rasterconfiguration could not be created: {} ", e.getMessage());
 			throw new RuntimeException("Fehler beim Erzeugen der Rasterkonfigurationen: " + e.getLocalizedMessage());
+		}
+		finally {
+			applicationEventPublisher.publishEvent(storageEvent);
 		}
 	}
 
@@ -178,12 +192,13 @@ public class XPlanRasterManager {
 	}
 
 	private List<String> copyRasterfilesAndCreateConfig(XPlanArchiveContentAccess archive,
-			List<ArchiveEntry> rasterplanEntries, int planId) throws IOException, JAXBException, StorageException {
+			List<ArchiveEntry> rasterplanEntries, int planId, StorageEvent storageEvent)
+			throws IOException, JAXBException, StorageException {
 		List<String> rasterIds = new ArrayList<>();
 		for (ArchiveEntry entry : rasterplanEntries) {
 			String entryName = entry.getName();
 			LOG.debug("Raster data entry {} ", entryName);
-			String rasterFileName = rasterStorage.addRasterFile(planId, entryName, archive);
+			String rasterFileName = rasterStorage.addRasterFile(planId, entryName, archive, storageEvent);
 			String rasterId = createRasterId(rasterFileName);
 			rasterIds.add(rasterId);
 			rasterConfigManager.createConfiguration(rasterId, rasterFileName);

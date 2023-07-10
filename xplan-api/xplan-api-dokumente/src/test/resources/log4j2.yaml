@@ -1,0 +1,65 @@
+###
+# #%L
+# xplan-api-dokumente - XPlanDokumentenAPI
+# %%
+# Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+# %%
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# #L%
+###
+Configuration:
+  name: XPlanDokumentenAPI
+  status: warn
+  Appenders:
+    Console:
+      name: STDOUT
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d{HH:mm:ss,SSS} %5p [%c{1}]: %m%n"
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+        - ref: STDOUT
+    Logger:
+      - name: org.deegree
+        level: warn
+      - name: de.latlon.xplan
+        level: info
+      - name: de.latlon.xplanbox.api
+        level: info
+      - name: de.latlon.xplanbox.api.dokumente.config
+        level: info
+      - name: org.springframework
+        level: warn
+      - name: org.glassfish
+        level: warn
+      - name: org.glassfish.jersey
+        level: warn
+      - name: org.apache
+        level: warn
+      - name: net.sf.jasperreports
+        level: warn
+      - name: com.ctc.wstx
+        level: warn
+      - name: com.sun.xml
+        level: warn
+      - name: org.reflections
+        level: fatal
+      - name: io.swagger.v3
+        level: warn
+      - name: bind
+        level: error
+      - name: logger
+        level: error

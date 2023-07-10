@@ -20,7 +20,7 @@
  */
 package de.latlon.xplan.manager.storage;
 
-import java.io.IOException;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -28,6 +28,6 @@ import java.io.IOException;
  */
 public interface StorageCleanUpManager {
 
-	void deleteAll(String id) throws IOException;
+	void deleteAll(String id, StorageEvent storageEvent) throws StorageException;
 
 }

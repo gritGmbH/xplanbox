@@ -23,6 +23,8 @@ package de.latlon.xplan.manager.document.config;
 import de.latlon.xplan.manager.document.DocumentStorage;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.document.s3.config.AmazonS3DocumentStorageContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -37,10 +39,13 @@ import java.util.Optional;
 @Import({ AmazonS3DocumentStorageContext.class })
 public class DocumentStorageContext {
 
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
+
 	@Bean
 	public XPlanDocumentManager xPlanDocumentManager(Optional<DocumentStorage> documentStorage) {
 		if (documentStorage.isPresent())
-			return new XPlanDocumentManager(documentStorage.get());
+			return new XPlanDocumentManager(documentStorage.get(), applicationEventPublisher);
 		return null;
 	}
 

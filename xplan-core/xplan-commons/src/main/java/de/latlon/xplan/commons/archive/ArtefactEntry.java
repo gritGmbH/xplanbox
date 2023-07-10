@@ -24,6 +24,8 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
 
+import static de.latlon.xplan.commons.util.MimeTypeDetector.getArtefactMimeType;
+
 /**
  * ZipEntry implementation where each entry allows access to the content.
  *
@@ -44,6 +46,7 @@ public class ArtefactEntry extends ArchiveZipEntry implements ZipEntryWithConten
 		this.content = content;
 	}
 
+	@Override
 	/**
 	 * @return of the entry, never <code>null</code>
 	 */
@@ -51,6 +54,7 @@ public class ArtefactEntry extends ArchiveZipEntry implements ZipEntryWithConten
 		return content;
 	}
 
+	@Override
 	/**
 	 * @return of the entry, never <code>null</code>
 	 */
@@ -61,6 +65,16 @@ public class ArtefactEntry extends ArchiveZipEntry implements ZipEntryWithConten
 	@Override
 	public boolean isXPlanGml() {
 		return false;
+	}
+
+	@Override
+	public long getContentLength() {
+		return content.length;
+	}
+
+	@Override
+	public String getContentType() {
+		return getArtefactMimeType(getName());
 	}
 
 }
