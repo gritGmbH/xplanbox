@@ -23,7 +23,6 @@ package de.latlon.xplan.manager.database;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.core.manager.db.model.Artefact;
-import de.latlon.xplan.core.manager.db.model.ArtefactType;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
@@ -247,18 +246,6 @@ public class XPlanDao {
 	public void updateBereiche(XPlan plan, List<Bereich> bereiche) throws Exception {
 		int planIdAsInt = getXPlanIdAsInt(plan.getId());
 		xPlanDbAdapter.updateBereiche(planIdAsInt, bereiche);
-	}
-
-	/**
-	 * Updates the column artefacttype of the table xplanmgr.artefacts.
-	 * @param planId of the plan to update, never <code>null</code>
-	 * @param fileNames the fileNames to update, never <code>null</code>
-	 * @param artefactType the artefactType to set, never <code>null</code>
-	 * @throws Exception
-	 */
-	public void updateArtefacttype(String planId, List<String> fileNames, ArtefactType artefactType) throws Exception {
-		int planIdAsInt = getXPlanIdAsInt(planId);
-		xPlanDbAdapter.updateArtefacttype(planIdAsInt, fileNames, artefactType);
 	}
 
 	/**

@@ -49,7 +49,7 @@ public class ArtefactsTableUpdateTool {
 	}
 
 	private static void printUsage() {
-		System.out.println("Update column artefacttype (new in xPlanBox v6.1) of xplanmgr.artefacts.");
+		System.out.println("Update columns artefacttype and length (new in xPlanBox v7.0) of xplanmgr.artefacts.");
 		System.out.println();
 		System.out.println("Usage: artefactsTableUpdate");
 		System.out.println();

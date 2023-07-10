@@ -111,17 +111,18 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		}
 		else {
 			XPlanFeatureCollection xPlanInstance = xPlanInstances.getxPlanGmlInstances().get(0);
-			PlanImportData planToImport = importGmlWithSingleInstance(archive, xPlanMetadata, crs, xPlanInstance);
+			PlanImportData planToImport = importGmlWithSingleInstance(archive, internalId, xPlanMetadata, crs,
+					xPlanInstance);
 			return xPlanInsertService.importPlans(Collections.singletonList(planToImport));
 		}
 	}
 
-	private PlanImportData importGmlWithSingleInstance(XPlanArchive archive, AdditionalPlanData xPlanMetadata, ICRS crs,
-			XPlanFeatureCollection xPlanInstance) {
+	private PlanImportData importGmlWithSingleInstance(XPlanArchive archive, String internalId,
+			AdditionalPlanData xPlanMetadata, ICRS crs, XPlanFeatureCollection xPlanInstance) {
 		PlanStatus selectedPlanStatus = xPlanMetadata.getPlanStatus();
 		Date sortDate = sortPropertyReader.readSortDate(archive.getType(), archive.getVersion(),
 				xPlanInstance.getFeatures());
-		return new PlanImportData(archive, selectedPlanStatus, xPlanMetadata, sortDate, crs, xPlanInstance);
+		return new PlanImportData(archive, selectedPlanStatus, xPlanMetadata, sortDate, crs, xPlanInstance, internalId);
 	}
 
 	private List<PlanImportData> importGmlWithMultipleInstances(XPlanArchive archive, String internalId,

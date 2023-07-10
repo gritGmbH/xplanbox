@@ -26,16 +26,24 @@ public class PlanImportData {
 
 	private final XPlanFeatureCollection xPlanFC;
 
+	private final String internalId;
+
 	private int planId;
 
 	public PlanImportData(XPlanArchive xPlanArchive, PlanStatus planStatus, AdditionalPlanData xPlanMetadata,
 			Date sortDate, ICRS crs, XPlanFeatureCollection xPlanFc) {
+		this(xPlanArchive, planStatus, xPlanMetadata, sortDate, crs, xPlanFc, null);
+	}
+
+	public PlanImportData(XPlanArchive xPlanArchive, PlanStatus planStatus, AdditionalPlanData xPlanMetadata,
+			Date sortDate, ICRS crs, XPlanFeatureCollection xPlanFc, String internalId) {
 		this.xPlanArchive = xPlanArchive;
 		this.planStatus = planStatus;
 		this.xPlanMetadata = xPlanMetadata;
 		this.sortDate = sortDate;
 		this.crs = crs;
 		this.xPlanFC = xPlanFc;
+		this.internalId = internalId;
 	}
 
 	public XPlanArchive getxPlanArchive() {
@@ -60,6 +68,10 @@ public class PlanImportData {
 
 	public XPlanFeatureCollection getxPlanFC() {
 		return xPlanFC;
+	}
+
+	public String getInternalId() {
+		return internalId;
 	}
 
 	public int getPlanId() {

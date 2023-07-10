@@ -25,9 +25,14 @@ import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
+import de.latlon.xplan.core.manager.db.model.Artefact;
+import de.latlon.xplan.core.manager.db.model.ArtefactType;
+import de.latlon.xplan.core.manager.db.model.Plan;
+import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.update.config.ApplicationContext;
+import org.apache.commons.io.IOUtils;
 import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,14 +42,19 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.zip.GZIPInputStream;
 
-import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.RASTERBASIS;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.XPLANGML;
-import static java.util.Collections.singletonList;
 
 /**
  * Updates the data from version 6.0 to 6.1: Inserts data to
@@ -61,9 +71,13 @@ public class ArtefactsTableUpdaterApplicationRunner implements ApplicationRunner
 	@Autowired
 	private XPlanDao xplanDao;
 
+	@Autowired
+	private PlanRepository planRepository;
+
 	private final ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 
 	@Override
+	@Transactional(rollbackOn = Exception.class)
 	public void run(ApplicationArguments args) throws Exception {
 		List<XPlan> plans = xplanDao.getXPlanList();
 		for (XPlan plan : plans) {
@@ -72,26 +86,64 @@ public class ArtefactsTableUpdaterApplicationRunner implements ApplicationRunner
 		LOG.info("ArtefactsTableUpdateTool successfully executed!");
 	}
 
-	private void update(XPlan plan) throws Exception {
-		LOG.info("Update plan with id {}, version {}, type {}", plan.getId(), plan.getVersion(), plan.getType());
-		xplanDao.updateArtefacttype(plan.getId(), singletonList(MAIN_FILE), XPLANGML);
-
-		FeatureCollection featureCollection = retrieveFeatureCollection(plan);
-		if (featureCollection.isEmpty()) {
-			LOG.warn("FeatureCollection is not available! Plan with id {} is skipped.", plan.getId());
+	private void update(XPlan xPlan) throws Exception {
+		LOG.info("Update plan with id {}, version {}, type {}", xPlan.getId(), xPlan.getVersion(), xPlan.getType());
+		int planId = Integer.parseInt(xPlan.getId());
+		Optional<Plan> planCandidate = planRepository.findById(planId);
+		if (!planCandidate.isPresent()) {
+			LOG.warn("Plan with id {} not found.", planId);
+			return;
+		}
+		Plan plan = planCandidate.get();
+		Set<Artefact> artefacts = plan.getArtefacts();
+		FeatureCollection featureCollection = retrieveFeatureCollection(xPlan, artefacts);
+		if (featureCollection == null || featureCollection.isEmpty()) {
+			LOG.warn("FeatureCollection is not available! Plan with id {} is skipped.", planId);
 			return;
 		}
 		List<String> rasterFileNames = scanRasterReferenceFileNames(featureCollection);
 		if (rasterFileNames.isEmpty()) {
-			LOG.info("Plan with id {} has no rasterfile.", plan.getId());
-			return;
+			LOG.info("Plan with id {} has no rasterfile.", planId);
 		}
-		xplanDao.updateArtefacttype(plan.getId(), rasterFileNames, RASTERBASIS);
+		for (Artefact artefact : artefacts) {
+			LOG.info("Update artefact {}", artefact.getId().getFilename());
+			long length = detectLength(artefact.getData());
+			ArtefactType artefactType = detectArtefactType(artefact, rasterFileNames);
+			artefact.artefacttype(artefactType).length(length);
+		}
+		planRepository.save(plan);
 	}
 
-	private FeatureCollection retrieveFeatureCollection(XPlan plan) throws Exception {
+	private ArtefactType detectArtefactType(Artefact artefact, List<String> rasterFileNames) {
+		String filename = artefact.getId().getFilename();
+		if ("xplan.gml".equals(filename))
+			return XPLANGML;
+		if (rasterFileNames.contains(filename))
+			return RASTERBASIS;
+		return null;
+	}
+
+	private long detectLength(byte[] zippedData) throws IOException {
+		byte[] bytes = unzipArtefact(zippedData);
+		return bytes.length;
+	}
+
+	private byte[] unzipArtefact(byte[] zippedData) throws IOException {
+		try (ByteArrayInputStream bis = new ByteArrayInputStream(zippedData);
+				GZIPInputStream is = new GZIPInputStream(bis);
+				ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
+			IOUtils.copy(is, bos);
+			return bos.toByteArray();
+		}
+	}
+
+	private FeatureCollection retrieveFeatureCollection(XPlan plan, Set<Artefact> artefacts) throws Exception {
+		Optional<Artefact> xplanGmlArtefact = artefacts.stream()
+				.filter(artefact -> "xplan.gml".equals(artefact.getId().getFilename())).findFirst();
+		if (!xplanGmlArtefact.isPresent())
+			return null;
 		XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
-		InputStream originalPlan = xplanDao.retrieveXPlanArtefact(plan.getId());
+		InputStream originalPlan = new ByteArrayInputStream(unzipArtefact(xplanGmlArtefact.get().getData()));
 		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(originalPlan, version);
 	}
 

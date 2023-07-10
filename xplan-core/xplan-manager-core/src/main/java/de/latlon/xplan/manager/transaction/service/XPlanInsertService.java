@@ -39,18 +39,13 @@ public class XPlanInsertService {
 		return plansToImport;
 	}
 
-	@Transactional(rollbackOn = Exception.class)
-	public PlanImportData importPlan(PlanImportData planToImport) throws Exception {
-		return doImport(planToImport);
-	}
-
 	private PlanImportData doImport(PlanImportData planToImport) throws Exception {
 		XPlanArchive archive = planToImport.getxPlanArchive();
 		XPlanFeatureCollection xPlanFeatureCollection = planToImport.getxPlanFC();
 		PlanStatus planStatus = planToImport.getPlanStatus();
 		AdditionalPlanData xPlanMetadata = planToImport.getxPlanMetadata();
 		int planId = xplanDao.insert(archive, xPlanFeatureCollection, planStatus, xPlanMetadata.getStartDateTime(),
-				xPlanMetadata.getEndDateTime(), planToImport.getSortDate(), null);
+				xPlanMetadata.getEndDateTime(), planToImport.getSortDate(), planToImport.getInternalId());
 		insertDocuments(planId, xPlanFeatureCollection, archive);
 		LOG.info("XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId);
 		planToImport.setPlanId(planId);
