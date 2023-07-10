@@ -8,7 +8,6 @@ ENV CATALINA_OPTS="-Dlog4j2.configurationFile=classpath:/log4j2.yaml -Djavax.xml
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
 # configure tomcat
-ADD tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
 ADD web.xml /usr/local/tomcat/conf/web.xml
 
 # add all unpacked webapps (prepared by maven)
