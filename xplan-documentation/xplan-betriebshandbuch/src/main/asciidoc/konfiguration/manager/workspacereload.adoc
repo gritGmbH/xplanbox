@@ -12,14 +12,12 @@ werden:
 [source,properties]
 ----
 workspaceReloadUrls=<XPLANWMS-URLS> <1>
-workspaceReloadUser=<TOMCAT-NUTZERNAME> <2>
-workspaceReloadPassword=<TOMCAT-PASSWORT> <3>
-workspaceReloadAction=[ALL,RELOAD,PLANWERKWMS] <4>
+workspaceReloadApiKey=<API-KEY> <2>
+workspaceReloadAction=[ALL,RELOAD,PLANWERKWMS] <3>
 ----
 <1> ein oder mehrere URLs (kommasepariert), wenn mehrere Instanzen des XPlanWMS/XPlanWerkWMS hinter einem Load-Balancer betrieben werden
-<2> Nutzername für die Authentifizierung über BASIC-Authentication am Tomcat Webcontext
-<3> Passwort für die Authentifizierung über BASIC-Authentication am Tomcat Webcontext
-<4> definiert wie die Dienste aktualisiert werden, mit `ALL` (Vorgabewert) werden die Workspace-Konfigurationen aller Dienste neu geladen (`RELOAD`) und der XPlanWerkWMS aktualisiert (`PLANWERKWMS`), so dass einzelne XPlanWerkWMS Endpunkte entfernt werden können. Mit `RELOAD` und `PLANWERKWMS` können diese Aktualisierungen auch getrennt aufgerufen werden.
+<2> API Key für die Authentifizierung
+<3> definiert wie die Dienste aktualisiert werden, mit `ALL` (Vorgabewert) werden die Workspace-Konfigurationen aller Dienste neu geladen (`RELOAD`) und der XPlanWerkWMS aktualisiert (`PLANWERKWMS`), so dass einzelne XPlanWerkWMS Endpunkte entfernt werden können. Mit `RELOAD` und `PLANWERKWMS` können diese Aktualisierungen auch getrennt aufgerufen werden.
 
 .Beispiel für mehrere URLs für das Element `workspaceReloadUrls`:
 [source,properties]
@@ -27,5 +25,5 @@ workspaceReloadAction=[ALL,RELOAD,PLANWERKWMS] <4>
 workspaceReloadUrls=http://server1/xplan-wms/,http://server2:8081/xplan-wms/
 ----
 
-CAUTION: *Wichtig*! Alle Dienste müssen über die gleiche Nutzername-Passwort-Kombination aufgerufen werden können.
+CAUTION: *Wichtig*! Alle Dienste müssen über den gleichen API Key aufgerufen werden können.
 

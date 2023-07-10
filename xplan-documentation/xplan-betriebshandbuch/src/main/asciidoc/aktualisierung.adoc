@@ -285,6 +285,12 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 [[aktualisierung-auf-xplanbox-version-7.0]]
 === Aktualisierung auf die Version 7.0 der xPlanBox
 
+Für die Aktualisierung auf die Version 7.0 sind folgende Schritte auszuführen:
+
+* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+** Es wird empfohlen die Absicherung der REST Schnittstelle der XPlanDienst von Tomcat Nutzer auf API Key umzustellen. Details dazu finden sich im Abschnitt <<dienste-tomcat>>. Soll weiterhin die Absicherung über einen konfigurierten Tomcat Nutzer erfolgen, muss in der Datei  <DEEGREE_WORKSPACE_ROOT>/config.apikey_ ein '*' eingetragen werden, um die Absicherung zu deaktivieren.
+
+
 IMPORTANT: Mit der Version 7.0 der xPlanBox ist die Kartenvorschau im XPlanValidator nicht mehr standardmäßig aktiviert. Hinweise zur Konfiguration der Kartenvorschau sind im Abschnitt <<kartenvorschau-validator>> beschrieben.
 
 === Troubleshooting
