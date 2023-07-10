@@ -50,8 +50,7 @@ XPLAN_MANAGERAPI_URL_PUBLIC=${XPLAN_MANAGERAPI_URL_PUBLIC:-xplan-api-manager}
 XPLAN_VALIDATORAPI_URL_PUBLIC=${XPLAN_VALIDATORAPI_URL_PUBLIC:-xplan-api-validator}
 XPLAN_MAPSERVER_URL_INTERNAL="${XPLAN_MAPSERVER_URL_INTERNAL:-http://xplan-mapserver}"
 XPLAN_SERVICES_URL_INTERNAL=${XPLAN_SERVICES_URL_INTERNAL:-http://xplan-services}
-XPLAN_SERVICES_API_USER=${XPLAN_SERVICES_API_USER:-deegree}
-XPLAN_SERVICES_API_PASSWORT=${XPLAN_SERVICES_API_PASSWORT:-deegree}
+XPLAN_SERVICES_API_KEY=${XPLAN_SERVICES_API_KEY:-xplanbox}
 XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION=${XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION:-PLANWERKWMS}
 XPLAN_WMS_URL_INTERNAL=${XPLAN_WMS_URL_INTERNAL:-xplan-services}
 
@@ -82,8 +81,7 @@ sed -i 's|apiUrl=|apiUrl='$XPLAN_VALIDATORAPI_URL_PUBLIC'|g' xplan-validator-con
 sed -i 's|apiUrl=|apiUrl='$XPLAN_MANAGERAPI_URL_PUBLIC'|g' xplan-manager-config/managerApiConfiguration.properties
 sed -i 's|wmsUrl=|wmsUrl='$XPLAN_WMS_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerApiConfiguration.properties
 sed -i 's|workspaceReloadUrls=|workspaceReloadUrls='$XPLAN_SERVICES_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerConfiguration.properties
-sed -i 's/workspaceReloadUser=/workspaceReloadUser='$XPLAN_SERVICES_API_USER'/g' xplan-manager-config/managerConfiguration.properties
-sed -i 's/workspaceReloadPassword=/workspaceReloadPassword='$XPLAN_SERVICES_API_PASSWORT'/g' xplan-manager-config/managerConfiguration.properties
+sed -i 's/workspaceReloadApiKey=/workspaceReloadApiKey='$XPLAN_SERVICES_API_KEY'/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadAction=ALL/workspaceReloadAction='$XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION'/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/pathToHaleCli=/pathToHaleCli=\/hale\/bin\/hale/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's|http://localhost:8080|'$XPLAN_WMS_URL_PUBLIC'|g' xplan-manager-config/managerWebConfiguration.properties
@@ -145,6 +143,8 @@ do
 done
 find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$XPLAN_SERVICES_DEFAULT_CRS'<\/QueryCRS>/g' {} \;
 find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>//g' {} \;
+
+echo $XPLAN_SERVICES_API_KEY >> xplan-workspaces/config.apikey
 
 # Rastertype
 echo "[$(date -Iseconds)] Configured rastertype: $XPLAN_INIT_RASTERTYPE"
