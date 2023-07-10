@@ -748,6 +748,11 @@
         <artifactId>deegree-sqldialect-postgis</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
+      <dependency>
+        <groupId>de.latlon</groupId>
+        <artifactId>deegree-services-config</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
       <!--deegree webservices -->
       <dependency>
         <groupId>de.latlon</groupId>
