@@ -60,11 +60,11 @@ public class ManagerConfiguration {
 
 	static final String RASTER_LAYER_SCALE_DENOMINATOR_MAX = "rasterLayerMaxScaleDenominator";
 
-	static final String ACTIVATE_SEPARATED_DATAMANAGEMENT = "activateSeparatedDataManagement";
-
 	static final String RASTER_CONFIG_TYPE = "rasterConfigurationType";
 
 	static final String WORKSPACE_RELOAD_URLS = "workspaceReloadUrls";
+
+	static final String WORKSPACE_RELOAD_API_KEY = "workspaceReloadApiKey";
 
 	static final String WORKSPACE_RELOAD_USER = "workspaceReloadUser";
 
@@ -281,6 +281,12 @@ public class ManagerConfiguration {
 		LOG.info("-------------------------------------------");
 		LOG.info("  workspace reloader configuration");
 		LOG.info("   - urls of service to reload: {}", workspaceReloaderConfiguration.getUrls().toString());
+		if (workspaceReloaderConfiguration.isApiKeyConfigured())
+			LOG.info("   - apiKey used for authentication: {}",
+					replaceWithX(workspaceReloaderConfiguration.getApiKey()));
+		else
+			LOG.info("   - user/password used for authentication: {}/{}", workspaceReloaderConfiguration.getUser(),
+					replaceWithX(workspaceReloaderConfiguration.getPassword()));
 		LOG.info("-------------------------------------------");
 		LOG.info("  InternalIdRetriever");
 		LOG.info("   - workspace: {}", internalIdRetrieverConfiguration.getWorkspaceName());
@@ -356,12 +362,13 @@ public class ManagerConfiguration {
 
 	private WorkspaceReloaderConfiguration parseWorkspaceReloaderConfiguration(Properties loadProperties) {
 		String urls = loadProperties.getProperty(WORKSPACE_RELOAD_URLS);
+		String apiKey = loadProperties.getProperty(WORKSPACE_RELOAD_API_KEY);
 		String user = loadProperties.getProperty(WORKSPACE_RELOAD_USER);
 		String password = loadProperties.getProperty(WORKSPACE_RELOAD_PASSWORD);
-		if (urls != null && user != null && password != null && !"".equals(urls)) {
+		if (urls != null && !"".equals(urls) && (apiKey != null || (user != null && password != null))) {
 			List<String> urlList = Arrays.asList(urls.split(","));
 			WorkspaceReloadAction workspaceReloadAction = parseWorkspaceReloadAction(loadProperties);
-			return new WorkspaceReloaderConfiguration(urlList, user, password, workspaceReloadAction);
+			return new WorkspaceReloaderConfiguration(urlList, apiKey, user, password, workspaceReloadAction);
 		}
 		return new WorkspaceReloaderConfiguration();
 	}
@@ -443,11 +450,9 @@ public class ManagerConfiguration {
 		return Double.parseDouble(propertyValue);
 	}
 
-	private boolean parseBoolean(Properties loadProperties, String propName, boolean defaultValue) {
-		String property = loadProperties.getProperty(propName);
-		if (property == null || "".equals(property))
-			return defaultValue;
-		return Boolean.parseBoolean(property);
+	private String replaceWithX(String apiKey) {
+		int length = apiKey.length();
+		return "X".repeat(length);
 	}
 
 }
