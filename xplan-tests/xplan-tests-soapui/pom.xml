@@ -53,6 +53,7 @@
         <baseUrl />
         <baseUrlInspirePlu />
         <baseUrlManagerApi />
+        <baseUrlServices />
         <baseUrlMapServer />
         <username />
         <password />
@@ -91,6 +92,7 @@
                     <value>baseUrl=${baseUrl}</value>
                     <value>baseUrlInspirePlu=${baseUrlInspirePlu}</value>
                     <value>baseUrlManagerApi=${baseUrlManagerApi}</value>
+                    <value>baseUrlServices=${baseUrlServices}</value>
                     <value>baseUrlMapServer=${baseUrlMapServer}</value>
                     <value>username=${username}</value>
                     <value>password=${password}</value>

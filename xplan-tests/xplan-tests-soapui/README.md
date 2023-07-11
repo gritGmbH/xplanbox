@@ -4,11 +4,11 @@
 
 ### xplan-api-validator-soapui-project
 
-	mvn clean test -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xvalidator/api/v1 -Dusername=xplanbox -Dpassword='PWD'
+> mvn clean test -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xvalidator/api/v1 -Dusername=xplanbox -Dpassword='PWD'
 
 ### xplan-api-manager-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xmanager/api/v1 -Dusername=xplanbox -Dpassword='PWD'
+> mvn clean test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlServices=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
 
 ### xplan-manager-web-soapui-project
 
