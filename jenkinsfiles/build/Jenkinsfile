@@ -8,7 +8,7 @@ pipeline {
     jdk 'openjdk11'
   }
   environment {
-      MAVEN_OPTS='-Djava.awt.headless=true -Xmx500m'
+      MAVEN_OPTS='-Djava.awt.headless=true -Xmx750m'
   }
   stages {
     stage('Preparation') {
@@ -19,7 +19,7 @@ pipeline {
     stage('Build') {
       steps {
         withMaven(mavenLocalRepo: '.repository', mavenSettingsConfig: 'mvn-empty-settings') {
-            sh 'mvn -B -C clean install -T8 -Dskip.owasp.check=true'
+            sh 'mvn -B -C clean install -Dskip.owasp.check=true'
         }
       }
       post {
