@@ -36,7 +36,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <skip.unit.tests>false</skip.unit.tests>
     <skip.owasp.check>false</skip.owasp.check>
-    <tests.jvm.xmx>500M</tests.jvm.xmx>
+    <tests.jvm.xmx>500m</tests.jvm.xmx>
     <build.key></build.key> <!-- can be set by build job -->
   </properties>
 
