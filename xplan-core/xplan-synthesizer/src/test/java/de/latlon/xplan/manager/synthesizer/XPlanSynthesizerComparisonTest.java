@@ -81,15 +81,17 @@ public class XPlanSynthesizerComparisonTest {
 		String expectedFeatureCollection = IOUtils.toString(
 				XPlanSynthesizerComparisonTest.class.getResourceAsStream("plans/" + archiveName + ".xml"),
 				StandardCharsets.UTF_8);
-		assertThat(synthesizedFeatures, CompareMatcher.isSimilarTo(expectedFeatureCollection).ignoreWhitespace()
-				.ignoreComments().ignoreElementContentWhitespace()
-				.withDifferenceEvaluator(
-						(comparison, comparisonResult) -> ignoreGmlIdsAndXpPlanName(comparison, comparisonResult))
-				.withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byName)));
+		assertThat(synthesizedFeatures,
+				CompareMatcher.isSimilarTo(expectedFeatureCollection).ignoreWhitespace().ignoreComments()
+						.ignoreElementContentWhitespace()
+						.withDifferenceEvaluator((comparison,
+								comparisonResult) -> ignoreGmlIdsAndXpPlanNameAndPrefix(comparison, comparisonResult))
+						.withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byName)));
 
 	}
 
-	private ComparisonResult ignoreGmlIdsAndXpPlanName(Comparison comparison, ComparisonResult comparisonResult) {
+	private ComparisonResult ignoreGmlIdsAndXpPlanNameAndPrefix(Comparison comparison,
+			ComparisonResult comparisonResult) {
 		if (comparisonResult == ComparisonResult.EQUAL)
 			return comparisonResult;
 		Node controlNode = comparison.getControlDetails().getTarget();
@@ -108,6 +110,9 @@ public class XPlanSynthesizerComparisonTest {
 		if (comparison.getType() == ComparisonType.CHILD_NODELIST_SEQUENCE) {
 			return ComparisonResult.SIMILAR;
 		}
+		if (comparisonResult == ComparisonResult.DIFFERENT && comparison.getType() == ComparisonType.NAMESPACE_PREFIX) {
+			return ComparisonResult.SIMILAR;
+		}
 		return comparisonResult;
 	}
 
@@ -119,6 +124,7 @@ public class XPlanSynthesizerComparisonTest {
 		try {
 			xmlStream = XMLOutputFactory.newFactory().createXMLStreamWriter(os);
 			gmlStreamWriter = new XPlanGmlWriter(version, new IndentingXMLStreamWriter(xmlStream));
+			gmlStreamWriter.getNamespaceBindings().put("xplansyn", XPlanVersion.XPLAN_SYN.getNamespace());
 			gmlStreamWriter.write(synthesizedFeatures);
 		}
 		finally {
