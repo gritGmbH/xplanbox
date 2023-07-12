@@ -10,6 +10,10 @@
 
 > mvn clean test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlServices=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
 
+### xplan-api-dokumente-soapui-project
+
+> mvn clean test -Psystem-tests -DtestFileName=xplan-api-dokumente-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlDokumentenApi=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
+
 ### xplan-manager-web-soapui-project
 
 > mvn clean test -Psystem-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xplan-manager-web -Dusername=xplanbox -Dpassword='PWD'
