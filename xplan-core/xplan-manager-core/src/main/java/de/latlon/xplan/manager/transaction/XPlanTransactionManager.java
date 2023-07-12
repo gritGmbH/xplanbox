@@ -28,12 +28,10 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadataBuilder;
-import de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
@@ -63,8 +61,6 @@ public abstract class XPlanTransactionManager {
 
 	protected final XPlanRasterManager xPlanRasterManager;
 
-	protected final XPlanDocumentManager xPlanDocumentManager;
-
 	protected final WorkspaceReloader workspaceReloader;
 
 	protected final ManagerConfiguration managerConfiguration;
@@ -73,16 +69,13 @@ public abstract class XPlanTransactionManager {
 
 	private final MetadataCouplingHandler metadataCouplingHandler;
 
-	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
-
 	public XPlanTransactionManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao,
-			XPlanRasterManager xPlanRasterManager, XPlanDocumentManager xPlanDocumentManager,
-			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
-			SortPropertyReader sortPropertyReader, MetadataCouplingHandler metadataCouplingHandler) {
+			XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
+			ManagerConfiguration managerConfiguration, SortPropertyReader sortPropertyReader,
+			MetadataCouplingHandler metadataCouplingHandler) {
 		this.xPlanSynthesizer = xPlanSynthesizer;
 		this.xplanDao = xplanDao;
 		this.xPlanRasterManager = xPlanRasterManager;
-		this.xPlanDocumentManager = xPlanDocumentManager;
 		this.workspaceReloader = workspaceReloader;
 		this.managerConfiguration = managerConfiguration;
 		this.sortPropertyReader = sortPropertyReader;

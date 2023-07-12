@@ -31,7 +31,6 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
@@ -86,7 +85,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
@@ -154,11 +152,9 @@ public class TestContext {
 	public XPlanEditManager xPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
 			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			WorkspaceReloader workspaceReloader, XPlanRasterManager xPlanRasterManager,
-			Optional<XPlanDocumentManager> xPlanDocumentManager, SortPropertyReader sortPropertyReader,
-			XPlanEditService xPlanEditService) {
-		return new XPlanEditManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager,
-				xPlanDocumentManager.orElse(null), workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
-				sortPropertyReader, xPlanEditService, null, null);
+			SortPropertyReader sortPropertyReader, XPlanEditService xPlanEditService) {
+		return new XPlanEditManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager, workspaceReloader,
+				managerWorkspaceWrapper.getConfiguration(), sortPropertyReader, xPlanEditService, null, null);
 	}
 
 	@Primary

@@ -30,7 +30,6 @@ import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.CrsUtils;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.service.XPlanInsertService;
@@ -64,12 +63,11 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 	private final XPlanInsertService xPlanInsertService;
 
 	public XPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao,
-			XPlanRasterManager xPlanRasterManager, XPlanDocumentManager xPlanDocumentManager,
-			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
-			SortPropertyReader sortPropertyReader, XPlanInsertService xPlanInsertService,
-			MetadataCouplingHandler metadataCouplingHandler) {
-		super(xPlanSynthesizer, xplanDao, xPlanRasterManager, xPlanDocumentManager, workspaceReloader,
-				managerConfiguration, sortPropertyReader, metadataCouplingHandler);
+			XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
+			ManagerConfiguration managerConfiguration, SortPropertyReader sortPropertyReader,
+			XPlanInsertService xPlanInsertService, MetadataCouplingHandler metadataCouplingHandler) {
+		super(xPlanSynthesizer, xplanDao, xPlanRasterManager, workspaceReloader, managerConfiguration,
+				sortPropertyReader, metadataCouplingHandler);
 		this.xPlanInsertService = xPlanInsertService;
 	}
 
