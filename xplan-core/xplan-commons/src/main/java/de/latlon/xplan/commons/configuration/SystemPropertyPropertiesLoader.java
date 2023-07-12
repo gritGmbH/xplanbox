@@ -40,8 +40,6 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
 
 	public static final String CONFIG_SYSTEM_PROPERTY = "XPLANBOX_CONFIG";
 
-	private static final String OLD_CONFIG_SYSTEM_PROPERTY = "MANAGER_WEB";
-
 	private final Path configurationDirectory;
 
 	private final Class<?> defaultBaseClass;
@@ -107,10 +105,6 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
 		String configFilePath = System.getProperty(CONFIG_SYSTEM_PROPERTY);
 		if (configFilePath != null)
 			return findConfigDirectory(configFilePath);
-		LOG.info("Fallback: Try to receive configuration set with system property {}", OLD_CONFIG_SYSTEM_PROPERTY);
-		String oldConfigFilePath = System.getProperty(OLD_CONFIG_SYSTEM_PROPERTY);
-		if (oldConfigFilePath != null)
-			return findConfigDirectory(oldConfigFilePath);
 		return null;
 	}
 
