@@ -14277,7 +14277,7 @@ assert expectedHeader == actualHeader</scriptText>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#TestSuite#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -14333,8 +14333,8 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
             </con:configuration>
           </con:assertion>
           <con:credentials>
-            <con:username>${#TestSuite#username}</con:username>
-            <con:password>${#TestSuite#password}</con:password>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
             <con:domain/>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -14448,18 +14448,6 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
     </con:testCase>
     <con:properties>
       <con:property>
-        <con:name>baseUrlServices</con:name>
-        <con:value>http://localhost:8083/</con:value>
-      </con:property>
-      <con:property>
-        <con:name>username</con:name>
-        <con:value/>
-      </con:property>
-      <con:property>
-        <con:name>password</con:name>
-        <con:value/>
-      </con:property>
-      <con:property>
         <con:name>codelistValue_BP_SonstPlanArt_11002</con:name>
         <con:value>TeilbebauungsPlan</con:value>
       </con:property>
@@ -14476,6 +14464,10 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
     <con:property>
       <con:name>baseUrlManagerApi</con:name>
       <con:value>http://localhost:8086/xplan-api-manager</con:value>
+    </con:property>
+    <con:property>
+      <con:name>baseUrlServices</con:name>
+      <con:value>http://localhost:8083/</con:value>
     </con:property>
     <con:property>
       <con:name>username</con:name>
