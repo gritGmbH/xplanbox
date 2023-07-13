@@ -20,7 +20,7 @@
 
 ### xplan-webservices-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrl=https://xplanbox.lat-lon.de -DbaseUrlInspirePlu=https://xplanbox.lat-lon.de -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlMapServer=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
+> mvn clean test -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=https://xplanbox.lat-lon.de -DbaseUrlInspirePlu=https://xplanbox.lat-lon.de -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlMapServer=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
 
 
 

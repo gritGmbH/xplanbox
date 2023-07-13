@@ -41,7 +41,7 @@ baseUrlManagerApi=https://xplanbox.lat-lon.de</con:description>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/wms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -127,7 +127,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/wms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -248,7 +248,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/wmspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="0f00986a-6f80-4e94-82b9-e57ff2755639" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -334,7 +334,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/wmspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -456,7 +456,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
           <con:encoding xsi:nil="true"/>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wmsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/wmsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="1aff7249-968d-48e0-95c5-26a240c6492e" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -542,7 +542,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wmsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/wmsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -663,7 +663,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/bpwms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/bpwms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -716,7 +716,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/bpwms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/bpwms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -837,7 +837,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/fpwms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/fpwms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -890,7 +890,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/fpwms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/fpwms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -1011,7 +1011,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/lpwms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/lpwms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -1064,7 +1064,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/lpwms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/lpwms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -1185,7 +1185,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/rpwms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/rpwms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -1238,7 +1238,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/rpwms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/rpwms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -1359,7 +1359,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/sowms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/sowms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -1412,7 +1412,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/sowms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/sowms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -1533,7 +1533,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/bpwmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/bpwmspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="0f00986a-6f80-4e94-82b9-e57ff2755639" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -1586,7 +1586,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/bpwmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/bpwmspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -1707,7 +1707,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/fpwmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/fpwmspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="0f00986a-6f80-4e94-82b9-e57ff2755639" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -1760,7 +1760,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/fpwmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/fpwmspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -1881,7 +1881,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/lpwmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/lpwmspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="0f00986a-6f80-4e94-82b9-e57ff2755639" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -1934,7 +1934,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/lpwmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/lpwmspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -2055,7 +2055,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/rpwmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/rpwmspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="0f00986a-6f80-4e94-82b9-e57ff2755639" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -2108,7 +2108,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/rpwmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/rpwmspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -2229,7 +2229,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/sowmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/sowmspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="0f00986a-6f80-4e94-82b9-e57ff2755639" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -2282,7 +2282,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/sowmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/sowmspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -2404,7 +2404,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
           <con:encoding xsi:nil="true"/>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/bpwmsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/bpwmsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="1aff7249-968d-48e0-95c5-26a240c6492e" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -2457,7 +2457,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/bpwmsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/bpwmsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -2579,7 +2579,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
           <con:encoding xsi:nil="true"/>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/fpwmsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/fpwmsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="1aff7249-968d-48e0-95c5-26a240c6492e" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -2632,7 +2632,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/fpwmsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/fpwmsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -2754,7 +2754,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
           <con:encoding xsi:nil="true"/>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/lpwmsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/lpwmsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="1aff7249-968d-48e0-95c5-26a240c6492e" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -2807,7 +2807,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/lpwmsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/lpwmsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -2929,7 +2929,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
           <con:encoding xsi:nil="true"/>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/rpwmsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/rpwmsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="1aff7249-968d-48e0-95c5-26a240c6492e" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -2982,7 +2982,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/rpwmsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/rpwmsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -3104,7 +3104,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
           <con:encoding xsi:nil="true"/>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/sowmsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/sowmsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="1aff7249-968d-48e0-95c5-26a240c6492e" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -3157,7 +3157,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/sowmsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/sowmsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -3327,7 +3327,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/wmspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -3482,7 +3482,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/getAttachment</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/getAttachment</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -3632,7 +3632,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/planwerkwms/planname/Eidelstedt4soapui-webservices</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/planwerkwms/planname/Eidelstedt4soapui-webservices</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -3685,7 +3685,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/planwerkwms/planname/Eidelstedt 4 soapui-webservices</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/planwerkwms/planname/Eidelstedt 4 soapui-webservices</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -3763,7 +3763,7 @@ exists(/wms:WMS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/planwerkwms/planname/Eidelstedt4soapui-webservices</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/planwerkwms/planname/Eidelstedt4soapui-webservices</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -3890,7 +3890,7 @@ exists(ogc:ServiceExceptionReport)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/wms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -4166,7 +4166,7 @@ exists(ogc:ServiceExceptionReport)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/wms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -4304,7 +4304,7 @@ exists(ogc:ServiceExceptionReport)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/wms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -4496,7 +4496,7 @@ exists(ogc:ServiceExceptionReport)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/wms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -4779,7 +4779,7 @@ exists(ogc:ServiceExceptionReport)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -4869,7 +4869,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfspre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="f4dc17e2-7aef-448f-af04-59fa566039e9" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -4959,7 +4959,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="367fab8b-c325-4fb3-9802-0d07f492b7fe" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5114,7 +5114,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5249,7 +5249,7 @@ count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:Title[text()='planName
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5351,7 +5351,7 @@ exists(//wfs:DescribeStoredQueriesResponse)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5420,7 +5420,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5548,7 +5548,7 @@ count(//wfs:member)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5817,7 +5817,7 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5929,7 +5929,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6041,7 +6041,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfsarchive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfsarchive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6221,7 +6221,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs40</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs40</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="3489b56f-a753-4d55-bee1-4976da09dbf2" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6278,7 +6278,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs41</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs41</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="827a0ddc-37c0-4bc6-8776-1f7ab50229aa" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6335,7 +6335,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs50</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs50</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="e5c5f20b-e068-4b6a-b075-d38be0ad974f" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6392,7 +6392,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs51</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs51</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="e779e746-4b07-4cb2-b07e-6346a717e921" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6449,7 +6449,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs52</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs52</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="ebc9ec3a-2f49-4908-8554-e0bc6f775fe7" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6506,7 +6506,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs53</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs53</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="19b4e447-9179-4f4a-ac4d-eb418de26fce" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6563,7 +6563,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs54</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs54</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="19b4e447-9179-4f4a-ac4d-eb418de26fce" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6644,7 +6644,7 @@ declare namespace ows='http://www.opengis.net/ows/1.1';
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs60</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs60</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="19b4e447-9179-4f4a-ac4d-eb418de26fce" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6725,7 +6725,7 @@ declare namespace ows='http://www.opengis.net/ows/1.1';
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs40pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs40pre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2302b9df-6d71-4346-b11f-b49fdd7bab21" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6782,7 +6782,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs41pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs41pre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="1fefd3a3-a0ba-43fb-bd3c-89633fd21598" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6839,7 +6839,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs50pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs50pre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="f5958a25-dad8-49c9-b284-40a9c982f525" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6896,7 +6896,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs51pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs51pre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="aed1be95-7eba-4ff5-86d1-8367f1b94a63" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -6953,7 +6953,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs52pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs52pre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="477c6af5-0b9a-44dd-b8c9-3480a3afa74c" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7010,7 +7010,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs53pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs53pre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="cae968a0-4537-4467-850a-d89efa084eac" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7067,7 +7067,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs54pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs54pre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="cae968a0-4537-4467-850a-d89efa084eac" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7148,7 +7148,7 @@ declare namespace ows='http://www.opengis.net/ows/1.1';
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs60pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs60pre</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="cae968a0-4537-4467-850a-d89efa084eac" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7229,7 +7229,7 @@ declare namespace ows='http://www.opengis.net/ows/1.1';
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs40archive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs40archive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="db2d1b25-609b-4f6f-83d1-9adf30cc9721" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7286,7 +7286,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs41archive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs41archive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="1b881290-e038-4856-ab3f-89a62446e926" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7343,7 +7343,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs50archive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs50archive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="d88553db-0b92-46cc-9849-e94d12bf8726" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7400,7 +7400,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs51archive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs51archive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="4c0430fe-bc76-4d1b-9795-fe81309ea8ca" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7457,7 +7457,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs52archive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs52archive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="75fbee7e-8e78-4c13-b0da-94f4de47f183" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7514,7 +7514,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs53archive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs53archive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="717ce3e0-ec90-44e6-94c0-0ebfc61152d8" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7571,7 +7571,7 @@ exists(/wfs:WFS_Capabilities)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs54archive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs54archive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="717ce3e0-ec90-44e6-94c0-0ebfc61152d8" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7652,7 +7652,7 @@ declare namespace ows='http://www.opengis.net/ows/1.1';
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs60archive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs60archive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="717ce3e0-ec90-44e6-94c0-0ebfc61152d8" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7798,7 +7798,7 @@ declare namespace ows='http://www.opengis.net/ows/1.1';
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs41</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs41</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7867,7 +7867,7 @@ count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:ReturnFeatureType[text
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs41</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs41</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -7958,7 +7958,7 @@ exists(//wfs:DescribeStoredQueriesResponse)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs41</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs41</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -8031,7 +8031,7 @@ count(//wfs:member)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs41</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs41</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -8203,7 +8203,7 @@ count(//wfs:member)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs60archive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs60archive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -8272,7 +8272,7 @@ count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:ReturnFeatureType[text
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs60archive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs60archive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -8363,7 +8363,7 @@ exists(//wfs:DescribeStoredQueriesResponse)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs60archive</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs60archive</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -8936,7 +8936,7 @@ exists(//wms:Layer[wms:Name='soplanrasterarchive'])</path>
   </con:testSuite>
   <con:properties>
     <con:property>
-      <con:name>baseUrl</con:name>
+      <con:name>baseUrlServices</con:name>
       <con:value>http://localhost:8083</con:value>
     </con:property>
     <con:property>

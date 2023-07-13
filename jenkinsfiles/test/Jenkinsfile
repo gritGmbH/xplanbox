@@ -61,7 +61,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrl=${BASE_URL_DIENSTE} -DbaseUrlInspirePlu=${BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlMapServer=${BASE_URL_MAPSERVER} -Dusername=$Username -Dpassword=$Password'
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=${BASE_URL_DIENSTE} -DbaseUrlInspirePlu=${BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlMapServer=${BASE_URL_MAPSERVER} -Dusername=$Username -Dpassword=$Password'
             }
          }
       }
