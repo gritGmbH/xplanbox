@@ -14203,7 +14203,7 @@ assert expectedHeader == actualHeader</scriptText>
   <con:testSuite id="184b8268-04e3-4e5f-aada-51f5ef02a8e0" name="Codelists TestSuite">
     <con:settings/>
     <con:runType>SEQUENTIAL</con:runType>
-    <con:testCase id="7ddf4a83-e781-4a5f-b79c-207d8863e2f5" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="externalCodelists" searchProperties="true">
+    <con:testCase id="7ddf4a83-e781-4a5f-b79c-207d8863e2f5" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="externalCodelists" searchProperties="true">
       <con:settings/>
       <con:testStep type="restrequest" name="POST BP 5.2 XX importPlan" id="b8841eb1-28e7-465a-acf5-440c535f36cf">
         <con:settings/>
