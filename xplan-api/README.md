@@ -57,7 +57,8 @@ Hierunter fallen abwärts-/rückwärtskompatible Änderungen und Ergänzungen an
 - Hinzufügen von neuen optionalen Parametern
 - Hinzufügen von neuen optionalen Attributen
 - Hinzufügen von neuen Content-Types
-- Hinzufügen eines neuen Datentyps
+- Hinzufügen eines neuen Datentyps (Schema)
+- Hinzufügen eines neuen Properties zu einem Datentyp (Schema)
 - Hinzufügen weiterer Status-Codes zu einer Antwort
 - Hinzufügen von weiteren Informationen
 
