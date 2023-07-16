@@ -40,6 +40,8 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
 
 	public static final String CONFIG_SYSTEM_PROPERTY = "XPLANBOX_CONFIG";
 
+	protected static final String DEFAULT_SUB_DIIRECTOY = "xplanbox";
+
 	private final Path configurationDirectory;
 
 	private final Class<?> defaultBaseClass;
@@ -105,6 +107,11 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
 		String configFilePath = System.getProperty(CONFIG_SYSTEM_PROPERTY);
 		if (configFilePath != null)
 			return findConfigDirectory(configFilePath);
+		LOG.info("Try to receive configuration from default directory ${user.home}/xplanbox");
+		Path defaultConfigFilePath = Paths.get(System.getProperty("user.home"), DEFAULT_SUB_DIIRECTOY);
+		if (Files.isDirectory(defaultConfigFilePath) && Files.exists(defaultConfigFilePath))
+			return defaultConfigFilePath;
+		LOG.info("Configuration directory {} does not exist or is not a directory.", defaultConfigFilePath);
 		return null;
 	}
 
