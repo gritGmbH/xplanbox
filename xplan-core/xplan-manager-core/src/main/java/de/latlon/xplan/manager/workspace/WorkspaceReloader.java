@@ -108,8 +108,12 @@ public class WorkspaceReloader {
 				return true;
 			}
 			else {
-				LOG.info("Error while deleting XPlanWerkWMS configuration: {}",
-						response.getStatusLine().getReasonPhrase());
+				LOG.info(
+						"Error while deleting XPlanWerkWMS configuration. Statuscode: {}, Reason: {}. Check your configuration if workspace reload is configured correctly.",
+						response.getStatusLine().getStatusCode(),
+						response.getStatusLine().getReasonPhrase() != null
+								&& !response.getStatusLine().getReasonPhrase().isEmpty()
+										? response.getStatusLine().getReasonPhrase() : "-");
 				return false;
 			}
 		}
@@ -143,7 +147,12 @@ public class WorkspaceReloader {
 				return true;
 			}
 			else {
-				LOG.info("Error while reloading workspace: {}", response.getStatusLine().getReasonPhrase());
+				LOG.info(
+						"Error while reloading workspace. Statuscode: {}, Reason: {}. Check your configuration if workspace reload is configured correctly.",
+						response.getStatusLine().getStatusCode(),
+						response.getStatusLine().getReasonPhrase() != null
+								&& !response.getStatusLine().getReasonPhrase().isEmpty()
+										? response.getStatusLine().getReasonPhrase() : "-");
 				return false;
 			}
 		}
