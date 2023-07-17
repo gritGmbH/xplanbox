@@ -71,10 +71,34 @@ public class AlphanumericComparator implements Comparator<String> {
 	}
 
 	private List<IntegerOrString> parseInts(String stringToParse) {
+		stringToParse = prepareStringToParse(stringToParse);
+		if (stringToParse.startsWith("$")) {
+			Pattern p = Pattern.compile("\\d+");
+			return findMatchingSortCriterias(p, stringToParse);
+		}
+		stringToParse = getStringToFirstSpace(stringToParse);
+		Pattern p = Pattern.compile("([A-Za-z\\s]+|\\d+)");
+		return findMatchingSortCriterias(p, stringToParse);
+	}
+
+	private static String prepareStringToParse(String stringToParse) {
 		if (stringToParse.contains("|")) {
 			stringToParse = stringToParse.substring(0, stringToParse.indexOf("|"));
 		}
-		Pattern p = Pattern.compile("([A-Za-z\\s]+|\\d+)(?![^\\(\\]]*\\))");
+		stringToParse = stringToParse.trim();
+		return stringToParse;
+	}
+
+	private String getStringToFirstSpace(String stringToParse) {
+		Pattern p = Pattern.compile("([^\\s]+)");
+		Matcher matcher = p.matcher(stringToParse);
+		if (matcher.find()) {
+			return matcher.group();
+		}
+		return stringToParse;
+	}
+
+	private List<IntegerOrString> findMatchingSortCriterias(Pattern p, String stringToParse) {
 		Matcher m = p.matcher(stringToParse);
 		List<IntegerOrString> sortSriterias = new ArrayList<>();
 		while (m.find()) {

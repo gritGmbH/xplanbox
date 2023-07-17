@@ -166,24 +166,14 @@ public class AlphanumericComparatorTest {
 
 	@Test
 	public void testSortList_charactersAndNumbers() {
-		List<String> list = asList("B text", "A 1.1 text", "A text", "B 1.1 text", "A 1.2 text", "B 1.2 text");
+		List<String> list = asList("B text", "A.1.1 text", "A text", "B.1.1 text", "A.1.2 text", "B.1.2 text");
 		Collections.sort(list, comparator);
 		assertThat(list.get(0), is("A text"));
-		assertThat(list.get(1), is("A 1.1 text"));
-		assertThat(list.get(2), is("A 1.2 text"));
+		assertThat(list.get(1), is("A.1.1 text"));
+		assertThat(list.get(2), is("A.1.2 text"));
 		assertThat(list.get(3), is("B text"));
-		assertThat(list.get(4), is("B 1.1 text"));
-		assertThat(list.get(5), is("B 1.2 text"));
-	}
-
-	@Test
-	public void testSortList_numbersOnly_exclude() {
-		List<String> list = asList("2.1 text", "1.1 text (skip 1) 2", "2.2 text", "1.1 text (skip 2) 1");
-		Collections.sort(list, comparator);
-		assertThat(list.get(0), is("1.1 text (skip 2) 1"));
-		assertThat(list.get(1), is("1.1 text (skip 1) 2"));
-		assertThat(list.get(2), is("2.1 text"));
-		assertThat(list.get(3), is("2.2 text"));
+		assertThat(list.get(4), is("B.1.1 text"));
+		assertThat(list.get(5), is("B.1.2 text"));
 	}
 
 	@Test
