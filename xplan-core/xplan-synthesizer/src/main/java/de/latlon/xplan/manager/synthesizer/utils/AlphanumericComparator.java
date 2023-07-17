@@ -72,7 +72,7 @@ public class AlphanumericComparator implements Comparator<String> {
 
 	private List<IntegerOrString> parseInts(String stringToParse) {
 		stringToParse = prepareStringToParse(stringToParse);
-		if (stringToParse.startsWith("$")) {
+		if (stringToParse.startsWith("§") || stringToParse.startsWith("[§")) {
 			Pattern p = Pattern.compile("\\d+");
 			return findMatchingSortCriterias(p, stringToParse);
 		}

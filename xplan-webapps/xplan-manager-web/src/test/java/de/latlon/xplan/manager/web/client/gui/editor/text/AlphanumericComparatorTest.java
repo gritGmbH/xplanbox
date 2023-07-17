@@ -47,25 +47,25 @@ public class AlphanumericComparatorTest {
 
 	@Test
 	public void testCompare_FirstNull() {
-		int compare = comparator.compare(null, "$1 Nr.2");
+		int compare = comparator.compare(null, "§1 Nr.2");
 		assertThat(compare, is(1));
 	}
 
 	@Test
 	public void testCompare_SecondNull() {
-		int compare = comparator.compare("$1 Nr.15", null);
+		int compare = comparator.compare("§1 Nr.15", null);
 		assertThat(compare, is(-1));
 	}
 
 	@Test
 	public void testCompare_FirstString() {
-		int compare = comparator.compare("ABC", "$1 Nr.2");
+		int compare = comparator.compare("ABC", "§1 Nr.2");
 		assertThat(compare, is(greaterThan(0)));
 	}
 
 	@Test
 	public void testCompare_SecondString() {
-		int compare = comparator.compare("$1 Nr.15", "ABC");
+		int compare = comparator.compare("§1 Nr.15", "ABC");
 		assertThat(compare, is(-1));
 	}
 
@@ -83,7 +83,7 @@ public class AlphanumericComparatorTest {
 
 	@Test
 	public void testCompare_ParagrahAndNr() {
-		int compare = comparator.compare("$1 Nr.15", "$1 Nr.2");
+		int compare = comparator.compare("§1 Nr.15", "§1 Nr.2");
 		assertThat(compare, is(1));
 	}
 
@@ -101,24 +101,24 @@ public class AlphanumericComparatorTest {
 
 	@Test
 	public void testCompare_StringWithPipeAndParagraph() {
-		int compare = comparator.compare("$1 Nr.15", "Ende | 1");
+		int compare = comparator.compare("§1 Nr.15", "Ende | 1");
 		assertThat(compare, is(-1));
 	}
 
 	@Test
 	public void testCompare_StringAndParagraph() {
-		int compare = comparator.compare("$3", "SiebzehnPunktVier");
+		int compare = comparator.compare("§3", "SiebzehnPunktVier");
 		assertThat(compare, is(-1));
 	}
 
 	@Test
 	public void testSortList_paragraphsAndNr() {
-		List<String> list = asList("$1 Nr.15", "$1", "$1 Nr.2", "Ende | 1", "$3", "SiebzehnPunktVier");
+		List<String> list = asList("§1 Nr.15", "§1", "§1 Nr.2", "Ende | 1", "§3", "SiebzehnPunktVier");
 		Collections.sort(list, comparator);
-		assertThat(list.get(0), is("$1"));
-		assertThat(list.get(1), is("$1 Nr.2"));
-		assertThat(list.get(2), is("$1 Nr.15"));
-		assertThat(list.get(3), is("$3"));
+		assertThat(list.get(0), is("§1"));
+		assertThat(list.get(1), is("§1 Nr.2"));
+		assertThat(list.get(2), is("§1 Nr.15"));
+		assertThat(list.get(3), is("§3"));
 		assertThat(list.get(4), is("Ende | 1"));
 		assertThat(list.get(5), is("SiebzehnPunktVier"));
 	}

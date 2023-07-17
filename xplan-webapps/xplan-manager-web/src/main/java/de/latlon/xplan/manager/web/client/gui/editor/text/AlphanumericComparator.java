@@ -73,7 +73,7 @@ public class AlphanumericComparator implements Comparator<String> {
 
 	private List<IntegerOrString> parseInts(String stringToParse) {
 		stringToParse = prepareStringToParse(stringToParse);
-		if (stringToParse.startsWith("$")) {
+		if (stringToParse.startsWith("§") || stringToParse.startsWith("[§")) {
 			RegExp p = RegExp.compile("\\d+");
 			return findMatchingSortCriterias(p, stringToParse);
 		}
@@ -100,7 +100,6 @@ public class AlphanumericComparator implements Comparator<String> {
 	}
 
 	private List<IntegerOrString> findMatchingSortCriterias(RegExp p, String stringToParse) {
-		System.out.println(stringToParse);
 		MatchResult m = p.exec(stringToParse);
 		List<IntegerOrString> sortSriterias = new ArrayList<>();
 		while (m != null) {
