@@ -81,6 +81,24 @@ Show system and application configuration</con:description>
           <con:status>200</con:status>
           <con:params/>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>text/html; charset=iso-8859-1</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+          <con:element>html</con:element>
+        </con:representation>
         <con:request name="Request 1" id="e9ab8dcf-b755-40af-baf7-aa17a2ca4cdc" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
@@ -1001,6 +1019,12 @@ Delete plan identified by the given plan ID</con:description>
           <con:status>404 405</con:status>
           <con:params/>
           <con:element>html</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
         </con:representation>
         <con:request name="Request 1" id="86128e07-a3ed-4a8e-abb8-780c510deef1" mediaType="application/json">
           <con:settings/>
@@ -4152,7 +4176,7 @@ assert actualHeader != null</scriptText>
       <con:testStep type="restrequest" name="POST SO 5.3 sF,sG,Ss,iI importPlan" id="38d3fea9-8dd1-4841-8a48-8f3c91f4e32e">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST SO 5.3 sF,sG,Ss importPlan" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+          <con:restRequest name="POST SO 5.3 sF,sG,Ss,iI importPlan" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
@@ -14698,11 +14722,11 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
       <con:property>
         <con:name>planIdBPXPlanGml602</con:name>
-        <con:value>403</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>planIdFPXPlanGml602</con:name>
-        <con:value>405</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>rasterbasisId</con:name>
@@ -15022,7 +15046,7 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
     </con:properties>
   </con:testSuite>
-  <con:testSuite id="184b8268-04e3-4e5f-aada-51f5ef02a8e0" name="Codelists TestSuite" disabled="true">
+  <con:testSuite id="184b8268-04e3-4e5f-aada-51f5ef02a8e0" name="Codelists TestSuite">
     <con:settings/>
     <con:runType>SEQUENTIAL</con:runType>
     <con:testCase id="7ddf4a83-e781-4a5f-b79c-207d8863e2f5" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="externalCodelists" searchProperties="true">
