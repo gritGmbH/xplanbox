@@ -155,6 +155,11 @@ public class AlphanumericComparator implements Comparator<String> {
 			return 0;
 		}
 
+		@Override
+		public String toString() {
+			return isInt() ? Integer.toString(intValue) : stringValue;
+		}
+
 	}
 
 }

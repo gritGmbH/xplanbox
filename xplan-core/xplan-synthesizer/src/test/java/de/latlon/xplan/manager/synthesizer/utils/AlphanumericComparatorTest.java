@@ -40,12 +40,6 @@ public class AlphanumericComparatorTest {
 	private final AlphanumericComparator comparator = new AlphanumericComparator();
 
 	@Test
-	public void testCompare() {
-		int compare = Integer.valueOf(4).compareTo(Integer.valueOf(2));
-		assertThat(compare, is(1));
-	}
-
-	@Test
 	public void testCompare_BothNull() {
 		int compare = comparator.compare(null, null);
 		assertThat(compare, is(0));
@@ -95,7 +89,7 @@ public class AlphanumericComparatorTest {
 
 	@Test
 	public void testCompare_Nr() {
-		int compare = comparator.compare("1.1", "1.2");
+		int compare = comparator.compare("1.2", "1.3");
 		assertThat(compare, is(-1));
 	}
 
