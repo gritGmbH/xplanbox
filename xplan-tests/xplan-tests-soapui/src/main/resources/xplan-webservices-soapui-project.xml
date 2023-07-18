@@ -3553,11 +3553,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>60</con:value>
+          <con:value>43</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_e44fc9f8-add6-45e2-b7ee-f8c15be49e8c</con:value>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_3d620809-a589-41ca-8855-8a9dfc282ee7</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3815,7 +3815,7 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>61</con:value>
+          <con:value>44</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4031,7 +4031,7 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>62</con:value>
+          <con:value>45</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4243,22 +4243,33 @@ exists(ogc:ServiceExceptionReport)</path>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
-            <con:name>documentUrl</con:name>
-            <con:sourceType>Response</con:sourceType>
-            <con:sourceStep>OpenAPIInfo</con:sourceStep>
-            <con:sourcePath>$.documentUrl</con:sourcePath>
-            <con:targetType>documentUrl</con:targetType>
-            <con:targetStep>#TestSuite#</con:targetStep>
-            <con:type>JSONPATH</con:type>
-            <con:targetTransferType>JSONPATH</con:targetTransferType>
-            <con:upgraded>true</con:upgraded>
-          </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>planIdBPlan004_6-0</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>Import BPlan004_6-0.zip</con:sourceStep>
             <con:sourcePath>$.id</con:sourcePath>
             <con:targetType>planIdBPlan004_6-0</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrlNull</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrl</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>OpenAPIInfo</con:sourceStep>
+            <con:sourcePath>$.documentUrl</con:sourcePath>
+            <con:targetType>documentUrl</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
@@ -4439,10 +4450,13 @@ def matcher = (response =~ /href="(.*?)" class='externeReferenzProperty'/)
 def url = matcher ? matcher[0][1] : null
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-assert url.contains(documentUrlShort)</scriptText>
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert url.contains(documentUrlShort)
+}</scriptText>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -4863,12 +4877,15 @@ wfs: 'http://www.opengis.net/wfs', gml: "http://www.opengis.net/gml/3.2")
 assert !(xml.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def externeRef = xml.'gml:featureMember'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-assert externeRef.contains(documentUrlShort)</scriptText>
+	def externeRef = xml.'gml:featureMember'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
+
+	assert externeRef.contains(documentUrlShort)
+}</scriptText>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -5051,24 +5068,27 @@ assert externeRef.contains(documentUrlShort)</scriptText>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>63</con:value>
+          <con:value>46</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>64</con:value>
+          <con:value>47</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan004_6-0</con:name>
-          <con:value>65</con:value>
+          <con:value>48</con:value>
+        </con:property>
+        <con:property>
+          <con:name>documentUrl</con:name>
+          <con:value>null</con:value>
+        </con:property>
+        <con:property>
+          <con:name>null</con:name>
+          <con:value>null</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
-    <con:properties>
-      <con:property>
-        <con:name>documentUrl</con:name>
-        <con:value>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1/dokument/{planId}/{fileName}</con:value>
-      </con:property>
-    </con:properties>
+    <con:properties></con:properties>
   </con:testSuite>
   <con:testSuite id="69df8070-8c59-42e5-9019-58a5480efe89" name="xplansyn-wfs">
     <con:description/>
@@ -5983,7 +6003,7 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>66</con:value>
+          <con:value>49</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -6195,22 +6215,33 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
-            <con:name>documentUrl</con:name>
-            <con:sourceType>Response</con:sourceType>
-            <con:sourceStep>OpenAPIInfo</con:sourceStep>
-            <con:sourcePath>$.documentUrl</con:sourcePath>
-            <con:targetType>documentUrl</con:targetType>
-            <con:targetStep>#TestSuite#</con:targetStep>
-            <con:type>JSONPATH</con:type>
-            <con:targetTransferType>JSONPATH</con:targetTransferType>
-            <con:upgraded>true</con:upgraded>
-          </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>planIdBPlan004_6-0</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>Import BPlan004_6-0.zip</con:sourceStep>
             <con:sourcePath>$.id</con:sourcePath>
             <con:targetType>planIdBPlan004_6-0</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrlNull</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrl</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>OpenAPIInfo</con:sourceStep>
+            <con:sourcePath>$.documentUrl</con:sourcePath>
+            <con:targetType>documentUrl</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
@@ -6300,12 +6331,15 @@ wfs: 'http://www.opengis.net/wfs/2.0')
 assert !(xml.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def externeRef = xml.'wfs:member'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-assert externeRef.contains(documentUrlShort)</scriptText>
+	def externeRef = xml.'wfs:member'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
+
+	assert externeRef.contains(documentUrlShort)
+}</scriptText>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -6649,24 +6683,27 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>67</con:value>
+          <con:value>50</con:value>
         </con:property>
         <con:property>
           <con:name>planIdOsdorf48</con:name>
-          <con:value>68</con:value>
+          <con:value>51</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan004_6-0</con:name>
-          <con:value>69</con:value>
+          <con:value>52</con:value>
+        </con:property>
+        <con:property>
+          <con:name>documentUrl</con:name>
+          <con:value>null</con:value>
+        </con:property>
+        <con:property>
+          <con:name>null</con:name>
+          <con:value>null</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
-    <con:properties>
-      <con:property>
-        <con:name>documentUrl</con:name>
-        <con:value>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1/dokument/{planId}/{fileName}</con:value>
-      </con:property>
-    </con:properties>
+    <con:properties></con:properties>
   </con:testSuite>
   <con:testSuite id="eaf66a3f-b0f0-45ec-84f6-7bee4db7a3d6" name="xplan-wfs">
     <con:settings/>
@@ -8584,7 +8621,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>70</con:value>
+          <con:value>53</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -8916,7 +8953,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>71</con:value>
+          <con:value>54</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -9019,12 +9056,23 @@ count(//wfs:member)</path>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrlNull</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>documentUrl</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>OpenAPIInfo</con:sourceStep>
             <con:sourcePath>$.documentUrl</con:sourcePath>
             <con:targetType>documentUrl</con:targetType>
-            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
@@ -9113,12 +9161,15 @@ wfs: 'http://www.opengis.net/wfs/2.0')
 assert !(xml.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def externeRef = xml.'wfs:member'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-assert externeRef.contains(documentUrlShort)</scriptText>
+	def externeRef = xml.'wfs:member'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
+
+	assert externeRef.contains(documentUrlShort)
+}</scriptText>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -9188,16 +9239,19 @@ assert externeRef.contains(documentUrlShort)</scriptText>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>72</con:value>
+          <con:value>55</con:value>
+        </con:property>
+        <con:property>
+          <con:name>documentUrl</con:name>
+          <con:value>null</con:value>
+        </con:property>
+        <con:property>
+          <con:name>null</con:name>
+          <con:value>null</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
-    <con:properties>
-      <con:property>
-        <con:name>documentUrl</con:name>
-        <con:value>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1/dokument/{planId}/{fileName}</con:value>
-      </con:property>
-    </con:properties>
+    <con:properties></con:properties>
   </con:testSuite>
   <con:testSuite id="6527f28b-3b4b-4009-a40c-8651534a22a3" name="xplan-inspireplu">
     <con:settings/>
