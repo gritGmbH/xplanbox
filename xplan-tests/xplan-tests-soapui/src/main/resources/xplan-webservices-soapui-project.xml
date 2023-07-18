@@ -4872,6 +4872,56 @@ exists(//xplanung:externeReferenz[text()[contains(.,'Test_Auskr.gml | Satzung')]
           <con:parameters></con:parameters>
         </con:config>
       </con:testStep>
+      <con:testStep type="httprequest" name="DELETE /planwerkwmsapi/{planId}" id="c925457b-28ec-477a-a298-2dec5a7043a5">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="DELETE /planwerkwmsapi/{planId}" postQueryString="false" mediaType="application/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="${#Project#apiKey}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/planwerkwmsapi/1</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="DELETE /planwerkwmsapi/{planId} invalidApiKey" id="cbe490a2-43b4-4736-b19b-d197acd59b87">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="DELETE /planwerkwmsapi/{planId} invalidApiKey" postQueryString="false" mediaType="application/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="invalidApiKey" xmlns="http://eviware.com/soapui/config"/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/planwerkwmsapi/1</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>403</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
       <con:properties/>
     </con:testCase>
     <con:properties/>
