@@ -67,6 +67,22 @@ XPLAN_SERVICES_DEFAULT_CRS="${XPLAN_SERVICES_DEFAULT_CRS:-EPSG:25832}"
 XPLAN_SERVICES_QUERY_CRS="${XPLAN_SERVICES_QUERY_CRS:-EPSG:4326 EPSG:3857 EPSG:25833}"
 XPLAN_SERVICES_QUERY_CRS_ARR=($XPLAN_SERVICES_QUERY_CRS)
 
+# Konfiguration der ServiceProvider-Metadaten in den Capabilities der XPlanServices
+XPLAN_SERVICES_PROVIDER_NAME="${XPLAN_SERVICES_PROVIDER_NAME:-lat/lon GmbH}"
+XPLAN_SERVICES_PROVIDER_SITE="${XPLAN_SERVICES_PROVIDER_SITE:-http://www.lat-lon.de}"
+XPLAN_SERVICES_PROVIDER_CONTACT_NAME="${XPLAN_SERVICES_PROVIDER_CONTACT_NAME:--}"
+XPLAN_SERVICES_PROVIDER_CONTACT_POSITIONNAME="${XPLAN_SERVICES_PROVIDER_CONTACT_POSITIONNAME:--}"
+XPLAN_SERVICES_PROVIDER_CONTACT_PHONE="${XPLAN_SERVICES_PROVIDER_CONTACT_PHONE:-+49(0)22824333784}"
+XPLAN_SERVICES_PROVIDER_CONTACT_MAIL="${XPLAN_SERVICES_PROVIDER_CONTACT_MAIL:-info@lat-lon.de}"
+XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_DELIVERYPOINT="${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_DELIVERYPOINT:-Im Ellig 1}"
+XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_CITY="${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_CITY:-Wachtberg}"
+XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_ADMINAREA="${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_ADMINAREA:-Nordrhein-Westfalen}"
+XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_POSTALCODE="${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_POSTALCODE:-53343}"
+XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_COUNTRY="${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_COUNTRY:-Germany}"
+XPLAN_SERVICES_PROVIDER_ONLINERESOURCE="${XPLAN_SERVICES_PROVIDER_ONLINERESOURCE:-http://www.deegree.org}"
+XPLAN_SERVICES_PROVIDER_HOURSOFSERVICE="${XPLAN_SERVICES_PROVIDER_HOURSOFSERVICE:-24x7}"
+XPLAN_SERVICES_PROVIDER_CONTACTINSTRUCTIONS="${XPLAN_SERVICES_PROVIDER_CONTACTINSTRUCTIONS:-Do not hesitate to call}"
+
 XPLAN_INIT_RASTERTYPE="${XPLAN_INIT_RASTERTYPE:-mapserver}"
 XPLAN_INIT_INSPIREPLU="${XPLAN_INIT_INSPIREPLU:-disabled}"
 
@@ -141,6 +157,22 @@ find xplan-workspaces/xplansyn-wms-workspace/themes -iname *.xml -exec sed -i 's
 find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's|<s:CRS>EPSG:25832</s:CRS>|<s:CRS>'$XPLAN_SERVICES_DEFAULT_CRS'</s:CRS>|g' {} \;
 echo "[$(date -Iseconds)] Configure XPlanWFS QueryCRS"
 find xplan-workspaces/xplan-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i '/<QueryCRS>EPSG:.*<\/QueryCRS>/d' {} \;
+
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<ProviderName>lat/lon GmbH</ProviderName>|<ProviderName>'"$XPLAN_SERVICES_PROVIDER_NAME"'</ProviderName>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<ProviderSite>http://www.lat-lon.de</ProviderSite>|<ProviderSite>'"$XPLAN_SERVICES_PROVIDER_SITE"'</ProviderSite>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<IndividualName>-</IndividualName>|<IndividualName>'"$XPLAN_SERVICES_PROVIDER_CONTACT_NAME"'</IndividualName>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<PositionName/>|<PositionName>'"$XPLAN_SERVICES_PROVIDER_CONTACT_POSITIONNAME"'</PositionName>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<Phone>+49(0)22824333784</Phone>|<Phone>'"$XPLAN_SERVICES_PROVIDER_CONTACT_PHONE"'</Phone>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<ElectronicMailAddress>info@lat-lon.de</ElectronicMailAddress>|<ElectronicMailAddress>'"$XPLAN_SERVICES_PROVIDER_CONTACT_MAIL"'</ElectronicMailAddress>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<DeliveryPoint>Im Ellig 1</DeliveryPoint>|<DeliveryPoint>'"$XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_DELIVERYPOINT"'</DeliveryPoint>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<City>Wachtberg</City>|<City>'"$XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_CITY"'</City>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<AdministrativeArea>Nordrhein-Westfalen</AdministrativeArea>|<AdministrativeArea>'"$XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_ADMINAREA"'</AdministrativeArea>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<PostalCode>53343</PostalCode>|<PostalCode>'"$XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_POSTALCODE"'</PostalCode>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<Country>Germany</Country>|<Country>'"$XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_COUNTRY"'</Country>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<OnlineResource>http://www.deegree.org</OnlineResource>|<OnlineResource>'"$XPLAN_SERVICES_PROVIDER_ONLINERESOURCE"'</OnlineResource>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<HoursOfService>24x7</HoursOfService>|<HoursOfService>'"$XPLAN_SERVICES_PROVIDER_HOURSOFSERVICE"'</HoursOfService>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<ContactInstructions>Do not hesitate to call</ContactInstructions>|<ContactInstructions>'"$XPLAN_SERVICES_PROVIDER_CONTACTINSTRUCTIONS"'</ContactInstructions>|g' {} \;
+
 for crs in "${XPLAN_SERVICES_QUERY_CRS_ARR[@]}"
 do
   find xplan-workspaces/xplan-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$crs'<\/QueryCRS>/g' {} \;
