@@ -63,13 +63,15 @@ public class XPlanExternalCodeLookup extends AbstractXPlanDictionaryLookup {
 		super(exp, codeListName);
 		this.codeListFile = codeListFile;
 		this.configurationFilePath = configurationDirectoryPath;
+		LOG.info("Configured codelist: codeList {} {}from directory {}.", codeListFile,
+				codeListName != null ? "(with name " + codeListName + ")" : "", configurationDirectoryPath);
 	}
 
 	@Override
 	protected XPlanDictionaries getXPlanDictionaries(Feature feature) {
 		if (configurationFilePath != null) {
 			Path codeList = configurationFilePath.resolve(codeListFile);
-			LOG.info("Use configured codelist from {}.", codeList);
+			LOG.debug("Use configured codelist from {}.", codeList);
 			try {
 				return xPlanDictionariesParser.parseDictionaries(codeList.toUri().toURL(), GML_30);
 			}
