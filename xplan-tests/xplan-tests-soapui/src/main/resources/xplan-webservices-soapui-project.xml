@@ -3553,11 +3553,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>210</con:value>
+          <con:value>1</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_b11cef9b-7102-4ba7-9012-f0c33ef74bc1</con:value>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_2c015a06-717a-4598-86a2-09e522ac0d9a</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3815,7 +3815,7 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>211</con:value>
+          <con:value>2</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4031,7 +4031,7 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>212</con:value>
+          <con:value>3</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4759,15 +4759,15 @@ exists(//xplanung:externeReferenz[text()[contains(.,'Test_Auskr.gml | Satzung')]
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>213</con:value>
+          <con:value>4</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>214</con:value>
+          <con:value>5</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
-    <con:testCase id="f1f2fe6a-a51d-4365-9e23-ed4c4a4d8472" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="RESTAPI" searchProperties="true">
+    <con:testCase id="f1f2fe6a-a51d-4365-9e23-ed4c4a4d8472" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="RESTAPI" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:settings/>
       <con:testStep type="httprequest" name="GET /config" id="74255d1b-8ea0-4411-8eb5-88b4a909bc94">
         <con:settings/>
@@ -4805,7 +4805,7 @@ exists(//xplanung:externeReferenz[text()[contains(.,'Test_Auskr.gml | Satzung')]
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
-          <con:parameters></con:parameters>
+          <con:parameters/>
         </con:config>
       </con:testStep>
       <con:testStep type="httprequest" name="GET /config/restart" id="ed88ff51-7ad0-4c02-8aa3-186152438f7b">
@@ -4837,7 +4837,7 @@ exists(//xplanung:externeReferenz[text()[contains(.,'Test_Auskr.gml | Satzung')]
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
-          <con:parameters></con:parameters>
+          <con:parameters/>
         </con:config>
       </con:testStep>
       <con:testStep type="httprequest" name="GET /config/restart invalidApiKey" id="9ba6daba-963b-45f6-8ed0-e052731c68ce">
@@ -4869,7 +4869,71 @@ exists(//xplanung:externeReferenz[text()[contains(.,'Test_Auskr.gml | Satzung')]
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
-          <con:parameters></con:parameters>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GET /config/update" id="c35c1703-b74e-46ee-b502-4728f0ee333d">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GET /config/update" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="${#Project#apiKey}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/config/update</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Update complete text">
+            <con:configuration>
+              <token>Update complete</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GET /config/update invalidApiKey" id="e701de07-dc4b-4ce2-bcb2-e912b4a0a612">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GET /config/update invalidApiKey" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="invalidApiKey" xmlns="http://eviware.com/soapui/config"/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/config/update</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>403</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Invalid API Key specified text">
+            <con:configuration>
+              <token>Invalid API Key specified</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
         </con:config>
       </con:testStep>
       <con:testStep type="httprequest" name="DELETE /planwerkwmsapi/{planId}" id="c925457b-28ec-477a-a298-2dec5a7043a5">
@@ -4908,6 +4972,13 @@ exists(//xplanung:externeReferenz[text()[contains(.,'Test_Auskr.gml | Satzung')]
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
               <codes>403</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="945316ed-af24-4cd6-8721-7329bb0a5525" name="Invalid API Key specified text">
+            <con:configuration>
+              <token>Invalid API Key specified</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -5839,7 +5910,7 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>215</con:value>
+          <con:value>6</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -6359,11 +6430,11 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>216</con:value>
+          <con:value>7</con:value>
         </con:property>
         <con:property>
           <con:name>planIdOsdorf48</con:name>
-          <con:value>217</con:value>
+          <con:value>8</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -8285,7 +8356,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>218</con:value>
+          <con:value>9</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -8617,7 +8688,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>219</con:value>
+          <con:value>10</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
