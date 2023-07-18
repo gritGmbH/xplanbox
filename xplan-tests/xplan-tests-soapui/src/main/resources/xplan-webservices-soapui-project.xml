@@ -3553,11 +3553,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value/>
+          <con:value>60</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_e44fc9f8-add6-45e2-b7ee-f8c15be49e8c</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3815,7 +3815,7 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value/>
+          <con:value>61</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4031,7 +4031,7 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value/>
+          <con:value>62</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -5051,22 +5051,22 @@ assert externeRef.contains(documentUrlShort)</scriptText>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value/>
+          <con:value>63</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value/>
+          <con:value>64</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan004_6-0</con:name>
-          <con:value/>
+          <con:value>65</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
     <con:properties>
       <con:property>
         <con:name>documentUrl</con:name>
-        <con:value/>
+        <con:value>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1/dokument/{planId}/{fileName}</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
@@ -5983,7 +5983,7 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value/>
+          <con:value>66</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -6120,6 +6120,55 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
+      <con:testStep type="httprequest" name="Import BPlan004_6-0.zip" id="ce32613c-6299-48b1-a7cb-7daab5f005d8">
+        <con:settings/>
+        <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import BPlan004_6-0.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>201</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>BPlan002_5-3.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>BPlan004_6-0.zip</con:contentId>
+            <con:url>${projectDir}/xplan-webservices/plans/BPlan004_6-0.zip</con:url>
+            <con:id>f4992d26-e700-4ffd-87cc-39551e589e8c</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>skipSemantisch</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipFlaechenschluss</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipGeltungsbereich</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
       <con:testStep type="transfer" name="Property Transfer" id="f380ba67-1f26-44e4-a0e4-230fd6b72d74">
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -6152,6 +6201,17 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
             <con:sourcePath>$.documentUrl</con:sourcePath>
             <con:targetType>documentUrl</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdBPlan004_6-0</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Import BPlan004_6-0.zip</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planIdBPlan004_6-0</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
@@ -6561,21 +6621,50 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           <con:parameters/>
         </con:config>
       </con:testStep>
+      <con:testStep type="httprequest" name="Delete BPlan004_6-0.zip" id="f4dc1b4f-3e18-4b56-bec5-ba9199b096fa">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete BPlan004_6-0.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan/${#TestCase#planIdBPlan004_6-0}</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value/>
+          <con:value>67</con:value>
         </con:property>
         <con:property>
           <con:name>planIdOsdorf48</con:name>
-          <con:value/>
+          <con:value>68</con:value>
+        </con:property>
+        <con:property>
+          <con:name>planIdBPlan004_6-0</con:name>
+          <con:value>69</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
     <con:properties>
       <con:property>
         <con:name>documentUrl</con:name>
-        <con:value/>
+        <con:value>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1/dokument/{planId}/{fileName}</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
@@ -8495,7 +8584,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value/>
+          <con:value>70</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -8827,7 +8916,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value/>
+          <con:value>71</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -8921,7 +9010,7 @@ count(//wfs:member)</path>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>planId</con:name>
             <con:sourceType>Response</con:sourceType>
-            <con:sourceStep xsi:nil="true"/>
+            <con:sourceStep>Import BPlan004_6-0.zip</con:sourceStep>
             <con:sourcePath>$.id</con:sourcePath>
             <con:targetType>planId</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
@@ -8973,7 +9062,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //wfs:member/xplan:BP_Plan/xplan:planArt</path>
-              <content>1000</content>
+              <content>3000</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -8985,7 +9074,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //wfs:member/xplan:BP_Plan/xplan:planArtWert</path>
-              <content>BPlan</content>
+              <content>Vorhabenbezogener BPlan</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -8997,7 +9086,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //wfs:member/xplan:BP_Plan/xplan:rechtsstand</path>
-              <content>4000</content>
+              <content>3000</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -9009,7 +9098,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //wfs:member/xplan:BP_Plan/xplan:rechtsstandWert</path>
-              <content>InkraftGetreten</content>
+              <content>Satzung</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -9099,14 +9188,14 @@ assert externeRef.contains(documentUrlShort)</scriptText>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value/>
+          <con:value>72</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
     <con:properties>
       <con:property>
         <con:name>documentUrl</con:name>
-        <con:value/>
+        <con:value>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1/dokument/{planId}/{fileName}</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
