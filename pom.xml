@@ -457,7 +457,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>2.22.2</version>
+        <version>3.1.2</version>
         <configuration>
           <argLine>-Xmx${tests.jvm.xmx}</argLine>
         </configuration>
@@ -496,7 +496,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.2</version>
+          <version>3.1.2</version>
           <configuration>
             <argLine>-Xmx${tests.jvm.xmx}</argLine>
             <skip>${skip.unit.tests}</skip>
