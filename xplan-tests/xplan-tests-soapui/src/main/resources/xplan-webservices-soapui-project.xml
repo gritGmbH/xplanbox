@@ -4431,11 +4431,11 @@ exists(ogc:ServiceExceptionReport)</path>
               <useRegEx>false</useRegEx>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="GroovyScriptAssertion" id="a951fc2d-dfba-4007-8d5b-b53a6bd03f78" name="documentUrl" disabled="true">
+          <con:assertion type="GroovyScriptAssertion" id="a951fc2d-dfba-4007-8d5b-b53a6bd03f78" name="documentUrl">
             <con:configuration>
               <scriptText>def response = context.expand('${GetFeatureInfo-html BP_Blan#Response}')
 
-def matcher = (response =~ /&lt;a class="externeReferenzProperty" href="(.*?)"/)
+def matcher = (response =~ /href="(.*?)" class='externeReferenzProperty'/)
 def url = matcher ? matcher[0][1] : null
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
