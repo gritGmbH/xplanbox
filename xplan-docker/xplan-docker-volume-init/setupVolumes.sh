@@ -53,7 +53,6 @@ XPLAN_SERVICES_URL_INTERNAL=${XPLAN_SERVICES_URL_INTERNAL:-http://xplan-services
 XPLAN_SERVICES_API_USER=${XPLAN_SERVICES_API_USER:-deegree}
 XPLAN_SERVICES_API_PASSWORT=${XPLAN_SERVICES_API_PASSWORT:-deegree}
 XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION=${XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION:-PLANWERKWMS}
-XPLAN_WMS_URL_INTERNAL=${XPLAN_WMS_URL_INTERNAL:-xplan-services}
 
 XPLAN_DB_HOSTNAME="${XPLAN_DB_HOSTNAME:-tobedefined}"
 XPLAN_DB_PORT="${XPLAN_DB_PORT:-5432}"
@@ -97,7 +96,7 @@ cd $XPLANBOX_VOLUMES
 
 sed -i 's|apiUrl=|apiUrl='$XPLAN_VALIDATORAPI_URL_PUBLIC'|g' xplan-validator-config/validatorApiConfiguration.properties
 sed -i 's|apiUrl=|apiUrl='$XPLAN_MANAGERAPI_URL_PUBLIC'|g' xplan-manager-config/managerApiConfiguration.properties
-sed -i 's|wmsUrl=|wmsUrl='$XPLAN_WMS_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerApiConfiguration.properties
+sed -i 's|wmsUrl=|wmsUrl='$XPLAN_WMS_URL_PUBLIC'/xplan-wms|g' xplan-manager-config/managerApiConfiguration.properties
 sed -i 's|workspaceReloadUrls=|workspaceReloadUrls='$XPLAN_SERVICES_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadUser=/workspaceReloadUser='$XPLAN_SERVICES_API_USER'/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadPassword=/workspaceReloadPassword='$XPLAN_SERVICES_API_PASSWORT'/g' xplan-manager-config/managerConfiguration.properties
