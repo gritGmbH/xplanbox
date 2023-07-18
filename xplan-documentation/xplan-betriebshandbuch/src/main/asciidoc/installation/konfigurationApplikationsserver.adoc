@@ -51,19 +51,19 @@ IMPORTANT: Der _Anwendungs-Tomcat_ muss mindestens über 4GB Arbeitsspeicher ver
 [[dienste-tomcat]]
 ==== Dienste-Tomcat
 
-Falls der XPlanManager nach jedem Einfügen und Löschen eines Plan den
-XPlanWMS und XPlanWerkWMS aktualisieren soll, muss ein Workspace-Reload ausgeführt werden. Damit der XPlanManager auf die REST-Schnittstelle des XPlanWMS/XPlanWerkWMS zugreifen kann, muss die Authentifzierung über ein API Key eingerichtet werden. Ansonsten ist ein manueller Workspace-Reload nötig, um die neu
+Falls der XPlanManager nach jedem Einfügen und Löschen eines Plans den
+XPlanWMS und XPlanWerkWMS aktualisieren soll, muss ein Workspace-Reload ausgeführt werden. Damit der XPlanManager auf die REST-Schnittstelle des XPlanWMS/XPlanWerkWMS zugreifen kann, muss zur Authentifizierung ein API-Key eingerichtet werden. Ansonsten ist ein manueller Workspace-Reload nötig, um die neu
 importieren bzw. gelöschten Rasterpläne im XPlanWMS darzustellen bzw. zu entfernen.
 
-Für die Instanz _Dienste-Tomcat_ muss die Datei _<DEEGREE_WORKSPACE_ROOT>/config.apikey_ angelegt werden, in dieser wird der API Key für die REST Schnittstelle aller XPlanDienste eingetragen.
+Für die Instanz _Dienste-Tomcat_ muss die Datei _<DEEGREE_WORKSPACE_ROOT>/config.apikey_ angelegt werden, in dieser wird der API-Key für die REST-Schnittstelle aller XPlanDienste eingetragen.
 
 .Beispiel für den Inhalt der Datei config.apikey:
 ----
 xplanbox
 ----
 
-Der API Key wird beim Start von deegree automatisch angelegt und ein generierter Key gesetzt. Dieser kann nachträglich angepast werden. Weitere Informationen finden sich um Handbuch von https://download.deegree.org/documentation/current/html/#%5Fsetting%5Fup%5Fthe%5Finterface[deegree webservices].
-Der API Key muss auch in die _managerConfiguration.properties_ eingetragen werden (s. Kapitel <<automatischer-workspace-reload>>)!
+Der API-Key wird beim Start der XPlanDienste automatisch angelegt und ein generierter Key gesetzt. Dieser kann nachträglich angepasst werden. Weitere Informationen finden sich dazu im Handbuch von https://download.deegree.org/documentation/current/html/#%5Fsetting%5Fup%5Fthe%5Finterface[deegree webservices].
+Der API-Key muss auch in die _managerConfiguration.properties_ eingetragen werden (s. Kapitel <<automatischer-workspace-reload>>)!
 
 Für den _Dienste-Tomcat_ muss auch die Variable `CATALINA_OPTS` wie folgt erweitert werden:
 
@@ -93,7 +93,7 @@ Wenn die xPlanBox in einer produktiven Umgebung betrieben wird, sollte der Apach
 Zusätzlich sollte die xPlanBox wie folgt konfiguriert sein:
 
 . die deegree webservice console (Kontextpfad _/console_) für die Dienste _xplan-wms_, _xplan-wfs_, _xplansyn-wfs_ und _xplan-inspireplu_ im _Dienste-Tomcat_ ist durch ein Kennwort geschützt (Datei _console.pw_ im deegree Workspace).
-. die deegree REST-Schnittstelle (Kontextpfad _/config_) für die Dienste _xplan-wms_, _xplan-wfs_, _xplansyn-wfs_ und _xplan-inspireplu_ ist durch einen API Key abgesichert (Datei _config.apikey_ im Workspace-Verzeichnis, siehe Kapitel <<dienste-tomcat>>).
+. die deegree REST-Schnittstelle (Kontextpfad _/config_) für die Dienste _xplan-wms_, _xplan-wfs_, _xplansyn-wfs_ und _xplan-inspireplu_ ist durch einen API-Key abgesichert (Datei _config.apikey_ im Workspace-Verzeichnis, siehe Kapitel <<dienste-tomcat>>).
 . zusätzlich wird die Einschränkung des Zugriffs auf die deegree webservice console und deegree REST-Schnittstelle auf IP-Adressbereiche bzw. Domänen empfohlen (Datei _context.xml_ innerhalb der Webanwendungen).
 . die Tomcat-Instanzen werden hinter einem Proxy (z. B. Apache httpd oder nginx) betrieben.
 . der Zugriff auf den XPlanManagerWeb ist durch Benutzername und Kennwort abgesichert (siehe Kapitel <<security>>).
