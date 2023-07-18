@@ -4426,9 +4426,23 @@ exists(ogc:ServiceExceptionReport)</path>
           </con:assertion>
           <con:assertion type="Simple Contains" id="7884b9c5-169e-4663-9586-54467d2a4d6c" name="Contains-plan-name">
             <con:configuration>
-              <token>Eidelstedt 4 soapui-webservices</token>
+              <token>BPlan004_6-0</token>
               <ignoreCase>false</ignoreCase>
               <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="GroovyScriptAssertion" id="a951fc2d-dfba-4007-8d5b-b53a6bd03f78" name="documentUrl" disabled="true">
+            <con:configuration>
+              <scriptText>def response = context.expand('${GetFeatureInfo-html BP_Blan#Response}')
+
+def matcher = (response =~ /&lt;a class="externeReferenzProperty" href="(.*?)"/)
+def url = matcher ? matcher[0][1] : null
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+def index = documentUrl.indexOf("{")
+def documentUrlShort = documentUrl.substring(0,index)
+
+assert url.contains(documentUrlShort)</scriptText>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -4461,7 +4475,7 @@ exists(ogc:ServiceExceptionReport)</path>
             </con:parameter>
             <con:parameter>
               <con:name>BBOX</con:name>
-              <con:value>559399.75176872406154871,5938438.89756926149129868,560348.32793278573080897,5939214.26558571867644787</con:value>
+              <con:value>567271.8955751015,5937522.203463935,567589.3954036515,5937772.234578918</con:value>
               <con:style>QUERY</con:style>
               <con:default>559399.75176872406154871,5938438.89756926149129868,560348.32793278573080897,5939214.26558571867644787</con:default>
             </con:parameter>
