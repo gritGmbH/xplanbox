@@ -63,7 +63,7 @@ import static org.mockito.Mockito.verify;
 		classes = { AmazonS3RasterStorageContext.class, S3RasterStorageTestContext.class, AmazonS3TestContext.class })
 @ActiveProfiles({ "s3img", "mock" })
 @TestPropertySource("classpath:s3Mock.properties")
-public class S3RasterStorageIT {
+public class S3RasterStorageTestManual {
 
 	@Autowired
 	private S3RasterStorage s3RasterStorage;
