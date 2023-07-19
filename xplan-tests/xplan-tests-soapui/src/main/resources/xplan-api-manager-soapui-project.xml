@@ -651,11 +651,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="8dc5f71d-f103-4943-861e-3cc0043d31bd" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -1944,15 +1946,6 @@ assert !(json.isEmpty())
 assert json.version != null</scriptText>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="4f8a1e19-773f-4662-b389-a6cd6dba0e4c" name="documentUrl">
-              <con:configuration>
-                <path>$.documentUrl</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -1969,6 +1962,16 @@ assert json.version != null</scriptText>
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrlNull</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>documentUrl</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>GET XX X.X XX showConfig</con:sourceStep>
@@ -1981,7 +1984,12 @@ assert json.version != null</scriptText>
           </con:transfers>
         </con:config>
       </con:testStep>
-      <con:properties/>
+      <con:properties>
+        <con:property>
+          <con:name>null</con:name>
+          <con:value>null</con:value>
+        </con:property>
+      </con:properties>
     </con:testCase>
     <con:testCase id="590e4313-3d64-4a15-ba7b-622018c5b711" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/plan] located at [/plan]</con:description>
@@ -6670,18 +6678,21 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def passed = false
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-for(singleReferenzURL in json.referenzURL){
-	if (singleReferenzURL.contains(documentUrlShort)){
-		passed = true
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
 	}
-}
 
-assert passed</scriptText>
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -6855,18 +6866,21 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def passed = false
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-for(singleReferenzURL in json.referenzURL){
-	if (singleReferenzURL.contains(documentUrlShort)){
-		passed = true
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
 	}
-}
 
-assert passed</scriptText>
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -6997,18 +7011,21 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def passed = false
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-for(singleReferenzURL in json.referenzURL){
-	if (singleReferenzURL.contains(documentUrlShort)){
-		passed = true
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
 	}
-}
 
-assert passed</scriptText>
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7139,18 +7156,21 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def passed = false
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-for(singleReferenzURL in json.referenzURL){
-	if (singleReferenzURL.contains(documentUrlShort)){
-		passed = true
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
 	}
-}
 
-assert passed</scriptText>
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7289,18 +7309,21 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def passed = false
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-for(singleReferenzURL in json.referenzURL){
-	if (singleReferenzURL.contains(documentUrlShort)){
-		passed = true
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
 	}
-}
 
-assert passed</scriptText>
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7597,10 +7620,13 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-assert json.referenzURL.contains(documentUrlShort)</scriptText>
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7740,10 +7766,13 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-assert json.referenzURL.contains(documentUrlShort)</scriptText>
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7922,10 +7951,13 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-assert json.referenzURL.contains(documentUrlShort)</scriptText>
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -8105,10 +8137,13 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-assert json.referenzURL.contains(documentUrlShort)</scriptText>
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -8287,10 +8322,13 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-assert json.referenzURL.contains(documentUrlShort)</scriptText>
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -8377,26 +8415,75 @@ assert json.referenzURL.contains(documentUrlShort)</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Cleanup" id="23d0275a-0754-4617-a373-0a2547e961fa">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentId</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdFP50</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdFP50</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdLP60</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdLP60</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdRP51</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdRP51</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdSO53</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdSO53</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>dokumentId</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument390putDokpdf</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>dokumentIdFP50</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument404putDokpdf</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>dokumentIdLP60</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument406putDokpdf</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>dokumentIdRP51</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument407putDokpdf</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>dokumentIdSO53</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument408putDokpdf</con:value>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>empty</con:name>
+          <con:value/>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -8829,18 +8916,21 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def passed = false
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-for(singleReferenzURL in json.referenzURL){
-	if (singleReferenzURL.contains(documentUrlShort)){
-		passed = true
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
 	}
-}
 
-assert passed</scriptText>
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9127,18 +9217,21 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def passed = false
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-for(singleReferenzURL in json.referenzURL){
-	if (singleReferenzURL.contains(documentUrlShort)){
-		passed = true
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
 	}
-}
 
-assert passed</scriptText>
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9250,18 +9343,21 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def passed = false
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-for(singleReferenzURL in json.referenzURL){
-	if (singleReferenzURL.contains(documentUrlShort)){
-		passed = true
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
 	}
-}
 
-assert passed</scriptText>
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9411,18 +9507,21 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def passed = false
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-for(singleReferenzURL in json.referenzURL){
-	if (singleReferenzURL.contains(documentUrlShort)){
-		passed = true
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
 	}
-}
 
-assert passed</scriptText>
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9631,18 +9730,21 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def passed = false
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-for(singleReferenzURL in json.referenzURL){
-	if (singleReferenzURL.contains(documentUrlShort)){
-		passed = true
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
 	}
-}
 
-assert passed</scriptText>
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9791,18 +9893,21 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def passed = false
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-for(singleReferenzURL in json.referenzURL){
-	if (singleReferenzURL.contains(documentUrlShort)){
-		passed = true
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
 	}
-}
 
-assert passed</scriptText>
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9952,18 +10057,21 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def passed = false
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-for(singleReferenzURL in json.referenzURL){
-	if (singleReferenzURL.contains(documentUrlShort)){
-		passed = true
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
 	}
-}
 
-assert passed</scriptText>
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10261,10 +10369,13 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-assert json.referenzURL.contains(documentUrlShort)</scriptText>
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10584,18 +10695,21 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-def passed = false
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
 
-for(singleReferenzURL in json.referenzURL){
-	if (singleReferenzURL.contains(documentUrlShort)){
-		passed = true
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
 	}
-}
 
-assert passed</scriptText>
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10786,10 +10900,13 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-assert json.referenzURL.contains(documentUrlShort)</scriptText>
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10907,10 +11024,13 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-assert json.referenzURL.contains(documentUrlShort)</scriptText>
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -11087,10 +11207,13 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-assert json.referenzURL.contains(documentUrlShort)</scriptText>
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -11267,10 +11390,13 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-assert json.referenzURL.contains(documentUrlShort)</scriptText>
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -11447,10 +11573,13 @@ json = new JsonSlurper().parseText(messageExchange.response.responseContent)
 assert !(json.isEmpty())
 
 def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-def index = documentUrl.indexOf("{")
-def documentUrlShort = documentUrl.substring(0,index)
 
-assert json.referenzURL.contains(documentUrlShort)</scriptText>
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -11528,26 +11657,75 @@ assert json.referenzURL.contains(documentUrlShort)</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Cleanup" id="24df644f-cd0c-49f4-9604-4d81f35326ea">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisId</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdFP50</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdFP50</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdLP60</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdLP60</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdRP51</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdRP51</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdSO53</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdSO53</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>rasterbasisId</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument396putImgpng</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>rasterbasisIdFP50</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument404putImgpng</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>rasterbasisIdLP60</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument406putImgpng</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>rasterbasisIdRP51</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument407putImgpng</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>rasterbasisIdSO53</con:name>
-          <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument408putImgpng</con:value>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>empty</con:name>
+          <con:value/>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -14316,16 +14494,16 @@ assert expectedHeader == actualHeader</scriptText>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>currentPlanIdImport</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:targetType>currentPlanIdImport</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdSkipAll</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdSkipAll</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14336,8 +14514,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdXPlanGML53</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdXPlanGML53</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14348,8 +14526,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdText</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdText</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14360,8 +14538,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdAenderung</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdAenderung</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14372,8 +14550,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdDokument</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdDokument</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14384,8 +14562,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdFPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdFPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14396,8 +14574,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdMultiplePlansHafenCity11</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdMultiplePlansHafenCity11</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14408,8 +14586,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdMultiplePlansHafenCity14</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdMultiplePlansHafenCity14</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14420,8 +14598,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdV2</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdV2</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14432,8 +14610,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdSkipLaufrichtungTrue</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdSkipLaufrichtungTrue</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14444,8 +14622,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdBereiche</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdBereiche</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14456,8 +14634,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdXPlanGML60</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdXPlanGML60</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14468,8 +14646,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdSOPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdSOPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14480,8 +14658,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdRPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdRPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14492,8 +14670,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdLPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdLPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14504,8 +14682,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>textIdSOPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>textIdSOPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14516,8 +14694,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>textIdLPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>textIdLPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14528,8 +14706,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>textIdFPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>textIdFPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14540,8 +14718,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>textIdRPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>textIdRPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14552,8 +14730,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdBPlanOhneBereich</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdBPlanOhneBereich</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14564,8 +14742,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>planId40</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>planId40</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14576,8 +14754,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdXPlanGML60asGML</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdXPlanGML60asGML</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14588,8 +14766,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>currentPlanIdMultiplePlansWfsFcAdditionalObjects0</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:targetType>currentPlanIdMultiplePlansWfsFcAdditionalObjects0</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:type>XPATH</con:type>
@@ -14597,23 +14775,148 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>currentPlanIdMultiplePlansWfsFcAdditionalObjects1</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:targetType>currentPlanIdMultiplePlansWfsFcAdditionalObjects1</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>currentPlanIdPlanWfsFc</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:targetType>currentPlanIdPlanWfsFc</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdBPXPlanGml602</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>planIdBPXPlanGml602</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdFPXPlanGml602</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>planIdFPXPlanGml602</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisId</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdBereiche</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdBereiche</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdBereicheSecond</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdBereicheSecond</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdBP60</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdBP60</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdFP50</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdFP50</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdLP60</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdLP60</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdRP51</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdRP51</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdSO53</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdSO53</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentId</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdLP60</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdLP60</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdRP51</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdRP51</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdSO53</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdSO53</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrl</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>documentUrl</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
         </con:config>
       </con:testStep>
-      <con:properties/>
+      <con:properties>
+        <con:property>
+          <con:name>empty</con:name>
+          <con:value/>
+        </con:property>
+      </con:properties>
     </con:testCase>
     <con:properties>
       <con:property>
@@ -14730,55 +15033,55 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
       <con:property>
         <con:name>rasterbasisId</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument396HafenCity13png</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdBereiche</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument393BPlan001_5-2_Bereich1png</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdBereicheSecond</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument393postImgpng</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdBP60</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument401postImgpng</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdFP50</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument404postImgpng</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdLP60</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument406postImgpng</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdRP51</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument407postImgpng</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>rasterbasisIdSO53</con:name>
-        <con:value>postImg-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument408postImgpng</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>dokumentId</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument404postDokpdf</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>dokumentIdLP60</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument406postDokpdf</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>dokumentIdRP51</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument407postDokpdf</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>dokumentIdSO53</con:name>
-        <con:value>-httplocalhost8092xplan-api-dokumentexdokumenteapiv1dokument408postDokpdf</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>documentUrl</con:name>
-        <con:value>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1/dokument/{planId}/{fileName}</con:value>
+        <con:value/>
       </con:property>
     </con:properties>
   </con:testSuite>
@@ -15013,16 +15316,16 @@ assert expectedHeader == actualHeader</scriptText>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>profileId</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:targetType>profileId</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>planIdProfile</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>planIdProfile</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -15033,7 +15336,12 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
         </con:config>
       </con:testStep>
-      <con:properties/>
+      <con:properties>
+        <con:property>
+          <con:name>empty</con:name>
+          <con:value/>
+        </con:property>
+      </con:properties>
     </con:testCase>
     <con:properties>
       <con:property>
@@ -15274,8 +15582,8 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>planId</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath/>
             <con:targetType>planId</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
@@ -15288,6 +15596,10 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>empty</con:name>
           <con:value/>
         </con:property>
       </con:properties>
@@ -15315,12 +15627,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       </con:property>
     </con:properties>
   </con:testSuite>
-  <con:properties>
-    <con:property>
-      <con:name>null</con:name>
-      <con:value/>
-    </con:property>
-  </con:properties>
+  <con:properties></con:properties>
   <con:wssContainer/>
   <con:oAuth2ProfileContainer/>
   <con:oAuth1ProfileContainer/>
