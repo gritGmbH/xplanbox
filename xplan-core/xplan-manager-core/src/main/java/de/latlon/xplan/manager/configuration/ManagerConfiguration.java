@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -36,6 +36,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,11 +60,11 @@ public class ManagerConfiguration {
 
 	static final String RASTER_LAYER_SCALE_DENOMINATOR_MAX = "rasterLayerMaxScaleDenominator";
 
-	static final String ACTIVATE_SEPARATED_DATAMANAGEMENT = "activateSeparatedDataManagement";
-
 	static final String RASTER_CONFIG_TYPE = "rasterConfigurationType";
 
 	static final String WORKSPACE_RELOAD_URLS = "workspaceReloadUrls";
+
+	static final String WORKSPACE_RELOAD_API_KEY = "workspaceReloadApiKey";
 
 	static final String WORKSPACE_RELOAD_USER = "workspaceReloadUser";
 
@@ -80,6 +81,8 @@ public class ManagerConfiguration {
 	private final Map<String, List<String>> categoriesToParts = new HashMap<>();
 
 	private final SortConfiguration sortConfiguration = new SortConfiguration();
+
+	private final Map<String, String> environmentVariables;
 
 	private String rasterConfigurationCrs;
 
@@ -104,6 +107,12 @@ public class ManagerConfiguration {
 	private CoupledResourceConfiguration coupledResourceConfiguration;
 
 	public ManagerConfiguration(PropertiesLoader propertiesLoader) throws ConfigurationException {
+		this(propertiesLoader, Collections.emptyMap());
+	}
+
+	public ManagerConfiguration(PropertiesLoader propertiesLoader, Map<String, String> environmentVariables)
+			throws ConfigurationException {
+		this.environmentVariables = environmentVariables;
 		loadProperties(propertiesLoader);
 		verifyConfiguration();
 		logConfiguration();
@@ -207,6 +216,15 @@ public class ManagerConfiguration {
 		return coupledResourceConfiguration;
 	}
 
+	/**
+	 * @param key of the environment variable, must not tbe <code>null</code>
+	 * @return the value of the environment variable, may be <code>null</code> if not
+	 * available
+	 */
+	public String getEnvironmentVariableValue(String key) {
+		return environmentVariables.get(key);
+	}
+
 	private void loadProperties(PropertiesLoader propertiesLoader) throws ConfigurationException {
 		if (propertiesLoader != null) {
 			Properties loadProperties = propertiesLoader.loadProperties(MANAGER_CONFIGURATION);
@@ -263,6 +281,12 @@ public class ManagerConfiguration {
 		LOG.info("-------------------------------------------");
 		LOG.info("  workspace reloader configuration");
 		LOG.info("   - urls of service to reload: {}", workspaceReloaderConfiguration.getUrls().toString());
+		if (workspaceReloaderConfiguration.isApiKeyConfigured())
+			LOG.info("   - apiKey used for authentication: {}",
+					replaceWithX(workspaceReloaderConfiguration.getApiKey()));
+		else
+			LOG.info("   - user/password used for authentication: {}/{}", workspaceReloaderConfiguration.getUser(),
+					replaceWithX(workspaceReloaderConfiguration.getPassword()));
 		LOG.info("-------------------------------------------");
 		LOG.info("  InternalIdRetriever");
 		LOG.info("   - workspace: {}", internalIdRetrieverConfiguration.getWorkspaceName());
@@ -286,6 +310,9 @@ public class ManagerConfiguration {
 		sortConfiguration.logConfiguration(LOG);
 		LOG.info("-------------------------------------------");
 		semanticConformityLinkConfiguration.logConfiguration(LOG);
+		LOG.info("-------------------------------------------");
+		LOG.info("Additional environment variables (contains only the variables available via manager configuration)");
+		environmentVariables.entrySet().forEach(entry -> LOG.info("   - {}: {}", entry.getKey(), entry.getValue()));
 		LOG.info("-------------------------------------------");
 	}
 
@@ -335,12 +362,13 @@ public class ManagerConfiguration {
 
 	private WorkspaceReloaderConfiguration parseWorkspaceReloaderConfiguration(Properties loadProperties) {
 		String urls = loadProperties.getProperty(WORKSPACE_RELOAD_URLS);
+		String apiKey = loadProperties.getProperty(WORKSPACE_RELOAD_API_KEY);
 		String user = loadProperties.getProperty(WORKSPACE_RELOAD_USER);
 		String password = loadProperties.getProperty(WORKSPACE_RELOAD_PASSWORD);
-		if (urls != null && user != null && password != null && !"".equals(urls)) {
+		if (urls != null && !"".equals(urls) && (apiKey != null || (user != null && password != null))) {
 			List<String> urlList = Arrays.asList(urls.split(","));
 			WorkspaceReloadAction workspaceReloadAction = parseWorkspaceReloadAction(loadProperties);
-			return new WorkspaceReloaderConfiguration(urlList, user, password, workspaceReloadAction);
+			return new WorkspaceReloaderConfiguration(urlList, apiKey, user, password, workspaceReloadAction);
 		}
 		return new WorkspaceReloaderConfiguration();
 	}
@@ -422,11 +450,9 @@ public class ManagerConfiguration {
 		return Double.parseDouble(propertyValue);
 	}
 
-	private boolean parseBoolean(Properties loadProperties, String propName, boolean defaultValue) {
-		String property = loadProperties.getProperty(propName);
-		if (property == null || "".equals(property))
-			return defaultValue;
-		return Boolean.parseBoolean(property);
+	private String replaceWithX(String apiKey) {
+		int length = apiKey.length();
+		return "X".repeat(length);
 	}
 
 }

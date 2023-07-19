@@ -50,8 +50,7 @@ XPLAN_MANAGERAPI_URL_PUBLIC=${XPLAN_MANAGERAPI_URL_PUBLIC:-xplan-api-manager}
 XPLAN_VALIDATORAPI_URL_PUBLIC=${XPLAN_VALIDATORAPI_URL_PUBLIC:-xplan-api-validator}
 XPLAN_MAPSERVER_URL_INTERNAL="${XPLAN_MAPSERVER_URL_INTERNAL:-http://xplan-mapserver}"
 XPLAN_SERVICES_URL_INTERNAL=${XPLAN_SERVICES_URL_INTERNAL:-http://xplan-services}
-XPLAN_SERVICES_API_USER=${XPLAN_SERVICES_API_USER:-deegree}
-XPLAN_SERVICES_API_PASSWORT=${XPLAN_SERVICES_API_PASSWORT:-deegree}
+XPLAN_SERVICES_API_KEY=${XPLAN_SERVICES_API_KEY:-xplanbox}
 XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION=${XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION:-PLANWERKWMS}
 
 XPLAN_DB_HOSTNAME="${XPLAN_DB_HOSTNAME:-tobedefined}"
@@ -86,7 +85,6 @@ XPLAN_INIT_RASTERTYPE="${XPLAN_INIT_RASTERTYPE:-mapserver}"
 XPLAN_INIT_INSPIREPLU="${XPLAN_INIT_INSPIREPLU:-disabled}"
 
 XPLAN_S3_PUBLIC_URL="${XPLAN_S3_PUBLIC_URL}"
-XPLAN_DOWNLOADAPI_URL_PUBLIC="${XPLAN_DOWNLOADAPI_URL_PUBLIC}"
 
 #############################
 # Update content of volumes #
@@ -98,8 +96,7 @@ sed -i 's|apiUrl=|apiUrl='$XPLAN_VALIDATORAPI_URL_PUBLIC'|g' xplan-validator-con
 sed -i 's|apiUrl=|apiUrl='$XPLAN_MANAGERAPI_URL_PUBLIC'|g' xplan-manager-config/managerApiConfiguration.properties
 sed -i 's|wmsUrl=|wmsUrl='$XPLAN_WMS_URL_PUBLIC'/xplan-wms|g' xplan-manager-config/managerApiConfiguration.properties
 sed -i 's|workspaceReloadUrls=|workspaceReloadUrls='$XPLAN_SERVICES_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerConfiguration.properties
-sed -i 's/workspaceReloadUser=/workspaceReloadUser='$XPLAN_SERVICES_API_USER'/g' xplan-manager-config/managerConfiguration.properties
-sed -i 's/workspaceReloadPassword=/workspaceReloadPassword='$XPLAN_SERVICES_API_PASSWORT'/g' xplan-manager-config/managerConfiguration.properties
+sed -i 's/workspaceReloadApiKey=/workspaceReloadApiKey='$XPLAN_SERVICES_API_KEY'/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadAction=ALL/workspaceReloadAction='$XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION'/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/pathToHaleCli=/pathToHaleCli=\/hale\/bin\/hale/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's|http://localhost:8080|'$XPLAN_WMS_URL_PUBLIC'|g' xplan-manager-config/managerWebConfiguration.properties
@@ -126,17 +123,7 @@ sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-workspaces/xplan-manager-
 sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
 sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
 
-if [[ ! -z $XPLAN_DOWNLOADAPI_URL_PUBLIC ]]
-then
-  echo "[$(date -Iseconds)] Use XPlanDownloadAPI in HTML GFI: $XPLAN_DOWNLOADAPI_URL_PUBLIC"
-  sed -i 's|var DOWNLOADAPI_URL;|var DOWNLOADAPI_URL="'$XPLAN_DOWNLOADAPI_URL_PUBLIC'";|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
-elif [[ -z "${spring_profiles_active##*s3doc*}" ]]
-then
-  echo "[$(date -Iseconds)] Document storage type is S3"
-  sed -i 's|var S3_URL;|var S3_URL="'$XPLAN_S3_PUBLIC_URL'";|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
-else
-  sed -i 's|http://localhost:8080/xplan-wms|'$XPLAN_WMS_URL_PUBLIC'/xplan-wms|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
-fi
+sed -i 's|http://localhost:8080/xplan-wms|'$XPLAN_WMS_URL_PUBLIC'/xplan-wms|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
 
 sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
@@ -187,6 +174,8 @@ do
 done
 find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$XPLAN_SERVICES_DEFAULT_CRS'<\/QueryCRS>/g' {} \;
 find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>//g' {} \;
+
+echo $XPLAN_SERVICES_API_KEY >> xplan-workspaces/config.apikey
 
 # Rastertype
 echo "[$(date -Iseconds)] Configured rastertype: $XPLAN_INIT_RASTERTYPE"

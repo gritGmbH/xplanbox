@@ -158,7 +158,7 @@ public class TestContext {
 			XPlanEditService xPlanEditService) {
 		return new XPlanEditManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager,
 				xPlanDocumentManager.orElse(null), workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
-				sortPropertyReader, xPlanEditService, null);
+				sortPropertyReader, xPlanEditService, null, null);
 	}
 
 	@Primary

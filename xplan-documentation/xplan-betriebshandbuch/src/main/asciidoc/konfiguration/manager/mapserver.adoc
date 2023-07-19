@@ -10,4 +10,4 @@ muss in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ die folgen
 rasterConfigurationType=mapserver
 ----
 
-Die Konfiguration des XPlanWMS mit MapServer ist im Kapitel <<konfiguration-xplanwms-mapserver>> beschrieben. Wenn der MapServer zusammen mit einem S3 Objektspeicher verwendet werden soll, dann ist zusätzlich noch die Konfiguration aus Kapitel <<s3-storage> erforderlich.
+Die Konfiguration des XPlanWMS mit MapServer ist im Kapitel <<konfiguration-xplanwms-mapserver>> beschrieben. Wenn der MapServer zusammen mit einem S3 Objektspeicher verwendet werden soll, dann ist zusätzlich noch die Konfiguration aus Kapitel <<s3-storage>> erforderlich.

@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.update.updater;
 
-import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
@@ -28,14 +27,13 @@ import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
-import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.update.config.ReSynthesizerApplicationContext;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +48,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
 
 /**
@@ -67,7 +64,7 @@ public class ReSynthesizerApplicationRunner implements ApplicationRunner {
 	private static final String OPT_PLAN_ID = "planId";
 
 	@Autowired
-	private XPlanDao xPlanDao;
+	private XPlanManagerDao xPlanDao;
 
 	@Autowired
 	private XPlanSynthesizer xPlanSynthesizer;
@@ -145,17 +142,9 @@ public class ReSynthesizerApplicationRunner implements ApplicationRunner {
 		}
 		Date sortDate = sortPropertyReader.readSortDate(planType, version, xPlanFeatureCollection.getFeatures());
 		FeatureCollection synthesizedFeatureCollection = xPlanSynthesizer.synthesize(version, xPlanFeatureCollection);
-		addInternalId(plan, synthesizedFeatureCollection);
-		xPlanDao.updateXPlanSynFeatureCollection(plan, synthesizedFeatureCollection, xPlanFeatureCollection, sortDate,
-				useOriginalXPlan);
-	}
-
-	private void addInternalId(XPlan plan, FeatureCollection synthesizedFeatureCollection) {
 		String internalId = plan.getInternalId();
-		if (internalId != null) {
-			AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
-			featureCollectionManipulator.addInternalId(synthesizedFeatureCollection, synSchema, internalId);
-		}
+		xPlanDao.updateXPlanSynFeatureCollection(plan, synthesizedFeatureCollection, xPlanFeatureCollection, sortDate,
+				internalId, useOriginalXPlan);
 	}
 
 	private void reassignFids(XPlanFeatureCollection fc) {
