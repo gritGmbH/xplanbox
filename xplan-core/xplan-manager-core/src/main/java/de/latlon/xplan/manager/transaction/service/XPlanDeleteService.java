@@ -1,6 +1,6 @@
 package de.latlon.xplan.manager.transaction.service;
 
-import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
 import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
@@ -14,13 +14,13 @@ import javax.transaction.Transactional;
  */
 public class XPlanDeleteService {
 
-	private final XPlanDao xPlanDao;
+	private final XPlanManagerDao xPlanDao;
 
 	private final StorageCleanUpManager storageCleanUpManager;
 
 	private final ApplicationEventPublisher applicationEventPublisher;
 
-	public XPlanDeleteService(XPlanDao xPlanDao, StorageCleanUpManager storageCleanUpManager,
+	public XPlanDeleteService(XPlanManagerDao xPlanDao, StorageCleanUpManager storageCleanUpManager,
 			ApplicationEventPublisher applicationEventPublisher) {
 		this.xPlanDao = xPlanDao;
 		this.storageCleanUpManager = storageCleanUpManager;

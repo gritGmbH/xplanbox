@@ -35,7 +35,6 @@ import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.configuration.ConfigurationException;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.edit.XPlanManipulator;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
@@ -68,12 +67,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.TimeZone;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanName;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
+import static de.latlon.xplan.manager.transaction.TransactionUtils.reassignFids;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 import static java.lang.Integer.parseInt;
 import static org.deegree.cs.persistence.CRSManager.lookup;
@@ -89,19 +88,22 @@ public class XPlanEditManager extends XPlanTransactionManager {
 
 	private final XPlanEditService xPlanEditService;
 
+	private final AttachmentUrlHandler attachmentUrlHandler;
+
 	protected final XPlanExporter xPlanExporter;
 
 	private final XPlanManipulator planModifier = new XPlanManipulator();
 
 	public XPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao, XPlanExporter xPlanExporter,
-			XPlanRasterManager xPlanRasterManager, XPlanDocumentManager xPlanDocumentManager,
-			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
-			SortPropertyReader sortPropertyReader, XPlanEditService xPlanEditService,
-			MetadataCouplingHandler metadataCouplingHandler) {
-		super(xPlanSynthesizer, xplanDao, xPlanRasterManager, xPlanDocumentManager, workspaceReloader,
-				managerConfiguration, sortPropertyReader, metadataCouplingHandler);
+			XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
+			ManagerConfiguration managerConfiguration, SortPropertyReader sortPropertyReader,
+			XPlanEditService xPlanEditService, MetadataCouplingHandler metadataCouplingHandler,
+			AttachmentUrlHandler attachmentUrlHandler) {
+		super(xPlanSynthesizer, xplanDao, xPlanRasterManager, workspaceReloader, managerConfiguration,
+				sortPropertyReader, metadataCouplingHandler);
 		this.xPlanExporter = xPlanExporter;
 		this.xPlanEditService = xPlanEditService;
+		this.attachmentUrlHandler = attachmentUrlHandler;
 	}
 
 	public void editPlan(XPlan oldXplan, XPlanToEdit xPlanToEdit, boolean makeRasterConfig,
@@ -122,6 +124,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 					type);
 			FeatureCollection featuresToModify = originalPlanFC.getFeatures();
 			ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan(featuresToModify);
+			replaceRelativeUrls(planId, xPlanToEdit);
 			planModifier.modifyXPlan(featuresToModify, xPlanToEdit, version, type, appSchema);
 			FeatureCollection modifiedFeatures = renewFeatureCollection(version, featuresToModify);
 			ExternalReferenceInfo externalReferencesModified = new ExternalReferenceScanner().scan(modifiedFeatures);
@@ -138,10 +141,6 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			reassignFids(modifiedPlanFc);
 			FeatureCollection synFc = createSynFeatures(modifiedPlanFc, version);
 			String internalId = xplanDao.retrieveInternalId(planId);
-			if (internalId != null) {
-				AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
-				featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
-			}
 
 			// TODO: Validation required?
 			PlanStatus newPlanStatus = detectNewPlanStatus(type, xPlanToEdit, oldLegislationStatus, oldPlanStatus);
@@ -150,11 +149,17 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			Date sortDate = sortPropertyReader.readSortDate(type, version, modifiedFeatures);
 			xPlanEditService.update(oldXplan, xPlanToEdit, uploadedArtefacts, planId, xPlanGml,
 					externalReferenceInfoToUpdate, externalReferenceInfoToRemove, removedRefs, modifiedPlanFc, synFc,
-					xPlanMetadata, sortDate);
+					xPlanMetadata, sortDate, internalId);
 			startCreationIfPlanNameHasChanged(planId, type, modifiedPlanFc, oldPlanName, oldDescription);
 			updateRasterConfiguration(planId, makeRasterConfig, uploadedArtefacts, type, oldPlanStatus,
 					externalReferenceInfoToRemove, modifiedPlanFc, newPlanStatus, sortDate);
 			LOG.info("XPlanGML wurde erfolgreich editiert. ID: {}", planId);
+		}
+	}
+
+	private void replaceRelativeUrls(int planId, XPlanToEdit xPlanToEdit) {
+		if (attachmentUrlHandler != null) {
+			attachmentUrlHandler.replaceRelativeUrls(planId, xPlanToEdit);
 		}
 	}
 

@@ -66,6 +66,7 @@ public class ConfigHandler {
 				.skipFlaechenschluss(defaultValidationConfiguration.isSkipFlaechenschluss())
 				.skipGeltungsbereich(defaultValidationConfiguration.isSkipGeltungsbereich())
 				.skipLaufrichtung(defaultValidationConfiguration.isSkipLaufrichtung())
+				.documentUrl(managerConfiguration.getEnvironmentVariableValue("XPLAN_DOCUMENT_URL_PUBLIC"))
 				.rulesMetadata(systemConfigHandler.getRulesMetadata()).profiles(systemConfigHandler.getProfiles())
 				.supportedXPlanGmlVersions(systemConfigHandler.allSupportedVersions()).version(parseVersion());
 	}

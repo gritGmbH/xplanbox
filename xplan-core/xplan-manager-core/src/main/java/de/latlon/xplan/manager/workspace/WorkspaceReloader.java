@@ -61,7 +61,7 @@ public class WorkspaceReloader {
 	 * @return true if all workspace reloads were successful, false otherwise.
 	 */
 	public boolean reloadWorkspace(int planId) {
-		boolean isValid = checkConfiguration();
+		boolean isValid = checkIfConfigurationIsValid();
 		if (isValid) {
 			LOG.info("Workspace reloader configuration is valid.");
 			return executeReload(planId);
@@ -99,7 +99,7 @@ public class WorkspaceReloader {
 			String reloadUrl = retrieveDeletePlanwerkWmsUrl(url, planId);
 			LOG.info("Attempting to delete XPlanWerkWMS configuration with URL {}", reloadUrl);
 			HttpDelete httpDelete = new HttpDelete(reloadUrl);
-			addBasicAuth(configuration.getUser(), configuration.getPassword(), httpDelete);
+			addAuthentication(httpDelete);
 
 			CloseableHttpClient client = HttpClientBuilder.create().build();
 			HttpResponse response = client.execute(httpDelete);
@@ -108,8 +108,12 @@ public class WorkspaceReloader {
 				return true;
 			}
 			else {
-				LOG.info("Error while deleting XPlanWerkWMS configuration: {}",
-						response.getStatusLine().getReasonPhrase());
+				LOG.info(
+						"Error while deleting XPlanWerkWMS configuration. Statuscode: {}, Reason: {}. Check your configuration if workspace reload is configured correctly.",
+						response.getStatusLine().getStatusCode(),
+						response.getStatusLine().getReasonPhrase() != null
+								&& !response.getStatusLine().getReasonPhrase().isEmpty()
+										? response.getStatusLine().getReasonPhrase() : "-");
 				return false;
 			}
 		}
@@ -135,7 +139,7 @@ public class WorkspaceReloader {
 			String reloadUrl = retrieveWorkspaceReloadUrl(url);
 			LOG.info("Attempting to reload workspace with URL {}", reloadUrl);
 			HttpGet httpGet = new HttpGet(reloadUrl);
-			addBasicAuth(configuration.getUser(), configuration.getPassword(), httpGet);
+			addAuthentication(httpGet);
 			CloseableHttpClient client = HttpClientBuilder.create().build();
 			HttpResponse response = client.execute(httpGet);
 			if (isResponseCodeOk(response)) {
@@ -143,7 +147,12 @@ public class WorkspaceReloader {
 				return true;
 			}
 			else {
-				LOG.info("Error while reloading workspace: {}", response.getStatusLine().getReasonPhrase());
+				LOG.info(
+						"Error while reloading workspace. Statuscode: {}, Reason: {}. Check your configuration if workspace reload is configured correctly.",
+						response.getStatusLine().getStatusCode(),
+						response.getStatusLine().getReasonPhrase() != null
+								&& !response.getStatusLine().getReasonPhrase().isEmpty()
+										? response.getStatusLine().getReasonPhrase() : "-");
 				return false;
 			}
 		}
@@ -166,21 +175,33 @@ public class WorkspaceReloader {
 		return url.concat("planwerkwmsapi/").concat(Integer.toString(planId));
 	}
 
-	private static void addBasicAuth(String user, String password, HttpRequestBase httpRequest) {
-		byte[] basicAuth = (user + ":" + password).getBytes();
-		String basicAuthEncoded = new String(Base64.encodeBase64(basicAuth));
-		httpRequest.addHeader("Authorization", "Basic " + basicAuthEncoded);
+	private void addAuthentication(HttpRequestBase httpRequest) {
+		if (configuration.isApiKeyConfigured()) {
+			LOG.debug("apiKey is used for authentication");
+			String apiKey = configuration.getApiKey();
+			httpRequest.addHeader("X-API-Key", apiKey);
+		}
+		else {
+			LOG.debug("user/password is used for authentication");
+			String user = configuration.getUser();
+			String password = configuration.getPassword();
+			byte[] basicAuth = (user + ":" + password).getBytes();
+			String basicAuthEncoded = new String(Base64.encodeBase64(basicAuth));
+			httpRequest.addHeader("Authorization", "Basic " + basicAuthEncoded);
+		}
 	}
 
 	private boolean isResponseCodeOk(HttpResponse response) {
 		return response.getStatusLine().getStatusCode() == 200;
 	}
 
-	private boolean checkConfiguration() {
+	private boolean checkIfConfigurationIsValid() {
 		List<String> url = configuration.getUrls();
+		String apiKey = configuration.getApiKey();
 		String user = configuration.getUser();
 		String password = configuration.getPassword();
-		return isNotNullOrEmpty(url) && isNotNullOrEmpty(user) && isNotNullOrEmpty(password);
+		return isNotNullOrEmpty(url)
+				&& (isNotNullOrEmpty(apiKey) || (isNotNullOrEmpty(user) && isNotNullOrEmpty(password)));
 	}
 
 	private boolean isNotNullOrEmpty(String configValue) {

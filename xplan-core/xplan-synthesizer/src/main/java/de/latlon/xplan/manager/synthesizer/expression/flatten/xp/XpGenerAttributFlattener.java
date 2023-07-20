@@ -34,7 +34,7 @@ public class XpGenerAttributFlattener extends AbstractFlattener {
 	public boolean accepts(TypedObjectNode node) {
 		if (node instanceof ElementNode) {
 			XSElementDeclaration elDecl = ((ElementNode) node).getXSType();
-			return isGenerAttribut(elDecl);
+			return elDecl != null && isGenerAttribut(elDecl);
 		}
 		return false;
 	}

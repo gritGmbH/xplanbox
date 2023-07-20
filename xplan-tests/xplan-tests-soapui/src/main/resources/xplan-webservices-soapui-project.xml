@@ -23,12 +23,14 @@
 baseUrl=http://localhost:8083
 baseUrlInspirePlu=http://localhost:8084
 baseUrlManagerApi=http://localhost:8086/xplan-api-manager
+baseUrlMapServer=http://localhost:8087
 
 For execution against test environment use following property values:
 
 baseUrl=https://xplanbox.lat-lon.de
 baseUrlInspirePlu=https://xplanbox.lat-lon.de
-baseUrlManagerApi=https://xplanbox.lat-lon.de</con:description>
+baseUrlManagerApi=https://xplanbox.lat-lon.de
+baseUrlMapServer=https://xplanbox.lat-lon.de</con:description>
   <con:settings/>
   <con:testSuite id="ef6a4631-78a1-4c83-b55b-a5a410e4ae47" name="xplan-wms">
     <con:settings/>
@@ -3551,11 +3553,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>20</con:value>
+          <con:value>1</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_918c02eb-a29c-4e38-8c2c-d1a7c2b5f358</con:value>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_2c015a06-717a-4598-86a2-09e522ac0d9a</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3813,7 +3815,7 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>21</con:value>
+          <con:value>2</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4029,12 +4031,45 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>22</con:value>
+          <con:value>3</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
     <con:testCase id="13415a94-03b4-42a6-be3a-053e1d8eb51e" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetFeatureInfo" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:settings/>
+      <con:testStep type="httprequest" name="OpenAPIInfo" id="c730064f-c9b2-4de6-8130-639b8dc975ba">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="OpenAPIInfo" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/info</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
+            <con:id>359d35cd-e5b7-41d5-b789-f2fba3449e7d</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="httprequest" name="Import Eidelstedt_4_V4-soapui-webservices.zip" id="4e39b51d-f417-4612-8f04-7aacd17bf74b">
         <con:settings/>
         <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import Eidelstedt_4_V4-soapui-webservices.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -4133,6 +4168,55 @@ exists(ogc:ServiceExceptionReport)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
+      <con:testStep type="httprequest" name="Import BPlan004_6-0.zip" id="9fea0baf-35f0-43a1-9ed4-4df6b0ac3d89">
+        <con:settings/>
+        <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import BPlan004_6-0.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>201</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>BPlan002_5-3.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>BPlan004_6-0.zip</con:contentId>
+            <con:url>${projectDir}/xplan-webservices/plans/BPlan004_6-0.zip</con:url>
+            <con:id>f4992d26-e700-4ffd-87cc-39551e589e8c</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>skipSemantisch</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipFlaechenschluss</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipGeltungsbereich</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
       <con:testStep type="transfer" name="Property Transfer" id="f30504e9-e5b2-4439-9b2d-a9a45a32c021">
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -4153,6 +4237,39 @@ exists(ogc:ServiceExceptionReport)</path>
             <con:sourceStep>Import BPlan002_5-3.zip</con:sourceStep>
             <con:sourcePath>$.id</con:sourcePath>
             <con:targetType>planIdBPlan002_5-3</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdBPlan004_6-0</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Import BPlan004_6-0.zip</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planIdBPlan004_6-0</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrlNull</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrl</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>OpenAPIInfo</con:sourceStep>
+            <con:sourcePath>$.documentUrl</con:sourcePath>
+            <con:targetType>documentUrl</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
@@ -4298,6 +4415,152 @@ exists(ogc:ServiceExceptionReport)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
+      <con:testStep type="httprequest" name="GetFeatureInfo-html BP_Blan" id="46f1d707-8721-4d21-8e60-06fe8b655e29">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-html BP_Blan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="76935f13-6bda-46cf-853e-d66855afe043" name="Contains">
+            <con:configuration>
+              <token>&lt;html></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="7884b9c5-169e-4663-9586-54467d2a4d6c" name="Contains-plan-name">
+            <con:configuration>
+              <token>BPlan004_6-0</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="GroovyScriptAssertion" id="a951fc2d-dfba-4007-8d5b-b53a6bd03f78" name="documentUrl">
+            <con:configuration>
+              <scriptText>def response = context.expand('${GetFeatureInfo-html BP_Blan#Response}')
+
+def matcher = (response =~ /href="(.*?)" class='externeReferenzProperty'/)
+def url = matcher ? matcher[0][1] : null
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert url.contains(documentUrlShort)
+}</scriptText>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetFeatureInfo</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetFeatureInfo</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>567271.8955751015,5937522.203463935,567589.3954036515,5937772.234578918</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559399.75176872406154871,5938438.89756926149129868,560348.32793278573080897,5939214.26558571867644787</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>816</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>816</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp_plan</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value/>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>QUERY_LAYERS</con:name>
+              <con:value>bp_plan</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>INFO_FORMAT</con:name>
+              <con:value>text/html</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>text/html</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>I</con:name>
+              <con:value>523</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>523</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>J</con:name>
+              <con:value>387</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>387</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FEATURE_COUNT</con:name>
+              <con:value>100</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
       <con:testStep type="httprequest" name="GetFeatureInfo-xml BP_BaugebietsTeilFlaeche" id="d4d34559-facc-4bb7-8129-b01b5ed3dc0f">
         <con:settings/>
         <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-xml BP_BaugebietsTeilFlaeche" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -4387,6 +4650,9 @@ exists(ogc:ServiceExceptionReport)</path>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
+          </con:assertion>
+          <con:assertion type="XQuery Match" id="eb4050ae-5b14-4b4c-b6aa-fa31b34a3fae" name="XQuery Match">
+            <con:configuration/>
           </con:assertion>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
@@ -4507,8 +4773,8 @@ exists(ogc:ServiceExceptionReport)</path>
             <con:configuration>
               <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
 
-//xplanung:externeReferenz</path>
-              <content>[/getAttachment?featureID=*&amp;filename=Test_Auskr.gml | Satzung]</content>
+exists(//xplanung:externeReferenz[text()[contains(.,'Test_Auskr.gml | Satzung')]])</path>
+              <content>true</content>
               <allowWildcards>true</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -4600,6 +4866,26 @@ exists(ogc:ServiceExceptionReport)</path>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="GroovyScriptAssertion" id="35b77ae3-fb40-4c5c-935f-5e6cf6710b0b" name="documentUrl">
+            <con:configuration>
+              <scriptText>import groovy.xml.XmlSlurper
+
+def xml = new XmlSlurper().parseText(messageExchange.response.responseContent).declareNamespace(xplan: 'http://www.deegree.org/xplanung/1/0',
+wfs: 'http://www.opengis.net/wfs', gml: "http://www.opengis.net/gml/3.2")
+assert !(xml.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def externeRef = xml.'gml:featureMember'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
+
+	assert externeRef.contains(documentUrlShort)
+}</scriptText>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -4754,16 +5040,281 @@ exists(ogc:ServiceExceptionReport)</path>
           <con:parameters/>
         </con:config>
       </con:testStep>
+      <con:testStep type="httprequest" name="Delete BPlan004_6-0.zip" id="563438c0-46fe-4bd2-80ae-6c7093d8eea1">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete BPlan004_6-0.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan/${#TestCase#planIdBPlan004_6-0}</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>23</con:value>
+          <con:value>4</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>24</con:value>
+          <con:value>5</con:value>
+        </con:property>
+        <con:property>
+          <con:name>planIdBPlan004_6-0</con:name>
+          <con:value>48</con:value>
+        </con:property>
+        <con:property>
+          <con:name>documentUrl</con:name>
+          <con:value>null</con:value>
+        </con:property>
+        <con:property>
+          <con:name>null</con:name>
+          <con:value>null</con:value>
         </con:property>
       </con:properties>
+    </con:testCase>
+    <con:testCase id="f1f2fe6a-a51d-4365-9e23-ed4c4a4d8472" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="RESTAPI" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GET /config" id="74255d1b-8ea0-4411-8eb5-88b4a909bc94">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GET /config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/config</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="GET /config/restart">
+            <con:configuration>
+              <token>GET /config/restart</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="34759942-e0db-4c43-8b3d-89fdd99c870d" name="DELETE /config/delete[/path]">
+            <con:configuration>
+              <token>DELETE /config/delete[/path]</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GET /config/restart" id="ed88ff51-7ad0-4c02-8aa3-186152438f7b">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GET /config/restart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="${#Project#apiKey}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/config/restart</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Restart of workspace text">
+            <con:configuration>
+              <token>Restart of workspace</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GET /config/restart invalidApiKey" id="9ba6daba-963b-45f6-8ed0-e052731c68ce">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GET /config/restart invalidApiKey" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="invalidApiKey" xmlns="http://eviware.com/soapui/config"/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/config/restart</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>403</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Invalid API Key specified text">
+            <con:configuration>
+              <token>Invalid API Key specified</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GET /config/update" id="c35c1703-b74e-46ee-b502-4728f0ee333d">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GET /config/update" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="${#Project#apiKey}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/config/update</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Update complete text">
+            <con:configuration>
+              <token>Update complete</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GET /config/update invalidApiKey" id="e701de07-dc4b-4ce2-bcb2-e912b4a0a612">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GET /config/update invalidApiKey" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="invalidApiKey" xmlns="http://eviware.com/soapui/config"/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/config/update</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>403</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Invalid API Key specified text">
+            <con:configuration>
+              <token>Invalid API Key specified</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="DELETE /planwerkwmsapi/{planId}" id="c925457b-28ec-477a-a298-2dec5a7043a5">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="DELETE /planwerkwmsapi/{planId}" postQueryString="false" mediaType="application/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="${#Project#apiKey}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/planwerkwmsapi/1</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="DELETE /planwerkwmsapi/{planId} invalidApiKey" id="cbe490a2-43b4-4736-b19b-d197acd59b87">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="DELETE /planwerkwmsapi/{planId} invalidApiKey" postQueryString="false" mediaType="application/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="invalidApiKey" xmlns="http://eviware.com/soapui/config"/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/planwerkwmsapi/1</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>403</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="945316ed-af24-4cd6-8721-7329bb0a5525" name="Invalid API Key specified text">
+            <con:configuration>
+              <token>Invalid API Key specified</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
     </con:testCase>
     <con:properties/>
   </con:testSuite>
@@ -5680,12 +6231,45 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>25</con:value>
+          <con:value>6</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
     <con:testCase id="a34a2fe2-31ad-4785-982a-a1e0d80320e7" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetFeature" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:settings/>
+      <con:testStep type="httprequest" name="OpenAPIInfo" id="9c198f4d-a763-4b5b-90e5-4f8322774806">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="OpenAPIInfo" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/info</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
+            <con:id>359d35cd-e5b7-41d5-b789-f2fba3449e7d</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="httprequest" name="Import Eidelstedt_4_V4-soapui-webservices.zip" id="73fc6d3c-8e6d-4433-8682-8d13b0f76214">
         <con:settings/>
         <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import Eidelstedt_4_V4-soapui-webservices.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -5784,6 +6368,55 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
+      <con:testStep type="httprequest" name="Import BPlan004_6-0.zip" id="ce32613c-6299-48b1-a7cb-7daab5f005d8">
+        <con:settings/>
+        <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import BPlan004_6-0.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>201</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>BPlan002_5-3.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>BPlan004_6-0.zip</con:contentId>
+            <con:url>${projectDir}/xplan-webservices/plans/BPlan004_6-0.zip</con:url>
+            <con:id>f4992d26-e700-4ffd-87cc-39551e589e8c</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>skipSemantisch</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipFlaechenschluss</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipGeltungsbereich</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
       <con:testStep type="transfer" name="Property Transfer" id="f380ba67-1f26-44e4-a0e4-230fd6b72d74">
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -5804,6 +6437,39 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
             <con:sourceStep>Import Osdorf48_Test_60.zip</con:sourceStep>
             <con:sourcePath>$.id</con:sourcePath>
             <con:targetType>planIdOsdorf48</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdBPlan004_6-0</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Import BPlan004_6-0.zip</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planIdBPlan004_6-0</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrlNull</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrl</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>OpenAPIInfo</con:sourceStep>
+            <con:sourcePath>$.documentUrl</con:sourcePath>
+            <con:targetType>documentUrl</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
@@ -5882,6 +6548,26 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="GroovyScriptAssertion" id="4bfc5b0c-1486-4629-b2a7-25f9641a3cc5" name="documentUrl">
+            <con:configuration>
+              <scriptText>import groovy.xml.XmlSlurper
+
+def xml = new XmlSlurper().parseText(messageExchange.response.responseContent).declareNamespace(xplan: 'http://www.deegree.org/xplanung/1/0',
+wfs: 'http://www.opengis.net/wfs/2.0')
+assert !(xml.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def externeRef = xml.'wfs:member'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
+
+	assert externeRef.contains(documentUrlShort)
+}</scriptText>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -6197,18 +6883,55 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           <con:parameters/>
         </con:config>
       </con:testStep>
+      <con:testStep type="httprequest" name="Delete BPlan004_6-0.zip" id="f4dc1b4f-3e18-4b56-bec5-ba9199b096fa">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete BPlan004_6-0.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan/${#TestCase#planIdBPlan004_6-0}</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>26</con:value>
+          <con:value>7</con:value>
         </con:property>
         <con:property>
           <con:name>planIdOsdorf48</con:name>
-          <con:value>27</con:value>
+          <con:value>8</con:value>
+        </con:property>
+        <con:property>
+          <con:name>planIdBPlan004_6-0</con:name>
+          <con:value>52</con:value>
+        </con:property>
+        <con:property>
+          <con:name>documentUrl</con:name>
+          <con:value>null</con:value>
+        </con:property>
+        <con:property>
+          <con:name>null</con:name>
+          <con:value>null</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
-    <con:properties/>
+    <con:properties></con:properties>
   </con:testSuite>
   <con:testSuite id="eaf66a3f-b0f0-45ec-84f6-7bee4db7a3d6" name="xplan-wfs">
     <con:settings/>
@@ -8126,7 +8849,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>28</con:value>
+          <con:value>9</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -8458,11 +9181,305 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>9</con:value>
+          <con:value>10</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
-    <con:properties/>
+    <con:testCase id="77d3c78b-4c5b-46fe-bbec-ef64256ef81c" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetFeature" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
+      <con:settings/>
+      <con:testStep type="httprequest" name="OpenAPIInfo" id="31e0798c-cf9e-40f9-9e47-b3245e111e3b">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="OpenAPIInfo" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/info</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
+            <con:id>359d35cd-e5b7-41d5-b789-f2fba3449e7d</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Import BPlan004_6-0.zip" id="34fdcb3b-5b14-41fb-b9a1-159909d20baf">
+        <con:settings/>
+        <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import BPlan004_6-0.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>201</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>BPlan002_5-3.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>BPlan004_6-0.zip</con:contentId>
+            <con:url>${projectDir}/xplan-webservices/plans/BPlan004_6-0.zip</con:url>
+            <con:id>f4992d26-e700-4ffd-87cc-39551e589e8c</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>skipSemantisch</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipFlaechenschluss</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipGeltungsbereich</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="5daf3ad8-bb01-463e-99ec-b08a6f147c3f">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Import BPlan004_6-0.zip</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrlNull</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrl</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>OpenAPIInfo</con:sourceStep>
+            <con:sourcePath>$.documentUrl</con:sourcePath>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetFeature BP_Plan" id="c224e27c-aeb5-4db8-8268-2c39020c8e29">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature BP_Plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="xpPlanName">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArt">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArt</path>
+              <content>3000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArtWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArtWert</path>
+              <content>Vorhabenbezogener BPlan</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstand">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstand</path>
+              <content>3000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstandWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstandWert</path>
+              <content>Satzung</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="GroovyScriptAssertion" id="f959778f-ba7c-4d2a-af4d-921efecb229b" name="documentUrl">
+            <con:configuration>
+              <scriptText>import groovy.xml.XmlSlurper
+
+def xml = new XmlSlurper().parseText(messageExchange.response.responseContent).declareNamespace(xplan: 'http://www.deegree.org/xplanung/1/0',
+wfs: 'http://www.opengis.net/wfs/2.0')
+assert !(xml.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def externeRef = xml.'wfs:member'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
+
+	assert externeRef.contains(documentUrlShort)
+}</scriptText>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetFeature</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>version</con:name>
+              <con:value>2.0.0</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>typenames</con:name>
+              <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Delete BPlan004_6-0.zip" id="4b6fe3c2-22f0-40ac-8b17-9694fc871b4f">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete BPlan004_6-0.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan/${#TestCase#planId}</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>planId</con:name>
+          <con:value>55</con:value>
+        </con:property>
+        <con:property>
+          <con:name>documentUrl</con:name>
+          <con:value>null</con:value>
+        </con:property>
+        <con:property>
+          <con:name>null</con:name>
+          <con:value>null</con:value>
+        </con:property>
+      </con:properties>
+    </con:testCase>
+    <con:properties></con:properties>
   </con:testSuite>
   <con:testSuite id="6527f28b-3b4b-4009-a40c-8651534a22a3" name="xplan-inspireplu">
     <con:settings/>
@@ -8958,6 +9975,10 @@ exists(//wms:Layer[wms:Name='soplanrasterarchive'])</path>
     <con:property>
       <con:name>password</con:name>
       <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>apiKey</con:name>
+      <con:value>xplanbox</con:value>
     </con:property>
   </con:properties>
   <con:wssContainer/>

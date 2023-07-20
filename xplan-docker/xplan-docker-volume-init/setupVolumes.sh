@@ -50,10 +50,8 @@ XPLAN_MANAGERAPI_URL_PUBLIC=${XPLAN_MANAGERAPI_URL_PUBLIC:-xplan-api-manager}
 XPLAN_VALIDATORAPI_URL_PUBLIC=${XPLAN_VALIDATORAPI_URL_PUBLIC:-xplan-api-validator}
 XPLAN_MAPSERVER_URL_INTERNAL="${XPLAN_MAPSERVER_URL_INTERNAL:-http://xplan-mapserver}"
 XPLAN_SERVICES_URL_INTERNAL=${XPLAN_SERVICES_URL_INTERNAL:-http://xplan-services}
-XPLAN_SERVICES_API_USER=${XPLAN_SERVICES_API_USER:-deegree}
-XPLAN_SERVICES_API_PASSWORT=${XPLAN_SERVICES_API_PASSWORT:-deegree}
+XPLAN_SERVICES_API_KEY=${XPLAN_SERVICES_API_KEY:-xplanbox}
 XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION=${XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION:-PLANWERKWMS}
-XPLAN_WMS_URL_INTERNAL=${XPLAN_WMS_URL_INTERNAL:-xplan-services}
 
 XPLAN_DB_HOSTNAME="${XPLAN_DB_HOSTNAME:-tobedefined}"
 XPLAN_DB_PORT="${XPLAN_DB_PORT:-5432}"
@@ -67,11 +65,26 @@ XPLAN_SERVICES_DEFAULT_CRS="${XPLAN_SERVICES_DEFAULT_CRS:-EPSG:25832}"
 XPLAN_SERVICES_QUERY_CRS="${XPLAN_SERVICES_QUERY_CRS:-EPSG:4326 EPSG:3857 EPSG:25833}"
 XPLAN_SERVICES_QUERY_CRS_ARR=($XPLAN_SERVICES_QUERY_CRS)
 
+# Konfiguration der ServiceProvider-Metadaten in den Capabilities der XPlanServices
+XPLAN_SERVICES_PROVIDER_NAME="${XPLAN_SERVICES_PROVIDER_NAME:-lat/lon GmbH}"
+XPLAN_SERVICES_PROVIDER_SITE="${XPLAN_SERVICES_PROVIDER_SITE:-http://www.lat-lon.de}"
+XPLAN_SERVICES_PROVIDER_CONTACT_NAME="${XPLAN_SERVICES_PROVIDER_CONTACT_NAME:--}"
+XPLAN_SERVICES_PROVIDER_CONTACT_POSITIONNAME="${XPLAN_SERVICES_PROVIDER_CONTACT_POSITIONNAME:--}"
+XPLAN_SERVICES_PROVIDER_CONTACT_PHONE="${XPLAN_SERVICES_PROVIDER_CONTACT_PHONE:-+49(0)22824333784}"
+XPLAN_SERVICES_PROVIDER_CONTACT_MAIL="${XPLAN_SERVICES_PROVIDER_CONTACT_MAIL:-info@lat-lon.de}"
+XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_DELIVERYPOINT="${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_DELIVERYPOINT:-Im Ellig 1}"
+XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_CITY="${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_CITY:-Wachtberg}"
+XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_ADMINAREA="${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_ADMINAREA:-Nordrhein-Westfalen}"
+XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_POSTALCODE="${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_POSTALCODE:-53343}"
+XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_COUNTRY="${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_COUNTRY:-Germany}"
+XPLAN_SERVICES_PROVIDER_ONLINERESOURCE="${XPLAN_SERVICES_PROVIDER_ONLINERESOURCE:-http://www.deegree.org}"
+XPLAN_SERVICES_PROVIDER_HOURSOFSERVICE="${XPLAN_SERVICES_PROVIDER_HOURSOFSERVICE:-24x7}"
+XPLAN_SERVICES_PROVIDER_CONTACTINSTRUCTIONS="${XPLAN_SERVICES_PROVIDER_CONTACTINSTRUCTIONS:-Do not hesitate to call}"
+
 XPLAN_INIT_RASTERTYPE="${XPLAN_INIT_RASTERTYPE:-mapserver}"
 XPLAN_INIT_INSPIREPLU="${XPLAN_INIT_INSPIREPLU:-disabled}"
 
 XPLAN_S3_PUBLIC_URL="${XPLAN_S3_PUBLIC_URL}"
-XPLAN_DOWNLOADAPI_URL_PUBLIC="${XPLAN_DOWNLOADAPI_URL_PUBLIC}"
 
 #############################
 # Update content of volumes #
@@ -81,10 +94,9 @@ cd $XPLANBOX_VOLUMES
 
 sed -i 's|apiUrl=|apiUrl='$XPLAN_VALIDATORAPI_URL_PUBLIC'|g' xplan-validator-config/validatorApiConfiguration.properties
 sed -i 's|apiUrl=|apiUrl='$XPLAN_MANAGERAPI_URL_PUBLIC'|g' xplan-manager-config/managerApiConfiguration.properties
-sed -i 's|wmsUrl=|wmsUrl='$XPLAN_WMS_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerApiConfiguration.properties
+sed -i 's|wmsUrl=|wmsUrl='$XPLAN_WMS_URL_PUBLIC'/xplan-wms|g' xplan-manager-config/managerApiConfiguration.properties
 sed -i 's|workspaceReloadUrls=|workspaceReloadUrls='$XPLAN_SERVICES_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerConfiguration.properties
-sed -i 's/workspaceReloadUser=/workspaceReloadUser='$XPLAN_SERVICES_API_USER'/g' xplan-manager-config/managerConfiguration.properties
-sed -i 's/workspaceReloadPassword=/workspaceReloadPassword='$XPLAN_SERVICES_API_PASSWORT'/g' xplan-manager-config/managerConfiguration.properties
+sed -i 's/workspaceReloadApiKey=/workspaceReloadApiKey='$XPLAN_SERVICES_API_KEY'/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadAction=ALL/workspaceReloadAction='$XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION'/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/pathToHaleCli=/pathToHaleCli=\/hale\/bin\/hale/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's|http://localhost:8080|'$XPLAN_WMS_URL_PUBLIC'|g' xplan-manager-config/managerWebConfiguration.properties
@@ -111,17 +123,7 @@ sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-workspaces/xplan-manager-
 sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
 sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
 
-if [[ ! -z $XPLAN_DOWNLOADAPI_URL_PUBLIC ]]
-then
-  echo "[$(date -Iseconds)] Use XPlanDownloadAPI in HTML GFI: $XPLAN_DOWNLOADAPI_URL_PUBLIC"
-  sed -i 's|var DOWNLOADAPI_URL;|var DOWNLOADAPI_URL="'$XPLAN_DOWNLOADAPI_URL_PUBLIC'";|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
-elif [[ -z "${spring_profiles_active##*s3doc*}" ]]
-then
-  echo "[$(date -Iseconds)] Document storage type is S3"
-  sed -i 's|var S3_URL;|var S3_URL="'$XPLAN_S3_PUBLIC_URL'";|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
-else
-  sed -i 's|http://localhost:8080/xplan-wms|'$XPLAN_WMS_URL_PUBLIC'/xplan-wms|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
-fi
+sed -i 's|http://localhost:8080/xplan-wms|'$XPLAN_WMS_URL_PUBLIC'/xplan-wms|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
 
 sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
@@ -141,6 +143,22 @@ find xplan-workspaces/xplansyn-wms-workspace/themes -iname *.xml -exec sed -i 's
 find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's|<s:CRS>EPSG:25832</s:CRS>|<s:CRS>'$XPLAN_SERVICES_DEFAULT_CRS'</s:CRS>|g' {} \;
 echo "[$(date -Iseconds)] Configure XPlanWFS QueryCRS"
 find xplan-workspaces/xplan-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i '/<QueryCRS>EPSG:.*<\/QueryCRS>/d' {} \;
+
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<ProviderName>lat/lon GmbH</ProviderName>|<ProviderName>'"$XPLAN_SERVICES_PROVIDER_NAME"'</ProviderName>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<ProviderSite>http://www.lat-lon.de</ProviderSite>|<ProviderSite>'"$XPLAN_SERVICES_PROVIDER_SITE"'</ProviderSite>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<IndividualName>-</IndividualName>|<IndividualName>'"$XPLAN_SERVICES_PROVIDER_CONTACT_NAME"'</IndividualName>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<PositionName/>|<PositionName>'"$XPLAN_SERVICES_PROVIDER_CONTACT_POSITIONNAME"'</PositionName>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<Phone>+49(0)22824333784</Phone>|<Phone>'"$XPLAN_SERVICES_PROVIDER_CONTACT_PHONE"'</Phone>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<ElectronicMailAddress>info@lat-lon.de</ElectronicMailAddress>|<ElectronicMailAddress>'"$XPLAN_SERVICES_PROVIDER_CONTACT_MAIL"'</ElectronicMailAddress>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<DeliveryPoint>Im Ellig 1</DeliveryPoint>|<DeliveryPoint>'"$XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_DELIVERYPOINT"'</DeliveryPoint>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<City>Wachtberg</City>|<City>'"$XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_CITY"'</City>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<AdministrativeArea>Nordrhein-Westfalen</AdministrativeArea>|<AdministrativeArea>'"$XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_ADMINAREA"'</AdministrativeArea>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<PostalCode>53343</PostalCode>|<PostalCode>'"$XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_POSTALCODE"'</PostalCode>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<Country>Germany</Country>|<Country>'"$XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_COUNTRY"'</Country>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<OnlineResource>http://www.deegree.org</OnlineResource>|<OnlineResource>'"$XPLAN_SERVICES_PROVIDER_ONLINERESOURCE"'</OnlineResource>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<HoursOfService>24x7</HoursOfService>|<HoursOfService>'"$XPLAN_SERVICES_PROVIDER_HOURSOFSERVICE"'</HoursOfService>|g' {} \;
+find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<ContactInstructions>Do not hesitate to call</ContactInstructions>|<ContactInstructions>'"$XPLAN_SERVICES_PROVIDER_CONTACTINSTRUCTIONS"'</ContactInstructions>|g' {} \;
+
 for crs in "${XPLAN_SERVICES_QUERY_CRS_ARR[@]}"
 do
   find xplan-workspaces/xplan-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$crs'<\/QueryCRS>/g' {} \;
@@ -156,6 +174,8 @@ do
 done
 find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$XPLAN_SERVICES_DEFAULT_CRS'<\/QueryCRS>/g' {} \;
 find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>//g' {} \;
+
+echo $XPLAN_SERVICES_API_KEY >> xplan-workspaces/config.apikey
 
 # Rastertype
 echo "[$(date -Iseconds)] Configured rastertype: $XPLAN_INIT_RASTERTYPE"

@@ -285,13 +285,19 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 [[aktualisierung-auf-xplanbox-version-7.0]]
 === Aktualisierung auf die Version 7.0 der xPlanBox
 
+Für die Aktualisierung auf die Version 7.0 sind folgende Schritte auszuführen:
+
+* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+** Es wird empfohlen zur Absicherung der REST-Schnittstellen der XPlanDienste von der Authentifizierung über einen Tomcat-Nutzer auf API-Key umzustellen. Details dazu finden sich im Abschnitt <<dienste-tomcat>>. Soll weiterhin die Absicherung über einen konfigurierten Tomcat-Nutzer erfolgen, muss in der Datei  <DEEGREE_WORKSPACE_ROOT>/config.apikey_ ein '*' eingetragen werden, um die Absicherung zu deaktivieren.
+
+
 IMPORTANT: Mit der Version 7.0 der xPlanBox ist die Kartenvorschau im XPlanValidator nicht mehr standardmäßig aktiviert. Hinweise zur Konfiguration der Kartenvorschau sind im Abschnitt <<kartenvorschau-validator>> beschrieben.
 
 === Troubleshooting
 
-Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:
+Bei unerwartetem Verhalten der xPlanBox nach einer Aktualisierung können folgende Aktionen helfen:
 
 * Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten.
-* Löschen des Verzeichnisses _<CATALINA_HOME>/work/_ der Tomcat-Server. Der Tomcat-Server muss zuvor gestoppt und anschließend neu gestartet werden.
+* Löschen des Verzeichnisses _<CATALINA_HOME>/work/_ des Tomcat-Servers. Der Tomcat-Server muss zuvor gestoppt und anschließend neu gestartet werden.
 * Reload der Workspaces der XPlanDienste.
 * Löschen des Browser-Caches.

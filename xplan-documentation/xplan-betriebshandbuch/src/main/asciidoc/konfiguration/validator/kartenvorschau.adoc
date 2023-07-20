@@ -46,7 +46,7 @@ Die Aktivierung des jeweiligen Workspace erfolgt über die Datei _<DEEGREE_WORKS
 
 [IMPORTANT]
 ====
-Um die Kartenvorschau zu aktivieren muss zusätzlich die Umgebungsvariable `spring_profiles_active` für XPlanValidatorWeb, XPlanValidatorAPI und XPlanValidatorWMS wie folgt gesetzt werden:
+Um die Kartenvorschau zu aktivieren, muss zusätzlich die Umgebungsvariable `spring_profiles_active` für XPlanValidatorWeb, XPlanValidatorAPI und XPlanValidatorWMS wie folgt gesetzt werden:
 
 * Für die Speicherung der Daten im Arbeitsspeicher: `spring_profiles_active=validatorwmsmemory`
 * Für die Speicherung der Daten in der XPlanDB: `spring_profiles_active=validatorwmssql`
@@ -55,9 +55,7 @@ Um die Kartenvorschau zu aktivieren muss zusätzlich die Umgebungsvariable `spri
 ==== Konfiguration des Löschens von Daten aus dem XPlanValidatorWMS
 
 Standardmäßig werden Pläne fünf Minuten nach der Validierung wieder aus dem XPlanValidatorWMS entfernt und sind in der Kartenvorschau nicht mehr sichtbar.
-Der Zeitraum in dem validierte Pläne vorgehalten werden kann bei Bedarf angepasst werden. Die Konfiguration unterscheidet sich je nachdem ob die Daten im Arbeitsspeicher oder in der XPlanDB abgelegt werden:
+Der Zeitraum, in dem validierte Pläne für die Kartenvorschau vorgehalten werden, kann angepasst werden. Die Konfiguration unterscheidet sich je nachdem ob die Daten im Arbeitsspeicher oder in der XPlanDB abgelegt werden. Im folgenden Beispiel wird der Zeitraum, in der die Daten über den XPlanValidatorWMS sichtbar sind, auf 15 Minuten erhöht:
 
-* Für die Speicherung der Daten im Arbeitsspeicher: Setzen der Umgebungsvariable `DELETE_AFTER_MINUTES=15` für den XPlanValidatorWMS.
-* Für die Speicherung der Daten in der XPlanDB: Setzen der Umgebungsvariable `DELETE_AFTER_MINUTES=15` für XPlanValidatorWeb und XPlanValidatorAPI.
-
-Im Beispiel wird der Zeitraum in der die Daten über den XPlanValidatorWMS sichtbar sind auf 15 Minuten erhöht.
+* Bei Speicherung der Daten im Arbeitsspeicher: Setzen der Umgebungsvariable `DELETE_AFTER_MINUTES=15` für den XPlanValidatorWMS.
+* Bei Speicherung der Daten in der XPlanDB: Setzen der Umgebungsvariable `DELETE_AFTER_MINUTES=15` für XPlanValidatorWeb *und* XPlanValidatorAPI.

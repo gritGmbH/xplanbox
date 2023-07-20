@@ -12,3 +12,5 @@ var WMS_URL = "http://localhost:8080/xplan-wms";
 ----
 
 Eine Übersicht der weiteren Konfigurationsdateien des XPlanWMS ist im Anhang <<appendix_xplanwms-workspace>> zu finden.
+
+TIP: Wenn die relativen Referenzen bereits beim Import durch absolute URLs ersetzt werden, wie im Kapitel <<konfiguration-externe-refrenzen>> beschrieben, ist keine Konfiguration in der Datei _html.gfi_ erforderlich und der Vorgabewert kann beibehalten werden.
