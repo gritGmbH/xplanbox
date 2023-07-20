@@ -3550,14 +3550,41 @@ exists(/wms:WMS_Capabilities)</path>
           <con:parameters/>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Cleanup Properties" id="651724e7-b3bd-4973-a1fa-26ffd712b741">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planId</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>gmlId</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>gmlId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>1</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_2c015a06-717a-4598-86a2-09e522ac0d9a</con:value>
+          <con:value/>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3812,10 +3839,26 @@ exists(ogc:ServiceExceptionReport)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Cleanup Properties" id="22c72738-5935-4fd6-b54f-18952a25fd16">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planId</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>2</con:value>
+          <con:value/>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4028,10 +4071,26 @@ exists(ogc:ServiceExceptionReport)</path>
           <con:parameters/>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Cleanup Properties" id="1242b1a1-98dc-44f5-85f1-89c942afdaa0">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planId</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>3</con:value>
+          <con:value/>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -5065,22 +5124,71 @@ if (documentUrl != null){
           <con:parameters/>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Cleanup Properties" id="7225fb8f-e5f4-472f-9445-6157bf9eb69b">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planId</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdBPlan002_5-3</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planIdBPlan002_5-3</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdBPlan004_6-0</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planIdBPlan004_6-0</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrl</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>4</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>5</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>planIdBPlan004_6-0</con:name>
-          <con:value>48</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>documentUrl</con:name>
-          <con:value>null</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>null</con:name>
@@ -5316,7 +5424,12 @@ if (documentUrl != null){
       </con:testStep>
       <con:properties/>
     </con:testCase>
-    <con:properties/>
+    <con:properties>
+      <con:property>
+        <con:name>emptyPropertyValue</con:name>
+        <con:value/>
+      </con:property>
+    </con:properties>
   </con:testSuite>
   <con:testSuite id="69df8070-8c59-42e5-9019-58a5480efe89" name="xplansyn-wfs">
     <con:description/>
@@ -6228,10 +6341,26 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
           <con:parameters/>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Cleanup Properties" id="032bad19-8a6f-4335-a28b-a086ded7632f">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planId</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>6</con:value>
+          <con:value/>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -6908,22 +7037,71 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           <con:parameters/>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Cleanup Properties" id="18660c1f-eddd-4939-b209-1abca2536b06">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planId</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdOsdorf48</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planIdOsdorf48</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdBPlan004_6-0</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planIdBPlan004_6-0</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrl</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>7</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>planIdOsdorf48</con:name>
-          <con:value>8</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>planIdBPlan004_6-0</con:name>
-          <con:value>52</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>documentUrl</con:name>
-          <con:value>null</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>null</con:name>
@@ -6931,7 +7109,12 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
         </con:property>
       </con:properties>
     </con:testCase>
-    <con:properties></con:properties>
+    <con:properties>
+      <con:property>
+        <con:name>emptyPropertyValue</con:name>
+        <con:value/>
+      </con:property>
+    </con:properties>
   </con:testSuite>
   <con:testSuite id="eaf66a3f-b0f0-45ec-84f6-7bee4db7a3d6" name="xplan-wfs">
     <con:settings/>
@@ -8846,10 +9029,26 @@ count(//wfs:member)</path>
           <con:parameters/>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Cleanup Properties" id="8be35aa1-cbd2-4559-ac6b-4730bd3c1e14">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planId</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>9</con:value>
+          <con:value/>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -9178,10 +9377,26 @@ count(//wfs:member)</path>
           <con:parameters/>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Cleanup Properties" id="f8039da9-a3ba-49a7-a045-01a3581634a0">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planId</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>10</con:value>
+          <con:value/>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -9464,14 +9679,41 @@ if (documentUrl != null){
           <con:parameters/>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Cleanup Properties" id="86e2b3da-c106-4b33-8576-c8e110333e94">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planId</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrl</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>55</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>documentUrl</con:name>
-          <con:value>null</con:value>
+          <con:value/>
         </con:property>
         <con:property>
           <con:name>null</con:name>
@@ -9479,7 +9721,12 @@ if (documentUrl != null){
         </con:property>
       </con:properties>
     </con:testCase>
-    <con:properties></con:properties>
+    <con:properties>
+      <con:property>
+        <con:name>emptyPropertyValue</con:name>
+        <con:value/>
+      </con:property>
+    </con:properties>
   </con:testSuite>
   <con:testSuite id="6527f28b-3b4b-4009-a40c-8651534a22a3" name="xplan-inspireplu">
     <con:settings/>
