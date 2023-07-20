@@ -4,11 +4,15 @@
 
 ### xplan-api-validator-soapui-project
 
-	mvn clean test -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xvalidator/api/v1 -Dusername=xplanbox -Dpassword='PWD'
+> mvn clean test -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xvalidator/api/v1 -Dusername=xplanbox -Dpassword='PWD'
 
 ### xplan-api-manager-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xmanager/api/v1 -Dusername=xplanbox -Dpassword='PWD'
+> mvn clean test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlServices=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
+
+### xplan-api-dokumente-soapui-project
+
+> mvn clean test -Psystem-tests -DtestFileName=xplan-api-dokumente-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlDokumentenApi=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
 
 ### xplan-manager-web-soapui-project
 
@@ -16,7 +20,7 @@
 
 ### xplan-webservices-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrl=https://xplanbox.lat-lon.de -DbaseUrlInspirePlu=https://xplanbox.lat-lon.de -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlMapServer=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
+> mvn clean test -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=https://xplanbox.lat-lon.de -DbaseUrlInspirePlu=https://xplanbox.lat-lon.de -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlMapServer=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
 
 
 
@@ -30,14 +34,15 @@ docker run --env ... xplanbox/xplan-tests-soapui
 
 ### Umgebungsvariablen
 
-- `XPLAN_API_MANAGER_ENDPOINT`
-
+- `XPLAN_API_MANAGER_BASE_URL`
 - `XPLAN_API_MANAGER_USERNAME`
 - `XPLAN_API_MANAGER_PASSWORD`
 
 - `XPLAN_API_VALIDATOR_ENDPOINT`
 - `XPLAN_API_VALIDATOR_USERNAME`
 - `XPLAN_API_VALIDATOR_PASSWORD`
+
+- `XPLAN_API_DOKUMENTE_BASE_URL` optional: XPlanDokumentenAPI Tests werden geskipped, wenn die Umgebungsvariable nicht gesetzt ist.
 
 - `XPLAN_MANAGER_WEB_ENDPOINT`
 - `XPLAN_MANAGER_WEB_USERNAME`

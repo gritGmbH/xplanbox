@@ -50,9 +50,10 @@
       <id>system-tests</id>
       <properties>
         <testFileName />
-        <baseUrl />
         <baseUrlInspirePlu />
         <baseUrlManagerApi />
+        <baseUrlDokumentenApi />
+        <baseUrlServices />
         <baseUrlMapServer />
         <username />
         <password />
@@ -88,9 +89,10 @@
                   <password>${password}</password>
                   <projectProperties>
                     <projectProperty>projectDir=${basedir}/src/main/resources</projectProperty>
-                    <value>baseUrl=${baseUrl}</value>
                     <value>baseUrlInspirePlu=${baseUrlInspirePlu}</value>
                     <value>baseUrlManagerApi=${baseUrlManagerApi}</value>
+                    <value>baseUrlDokumentenApi=${baseUrlDokumentenApi}</value>
+                    <value>baseUrlServices=${baseUrlServices}</value>
                     <value>baseUrlMapServer=${baseUrlMapServer}</value>
                     <value>username=${username}</value>
                     <value>password=${password}</value>
