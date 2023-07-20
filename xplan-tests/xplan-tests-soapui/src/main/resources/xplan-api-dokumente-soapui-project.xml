@@ -670,7 +670,7 @@ assert json.version != null</scriptText>
       <con:testStep type="restrequest" name="GET BP 6.0 pI getFileList" id="aed3952e-4386-44dc-b1ac-6bc29df690e6">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}" methodName="listDocuments" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET SO 5.3 pI getFileList" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
+          <con:restRequest name="GET BP 6.0 pI getFileList" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -726,7 +726,7 @@ assert json.version != null</scriptText>
       <con:testStep type="restrequest" name="GET BP 6.0 pI invalidInput" id="9ebc6c07-fc50-4fa7-82ea-85246bf12832">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}" methodName="listDocuments" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET SO 5.3 pI invalidInput" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
+          <con:restRequest name="GET BP 6.0 pI invalidInput" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -755,7 +755,7 @@ assert json.version != null</scriptText>
       <con:testStep type="restrequest" name="GET BP 6.0 pI invalidPlanId" id="274fe0d2-53b0-4de2-bf28-2d327e1952ef">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}" methodName="listDocuments" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET SO 5.3 pI invalidPlanId" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
+          <con:restRequest name="GET BP 6.0 pI invalidPlanId" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -789,7 +789,7 @@ assert json.version != null</scriptText>
       <con:testStep type="restrequest" name="HEAD BP 6.0 pI getHeaderPDF" id="94da7e10-576e-4095-a103-baa929cbd91a">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="HEAD BP 6.0 pI getHeaderPdf" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
+          <con:restRequest name="HEAD BP 6.0 pI getHeaderPDF" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -831,7 +831,7 @@ assert contentLength[0].toInteger() == 67450</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="EAD BP 6.0 pI getHeaderPNG" id="e1d27938-f34e-4480-b914-c6aeed8e6c83">
+      <con:testStep type="restrequest" name="HEAD BP 6.0 pI getHeaderPNG" id="e1d27938-f34e-4480-b914-c6aeed8e6c83">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="EAD BP 6.0 pI getHeaderPNG" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
@@ -879,7 +879,7 @@ assert contentLength[0].toInteger() == 320960</scriptText>
       <con:testStep type="restrequest" name="HEAD BP 6.0 pI getHeaderPGW" id="ca531168-9f64-47db-afb0-d4c4d192f2d3">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="HEAD SO 5.3 pI getHeader" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
+          <con:restRequest name="HEAD BP 6.0 pI getHeaderPGW" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -924,7 +924,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
       <con:testStep type="restrequest" name="HEAD BP 6.0 pI invalidInput" id="9c0d1bf1-9acc-4011-995e-e28759b61022">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="HEAD SO 5.3 pI invalidInput" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
+          <con:restRequest name="HEAD BP 6.0 pI invalidInput" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -954,7 +954,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
       <con:testStep type="restrequest" name="HEAD BP 6.0 pI invalidPlanId" id="8fe33ca1-580c-41c9-9166-5ce822951b8a">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="HEAD SO 5.3 pI invalidPlanId" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
+          <con:restRequest name="HEAD BP 6.0 pI invalidPlanId" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -984,7 +984,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
       <con:testStep type="restrequest" name="HEAD BP 6.0 pI invalidFileName" id="388f5b27-aa27-46f2-ad8a-528e23ebf8d8">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="HEAD SO 5.3 pI invalidFileName" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
+          <con:restRequest name="HEAD BP 6.0 pI invalidFileName" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1014,7 +1014,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
       <con:testStep type="restrequest" name="GET BP 6.0 pI getFilePDF" id="ed8e46ba-6735-40de-855d-d254c5d54b80">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET SO 5.3 pI getFile" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
+          <con:restRequest name="GET BP 6.0 pI getFilePDF" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1163,7 +1163,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
       <con:testStep type="restrequest" name="GET BP 6.0 pI invalidInput" id="ff33717b-f732-4c81-8479-41018304e8b5">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET SO 5.3 pI invalidInput" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
+          <con:restRequest name="GET BP 6.0 pI invalidInput" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1193,7 +1193,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
       <con:testStep type="restrequest" name="GET BP 6.0 pI invalidPlanId" id="898c28e9-4918-49ae-877a-29be567c909a">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET SO 5.3 pI invalidPlanId" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
+          <con:restRequest name="GET BP 6.0 pI invalidPlanId" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1223,7 +1223,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
       <con:testStep type="restrequest" name="GET BP 6.0 pI invalidFileName" id="5f5584ae-09dd-4533-9255-0edca820de83">
         <con:settings/>
         <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET SO 5.3 pI invalidFileName" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
+          <con:restRequest name="GET BP 6.0 pI invalidFileName" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
