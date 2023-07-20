@@ -111,25 +111,32 @@ public class XPlanDbAdapter {
 	}
 
 	@Transactional(propagation = Propagation.MANDATORY)
-	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc, PlanStatus planStatus,
-			Date beginValidity, Date endValidity, Date sortDate, String internalId, List<String> wfsFeatureIds)
-			throws Exception {
+	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, PlanStatus planStatus, Date beginValidity,
+			Date endValidity, Date sortDate, String internalId) throws Exception {
 		LOG.info("Insert XPlan in XPlanDB");
-		Plan plan = createPlan(archive, fc, synFc, planStatus, beginValidity, endValidity, sortDate, internalId,
-				wfsFeatureIds);
+		Plan plan = createPlan(archive, fc, planStatus, beginValidity, endValidity, sortDate, internalId);
 		Plan savedPlan = planRepository.save(plan);
 		return savedPlan.getId();
 	}
 
+	/**
+	 * @param planId id of the plan to insert artefacts
+	 * @param xPlanFeatureCollection used to retrieve the artefacts to insert, never
+	 * <code>null</code>
+	 * @param archive containing the artefacts to insert, never <code>null</code>
+	 * @param xplanGml overwrites the original XPlanGml from the archive, if
+	 * <code>null</code> the original XPlanGML is inserted
+	 * @throws PlanNotFoundException if a plan with the passed id does not exist
+	 */
 	@Transactional(propagation = Propagation.MANDATORY)
-	public void insertArtefacts(XPlanFeatureCollection xPlanFeatureCollection, XPlanArchive archive, int planId)
-			throws Exception {
+	public void insertArtefacts(int planId, XPlanFeatureCollection xPlanFeatureCollection, XPlanArchive archive,
+			byte[] xplanGml) throws PlanNotFoundException {
 		LOG.info("Insert XPlan in XPlanDB");
 		Plan plan = getRequiredPlanById(planId);
 		List<ZipEntryWithContent> archiveEntries = xPlanFeatureCollection.getArchiveEntries(archive);
 		AtomicInteger i = new AtomicInteger();
 		Set<Artefact> artefacts = archiveEntries.stream()
-				.map(archiveEntry -> createArtefact(plan, xPlanFeatureCollection, i, archiveEntry))
+				.map(archiveEntry -> createArtefact(plan, xPlanFeatureCollection, i, archiveEntry, xplanGml))
 				.collect(Collectors.toSet());
 		plan.setArtefacts(artefacts);
 		planRepository.save(plan);
@@ -171,6 +178,14 @@ public class XPlanDbAdapter {
 		Plan plan = getRequiredPlanById(planId);
 		updatePlan(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, xPlanToEdit, sortDate, uploadedArtefacts,
 				removedRefs, planId, plan);
+		planRepository.save(plan);
+	}
+
+	@Transactional(propagation = Propagation.MANDATORY)
+	public void update(int planId, XPlanType type, FeatureCollection synFc) throws Exception {
+		LOG.info("- Aktualisierung des Plans mit ID '{}'", planId);
+		Plan plan = getRequiredPlanById(planId).rechtsstand(retrieveRechtsstandWert(synFc, type))
+				.sonstPlanArt(retrieveAdditionalTypeWert(synFc, type)).bereiche(createBereiche(synFc));
 		planRepository.save(plan);
 	}
 
@@ -476,19 +491,16 @@ public class XPlanDbAdapter {
 		return optionalPlan.get();
 	}
 
-	private Plan createPlan(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc,
-			PlanStatus planStatus, Date beginValidity, Date endValidity, Date sortDate, String internalId,
-			List<String> wfsFeatureIds) throws ParseException, AmbiguousBereichNummernException {
+	private Plan createPlan(XPlanArchive archive, XPlanFeatureCollection fc, PlanStatus planStatus, Date beginValidity,
+			Date endValidity, Date sortDate, String internalId) throws ParseException {
 		String wktFromBboxIn4326 = createWktFromBboxIn4326(fc);
 		org.locationtech.jts.geom.Geometry bbox = new org.locationtech.jts.io.WKTReader().read(wktFromBboxIn4326);
 		Plan plan = new Plan().importDate(new Date(System.currentTimeMillis())).version(archive.getVersion())
 				.type(archive.getType()).name(fc.getPlanName()).nummer(fc.getPlanNummer()).gkz(fc.getPlanGkz())
-				.hasRaster(fc.getHasRaster()).rechtsstand(retrieveRechtsstandWert(synFc, archive.getType()))
-				.releaseDate(fc.getPlanReleaseDate()).sonstPlanArt(retrieveAdditionalTypeWert(synFc, archive.getType()))
+				.hasRaster(fc.getHasRaster()).releaseDate(fc.getPlanReleaseDate())
 				.planstatus(retrievePlanStatusMessage(planStatus))
 				.district(retrieveDistrict(fc.getFeatures(), archive.getType())).wmssortdate(sortDate)
-				.gueltigkeitbeginn(beginValidity).gueltigkeitende(endValidity).internalid(internalId).bbox(bbox)
-				.bereiche(createBereiche(synFc)).features(createFeatures(wfsFeatureIds));
+				.gueltigkeitbeginn(beginValidity).gueltigkeitende(endValidity).internalid(internalId).bbox(bbox);
 		return plan;
 	}
 
@@ -511,14 +523,14 @@ public class XPlanDbAdapter {
 	}
 
 	private Artefact createArtefact(Plan plan, XPlanFeatureCollection xPlanFeatureCollection, AtomicInteger i,
-			ZipEntryWithContent archiveEntry) {
+			ZipEntryWithContent archiveEntry, byte[] xplanGml) {
 		try {
 			String name = archiveEntry.getName();
 			InputStream is = archiveEntry.retrieveContentAsStream();
 			long contentLength = archiveEntry.getContentLength();
-			byte[] data = createZipArtefact(is);
 			String mimetype = archiveEntry.getContentType();
 			ArtefactType artefactType = detectArtefactType(xPlanFeatureCollection, archiveEntry);
+			byte[] data = retrieveData(xplanGml, is, artefactType);
 			ArtefactId id = new ArtefactId().plan(plan).filename(name);
 			Artefact artefact = new Artefact().id(id).data(data).mimetype(mimetype).length(contentLength)
 					.artefacttype(artefactType).num(i.getAndIncrement());
@@ -527,6 +539,12 @@ public class XPlanDbAdapter {
 		catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	private byte[] retrieveData(byte[] xplanGml, InputStream is, ArtefactType artefactType) throws IOException {
+		if (artefactType == XPLANGML)
+			return createZipArtefact(new ByteArrayInputStream(xplanGml));
+		return createZipArtefact(is);
 	}
 
 	private void updatePlan(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,

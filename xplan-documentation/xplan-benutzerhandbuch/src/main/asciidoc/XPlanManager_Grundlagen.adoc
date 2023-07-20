@@ -3,7 +3,7 @@
 
 Der XPlanManager dient zur Verwaltung von Planwerken innerhalb der xPlanBox. Mit
 dem XPlanManager können XPlanGML-Dateien und XPlanArchive importiert, editiert oder gelöscht werden.
-Nachdem ein Planwerk erfolgreich über den XPlanManager importiert wurde, können die Daten über die Dienste XPlanWFS und XPlanWMS abgerufen werden. In den folgenden Abschnitten werden die Anforderungen an ein XPlanGML-Dokument und XPlanArchiv beschrieben.
+Nachdem ein Planwerk erfolgreich über den XPlanManager importiert wurde, können die Daten über die Dienste <<xplanwfs,XPlanWFS>>, <<xplansynwfs,XPlanSynWFS>> und <<xplanwms,XPlanWMS>> abgerufen werden. In den folgenden Abschnitten werden die Anforderungen an ein XPlanGML-Dokument und XPlanArchiv beschrieben.
 
 [[xplangmlfile]]
 ==== Das XPlanGML-Dokument
@@ -12,13 +12,13 @@ Das XPlanGML-Dokument muss folgende Eigenschaften aufweisen:
 
  * Das XPlanGML-Dokument ist wohlgeformt und hat die Dateiendung `.gml` oder `.xml` (Dateiformat `application/xml`).
  * Das Wurzelelement ist ein `xplan:XPlanAuszug` (aus dem Namensraum der jeweiligen XPlanGML-Version) oder eine `wfs:FeatureCollection` (aus dem Namensraum `http://www.opengis.net/wfs/2.0` aus dem OGC-Standard WFS 2.0)
- * Das XPlanGML-Dokument beinhaltet nur ein oder mehrere Elemente vom Typ `xplan:XP_Plan`. Beinhaltet eine Datei mehrere dieser Elemente, so dürfen keine nicht referenzierten Features im XPlanGML-Dokument vorkommen, wie z. B. ein freies Präsentationsobjekt ohne Bezug zum Fachobjekt.
+ * Das XPlanGML-Dokument beinhaltet nur ein oder mehrere Elemente vom Typ `xplan:XP_Plan`. Beinhaltet eine Datei mehrere dieser Elemente, so dürfen keine nicht-referenzierten Features im XPlanGML-Dokument vorkommen, wie z. B. ein freies Präsentationsobjekt ohne Bezug zum Fachobjekt.
  * Wenn das XPlanGML-Dokument mehrere `BP_Bereich`-Elemente beinhaltet, muss das Element `xplan:nummer` für jeden `xplan:BP_Bereich` eindeutig sein.
  * Das XPlanGML-Dokument beinhaltet keine internen Referenzen auf andere Planobjekte über eines der folgenden Elemente `aendert/XP_VerbundenerPlan/verbundenerPlan` oder `wurdeGeaendertVon/XP_VerbundenerPlan/verbundenerPlan` bzw. in XPlanGML 6.0 über
 `aendertPlan/XP_VerbundenerPlan/verbundenerPlan`,
 `wurdeGeaendertVonPlan/XP_VerbundenerPlan/verbundenerPlan`,
 `aendertPlanBereich/XP_VerbundenerPlanBereich/verbundenerPlanBereich` oder
-`wurdeGeaendertVonPlanBereich/XP_VerbundenerPlanBereich/verbundenerPlanBereich`. Wird eines der Elemente in einem XPlanGML-Dokument verwendet, dann kann der Plan nicht importiert werden.
+`wurdeGeaendertVonPlanBereich/XP_VerbundenerPlanBereich/verbundenerPlanBereich`. Wird eines der Elemente in einem XPlanGML-Dokument verwendet, dann kann der Plan nicht importiert werden!
 
 [[xplanarchiv]]
 ==== Das XPlanArchiv
@@ -26,8 +26,8 @@ Das XPlanGML-Dokument muss folgende Eigenschaften aufweisen:
 Das XPlanArchiv ist eine ZIP-Datei (Dateiformat `application/zip`) mit folgendem Aufbau:
 
 * Im Basisverzeichnis muss die XPlanGML-Datei mit dem Dateinamen __xplan.gml__ vorhanden sein. Die Datei muss die Eigenschaften eines <<xplangmlfile,XPlanGML-Dokuments>> erfüllen.
-* Rasterdaten, die in der XPlanGML-Datei referenziert sind, müssen ebenfalls im Basisverzeichnis der ZIP-Datei liegen, siehe dazu auch <<referenzierung-von-rasterdaten-im-xplangml>>.
-* Alle anderen in der XPlanGML-Datei referenzierten Anhänge müssen entweder im Basisverzeichnis der ZIP-Datei liegen oder werden über einen Link auf eine externe Datei (URL) referenziert.
+* Alle in der XPlanGML-Datei referenzierten Anhänge wie Rasterdaten und Begleitdokumente müssen entweder im Basisverzeichnis der ZIP-Datei liegen oder werden über einen Link auf eine externe Datei (URL) referenziert.
+* Referenzen auf Rasterdaten müssen entsprechend der XPlanGML-Version korrekt gesetzt sein, siehe Kapitel <<referenzierung-von-rasterdaten-im-xplangml>>.
 * Das XPlanArchiv kann Dateien in folgenden Dateiformaten enthalten:
   ** `application/xml`
   ** `image/tiff`
@@ -159,14 +159,14 @@ Beispiel:
 </gml:featureMember>
 ----
 
-Ab Version 6.0 wird nur noch die zweite Variante über das Element `<refScan/>` unterstützt.
+Ab Version 6.0 wird nur noch die Variante über das Element `<refScan/>` unterstützt.
 
 NOTE: Über die Editor-Funktion des XPlanManager können Rasterdaten über XP_RasterplanBasis oder über das Element `<refScan/>` innerhalb eines von XP_Bereich abgeleiteten Feature Type angezeigt werden. Weitere Informationen dazu auch im Kapitel <<xplanmanager-web-editieren>>.
 
 [[voraussetzungen-fuer-die-rasterdaten]]
 ===== Voraussetzungen für die Rasterdaten
 
-Um Rasterdaten importieren und diese über den XPlanWMS-Ebene zur Verfügung
+Um Rasterdaten importieren und diese über die XPlanWMS-Ebene zur Verfügung
 stellen zu können, müssen die Daten folgende Anforderungen erfüllen.
 
 Die Unterstützung verschiedener Rasterdatenformate ist vom gesetzten

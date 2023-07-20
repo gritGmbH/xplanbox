@@ -21,8 +21,10 @@
 package de.latlon.xplan.planwerkwms;
 
 import de.latlon.xplan.planwerkwms.jaxb.Planwerk;
+import org.apache.commons.io.IOUtils;
 import org.deegree.services.OWS;
 import org.deegree.services.OWSProvider;
+import org.deegree.services.config.ApiKey;
 import org.deegree.services.controller.OGCFrontController;
 import org.deegree.workspace.ResourceIdentifier;
 import org.deegree.workspace.Workspace;
@@ -30,6 +32,7 @@ import org.deegree.workspace.Workspace;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -39,8 +42,17 @@ import java.util.List;
  */
 public class DeletePlanwerkServlet extends HttpServlet {
 
+	private static ApiKey apiKey = new ApiKey();
+
 	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		try {
+			apiKey.validate(req);
+		}
+		catch (SecurityException e) {
+			resp.setStatus(403);
+			IOUtils.write("There were security concerns: " + e.getLocalizedMessage() + "\n", resp.getOutputStream());
+		}
 		String pathInfo = req.getPathInfo();
 		if (pathInfo != null) {
 			int planId = Integer.parseInt(pathInfo.substring(1));

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -21,7 +21,7 @@
 package de.latlon.xplan.manager.metadata;
 
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
-import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.metadata.csw.CswClient;
 import de.latlon.xplan.manager.metadata.csw.PlanRecordMetadata;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
@@ -43,10 +43,10 @@ import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -62,7 +62,7 @@ public class MetadataCouplingHandlerTest {
 		PlanRecordMetadata planRecordMetadata = new PlanRecordMetadata("id", "http://test.de/id");
 		String planName = "TestPlan1";
 		CoupledResourceConfiguration config = createConfig();
-		XPlanDao xPlanDao = mock(XPlanDao.class);
+		XPlanManagerDao xPlanDao = mock(XPlanManagerDao.class);
 		CswClient cswClient = mockCswClient(planRecordMetadata, planName);
 		MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler(xPlanDao, config, cswClient);
 
@@ -83,7 +83,7 @@ public class MetadataCouplingHandlerTest {
 	public void testProcessMetadataCoupling_UnavailableRecord() throws Exception {
 		String planName = "TestPlan2";
 		CoupledResourceConfiguration config = createConfig();
-		XPlanDao xPlanDao = mock(XPlanDao.class);
+		XPlanManagerDao xPlanDao = mock(XPlanManagerDao.class);
 		CswClient cswClient = mockCswClient(null, planName);
 		MetadataCouplingHandler metadataCouplingHandler = new MetadataCouplingHandler(xPlanDao, config, cswClient);
 

@@ -81,6 +81,24 @@ Show system and application configuration</con:description>
           <con:status>200</con:status>
           <con:params/>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>text/html; charset=iso-8859-1</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+          <con:element>html</con:element>
+        </con:representation>
         <con:request name="Request 1" id="e9ab8dcf-b755-40af-baf7-aa17a2ca4cdc" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
@@ -633,11 +651,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="8dc5f71d-f103-4943-861e-3cc0043d31bd" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -998,9 +1018,15 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>404</con:status>
+          <con:status>404 405</con:status>
           <con:params/>
           <con:element>html</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
         </con:representation>
         <con:request name="Request 1" id="86128e07-a3ed-4a8e-abb8-780c510deef1" mediaType="application/json">
           <con:settings/>
@@ -1310,7 +1336,7 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>500 400 404</con:status>
+          <con:status>500 400 404 405</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -1344,7 +1370,7 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>application/json</con:mediaType>
-          <con:status>406</con:status>
+          <con:status>406 415</con:status>
           <con:params/>
         </con:representation>
         <con:request name="Request 1" id="8c83a30b-1df8-4785-9061-49bab1b2dd62" mediaType="application/json">
@@ -1392,7 +1418,7 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>500 404</con:status>
+          <con:status>500 404 405</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -1932,7 +1958,38 @@ assert json.version != null</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:properties/>
+      <con:testStep type="transfer" name="Property Transfer" id="d642ba2e-52b3-4a24-be70-926031e418ea">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrlNull</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrl</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET XX X.X XX showConfig</con:sourceStep>
+            <con:sourcePath>$.documentUrl</con:sourcePath>
+            <con:targetType>documentUrl</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>null</con:name>
+          <con:value>null</con:value>
+        </con:property>
+      </con:properties>
     </con:testCase>
     <con:testCase id="590e4313-3d64-4a15-ba7b-622018c5b711" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/plan] located at [/plan]</con:description>
@@ -4127,7 +4184,7 @@ assert actualHeader != null</scriptText>
       <con:testStep type="restrequest" name="POST SO 5.3 sF,sG,Ss,iI importPlan" id="38d3fea9-8dd1-4841-8a48-8f3c91f4e32e">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST SO 5.3 sF,sG,Ss importPlan" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+          <con:restRequest name="POST SO 5.3 sF,sG,Ss,iI importPlan" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
@@ -6604,22 +6661,38 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="id">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzURL, id and referenzName">
               <con:configuration>
-                <path>$[?(@.referenzURL == 'postDok.pdf')].id</path>
-                <content>[test-name-dokument-postDokpdf]</content>
+                <path>$[?(@.referenzURL contains 'postDok.pdf' &amp;&amp; @.id contains 'postDokpdf')].referenzName</path>
+                <content>[test-name-dokument]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzName">
+            <con:assertion type="GroovyScriptAssertion" id="070a8d72-1f4a-458e-a2d1-e234f61854ea" name="documentUrl">
               <con:configuration>
-                <path>$[?(@.referenzURL == 'postDok.pdf')].referenzName</path>
-                <content>[test-name-dokument]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -6636,10 +6709,10 @@ assert expectedHeader == actualHeader</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 5.0 pI verifyStatusExpectError" id="1bbfba5d-e485-4576-ba2b-87db4e7619f6">
+      <con:testStep type="restrequest" name="POST BP 5.0 pI expectErrorDokumentAlreadyExists" id="1bbfba5d-e485-4576-ba2b-87db4e7619f6">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument" methodName="addDokument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 5.0 pI verifyStatusExpectError" id="8aad00fe-947f-4b38-bdd9-557d8c930799" mediaType="multipart/form-data" postQueryString="false">
+          <con:restRequest name="POST BP 5.0 pI expectErrorDokumentAlreadyExists" id="8aad00fe-947f-4b38-bdd9-557d8c930799" mediaType="multipart/form-data" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -6776,13 +6849,38 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="id">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzURL, id and typ">
               <con:configuration>
-                <path>$[?(@.referenzURL == 'postDok.pdf')].id</path>
-                <content>[-postDokpdf]</content>
+                <path>$[?(@.referenzURL contains 'postDok.pdf' &amp;&amp; @.id contains 'postDokpdf')].typ</path>
+                <content>[1010]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="cabb8ec5-b3d9-4de8-a349-fba151d89669" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -6896,13 +6994,38 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="id">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzURL, id and typ">
               <con:configuration>
-                <path>$[?(@.referenzURL == 'postDok.pdf')].id</path>
-                <content>[-postDokpdf]</content>
+                <path>$[?(@.referenzURL contains 'postDok.pdf' &amp;&amp; @.id contains 'postDokpdf')].typ</path>
+                <content>[1010]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="93c1a01a-9ad6-458c-9695-40508b51e07c" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7016,13 +7139,38 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="id">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzURL, id and typ">
               <con:configuration>
-                <path>$[?(@.referenzURL == 'postDok.pdf')].id</path>
-                <content>[-postDokpdf]</content>
+                <path>$[?(@.referenzURL contains 'postDok.pdf' &amp;&amp; @.id contains 'postDokpdf')].typ</path>
+                <content>[1010]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="d689221f-73ba-4b62-86bb-38c472af86fa" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7054,10 +7202,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzURL, id and typ">
               <con:configuration>
-                <path>$[0].id</path>
-                <content>-StErhVo_Eppendorf_Hoheluft-Ostpdf</content>
+                <path>$[?(@.referenzURL contains 'StErhVo_Eppendorf_Hoheluft-Ost.pdf' &amp;&amp; @.id contains 'StErhVo_Eppendorf_Hoheluft-Ostpdf')].typ</path>
+                <content>[1065]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7135,22 +7283,47 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="id">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="referenzURL, id and typ">
               <con:configuration>
-                <path>$[?(@.referenzURL == 'StErhVo_Eppendorf_Hoheluft-Ost.pdf')].id</path>
-                <content>[-StErhVo_Eppendorf_Hoheluft-Ostpdf]</content>
+                <path>$[?(@.referenzURL contains 'StErhVo_Eppendorf_Hoheluft-Ost.pdf' &amp;&amp; @.id contains 'StErhVo_Eppendorf_Hoheluft-Ostpdf')].typ</path>
+                <content>[1065]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="newId">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="added referenzURL, id and typ">
               <con:configuration>
-                <path>$[?(@.referenzURL == 'postDok.pdf')].id</path>
-                <content>[-postDokpdf]</content>
+                <path>$[?(@.referenzURL contains 'postDok.pdf' &amp;&amp; @.id contains 'postDokpdf')].typ</path>
+                <content>[1010]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="245e476d-8b04-4d13-a87c-4605904c7c02" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7165,6 +7338,55 @@ assert expectedHeader == actualHeader</scriptText>
               <entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="b5eaa7eb-eeea-42c8-a712-cda4bed899e0">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET FP 5.0 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>dokumentId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdLP60</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET LP 6.0 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>dokumentIdLP60</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdRP51</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET RP 5.1 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>dokumentIdRP51</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdSO53</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET SO 5.3 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>dokumentIdSO53</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:properties/>
@@ -7306,6 +7528,22 @@ assert expectedHeader == actualHeader</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer BP 5.3" id="43d347ca-b625-401c-adc4-0f0a60d811a3">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT BP 5.3 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>dokumentId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="PUT BP 5.3 pI,id modifyStatusExpectError" id="2f67756f-e1cf-4981-a417-c93b531a1975">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument/{id}" methodName="replaceDokumentById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -7365,13 +7603,30 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentId}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="02158875-ce20-4759-8c60-7392b1b6830b" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7384,7 +7639,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdDokument}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7414,7 +7669,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdDokument}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7458,9 +7713,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-postDokpdf"/>
+              <con:entry key="id" value="${#TestSuite#dokumentId}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer FP 5.0" id="0eaf1e74-ff0c-4eae-8b09-2b329c35d3f7">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdFP50</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT FP 5.0 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>dokumentIdFP50</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET FP 5.0 pI,id currentStatus" id="bdf197ac-2702-4784-95a9-2d02b69a9176">
@@ -7481,10 +7752,27 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="3836d339-5fe3-476f-8a0c-9a18ef06c962" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdFP50}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="033bb56f-9377-44bb-8a1b-5c5a77037b24" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7497,7 +7785,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdFP50}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7517,10 +7805,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdFP50}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7536,7 +7824,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdFP50}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7566,7 +7854,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdFP50}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7610,9 +7898,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-postDokpdf"/>
+              <con:entry key="id" value="${#TestSuite#dokumentIdLP60}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer LP 6.0" id="196bddc7-ab6a-44a5-8e1e-3d9041251dbd">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdLP60</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT LP 6.0 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>dokumentIdLP60</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET LP 6.0 pI,id currentStatus" id="3bf74208-f0bf-4e6d-9e39-991f34c5a3c2">
@@ -7633,10 +7937,27 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="5ecee9a6-2d37-45a7-8a2d-75015c979f00" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdLP60}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="0e9af35e-1a56-4a34-b569-c9f4f866eddf" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7649,7 +7970,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdLP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7669,10 +7990,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdLP60}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7688,7 +8009,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdLP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7718,7 +8039,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdLP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7763,9 +8084,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-postDokpdf"/>
+              <con:entry key="id" value="${#TestSuite#dokumentIdRP51}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer RP 5.1" id="b43eb4fa-427b-4b68-86b1-303fc2113d81">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdRP51</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT RP 5.1 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>dokumentIdRP51</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET RP 5.1 pI,id currentStatus" id="f22b9367-5968-4ea5-9f4f-5114b4ce4ed7">
@@ -7786,10 +8123,27 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="aa3a42b2-e101-4a14-8356-9ec9295705b6" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdRP51}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="f84491d9-7734-4886-850f-e56add31d5c3" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7802,7 +8156,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdRP51}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7822,10 +8176,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdRP51}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7841,7 +8195,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdRP51}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7871,7 +8225,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdRP51}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7915,9 +8269,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-postDokpdf"/>
+              <con:entry key="id" value="${#TestSuite#dokumentIdSO53}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer SO 5.3" id="385d5409-fd1a-456f-8f18-3f5344e329ba">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdSO53</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT SO 5.3 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>dokumentIdSO53</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET SO 5.3 pI,id currentStatus" id="e6c53b99-ee75-444f-93f7-20e1be013624">
@@ -7938,10 +8308,27 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="7960d9b0-0476-4a5b-a1df-e51533d43a33" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdSO53}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="762d662d-fe66-4e93-94e1-b43cea2c19ef" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -7954,7 +8341,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdSO53}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7974,10 +8361,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="c001bec8-5167-4de5-bb1d-52e047500fa7" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putDokpdf</content>
+                <content>${#TestCase#dokumentIdSO53}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -7993,7 +8380,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdSO53}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -8023,12 +8410,82 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-putDokpdf"/>
+              <con:entry key="id" value="${#TestCase#dokumentIdSO53}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:properties/>
+      <con:testStep type="transfer" name="Cleanup" id="23d0275a-0754-4617-a373-0a2547e961fa">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentId</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdFP50</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdFP50</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdLP60</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdLP60</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdRP51</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdRP51</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdSO53</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdSO53</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>dokumentId</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>dokumentIdFP50</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>dokumentIdLP60</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>dokumentIdRP51</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>dokumentIdSO53</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>empty</con:name>
+          <con:value/>
+        </con:property>
+      </con:properties>
     </con:testCase>
     <con:testCase id="3bfb0623-257f-4f28-b076-99c7baabf23d" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId}/gueltigkeit/ TestCase" searchProperties="true">
       <con:description>TestCase generated for REST Resource [/plan/{planId}/gueltigkeit/] located at [/plan/{planId}/gueltigkeit/]</con:description>
@@ -8249,10 +8706,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="referenzURL, id and bereichNummer">
               <con:configuration>
-                <path>$[0].id</path>
-                <content>-HafenCity13png</content>
+                <path>$[?(@.referenzURL contains 'HafenCity13.png' &amp;&amp; @.id contains 'HafenCity13png')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8325,10 +8782,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8442,22 +8899,38 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="georefURL, id and referenzName">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
-                <content>[postImg-postImgpng]</content>
+                <path>$[?(@.georefURL contains 'postImg.pgw' &amp;&amp; @.id contains 'postImgpng')].referenzName</path>
+                <content>[postImg]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="referenzName">
+            <con:assertion type="GroovyScriptAssertion" id="77680dee-ebd1-4d19-b7c6-c22d51c6790f" name="documentUrl">
               <con:configuration>
-                <path>$[?(@.id == 'postImg-postImgpng')].referenzName</path>
-                <content>[postImg]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -8599,8 +9072,8 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich1">
               <con:configuration>
-                <path>$[0].id</path>
-                <content>-BPlan001_5-2_Bereich0png</content>
+                <path>$[?(@.referenzURL contains 'BPlan001_5-2_Bereich0.png' &amp;&amp; @.id contains 'BPlan001_5-2_Bereich0png')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8608,8 +9081,8 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich2">
               <con:configuration>
-                <path>$[1].id</path>
-                <content>-BPlan001_5-2_Bereich1png</content>
+                <path>$[?(@.referenzURL contains 'BPlan001_5-2_Bereich1.png' &amp;&amp; @.id contains 'BPlan001_5-2_Bereich1png')].bereichNummer</path>
+                <content>[1]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8644,10 +9117,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8711,8 +9184,8 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich1">
               <con:configuration>
-                <path>$[0].id</path>
-                <content>postImg-postImgpng</content>
+                <path>$[?(@.referenzURL contains 'postImg.png' &amp;&amp; @.id contains 'postImgpng')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8720,8 +9193,8 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich2">
               <con:configuration>
-                <path>$[1].id</path>
-                <content>-BPlan001_5-2_Bereich0png</content>
+                <path>$[?(@.referenzURL contains 'BPlan001_5-2_Bereich0.png' &amp;&amp; @.id contains 'BPlan001_5-2_Bereich0png')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8729,11 +9202,36 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich3">
               <con:configuration>
-                <path>$[2].id</path>
-                <content>-BPlan001_5-2_Bereich1png</content>
+                <path>$[?(@.referenzURL contains 'BPlan001_5-2_Bereich1.png' &amp;&amp; @.id contains 'BPlan001_5-2_Bereich1png')].bereichNummer</path>
+                <content>[1]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="9d1b065e-c1a8-4afe-8d78-083087c7da95" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -8765,10 +9263,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="id">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8828,13 +9326,38 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="id">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="referenzURL, id and bereichNummer">
               <con:configuration>
-                <path>$[0].id</path>
-                <content>postImg-postImgpng</content>
+                <path>$[?(@.referenzURL contains 'postImg.png' &amp;&amp; @.id contains 'postImgpng')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="93ff1208-4ecf-46ce-b60a-e5d8eac5ed92" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -8904,10 +9427,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8967,13 +9490,38 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="georefURL, id and bereichNummer">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
-                <content>[postImg-postImgpng]</content>
+                <path>$[?(@.georefURL contains 'postImg.pgw' &amp;&amp; @.id contains 'postImgpng')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="05d05768-a825-474b-a512-8230f9f3b7bb" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9103,10 +9651,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9165,13 +9713,38 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="georefURL, id and bereichNummer">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
-                <content>[postImg-postImgpng]</content>
+                <path>$[?(@.georefURL contains 'postImg.pgw' &amp;&amp; @.id contains 'postImgpng')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="5dcdb963-c9b3-4d80-9c30-22ddd9ff2344" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9241,10 +9814,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9303,13 +9876,38 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="georefURL, id and bereichNummer">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
-                <content>[postImg-postImgpng]</content>
+                <path>$[?(@.georefURL contains 'postImg.pgw' &amp;&amp; @.id contains 'postImgpng')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="ae6802c0-9e69-48d0-ad2c-598ff1b8225a" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9379,10 +9977,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
               <con:configuration>
-                <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <path>$.referenzURL</path>
+                <content>postImg.png</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9442,13 +10040,38 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="georefURL, id and bereichNummer">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
-                <content>[postImg-postImgpng]</content>
+                <path>$[?(@.georefURL contains 'postImg.pgw' &amp;&amp; @.id contains 'postImgpng')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="16967a01-eb5b-43ab-9287-b6422866f523" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9463,6 +10086,99 @@ assert expectedHeader == actualHeader</scriptText>
               <entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="26a6db05-ee42-4b40-a95f-5d1658c25093">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET BP 5.3 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[1]id</con:sourcePath>
+            <con:targetType>rasterbasisId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdBereiche</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET BP 5.3 pI verifyStatusBereiche</con:sourceStep>
+            <con:sourcePath>$.[2]id</con:sourcePath>
+            <con:targetType>rasterbasisIdBereiche</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdBereicheSecond</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET BP 5.3 pI verifyStatusBereiche</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>rasterbasisIdBereicheSecond</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdBP60</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET BP 6.0 pI currentStatusGML</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>rasterbasisIdBP60</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdFP50</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET FP 5.0 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>rasterbasisIdFP50</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdLP60</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET LP 6.0 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>rasterbasisIdLP60</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdRP51</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET RP 5.1 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>rasterbasisIdRP51</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdSO53</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>GET SO 5.3 pI verifyStatus</con:sourceStep>
+            <con:sourcePath>$.[0]id</con:sourcePath>
+            <con:targetType>rasterbasisIdSO53</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:properties/>
@@ -9485,10 +10201,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>-HafenCity13png</content>
+                <content>${#TestSuite#rasterbasisId}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9504,7 +10220,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-HafenCity13png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9556,9 +10272,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-HafenCity13png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer BP 5.3" id="502346e0-0263-4588-a427-7dd4bf8615e6">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT BP 5.3 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>rasterbasisId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="PUT BP 5.3 pI,id modifyStatusUnsupportedContentTypeExpectError" id="06ad277f-e481-40e8-8997-613e2f6934f2">
@@ -9600,7 +10332,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-HafenCity13png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9623,10 +10355,27 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putImgpng</content>
+                <content>${#TestCase#rasterbasisId}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="c0d71d89-a27d-4380-87f8-d3c14679734a" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9639,7 +10388,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9669,7 +10418,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9699,7 +10448,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-HafenCity13png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9729,7 +10478,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9780,7 +10529,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
-              <con:entry key="id" value="-HafenCity13png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9831,7 +10580,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="2000000000"/>
-              <con:entry key="id" value="-HafenCity13png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisId}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9851,10 +10600,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>-BPlan001_5-2_Bereich1png</content>
+                <content>${#TestSuite#rasterbasisIdBereiche}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9870,7 +10619,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdBereiche}"/>
-              <con:entry key="id" value="-BPlan001_5-2_Bereich1png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBereiche}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9900,7 +10649,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdBereiche}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBereicheSecond}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -9922,8 +10671,8 @@ assert expectedHeader == actualHeader</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich1">
               <con:configuration>
-                <path>$[0].id</path>
-                <content>-BPlan001_5-2_Bereich0png</content>
+                <path>$[?(@.id contains 'BPlan001_5-2_Bereich0png')].bereichNummer</path>
+                <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9932,10 +10681,35 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="Bereich2">
               <con:configuration>
                 <path>$[1].id</path>
-                <content>-BPlan001_5-2_Bereich1png</content>
+                <content>${#TestSuite#rasterbasisIdBereiche}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="1b06ed35-be44-4933-8881-ebca85e2a296" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(singleReferenzURL in json.referenzURL){
+		if (singleReferenzURL.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9999,7 +10773,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdBereiche}"/>
-              <con:entry key="id" value="-BPlan001_5-2_Bereich1png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBereiche}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10029,7 +10803,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdBereiche}"/>
-              <con:entry key="id" value="-BPlan001_5-2_Bereich1png"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBereiche}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10046,25 +10820,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//rasterbasis/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="801d9d24-d33b-49de-876e-7d0e2b2e37b2" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
-              <con:configuration>
-                <path>$.id</path>
-                <content>-putImgpng</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="bereichNummer">
-              <con:configuration>
-                <path>$.bereichNummer</path>
-                <content>1</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
+                <codes>404</codes>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10077,7 +10833,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdBereiche}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBereicheSecond}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10100,7 +10856,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>postImg-postImgpng</content>
+                <content>${#TestSuite#rasterbasisIdBP60}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -10116,7 +10872,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60asGML}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10136,6 +10892,23 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="1a7893ad-cd8f-49bc-b6f7-7f7d11213c32" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -10146,7 +10919,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60asGML}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdBP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10198,9 +10971,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdFP50}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer FP 5.0" id="e4321b42-7e73-49e5-8cfe-e2c5af7956f4">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdFP50</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT FP 5.0 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>rasterbasisIdFP50</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET FP 5.0 pI,id currentStatus" id="77b68847-a3db-4465-b8d5-ed9c7eab6185">
@@ -10218,13 +11007,30 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putImgpng</content>
+                <content>${#TestCase#rasterbasisIdFP50}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="ef977676-d216-490e-9a3c-0fbbd27b8682" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10237,7 +11043,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdFP50}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10267,7 +11073,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdFP50}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10297,7 +11103,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdFPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdFP50}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10348,9 +11154,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdLP60}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer LP 6.0" id="63ddf353-0db6-4c7c-99bc-7732d4a737e2">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdLP60</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT LP 6.0 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>rasterbasisIdLP60</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET LP 6.0 pI,id currentStatus" id="afa55a91-11f5-4cc8-93bb-e1a4581140f5">
@@ -10368,13 +11190,30 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putImgpng</content>
+                <content>${#TestCase#rasterbasisIdLP60}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="9b8cfbb6-3b77-4bc0-a791-98ab562e6c6c" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10387,7 +11226,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdLP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10417,7 +11256,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdLP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10447,7 +11286,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdLPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdLP60}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10498,9 +11337,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdRP51}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer RP 5.1" id="b6a80b6c-8b95-4320-9208-9711d9be3b03">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdRP51</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT RP 5.1 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>rasterbasisIdRP51</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET RP 5.1 pI,id currentStatus" id="e1db8560-afb6-47e4-b787-3cf5ebb46c7d">
@@ -10518,13 +11373,30 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putImgpng</content>
+                <content>${#TestCase#rasterbasisIdRP51}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="e0fa4c17-2f27-47d9-b72b-2057fae99c9c" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10537,7 +11409,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdRP51}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10567,7 +11439,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdRP51}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10597,7 +11469,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdRPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdRP51}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10648,9 +11520,25 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="postImg-postImgpng"/>
+              <con:entry key="id" value="${#TestSuite#rasterbasisIdSO53}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer SO 5.3" id="d6c2ee98-0de8-4d24-b27b-1de477e59819">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdSO53</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>PUT SO 5.3 pI,id modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>rasterbasisIdSO53</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET SO 5.3 pI,id currentStatus" id="4e3cec0d-9592-4ce8-a6a9-db3634063c0a">
@@ -10668,13 +11556,30 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
-                <content>-putImgpng</content>
+                <content>${#TestCase#rasterbasisIdSO53}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="fe5ad020-63e6-4fcc-bc7d-84018bb562c1" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert json.referenzURL.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -10687,7 +11592,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdSO53}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10717,7 +11622,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdSO53}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -10747,12 +11652,82 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}"/>
-              <con:entry key="id" value="-putImgpng"/>
+              <con:entry key="id" value="${#TestCase#rasterbasisIdSO53}"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:properties/>
+      <con:testStep type="transfer" name="Cleanup" id="24df644f-cd0c-49f4-9604-4d81f35326ea">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisId</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdFP50</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdFP50</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdLP60</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdLP60</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdRP51</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdRP51</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdSO53</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdSO53</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>rasterbasisId</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>rasterbasisIdFP50</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>rasterbasisIdLP60</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>rasterbasisIdRP51</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>rasterbasisIdSO53</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>empty</con:name>
+          <con:value/>
+        </con:property>
+      </con:properties>
     </con:testCase>
     <con:testCase id="ba7af4cb-061c-4b69-b27d-900fd2e4c588" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId}/text/ TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/plan/{planId}/text/] located at [/plan/{planId}/text/]</con:description>
@@ -13519,16 +14494,16 @@ assert expectedHeader == actualHeader</scriptText>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>currentPlanIdImport</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:targetType>currentPlanIdImport</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdSkipAll</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdSkipAll</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13539,8 +14514,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdXPlanGML53</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdXPlanGML53</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13551,8 +14526,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdText</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdText</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13563,8 +14538,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdAenderung</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdAenderung</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13575,8 +14550,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdDokument</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdDokument</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13587,8 +14562,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdFPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdFPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13599,8 +14574,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdMultiplePlansHafenCity11</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdMultiplePlansHafenCity11</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13611,8 +14586,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdMultiplePlansHafenCity14</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdMultiplePlansHafenCity14</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13623,8 +14598,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdV2</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdV2</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13635,8 +14610,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdSkipLaufrichtungTrue</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdSkipLaufrichtungTrue</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13647,8 +14622,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdBereiche</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdBereiche</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13659,8 +14634,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdXPlanGML60</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdXPlanGML60</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13671,8 +14646,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdSOPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdSOPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13683,8 +14658,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdRPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdRPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13695,8 +14670,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdLPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdLPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13707,8 +14682,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>textIdSOPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>textIdSOPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13719,8 +14694,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>textIdLPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>textIdLPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13731,8 +14706,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>textIdFPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>textIdFPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13743,8 +14718,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>textIdRPlan</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>textIdRPlan</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13755,8 +14730,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdBPlanOhneBereich</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdBPlanOhneBereich</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13767,8 +14742,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>planId40</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>planId40</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13779,8 +14754,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>currentPlanIdXPlanGML60asGML</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>currentPlanIdXPlanGML60asGML</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -13791,8 +14766,8 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>currentPlanIdMultiplePlansWfsFcAdditionalObjects0</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:targetType>currentPlanIdMultiplePlansWfsFcAdditionalObjects0</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:type>XPATH</con:type>
@@ -13800,23 +14775,148 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>currentPlanIdMultiplePlansWfsFcAdditionalObjects1</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:targetType>currentPlanIdMultiplePlansWfsFcAdditionalObjects1</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>currentPlanIdPlanWfsFc</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:targetType>currentPlanIdPlanWfsFc</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdBPXPlanGml602</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>planIdBPXPlanGml602</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdFPXPlanGml602</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>planIdFPXPlanGml602</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisId</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdBereiche</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdBereiche</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdBereicheSecond</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdBereicheSecond</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdBP60</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdBP60</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdFP50</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdFP50</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdLP60</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdLP60</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdRP51</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdRP51</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>rasterbasisIdSO53</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>rasterbasisIdSO53</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentId</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdLP60</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdLP60</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdRP51</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdRP51</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>dokumentIdSO53</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>dokumentIdSO53</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>documentUrl</con:name>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
+            <con:targetType>documentUrl</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
         </con:config>
       </con:testStep>
-      <con:properties/>
+      <con:properties>
+        <con:property>
+          <con:name>empty</con:name>
+          <con:value/>
+        </con:property>
+      </con:properties>
     </con:testCase>
     <con:properties>
       <con:property>
@@ -13925,11 +15025,63 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
       <con:property>
         <con:name>planIdBPXPlanGml602</con:name>
-        <con:value>19</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>planIdFPXPlanGml602</con:name>
-        <con:value>21</con:value>
+        <con:value/>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisId</con:name>
+        <con:value/>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdBereiche</con:name>
+        <con:value/>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdBereicheSecond</con:name>
+        <con:value/>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdBP60</con:name>
+        <con:value/>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdFP50</con:name>
+        <con:value/>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdLP60</con:name>
+        <con:value/>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdRP51</con:name>
+        <con:value/>
+      </con:property>
+      <con:property>
+        <con:name>rasterbasisIdSO53</con:name>
+        <con:value/>
+      </con:property>
+      <con:property>
+        <con:name>dokumentId</con:name>
+        <con:value/>
+      </con:property>
+      <con:property>
+        <con:name>dokumentIdLP60</con:name>
+        <con:value/>
+      </con:property>
+      <con:property>
+        <con:name>dokumentIdRP51</con:name>
+        <con:value/>
+      </con:property>
+      <con:property>
+        <con:name>dokumentIdSO53</con:name>
+        <con:value/>
+      </con:property>
+      <con:property>
+        <con:name>documentUrl</con:name>
+        <con:value/>
       </con:property>
     </con:properties>
   </con:testSuite>
@@ -14164,16 +15316,16 @@ assert expectedHeader == actualHeader</scriptText>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>profileId</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:targetType>profileId</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
             <con:name>planIdProfile</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath xsi:nil="true"/>
             <con:targetType>planIdProfile</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
@@ -14184,7 +15336,12 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
         </con:config>
       </con:testStep>
-      <con:properties/>
+      <con:properties>
+        <con:property>
+          <con:name>empty</con:name>
+          <con:value/>
+        </con:property>
+      </con:properties>
     </con:testCase>
     <con:properties>
       <con:property>
@@ -14197,7 +15354,7 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
     </con:properties>
   </con:testSuite>
-  <con:testSuite id="184b8268-04e3-4e5f-aada-51f5ef02a8e0" name="Codelists TestSuite" disabled="true">
+  <con:testSuite id="184b8268-04e3-4e5f-aada-51f5ef02a8e0" name="Codelists TestSuite">
     <con:settings/>
     <con:runType>SEQUENTIAL</con:runType>
     <con:testCase id="7ddf4a83-e781-4a5f-b79c-207d8863e2f5" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="externalCodelists" searchProperties="true">
@@ -14425,8 +15582,8 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>planId</con:name>
-            <con:sourceType>null</con:sourceType>
-            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourceType>empty</con:sourceType>
+            <con:sourceStep>#TestCase#</con:sourceStep>
             <con:sourcePath/>
             <con:targetType>planId</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
@@ -14439,6 +15596,10 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>empty</con:name>
           <con:value/>
         </con:property>
       </con:properties>
@@ -14466,12 +15627,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       </con:property>
     </con:properties>
   </con:testSuite>
-  <con:properties>
-    <con:property>
-      <con:name>null</con:name>
-      <con:value/>
-    </con:property>
-  </con:properties>
+  <con:properties></con:properties>
   <con:wssContainer/>
   <con:oAuth2ProfileContainer/>
   <con:oAuth1ProfileContainer/>

@@ -20,6 +20,7 @@
  */
 package de.latlon.xplanbox.api.manager.v1.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.latlon.xplanbox.api.commons.v1.model.SystemConfig;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -30,6 +31,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
 import java.util.Objects;
+
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
 /**
  * Datatype for ManagerSystemConfig.
@@ -55,6 +58,9 @@ public class ManagerSystemConfig extends SystemConfig {
 	private @Valid Boolean skipGeltungsbereich = false;
 
 	private @Valid Boolean skipLaufrichtung = false;
+
+	@JsonInclude(NON_NULL)
+	private @Valid String documentUrl;
 
 	/**
 	 * Konfiguriertes CRS für die Rasterdatenhaltung
@@ -180,6 +186,25 @@ public class ManagerSystemConfig extends SystemConfig {
 
 	public void setSkipLaufrichtung(Boolean skipLaufrichtung) {
 		this.skipLaufrichtung = skipLaufrichtung;
+	}
+
+	/**
+	 * Typ der Rasterdatenhaltung: gdal oder tiff
+	 **/
+	public ManagerSystemConfig documentUrl(String documentUrl) {
+		this.documentUrl = documentUrl;
+		return this;
+	}
+
+	@Schema(example = "http://example.org/xdokumente/api/v1/dokument/{planId}/{fileName}",
+			description = "URL ueber die alle Anlagen zu einem Plan heruntergeladen werden koennen")
+	@JsonProperty("documentUrl")
+	public String getDocumentUrl() {
+		return documentUrl;
+	}
+
+	public void setDocumentUrl(String documentUrl) {
+		this.documentUrl = documentUrl;
 	}
 
 	@Override

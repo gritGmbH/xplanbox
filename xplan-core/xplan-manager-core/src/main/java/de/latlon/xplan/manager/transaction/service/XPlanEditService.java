@@ -2,7 +2,7 @@ package de.latlon.xplan.manager.transaction.service;
 
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
-import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.XPlan;
@@ -25,11 +25,11 @@ import java.util.stream.Collectors;
  */
 public class XPlanEditService {
 
-	private final XPlanDao xplanDao;
+	private final XPlanManagerDao xplanDao;
 
 	private final XPlanDocumentManager xPlanDocumentManager;
 
-	public XPlanEditService(XPlanDao xplanDao, XPlanDocumentManager xPlanDocumentManager) {
+	public XPlanEditService(XPlanManagerDao xplanDao, XPlanDocumentManager xPlanDocumentManager) {
 		this.xplanDao = xplanDao;
 		this.xPlanDocumentManager = xPlanDocumentManager;
 	}
@@ -39,9 +39,9 @@ public class XPlanEditService {
 			byte[] xPlanGml, ExternalReferenceInfo externalReferenceInfoToUpdate,
 			ExternalReferenceInfo externalReferenceInfoToRemove, Set<String> removedRefs,
 			XPlanFeatureCollection modifiedPlanFc, FeatureCollection synFc, AdditionalPlanData xPlanMetadata,
-			Date sortDate) throws Exception {
+			Date sortDate, String internalId) throws Exception {
 		xplanDao.update(oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
-				uploadedArtefacts, removedRefs);
+				uploadedArtefacts, removedRefs, internalId);
 		updateDocuments(planId, uploadedArtefacts, externalReferenceInfoToUpdate, externalReferenceInfoToRemove);
 	}
 
