@@ -49,7 +49,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class WorkspaceRasterLayerManagerIT {
+public class WorkspaceRasterLayerManagerTestManual {
 
 	private static final String SERVICES = "services";
 

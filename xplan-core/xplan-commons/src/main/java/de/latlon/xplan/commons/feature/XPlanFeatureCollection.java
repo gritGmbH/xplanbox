@@ -36,7 +36,7 @@ import java.util.List;
  */
 public abstract class XPlanFeatureCollection {
 
-	protected final FeatureCollection features;
+	protected FeatureCollection features;
 
 	protected final XPlanType type;
 
@@ -101,6 +101,10 @@ public abstract class XPlanFeatureCollection {
 
 	public FeatureCollection getFeatures() {
 		return features;
+	}
+
+	public void setFeatures(FeatureCollection features) {
+		this.features = features;
 	}
 
 	public ExternalReferenceInfo getExternalReferenceInfo() {

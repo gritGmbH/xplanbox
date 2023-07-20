@@ -23,10 +23,8 @@ package de.latlon.xplan.manager.document;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
-import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
-import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
@@ -55,16 +53,14 @@ public class XPlanDocumentManager {
 	/**
 	 * Imports all (non raster) documents from XPlanArchive.
 	 * @param planId the id of the plan, never <code>null</code>
-	 * @param featureCollection the parsed feature collection, never <code>null</code>
+	 * @param externalReferenceInfo externalReferencesInfo containing references of the
+	 * XPlanGML, never <code>null</code>
 	 * @param xPlanArchive containing the documents, never <code>null</code>
 	 * @return
 	 * @throws StorageException if the documents could not be stored
 	 */
-	public void importDocuments(int planId, FeatureCollection featureCollection, XPlanArchive xPlanArchive)
+	public void importDocuments(int planId, ExternalReferenceInfo externalReferenceInfo, XPlanArchive xPlanArchive)
 			throws StorageException {
-		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
-		ExternalReferenceInfo externalReferenceInfo = externalReferenceScanner.scan(featureCollection,
-				xPlanArchive.getVersion());
 		List<String> referencesToAdd = collectNonHttpReferences(externalReferenceInfo.getNonRasterRefs());
 		StorageEvent storageEvent = new StorageEvent();
 		try {

@@ -50,8 +50,8 @@ public class WorkspaceReloaderTest {
 	@Test
 	public void testReloadWorkspaceWithInvalidUrlShouldFail() {
 		List<String> urlList = singletonList("http://invalid-url");
-		WorkspaceReloaderConfiguration configuration = new WorkspaceReloaderConfiguration(urlList, "user", "password",
-				ALL);
+		WorkspaceReloaderConfiguration configuration = new WorkspaceReloaderConfiguration(urlList, null, "user",
+				"password", ALL);
 		WorkspaceReloader workspaceReloader = new WorkspaceReloader(configuration);
 		boolean isReloadSuccessful = workspaceReloader.reloadWorkspace(1);
 
@@ -61,8 +61,8 @@ public class WorkspaceReloaderTest {
 	@Test
 	public void testReloadWorkspaceWithTwoInvalidUrlsShouldFail() {
 		List<String> urlList = asList("http://invalid-url1", "http://invalid-url2");
-		WorkspaceReloaderConfiguration configuration = new WorkspaceReloaderConfiguration(urlList, "user", "password",
-				ALL);
+		WorkspaceReloaderConfiguration configuration = new WorkspaceReloaderConfiguration(urlList, null, "user",
+				"password", ALL);
 		WorkspaceReloader workspaceReloader = new WorkspaceReloader(configuration);
 		boolean isReloadSuccessful = workspaceReloader.reloadWorkspace(1);
 
@@ -72,8 +72,8 @@ public class WorkspaceReloaderTest {
 	@Test
 	public void testReloadWorkspaceWithThreeInvalidUrlsShouldFail() {
 		List<String> urlList = asList("http://invalid-url1", "http://invalid-url2", "http://invalid-url3");
-		WorkspaceReloaderConfiguration configuration = new WorkspaceReloaderConfiguration(urlList, "user", "password",
-				ALL);
+		WorkspaceReloaderConfiguration configuration = new WorkspaceReloaderConfiguration(urlList, "apiKey", "user",
+				"password", ALL);
 		WorkspaceReloader workspaceReloader = new WorkspaceReloader(configuration);
 		boolean isReloadSuccessful = workspaceReloader.reloadWorkspace(1);
 

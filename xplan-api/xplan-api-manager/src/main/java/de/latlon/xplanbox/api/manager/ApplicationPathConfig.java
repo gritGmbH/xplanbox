@@ -75,7 +75,7 @@ public class ApplicationPathConfig extends ResourceConfig {
 		packages("org.glassfish.jersey.examples.multipart");
 		property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 		OpenAPI openApi = new OpenAPI();
-		openApi.setInfo(new Info().title("XPlanManagerAPI").version("1.2.0").description("XPlanManager REST API")
+		openApi.setInfo(new Info().title("XPlanManagerAPI").version("1.3.0").description("XPlanManager REST API")
 				.termsOfService(getTermsOfService(managerApiConfiguration))
 				.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));
 		addContact(openApi, managerApiConfiguration);

@@ -54,7 +54,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @ContextConfiguration(classes = { AmazonS3TestContext.class, S3StorageTestContext.class })
 @ActiveProfiles({ "s3img", "mock" })
 @TestPropertySource("classpath:s3Mock.properties")
-public class S3StorageIT {
+public class S3StorageTestManual {
 
 	@Autowired
 	private S3Storage s3Storage;

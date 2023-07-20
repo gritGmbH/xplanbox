@@ -35,7 +35,7 @@ import org.junit.Test;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
-public class ActiveDirectoryRoleHierarchyScannerIT {
+public class ActiveDirectoryRoleHierarchyScannerTestManual {
 
 	private static final String PROVIDERURL = "ldap://adserver:389";
 

@@ -29,6 +29,8 @@ include::gdal.adoc[]
 
 include::mapserver.adoc[]
 
+include::externeReferenzen.adoc[]
+
 include::massstabsbereich.adoc[]
 
 include::sortierung.adoc[]

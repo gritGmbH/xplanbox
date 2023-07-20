@@ -16,7 +16,7 @@ Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (Vorgabewert ist das _.deegree_ im Home-V
 * _xplan-manager-config_
 * _xplan-validator-config_ (nur erforderlich, wenn ausschließlich der XPlanValidator installiert werden soll)
 
-IMPORTANT: Die Verzeichnisse mit der Konfiguration der Komponenten der xPlanBox müssen alle unterhalb desselben Basis-Verzeichnisses liegen.
+IMPORTANT: Die Verzeichnisse mit der Konfiguration der Komponenten der xPlanBox müssen alle unterhalb desselben Basisverzeichnisses liegen.
 
 [[web-anwendungen]]
 ==== Web-Anwendungen

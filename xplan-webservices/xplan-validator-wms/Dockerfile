@@ -10,9 +10,6 @@ ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree
 
 USER root
 
-# configure tomcat
-ADD tomcat-users.xml /opt/bitnami/tomcat/conf/tomcat-users.xml
-
 # add xplan-validator-wms directly unpacked
 ADD target/xplan-validator-wms-*.war /tmp/
 RUN mkdir /opt/bitnami/tomcat/webapps/$WEB_CONTEXT \

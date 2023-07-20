@@ -31,7 +31,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class CswClientIT {
+public class CswClientTestManual {
 
 	private static final String CSW_GET_CAPABILITIESURL = "https://metaver.de/csw?SERVICE=CSW&REQUEST=GetCapabilities";
 

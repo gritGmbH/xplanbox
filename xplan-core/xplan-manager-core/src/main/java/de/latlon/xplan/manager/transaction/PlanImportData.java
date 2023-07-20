@@ -5,7 +5,6 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.feature.FeatureCollection;
 
 import java.util.Date;
 
@@ -25,8 +24,6 @@ public class PlanImportData {
 
 	private final ICRS crs;
 
-	private final FeatureCollection synFc;
-
 	private final XPlanFeatureCollection xPlanFC;
 
 	private final String internalId;
@@ -34,18 +31,17 @@ public class PlanImportData {
 	private int planId;
 
 	public PlanImportData(XPlanArchive xPlanArchive, PlanStatus planStatus, AdditionalPlanData xPlanMetadata,
-			Date sortDate, ICRS crs, FeatureCollection synFc, XPlanFeatureCollection xPlanFc) {
-		this(xPlanArchive, planStatus, xPlanMetadata, sortDate, crs, synFc, xPlanFc, null);
+			Date sortDate, ICRS crs, XPlanFeatureCollection xPlanFc) {
+		this(xPlanArchive, planStatus, xPlanMetadata, sortDate, crs, xPlanFc, null);
 	}
 
 	public PlanImportData(XPlanArchive xPlanArchive, PlanStatus planStatus, AdditionalPlanData xPlanMetadata,
-			Date sortDate, ICRS crs, FeatureCollection synFc, XPlanFeatureCollection xPlanFc, String internalId) {
+			Date sortDate, ICRS crs, XPlanFeatureCollection xPlanFc, String internalId) {
 		this.xPlanArchive = xPlanArchive;
 		this.planStatus = planStatus;
 		this.xPlanMetadata = xPlanMetadata;
 		this.sortDate = sortDate;
 		this.crs = crs;
-		this.synFc = synFc;
 		this.xPlanFC = xPlanFc;
 		this.internalId = internalId;
 	}
@@ -68,10 +64,6 @@ public class PlanImportData {
 
 	public ICRS getCrs() {
 		return crs;
-	}
-
-	public FeatureCollection getSynFc() {
-		return synFc;
 	}
 
 	public XPlanFeatureCollection getxPlanFC() {
