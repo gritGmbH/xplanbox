@@ -20,14 +20,14 @@
 <con:soapui-project id="4497dcb6-2c5f-4d87-bcee-3913ada70576" activeEnvironment="Default" name="xplan-webservices" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" defaultScriptLanguage="Groovy" xmlns:con="http://eviware.com/soapui/config">
   <con:description>For local execution use following property values:
 
-baseUrl=http://localhost:8083
+baseUrlServices=http://localhost:8083
 baseUrlInspirePlu=http://localhost:8084
 baseUrlManagerApi=http://localhost:8086/xplan-api-manager
 baseUrlMapServer=http://localhost:8087
 
 For execution against test environment use following property values:
 
-baseUrl=https://xplanbox.lat-lon.de
+baseUrlServices=https://xplanbox.lat-lon.de
 baseUrlInspirePlu=https://xplanbox.lat-lon.de
 baseUrlManagerApi=https://xplanbox.lat-lon.de
 baseUrlMapServer=https://xplanbox.lat-lon.de</con:description>
@@ -4421,7 +4421,7 @@ exists(ogc:ServiceExceptionReport)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wms</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/services/wms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5096,7 +5096,7 @@ if (documentUrl != null){
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/config</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/config</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5135,7 +5135,7 @@ if (documentUrl != null){
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="${#Project#apiKey}" xmlns="http://eviware.com/soapui/config"/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/config/restart</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/config/restart</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5167,7 +5167,7 @@ if (documentUrl != null){
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="invalidApiKey" xmlns="http://eviware.com/soapui/config"/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/config/restart</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/config/restart</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5199,7 +5199,7 @@ if (documentUrl != null){
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="${#Project#apiKey}" xmlns="http://eviware.com/soapui/config"/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/config/update</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/config/update</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5231,7 +5231,7 @@ if (documentUrl != null){
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="invalidApiKey" xmlns="http://eviware.com/soapui/config"/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/config/update</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/config/update</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5263,7 +5263,7 @@ if (documentUrl != null){
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="${#Project#apiKey}" xmlns="http://eviware.com/soapui/config"/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/planwerkwmsapi/1</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/planwerkwmsapi/1</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -5288,7 +5288,7 @@ if (documentUrl != null){
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-API-Key" value="invalidApiKey" xmlns="http://eviware.com/soapui/config"/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplan-wms/planwerkwmsapi/1</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wms/planwerkwmsapi/1</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -9313,7 +9313,7 @@ count(//wfs:member)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
