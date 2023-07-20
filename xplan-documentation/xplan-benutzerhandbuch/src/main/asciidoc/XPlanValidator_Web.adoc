@@ -100,7 +100,7 @@ Die Regel "8.1.7.1 Die Einschränkung auf Punktgeometrie" bezieht sich auf LP_Pu
 
 Bei der geometrischen Validierung wird die Korrektheit der Geometrien überprüft. XPlanung bezieht sich auf das https://www.ogc.org/standards/sfa[Simple Feature Model des OGC]. Räumliche Objekte werden hier als Punkte, Linien oder Flächen mit speziellen geometrischen Eigenschaften modellhaft abgebildet. Als Fehler werden z. B. sich überschneidende Polygone identifiziert.
 
-Folgende Prüfungen werden in Abhängigkeit vom Geometrietyp durchgeführt, es handelt sich um die Basis-Geometrischen Prüfungen:
+Folgende Prüfungen werden in Abhängigkeit vom Geometrietyp durchgeführt, es handelt sich um die basisgeometrischen Prüfungen:
 
  * Punkte: Prüfung auf 2D-Koordinaten
  * Linien: Segment-Kontinuität

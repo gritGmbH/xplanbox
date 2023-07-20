@@ -42,6 +42,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
 import static de.latlon.xplan.manager.workspace.WorkspaceReloadAction.ALL;
 
 /**
@@ -86,7 +87,7 @@ public class ManagerConfiguration {
 
 	private String rasterConfigurationCrs;
 
-	private RasterConfigurationType rasterConfigurationType;
+	private RasterConfigurationType rasterConfigurationType = gdal;
 
 	private double rasterLayerMinScaleDenominator = Double.NaN;
 
@@ -341,7 +342,7 @@ public class ManagerConfiguration {
 			catch (IllegalArgumentException e) {
 			}
 		}
-		return RasterConfigurationType.gdal;
+		return gdal;
 	}
 
 	private List<String> parseParts(String categoryWithParts) {

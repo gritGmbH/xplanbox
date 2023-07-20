@@ -54,6 +54,7 @@ public class AttachmentUrlHandler {
 			rasterReferences.forEach(rasterReference -> replaceRelativeUrl(Integer.toString(planId), rasterReference));
 		});
 		xPlanToEdit.getReferences().forEach(reference -> replaceRelativeUrl(Integer.toString(planId), reference));
+		xPlanToEdit.getTexts().forEach(text -> replaceRelativeUrl(Integer.toString(planId), text));
 	}
 
 	/**
@@ -126,14 +127,14 @@ public class AttachmentUrlHandler {
 		if (rasterReference != null) {
 			// reference
 			String reference = rasterReference.getReference();
-			if (reference != null) {
+			if (reference != null && !reference.isEmpty()) {
 				String newReference = replaceRelativeUrl(planId, reference);
 				LOG.debug("Replace reference {} with {}.", reference, newReference);
 				rasterReference.setReference(newReference);
 			}
 			// georeference
 			String geoReference = rasterReference.getGeoReference();
-			if (geoReference != null) {
+			if (geoReference != null && !geoReference.isEmpty()) {
 				String newGeoReference = replaceRelativeUrl(planId, geoReference);
 				LOG.debug("Replace georeference {} with {}.", geoReference, newGeoReference);
 				rasterReference.setGeoReference(newGeoReference);

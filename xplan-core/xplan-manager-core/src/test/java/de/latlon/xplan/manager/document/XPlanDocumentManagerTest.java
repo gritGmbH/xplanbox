@@ -25,6 +25,8 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReference;
+import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.manager.storage.StorageEvent;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
@@ -59,8 +61,10 @@ public class XPlanDocumentManagerTest {
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip("StErhVO_Hamm_60.zip", inputStream);
 		FeatureCollection featureCollection = XPlanGmlParserBuilder.newBuilder().build()
 				.parseFeatureCollection(archive);
-
-		xPlanDocumentManager.importDocuments(1, featureCollection, archive);
+		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
+		ExternalReferenceInfo externalReferenceInfo = externalReferenceScanner.scan(featureCollection,
+				archive.getVersion());
+		xPlanDocumentManager.importDocuments(1, externalReferenceInfo, archive);
 
 		verify(storage).importDocuments(eq(1), eq(archive), argThat(list -> list.contains("StErhVO_Hamm.pdf")),
 				any(StorageEvent.class));

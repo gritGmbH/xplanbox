@@ -20,6 +20,7 @@
  */
 package de.latlon.xplanbox.api.manager.v1.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.latlon.xplanbox.api.commons.v1.model.SystemConfig;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -30,6 +31,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
 import java.util.Objects;
+
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
 /**
  * Datatype for ManagerSystemConfig.
@@ -56,6 +59,7 @@ public class ManagerSystemConfig extends SystemConfig {
 
 	private @Valid Boolean skipLaufrichtung = false;
 
+	@JsonInclude(NON_NULL)
 	private @Valid String documentUrl;
 
 	/**

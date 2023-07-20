@@ -35,7 +35,6 @@ import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.configuration.ConfigurationException;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.edit.XPlanManipulator;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
@@ -96,12 +95,12 @@ public class XPlanEditManager extends XPlanTransactionManager {
 	private final XPlanManipulator planModifier = new XPlanManipulator();
 
 	public XPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao, XPlanExporter xPlanExporter,
-			XPlanRasterManager xPlanRasterManager, XPlanDocumentManager xPlanDocumentManager,
-			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
-			SortPropertyReader sortPropertyReader, XPlanEditService xPlanEditService,
-			MetadataCouplingHandler metadataCouplingHandler, AttachmentUrlHandler attachmentUrlHandler) {
-		super(xPlanSynthesizer, xplanDao, xPlanRasterManager, xPlanDocumentManager, workspaceReloader,
-				managerConfiguration, sortPropertyReader, metadataCouplingHandler);
+			XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
+			ManagerConfiguration managerConfiguration, SortPropertyReader sortPropertyReader,
+			XPlanEditService xPlanEditService, MetadataCouplingHandler metadataCouplingHandler,
+			AttachmentUrlHandler attachmentUrlHandler) {
+		super(xPlanSynthesizer, xplanDao, xPlanRasterManager, workspaceReloader, managerConfiguration,
+				sortPropertyReader, metadataCouplingHandler);
 		this.xPlanExporter = xPlanExporter;
 		this.xPlanEditService = xPlanEditService;
 		this.attachmentUrlHandler = attachmentUrlHandler;

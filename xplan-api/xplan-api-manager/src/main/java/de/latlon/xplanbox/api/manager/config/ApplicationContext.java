@@ -272,13 +272,11 @@ public class ApplicationContext {
 
 	@Bean
 	public XPlanInsertManager xPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanManagerDao xPlanManagerDao,
-			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager,
-			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
-			SortPropertyReader sortPropertyReader, XPlanInsertService xPlanInsertService,
-			Optional<MetadataCouplingHandler> metadataCouplingHandler) {
-		return new XPlanInsertManager(xPlanSynthesizer, xPlanManagerDao, xPlanRasterManager,
-				xPlanDocumentManager.orElse(null), workspaceReloader, managerConfiguration, sortPropertyReader,
-				xPlanInsertService, metadataCouplingHandler.orElse(null));
+			XPlanRasterManager xPlanRasterManager, ManagerConfiguration managerConfiguration,
+			WorkspaceReloader workspaceReloader, SortPropertyReader sortPropertyReader,
+			XPlanInsertService xPlanInsertService, Optional<MetadataCouplingHandler> metadataCouplingHandler) {
+		return new XPlanInsertManager(xPlanSynthesizer, xPlanManagerDao, xPlanRasterManager, workspaceReloader,
+				managerConfiguration, sortPropertyReader, xPlanInsertService, metadataCouplingHandler.orElse(null));
 	}
 
 	@Bean
@@ -291,12 +289,11 @@ public class ApplicationContext {
 	public XPlanEditManager xPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanManagerDao xPlanManagerDao,
 			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			WorkspaceReloader workspaceReloader, XPlanRasterManager xPlanRasterManager,
-			Optional<XPlanDocumentManager> xPlanDocumentManager, SortPropertyReader sortPropertyReader,
-			XPlanEditService xPlanEditService, MetadataCouplingHandler metadataCouplingHandler,
-			Optional<AttachmentUrlHandler> attachmentUrlHandler) {
+			SortPropertyReader sortPropertyReader, XPlanEditService xPlanEditService,
+			MetadataCouplingHandler metadataCouplingHandler, Optional<AttachmentUrlHandler> attachmentUrlHandler) {
 		return new XPlanEditManager(xPlanSynthesizer, xPlanManagerDao, xPlanExporter, xPlanRasterManager,
-				xPlanDocumentManager.orElse(null), workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
-				sortPropertyReader, xPlanEditService, metadataCouplingHandler, attachmentUrlHandler.orElse(null));
+				workspaceReloader, managerWorkspaceWrapper.getConfiguration(), sortPropertyReader, xPlanEditService,
+				metadataCouplingHandler, attachmentUrlHandler.orElse(null));
 	}
 
 	@Bean
