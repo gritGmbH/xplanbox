@@ -6571,7 +6571,7 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="fd72cf2c-426e-4ded-aec1-908a6179ca27" name="id">
               <con:configuration>
                 <path>$[0].id</path>
                 <content>-httpwwwDemogemeindedeBPlaeneDemoplanBegruendungpdf</content>
@@ -11748,7 +11748,7 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluessel">
               <con:configuration>
                 <path>$[?(@.id == 'GML_684fb51c-3d0f-4993-8ff0-dc3b62686b88')].schluessel</path>
                 <content>[§2 Nr.3]</content>
@@ -11802,6 +11802,33 @@ if (documentUrl != "null"){
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="a6ee3307-30b2-423b-9d50-314e4e787b54" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'postText.pdf')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="d41db82e-03b3-40ac-9693-5c5f946c6932" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -11863,6 +11890,41 @@ if (documentUrl != "null"){
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="5b2f5190-9be3-4769-a6aa-414b60513a03" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'postText.pdf')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="ce6ff36c-a449-40f6-aeac-1105739b653c" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(refText in json.refText){
+		def referenzUrl = refText.referenzURL
+		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -11979,13 +12041,40 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
               <con:configuration>
                 <path>$.schluessel</path>
                 <content>HN 9 geaendert</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="c28dfc6e-aa51-4fea-a7f9-67c64414ace1" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'postText.pdf')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="68596e7f-4975-4c2a-a412-4e724ae042d1" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -12031,13 +12120,48 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="rechtscharakter">
               <con:configuration>
                 <path>$[?(@.schluessel == 'HN 9 geaendert')].rechtscharakter</path>
                 <content>[3000]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="b24cbbe4-7e2b-4c1c-9d56-8b2b6c029e21" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'postText.pdf')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="87e0ca01-ca95-4747-af02-62c3c1ee1a72" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(refText in json.refText){
+		def referenzUrl = refText.referenzURL
+		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -12107,13 +12231,40 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
               <con:configuration>
                 <path>$.schluessel</path>
                 <content>HN 9 geaendert</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="9339d8d7-a8c0-4b9f-a75f-bbf5ac59a220" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'postText.pdf')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="6c83b4b6-40e3-4c06-b205-0cddeecc95b2" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -12166,6 +12317,41 @@ if (documentUrl != "null"){
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="3dfc6f54-7375-4fb6-8ce8-c9936f141eaf" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'postText.pdf')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="7e236ba3-3f5c-40f0-ac21-8a42216ebf30" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(refText in json.refText){
+		def referenzUrl = refText.referenzURL
+		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -12235,13 +12421,40 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
               <con:configuration>
                 <path>$.schluessel</path>
                 <content>HN 9 geaendert</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="b87d3a61-ff8c-4da7-ba49-90cfd64bb024" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'postText.pdf')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="953a1718-4374-4c02-8c43-320242d8fc9c" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -12303,6 +12516,41 @@ if (documentUrl != "null"){
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="7d8c38b2-9346-4563-bc52-584a7363b474" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'postDok.postText')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="31409352-d226-4a28-b12d-a01f1eb7eaf5" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(refText in json.refText){
+		def referenzUrl = refText.referenzURL
+		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -12372,13 +12620,40 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
               <con:configuration>
                 <path>$.schluessel</path>
                 <content>HN 9 geaendert</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="52e7cec4-1bbc-4572-976d-50cf3bfdb86b" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'postText.pdf')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="86b5696b-2f85-4131-90e9-46d30eb06df7" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -12431,6 +12706,41 @@ if (documentUrl != "null"){
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="0a292dc6-c778-4671-ad7e-7c855664346f" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'postText.pdf')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="9b5c83a3-53e8-42a8-ab24-f985882be062" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(refText in json.refText){
+		def referenzUrl = refText.referenzURL
+		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -12518,13 +12828,40 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
               <con:configuration>
                 <path>$.schluessel</path>
                 <content>HN 9 geaendert</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="691ed788-cf2f-43ab-baa1-2e3e97c1e3a4" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'postText.pdf')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="5ed0e1cd-fbfd-408c-b35d-203c10c8d561" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -12605,6 +12942,41 @@ if (documentUrl != "null"){
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="47192c4b-c4f8-48b6-ab28-cd62664c5af6" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'postText.pdf')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="3abf1f6d-eec0-4c55-8f2c-b427318ce9dc" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(refText in json.refText){
+		def referenzUrl = refText.referenzURL
+		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -12790,6 +13162,42 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="e0ff6473-f9cb-49c6-aff1-93b06bf21f44" name="schluessel">
+              <con:configuration>
+                <path>$.schluessel</path>
+                <content>HN 9 geaendert</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="532845a2-fc3c-4447-a751-52cab98931c6" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'putText.txt')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="ff2dcd98-0999-4af8-b2c8-21f5d1618500" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username>${#Project#username}</con:username>
               <con:password>${#Project#password}</con:password>
@@ -12878,13 +13286,40 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="5570111e-c73f-48c7-800b-408fae914ced" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="5570111e-c73f-48c7-800b-408fae914ced" name="schluessel">
               <con:configuration>
                 <path>$.schluessel</path>
                 <content>HN 9 geaendert</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="aba221b1-ce7a-42cf-8c78-61f840681e64" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'putText.txt')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="d1bd76c1-f319-4657-a40b-c0b97fdcc9b2" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -12947,6 +13382,43 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="6bbd057a-c12b-4ffb-a044-0f36499c8043" name="schluessel">
+              <con:configuration>
+                <path>$.schluessel</path>
+                <content>HN 9 geaendert</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="dbe03e8a-0cec-45b9-b070-47b794ee4667" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'putText.txt')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match"/>
+            <con:assertion type="GroovyScriptAssertion" id="ac5cfe6d-f734-4e8a-a48e-6c032b24dee4" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username>${#Project#username}</con:username>
               <con:password>${#Project#password}</con:password>
@@ -12991,13 +13463,40 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="5570111e-c73f-48c7-800b-408fae914ced" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="5570111e-c73f-48c7-800b-408fae914ced" name="schluessel">
               <con:configuration>
                 <path>$.schluessel</path>
                 <content>HN 9 geaendert</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="622ab835-c446-4fe7-9bb2-20c6d113e383" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'putText.txt')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="7e332e3b-c2be-4b9f-a85e-a73b2b3ead7e" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -13028,6 +13527,42 @@ if (documentUrl != "null"){
             <con:assertion type="Valid HTTP Status Codes" id="1c8de8a0-7d65-45b5-898b-71f8f9468e09" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="9c60a5c7-b34e-4213-a81f-090049d6d02a" name="schluessel">
+              <con:configuration>
+                <path>$.schluessel</path>
+                <content>HN 9 geaendert</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="8405245a-8941-4c61-a427-80d2a2f32887" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'putText.txt')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="18afef66-776a-4749-8d75-fc31401c76bb" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -13074,13 +13609,40 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="5570111e-c73f-48c7-800b-408fae914ced" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="5570111e-c73f-48c7-800b-408fae914ced" name="schluessel">
               <con:configuration>
                 <path>$.schluessel</path>
                 <content>HN 9 geaendert</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="550f0abc-acb1-4b9e-9a36-3fce6ad9de8d" name="JsonPath Existence Match">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'putText.txt')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="cc5aa0de-92d8-4937-8513-67cb6f91dae6" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -13111,6 +13673,42 @@ if (documentUrl != "null"){
             <con:assertion type="Valid HTTP Status Codes" id="1c8de8a0-7d65-45b5-898b-71f8f9468e09" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="bce400ac-1485-40ea-9cc4-f9626fe44f8f" name="schluessel">
+              <con:configuration>
+                <path>$.schluessel</path>
+                <content>HN 9 geaendert</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="ae95bb72-60fe-410e-a2da-be4379ec8bf2" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'putText.txt')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="1a19c596-3b4d-48ce-b9a5-64ae86a7ad96" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -13157,13 +13755,40 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="5570111e-c73f-48c7-800b-408fae914ced" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="5570111e-c73f-48c7-800b-408fae914ced" name="schluessel">
               <con:configuration>
                 <path>$.schluessel</path>
                 <content>HN 9 geaendert</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="10d21134-82f7-4f48-bf26-11e5e84f155b" name="JsonPath Existence Match">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'putText.txt')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="4742da02-a8c5-430d-8273-22c659686222" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -13194,6 +13819,42 @@ if (documentUrl != "null"){
             <con:assertion type="Valid HTTP Status Codes" id="1c8de8a0-7d65-45b5-898b-71f8f9468e09" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ff69d458-840f-406e-a5a8-6063aba5b076" name="schluessel">
+              <con:configuration>
+                <path>$.schluessel</path>
+                <content>HN 9 geaendert</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="939b4bba-e7c8-4fd7-814a-40e0ccd1292a" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'putText.txt')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="d61d682e-ec84-4642-bdeb-ecdd959544ff" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -13240,7 +13901,7 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="5570111e-c73f-48c7-800b-408fae914ced" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="5570111e-c73f-48c7-800b-408fae914ced" name="schluessel">
               <con:configuration>
                 <path>$.schluessel</path>
                 <content>HN 9 geaendert</content>
@@ -13248,6 +13909,18 @@ if (documentUrl != "null"){
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="1c6b780d-e872-4e6c-aa6f-ad89ac1d05a3" name="referenzURL">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'putText.txt')]</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="fb3ddf7a-79a0-4933-8a78-f5392fe447f5" name="Script Assertion">
+              <con:configuration/>
             </con:assertion>
             <con:credentials>
               <con:username>${#Project#username}</con:username>
