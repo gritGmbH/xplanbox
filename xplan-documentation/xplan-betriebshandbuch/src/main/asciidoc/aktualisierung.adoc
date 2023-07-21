@@ -25,7 +25,9 @@ abgeschlossen.
 === Austausch der Web-Archive
 
 Es müssen die bereitgestellten WAR-Dateien in das Verzeichnis _webapps/_
-der jeweiligen Tomcat-Instanz kopiert werden:
+der jeweiligen Tomcat-Instanz kopiert werden.
+
+Als Platzhalter werden im Folgenden __<WORK_DIR>__ als Download-Verzeichnis mit der entpackten Distributionsdatei und __<CATALINA_HOME>__ mit dem Installationsverzeichnis des Tomcat-Servers verwendet.
 
 ----
 cp ${WORK_DIR}/web/xplan-manager-web.war <CATALINA_HOME>/webapps/
@@ -90,32 +92,32 @@ IMPORTANT: Alle Konfigurationsänderungen in den Verzeichnissen _xplan-manager-c
 [[vollstaendige-aktualisierung]]
 ==== Vollständige Aktualisierung der Workspaces
 
-Es müssen die bereitgestellten Konfigurationsdateien in das Verzeichnis _<DEEGREE_DIR>_, z. B. _.deegree/_ kopiert werden.
+Es müssen die bereitgestellten Konfigurationsdateien in das Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ kopiert werden.
 Diese ersetzen die bereits vorhandenen:
 
 ----
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wms-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wms-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
 ----
 
 [[teilweise-aktualisierung]]
 ==== Teilweise Aktualisierung der Workspaces
 
 Es müssen die bereit gestellten Konfigurationsdateien mit Ausnahme des _xplansyn-wms-workspace_ in das Verzeichnis
-_<DEEGREE_DIR>_, z. B. _.deegree/_ kopiert werden. Diese ersetzen die bereits vorhanden:
+_<DEEGREE_WORKSPACE_ROOT>_ kopiert werden. Diese ersetzen die bereits vorhanden:
 
 ----
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
 ----
 
 Folgende Verzeichnisse des neuen _xplansyn-wms-workspace_ müssen in die bestehende Installation integriert werden:

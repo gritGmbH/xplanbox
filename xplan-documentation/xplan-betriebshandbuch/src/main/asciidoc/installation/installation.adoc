@@ -1,22 +1,24 @@
 [[anwendung-installieren]]
 === Anwendung installieren
 
+Speichern Sie die Distributionsdatei in einem lokalen Verzeichnis und entpacken Sie die ZIP-Datei. Prüfen Sie die Vollständigkeit der Distributionsdatei anhand der Auflistung der im Kapitel <<installationskomponenten>>.
+
 [[konfiguration]]
 ==== Konfigurationsdateien der Anwendungskomponenten
 
-Die ZIP-Archive mit den Konfigurationen (s. <<installationskomponenten>>) müssen in das
-Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (Vorgabewert ist das _.deegree_ im Home-Verzeichnis des Nutzers, s. <<vorbereitung-der-installation>>) kopiert und entpackt werden:
+Die ZIP-Archive mit den Konfigurationen für die XPlanDienste (s. <<installationskomponenten>>) müssen in das Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (s. <<vorbereitung-der-installation>>) entpackt werden:
 
 * _xplan-wfs-workspace_
 * _xplansyn-wfs-workspace_
 * _xplansyn-wms-workspace_
-* _xplan-inspireplu-workspace_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
-* _xplan-validator-wms-memory-workspace_ oder _xplan-validator-wms-sql-workspace_ (siehe <<konfiguration-xplanvalidatorwms>>)
+* _xplan-validator-wms-memory-workspace_ *oder* _xplan-validator-wms-sql-workspace_ (siehe <<konfiguration-xplanvalidatorwms>>)
 * _xplan-manager-workspace_
+* _xplan-inspireplu-workspace_ (optional)
+
+Die ZIP-Archive mit den Konfigurationen für die XPlanManager und XPlanValidator (s. <<installationskomponenten>>) müssen in das Verzeichnis _<XPLANBOX_CONFIG>_ (s. <<vorbereitung-der-installation>>) entpackt werden:
+
 * _xplan-manager-config_
 * _xplan-validator-config_ (nur erforderlich, wenn ausschließlich der XPlanValidator installiert werden soll)
-
-IMPORTANT: Die Verzeichnisse mit der Konfiguration der Komponenten der xPlanBox müssen alle unterhalb desselben Basisverzeichnisses liegen.
 
 [[web-anwendungen]]
 ==== Web-Anwendungen

@@ -3,7 +3,7 @@
 
 Im Folgenden wird für _Dienste-Tomcat_, _Anwendungs-Tomcat_ und _API-Tomcat_ jeweils das Verzeichnis _<CATALINA_HOME>_ der entsprechenden Tomcat-Instanz vorausgesetzt und angewendet (siehe Kapitel <<konfiguration-der-applikationsserver>>).
 
-Als Basisverzeichnis werden _<DEEGREE_DIR>_ (entspricht _<DEEGREE_WORKSPACE_ROOT>_), _<XPLANBOX_CONFIG>_ und temporär zur Ablage das Verzeichnis _<BACKUP_CONFIG>_ (z.B. _/home/user/tmp_) sowie _<WORK_DIR>_ vorausgesetzt.
+Als Basisverzeichnisse werden im Folgenden _<DEEGREE_WORKSPACE_ROOT>_, _<XPLANBOX_CONFIG>_ und temporär zur Ablage der Sicherungskopie _<BACKUP_CONFIG>_ (z.B. _/home/user/tmp_) sowie _<WORK_DIR> als Download-Verzeichnis mit der entpackten Distributionsdatei vorausgesetzt.
 
 Alle Tomcat-Instanzen müssen vor der Aktualisierung gestoppt werden!
 
@@ -59,9 +59,10 @@ Die Zuordnung der Anwendungskomponenten zu den jeweiligen Konfigurationen ist im
 
 Vorbereitung:
 
-1. Alle deegree Workspace Verzeichnisse aus _<DEEGREE_WORKSPACE_ROOT>_ und _<XPLANBOX_CONFIG>_ sichern und im Verzeichnis _<BACKUP_CONFIG>_ ablegen.
+1. Alle Verzeichnisse mit den Konfigurationsdateien aus _<DEEGREE_WORKSPACE_ROOT>_ und _<XPLANBOX_CONFIG>_ sichern und im Verzeichnis _<BACKUP_CONFIG>_ ablegen.
 2. Neue deegree Workspaces ZIP-Dateien entpacken und in die jeweiligen Verzeichnisse unterhalb von _<DEEGREE_WORKSPACE_ROOT>_ kopieren.
-3. Die Dateien _console.pw_ und _webapps.properties_ aus _<BACKUP_CONFIG>_ zurückkopieren.
+3. XPlanManager und XPlanValidator Konfigurationsdateien nach _<XPLANBOX_CONFIG>_ kopieren.
+4. Die Dateien _console.pw_ und _webapps.properties_ aus _<BACKUP_CONFIG>_ zurückkopieren.
 
 NOTE: Neben den in den folgenden Abschnitten genannten Dateien können noch weitere Dateien umgebungsspezifische Anpassungen enthalten. Hier sind neben den Service-Metadaten in den Dateien _services/*metadata.xml_ auch die Service-Konfigurationen im Verzeichnis _services/_ sowie die Konfiguration für die WFS-Storedqueries im Verzeichnis _storedqueries/_ oder die <<appendix_bbox_cache_properties_syn>> und <<appendix_bbox_cache_properties_gml>> zu beachten.
 
