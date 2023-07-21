@@ -8783,13 +8783,14 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
+            <con:assertion type="GroovyScriptAssertion" id="36c8f4cf-b98e-48e2-a751-6c5efed5d995" name="referenzURL">
               <con:configuration>
-                <path>$.referenzURL</path>
-                <content>postImg.png</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.referenzURL.contains('postImg.png')</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9118,13 +9119,14 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
+            <con:assertion type="GroovyScriptAssertion" id="88a4f35a-d395-4ab2-9321-c1e06cff6d01" name="referenzURL">
               <con:configuration>
-                <path>$.referenzURL</path>
-                <content>postImg.png</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.referenzURL.contains('postImg.png')</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9264,13 +9266,14 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
+            <con:assertion type="GroovyScriptAssertion" id="8c2b07fa-1f5e-4e6b-bf19-95b88ade6973" name="referenzURL">
               <con:configuration>
-                <path>$.referenzURL</path>
-                <content>postImg.png</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.referenzURL.contains('postImg.png')</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9428,13 +9431,14 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
+            <con:assertion type="GroovyScriptAssertion" id="70603eee-8f6f-4b8f-af22-c0ad79c1b1c0" name="referenzURL">
               <con:configuration>
-                <path>$.referenzURL</path>
-                <content>postImg.png</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.referenzURL.contains('postImg.png')</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9652,13 +9656,14 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
+            <con:assertion type="GroovyScriptAssertion" id="bdb557ac-277c-47d4-8ac3-afbf48151279" name="referenzURL">
               <con:configuration>
-                <path>$.referenzURL</path>
-                <content>postImg.png</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.referenzURL.contains('postImg.png')</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9815,13 +9820,14 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
+            <con:assertion type="GroovyScriptAssertion" id="26f7129c-bd88-4c75-b195-8756d38442d0" name="referenzURL">
               <con:configuration>
-                <path>$.referenzURL</path>
-                <content>postImg.png</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.referenzURL.contains('postImg.png')</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9978,13 +9984,14 @@ if (documentUrl != "null"){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="referenzURL">
+            <con:assertion type="GroovyScriptAssertion" id="030d6ca3-3acd-458f-8224-842856a0b1b1" name="referenzURL">
               <con:configuration>
-                <path>$.referenzURL</path>
-                <content>postImg.png</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.referenzURL.contains('postImg.png')</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
