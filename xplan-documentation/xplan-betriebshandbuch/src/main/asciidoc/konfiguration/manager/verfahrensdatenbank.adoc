@@ -34,11 +34,26 @@ Konfigurationsdatei können wie zuvor beschrieben geändert werden):
 
 [source,xml]
 ----
-<Property name="driverClassName" value="org.postgresql.Driver"/>
-<Property name="url" value="jdbc:postgresql://<host>:<port>/<dbname>"/>
-<Property name="username" value="postgres"/>
-<Property name="password" value="postgres"/>
-<Property name="maxTotal" value="10"/>
+<DataSourceConnectionProvider xmlns="http://www.deegree.org/connectionprovider/datasource"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:schemaLocation="http://www.deegree.org/connectionprovider/datasource https://schemas.deegree.org/3.5/connectionprovider/datasource/datasource.xsd">
+
+  <DataSource javaClass="org.apache.commons.dbcp2.BasicDataSource" destroyMethod="close"/>
+
+  <!-- Configuration of DataSource properties -->
+  <Property name="driverClassName" value="org.postgresql.Driver"/>
+  <Property name="url" value=""/>
+  <Property name="username" value=""/>
+  <Property name="password" value=""/>
+  <Property name="initialSize" value="1"/>
+  <Property name="maxTotal" value="10"/>
+  <Property name="maxIdle" value="1"/>
+  <Property name="maxWaitMillis" value="5000"/>
+  <Property name="testOnReturn" value="true"/>
+  <Property name="testOnBorrow" value="true"/>
+  <Property name="validationQuery" value="select 1"/>
+
+</DataSourceConnectionProvider>
 ----
 
 TIP: Wenn keine Verfahrensdatenbank vorhanden ist, kann die Konfiguration entfernt werden.
