@@ -6,7 +6,7 @@ Speichern Sie die Distributionsdatei in einem lokalen Verzeichnis und entpacken 
 [[konfiguration]]
 ==== Konfigurationsdateien der Anwendungskomponenten
 
-Die ZIP-Archive mit den Konfigurationen für die XPlanDienste (s. <<installationskomponenten>>) müssen in das Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (s. <<vorbereitung-der-installation>>) entpackt werden:
+Die ZIP-Archive mit den deegree Workspaces (s. <<installationskomponenten>>) müssen in das Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (s. <<vorbereitung-der-installation>>) entpackt werden:
 
 * _xplan-wfs-workspace_
 * _xplansyn-wfs-workspace_

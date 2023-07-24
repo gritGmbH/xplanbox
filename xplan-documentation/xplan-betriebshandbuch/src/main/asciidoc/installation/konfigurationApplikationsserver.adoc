@@ -11,12 +11,11 @@ Konfiguration der drei Tomcat-Instanzen beschrieben.
 
 Im _Anwendungs-Tomcat_ muss folgende Konfiguration vorgenommen werden:
 
-. Für den XPlanManagerWeb muss die Variable _XPLANBOX_CONFIG_ als Java Property gesetzt werden. Das in dieser Variable gesetzte Verzeichnis muss die Konfiguration des XPlanManagerWeb und XPlanValidatorWeb mit den Dateien _managerConfiguration.properties_,
-_managerWebConfiguration.properties_ und _validatorConfiguration.properties_ enthalten (siehe Kapitel <<vorbereitung-der-installation>> und  <<anwendung-installieren>>).
-. Die Bibliothek JTS muss über die Variable `jts.overlay=ng` konfiguriert werden.
+. Für die Komponenten XPlanManager und XPlanValidator muss die Umgebungsvariable _XPLANBOX_CONFIG_ gesetzt werden. Das in dieser Variable gesetzte Verzeichnis muss die Konfigurationsdateien _managerConfiguration.properties_, _managerWebConfiguration.properties_ und _validatorConfiguration.properties_ enthalten (siehe Kapitel <<vorbereitung-der-installation>> und  <<anwendung-installieren>>).
+. Das Verzeichnis mit den deegree Workspaces ist über die Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ gesetzt (siehe Kapitel <<vorbereitung-der-installation>>).
 . Die Bibliothek deegree muss über die Variable `javax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl` konfiguriert werden.
+. Die Bibliothek JTS muss über die Variable `jts.overlay=ng` konfiguriert werden.
 
-IMPORTANT: Wurden die Workspaces nicht im Verzeichnis _.deegree_ des Home-Verzeichnis abgelegt, ist das Setzen der Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ zwingend erforderlich (siehe Kapitel <<vorbereitung-der-installation>>).
 
 TIP: Es wird empfohlen die Zeitzone im _Anwendungs-Tomcat_ auf "Europe/Berlin" zu konfigurieren, wenn dies nicht bereits auf Ebene des Betriebssystems gesetzt ist. Andernfalls kann es beim Editieren eines Plans veränderten Datumsangaben (z. B. Herstellungsdatum) kommen. Für die Konfiguration im Tomcat muss folgende Option zusätzlich in den `CATALINA_OPTS` ergänzt werden: `-Duser.timezone=Europe/Berlin`.
 
@@ -71,7 +70,7 @@ Für den _Dienste-Tomcat_ muss auch die Variable `CATALINA_OPTS` wie folgt erwei
 export CATALINA_OPTS='-DDEEGREE_WORKSPACE_ROOT=/opt/deegree -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl'
 ----
 
-IMPORTANT: Der _Dienste-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
+IMPORTANT: Der _Dienste-Tomcat_ muss mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch Setzen der Umgebungsvariable: `export JAVA_OPTS='-Xmx4096m'` erfolgen.
 
 [[api-tomcat]]
@@ -83,7 +82,7 @@ Für den _API-Tomcat_ muss auch die Variable `CATALINA_OPTS` wie auch für den <
 export CATALINA_OPTS='-DXPLANBOX_CONFIG=/opt/xplanbox/xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=/opt/deegree -Djts.overlay=ng -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin'
 ----
 
-IMPORTANT: Der _API-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
+IMPORTANT: Der _API-Tomcat_ muss mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch Setzen der Umgebungsvariable: `export JAVA_OPTS='-Xmx4096m'` erfolgen.
 
 ==== Absicherung des Tomcat und der Webanwendungen
