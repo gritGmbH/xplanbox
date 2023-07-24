@@ -13736,13 +13736,14 @@ if (documentUrl != "null"){
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="532845a2-fc3c-4447-a751-52cab98931c6" name="referenzURL">
+            <con:assertion type="GroovyScriptAssertion" id="7aa9e8ad-bcb3-4a38-ac91-4976d0a32a33" name="referenzURL">
               <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'putText.txt')]</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.refText.referenzURL.contains('putText.txt')</scriptText>
               </con:configuration>
             </con:assertion>
             <con:assertion type="GroovyScriptAssertion" id="ff2dcd98-0999-4af8-b2c8-21f5d1618500" name="documentUrl">
@@ -13860,13 +13861,14 @@ if (documentUrl != "null"){
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="aba221b1-ce7a-42cf-8c78-61f840681e64" name="referenzURL">
+            <con:assertion type="GroovyScriptAssertion" id="1b80ff87-12ae-4a69-bf7e-f1f3fc3c1459" name="referenzURL">
               <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert')].refText[?(@.referenzURL contains 'putText.txt')]</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.refText.referenzURL.contains('putText.txt')</scriptText>
               </con:configuration>
             </con:assertion>
             <con:assertion type="GroovyScriptAssertion" id="d1bd76c1-f319-4657-a40b-c0b97fdcc9b2" name="documentUrl">
