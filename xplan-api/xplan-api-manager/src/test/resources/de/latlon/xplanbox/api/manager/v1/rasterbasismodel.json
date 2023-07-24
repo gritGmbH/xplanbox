@@ -1,11 +1,11 @@
 {
   "bereichNummer" : "0",
-  "georefURL": "string",
+  "georefURL": "Added.tfw",
   "georefMimeType": "string",
   "art": "string",
   "informationssystemURL": "string",
-  "referenzName": "string",
-  "referenzURL": "string",
+  "referenzName": "Added",
+  "referenzURL": "Added.tif",
   "referenzMimeType": "string",
   "beschreibung": "string",
   "datum": "2021-08-31T14:19:35.752+0000"
