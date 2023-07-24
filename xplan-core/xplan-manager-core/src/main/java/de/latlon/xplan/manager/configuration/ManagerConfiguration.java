@@ -168,6 +168,7 @@ public class ManagerConfiguration {
 	}
 
 	/**
+	 * @deprecated InternalIdRetrieverConfiguration will be removed in a future version.
 	 * @return the {@link InternalIdRetrieverConfiguration}, never <code>null</code>
 	 */
 	public InternalIdRetrieverConfiguration getInternalIdRetrieverConfiguration() {
