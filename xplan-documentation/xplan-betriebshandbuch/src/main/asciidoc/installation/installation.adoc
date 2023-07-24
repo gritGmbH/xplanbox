@@ -48,7 +48,6 @@ Die WAR-Archive der REST-API werden über eine weitere Tomcat-Instanz _API-Tomca
 * _xplan-api-manager.war_ (XPlanManagerAPI)
 * _xplan-api-validator.war_ (XPlanValidatorAPI)
 
-
 TIP: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp der Instanz _Anwendungs-Tomcat_ zu installieren. Das WAR-Archiv _xplan-root.war_ muss dafür im Verzeichnis _ROOT_ entpackt werden.
 
 ==== Verknüpfung von Webapp und Workspace
