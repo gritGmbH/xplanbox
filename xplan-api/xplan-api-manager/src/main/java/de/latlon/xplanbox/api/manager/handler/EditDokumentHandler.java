@@ -94,7 +94,7 @@ public class EditDokumentHandler extends EditHandler {
 		references.add(referenceToAdd);
 		List<File> uploadedArtefacts = file != null ? Collections.singletonList(file) : Collections.emptyList();
 		manager.editPlan(plan, xPlanToEdit, false, uploadedArtefacts);
-		return dokumentModel.id(newDokumentId);
+		return retrieveInsertedDokument(planId, newDokumentId);
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class EditDokumentHandler extends EditHandler {
 		references.add(referenceToAdd);
 		List<File> uploadedArtefacts = file != null ? Collections.singletonList(file) : Collections.emptyList();
 		manager.editPlan(plan, xPlanToEdit, false, uploadedArtefacts);
-		return dokumentModel.id(newDokumentId);
+		return retrieveInsertedDokument(planId, newDokumentId);
 	}
 
 	/**
@@ -157,6 +157,12 @@ public class EditDokumentHandler extends EditHandler {
 			throw new InvalidDokumentId(planId, dokumentId);
 		}
 		return dokumenteWithId.get(0);
+	}
+
+	private Dokument retrieveInsertedDokument(String planId, String newDokumentId) throws Exception {
+		List<Reference> references = manager.getXPlanToEdit(findPlanById(planId)).getReferences();
+		Reference insertedReference = getReferenceById(planId, newDokumentId, references);
+		return Dokument.fromReference(newDokumentId, insertedReference);
 	}
 
 	private String createDokumentId(String planId, Reference reference) {
