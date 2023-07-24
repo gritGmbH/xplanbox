@@ -112,7 +112,10 @@ public class EditTextHandler extends EditHandler {
 		texts.add(textToAdd);
 		List<File> uploadedArtefacts = file != null ? Collections.singletonList(file) : Collections.emptyList();
 		manager.editPlan(plan, xPlanToEdit, false, uploadedArtefacts);
-		return textModel.id(textToReplace.getFeatureId());
+		Optional<de.latlon.xplan.manager.web.shared.edit.Text> insertedText = manager
+				.getXPlanToEdit(findPlanById(planId)).getTexts().stream().filter(t -> textId.equals(t.getFeatureId()))
+				.findFirst();
+		return Text.fromText(insertedText.get());
 	}
 
 	private de.latlon.xplan.manager.web.shared.edit.Text getOldTextById(String planId, String textId,
