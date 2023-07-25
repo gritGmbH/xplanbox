@@ -109,4 +109,4 @@ IMPORTANT: Erforderlich ist MapServer 8.0.0.
 
 Optional kann das https://github.com/halestudio/hale-cli/[HALE CLI] installiert werden. Wenn Daten der xPlanBox transformiert werden sollen, dann ist der Einsatz des HALE CLI erforderlich. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale-cli>>.
 
-IMPORTANT: Erforderlich ist HALE CLI 4.0+.
+IMPORTANT: Erforderlich ist HALE CLI 3.4.0.
