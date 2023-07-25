@@ -73,12 +73,6 @@ public class ManagerApiConfiguration extends ApiConfiguration {
 		defaultValidationConfiguration = new DefaultValidationConfiguration();
 	}
 
-	protected void validateProperties() throws ConfigurationException {
-		if (getApiUrl() == null)
-			throw new ConfigurationException(
-					"The configuration option 'apiUrl' in the managerApiConfiguration.properties is required");
-	}
-
 	protected void logProperties() {
 		LOG.info("-------------------------------------------");
 		LOG.info("Configuration of the XPlanManagerApi:");
