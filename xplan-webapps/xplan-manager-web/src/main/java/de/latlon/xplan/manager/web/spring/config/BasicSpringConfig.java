@@ -251,11 +251,11 @@ public class BasicSpringConfig {
 			ManagerConfiguration managerConfiguration, WmsWorkspaceWrapper wmsWorkspaceWrapper,
 			XPlanExporter xPlanExporter, XPlanRasterEvaluator xPlanRasterEvaluator,
 			XPlanRasterManager xPlanRasterManager, SortPropertyReader sortPropertyReader,
-			InspirePluPublisher inspirePluPublisher, XPlanInsertManager xPlanInsertManager,
+			Optional<InspirePluPublisher> inspirePluPublisher, XPlanInsertManager xPlanInsertManager,
 			XPlanEditManager xPlanEditManager, XPlanDeleteManager xPlanDeleteManager) throws Exception {
 		return new XPlanManager(xPlanManagerDao, archiveCreator, managerConfiguration, wmsWorkspaceWrapper,
-				xPlanExporter, xPlanRasterEvaluator, xPlanRasterManager, sortPropertyReader, inspirePluPublisher,
-				xPlanInsertManager, xPlanEditManager, xPlanDeleteManager);
+				xPlanExporter, xPlanRasterEvaluator, xPlanRasterManager, sortPropertyReader,
+				inspirePluPublisher.orElse(null), xPlanInsertManager, xPlanEditManager, xPlanDeleteManager);
 	}
 
 	@Bean
