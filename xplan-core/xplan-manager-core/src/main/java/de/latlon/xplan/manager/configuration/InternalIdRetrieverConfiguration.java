@@ -23,9 +23,10 @@ package de.latlon.xplan.manager.configuration;
 /**
  * Provides access to the configuration for the InternalIdRetriever.
  *
+ * @deprecated This class be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @version $Revision: $, $Date: $
  */
+@Deprecated
 public class InternalIdRetrieverConfiguration {
 
 	private String workspaceName = "xplan-manager-workspace";

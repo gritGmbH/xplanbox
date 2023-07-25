@@ -45,14 +45,6 @@
       <outputDirectory>jdbc</outputDirectory>
       <filtered>false</filtered>
     </fileSet>
-    <fileSet>
-      <directory>${basedir}/src/main/workspace</directory>
-      <includes>
-        <include>jdbc/vfdb.xml</include>
-      </includes>
-      <outputDirectory>.</outputDirectory>
-      <filtered>false</filtered>
-    </fileSet>
   </fileSets>
   <dependencySets>
     <dependencySet>
