@@ -235,10 +235,9 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
-			throws WorkspaceException {
+	public ManagerWorkspaceWrapper managerWorkspaceWrapper() throws WorkspaceException {
 		DeegreeWorkspace managerWorkspace = instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE);
-		return new ManagerWorkspaceWrapper(managerWorkspace, managerConfiguration);
+		return new ManagerWorkspaceWrapper(managerWorkspace);
 	}
 
 	@Bean
@@ -260,12 +259,12 @@ public class ApplicationContext {
 
 	@Bean
 	public XPlanManager xPlanManager(XPlanManagerDao xPlanManagerDao, XPlanArchiveCreator archiveCreator,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			ManagerConfiguration managerConfiguration, WmsWorkspaceWrapper wmsWorkspaceWrapper,
 			XPlanExporter xPlanExporter, XPlanRasterEvaluator xPlanRasterEvaluator,
 			XPlanRasterManager xPlanRasterManager, SortPropertyReader sortPropertyReader,
 			XPlanInsertManager xPlanInsertManager, XPlanEditManager xPlanEditManager,
 			XPlanDeleteManager xPlanDeleteManager) throws Exception {
-		return new XPlanManager(xPlanManagerDao, archiveCreator, managerWorkspaceWrapper, wmsWorkspaceWrapper,
+		return new XPlanManager(xPlanManagerDao, archiveCreator, managerConfiguration, wmsWorkspaceWrapper,
 				xPlanExporter, xPlanRasterEvaluator, xPlanRasterManager, sortPropertyReader, null, xPlanInsertManager,
 				xPlanEditManager, xPlanDeleteManager);
 	}
@@ -287,13 +286,13 @@ public class ApplicationContext {
 
 	@Bean
 	public XPlanEditManager xPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanManagerDao xPlanManagerDao,
-			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			WorkspaceReloader workspaceReloader, XPlanRasterManager xPlanRasterManager,
-			SortPropertyReader sortPropertyReader, XPlanEditService xPlanEditService,
-			MetadataCouplingHandler metadataCouplingHandler, Optional<AttachmentUrlHandler> attachmentUrlHandler) {
+			XPlanExporter xPlanExporter, ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
+			XPlanRasterManager xPlanRasterManager, SortPropertyReader sortPropertyReader,
+			XPlanEditService xPlanEditService, MetadataCouplingHandler metadataCouplingHandler,
+			Optional<AttachmentUrlHandler> attachmentUrlHandler) {
 		return new XPlanEditManager(xPlanSynthesizer, xPlanManagerDao, xPlanExporter, xPlanRasterManager,
-				workspaceReloader, managerWorkspaceWrapper.getConfiguration(), sortPropertyReader, xPlanEditService,
-				metadataCouplingHandler, attachmentUrlHandler.orElse(null));
+				workspaceReloader, managerConfiguration, sortPropertyReader, xPlanEditService, metadataCouplingHandler,
+				attachmentUrlHandler.orElse(null));
 	}
 
 	@Bean

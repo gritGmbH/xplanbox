@@ -23,7 +23,6 @@ package de.latlon.xplan.manager.database;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.core.manager.db.DatasourceWrapper;
 import de.latlon.xplan.core.manager.deegree.jpa.JpaConnectionProvider;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.db.ConnectionProvider;
@@ -63,11 +62,8 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 
 	private DeegreeWorkspace managerWorkspace;
 
-	private ManagerConfiguration managerConfiguration;
-
-	public ManagerWorkspaceWrapper(DeegreeWorkspace managerWorkspace, ManagerConfiguration managerConfiguration) {
+	public ManagerWorkspaceWrapper(DeegreeWorkspace managerWorkspace) {
 		this.managerWorkspace = managerWorkspace;
-		this.managerConfiguration = managerConfiguration;
 	}
 
 	@Override
@@ -160,10 +156,6 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 
 	public DeegreeWorkspace getWorkspace() {
 		return this.managerWorkspace;
-	}
-
-	public ManagerConfiguration getConfiguration() {
-		return this.managerConfiguration;
 	}
 
 }

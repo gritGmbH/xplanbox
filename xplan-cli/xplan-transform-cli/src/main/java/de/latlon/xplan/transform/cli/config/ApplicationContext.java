@@ -122,10 +122,9 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
-			throws WorkspaceException {
+	public ManagerWorkspaceWrapper managerWorkspaceWrapper() throws WorkspaceException {
 		DeegreeWorkspace managerWorkspace = instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE);
-		return new ManagerWorkspaceWrapper(managerWorkspace, managerConfiguration);
+		return new ManagerWorkspaceWrapper(managerWorkspace);
 	}
 
 	private Path etcDirectory() {

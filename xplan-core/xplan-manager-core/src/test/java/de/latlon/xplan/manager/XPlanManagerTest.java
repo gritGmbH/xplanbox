@@ -122,8 +122,6 @@ public class XPlanManagerTest {
 		XPlanDao xPlanDao = mock(XPlanDao.class);
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		ManagerConfiguration managerConfiguration = mockManagerConfig();
-		ManagerWorkspaceWrapper managerWorkspaceWrapper = mock(ManagerWorkspaceWrapper.class);
-		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration);
 		WmsWorkspaceWrapper wmsWorkspaceWrapper = mock(WmsWorkspaceWrapper.class);
 		when(wmsWorkspaceWrapper.getLocation()).thenReturn(wmsWorkspaceDirectory.getAbsoluteFile());
 		RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
@@ -133,7 +131,7 @@ public class XPlanManagerTest {
 		ApplicationEventPublisher applicationEventPublisher = createApplicationEventPublisher();
 		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterConfigManager,
 				applicationEventPublisher);
-		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, wmsWorkspaceWrapper, null,
+		return new XPlanManager(xPlanDao, archiveCreator, managerConfiguration, wmsWorkspaceWrapper, null,
 				xPlanRasterEvaluator, xPlanRasterManager, null, null, null, null, null);
 	}
 

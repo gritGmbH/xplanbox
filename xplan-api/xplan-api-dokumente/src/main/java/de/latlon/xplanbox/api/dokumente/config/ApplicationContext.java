@@ -26,8 +26,6 @@ import de.latlon.xplan.core.manager.db.config.JpaContext;
 import de.latlon.xplan.core.manager.db.repository.ArtefactRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanwerkWmsMetadataRepository;
-import de.latlon.xplan.manager.CategoryMapper;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.database.XPlanDbAdapter;
@@ -67,31 +65,19 @@ public class ApplicationContext {
 	private ApplicationEventPublisher applicationEventPublisher;
 
 	@Bean
-	public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
-			throws WorkspaceException {
+	public ManagerWorkspaceWrapper managerWorkspaceWrapper() throws WorkspaceException {
 		DeegreeWorkspace managerWorkspace = instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE);
-		return new ManagerWorkspaceWrapper(managerWorkspace, managerConfiguration);
+		return new ManagerWorkspaceWrapper(managerWorkspace);
 	}
 
 	@Bean
-	public XPlanDbAdapter xPlanDbAdapter(CategoryMapper categoryMapper) {
-		return new XPlanDbAdapter(categoryMapper, planRepository, planwerkWmsMetadataRepository, artefactRepository);
+	public XPlanDbAdapter xPlanDbAdapter() {
+		return new XPlanDbAdapter(null, planRepository, planwerkWmsMetadataRepository, artefactRepository);
 	}
 
 	@Bean
 	public XPlanDao xPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDbAdapter xPlanDbAdapter) {
 		return new XPlanDao(managerWorkspaceWrapper, xPlanDbAdapter, applicationEventPublisher);
-	}
-
-	@Bean
-	public CategoryMapper categoryMapper(ManagerConfiguration managerConfiguration) {
-		return new CategoryMapper(managerConfiguration);
-	}
-
-	@Bean
-	public ManagerConfiguration managerConfiguration(PropertiesLoader managerPropertiesLoader)
-			throws ConfigurationException {
-		return new ManagerConfiguration(managerPropertiesLoader);
 	}
 
 	@Bean

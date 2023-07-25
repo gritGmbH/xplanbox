@@ -128,12 +128,12 @@ public class TestContext {
 
 	@Bean
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			ManagerConfiguration managerConfiguration, WmsWorkspaceWrapper wmsWorkspaceWrapper,
 			XPlanExporter xPlanExporter, XPlanRasterEvaluator xPlanRasterEvaluator,
 			XPlanRasterManager xPlanRasterManager, SortPropertyReader sortPropertyReader,
 			XPlanInsertManager xPlanInsertManager, XPlanEditManager xPlanEditManager,
 			XPlanDeleteManager xPlanDeleteManager) throws Exception {
-		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, wmsWorkspaceWrapper, xPlanExporter,
+		return new XPlanManager(xPlanDao, archiveCreator, managerConfiguration, wmsWorkspaceWrapper, xPlanExporter,
 				xPlanRasterEvaluator, xPlanRasterManager, sortPropertyReader, null, xPlanInsertManager,
 				xPlanEditManager, xPlanDeleteManager);
 	}
@@ -150,11 +150,11 @@ public class TestContext {
 	@Primary
 	@Bean
 	public XPlanEditManager xPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
-			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			WorkspaceReloader workspaceReloader, XPlanRasterManager xPlanRasterManager,
-			SortPropertyReader sortPropertyReader, XPlanEditService xPlanEditService) {
+			XPlanExporter xPlanExporter, ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
+			XPlanRasterManager xPlanRasterManager, SortPropertyReader sortPropertyReader,
+			XPlanEditService xPlanEditService) {
 		return new XPlanEditManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager, workspaceReloader,
-				managerWorkspaceWrapper.getConfiguration(), sortPropertyReader, xPlanEditService, null, null);
+				managerConfiguration, sortPropertyReader, xPlanEditService, null, null);
 	}
 
 	@Primary
@@ -196,7 +196,6 @@ public class TestContext {
 		when(featureStore51.getSchema()).thenReturn(XPlanSchemas.getInstance().getAppSchema(XPLAN_51));
 		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_41), any(PlanStatus.class))).thenReturn(featureStore41);
 		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_51), any(PlanStatus.class))).thenReturn(featureStore51);
-		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration);
 		Connection connection = mockConnection();
 		when(managerWorkspaceWrapper.openConnection()).thenReturn(connection);
 		return managerWorkspaceWrapper;

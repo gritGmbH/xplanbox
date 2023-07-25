@@ -33,8 +33,8 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.core.manager.db.model.Artefact;
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfigurationAnalyser;
-import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.dictionary.XPlanDictionaries;
 import de.latlon.xplan.manager.dictionary.XPlanEnumerationFactory;
@@ -119,7 +119,7 @@ public class XPlanManager {
 	/**
 	 * @param xPlanDao mandatory XPlan data access object
 	 * @param archiveCreator mandatory archive creator
-	 * @param managerWorkspaceWrapper mandatory manager workspace configuration
+	 * @param managerConfiguration mandatory manager configuration
 	 * @param wmsWorkspaceWrapper mandatory WMS workspace configuration
 	 * @param xPlanExporter
 	 * @param sortPropertyReader
@@ -130,13 +130,12 @@ public class XPlanManager {
 	 * @throws Exception if mandatory arguments are missing or something went wrong
 	 */
 	public XPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			ManagerConfiguration managerConfiguration, WmsWorkspaceWrapper wmsWorkspaceWrapper,
 			XPlanExporter xPlanExporter, XPlanRasterEvaluator xPlanRasterEvaluator,
 			XPlanRasterManager xPlanRasterManager, SortPropertyReader sortPropertyReader,
 			InspirePluPublisher inspirePluPublisher, XPlanInsertManager xPlanInsertManager,
 			XPlanEditManager xPlanEditManager, XPlanDeleteManager xPlanDeleteManager) throws Exception {
-		if (xPlanDao == null || archiveCreator == null || managerWorkspaceWrapper == null
-				|| wmsWorkspaceWrapper == null) {
+		if (xPlanDao == null || archiveCreator == null || managerConfiguration == null || wmsWorkspaceWrapper == null) {
 			throw new IllegalArgumentException("Mandatory argument must not be null");
 		}
 		this.xPlanExporter = xPlanExporter;
@@ -151,7 +150,7 @@ public class XPlanManager {
 		this.xPlanRasterManager = xPlanRasterManager;
 
 		ManagerConfigurationAnalyser managerConfigurationAnalyser = new ManagerConfigurationAnalyser(
-				managerWorkspaceWrapper.getConfiguration(), wmsWorkspaceWrapper);
+				managerConfiguration, wmsWorkspaceWrapper);
 		managerConfigurationAnalyser.checkConfiguration();
 	}
 
