@@ -14,4 +14,17 @@ RUN chmod o+w /opt/bitnami/tomcat/bin/setenv.sh \
 	&& chmod o+w /opt/bitnami/tomcat/work/ \
 	&& chmod o+w /opt/bitnami/tomcat/temp
 
+
+RUN cp /opt/bitnami/scripts/tomcat-env.sh /opt/bitnami/scripts/tomcat-env.original.sh
+
+ADD tomcat-env.sh /opt/bitnami/scripts/tomcat-env.sh
+
+ENV JMX_EXPORTER_DIR=/xplanbox/prometheus
+
+RUN mkdir -p $JMX_EXPORTER_DIR
+COPY target/deps/jmx_prometheus_javaagent* $JMX_EXPORTER_DIR
+ADD jmx-exporter.config.yaml $JMX_EXPORTER_DIR
+
+ENV TOMCAT_ADDITIONAL_ARG_JMX_EXPORTER='-javaagent:$JMX_EXPORTER_DIR/jmx_prometheus_javaagent-0.19.0.jar=12345:$JMX_EXPORTER_DIR/jmx-exporter.config.yaml'
+
 USER 1001
