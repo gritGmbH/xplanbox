@@ -28,7 +28,7 @@ import static de.latlon.xplan.core.manager.db.model.ArtefactType.XPLANGML;
  * (xplanmgr schema).
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 @Service
 @Profile("!s3img & !s3doc")

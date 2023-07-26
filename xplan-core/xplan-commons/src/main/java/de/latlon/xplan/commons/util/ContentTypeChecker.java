@@ -42,7 +42,7 @@ import static java.util.Arrays.asList;
  * and content types.
  *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @since 6.1
+ * @since 7.0
  */
 public final class ContentTypeChecker {
 

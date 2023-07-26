@@ -12,7 +12,7 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)

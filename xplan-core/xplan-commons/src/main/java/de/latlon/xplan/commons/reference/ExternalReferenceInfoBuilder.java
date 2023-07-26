@@ -27,7 +27,7 @@ import java.util.List;
  * Used to create instances of {@link ExternalReferenceInfo}.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 public class ExternalReferenceInfoBuilder {
 

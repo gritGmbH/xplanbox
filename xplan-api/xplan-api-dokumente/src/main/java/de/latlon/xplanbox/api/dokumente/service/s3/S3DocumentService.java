@@ -25,7 +25,7 @@ import static javax.ws.rs.core.Response.Status.NOT_FOUND;
  * Implementation of a {@link DocumentService} retrieving the documents from S3.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 @Service
 @Profile("s3img & s3doc")

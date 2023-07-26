@@ -54,7 +54,7 @@ import static org.slf4j.LoggerFactory.getLogger;
  * http://host:8080/xplan-api-dokumente/xdokumente/
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 @ApplicationPath("/xdokumente/api/v1")
 public class ApplicationPathConfig extends ResourceConfig {

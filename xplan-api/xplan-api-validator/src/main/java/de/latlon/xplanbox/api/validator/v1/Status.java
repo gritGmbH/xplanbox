@@ -33,7 +33,7 @@ import io.swagger.v3.oas.annotations.Operation;
 /**
  * Minimal end-point for liveness probes. To be replaced by Spring-boot health actuator.
  *
- * @since 6.1
+ * @since 7.0
  */
 @Path("/status")
 @Hidden

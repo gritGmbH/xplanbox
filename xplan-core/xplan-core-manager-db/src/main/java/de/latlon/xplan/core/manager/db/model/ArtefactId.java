@@ -32,7 +32,7 @@ import java.util.Objects;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 @Embeddable
 public class ArtefactId implements Serializable {
