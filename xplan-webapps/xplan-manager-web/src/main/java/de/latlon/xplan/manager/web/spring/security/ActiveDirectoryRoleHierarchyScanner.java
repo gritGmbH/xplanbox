@@ -20,14 +20,7 @@
  */
 package de.latlon.xplan.manager.web.spring.security;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import org.springframework.ldap.core.support.DefaultDirObjectFactory;
 
 import javax.naming.Context;
 import javax.naming.NameNotFoundException;
@@ -38,16 +31,24 @@ import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
-
-import org.springframework.ldap.core.support.DefaultDirObjectFactory;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Implementation of Active Directory Group Hierarchy Scanner.
  *
+ * @deprecated This class be removed in a future version.
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version 1.11
  * @since 1.11
  */
+@Deprecated
 public class ActiveDirectoryRoleHierarchyScanner {
 
 	private final String roleHierarchy;
