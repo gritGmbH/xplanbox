@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -37,11 +38,11 @@ public class XPlanEditService {
 	@Transactional(rollbackOn = Exception.class)
 	public void update(XPlan oldXplan, XPlanToEdit xPlanToEdit, List<File> uploadedArtefacts, int planId,
 			byte[] xPlanGml, ExternalReferenceInfo externalReferenceInfoToUpdate,
-			ExternalReferenceInfo externalReferenceInfoToRemove, Set<String> removedRefFileNames,
-			XPlanFeatureCollection modifiedPlanFc, FeatureCollection synFc, AdditionalPlanData xPlanMetadata,
-			Date sortDate, String internalId) throws Exception {
+			ExternalReferenceInfo externalReferenceInfoToRemove, Map<String, String> addedRefFileNames,
+			Set<String> removedRefFileNames, XPlanFeatureCollection modifiedPlanFc, FeatureCollection synFc,
+			AdditionalPlanData xPlanMetadata, Date sortDate, String internalId) throws Exception {
 		xplanDao.update(oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
-				uploadedArtefacts, removedRefFileNames, internalId);
+				uploadedArtefacts, addedRefFileNames, removedRefFileNames, internalId);
 		updateDocuments(planId, uploadedArtefacts, externalReferenceInfoToUpdate, externalReferenceInfoToRemove);
 	}
 

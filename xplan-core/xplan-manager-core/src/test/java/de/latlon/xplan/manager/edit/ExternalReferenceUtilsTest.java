@@ -36,9 +36,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectAddedRefFileNames;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefFileNames;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
@@ -105,7 +107,7 @@ public class ExternalReferenceUtilsTest {
 	}
 
 	@Test
-	public void testCollectRemovedRefs() {
+	public void testCollectRemovedRefFileNames() {
 		List<String> originalFileNames = Arrays.asList("A.tif", "D.png", "F.png");
 		ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo("A.tif", "C.png", "D.png");
 		ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo("A.tif", "D.png", "F.png");
@@ -118,7 +120,7 @@ public class ExternalReferenceUtilsTest {
 	}
 
 	@Test
-	public void testCollectRemovedRefs_withReplacedUrl() {
+	public void testCollectRemovedRefFileNames_withReplacedUrl() {
 		AttachmentUrlHandler attachmentUrlHandler = new AttachmentUrlHandler(
 				"http://test.de/xdokumente/api/v1/dokument/{planId}/{fileName}");
 		List<String> originalFileNames = Arrays.asList("A.tif", "D.png", "F.png");
@@ -136,6 +138,40 @@ public class ExternalReferenceUtilsTest {
 
 		assertThat(removedRefs.size(), is(1));
 		assertThat(removedRefs, hasItems("F.png"));
+	}
+
+	@Test
+	public void testCollectAddedRefFileNames() {
+		List<String> uploadedFileNames = Arrays.asList("A.tif", "B.png", "C.png");
+		ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo("A.tif", "C.png", "D.png");
+		ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo("A.tif", "D.png", "F.png");
+
+		Map<String, String> addedRefs = collectAddedRefFileNames(null, "1", externalRefsModified, externalRefsOriginal,
+				uploadedFileNames);
+
+		assertThat(addedRefs.size(), is(1));
+		assertThat(addedRefs.get("C.png"), is("C.png"));
+	}
+
+	@Test
+	public void testCollectAddedRefFileNames_withReplacedUrl() {
+		AttachmentUrlHandler attachmentUrlHandler = new AttachmentUrlHandler(
+				"http://test.de/xdokumente/api/v1/dokument/{planId}/{fileName}");
+		List<String> uploadedFileNames = Arrays.asList("A.tif", "B.png", "C.png");
+		ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo(
+				"http://test.de/xdokumente/api/v1/dokument/1/A.tif",
+				"http://test.de/xdokumente/api/v1/dokument/1/C.png",
+				"http://test.de/xdokumente/api/v1/dokument/1/D.png");
+		ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo(
+				"http://test.de/xdokumente/api/v1/dokument/1/A.tif",
+				"http://test.de/xdokumente/api/v1/dokument/1/D.png",
+				"http://test.de/xdokumente/api/v1/dokument/1/F.png");
+
+		Map<String, String> addedRefs = collectAddedRefFileNames(attachmentUrlHandler, "1", externalRefsModified,
+				externalRefsOriginal, uploadedFileNames);
+
+		assertThat(addedRefs.size(), is(1));
+		assertThat(addedRefs.get("http://test.de/xdokumente/api/v1/dokument/1/C.png"), is("C.png"));
 	}
 
 	private ExternalReferenceInfo createExternalReferenceInfo(String rasterPlanBaseScan, String... rasterUploads) {

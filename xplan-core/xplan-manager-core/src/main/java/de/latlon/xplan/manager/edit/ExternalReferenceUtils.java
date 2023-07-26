@@ -29,8 +29,10 @@ import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import net.sf.saxon.functions.Empty;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
@@ -168,6 +170,29 @@ public class ExternalReferenceUtils {
 		return removedRefs;
 	}
 
+	public static Map<String, String> collectAddedRefFileNames(AttachmentUrlHandler attachmentUrlHandler, String planId,
+			ExternalReferenceInfo externalReferencesModified, ExternalReferenceInfo externalReferencesOriginal,
+			List<String> uploadedFileNames) {
+		Map<String, String> addedRefs = new HashMap<>();
+
+		List<ExternalReference> externalRefsOriginal = externalReferencesOriginal.getAllReferences();
+		List<ExternalReference> externalRefsModified = externalReferencesModified.getAllReferences();
+		for (ExternalReference externalRefModified : externalRefsModified) {
+			String ref = externalRefModified.getReferenzUrl();
+			String fileNameRef = findOriginalFileName(attachmentUrlHandler, planId, uploadedFileNames, ref);
+			if (ref != null && !isReferenced(ref, externalRefsOriginal)
+					&& wasUploadedFileName(fileNameRef, uploadedFileNames)) {
+				addedRefs.put(ref, fileNameRef);
+			}
+			String georef = externalRefModified.getGeoRefUrl();
+			String fileNameGeoRef = findOriginalFileName(attachmentUrlHandler, planId, uploadedFileNames, ref);
+			if (georef != null && !isReferenced(georef, externalRefsOriginal)
+					&& wasUploadedFileName(fileNameGeoRef, uploadedFileNames))
+				addedRefs.put(ref, fileNameGeoRef);
+		}
+		return addedRefs;
+	}
+
 	private static String findOriginalFileName(AttachmentUrlHandler attachmentUrlHandler, String planId,
 			List<String> originalFileNames, String ref) {
 		if (attachmentUrlHandler != null) {
@@ -191,6 +216,16 @@ public class ExternalReferenceUtils {
 		if (referenzUrl != null) {
 			for (File file : uploadedArtefacts) {
 				if (referenzUrl.equals(file.getName()))
+					return true;
+			}
+		}
+		return false;
+	}
+
+	private static boolean wasUploadedFileName(String referenzUrl, List<String> uploadedFileNames) {
+		if (referenzUrl != null) {
+			for (String fileName : uploadedFileNames) {
+				if (referenzUrl.equals(fileName))
 					return true;
 			}
 		}

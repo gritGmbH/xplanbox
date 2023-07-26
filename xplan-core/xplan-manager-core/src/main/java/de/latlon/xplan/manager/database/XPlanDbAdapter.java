@@ -172,12 +172,13 @@ public class XPlanDbAdapter {
 	@Transactional(propagation = Propagation.MANDATORY)
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
-			List<File> uploadedArtefacts, Set<String> removedRefFileNames) throws Exception {
+			List<File> uploadedArtefacts, Map<String, String> addedRefFileNames, Set<String> removedRefFileNames)
+			throws Exception {
 		int planId = Integer.parseInt(oldXplan.getId());
 		LOG.info("- Aktualisierung der XPlan-Artefakte von Plan mit ID '{}'", planId);
 		Plan plan = getRequiredPlanById(planId);
 		updatePlan(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, xPlanToEdit, sortDate, uploadedArtefacts,
-				removedRefFileNames, planId, plan);
+				addedRefFileNames, removedRefFileNames, planId, plan);
 		planRepository.save(plan);
 	}
 
@@ -364,9 +365,8 @@ public class XPlanDbAdapter {
 		return null;
 	}
 
-	private void collectArtefactsToUpdateAndInsert(List<File> uploadedArtefacts, List<String> artefactFileNames,
-			Map<String, File> artefactsToUpdate, Map<String, File> artefactsToInsert, String refFileName)
-			throws Exception {
+	private void collectArtefactsToUpdate(List<File> uploadedArtefacts, List<String> artefactFileNames,
+			Map<String, File> artefactsToUpdate, String refFileName) throws Exception {
 		LOG.debug("Handle reference '{}'.", refFileName);
 		if (refFileName.startsWith("http")) {
 			LOG.debug("Found http reference, update of artefacts is not required.");
@@ -378,9 +378,6 @@ public class XPlanDbAdapter {
 			LOG.debug("Reference was uploaded, update in DB required.");
 			if (isStoredInArtefactsTable) {
 				artefactsToUpdate.put(refFileName, uploadedFile);
-			}
-			else {
-				artefactsToInsert.put(refFileName, uploadedFile);
 			}
 		}
 		else if (isStoredInArtefactsTable) {
@@ -560,7 +557,8 @@ public class XPlanDbAdapter {
 
 	private void updatePlan(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
-			List<File> uploadedArtefacts, Set<String> removedRefFileNames, int planId, Plan plan) throws Exception {
+			List<File> uploadedArtefacts, Map<String, String> addedRefFileNames, Set<String> removedRefFileNames,
+			int planId, Plan plan) throws Exception {
 		XPlanType type = XPlanType.valueOf(oldXplan.getType());
 		plan.name(fc.getPlanName()).rechtsstand(retrieveRechtsstandWert(synFc, type))
 				.sonstPlanArt(retrieveAdditionalTypeWert(synFc, type)).wmssortdate(sortDate)
@@ -589,10 +587,8 @@ public class XPlanDbAdapter {
 		List<String> artefactFileNames = planArtefacts.stream().map(artefact -> artefact.getId().getFilename())
 				.collect(Collectors.toList());
 		Map<String, File> artefactsToUpdate = new HashMap<>();
-		Map<String, File> artefactsToInsert = new HashMap<>();
 		for (String refFileName : referenceFileNames) {
-			collectArtefactsToUpdateAndInsert(uploadedArtefacts, artefactFileNames, artefactsToUpdate,
-					artefactsToInsert, refFileName);
+			collectArtefactsToUpdate(uploadedArtefacts, artefactFileNames, artefactsToUpdate, refFileName);
 		}
 		for (Map.Entry<String, File> entry : artefactsToUpdate.entrySet()) {
 			String fileName = entry.getKey();
@@ -606,9 +602,9 @@ public class XPlanDbAdapter {
 				}
 			}
 		}
-		for (Map.Entry<String, File> entry : artefactsToInsert.entrySet()) {
-			String fileName = entry.getKey();
-			File file = entry.getValue();
+		for (Map.Entry<String, String> entry : addedRefFileNames.entrySet()) {
+			String fileName = entry.getValue();
+			File file = retrieveUploadedArtefact(fileName, uploadedArtefacts);
 			long size = Files.size(file.toPath());
 			try (FileInputStream fileInputStream = new FileInputStream(file)) {
 				byte[] data = createZipArtefact(fileInputStream);

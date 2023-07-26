@@ -26,6 +26,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -127,7 +128,8 @@ public class XPlanManagerDao extends XPlanDao {
 	 */
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
-			List<File> uploadedArtefacts, Set<String> removedRefFileNames, String internalId) throws Exception {
+			List<File> uploadedArtefacts, Map<String, String> addedRefFileNames, Set<String> removedRefFileNames,
+			String internalId) throws Exception {
 		try {
 			LOG.info("Delete XPlan {}", oldXplan.getId());
 			long begin = System.currentTimeMillis();
@@ -136,7 +138,7 @@ public class XPlanManagerDao extends XPlanDao {
 			Set<String> oldFids = xPlanDbAdapter.selectFids(planId);
 
 			xPlanDbAdapter.update(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, xPlanToEdit, sortDate,
-					uploadedArtefacts, removedRefFileNames);
+					uploadedArtefacts, addedRefFileNames, removedRefFileNames);
 			manipulateXPlanSynGml(synFc, newAdditionalPlanData.getStartDateTime(),
 					newAdditionalPlanData.getEndDateTime(), planId, sortDate, internalId);
 
