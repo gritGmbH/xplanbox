@@ -121,13 +121,13 @@ public class XPlanManagerDao extends XPlanDao {
 	 * <code>null</code>
 	 * @param planArtefact the edited xplan gml, never <code>null</code>
 	 * @param sortDate the date added to syn feature collection, may be <code>null</code>
-	 * @param removedRefs
+	 * @param removedRefFileNames
 	 * @param internalId
 	 * @throws Exception
 	 */
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
-			List<File> uploadedArtefacts, Set<String> removedRefs, String internalId) throws Exception {
+			List<File> uploadedArtefacts, Set<String> removedRefFileNames, String internalId) throws Exception {
 		try {
 			LOG.info("Delete XPlan {}", oldXplan.getId());
 			long begin = System.currentTimeMillis();
@@ -136,7 +136,7 @@ public class XPlanManagerDao extends XPlanDao {
 			Set<String> oldFids = xPlanDbAdapter.selectFids(planId);
 
 			xPlanDbAdapter.update(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, xPlanToEdit, sortDate,
-					uploadedArtefacts, removedRefs);
+					uploadedArtefacts, removedRefFileNames);
 			manipulateXPlanSynGml(synFc, newAdditionalPlanData.getStartDateTime(),
 					newAdditionalPlanData.getEndDateTime(), planId, sortDate, internalId);
 

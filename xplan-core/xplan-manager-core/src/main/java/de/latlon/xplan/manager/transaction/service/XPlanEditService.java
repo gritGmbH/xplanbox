@@ -37,11 +37,11 @@ public class XPlanEditService {
 	@Transactional(rollbackOn = Exception.class)
 	public void update(XPlan oldXplan, XPlanToEdit xPlanToEdit, List<File> uploadedArtefacts, int planId,
 			byte[] xPlanGml, ExternalReferenceInfo externalReferenceInfoToUpdate,
-			ExternalReferenceInfo externalReferenceInfoToRemove, Set<String> removedRefs,
+			ExternalReferenceInfo externalReferenceInfoToRemove, Set<String> removedRefFileNames,
 			XPlanFeatureCollection modifiedPlanFc, FeatureCollection synFc, AdditionalPlanData xPlanMetadata,
 			Date sortDate, String internalId) throws Exception {
 		xplanDao.update(oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
-				uploadedArtefacts, removedRefs, internalId);
+				uploadedArtefacts, removedRefFileNames, internalId);
 		updateDocuments(planId, uploadedArtefacts, externalReferenceInfoToUpdate, externalReferenceInfoToRemove);
 	}
 

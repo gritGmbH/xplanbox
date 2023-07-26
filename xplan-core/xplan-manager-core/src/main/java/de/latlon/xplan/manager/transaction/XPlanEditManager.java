@@ -69,7 +69,7 @@ import java.util.TimeZone;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanName;
-import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
+import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefFileNames;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
 import static de.latlon.xplan.manager.transaction.TransactionUtils.reassignFids;
@@ -134,7 +134,9 @@ public class XPlanEditManager extends XPlanTransactionManager {
 					externalReferencesModified, uploadedArtefacts);
 			ExternalReferenceInfo externalReferenceInfoToRemove = createExternalRefRemovedOrUpdated(
 					externalReferencesModified, uploadedArtefacts, externalReferencesOriginal);
-			Set<String> removedRefs = collectRemovedRefs(externalReferencesModified, externalReferencesOriginal);
+			List<String> originalArtefacts = xplanDao.retrieveAllXPlanArtefactFileNames(planId);
+			Set<String> removedRefFileNames = collectRemovedRefFileNames(attachmentUrlHandler, oldXplan.getId(),
+					externalReferencesModified, externalReferencesOriginal, originalArtefacts);
 
 			XPlanFeatureCollection modifiedPlanFc = new XPlanFeatureCollectionBuilder(modifiedFeatures, type)
 					.withExternalReferenceInfo(externalReferenceInfoToUpdate).build();
@@ -148,8 +150,8 @@ public class XPlanEditManager extends XPlanTransactionManager {
 					xPlanToEdit.getValidityPeriod().getStart(), xPlanToEdit.getValidityPeriod().getEnd());
 			Date sortDate = sortPropertyReader.readSortDate(type, version, modifiedFeatures);
 			xPlanEditService.update(oldXplan, xPlanToEdit, uploadedArtefacts, planId, xPlanGml,
-					externalReferenceInfoToUpdate, externalReferenceInfoToRemove, removedRefs, modifiedPlanFc, synFc,
-					xPlanMetadata, sortDate, internalId);
+					externalReferenceInfoToUpdate, externalReferenceInfoToRemove, removedRefFileNames, modifiedPlanFc,
+					synFc, xPlanMetadata, sortDate, internalId);
 			startCreationIfPlanNameHasChanged(planId, type, modifiedPlanFc, oldPlanName, oldDescription);
 			updateRasterConfiguration(planId, makeRasterConfig, uploadedArtefacts, type, oldPlanStatus,
 					externalReferenceInfoToRemove, modifiedPlanFc, newPlanStatus, sortDate);

@@ -166,18 +166,18 @@ public class XPlanDbAdapter {
 	 * <code>null</code>
 	 * @param planArtefact the edited xplan gml, never <code>null</code>
 	 * @param sortDate the date added to syn feature collection, may be <code>null</code>
-	 * @param removedRefs
+	 * @param removedRefFileNames
 	 * @throws Exception
 	 */
 	@Transactional(propagation = Propagation.MANDATORY)
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
-			List<File> uploadedArtefacts, Set<String> removedRefs) throws Exception {
+			List<File> uploadedArtefacts, Set<String> removedRefFileNames) throws Exception {
 		int planId = Integer.parseInt(oldXplan.getId());
 		LOG.info("- Aktualisierung der XPlan-Artefakte von Plan mit ID '{}'", planId);
 		Plan plan = getRequiredPlanById(planId);
 		updatePlan(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, xPlanToEdit, sortDate, uploadedArtefacts,
-				removedRefs, planId, plan);
+				removedRefFileNames, planId, plan);
 		planRepository.save(plan);
 	}
 
@@ -320,6 +320,17 @@ public class XPlanDbAdapter {
 	@Transactional(readOnly = true)
 	public Stream<Artefact> selectAllXPlanArtefacts(int planId) {
 		return artefactRepository.findAllByPlanId(planId);
+	}
+
+	/**
+	 * exports a plan
+	 * @param planId of plan to export
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional(readOnly = true)
+	public List<String> selectAllXPlanArtefactFileNames(int planId) {
+		return artefactRepository.findAllFileNamesByPlanId(planId);
 	}
 
 	/**
@@ -549,7 +560,7 @@ public class XPlanDbAdapter {
 
 	private void updatePlan(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
-			List<File> uploadedArtefacts, Set<String> removedRefs, int planId, Plan plan) throws Exception {
+			List<File> uploadedArtefacts, Set<String> removedRefFileNames, int planId, Plan plan) throws Exception {
 		XPlanType type = XPlanType.valueOf(oldXplan.getType());
 		plan.name(fc.getPlanName()).rechtsstand(retrieveRechtsstandWert(synFc, type))
 				.sonstPlanArt(retrieveAdditionalTypeWert(synFc, type)).wmssortdate(sortDate)
@@ -570,7 +581,8 @@ public class XPlanDbAdapter {
 		xPlanGmlArtefact.data(createZipArtefact(new ByteArrayInputStream(planArtefact)));
 
 		List<Artefact> artefactsToDelete = planArtefacts.stream()
-				.filter(artefact -> removedRefs.contains(artefact.getId().getFilename())).collect(Collectors.toList());
+				.filter(artefact -> removedRefFileNames.contains(artefact.getId().getFilename()))
+				.collect(Collectors.toList());
 		planArtefacts.removeAll(artefactsToDelete);
 
 		List<String> referenceFileNames = retrieveReferenceFileNames(xPlanToEdit);

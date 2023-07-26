@@ -28,6 +28,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.QueryHint;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -53,5 +54,8 @@ public interface ArtefactRepository extends org.springframework.data.repository.
 			@QueryHint(name = HINT_CACHEABLE, value = "false"), @QueryHint(name = READ_ONLY, value = "true") })
 	@Query("select a from Artefact as a where a.id.plan.id = :plan")
 	Stream<Artefact> findAllByPlanId(@Param("plan") Integer plan);
+
+	@Query("select a.id.filename from Artefact as a where a.id.plan.id = :plan")
+	List<String> findAllFileNamesByPlanId(@Param("plan") Integer plan);
 
 }

@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.edit;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfoBuilder;
+import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
@@ -38,7 +39,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
+import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefFileNames;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
@@ -104,11 +105,34 @@ public class ExternalReferenceUtilsTest {
 	}
 
 	@Test
-	public void testCollectRemovedRefs() throws Exception {
+	public void testCollectRemovedRefs() {
+		List<String> originalFileNames = Arrays.asList("A.tif", "D.png", "F.png");
 		ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo("A.tif", "C.png", "D.png");
 		ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo("A.tif", "D.png", "F.png");
 
-		Set<String> removedRefs = collectRemovedRefs(externalRefsModified, externalRefsOriginal);
+		Set<String> removedRefs = collectRemovedRefFileNames(null, "1", externalRefsModified, externalRefsOriginal,
+				originalFileNames);
+
+		assertThat(removedRefs.size(), is(1));
+		assertThat(removedRefs, hasItems("F.png"));
+	}
+
+	@Test
+	public void testCollectRemovedRefs_withReplacedUrl() {
+		AttachmentUrlHandler attachmentUrlHandler = new AttachmentUrlHandler(
+				"http://test.de/xdokumente/api/v1/dokument/{planId}/{fileName}");
+		List<String> originalFileNames = Arrays.asList("A.tif", "D.png", "F.png");
+		ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo(
+				"http://test.de/xdokumente/api/v1/dokument/1/A.tif",
+				"http://test.de/xdokumente/api/v1/dokument/1/C.png",
+				"http://test.de/xdokumente/api/v1/dokument/1/D.png");
+		ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo(
+				"http://test.de/xdokumente/api/v1/dokument/1/A.tif",
+				"http://test.de/xdokumente/api/v1/dokument/1/D.png",
+				"http://test.de/xdokumente/api/v1/dokument/1/F.png");
+
+		Set<String> removedRefs = collectRemovedRefFileNames(attachmentUrlHandler, "1", externalRefsModified,
+				externalRefsOriginal, originalFileNames);
 
 		assertThat(removedRefs.size(), is(1));
 		assertThat(removedRefs, hasItems("F.png"));
