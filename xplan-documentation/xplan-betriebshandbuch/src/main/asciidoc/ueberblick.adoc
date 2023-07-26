@@ -96,7 +96,7 @@ TIP: Empfohlen wird PostgreSQL 12+ mit PostGIS 3.1+.
 Optional kann die https://gdal.org/[GDAL-Bibliothek] installiert werden. Wenn teilvektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTiff vorliegen, die mit der xPlanBox verwaltet werden sollen, dann ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen nur im GeoTiff-Format vor, wird GDAL nicht benötigt.
 Weitere Informationen zur Installation von GDAL befinden sich im Abschnitt <<installation-gdal>>.
 
-IMPORTANT: Erforderlich ist GDAL 3.5.
+IMPORTANT: Erforderlich ist GDAL 3.0.
 
 [[mapserver]]
 === MapServer

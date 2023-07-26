@@ -12,7 +12,7 @@ separaten Tomcat-Instanz installiert werden.
 [[installation-gdal-linux]]
 ==== Linux
 
-Es muss GDAL 3.5 plus die dazugehörige JNI-Schnittstelle installiert werden.
+Es muss GDAL 3.0 plus die dazugehörige JNI-Schnittstelle installiert werden.
 
 Damit GDAL über die JNI-Schnittstelle angesprochen werden kann, muss die
 Umgebungsvariable zur GDAL-Bibliothek gesetzt werden, z. B.:
@@ -27,9 +27,9 @@ zeigen, in dem sich die Datei _libgdaljni.so_ befindet.
 [[installation-gdal-windows]]
 ==== Windows
 
-GDAL 3.5 für Windows kann bei http://www.gisinternals.com/[GISInternals]
-heruntergeladen werden. Die Version 3.5 befindet sich
-unter "Older Releases/Archive Versions". Die Architektur der GDAL-Bibliothek (32bit
+GDAL 3.0 für Windows kann bei https://www.gisinternals.com/[GISInternals]
+heruntergeladen werden. Die Version 3.0 befindet sich
+unter "Older Releases". Die Architektur der GDAL-Bibliothek (32bit
 oder 64bit) muss der Architektur von Java und dem Betriebssystem
 http://windows.microsoft.com/de-de/windows/32-bit-and-64-bit-windows[Windows]
 entsprechen. Bei den Downloads sollten die kompilierten Binaries in
