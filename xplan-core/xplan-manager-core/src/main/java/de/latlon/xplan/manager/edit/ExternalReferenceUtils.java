@@ -185,10 +185,10 @@ public class ExternalReferenceUtils {
 				addedRefs.put(ref, fileNameRef);
 			}
 			String georef = externalRefModified.getGeoRefUrl();
-			String fileNameGeoRef = findOriginalFileName(attachmentUrlHandler, planId, uploadedFileNames, ref);
+			String fileNameGeoRef = findOriginalFileName(attachmentUrlHandler, planId, uploadedFileNames, georef);
 			if (georef != null && !isReferenced(georef, externalRefsOriginal)
 					&& wasUploadedFileName(fileNameGeoRef, uploadedFileNames))
-				addedRefs.put(ref, fileNameGeoRef);
+				addedRefs.put(georef, fileNameGeoRef);
 		}
 		return addedRefs;
 	}
