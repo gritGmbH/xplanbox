@@ -6606,9 +6606,9 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
           </con:transfers>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="GetFeature BP_Plan" id="a32bc5bd-e81c-45bf-bfe2-bbe5b9b5d58a">
+      <con:testStep type="httprequest" name="GetFeature 2.0.0 BP_Plan" id="a32bc5bd-e81c-45bf-bfe2-bbe5b9b5d58a">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature BP_Plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature 2.0.0 BP_Plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
@@ -6732,6 +6732,138 @@ if (documentUrl != null){
             </con:parameter>
             <con:parameter>
               <con:name>typenames</con:name>
+              <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetFeature 1.1.0 BP_Plan" id="1fa97352-5099-48d7-a2e0-62b94d449377">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature 1.1.0 BP_Plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="xpPlanName">
+            <con:configuration>
+              <path>declare namespace gml='http://www.opengis.net/gml';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//gml:featureMember/xplan:BP_Plan/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArt">
+            <con:configuration>
+              <path>declare namespace gml='http://www.opengis.net/gml';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//gml:featureMember/xplan:BP_Plan/xplan:planArt</path>
+              <content>1000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArtWert">
+            <con:configuration>
+              <path>declare namespace gml='http://www.opengis.net/gml';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//gml:featureMember/xplan:BP_Plan/xplan:planArtWert</path>
+              <content>BPlan</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstand">
+            <con:configuration>
+              <path>declare namespace gml='http://www.opengis.net/gml';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//gml:featureMember/xplan:BP_Plan/xplan:rechtsstand</path>
+              <content>4000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstandWert">
+            <con:configuration>
+              <path>declare namespace gml='http://www.opengis.net/gml';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//gml:featureMember/xplan:BP_Plan/xplan:rechtsstandWert</path>
+              <content>InkraftGetreten</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="GroovyScriptAssertion" id="4bfc5b0c-1486-4629-b2a7-25f9641a3cc5" name="documentUrl">
+            <con:configuration>
+              <scriptText>import groovy.xml.XmlSlurper
+
+def xml = new XmlSlurper().parseText(messageExchange.response.responseContent).declareNamespace(xplan: 'http://www.deegree.org/xplanung/1/0',
+wfs: 'http://www.opengis.net/wfs/2.0')
+assert !(xml.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def externeRef = xml.'wfs:member'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
+
+	assert externeRef.contains(documentUrlShort)
+}</scriptText>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetFeature</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>version</con:name>
+              <con:value>1.1.0</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>typename</con:name>
               <con:value>xplan:BP_Plan</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
@@ -9522,9 +9654,9 @@ count(//wfs:member)</path>
           </con:transfers>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="GetFeature BP_Plan" id="c224e27c-aeb5-4db8-8268-2c39020c8e29">
+      <con:testStep type="httprequest" name="GetFeature 2.0.0 BP_Plan" id="c224e27c-aeb5-4db8-8268-2c39020c8e29">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature BP_Plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature 2.0.0 BP_Plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
@@ -9648,6 +9780,138 @@ if (documentUrl != null){
             </con:parameter>
             <con:parameter>
               <con:name>typenames</con:name>
+              <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetFeature 1.1.0 BP_Plan" id="a5cf754d-8a63-4b8f-a8af-aef234c3d10c">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature 1.1.0 BP_Plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="xpPlanName">
+            <con:configuration>
+              <path>declare namespace gml='http://www.opengis.net/gml';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//gml:featureMember/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArt">
+            <con:configuration>
+              <path>declare namespace gml='http://www.opengis.net/gml';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//gml:featureMember/xplan:BP_Plan/xplan:planArt</path>
+              <content>3000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArtWert">
+            <con:configuration>
+              <path>declare namespace gml='http://www.opengis.net/gml';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//gml:featureMember/xplan:BP_Plan/xplan:planArtWert</path>
+              <content>Vorhabenbezogener BPlan</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstand">
+            <con:configuration>
+              <path>declare namespace gml='http://www.opengis.net/gml';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//gml:featureMember/xplan:BP_Plan/xplan:rechtsstand</path>
+              <content>3000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstandWert">
+            <con:configuration>
+              <path>declare namespace gml='http://www.opengis.net/gml';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//gml:featureMember/xplan:BP_Plan/xplan:rechtsstandWert</path>
+              <content>Satzung</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="GroovyScriptAssertion" id="f959778f-ba7c-4d2a-af4d-921efecb229b" name="documentUrl">
+            <con:configuration>
+              <scriptText>import groovy.xml.XmlSlurper
+
+def xml = new XmlSlurper().parseText(messageExchange.response.responseContent).declareNamespace(xplan: 'http://www.deegree.org/xplanung/1/0',
+wfs: 'http://www.opengis.net/wfs/2.0')
+assert !(xml.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def externeRef = xml.'wfs:member'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
+
+	assert externeRef.contains(documentUrlShort)
+}</scriptText>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetFeature</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>version</con:name>
+              <con:value>1.1.0</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>typename</con:name>
               <con:value>xplan:BP_Plan</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
