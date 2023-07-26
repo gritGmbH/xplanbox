@@ -41,8 +41,6 @@ import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
-import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import org.apache.commons.io.IOUtils;
 import org.deegree.feature.FeatureCollection;
@@ -65,7 +63,6 @@ import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -171,13 +168,12 @@ public class XPlanDbAdapter {
 	 */
 	@Transactional(propagation = Propagation.MANDATORY)
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
-			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
-			List<File> uploadedArtefacts, Map<String, String> addedRefFileNames, Set<String> removedRefFileNames)
-			throws Exception {
+			FeatureCollection synFc, byte[] planArtefact, Date sortDate, List<File> uploadedArtefacts,
+			Map<String, String> addedRefFileNames, Set<String> removedRefFileNames) throws Exception {
 		int planId = Integer.parseInt(oldXplan.getId());
 		LOG.info("- Aktualisierung der XPlan-Artefakte von Plan mit ID '{}'", planId);
 		Plan plan = getRequiredPlanById(planId);
-		updatePlan(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, xPlanToEdit, sortDate, uploadedArtefacts,
+		updatePlan(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, sortDate, uploadedArtefacts,
 				addedRefFileNames, removedRefFileNames, planId, plan);
 		planRepository.save(plan);
 	}
@@ -365,29 +361,6 @@ public class XPlanDbAdapter {
 		return null;
 	}
 
-	private void collectArtefactsToUpdate(List<File> uploadedArtefacts, List<String> artefactFileNames,
-			Map<String, File> artefactsToUpdate, String refFileName) throws Exception {
-		LOG.debug("Handle reference '{}'.", refFileName);
-		if (refFileName.startsWith("http")) {
-			LOG.debug("Found http reference, update of artefacts is not required.");
-			return;
-		}
-		File uploadedFile = retrieveUploadedArtefact(refFileName, uploadedArtefacts);
-		boolean isStoredInArtefactsTable = artefactFileNames.contains(refFileName);
-		if (uploadedFile != null) {
-			LOG.debug("Reference was uploaded, update in DB required.");
-			if (isStoredInArtefactsTable) {
-				artefactsToUpdate.put(refFileName, uploadedFile);
-			}
-		}
-		else if (isStoredInArtefactsTable) {
-			LOG.debug("Reference was not changed");
-		}
-		else {
-			throw new Exception("Could not find referenced artefact with name " + refFileName);
-		}
-	}
-
 	private File retrieveUploadedArtefact(String refFileName, List<File> uploadedArtefacts) {
 		if (uploadedArtefacts != null) {
 			for (File uploadedArtefact : uploadedArtefacts) {
@@ -396,28 +369,6 @@ public class XPlanDbAdapter {
 			}
 		}
 		return null;
-	}
-
-	private List<String> retrieveReferenceFileNames(XPlanToEdit xPlanToEdit) {
-		List<String> referenceFileNames = new ArrayList<>();
-		addReferences(referenceFileNames, xPlanToEdit.getTexts());
-		addReferences(referenceFileNames, xPlanToEdit.getReferences());
-		xPlanToEdit.getRasterBasis().forEach(rasterBasis -> {
-			if (rasterBasis.getRasterReferences() != null)
-				addReferences(referenceFileNames, rasterBasis.getRasterReferences());
-		});
-		return referenceFileNames;
-	}
-
-	private void addReferences(List<String> referenceFileNames, List<? extends AbstractReference> references) {
-		for (AbstractReference ref : references) {
-			String reference = ref.getReference();
-			if (reference != null && !"".equals(reference))
-				referenceFileNames.add(reference);
-			String georeference = ref.getGeoReference();
-			if (georeference != null && !"".equals(georeference))
-				referenceFileNames.add(georeference);
-		}
 	}
 
 	private void checkBereichNummern(List<Bereich> bereiche) throws AmbiguousBereichNummernException {
@@ -556,9 +507,9 @@ public class XPlanDbAdapter {
 	}
 
 	private void updatePlan(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
-			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
-			List<File> uploadedArtefacts, Map<String, String> addedRefFileNames, Set<String> removedRefFileNames,
-			int planId, Plan plan) throws Exception {
+			FeatureCollection synFc, byte[] planArtefact, Date sortDate, List<File> uploadedArtefacts,
+			Map<String, String> addedRefFileNames, Set<String> removedRefFileNames, int planId, Plan plan)
+			throws Exception {
 		XPlanType type = XPlanType.valueOf(oldXplan.getType());
 		plan.name(fc.getPlanName()).rechtsstand(retrieveRechtsstandWert(synFc, type))
 				.sonstPlanArt(retrieveAdditionalTypeWert(synFc, type)).wmssortdate(sortDate)
@@ -583,25 +534,6 @@ public class XPlanDbAdapter {
 				.collect(Collectors.toList());
 		planArtefacts.removeAll(artefactsToDelete);
 
-		List<String> referenceFileNames = retrieveReferenceFileNames(xPlanToEdit);
-		List<String> artefactFileNames = planArtefacts.stream().map(artefact -> artefact.getId().getFilename())
-				.collect(Collectors.toList());
-		Map<String, File> artefactsToUpdate = new HashMap<>();
-		for (String refFileName : referenceFileNames) {
-			collectArtefactsToUpdate(uploadedArtefacts, artefactFileNames, artefactsToUpdate, refFileName);
-		}
-		for (Map.Entry<String, File> entry : artefactsToUpdate.entrySet()) {
-			String fileName = entry.getKey();
-			File file = entry.getValue();
-			long size = Files.size(file.toPath());
-			Optional<Artefact> artefactToUpdate = planArtefacts.stream()
-					.filter(artefact -> fileName.equals(artefact.getId().getFilename())).findFirst();
-			if (artefactToUpdate.isPresent()) {
-				try (FileInputStream fileInputStream = new FileInputStream(file)) {
-					artefactToUpdate.get().data(createZipArtefact(fileInputStream)).length(size);
-				}
-			}
-		}
 		for (Map.Entry<String, String> entry : addedRefFileNames.entrySet()) {
 			String fileName = entry.getValue();
 			File file = retrieveUploadedArtefact(fileName, uploadedArtefacts);

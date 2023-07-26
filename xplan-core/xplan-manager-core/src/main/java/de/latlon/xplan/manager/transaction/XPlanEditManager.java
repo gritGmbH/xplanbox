@@ -156,9 +156,9 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			AdditionalPlanData xPlanMetadata = new AdditionalPlanData(newPlanStatus,
 					xPlanToEdit.getValidityPeriod().getStart(), xPlanToEdit.getValidityPeriod().getEnd());
 			Date sortDate = sortPropertyReader.readSortDate(type, version, modifiedFeatures);
-			xPlanEditService.update(oldXplan, xPlanToEdit, uploadedArtefacts, planId, xPlanGml,
-					externalReferenceInfoToUpdate, externalReferenceInfoToRemove, addedRefFileNames,
-					removedRefFileNames, modifiedPlanFc, synFc, xPlanMetadata, sortDate, internalId);
+			xPlanEditService.update(oldXplan, uploadedArtefacts, planId, xPlanGml, externalReferenceInfoToUpdate,
+					externalReferenceInfoToRemove, addedRefFileNames, removedRefFileNames, modifiedPlanFc, synFc,
+					xPlanMetadata, sortDate, internalId);
 			startCreationIfPlanNameHasChanged(planId, type, modifiedPlanFc, oldPlanName, oldDescription);
 			updateRasterConfiguration(planId, makeRasterConfig, uploadedArtefacts, type, oldPlanStatus,
 					externalReferenceInfoToRemove, modifiedPlanFc, newPlanStatus, sortDate);
