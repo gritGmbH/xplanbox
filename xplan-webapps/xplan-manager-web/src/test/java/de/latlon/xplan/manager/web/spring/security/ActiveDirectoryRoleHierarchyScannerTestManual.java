@@ -20,21 +20,22 @@
  */
 package de.latlon.xplan.manager.web.spring.security;
 
-import static java.util.Arrays.asList;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.junit.Test;
 
+import javax.naming.NamingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.naming.NamingException;
-
-import org.junit.Test;
+import static java.util.Arrays.asList;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
+ * @deprecated This class be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
+@Deprecated
 public class ActiveDirectoryRoleHierarchyScannerTestManual {
 
 	private static final String PROVIDERURL = "ldap://adserver:389";

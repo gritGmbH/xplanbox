@@ -33,13 +33,14 @@ import org.springframework.context.annotation.ImportResource;
  * Imports the basic {@link ManagerWebSpringConfig} and active directory ldap security
  * configuration. The security configuration can be configured in security.properties.
  *
+ * @deprecated This class be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @version $Revision: $, $Date: $
  */
 @Configuration
 @Import({ BasicSpringConfig.class, JpaContext.class, RasterStorageContext.class, AmazonS3RasterStorageContext.class,
 		DocumentStorageContext.class, StorageCleanUpContext.class })
 @ImportResource("classpath:/de/latlon/xplan/manager/web/spring/security-ad.xml")
+@Deprecated
 public class ManagerWebSpringConfigWithAdLdapSecurity {
 
 }
