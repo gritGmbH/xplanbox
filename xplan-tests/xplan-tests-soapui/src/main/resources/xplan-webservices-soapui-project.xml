@@ -6399,55 +6399,6 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
           <con:parameters/>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="Import Eidelstedt_4_V4-soapui-webservices.zip" id="73fc6d3c-8e6d-4433-8682-8d13b0f76214">
-        <con:settings/>
-        <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import Eidelstedt_4_V4-soapui-webservices.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:settings>
-            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-          </con:settings>
-          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan</con:endpoint>
-          <con:request/>
-          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
-            <con:configuration>
-              <codes>201</codes>
-            </con:configuration>
-          </con:assertion>
-          <con:credentials>
-            <con:username>${#Project#username}</con:username>
-            <con:password>${#Project#password}</con:password>
-            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
-            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
-            <con:preemptive>true</con:preemptive>
-            <con:authType>Preemptive</con:authType>
-          </con:credentials>
-          <con:attachment>
-            <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
-            <con:contentType>application/octet-stream</con:contentType>
-            <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
-            <con:id>0ed35278-acb9-4c74-afaa-da54b7900d5a</con:id>
-          </con:attachment>
-          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-          <con:jmsPropertyConfig/>
-          <con:parameters>
-            <con:parameter>
-              <con:name>skipSemantisch</con:name>
-              <con:value>true</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-            <con:parameter>
-              <con:name>skipFlaechenschluss</con:name>
-              <con:value>true</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-            <con:parameter>
-              <con:name>skipGeltungsbereich</con:name>
-              <con:value>true</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-          </con:parameters>
-        </con:config>
-      </con:testStep>
       <con:testStep type="httprequest" name="Import Osdorf48_Test_60.zip" id="e46f0924-9227-463d-b6b5-92d74dab3493">
         <con:settings/>
         <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import Osdorf48_Test_60.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -6497,7 +6448,7 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="Import BPlan004_6-0.zip" id="ce32613c-6299-48b1-a7cb-7daab5f005d8">
+      <con:testStep type="httprequest" name="Import BPlan004_6-0.zip" id="434746dc-57d3-441c-800f-260b706eccd8">
         <con:settings/>
         <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import BPlan004_6-0.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
@@ -6519,10 +6470,208 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
             <con:authType>Preemptive</con:authType>
           </con:credentials>
           <con:attachment>
-            <con:name>BPlan002_5-3.zip</con:name>
+            <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>BPlan004_6-0.zip</con:contentId>
             <con:url>${projectDir}/xplan-webservices/plans/BPlan004_6-0.zip</con:url>
+            <con:id>0ed35278-acb9-4c74-afaa-da54b7900d5a</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>skipSemantisch</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipFlaechenschluss</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipGeltungsbereich</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Import BP_5.1_Textsortierung_1.zip" id="a65f1563-dd47-4b09-8262-5cae1f3132dd">
+        <con:settings/>
+        <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import BP_5.1_Textsortierung_1.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>201</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>BPlan002_5-3.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>BP_5.1_Textsortierung_1.zip</con:contentId>
+            <con:url>${projectDir}/xplan-webservices/plans/BP_5.1_Textsortierung_1.zip</con:url>
+            <con:id>f4992d26-e700-4ffd-87cc-39551e589e8c</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>skipSemantisch</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipFlaechenschluss</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipGeltungsbereich</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Import BP_5.2_Textsortierung_2.zip" id="8c021cf4-0f16-433c-b717-de47eac17a9d">
+        <con:settings/>
+        <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import BP_5.2_Textsortierung_2.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>201</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>BPlan002_5-3.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>BP_5.2_Textsortierung_2.zip</con:contentId>
+            <con:part xsi:nil="true"/>
+            <con:url>${projectDir}/xplan-webservices/plans/BP_5.2_Textsortierung_2.zip</con:url>
+            <con:id>f4992d26-e700-4ffd-87cc-39551e589e8c</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>skipSemantisch</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipFlaechenschluss</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipGeltungsbereich</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Import BP_5.1_Textsortierung_3.zip" id="8c425a20-b163-4caa-b967-e84455e5b26c">
+        <con:settings/>
+        <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import BP_5.1_Textsortierung_3.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>201</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>BPlan002_5-3.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>BP_5.1_Textsortierung_3.zip</con:contentId>
+            <con:url>${projectDir}/xplan-webservices/plans/BP_5.1_Textsortierung_3.zip</con:url>
+            <con:id>f4992d26-e700-4ffd-87cc-39551e589e8c</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>skipSemantisch</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipFlaechenschluss</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipGeltungsbereich</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Import BP_5.1_Textsortierung_4.zip" id="8c7d0a19-5516-43f6-a422-8408b220087b">
+        <con:settings/>
+        <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import BP_5.1_Textsortierung_4.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>201</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>BPlan002_5-3.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>BP_5.1_Textsortierung_4.zip</con:contentId>
+            <con:part xsi:nil="true"/>
+            <con:url>${projectDir}/xplan-webservices/plans/BP_5.1_Textsortierung_4.zip</con:url>
             <con:id>f4992d26-e700-4ffd-87cc-39551e589e8c</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -6550,33 +6699,11 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
-            <con:name>planId</con:name>
-            <con:sourceType>Response</con:sourceType>
-            <con:sourceStep>Import Eidelstedt_4_V4-soapui-webservices.zip</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
-            <con:targetType>planId</con:targetType>
-            <con:targetStep>#TestCase#</con:targetStep>
-            <con:type>JSONPATH</con:type>
-            <con:targetTransferType>JSONPATH</con:targetTransferType>
-            <con:upgraded>true</con:upgraded>
-          </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>planIdOsdorf48</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>Import Osdorf48_Test_60.zip</con:sourceStep>
             <con:sourcePath>$.id</con:sourcePath>
             <con:targetType>planIdOsdorf48</con:targetType>
-            <con:targetStep>#TestCase#</con:targetStep>
-            <con:type>JSONPATH</con:type>
-            <con:targetTransferType>JSONPATH</con:targetTransferType>
-            <con:upgraded>true</con:upgraded>
-          </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
-            <con:name>planIdBPlan004_6-0</con:name>
-            <con:sourceType>Response</con:sourceType>
-            <con:sourceStep>Import BPlan004_6-0.zip</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
-            <con:targetType>planIdBPlan004_6-0</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
@@ -6604,6 +6731,65 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>planIdTextsortierung_1</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Import BP_5.1_Textsortierung_1.zip</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planIdTextsortierung_1</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>planIdTextsortierung_2</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Import BP_5.2_Textsortierung_2.zip</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planIdTextsortierung_2</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>planIdTextsortierung_3</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Import BP_5.1_Textsortierung_3.zip</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planIdTextsortierung_3</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>planIdTextsortierung_4</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Import BP_5.1_Textsortierung_4.zip</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planIdTextsortierung_4</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdBPlan004_6-0</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Import BPlan004_6-0.zip</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planIdBPlan004_6-0</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:testStep type="httprequest" name="GetFeature BP_Plan" id="a32bc5bd-e81c-45bf-bfe2-bbe5b9b5d58a">
@@ -6624,7 +6810,7 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -6637,7 +6823,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //wfs:member/xplan:BP_Plan/xplan:planArt</path>
-              <content>1000</content>
+              <content>3000</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -6649,7 +6835,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //wfs:member/xplan:BP_Plan/xplan:planArtWert</path>
-              <content>BPlan</content>
+              <content>Vorhabenbezogener BPlan</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -6661,7 +6847,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //wfs:member/xplan:BP_Plan/xplan:rechtsstand</path>
-              <content>4000</content>
+              <content>3000</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -6673,7 +6859,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //wfs:member/xplan:BP_Plan/xplan:rechtsstandWert</path>
-              <content>InkraftGetreten</content>
+              <content>Satzung</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -6733,6 +6919,11 @@ if (documentUrl != null){
             <con:parameter>
               <con:name>typenames</con:name>
               <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>bbox</con:name>
+              <con:value>567341.0196995868,5937557.612716467,567520.2453084125,5937736.838325293</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
           </con:parameters>
@@ -6962,17 +7153,90 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           </con:parameters>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="Delete Eidelstedt_4_V4-soapui-webservices.zip" id="b1956bd8-a4f4-4ee5-8ea2-6a97332d2388">
+      <con:testStep type="httprequest" name="GetFeature BP_Plan Textsortierung_1" id="d220737c-c184-471d-b78e-c23c062fb564">
         <con:settings/>
-        <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete Eidelstedt_4_V4-soapui-webservices.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature BP_Plan Textsortierung_1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan/${#TestCase#planId}</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
               <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="xpPlanName">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Testplan Textsortierung Reine Nummerierung und Hinweise nur mit Buchstaben"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArt">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArt</path>
+              <content>10001</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArtWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArtWert</path>
+              <content>QualifizierterBPlan</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstand">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstand</path>
+              <content>4000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstandWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstandWert</path>
+              <content>InkraftGetreten</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="textsortierung">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:texte</path>
+              <content>[1.1 Dorfgebiet gemaess § 5 BauNVO | Im Dorfgebiet sind die gemäß § 5 Abs. 2 Nrn. 5, 6, 8 und 9 BauNVO zulässigen Nutzungen und die gemäß § 5 Abs. 3 BauNVO ausnahmsweise zulässigen Nutzungen unzulässig.][1.2 Allgemeines Wohngebiet gemaess § 4 BauNVO | Im allgemeinen Wohngebiet sind die gemäß § 4 Abs. 2 Nr. 2 BauNVO zulässigen Schank- und Speisewirtschaften und die gemäß § 4 Abs. 3 BauNVO ausnahmsweise zulässigen Nutzungen unzulässig.][1.3 Mischgebiet gemaess § 6 BauNVO | Im Mischgebiet sind die gemäß § 6 Abs. 2 Nrn. 4, 6, 7 und 8 BauNVO zulässigen Nutzungen unzulässig. Nur ausnahmsweise zulässig sind die Nutzungen gemäß § 6 Abs. 2 Nr. 3 BauNVO.][1.4 Nebenanlagen (§ 14 BauNVO) | Im Dorfgebiet sind auf der privaten Grünfläche, die für die Vorbehaltstrasse der Stadtbahn vorgesehen ist, keine Nebenanlagen – auch nicht ausnahmsweise – zulässig. Im allgemeinen Wohngebiet sind Nebenanlagen zur Unterbringung der Fahrzeuge, der Abfalltonnen und der Fahrräder zulässig. Im Mischgebiet sind Nebenanlagen ebenerdig nicht zulässig. Die notwendigen Flächen für Abfalltonnen und Fahrräder sowie der Fahrzeuge sind in der Tiefgarage vorzusehen. Nebenanlagen müssen, soweit sie als geschlossene Baukörper ausgebildet sind, 1,00 m Abstand von öffentlichen Flächen halten. Befreiungen sind auch ausnahmsweise nicht zulässig.][1.5 Stellplaetze Carports und Garagen | Stellplätze, Carports, Garagen sind im gesamten Bebauungsplanbereich nur in den dafür festgesetzten Flächen zulässig.][1.6 Werbeanlagen | Werbeanlagen einschließlich Citylightboards als Fremdwerbung sind nicht zulässig.][2.1 Geschossflaeche (§ 20 BauNVO) | Die Flächen von Aufenthaltsräumen in anderen Geschossen als Vollgeschosse sind einschließlich der zugehörigen Treppenräume und einschließlich der Umfassungsbauteile nach § 20 Abs. 3 BauNVO auf die Geschossfläche anzurechnen.][2.2 Grundflaeche (§ 19 BauNVO) | Die festgesetzte Grundfläche darf gemäß § 19 Abs. 4 BauNVO durch die Grundflächen von Garagen und Stellplätzen mit ihren Zufahrten, Nebenanlagen im Sinne des § 14 BauNVO und bauliche Anlagen unterhalb der Geländeoberfläche, durch die das Baugrundstück lediglich unterbaut wird, bis zu einer GRZ von 0,8 überschritten werden.][2.3 Solaranlagen | Aufgeständerte Solaranlagen dürfen die festgesetzten Gebäudehöhen bis zu einer Höhe von maximal 1,50 m parallel zur Dachneigung überschreiten. Im Falle dieser Überschreitung sind die Solaranlagen um 1,00 m von Traufe, First und Ortgang zurückzusetzen. Im Übrigen sind Solaranlagen an der Fassade zulässig.][3.1 Sockelhoehe | Die Sockelhöhe bei den Nutzungsziffern 2, 3, 4 und 5 wird auf mindestens 60 cm und bis maximal 90 cm festgesetzt. Die Sockelhöhe bei der Nutzungsziffer 6 wird auf max. 1,20 m festgesetzt.][3.2 Bezugspunkt fuer die Baufenster | Für alle Baufenster ist jeweils die Hinterkante der Fertighöhe der öffentlichen Erschließungsstraße bzw. die Hinterkante der Fertighöhe des Gehwegs bzw. der vorgelagerten Längsparker bezogen auf die Mitte der jeweiligen Hauslänge Bezugspunkt von Traufhöhe und Firsthöhe (inklusive Sockel). Die Oberkante der Traufhöhe wird gemessen zwischen dem Schnittpunkt der Oberkante Dachhaut und der Hauswand (Außenseite der Außenwand).][4. Dacheinschnitte und Terrassen | Dachaustritte und Terrassen über dem oder im obersten Geschoss (Attikageschoss) bzw. Dachgeschoss sind nicht zulässig.][5. Auffuellungen | Der gekennzeichnete Bereich ist flächig aufzufüllen.][6. Abgrabungen | Abgrabungen und Lichtgräben sind im Plangebiet nicht zulässig.][7. Gruendung | Bauwerksbezogen sind geotechnische Untersuchungen für jedes geplante Bauwerk durchzuführen. Für sämtliche Hochbauten sind Plattengründungen vorzunehmen. Streifen- oder Einzelfundamente sind nur ausnahmsweise zulässig. Bauwerksbezogen sind Bodenverbesserungsmaßnahmen und Wasserhaltungsmaßnahmen zwingend erforderlich.][8. Aktive Nutzung erneuerbarer Energien | Bei der Errichtung von Gebäuden sind bauliche Vorkehrungen zu treffen, die es ermöglichen, im Zuge der Baumaßnahme oder zu einem späteren Zeitpunkt Komponenten für den Einsatz erneuerbarer Energien, insbesondere solare Energienutzung, vorzusehen (Berücksichtigung zusätzlicher Lasten in der statischen Berechnung auch im Dachbereich, Verlegung von Leitungen oder Leerrohren etc.).][9. Geruchsimmissionen | Im Dorfgebiet ist sicherzustellen, dass die Aufenthaltsräume auf der geruchsabgewandten Gebäudeseite im Süden liegen. Die nach Norden ausgerichteten Räume müssen mit einer kontrollierten Lüftung ausgestattet werden.][10. Schallschutz | Bei der Grundrissgestaltung sind die Empfehlungen der DIN 18005 (passiver Lärmschutz) anzuwenden. Grundsätzlich sind in allen Schlafräumen im gesamten Baugebiet Schallschutzfenster der Klasse 2-3 vorzusehen. Zusätzlich sind im Lärmpegelbereich III in allen Schlafräumen der Einsatz von Schalldämm-Lüftern vorzusehen.][11.1.1 Anpflanzungen von Laubbaeumen | Entlang der Fuhrmannsgasse auf dem Högebrunnenplatz und auf dem Wendeplatz der neuen Erschließungsstraße sind 9 standortgerechte Laubbäume mit einem Stammumfang von mindestens 18 cm zu pflanzen, dauerhaft zu pflegen und bei Verlust gleichwertig zu ersetzen.][11.1.2 Anpflanzungen von Laubbaeumen | Auf der öffentlichen Grünfläche am nordöstlichen Rand des Plangebiets sind 14 standortgerechte Laubbäume mit einem Stammumfang von mindestens 18 cm zu pflanzen, dauerhaft zu pflegen und bei Verlust gleichwertig zu ersetzen. Die Baumstandorte können in begründeten Fällen für Leitungen, Zufahrten etc. verschoben werden, sofern die Gesamtzahl der Baumpflanzungen dadurch nicht verringert wird.][11.1.3 Anpflanzungen einer Baumreihe | Entlang der nördlichen Grenze des Baugebiets sind auf den privaten Grünflächen 14 standortgerechte Laubbäume mit einem Stammumfang von mindestens 18 cm zu pflanzen, dauerhaft zu pflegen und bei Verlust gleichwertig zu ersetzen. Bei Artauswahl und Standort sind die vorhandenen Bäume entlang des Dorfbachs zu berücksichtigen, damit ein einheitliches Bild der Baumreihe entsteht. In Ergänzung der Baumreihe ist eine zweireihige Strauchpflanzung aus einheimischen möglichst immergrünen Straucharten (Pflanzempfehlung: Ligustrum vulgare) anzupflanzen, zu pflegen und dauerhaft zu erhalten. Die Pflanzungen sind direkt nach Abschluss der Bautätigkeit in den jeweils betroffenen Bereichen in der nächstmöglichen Pflanzperiode umzusetzen.][11.1.4 Anpflanzungen von Laubbaeumen | Auf den Baugrundstücken mit den Nutzungsziffern 4 und 5 im zentralen Bereich ist je angefangene 400 m² Grundstücksfläche ein standortgerechter Laubbaum mit einem Stammumfang von mindestens 14 cm zu pflanzen. Auf dem Baugrundstück mit der Nutzungsziffer 7 ist mindestens ein standortgerechter Laubbaum mit einem Stammumfang von mindestens 14 cm zu pflanzen. Die Standorte sind frei wählbar, wobei die Vorgaben des Nachbarschaftsrechtes zu berücksichtigen sind. Die Pflanzungen sind direkt nach Abschluss der Bautätigkeit in den jeweils betroffenen Bereichen in der nächstmöglichen Pflanzperiode umzusetzen.][11.1.5 Dachbegruenung | Die Dachflächen der Gebäude in den Nutzungsziffern 2 – 6 und 8 sind extensiv zu begrünen. Die Begrünung ist dauerhaft zu erhalten. Dazu sind die Bauteile mit mindestens 15 cm Erdsubstrat als Vegetationsschicht und zusätzlicher Isolier-Drainageschicht entsprechend dem Stand der Technik zu bedecken.][11.1.6 Begruenung Unterflurgaragen | Unterflurgaragen sind, soweit sie nicht überbaut sind oder als Wege-, Platz- oder Terrassenfläche genutzt werden, mit einer Substratschicht zu überdecken. Es hat ein Bodenauftrag mit geeignetem Substrat mit mindestens 0,5 m Auftragsstärke als durchwurzelbare Vegetationsschicht und zusätzlicher Isolier- bzw. Drainageschicht entsprechend dem Stand der Technik zu erfolgen. Die Flächen sind zu begrünen und dauerhaft zu erhalten.][11.2 Grundwasserschutz | 11.2.1 Konstruktive Vorgaben
+Zum Schutz des Grundwassers darf bei der Gründung des Bauvorhabens eine Unterschreitung des mittleren Grundwasserhöchststandes (MHW), bezogen auf die Unterkante des tiefsten Untergeschosses, nicht erfolgen.][11.3 Begrenzung der Bodenversiegelung | Sämtliche Stell- und Parkplätze, Fahrrad- und Abfallstellplätze sowie Hofflächen sind mit einem wasserdurchlässigen Belag auszubilden und müssen zum Zweck der Niederschlagsversickerung mit Gefälle zu den angrenzenden Grünflächen angelegt werden.][11.4 Umgang mit Boden und Erdaushub | Unbelasteter Oberboden oder Unterboden oder ggf. gering belasteter Boden, der bei der Errichtung und Änderung baulicher Anlagen sowie bei wesentlichen Änderungen der Erdoberfläche ausgehoben wird, ist in nutzbarem Zustand getrennt zu lagern und wieder zu verwerten. Dabei darf nur soviel Oberboden abgeschoben werden, wie für die Erschließung der Baufelder unbedingt nötig ist. Ein unnötiges Befahren oder Zerstören von Oberboden auf verbleibenden Freiflächen ist nicht zulässig. Ober- und Unterboden sind getrennt zu lagern und soweit wie möglich auf dem Baugrundstück wieder einzubauen. Hierbei darf der Oberboden des Urgeländes nicht überschüttet werden, sondern ist vorher abzuschieben. Für Auffüllungen ist ausschließlich Aushubmaterial (Unterboden) zu verwenden. Bei allen anfallenden Bodenarbeiten ist die DIN 19731 „Bodenbeschaffenheit - Verwertung von Bodenmaterial“ zu berücksichtigen.][11.5 Regenwasserbewirtschaftung | Das abzuleitende Niederschlagswasser ist an die öffentliche Kanalisation anzuschließen.][a) Umsetzung der Gruenordnung | Im Bauantrag ist auf geeignete Weise darzustellen, wie die grünordnerischen hinweisen umgesetzt werden sollen.][b) Energiekonzept Energieversorgung | Die Wohngebäude sind im jeweils aktuellen Freiburger Effizienzhaus-Standard zu erstellen. Die Grobabschätzung zur Untersuchung verschiedener Versorgungsvarianten ergab keine Notwendigkeit zur Erstellung eines Energiekonzepts. Zulässig sind Heizsysteme, die die Einhaltung des jeweils aktuellen Freiburger Effizienzhaus-Standards nach den baulandpolitischen Grundsätzen ermöglichen. Entsprechende Verpflichtungen werden in den Grundstückskaufverträgen für die von der Stadt veräußerten Grundstücke geregelt. Durch geeignete gestalterische bzw. planerische Maßnahmen soll passive Solarenergienutzung und Tageslichtnutzung möglichst umfassend realisiert werden. Nach Süden orientierte Dachflächen sollen für die Solarenergiegewinnung (Solarthermie- bzw. Photovoltaikanlagen) genutzt und möglichst unverbaut (z.B. durch Abluftrohre etc.) bleiben. Solarstromanlagen sollen ggf. mit PV-Investoren umgesetzt werden. Eine entsprechende Regelung gemäß der baulandpolitischen Grundsatzbeschlüsse wird in die Kaufverträge für die von der Stadt veräußerten Grundstücke aufgenommen.][c) Oeffentliche Verkehrsflaechen | Die getroffenen hinweisen für die öffentlichen Straßen bestimmen sich gemäß § 5 Abs. 6 Straßengesetz Baden-Württemberg.][d) Laerm und Geruch | Es wird für das Baugebiet darauf hingewiesen, dass landwirtschaftliche Flächen in unmittelbarer Nachbarschaft an das Baugebiet angrenzen und deshalb mit Immissionen (Lärm, Geruch) zu rechnen ist. Dieses ist als ortsüblich hinzunehmen.][e) Bodenschutz und Altlastenkataster | Folgende Flächen sind im Bodenschutzkataster erfasst (keine Altlast): Objekt Nr.: 3812 Firma Ziemer, Objekt Nr. 3806 Firma Behnen Überflüssiger Aushub ist einer ordnungsgemäßen Wiederverwertung entsprechend seiner Eignung zuzuführen. Ist eine Verwendung nicht möglich, hat die Beseitigung auf einer zugelassenen Deponie zu erfolgen. Die Altablagerung – Objekt-Nr. 3987 Kippe Högestraße – wurde zwischenzeitlich von A auf B – entsorgungsrelevant (Bodenschutzkataster, keine Altlasten) – umbewertet.][f) Altlasten und Bodenverunreinigungen | Nach derzeitigem Erkenntnisstand sind im Plangebiet keine altlastenverdächtigen Flächen vorhanden. Sollten bei Erdarbeiten wider Erwarten ungewöhnliche Färbungen und oder Geruchsemissionen wahrgenommen werden, sind die Erd- bzw. Aushubarbeiten umgehend einzustellen und es ist das Umweltschutzamt zu verständigen. Die Altablagerung-Objektnummer 3987 - Kippe Högestraße - wurde zwischenzeitlich von A auf B entsorgungsrelevant (Bodenschutzkataster, keine Altlast) umbewertet.][g) Auffuellungen | Es wird empfohlen, vor Beginn der Baumaßnahmen den anfallenden Bodenaushub abfallrechtlich zu untersuchen.][h) Natuerliche Bodenschichten | Es wird empfohlen, grundsätzlich bauwerksbezogene geotechnische Untersuchungen vorzunehmen, um Gründungskonzepte und Gründungsniveau festzulegen und um die abfallrechtliche Einstufung von Bodenaushub zu ermitteln. Die heterogene Auffüllung der Torfschichten im Untergrund und der hohe Grundwasserstand führt zur Plattengründung von Hochbauten und ist grundsätzlich standortbedingt anzupassen.][i) Freiflaechengestaltungsplan | Mit jedem Bauantrag ist ein Freiflächengestaltungsplan vorzulegen. Die erforderlichen Inhalte des Freiflächengestaltungsplan ergeben sich aus dem Bebauungsplan sowie dem städtischen Anforderungsprofil für qualifizierte Freiflächengestaltungspläne.][j) Grundwasser | Der Schutz des Bauvorhabens vor Grundwasser bleibt in der Verantwortung des Bauherrn.][k) Hochwasserschutz | Gemäß den gegenwärtig zur Plausibilisierung bei der Stadt Freiburg vorliegenden Hochwassergefahrenkarten wird eine Ecke des Plangebiets bei einem hundertjährigen Hochwasserereignis überschwemmt. Da aber auch in den aktuell vorliegenden Hochwassergefahrenkarten augenscheinlich ein Gewässerverlauf in Hochdorf falsch eingetragen ist, gehen wir davon aus, dass sich in diesem Bereich noch Änderungen bezüglich der Überflutungsfläche nach der Plausibilisierung ergeben. Sollte auch in den endgültigen Hochwassergefahrenkarten dieser begrenzte Bereich des Baugebiets überflutet werden, empfehlen wir eine Geländeerhöhung in diesem Bereich als Hochwasserschutzmaßnahme.][l) Tiefbrunnen | Auf dem Flst. Nr. 2522 befindet sich der stillgelegte Tiefbrunnen Nr. 0968 069-4. Der fachgerechte Rückbau des Tiefbrunnens bedarf einer vorherigen Absprache mit dem Umweltschutzamt.][m) Hausanschluesse | Hausanschlüsse werden nach den technischen Anschlussbedingungen der badenova Netz GmbH ausgeführt.][n) Hinweise zur Kabelverlegung | Der Bauablauf ist so zu planen, dass die Arbeiten zur Kabelverlegung beim Niveau „Unterkante Bordsteinanlage“ (Randsteine sind gesetzt) erfolgen können (Verlegetiefe ca. 60 - 80 cm ab „Oberkante Straße“ bzw. „Oberkante Gehweg“). Die Arbeiten zur Kabelverlegung werden üblicherweise von der Deutschen Telekom und dem zuständigen Energieversorger in Koordination ausgeschrieben. Im Bauzeitenplan ist eine angemessene und kollisionsfreie Zeitspanne für die Kabelverlegearbeiten vorzusehen. Ausfallzeiten oder Mehrkosten durch das ggf. erforderliche Räumen des Baufeldes können seitens der beaufragten Straßenbaufirma gegenüber der Deutschen Telekom AG nicht geltend gemacht werden. Für die rechtzeitige Planung und Bauvorbereitung (Koordinierung mit dem Straßenbau und den Baumaßnahmen der anderen Ver- und Entsorger) ist es notwendig, den Beginn und Ablauf der Baumaßnahmen (Bauzeitenplan) so früh als möglich, mindestens jedoch 4 Monate vor Baubeginn, mitzuteilen.]</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -6984,7 +7248,579 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
-          <con:parameters/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetFeature</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>version</con:name>
+              <con:value>2.0.0</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>typenames</con:name>
+              <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>bbox</con:name>
+              <con:value>410694.41733701463,5322268.529501661,410829.88393052935,5322403.996095176</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetFeature BP_Plan Textsortierung_2" id="3679b6d6-f4c5-45a3-be7c-907ce7154670">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature BP_Plan Textsortierung_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="xpPlanName">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Testplan Textsortierung Mischform mit Priorität auf Buchstaben"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArt">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArt</path>
+              <content>10001</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArtWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArtWert</path>
+              <content>QualifizierterBPlan</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstand">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstand</path>
+              <content>4000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstandWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstandWert</path>
+              <content>InkraftGetreten</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="textsortierung">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:texte</path>
+              <content>[2.4 Geschossflaeche (§ 20 BauNVO) | 2.4.1 Die maximal zulässige Geschossfläche (GF) ist bezogen auf das jeweilige Gebäude der Planzeichnung zu entnehmen.
+2.4.2 Auf die Geschossfläche sind sämtliche Flächen für Aufenthaltsräume in anderen Geschossen als Vollgeschossen einschließlich der zu ihnen gehörenden Treppenräume einschließlich ihrer Umfassungswände anzurechnen.][6. Flaechen fuer Nebenanlagen u. Stellplaetze | 6.1 Innerhalb der im zeichnerischen Teil als öffentliche Parkierungsfläche gekennzeichneten Fläche sind nur offene Stellplätze zulässig.
+6.2 Im allgemeinen Wohngebiet sind notwendige private Stellplätze nur auf den festgesetzten Flächen für Tiefgaragen (Tg) und Stellplätze (St) sowie innerhalb der überbaubaren Fläche zulässig. 
+6.3 Zusätzliche erforderliche Stellplätze für andere Nutzungen als Wohnungen (Arztpraxen etc.) sind als offene Stellplätze (St) oder als Carports (Cp) in den festgesetzten Flächen und innerhalb der überbaubaren Flächen zulässig. Carports sind definiert als mindestens zweiseitig offene, überdachte Stellplätze.
+6.4 Nebenanlagen in Form von Gebäuden oder überdachten Abstellflächen für Fahrräder, Abfallbehälter etc. sind nur innerhalb der überbaubaren Grundstücksfläche oder innerhalb der im zeichnerischen Teil festgesetzten Flächen für Nebenanlagen (NG) zulässig.
+6.5 Carports und Nebenanlagen dürfen eine maximale Höhe von 3,00 m nicht überschreiten. Die Höhe wird gemessen zwischen der Geländeoberkante und der Oberkante der Gebäude.
+Hinweise:
+Zur Dachbegrünung von Nebenanlagen siehe Nr. 9.2.2.
+Offene Stellplätze sind mit einem wasserdurchlässigen Belag (siehe Nr. 7.4) herzustellen.][7. Versickerung von Niederschlagswasser | 7.1 Das auf privaten Flächen anfallende Niederschlagswasser ist auf dem jeweiligen Grundstück zur Versickerung zu bringen.
+serung darzustellen.][8. Flaechen oder Massnahmen zum Schutz | Zum Schutz des Grundwassers darf bei der Gründung der Bauvorhaben eine Unterschreitung des mittleren Grundwasserhöchststandes (MHW), bezogen auf die Unterkante des tiefsten Untergeschosses (Keller oder Tiefgarage), nicht erfolgen.
+Hinweise:
+Der Schutz des Bauvorhabens vor Grundwasser bleibt in der Verantwortung des Bauherrn.
+Zum Schutz des Grundwassers sollten Baumaterialien, die mit abfließendem Regenwasser in Kontakt gelangen, keine Herbizide, Insektizide und Fungizide (z. B. mit Herbizid versehene Bitumendachbahnen) enthalten.
+Dacheindeckungen und Fassaden aus unbeschichteten Metallen wie Kupfer, Zink und Blei und deren Legierungen sind nicht zugelassen. Werden Metalldacheindeckungen vorgesehen, so sind diese aus beschichteten Blechen, Aluminium oder Edelstahl zu erstellen.][A 11.2 Verkehrslaerm | 11.2.1 Grundrissorientierung
+Zum Schutz vor Verkehrslärm muss in der ersten Gebäudereihe entlang der Markgrafenstraße an den direkt zur Markgrafenstraße ausgerichteten Fassaden (lärmzugewandte Fassaden) sowie an den hieran angrenzenden, ungefähr senkrecht zur Markgrafenstraße ausgerichteten Fassaden (Giebelseite), bei Wohnungen mit höchstens zwei Aufenthaltsräumen mindestens ein Aufenthaltsraum, bei Wohnungen mit mehr als zwei Aufenthaltsräumen müssen mindestens zwei Aufenthaltsräume mit jeweils mindestens einem Fenster zu der von der Markgrafenstraße abgewandten Gebäudeseite (lärmabgewandte Seite) orientiert sein.][A 11.1 Gewerbelaerm (§ 9 Abs. 2 S. 1 Nr. 2 BauGB) | In den in Anlage 1 der textlichen Festsetzungen farbig gekennzeichneten Bereichen des allgemeinen Wohngebietes sind Gebäude mit Wohnnutzungen bis zur Aufgabe der bestehenden gewerblichen Nutzung unzulässig. Nach Aufgabe der gewerblichen Nutzung sind Gebäude mit Wohnnutzungen in den o.g. Bereichen wieder zulässig.][A 11. Vorkehrungen zum Schutz | .][A 10. Gebiete | Im gesamten Plangebiet sind auf Dächern und oder an Fassaden aller baulichen Hauptanlagen (Hauptgebäuden) Anlagen zur Nutzung der Solarenergie in Form von Photovoltaik (PV), Solarthermie oder einer Kombination von PV und Thermie (PVT) zu errichten, dauerhaft zu erhalten und bei Beschädigung oder Rückbau mindestens gleichwertig zu ersetzen.][A 9.3 Erhalt von Baeumen | Die in der Planzeichnung zum Erhalt festgesetzten Bäume sind zu pflegen, dauerhaft zu erhalten und bei Abgang in gleicher Art zu ersetzen.][A 9.2 Dach- und Tiefgaragenbegruenung | 9.2.1 Alle nicht überbauten Dachflächen der Tiefgarage, außer Flächen für Zugänge, Zufahrten, Platzflächen, Terrassen oder Spielplätze sind mit einer vegetationsfähigen Substratschicht von mindestens 40 cm (zuzüglich Drainschicht) zu überdecken und dauerhaft intensiv zu begrünen.][A 9.1 Anpflanzen von Baeumen | 9.1.1 Gemäß der Planzeichnung sind in den jeweiligen Vorgartenbereichen standortgerechte, bevorzugt heimische Laubbaum-Hochstämme (Bäume 2. Ordnung) mit der Pflanzqualität 18-20 cm Stammumfang zu pflanzen.][A 9. Gruenordnerische Festsetzungen | .][A 5. Anzahl der Wohnungen in Wohngebaeuden | 5.1 Im allgemeinen Wohngebiet 1 (WA 1) ist die Anzahl der Wohnungen pro Einzelhaus bzw. je Baufenster auf maximal zehn Wohneinheiten begrenzt.
+5.2 Im allgemeinen Wohngebiet 2 (WA 2) ist die Anzahl der Wohnungen pro Einzelhaus bzw. je Baufenster auf maximal acht Wohneinheiten begrenzt.][A 4. Ueberbaubare Grundstuecksflaeche | Die überbaubaren Grundstücksflächen (Baufenster) werden durch die in der Planzeichnung festgesetzten Baulinien und Baugrenzen definiert.][A 3. Bauweise | Für das Plangebiet wird die offene Bauweise in Form von Einzel- und Doppelhäusern festgesetzt.
+Hinweis: Im Geltungsbereich des Bebauungsplanes soll mindestens der Freiburger Effizienzhausstandard 55 (Wohnen) bzw. 70 (Büro) realisiert werden. Zur Deckung des Restenergiebedarfs sollen erneuerbare Energien eingesetzt werden.][A 2.3 Zahl der Vollgeschosse (§ 20 Abs. 1 BauNVO) | Die maximal zulässige Zahl der Vollgeschosse ist bezogen auf das jeweilige Gebäude in der Planzeichnung festgesetzt (in römischen Zahlen).][A 2.2 Grundflaeche (§ 19 BauNVO) | 2.2.1 Die maximal zulässige Grundfläche (GR) ist bezogen auf das jeweilige Gebäude der Planzeichnung zu entnehmen.
+2.2.2 Die zulässige Grundfläche darf gemäß § 19 Abs. 4 BauNVO durch die Grundflächen von Garagen (Carports) und Stellplätzen mit ihren Zufahrten, Nebenanlagen im Sinne des § 14 BauNVO und baulichen Anlagen unterhalb der Geländeoberflächen, durch die das Baugrundstück lediglich unterbaut wird, um bis zu einer Grundflächenzahl von maximal 0,7 überschritten werden.][A 2.1 Hoehe der baulichen Anlagen (§ 18 BauNVO) | 2.1.1 Die in der Planzeichnung festgesetzten Trauf- und Firsthöhen beziehen sich auf die Fertighöhe der jeweils nächstliegenden öffentlichen Erschließungsfläche (Hinterkante Gehweg), gemessen in der Mitte der Traufseite des jeweiligen Gebäudes. Oberer Bezugspunkt der Traufhöhe ist der Schnittpunkt der äußeren Wandfläche mit der Oberkante der Dachhaut. Oberer Bezugspunkt der Firsthöhe ist die obere Dachbegrenzungskante.
+2.1.2 Aufzugsüberfahrten und Treppenhäuser dürfen die maximal zulässigen Firsthöhen nicht überschreiten.][A 2. Mass der baulichen Nutzung | Das Maß der baulichen Nutzung ist der Planzeichnung zu entnehmen und wird bestimmt durch die Festsetzungen zur 
+- Höhe der baulichen Anlagen (max. Traufhöhe TH, max. Firsthöhe FH),
+- Grundfläche (GR),
+- Geschossfläche (GF),
+- Zahl der Vollgeschosse.][A 1.1. Allgemeines Wohngebiet (§ 4 BauNVO) | 1.1.1 In den allgemeinen Wohngebieten 1 und 2 (WA 1 und WA 2) sind ab dem 1. Obergeschoss ausschließlich Wohnungen zulässig.
+1.1.2 In den allgemeinen Wohngebieten 1 und 2 (WA 1 und WA 2) sind Anlagen für sportliche Zwecke nach § 4 Abs. 2 Nr. 3 BauNVO nur ausnahmsweise zulässig.
+1.1.3 In den allgemeinen Wohngebieten 1 und 2 (WA 1 und WA 2) sind Betriebe des Beherbergungsgewerbes, sonstige nicht störende Gewerbebetriebe, Anlagen für Verwaltung, Gartenbaubetriebe und Tankstellen (vgl. § 4 Abs. 3 BauNVO) nicht zulässig.][A 1. Art der baulichen Nutzung | .][A Textliche Festsetzungen (nach § 9 Abs. 1 BauGB) | In Ergänzung der Planzeichnung gelten folgende planungsrechtlichen Festsetzungen:][B 6. Empfehlungen zur Aussenbeleuchtung | Für die Außenbeleuchtung sind ausschließlich insektenfreundliche Lampen mit warm- bis neutralweißer Lichtfarbe (Farbtemperatur 3.000 bis maximal 4.100 Kelvin) und einem Spektralbereich von 570 bis 630 Nanometer (z. B. LED-Lampen, Natriumdampflampen oder Leuchtmittel mit einer UV-absorbierenden Leuchtenabdeckung zu verwenden. Die Leuchten sind staubdicht und so auszubilden, dass eine Lichteinwirkung nur auf die zu beleuchtende Fläche erfolgt und nicht in Richtung des Himmelskörpers. Nach oben streuende Fassadenanstrahlung ist im Plangebiet unzulässig.][B 5. Oekologische Baubegleitung | Zur Sicherstellung einer fachgerechten Umsetzung der artenschutzrechtlichen Belange für den Zeitraum der Abbruch- und Bauarbeiten, sowie unmittelbar vor Fällung von Bäumen mit Quartierpotential für Vögel und Fledermäuse eine ökologische Baubegleitung festgesetzt. Die fachkundige Person ist der Unteren Naturschutzbehörde (UNB) unaufgefordert mitzuteilen.][B 4. Habitatpotential fuer Reptilien | Um Verbotstatbestände ausschließen zu können, müssen die Flächen und oder baulichen Anlagen mit Habitatpotential für Reptilien (Zaun- und Mauereidechsen) vor Umbau und Abbruch im Rahmen des jeweiligen Bauantragsverfahrens auf ein tatsächliches Vorkommen durch Fachexperten überprüft werden. Die fachkundige Person ist der Unteren Naturschutzbehörde (UNB) vorab unaufgefordert mitzuteilen.
+Sollten bei der Überprüfung Zaun- oder Mauereidechsen gefunden werden, sind geeignete Maßnahmen zur Vermeidung des Eintretens von Verbotstatbeständen im Sinne des § 44 BNatSchG mit der Unteren Naturschutzbehörde abzustimmen.][B 3. Gebaeudebewohnende Vogel- und Fledermausarten | Um Verbotstatbestände zu vermeiden und geeignete Ersatzmaßnahmen für die gegebenenfalls verloren gehenden Habitate zu konzipieren, muss im Fall von Sanierungs-, Umbau-, Abriss- oder Ausbaumaßnahmen von Gebäuden und Dachstühlen im Rahmen des jeweiligen Bauantragsverfahrens eine Überprüfung durch Fachexperten auf das tatsächliche Vorkommen von gebäudebewohnenden Vogel- und Fledermausarten erfolgen. Die fachkundige Person ist der Unteren Naturschutzbehörde (UNB) vorab unaufgefordert mitzuteilen.
+Sollten bei der Überprüfung Vogel- oder Fledermausarten gefunden werden, sind geeignete Maßnahmen zur Vermeidung des Eintretens von Verbotstatbeständen im Sinne des § 44 BNatSchG mit der Unteren Naturschutzbehörde abzustimmen.
+Bei Neubauten wird eine Berücksichtigung von integrativen Ansätzen bezüglich des Artenschutzes empfohlen.][B 2. Zeitraum fuer Rodungen | Um Beeinträchtigungen sowie das Eintreten des Verbotstatbestands der Tötung zu vermeiden, sind das Auf den Stock setzen Rodungen von Gehölzen (Bäume, Hecken, Sträucher etc.) mit Bezug zu § 39 Abs. 5 Nr. 2 BNatSchG lediglich außerhalb der Vegetationszeit sowie außerhalb der Vogelschutzzeit vorzunehmen. 
+In der Zeit vom 1. März bis zum 30. September sind Gehölzentfernungen unzulässig.
+Um eine Beeinträchtigung von Fledermausarten mit hinreichender Sicherheit ausschließen zu können, dürfen Fällungen von Bäumen mit Habitatpotential erst ab Anfang November erfolgen.][B 1. Allgemeines | Zur Vermeidung des Eintretens von Verbotstatbeständen nach § 44 BNatSchG sind artenschutzrechtliche Prüfungen im Rahmen des jeweiligen Bauantragsverfahrens hinsichtlich der in der artenschutzrechtlichen Relevanzabschätzung identifizierten Tierarten (Vögel, Reptilien und Fledermäuse) sowie ggfs. Vermeidungs- und Minimierungsmaßnahmen durchzuführen. Die entsprechenden Gutachten sind im Zuge des Bauantrages beizulegen.][B Artenschutz | .][C 14. Kampfmittel | Für das Plangebiet wurde eine multitemporale Luftbildauswertung durchgeführt. Die Luftbildauswertung hat keine Anhaltspunkte für das Vorhandensein von Bombenblindgängern innerhalb des Untersuchungsgebietes ergeben. Insoweit sind keine weiteren Maßnahmen erforderlich. Eine Garantie der Kampfmittelfreiheit bedeutet dies nicht.][C 13. Hausanschluesse | Hausanschlüsse werden nach den technischen Anschlussbedingungen der bnNETZE GmbH, den Bestimmungen der NAV, NDAV, AVBWasserV und den Maßgaben der einschlägigen Regelwerke in der jeweils gültigen Fassung ausgeführt. In Anlehnung an die DIN 18012 wird für Neubauvorhaben ein Anschlussübergaberaum benötigt. In diesem ist ausreichend Platz für Zähler der bnNETZE GmbH vorzusehen. Der Hausanschlussraum ist an der zur Straße zugewandten Außenwand des Gebäudes einzurichten und muss ausreichend belüftet sein. Anschlussleitungen sind geradlinig und auf kürzestem Weg vom Abzweig der Versorgungsleitung bis in den Hausanschlussraum zu führen.
+Bei der Bauausführung ist darauf zu achten, dass Beschädigungen an Telekommunikationslinien vermieden werden. Die Bauausführenden haben sich zum Zeitpunkt der Bauausführung über die Lage der vorhandenen Kabel zu informieren. Die Kabelschutzanweisung der Telekom ist zu beachten.][C 12. Denkmalpflege | Im Plangebiet sind bisher keine archäologischen Kulturdenkmale bekannt. Sollten bei der Durchführung der Maßnahme archäologische Funde oder Befunde entdeckt werden, sind gemäß § 20 DSchG Denkmalbehörde(n) oder Gemeinde umgehend zu benachrichtigen.][C 11. Hochwasserschutz | Die Einzelbauvorhaben, die sich in HQ100-Flächen befinden, benötigen bis zur Inbetriebnahme der Rückhaltebecken Bohrertal und Breitmatte jeweils eine wasserrechtliche Ausnahmegenehmigung nach § 78 Abs. 5 WHG, d.h. bei jedem einzelnen Bauvorhaben sind im Rahmen des Baugenehmigungsverfahrens sämtliche in § 78 Abs. 5 WHG genannten Voraussetzungen zu erfüllen.][C 10. Grundwasser | Für die Westecke des Plangebiets kann von einem mittleren Grundwasserhochstand (MHW) von 248,10 und im Osten des Plangebiets von 249,60 ausgegangen werden.][C 9. Altlasten | Im Boden- und Altlastenkataster der Stadt Freiburg ist für den Bereich des Bebauungsplans die Objekt-Nr. 08205 „Fläche des historischen Bergbaus“ enthalten.][C 8. Versickerung von Niederschlagswasser | Das auf den privaten Flächen anfallende Niederschlagswasser ist auf dem jeweiligen Grundstück zur Versickerung zu bringen.
+Die ordnungsgemäße Herstellung und der Betrieb von Versickerungsanlagen liegen im alleinigen Verantwortungsbereich des Bauherrn  Betreibers  Hausbesitzers.
+Versickerungsanlagen sind nach den allgemein anerkannten Regeln der Technik (a.a.R.d.T.) zu bemessen, zu erstellen und zu betreiben (insbesondere Niederschlagswasserverordnung BW, DWA-A 138, Arbeitshilfe für den Umgang mit Regenwasser in Siedlungsgebieten der LUBW). 
+Die Versickerungsanlage sollte hydraulisch an den gut durchlässigen Untergrund angeschlossen sein. Die Anforderungen an den mit Gras bewachsenen Oberboden nach DWA A-138 sind einzuhalten.
+Bei Nähe zu Baumstandorten ist wurzelschonend zu arbeiten (siehe Baumschutz) und die Anlage ggfs. anzupassen.
+Betrieb:
+Versickerungsanlagen sind regelmäßig zu pflegen und zu warten (Eigenkontrolle). Insbesondere Laub- und Schmutzeinträge sind zu entfernen. Eine zusammenhängende Begrünung sollte sichergestellt sein, um einer Selbstabdichtung vorzubeugen.
+Hinweis:
+Die Versickerungsanlage und die zuführenden Ableitungselemente sind im Rahmen der Baugenehmigung zu planen und planerisch in den Unterlagen der Grundstücksentwässerung darzustellen.][C 7. Bodenschutz | Auf die Pflicht zur Beachtung der Bestimmungen des Bundesbodenschutzgesetztes (BBodSchG) und der bodenschutzrechtlichen Regelungen (BBodSchV, DIN 19731, DIN 18915) wird hingewiesen.
+Ein erforderlicher Bodenabtrag ist schonend und unter sorgfältiger Trennung von Ober- und Unterboden durchzuführen. Anfallender unbelasteter Erdaushub ist soweit als möglich auf dem betroffenen Baugrundstück zu verwerten und wieder einzubauen.
+Überschüssiger Aushub ist einer ordnungsgemäßen Wiederverwertung entsprechend seiner Eignung zuzuführen. Ist eine Verwertung nicht möglich, muss die Beseitigung auf einer zugelassenen Deponie erfolgen. Werden bei Abbruch- oder Erdarbeiten im Untergrund Auffälligkeiten (Färbungen, Gerüche, Fremdbestandteile etc.) wahrgenommen, ist unverzüglich das Umweltschutzamt der Stadt Freiburg zu unterrichten. Die Aushubarbeiten sind an dieser Stelle sofort zu unterbrechen (Rechtsgrundlage: § 1, § 2 Abs. 2 und § 7 Altlastenverordnung (BBodSchV)).][C 6. Ausschluss von Wohnbebauung | Wird im Baugenehmigungsverfahren der Nachweis erbracht, dass im Rahmen einer Neubebauung mit entsprechenden schallschutztechnischen Maßnahmen die Grenzwerte für ein Allgemeines Wohngebiet eingehalten werden, kann vom Ausschluss einer wohnbaulichen Nutzung im Teilbereich des heute gewerblich genutzten Grundstücks befreit werden.][C 5. Radabstellplaetze | Bei den Bauvorhaben im Plangebiet sind Fahrradstellplätze mindestens entsprechend der Landesbauordnung (LBO) und der dazugehörigen Verwaltungsvorschrift (VwV Stellplätze) herzustellen. Danach sind für eine Wohneinheit zwei wettergeschützte Fahrradstellplätze nachzuweisen. In Freiburg werden rund 30 Prozent der Wege mit dem Fahrrad zurückgelegt. Der Anteil von Pedelecs, Anhängern, Lastenrädern etc. steigt stark an, die wegen ihres Anschaffungspreises, des Gewichts bzw. der Größe nochmals höhere Anforderungen an Radabstellplätze stellen. Im Sinne eines attraktiven Angebotes für die Rad-Mobilität ist es ratsam, über die Regelung der LBO hinaus eine große Anzahl von qualitativ hochwertigen Radabstellplätzen in einer attraktiven Lage für Bewohner und Besucher zu schaffen. Es wird daher empfohlen, die Regelungen des Entwurfs der Radabstellsatzung der Stadt Freiburg zu beachten.][C 4. Objektschuetzende Massnahmen | Bei Starkregen kann in kurzer Zeit vermehrter Oberflächenabfluss auftreten. Zur Überflutungsvorsorge bei Starkregenereignissen werden bei der Planung und Ausführung der Bebauung im Geltungsbereich des Bebauungsplans objektschützende Maßnahmen empfohlen. Objektschützende Maßnahmen sind bauliche Maßnahmen zum Schutz gegen eindringendes Wasser in Gebäude und auf Baugrundstücke. Sie liegen im Verantwortungsbereich der privaten Baugrundstückseigentümer.
+Als technisch-konstruktive Objektschutzmaßnahmen können beispielsweise druckdichte Fenster und Türen, wasserdichte Abdeckungen von Lichtschächten und Tiefgaragenbelüftungen, Bodenaufkantungen usw. dienen.
+Tiefliegende Räume (Tiefgaragen etc.) müssen gegen eindringendes Wasser geschützt werden. Zum Schutz vor Rückstau aus der öffentlichen Kanalisation ist die Grundstücksentwässerung gemäß DIN 1986-100 in Verbindung mit § 11 Abs. 1 Stadtentwässerungssatzung auszulegen und zu sichern. Zum Schutz vor Überflutung aus dem öffentlichen Verkehrsraum sind die Zugänge mindestens 10 cm über dem Niveau der wasserführenden Straßenrinne zu führen.
+Weitere Beispiele für Objektschutzmaßnahmen können der Broschüre „Starkregen und urbane Sturzfluten - Praxisleitfaden zur Überflutungsvorsorge“ (Herausgeber: DWA, Hennef) und dem „Leitfaden Starkregen – Objektschutz und bauliche Vorsorge“ (Herausgeber: Bundesinstitut für Bau-, Stadt- und Raumforschung, Bonn, online verfügbar: urn:nbn:de:101:1-2019072508461865341499) in der jeweils aktuellen Fassung entnommen werden.][C 3. DIN-Vorschriften und Empfehlungen | Die in den vorstehenden Bestimmungen genannten DIN-Vorschriften und Empfehlungen sind beim Beratungszentrum Bauen, Fehrenbachallee 12, 79106 Freiburg, während der allgemeinen Öffnungszeiten einzusehen. Die DIN-Vorschriften sind auch bei der Beuth Verlag GmbH, Burggrafenstraße 6, 10787 Berlin, erhältlich und beim Deutschen Patent- und Markenamt, 80331 München, archivmäßig gesichert hinterlegt.][C 2. Baumschutz | 2.1 Baumschutz in der Bauphase
+Die zum Erhalt festgesetzten Bestandsbäume und alle Bäume im näheren Umfeld des Bauvorhabens (auch außerhalb des Geltungsbereiches) sind bei Eingriffen durch Erd- und Bauarbeiten in den Wurzelbereich zu sichern und zu schützen.][C 1. Freiflaechengestaltungsplan | Mit dem Bauantrag ist ein Freiflächengestaltungsplan vorzulegen.][C Hinweise | .]</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetFeature</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>version</con:name>
+              <con:value>2.0.0</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>typenames</con:name>
+              <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>bbox</con:name>
+              <con:value>411742.72052504285,5316055.221687282,412060.220353593,5316305.252802265</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetFeature BP_Plan Textsortierung_3" id="79303c1d-95a1-4d4a-80db-a284e67c148f">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature BP_Plan Textsortierung_3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="xpPlanName">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Testplan Textsortierung Mischform mit Prioriaet auf Zahlen"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArt">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArt</path>
+              <content>10000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArtWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArtWert</path>
+              <content>EinfacherBPlan</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstand">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstand</path>
+              <content>4000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstandWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstandWert</path>
+              <content>InkraftGetreten</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="textsortierung">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:texte</path>
+              <content>[1. | Bezüglich Art der baulichen Nutzung gilt die BauNVO in der Fassung der Bekanntmachung vom 23.01.1990 (BGBl. I S. 132).][2. | Die im rechtskräftigen Bebauungsplan Industriegebiet Nord (Plan-Nummer 2-15a) enthaltene Festsetzung unter 1.1.2 c wird aufgehoben.
+Die sonstigen Textlichen Festsetzungen gelten weiterhin.][3.a) Industriegebiet (gemaess § 9 BauNVO) | Industriegebiet gemäß § 9 BauNVO 
+Teilbereich Al - westlich Tullastraße und Teilbereich A2 - nördlich Mooswaldallee
+(1) Zulässig sind Nutzungen nach § 9 Abs. 2, ausgenommen Einzelhandelsbetriebe, die zentrenrelevante Sortimente führen.
+(2) Ausnahmsweise zulässig ist der Verkauf von auf dem Grundstück produzierten Waren auf einer untergeordneten Fläche. Dies gilt nicht für Lebensmittel.
+(3) Ausnahmsweise zulässig sind die Nutzungen nach § 9 Abs. 3 Nr. 1 und 2 BauNVO.][3.b) Tullastrasse und suedlich Mooswaldallee | Teilbereich B - östlich Tullastraße und südlich Mooswaldallee
+Industriegebiet gemäß § 9 BauNVO
+(1) Zulässig sind Nutzungen nach § 9 Abs. 2, ausgenommen Einzelhandelsbetriebe.
+(2) Ausnahmsweise zulässig ist der Verkauf von auf dem Grundstück produzierten Waren auf einer untergeordneten Fläche. Dies gilt nicht für Lebensmittel.
+(3) Ausnahmsweise zulässig sind die Nutzungen nach § 9 Abs. 3 Nr. 1 und 2 BauNVO.][4. Sondergebiete | .][4.a) Sondergebiet (B 1) | (1) Zulässig ist ein Einzelhandelsbetrieb für den Verkauf von Lebensmitteln bis zu einer Geschoßfläche von max. 1.100 qm oder ein Einzelhandelsbetrieb für nicht zentrenrelevante Sortimente.
+(2) Ausnahmsweise kann die nach Ziff. 1 zulässige Geschoßfläche für einen Lebensmitteleinzelhandelsbetrieb um bis zu 30 v. H. für betriebsbezogene Nebenflächen (Verwaltung, Sozialräume, Lager etc.) überschritten werden.
+(3) Ausnahmsweise zugelassen werden branchentypische Randsortimente, welche zentrumsrelevant sind; sie dürfen bis zu 10 v. H. der realisierten Geschoßfläche einnehmen, jedoch insgesamt nicht mehr als 400 qm umfassen.
+(4) Zulässig sind gewerbliche Nutzungen nach § 9 Abs. 2, die keinen Einzelhandel zum Gegenstand haben.
+(5) Ausnahmsweise zulässig sind die Nutzungen nach § 9 Abs. 3 Nr. 1 und 2 BauNVO.][4.b) Sondergebiet (B 2) | (1) Zulässig ist ein Einzelhandelsbetrieb für den Verkauf von Lebensmitteln bis zu einer Geschoßfläche von max. 650 qm oder ein Einzelhandelsbetrieb für nicht zentrenrelevante Sortimente.
+(2) Ausnahmsweise kann die nach Ziff. 1 zulässige Geschoßfläche für einen Lebensmitteleinzelhandelsbetrieb um bis zu 30 v. H. für betriebsbezogene Nebenflächen (Verwaltung , Sozialräume, Lager etc.) über schritten werden.
+(3) Ausnahmsweise zugelassen werden branchentypische Randsortimente, welche zentrenrelevant sind; sie dürfen bis zu 10 v. H. der realisierten Geschoßfläche einnehmen, jedoch insgesamt nicht mehr als 400 qm umfassen.
+(4) Zulässig sind gewerbliche Nutzungen nach § 9 Abs. 2, die keinen Einzelhandel zum Gegenstand haben.
+(5) Ausnahmsweise zulässig sind die Nutzungen nach § 9 Abs. 3 Nr. l und 2 BauNVO.][4.c) Sondergebiet (B 3) | (1) Zulässig ist ein Einzelhandelsbetrieb für den Groß- und Einzelhandelsverkauf von Elektroartikeln bis zu einer Geschoßfläche von maximal 2.500 qm oder ein Einzelhandelsbetrieb für nicht zentrenrelevante Sortimente.
+(2) Ausnahmsweise kann die nach Ziff. 1 zulässige Geschoßfläche für einen Lebensmitteleinzelhandelsbetrieb um bis zu 30 v. H. für betriebsbezogene Nebenflächen (Verwaltung, Sozialräume, Lager etc.) überschritten werden.
+(3) Ausnahmsweise zugelassen werden branchentypische Randsortimente, welche zentrenrelevant sind; sie dürfen bis zu 10 v. H. der realisierten Geschoßfläche einnehmen, jedoch insgesamt nicht mehr als 400 qm umfassen.
+(4)Zulässig sind gewerbliche Nutzungen nach § 9 Abs. 2, die keinen Einzelhandel zum Gegenstand haben.
+(5) Ausnahmsweise zulässig sind die Nutzungen nach § 9 Abs. 3 Nr. l und 2 BauNVO.][4.d) Sondergebiet (B 4) | (1) Zulässig ist ein Einzelhandelsbetrieb für den Verkauf von Lebensmitteln bis zu einer Geschoßfläche von 1.100 qm oder ein Einzelhandelsbetrieb für nicht zentrenrelevante Sortimente.
+(2) Ausnahmsweise kann die nach Ziff. l zulässige Geschoßfläche für einen Lebensmitteleinzelhandelsbetrieb um bis zu 30 v. H. für betriebsbezogene Nebenflächen (Verwaltung, Sozialräume, Lager etc.) überschritten werden.
+(3) Ausnahmsweise zugelassen werden branchentypische Randsortimente, welche zentrumsrelevant sind; sie dürfen bis zu 10 v. H. der realisierten Geschoßfläche einnehmen, jedoch insgesamt nicht mehr als 400 qm umfassen.
+(4) Zulässig sind gewerbliche Nutzungen nach § 9 Abs. 2, die keinen Einzelhandel zum Gegenstand haben.
+(5) Ausnahmsweise zulässig sind die Nutzungen nach § 9 Abs. 3 Nr. 1 und 2 BauNVO.][4.e) Sondergebiet (C 1) | (1) Zulässig ist ein Einzelhandelsbetrieb mit nicht zentrenrelevanten Sortimenten. Ausnahmsweise können branchentypische Randsortimente, die zentrenrelevant sind, zugelassen werden; sie dürfen bis zu 10 v. H. der realisierten Geschoßfläche einnehmen, jedoch insgesamt nicht mehr als 400 qm umfassen.
+(2) Zulässig sind gewerbliche Nutzungen nach § 9 Abs. 2, die keinen Einzelhandel zum Gegenstand haben.
+(5) Ausnahmsweise zulässig sind die Nutzungen nach § 9 Abs. 3 Nr. 1 und 2 BauNVO.][4.f) Sondergebiet (C 2) | (1) Zulässig ist ein Einzelhandelsbetrieb mit nicht zentrenrelevanten Sortimenten. Ausnahmsweise können branchentypische Randsortimente, die zentrenrelevant sind, zugelassen werden; sie dürfen bis zu 10 v. H. der realisierten Geschoßfläche einnehmen, jedoch insgesamt nicht mehr als 400 qm umfassen.
+(2) Zulässig sind gewerbliche Nutzungen nach § 9 Abs. 2 BauNVO, die keinen Einzelhandel zum Gegenstand haben.
+(5) Ausnahmsweise zulässig sind die Nutzungen nach § 9 Abs. 3 Nr. 1 und 2 BauNVO.
+  
+Zentrenrelevante Sortimente im Sinne der jeweiligen Ziffer sind:
+- Nahrungs- und Genußmittel, Reformwaren, Lebensmittelhandwerk
+- Papier- und Schreibwaren, Schulbedarf, Zeitschriften, Bücher, Briefmarken
+- Drogeriewaren (incl. Wasch- und Putzmittel), Kosmetika, Pharmacie
+- Blumen, Tiere, Zooartikel, Tierpflegeartikel, Tiernahrung
+- Oberbekleidung, Wäsche, Kürschnerwaren, Wolle, KurzwarenHandarbeiten, Stoffe, sonstige Textilien u.ä.
+- SchuheFurnituren, Lederbekleidung, Leder- und Galanteriewaren, Modewaren incl. Hüte und Schirme, Orthopädie
+- Spielwaren und Bastelartikel
+- Sportartikel (incl. Bekleidung)
+- Nähmaschinen und Nähzubehör o.ä.
+- Hausrat, GlasPorzellanKeramik, Kunstgewerbe, Devotionalien, Geschenkartikel, Hohl- und Stahlwaren
+- Uhren, Schmuck, Silberwaren
+- Fotogeräte, Videogeräte, Fotowaren u.ä.
+- Musikalienhandel, Tonträger (bespielte und unbespielte)
+- optische und feinmechanische Erzeugnisse
+- Haus- und Heimtextilien, Gardinen und Zubehör
+- Elektrowaren Unterhaltungselektronik ("weißes" und "braunes" Sortiment)
+- Waffen und Jagdbedarf
+
+Alle nicht in der vorstehenden Aufstellung enthaltenen Sortimente sind "nicht zentrenrelevant". Hierzu zählen insbesondere:
+- Baustoffe, SanitärFliesen, Bauelemente, Installationsmaterial, Beschläge, Eisenwaren und Werkzeuge, Badeinrichtung und -ausstattung, Rolläden, Gitter, Rollos, Markisen
+- MöbelKüchenBüromöbel
+- Beleuchtungskörper
+- TeppicheBodenbeläge
+- Heimcomputer
+- Holz, Bauelemente wie z.B. Fenster, Türen
+- HerdeÖfen
+- Pflanzen und Zubehör, Pflege- und Düngemittel, Torf, Erde, Pflanzengefäße, Gartenmöbel, Gartenwerkzeuge, Zäune, Gartenhäuser, Gewächshäuser, Naturhölzer u.ä.
+- Campingartikel
+- BrennstoffeMineralölerzeugnisse
+- KfzMotorräderMopedsFahrräder, Kfz-ZubehörRasenmäher, Motorrad- und Fahrradzubehör
+- Boote, Bootszubehör][5. | Vorhaben mit einer Gesamtgeschoßfläche von mehr als 20.000 qm sind einem Raumordnungsverfahren nach § 13 Landesplanungsgesetz zu unterziehen. Sollte das Raumordnungsverfahren ergeben, daß mit dem Vorhaben nachteilige Auswirkungen im Sinne von § 11 Abs. 3 BauNVO verbunden sind, ist das Vorhaben unzulässig.]</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetFeature</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>version</con:name>
+              <con:value>2.0.0</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>typenames</con:name>
+              <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>bbox</con:name>
+              <con:value>410896.0964836468,5317522.741427317,417246.0930546486,5322523.363726981</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetFeature BP_Plan Textsortierung_4" id="67dc731a-9845-4e05-80fe-e857b2a80df6">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature BP_Plan Textsortierung_4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="xpPlanName">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Testplan Textsortierung mit Prioriaet auf Paragraphenzeichen"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArt">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArt</path>
+              <content>3000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArtWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArtWert</path>
+              <content>VorhabenbezogenerBPlan</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstand">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstand</path>
+              <content>3000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstandWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstandWert</path>
+              <content>Satzung</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="textsortierung">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:texte</path>
+              <content>[§2 Nr.2 | Im allgemeinen Wohngebiet sind Terrassen im Anschluss
+an die Hauptnutzung bis zu einer Tiefe von 4 m auch außerhalb
+der überbaubaren Grundstücksfläche zulässig. Untergeordnete
+Bauteile wie Vordächer, Balkone und Erker im
+Bereich von öffentlichen Grünflächen sind unzulässig.][§2 Nr.3 | Im allgemeinen Wohngebiet sind Stellplätze nur in Tiefgaragen
+zulässig. Tiefgaragen sind auch außerhalb der überbaubaren
+Grundstücksflächen zulässig. Tiefgaragen dürfen
+einschließlich ihrer Überdeckung nicht über die natürliche
+Geländeoberfläche herausragen.][§2 Nr.4 | Im allgemeinen Wohngebiet darf die festgesetzte Grundflächenzahl
+für Tiefgaragen bis zu einer Grundflächenzahl
+von 1,0 überschritten werden.][§2 Nr.5 | Im allgemeinen Wohngebiet sind auf den Flurstücken 1477,
+1478 und 1480 der Gemarkung Winterhude vor den straßenzugewandten
+Fenstern der Wohn- und Schlafräume
+lärmgeschützte Außenbereiche durch bauliche Schallschutzmaßnahmen,
+wie etwa verglaste Loggien, Wintergärten
+oder in ihrer Wirkung vergleichbare Maßnahmen zwingend
+vorzusehen. In den lärmgeschützten Außenbereichen
+ist bei geöffneten Fenstern bzw.Bauteilen sicherzustellen, dass
+ein Tagpegel von weniger als 65 dB(A) erreicht wird.][§2 Nr.6 | Im Plangebiet ist in den Schlafräumen durch geeignete bauliche
+Schallschutzmaßnahmen wie zum Beispiel Doppelfassaden,
+verglaste Loggien, Wintergärten, besondere Fensterkonstruktionen
+oder in ihrer Wirkung vergleichbare Maßnahmen
+sicherzustellen, dass ein Innenraumpegel bei
+gekipptem Fenster von 30 dB(A) während der Nachtzeit
+nicht überschritten wird. Erfolgt die bauliche Schallschutzmaßnahme
+in Form von verglasten Loggien oder Wintergärten
+muss dieser Innenraumpegel bei gekippten teilgeöffneten
+Bauteilen erreicht werden. Wohn- Schlafräume in
+Einzimmerwohnungen und Kinderzimmer sind wie Schlafräume
+zu beurteilen.][§2 Nr.7 | Im allgemeinen Wohngebiet sind mindestens 55 vom Hundert
+(v. H.) der Dachflächen und auf der Fläche für den
+besonderen Nutzungszweck – Kiosk – mindestens 80 v. H.
+der Dachflächen mit einem mindestens 10 cm starken
+durchwurzelbaren Substrataufbau zu versehen und extensiv
+zu begrünen.][§2 Nr.9 | Im allgemeinen Wohngebiet sind die Freiflächen zur öffentlichen
+Grünanlage mit einer Hecke abzupflanzen. Für die
+Hecke sind standortgerechte einheimische Gehölze zu verwenden.][§5 Nr.1 | Im allgemeinen Wohngebiet sind innerhalb der mit „(A)“
+bezeichneten Fläche (Vorhabengebiet) im Rahmen der festgesetzten
+Nutzungen nur solche Vorhaben zulässig, zu
+deren Durchführung sich der Vorhabenträger im Durchführungsvertrag
+verpflichtet.][§6 Nr.8 | Im allgemeinen Wohngebiet sind die nicht überbauten Flächen
+von Tiefgaragen mit einem mindestens 50 cm starken
+durchwurzelbaren Substrataufbau zu versehen und gärtnerisch
+anzulegen. Hiervon ausgenommen sind die erforderlichen
+Flächen für Terrassen, Wege und Freitreppen, Kinderspielflächen
+sowie Bereiche, die der Belichtung, Be- und
+Entlüftung oder der Aufnahme von technischen Anlagen
+dienen.]</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetFeature</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>version</con:name>
+              <con:value>2.0.0</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>typenames</con:name>
+              <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>bbox</con:name>
+              <con:value>567271.8955751015,5937522.203463935,567589.3954036515,5937772.234578918</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
         </con:config>
       </con:testStep>
       <con:testStep type="httprequest" name="Delete Osdorf48_Test_60.zip" id="b489a332-9bf4-4de8-b51f-b07b10ba72ef">
@@ -7012,7 +7848,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           <con:parameters/>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="Delete BPlan004_6-0.zip" id="f4dc1b4f-3e18-4b56-bec5-ba9199b096fa">
+      <con:testStep type="httprequest" name="Delete BPlan004_6-0.zip" id="730fa3a5-a942-447e-a809-6fc123f64e77">
         <con:settings/>
         <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete BPlan004_6-0.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
@@ -7037,20 +7873,109 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           <con:parameters/>
         </con:config>
       </con:testStep>
+      <con:testStep type="httprequest" name="Delete BP_5.1_Textsortierung_1.zip" id="8f2d10f7-1fb8-4a20-b094-8e3cd5fbc420">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete BP_5.1_Textsortierung_1.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan/${#TestCase#planIdTextsortierung_1}</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Delete BP_5.2_Textsortierung_2.zip" id="dda70b79-e6a4-4253-819d-cc02d4b52017">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete BP_5.2_Textsortierung_2.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan/${#TestCase#planIdTextsortierung_2}</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Delete BP_5.1_Textsortierung_3.zip" id="cb21eb2d-d1d0-457f-8bc5-91df3761a815">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete BP_5.1_Textsortierung_3.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan/${#TestCase#planIdTextsortierung_3}</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Delete BP_5.1_Textsortierung_4.zip" id="9dc11a5b-7446-44de-abec-caa4e7e3f5ed">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete BP_5.1_Textsortierung_4.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan/${#TestCase#planIdTextsortierung_4}</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="transfer" name="Cleanup Properties" id="18660c1f-eddd-4939-b209-1abca2536b06">
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
-            <con:name>planId</con:name>
-            <con:sourceType>emptyPropertyValue</con:sourceType>
-            <con:sourceStep>#TestSuite#</con:sourceStep>
-            <con:sourcePath/>
-            <con:targetType>planId</con:targetType>
-            <con:targetStep>#TestCase#</con:targetStep>
-            <con:type>XPATH</con:type>
-            <con:targetTransferType>XPATH</con:targetTransferType>
-            <con:upgraded>true</con:upgraded>
-          </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>planIdOsdorf48</con:name>
             <con:sourceType>emptyPropertyValue</con:sourceType>
@@ -7063,17 +7988,6 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
             <con:upgraded>true</con:upgraded>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
-            <con:name>planIdBPlan004_6-0</con:name>
-            <con:sourceType>emptyPropertyValue</con:sourceType>
-            <con:sourceStep>#TestSuite#</con:sourceStep>
-            <con:sourcePath/>
-            <con:targetType>planIdBPlan004_6-0</con:targetType>
-            <con:targetStep>#TestCase#</con:targetStep>
-            <con:type>XPATH</con:type>
-            <con:targetTransferType>XPATH</con:targetTransferType>
-            <con:upgraded>true</con:upgraded>
-          </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>documentUrl</con:name>
             <con:sourceType>emptyPropertyValue</con:sourceType>
             <con:sourceStep>#TestSuite#</con:sourceStep>
@@ -7084,13 +7998,69 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
             <con:targetTransferType>XPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>planIdTextsortierung_1</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planIdTextsortierung_1</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>planIdTextsortierung_2</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planIdTextsortierung_2</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>planIdTextsortierung_3</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planIdTextsortierung_3</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>planIdTextsortierung_4</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planIdTextsortierung_4</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>planIdBPlan004_6-0</con:name>
+            <con:sourceType>emptyPropertyValue</con:sourceType>
+            <con:sourceStep>#TestSuite#</con:sourceStep>
+            <con:sourcePath/>
+            <con:targetType>planIdBPlan004_6-0</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:properties>
-        <con:property>
-          <con:name>planId</con:name>
-          <con:value/>
-        </con:property>
         <con:property>
           <con:name>planIdOsdorf48</con:name>
           <con:value/>
@@ -7106,6 +8076,22 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
         <con:property>
           <con:name>null</con:name>
           <con:value>null</con:value>
+        </con:property>
+        <con:property>
+          <con:name>planIdTextsortierung_1</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>planIdTextsortierung_2</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>planIdTextsortierung_3</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>planIdTextsortierung_4</con:name>
+          <con:value/>
         </con:property>
       </con:properties>
     </con:testCase>
