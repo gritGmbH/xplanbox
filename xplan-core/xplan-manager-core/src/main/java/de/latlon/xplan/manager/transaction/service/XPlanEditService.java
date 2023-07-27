@@ -6,7 +6,6 @@ import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.deegree.feature.FeatureCollection;
 
@@ -16,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -35,13 +35,13 @@ public class XPlanEditService {
 	}
 
 	@Transactional(rollbackOn = Exception.class)
-	public void update(XPlan oldXplan, XPlanToEdit xPlanToEdit, List<File> uploadedArtefacts, int planId,
-			byte[] xPlanGml, ExternalReferenceInfo externalReferenceInfoToUpdate,
-			ExternalReferenceInfo externalReferenceInfoToRemove, Set<String> removedRefs,
+	public void update(XPlan oldXplan, List<File> uploadedArtefacts, int planId, byte[] xPlanGml,
+			ExternalReferenceInfo externalReferenceInfoToUpdate, ExternalReferenceInfo externalReferenceInfoToRemove,
+			Map<String, String> addedRefFileNames, Set<String> removedRefFileNames,
 			XPlanFeatureCollection modifiedPlanFc, FeatureCollection synFc, AdditionalPlanData xPlanMetadata,
 			Date sortDate, String internalId) throws Exception {
-		xplanDao.update(oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, xPlanToEdit, sortDate,
-				uploadedArtefacts, removedRefs, internalId);
+		xplanDao.update(oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, sortDate, uploadedArtefacts,
+				addedRefFileNames, removedRefFileNames, internalId);
 		updateDocuments(planId, uploadedArtefacts, externalReferenceInfoToUpdate, externalReferenceInfoToRemove);
 	}
 

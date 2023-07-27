@@ -185,6 +185,17 @@ public class XPlanDao {
 	}
 
 	/**
+	 * exports a plan
+	 * @param planId of plan to export
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional(readOnly = true)
+	public List<String> retrieveAllXPlanArtefactFileNames(int planId) {
+		return xPlanDbAdapter.selectAllXPlanArtefactFileNames(planId);
+	}
+
+	/**
 	 * @param xPlanById the id of the requested plan, never <code>null</code>
 	 * @return the restored feature collection from xplan wfs datastore, never
 	 * <code>null</code>

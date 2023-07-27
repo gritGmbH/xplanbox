@@ -39,6 +39,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -94,6 +95,17 @@ public class ArtefactRepositoryTest {
 
 		Stream<Artefact> artefacts = artefactRepository.findAllByPlanId(plan.getId());
 		assertTrue(artefacts.count() == plan.getArtefacts().size());
+	}
+
+	@Test
+	@Commit
+	public void verify_findAllFileNamesByPlanId() {
+		assertFalse(TestTransaction.isFlaggedForRollback());
+		Plan plan = createPlan();
+		planRepository.save(plan);
+
+		List<String> fileNames = artefactRepository.findAllFileNamesByPlanId(plan.getId());
+		assertTrue(fileNames.size() == plan.getArtefacts().size());
 	}
 
 	private static Plan createPlan() {

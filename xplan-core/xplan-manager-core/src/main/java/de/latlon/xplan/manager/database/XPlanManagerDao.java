@@ -11,7 +11,6 @@ import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
@@ -26,6 +25,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -121,13 +121,14 @@ public class XPlanManagerDao extends XPlanDao {
 	 * <code>null</code>
 	 * @param planArtefact the edited xplan gml, never <code>null</code>
 	 * @param sortDate the date added to syn feature collection, may be <code>null</code>
-	 * @param removedRefs
+	 * @param removedRefFileNames
 	 * @param internalId
 	 * @throws Exception
 	 */
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
-			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
-			List<File> uploadedArtefacts, Set<String> removedRefs, String internalId) throws Exception {
+			FeatureCollection synFc, byte[] planArtefact, Date sortDate, List<File> uploadedArtefacts,
+			Map<String, String> addedRefFileNames, Set<String> removedRefFileNames, String internalId)
+			throws Exception {
 		try {
 			LOG.info("Delete XPlan {}", oldXplan.getId());
 			long begin = System.currentTimeMillis();
@@ -135,8 +136,8 @@ public class XPlanManagerDao extends XPlanDao {
 			int planId = getXPlanIdAsInt(oldXplan.getId());
 			Set<String> oldFids = xPlanDbAdapter.selectFids(planId);
 
-			xPlanDbAdapter.update(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, xPlanToEdit, sortDate,
-					uploadedArtefacts, removedRefs);
+			xPlanDbAdapter.update(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, sortDate, uploadedArtefacts,
+					addedRefFileNames, removedRefFileNames);
 			manipulateXPlanSynGml(synFc, newAdditionalPlanData.getStartDateTime(),
 					newAdditionalPlanData.getEndDateTime(), planId, sortDate, internalId);
 

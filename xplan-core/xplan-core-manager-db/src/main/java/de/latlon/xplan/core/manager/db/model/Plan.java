@@ -112,7 +112,7 @@ public class Plan {
 			foreignKey = @ForeignKey(name = "bereiche_plan_fkey"))
 	private @Valid Set<Bereich> bereiche;
 
-	@OneToMany(mappedBy = "id.plan", cascade = ALL)
+	@OneToMany(mappedBy = "id.plan", cascade = ALL, orphanRemoval = true)
 	private @Valid Set<Artefact> artefacts;
 
 	@ElementCollection(fetch = FetchType.EAGER)

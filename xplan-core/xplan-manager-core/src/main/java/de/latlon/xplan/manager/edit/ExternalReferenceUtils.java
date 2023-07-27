@@ -23,13 +23,16 @@ package de.latlon.xplan.manager.edit;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfoBuilder;
+import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import net.sf.saxon.functions.Empty;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
@@ -136,15 +139,21 @@ public class ExternalReferenceUtils {
 
 	/**
 	 * Detects all external references not longer referenced by the plan.
+	 * @param attachmentUrlHandler used to get original filenames, may be
+	 * <code>null</code>
+	 * @param planId required to get original filenames if the attachmentUrlHandler is
+	 * passed, may be <code>null</code>
 	 * @param externalReferencesModified the {@link ExternalReferenceInfo} from the
 	 * modified plan (after update), never <code>null</code>
 	 * @param externalReferencesOriginal the {@link ExternalReferenceInfo} from the
 	 * original plan (before update), never <code>null</code>
+	 * @param originalFileNames
 	 * @return the {@link ExternalReferenceInfo} with all references not longer referenced
 	 * by the plan, never <code>null</code>
 	 */
-	public static Set<String> collectRemovedRefs(ExternalReferenceInfo externalReferencesModified,
-			ExternalReferenceInfo externalReferencesOriginal) {
+	public static Set<String> collectRemovedRefFileNames(AttachmentUrlHandler attachmentUrlHandler, String planId,
+			ExternalReferenceInfo externalReferencesModified, ExternalReferenceInfo externalReferencesOriginal,
+			List<String> originalFileNames) {
 		Set<String> removedRefs = new HashSet<>();
 
 		List<ExternalReference> externalRefsOriginal = externalReferencesOriginal.getAllReferences();
@@ -152,13 +161,47 @@ public class ExternalReferenceUtils {
 		for (ExternalReference externalRefOriginal : externalRefsOriginal) {
 			String ref = externalRefOriginal.getReferenzUrl();
 			if (ref != null && !isReferenced(ref, externalRefModified))
-				removedRefs.add(ref);
+				removedRefs.add(findOriginalFileName(attachmentUrlHandler, planId, originalFileNames, ref));
 			String georef = externalRefOriginal.getGeoRefUrl();
 			if (georef != null && !isReferenced(georef, externalRefModified))
-				removedRefs.add(georef);
+				removedRefs.add(findOriginalFileName(attachmentUrlHandler, planId, originalFileNames, georef));
 		}
 
 		return removedRefs;
+	}
+
+	public static Map<String, String> collectAddedRefFileNames(AttachmentUrlHandler attachmentUrlHandler, String planId,
+			ExternalReferenceInfo externalReferencesModified, ExternalReferenceInfo externalReferencesOriginal,
+			List<String> uploadedFileNames) {
+		Map<String, String> addedRefs = new HashMap<>();
+
+		List<ExternalReference> externalRefsOriginal = externalReferencesOriginal.getAllReferences();
+		List<ExternalReference> externalRefsModified = externalReferencesModified.getAllReferences();
+		for (ExternalReference externalRefModified : externalRefsModified) {
+			String ref = externalRefModified.getReferenzUrl();
+			String fileNameRef = findOriginalFileName(attachmentUrlHandler, planId, uploadedFileNames, ref);
+			if (ref != null && !isReferenced(ref, externalRefsOriginal)
+					&& wasUploadedFileName(fileNameRef, uploadedFileNames)) {
+				addedRefs.put(ref, fileNameRef);
+			}
+			String georef = externalRefModified.getGeoRefUrl();
+			String fileNameGeoRef = findOriginalFileName(attachmentUrlHandler, planId, uploadedFileNames, georef);
+			if (georef != null && !isReferenced(georef, externalRefsOriginal)
+					&& wasUploadedFileName(fileNameGeoRef, uploadedFileNames))
+				addedRefs.put(georef, fileNameGeoRef);
+		}
+		return addedRefs;
+	}
+
+	private static String findOriginalFileName(AttachmentUrlHandler attachmentUrlHandler, String planId,
+			List<String> originalFileNames, String ref) {
+		if (attachmentUrlHandler != null) {
+			for (String originalFileName : originalFileNames) {
+				if (attachmentUrlHandler.isSameReference(planId, originalFileName, ref))
+					return originalFileName;
+			}
+		}
+		return ref;
 	}
 
 	private static boolean wasUploaded(ExternalReference externalRef, List<File> uploadedArtefacts) {
@@ -173,6 +216,16 @@ public class ExternalReferenceUtils {
 		if (referenzUrl != null) {
 			for (File file : uploadedArtefacts) {
 				if (referenzUrl.equals(file.getName()))
+					return true;
+			}
+		}
+		return false;
+	}
+
+	private static boolean wasUploadedFileName(String referenzUrl, List<String> uploadedFileNames) {
+		if (referenzUrl != null) {
+			for (String fileName : uploadedFileNames) {
+				if (referenzUrl.equals(fileName))
 					return true;
 			}
 		}
