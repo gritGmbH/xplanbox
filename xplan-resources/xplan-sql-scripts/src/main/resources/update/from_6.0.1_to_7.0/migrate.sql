@@ -7468,16 +7468,6 @@ INSERT INTO databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED
 -- Changeset 7.0/changelog_grant_privileges.yaml::grant-privileges-to-application-database-user::tfr42
 -- SET SEARCH_PATH TO public, "$user","public";
 
-GRANT USAGE ON SCHEMA inspireplu,xplan40,xplan40archive,xplan40pre,xplan41,xplan41archive,xplan41pre,xplan50,xplan50archive,xplan50pre,xplan51,xplan51archive,xplan51pre,xplan52,xplan52archive,xplan52pre,xplan53,xplan53archive,xplan53pre,xplan54,xplan54archive,xplan54pre,xplan60,xplan60archive,xplan60pre,xplanmgr,xplansyn,xplansynarchive,xplansynpre,xplanvalidator TO "${xplan.db.user}";
-
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA inspireplu,xplan40,xplan40archive,xplan40pre,xplan41,xplan41archive,xplan41pre,xplan50,xplan50archive,xplan50pre,xplan51,xplan51archive,xplan51pre,xplan52,xplan52archive,xplan52pre,xplan53,xplan53archive,xplan53pre,xplan54,xplan54archive,xplan54pre,xplan60,xplan60archive,xplan60pre,xplanmgr,xplansyn,xplansynarchive,xplansynpre,xplanvalidator TO "${xplan.db.user}";
-
-GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA inspireplu,xplan40,xplan40archive,xplan40pre,xplan41,xplan41archive,xplan41pre,xplan50,xplan50archive,xplan50pre,xplan51,xplan51archive,xplan51pre,xplan52,xplan52archive,xplan52pre,xplan53,xplan53archive,xplan53pre,xplan54,xplan54archive,xplan54pre,xplan60,xplan60archive,xplan60pre,xplanmgr,xplansyn,xplansynarchive,xplansynpre,xplanvalidator TO "${xplan.db.user}";
-
-GRANT USAGE ON SCHEMA public TO "${xplan.db.user}";
-
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO "${xplan.db.user}";
-
 INSERT INTO databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('grant-privileges-to-application-database-user', 'tfr42', '7.0/changelog_grant_privileges.yaml', NOW(), 3138, '9:cef7c7edb046b229479517e4a3579838', 'sql; sql; sql; sql; sql', '', 'EXECUTED', NULL, NULL, '4.23.0', '0457554683');
 
 -- Changeset target/classes/7.0/changelog_v70.yaml::tagDatabase-v70::latlon
