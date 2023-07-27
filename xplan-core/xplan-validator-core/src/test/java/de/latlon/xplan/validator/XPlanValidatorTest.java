@@ -72,7 +72,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 /**
  * Tests for <link>XPlanValidator</link>
@@ -119,8 +119,8 @@ public class XPlanValidatorTest {
 
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
-		verifyZeroInteractions(semVal);
-		verifyZeroInteractions(xPlanGmlParser);
+		verifyNoInteractions(semVal);
+		verifyNoInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -130,8 +130,8 @@ public class XPlanValidatorTest {
 
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
-		verifyZeroInteractions(semVal);
-		verifyZeroInteractions(xPlanGmlParser);
+		verifyNoInteractions(semVal);
+		verifyNoInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -141,8 +141,8 @@ public class XPlanValidatorTest {
 
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(1)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
-		verifyZeroInteractions(xPlanGmlParser);
-		verifyZeroInteractions(semVal);
+		verifyNoInteractions(xPlanGmlParser);
+		verifyNoInteractions(semVal);
 	}
 
 	@Test
@@ -153,7 +153,7 @@ public class XPlanValidatorTest {
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verify(semVal, times(1)).validateSemantic(archive(), list());
-		verifyZeroInteractions(xPlanGmlParser);
+		verifyNoInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -165,7 +165,7 @@ public class XPlanValidatorTest {
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(1)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verify(semVal, times(1)).validateSemantic(archive(), list());
-		verifyZeroInteractions(xPlanGmlParser);
+		verifyNoInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -176,7 +176,7 @@ public class XPlanValidatorTest {
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verify(semVal, times(0)).validateSemantic(archive(), list());
-		verifyZeroInteractions(xPlanGmlParser);
+		verifyNoInteractions(xPlanGmlParser);
 	}
 
 	@Test
