@@ -288,9 +288,10 @@ Mit der Version 7.0 der xPlanBox erfolgte eine Anpassung der Werkseinstellungen 
 Für die Aktualisierung auf die Version 7.0 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
-** Es wird empfohlen zur Absicherung der REST-Schnittstellen der XPlanDienste von der Authentifizierung über einen Tomcat-Nutzer auf API-Key umzustellen. Details dazu finden sich im Abschnitt <<dienste-tomcat>>. Soll weiterhin die Absicherung über einen konfigurierten Tomcat-Nutzer erfolgen, muss in der Datei  <DEEGREE_WORKSPACE_ROOT>/config.apikey_ ein `*` eingetragen werden, um die Absicherung zu deaktivieren.
+** Es wird empfohlen zur Absicherung der REST-Schnittstellen der XPlanDienste von der Authentifizierung über einen Tomcat-Nutzer auf API-Key umzustellen. Details dazu finden sich im Abschnitt <<dienste-tomcat>>. Soll weiterhin die Absicherung über einen konfigurierten Tomcat-Nutzer erfolgen, muss in der Datei _<DEEGREE_WORKSPACE_ROOT>/config.apikey_ ein `*` eingetragen werden, um die Absicherung zu deaktivieren.
 * Aktualisierung der Datenbank:
 ** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_6.0.1_to_7.0_ im Modul _xplan-manager-workspace_
+*** vor Ausführung des Skripts muss die Variable `${xplan.srid}` mit dem verwendeten CRS ausgetauscht werden. Die Datei _migrate_25832.sql_ beinhaltet bereits die Ersetzung durch den CRS Code `25832` und kann ohne Änderungen ausgeführt werden.
 * Ausführen der Kommandozeilenwerkzeuge __artefactsTableUpdate__ und __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der XPlanDB ist erforderlich. Der Aufruf der Tools mit `--help` liefert Hinweise zu deren Verwendung.
 
 IMPORTANT: Mit der Version 7.0 der xPlanBox ist die Kartenvorschau im XPlanValidator nicht mehr standardmäßig aktiviert. Hinweise zur Konfiguration der Kartenvorschau sind im Abschnitt <<kartenvorschau-validator>> beschrieben.
