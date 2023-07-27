@@ -1,5 +1,11 @@
 SET SEARCH_PATH TO public, "$user","public";
 
+-- Create Database Lock Table
+CREATE TABLE IF NOT EXISTS databasechangeloglock (ID INTEGER NOT NULL, LOCKED BOOLEAN NOT NULL, LOCKGRANTED TIMESTAMP WITHOUT TIME ZONE, LOCKEDBY VARCHAR(255), CONSTRAINT databasechangeloglock_pkey PRIMARY KEY (ID));
+
+-- Initialize Database Lock Table
+DELETE FROM databasechangeloglock;
+
 -- Lock Database
 UPDATE databasechangeloglock SET LOCKED = TRUE, LOCKEDBY = 'cpe-172-101-0-1.maine.res.rr.com (172.101.0.1)', LOCKGRANTED = NOW() WHERE ID = 1 AND LOCKED = FALSE;
 
