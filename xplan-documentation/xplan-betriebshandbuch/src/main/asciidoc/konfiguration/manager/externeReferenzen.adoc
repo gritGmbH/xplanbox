@@ -1,7 +1,7 @@
 [[konfiguration-externe-refrenzen]]
 === Bereitstellung von Rasterdaten und Begleitdokumenten über API aktivieren
 
-Um im XPlanManager den Austausch der relativen URLs in absolute URLs für den direkten Abruf der Rasterdaten und/oder Begleitdokumenten eines XPlanArchivs zu aktivieren, muss die Basis-URL der Schnittstelle über die Umgebungsvariable `XPLAN_DOCUMENT_URL_PUBLIC` gesetzt werden:
+Um im XPlanManager den Austausch der relativen URLs in absolute URLs für den direkten Abruf der Rasterdaten und/oder Begleitdokumenten eines XPlanArchivs zu aktivieren, muss die Basis-URL der Schnittstelle über die Umgebungsvariable `XPLAN_DOCUMENT_URL_PUBLIC` gesetzt werden. Diese Erweiterung kann nur verwendet werden, wenn keine Daten in der XPlanDB vorhanden sind.
 
 .Beispiel für die Verwendung der XPlanDokumentenAPI
 [source,properties]
@@ -24,6 +24,6 @@ Beim Import eines XPlanArchivs mit Rasterdaten und/oder Begleitdokumenten werden
  * XPlanSynWFS: GetFeature-Anfrage (insbs. GML-Format)
  * XPlanManagerWeb/XPlanManagerAPI: Abruf des XPlanGML
 
-NOTE: Wenn bereits Pläne in die XPlanDB importiert wurden, wird eine nachträgliche Umstellung auf Verwendung der XPlanDokumentenAPI nicht empfohlen, da der Datenbestand in der XPlanDB nicht automatisch angepasst wird.
+CAUTION: Wenn bereits Pläne in die XPlanDB importiert wurden, dann ist eine nachträgliche Umstellung auf Verwendung der XPlanDokumentenAPI nicht möglich, da der Datenbestand in der XPlanDB nicht automatisch angepasst werden kann.
 
-NOTE: Wenn die `XPLAN_DOCUMENT_URL_PUBLIC` nicht gesetzt ist, dann werden die im XPlanGML referenzierten Begleitdokumente unverändert in die Datenhaltung der XPlanDB übernommen und können über die GetAttachment-Operation des XPlanWMS abgerufen werden.
+NOTE: Wenn die `XPLAN_DOCUMENT_URL_PUBLIC` nicht gesetzt ist, dann werden die im XPlanGML referenzierten Begleitdokumente unverändert in die Datenhaltung der XPlanDB übernommen und können über die <<konfiguration-xplanwms-gfi,GetAttachment-Operation des XPlanWMS>> abgerufen werden.
