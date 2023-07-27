@@ -26,13 +26,13 @@
     <jacoco.version>0.8.10</jacoco.version>
     <log4j.version>2.17.2</log4j.version>
     <slf4j.version>1.7.36</slf4j.version>
-    <spring.version>5.3.23</spring.version>
-    <spring-boot.version>2.7.10</spring-boot.version>
+    <spring.version>5.3.29</spring.version>
+    <spring-boot.version>2.7.14</spring-boot.version>
     <spring-batch.version>4.3.8</spring-batch.version>
     <spring-security.version>5.5.8</spring-security.version>
-    <spring-data.version>2.7.10</spring-data.version>
+    <spring-data.version>2.7.14</spring-data.version>
     <hibernate.version>5.6.15.Final</hibernate.version>
-    <jackson.version>2.14.2</jackson.version>
+    <jackson.version>2.14.3</jackson.version>
     <liquibase.version>4.23.0</liquibase.version>
     <postgresql.version>42.5.2</postgresql.version>
     <owasp.version>8.3.1</owasp.version>
