@@ -148,7 +148,9 @@ public class ManagerWebConfiguration implements Serializable {
 
 	/**
 	 * @return list of categories used for filtering, never <code>null</code>
+	 * @deprecated method will be removed in a future version.
 	 */
+	@Deprecated
 	public String[] getCategoryFilterValues() {
 		if (categoryFilterValues == null)
 			return new String[] {};

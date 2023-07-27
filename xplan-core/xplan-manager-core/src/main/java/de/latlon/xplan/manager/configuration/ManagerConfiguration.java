@@ -122,7 +122,9 @@ public class ManagerConfiguration {
 	/**
 	 * Retrieves the category mappings (category assigned to a list of parts).
 	 * @return the category mapping, may be empty but never <code>null</code>
+	 * @deprecated method will be removed in a future version.
 	 */
+	@Deprecated
 	public Map<String, List<String>> getCategoryMapping() {
 		return categoriesToParts;
 	}
