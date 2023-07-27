@@ -2,9 +2,9 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
-[[Aenderungshistorie-6.1]]
-=== Version 6.1
-Neben der Aktualisierung auf die aktuelle deegree webservices Version 3.5.0 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 6.1 der xPlanBox kann der XPlanWMS als MapServer-Instanz konfiguriert und ein AWS S3-kompatibler Objektspeicher genutzt werden. Mit der Version 6.1 wurde die Ausgabe von Log-Meldungen in separate Log-Dateien je xPlanBox-Komponente aus den mitgelieferten Logging-Konfiguration entfernt. Bitte beachten Sie dazu die Hinweise im Betriebshandbuch, Kapitel Logging.
+[[Aenderungshistorie-7.0]]
+=== Version 7.0
+Neben der Aktualisierung auf die aktuelle deegree webservices Version 3.5.0 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 7.0 der xPlanBox kann der XPlanWMS als MapServer-Instanz konfiguriert und ein AWS S3-kompatibler Objektspeicher genutzt werden. Mit der Version 7.0 wurde die Ausgabe von Log-Meldungen in separate Log-Dateien je xPlanBox-Komponente aus den mitgelieferten Logging-Konfiguration entfernt. Bitte beachten Sie dazu die Hinweise im Betriebshandbuch, Kapitel Logging.
 
 ==== Erweiterungen
 - Unterstützung für MapServer 8.0 zur Bereitstellung des XPlanWMS

@@ -1,7 +1,7 @@
 [[s3-storage]]
 == S3-Objektspeicher
 
-Die Ablage von Rasterdaten und Begleitdokumente im Objektspeicher von AWS S3 wird ab der Version 6.1 der xPlanBox unterstützt.
+Die Ablage von Rasterdaten und Begleitdokumente im Objektspeicher von AWS S3 wird ab der Version 7.0 der xPlanBox unterstützt.
 
 [[s3-storage-image]]
 === Rasterdaten
