@@ -229,3 +229,60 @@ GDALTileStore,
 * in der Ebenenbaum-Konfiguration wird ein neuer Layer in die
 Kategorieebene eingefügt, die die Rasterpläne nach Datum sortiert
 beinhaltet.
+
+[[sortierung-textabschnitte]]
+===== Sortierung von Textabschnitten
+
+Textabschnitte können über das Element `XP_TextAbschnitt` je Planart im XPlanGML hinterlegt werden. Da eine Sortierung auf Basis der Reihenfolge im XPlanGML-Dokument bei der Ausgabe technisch nicht gewährleistet werden kann, werden Textabschnitte in der xPlanBox über den Textschlüssel im Element `XP_TextAbschnitt/schluessel` sortiert ausgegeben. Die Sortierung erfolgt in der GetFeatureInfo-Ausgabe des <<xplanwms,XPlanWMS>> und bei der Anzeige von Textabschnitten in der <<xplanmanager-web-editieren,Editieroberfläche des XPlanManagerWeb>>.
+
+Um die gewünschte Sortierung zu erreichen, müssen die Textschlüssel einem bestimmten Aufbau folgen. Für die Sortierung werden alle Ziffern und Buchstaben bis zum ersten Leerzeichen im Textschlüssel berücksichtigt. Dabei unterstützt die xPlanBox folgende Sortierungen nach Ordnungszahlen und -buchstaben:
+
+* Sortierung nach Ziffern
+----
+1.1 text
+1.2 text
+2.1 text
+2.2 text
+----
+
+* Sortierung nach Kleinbuchstaben
+----
+a) text
+b) text
+c) text
+----
+
+* Sortierung nach Ziffern mit Kleinbuchstaben
+----
+1.a) text
+1.b) text
+2.a) text
+2.b) text
+----
+
+* Sortierung mit einer Mischform aus Ziffern und Kleinbuchstaben mit Priorität auf Ziffern
+----
+1.1 text
+1.2 text
+2.1 text
+a) text
+b) text
+----
+
+* Sortierung mit einer Mischform aus Großbuchstaben mit Ziffern
+----
+A text
+A.1.1 text
+A.1.2 text
+B text
+B.1.1 text
+B.1.2 text
+----
+
+* Abweichend sortiert werden Textschlüssel, die mit einem Paragrafenzeichen (`§`) beginnen. Hier werden nur die Zahlen bei der Sortierung berücksichtigt:
+----
+§1 Nr.1
+§1 Nr.2
+§2 Nr.1.1
+§2 Nr.1.2
+----
