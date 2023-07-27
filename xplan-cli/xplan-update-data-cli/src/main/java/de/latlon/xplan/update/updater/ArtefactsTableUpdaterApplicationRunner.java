@@ -57,7 +57,7 @@ import static de.latlon.xplan.core.manager.db.model.ArtefactType.RASTERBASIS;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.XPLANGML;
 
 /**
- * Updates the data from version 6.0 to 6.1: Inserts data to
+ * Updates the data from version 6.0 to 7.0: Inserts data to
  * xplanmgr.artefacts.artefacttype
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>

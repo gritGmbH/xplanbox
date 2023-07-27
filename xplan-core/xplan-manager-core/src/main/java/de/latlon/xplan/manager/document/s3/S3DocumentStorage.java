@@ -36,7 +36,7 @@ import java.util.List;
  * Implementation of a {@link DocumentStorage}, using AWS S3 as a storage for documents.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 public class S3DocumentStorage extends S3Storage implements DocumentStorage {
 

@@ -43,7 +43,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
  * Controller class for handling access to the validate resource.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @since 6.1
+ * @since 7.0
  */
 @Path("/dokument")
 public class DokumentApi {

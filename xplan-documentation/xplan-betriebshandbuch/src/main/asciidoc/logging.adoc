@@ -22,7 +22,7 @@ In die Log-Dateien werden Informationen, Warnungen und Fehler geschrieben.
 |XPlanUpdateDataCLI |./xplan-update-data-cli.log
 |===
 
-NOTE: Ab der xPlanBox Version 6.1 ist die Ausgabe in Log-Dateien deaktiviert. Für die Konfiguration kann das Beispiel für die Ausgabe über einen `RollingFile`-Appender im folgenden Kapitel <<logging-konfiguration>> verwendet werden.
+NOTE: Ab der xPlanBox Version 7.0 ist die Ausgabe in Log-Dateien deaktiviert. Für die Konfiguration kann das Beispiel für die Ausgabe über einen `RollingFile`-Appender im folgenden Kapitel <<logging-konfiguration>> verwendet werden.
 
 === Protokollebenen
 

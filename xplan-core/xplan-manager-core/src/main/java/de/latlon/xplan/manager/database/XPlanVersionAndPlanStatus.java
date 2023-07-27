@@ -25,7 +25,7 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 class XPlanVersionAndPlanStatus {
 

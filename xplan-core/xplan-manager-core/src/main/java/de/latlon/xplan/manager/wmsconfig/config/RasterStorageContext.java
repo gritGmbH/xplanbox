@@ -48,7 +48,7 @@ import java.nio.file.Path;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
- * @since 6.1
+ * @since 7.0
  * @see AmazonS3RasterStorageContext
  */
 @Configuration

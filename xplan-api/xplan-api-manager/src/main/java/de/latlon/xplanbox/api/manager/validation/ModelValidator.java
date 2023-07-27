@@ -42,7 +42,7 @@ import static java.lang.annotation.ElementType.PARAMETER;
  * Validates the model classes part of a multipart request.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ FIELD, PARAMETER })

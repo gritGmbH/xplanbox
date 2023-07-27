@@ -40,7 +40,7 @@ import org.springframework.context.annotation.Profile;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
- * @since 6.1
+ * @since 7.0
  */
 @Configuration
 @Profile("s3img | s3doc")

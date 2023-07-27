@@ -32,7 +32,7 @@ import javax.ws.rs.core.Response;
  * Minimal end-point for liveness probes. To be replaced by Spring-boot health actuator.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @since 6.1
+ * @since 7.0
  */
 @Path("/status")
 @Hidden

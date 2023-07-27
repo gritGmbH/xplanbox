@@ -27,7 +27,7 @@ import java.nio.file.Path;
 
 /**
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @since 6.1
+ * @since 7.0
  */
 public class ContentTypeCheckerTest {
 

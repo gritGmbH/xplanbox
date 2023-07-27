@@ -28,7 +28,7 @@ import static javax.ws.rs.core.Response.Status.NOT_FOUND;
  * Indicates that a document is not available.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 public class InvalidDocument extends XPlanApiException {
 

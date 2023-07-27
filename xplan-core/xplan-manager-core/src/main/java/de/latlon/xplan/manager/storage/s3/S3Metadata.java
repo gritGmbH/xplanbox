@@ -2,7 +2,7 @@ package de.latlon.xplan.manager.storage.s3;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 public class S3Metadata {
 

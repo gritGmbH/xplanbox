@@ -20,20 +20,20 @@
 ###
 databaseChangeLog:
   - include:
-      file: 6.1/changelog_xplanmgr.yaml
+      file: 7.0/changelog_xplanmgr.yaml
   - include:
-      file: 6.1/changelog_schemas.yaml
+      file: 7.0/changelog_schemas.yaml
   - include:
-      file: 6.1/changelog_inspireplu.yaml
+      file: 7.0/changelog_inspireplu.yaml
   - include:
-      file: 6.1/changelog_xplanvalidator.yaml
+      file: 7.0/changelog_xplanvalidator.yaml
   - include:
-      file: 6.1/changelog_srid.yaml
+      file: 7.0/changelog_srid.yaml
   - include:
-      file: 6.1/changelog_grant_privileges.yaml
+      file: 7.0/changelog_grant_privileges.yaml
   - changeSet:
-      id:  tagDatabase-v61
+      id:  tagDatabase-v70
       author:  latlon
       changes:
         - tagDatabase:
-            tag:  v_6.1
+            tag:  v_7.0

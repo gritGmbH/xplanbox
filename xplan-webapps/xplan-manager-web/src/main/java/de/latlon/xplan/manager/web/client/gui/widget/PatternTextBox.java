@@ -31,7 +31,7 @@ import static de.latlon.xplan.manager.web.client.gui.StyleNames.EDITOR_VALIDATIO
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 public class PatternTextBox extends TextBox implements Validable {
 

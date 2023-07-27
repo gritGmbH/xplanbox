@@ -24,7 +24,7 @@ package de.latlon.xplan.commons.util;
  * Contains constants with patterns for text fields/parameter.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 public class TextPatternConstants {
 

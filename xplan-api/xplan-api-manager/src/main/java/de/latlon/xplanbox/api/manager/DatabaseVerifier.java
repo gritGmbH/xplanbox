@@ -49,7 +49,7 @@ public class DatabaseVerifier {
 
 	private static final Logger LOG = getLogger(DatabaseVerifier.class);
 
-	private static final String DB_VERSION = "v_6.1";
+	private static final String DB_VERSION = "v_7.0";
 
 	private ManagerWorkspaceWrapper managerWorkspaceWrapper;
 

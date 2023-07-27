@@ -29,7 +29,7 @@ import static org.springframework.transaction.event.TransactionPhase.AFTER_COMPL
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @since 6.1
+ * @since 7.0
  */
 @Component
 public class CleanupSqlFeatureStoreListener {

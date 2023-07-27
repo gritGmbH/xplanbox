@@ -37,7 +37,7 @@ import javax.ws.rs.core.Response;
  * Controller class for handling access to the application info resource.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @since 6.1
+ * @since 7.0
  */
 @Path("/info")
 public class InfoApi {
