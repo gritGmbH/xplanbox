@@ -102,6 +102,12 @@ public class XPlanDbAdapter {
 
 	private final ArtefactRepository artefactRepository;
 
+	/**
+	 * @param categoryMapper may be <code>null</code>
+	 * @param planRepository never <code>null</code>
+	 * @param planwerkWmsMetadataRepository never <code>null</code>
+	 * @param artefactRepository never <code>null</code>
+	 */
 	public XPlanDbAdapter(CategoryMapper categoryMapper, PlanRepository planRepository,
 			PlanwerkWmsMetadataRepository planwerkWmsMetadataRepository, ArtefactRepository artefactRepository) {
 		this.categoryMapper = categoryMapper;
@@ -627,7 +633,7 @@ public class XPlanDbAdapter {
 		xPlan.setBbox(bbox);
 		xPlan.setXplanMetadata(
 				createXPlanMetadata(plan.getPlanstatus(), plan.getGueltigkeitbeginn(), plan.getGueltigkeitende()));
-		xPlan.setDistrict(categoryMapper.mapToCategory(plan.getDistrict()));
+		xPlan.setDistrict(mapToDistrict(plan.getDistrict()));
 		xPlan.setInspirePublished(plan.getInspirepublished());
 		xPlan.setInternalId(plan.getInternalid());
 		List<Bereich> bereiche = plan.getBereiche().stream().map(bereich -> {
@@ -638,6 +644,13 @@ public class XPlanDbAdapter {
 		}).collect(Collectors.toList());
 		xPlan.setBereiche(bereiche);
 		return xPlan;
+	}
+
+	private String mapToDistrict(String districtFromPlan) {
+		if (categoryMapper != null) {
+			return categoryMapper.mapToCategory(districtFromPlan);
+		}
+		return null;
 	}
 
 	private XPlanEnvelope convertToXPlanEnvelope(Plan plan) {

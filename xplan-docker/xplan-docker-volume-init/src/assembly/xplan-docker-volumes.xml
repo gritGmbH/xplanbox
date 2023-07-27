@@ -67,7 +67,16 @@
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
-    <!--xplan-validator-config-->
+    <!--xplan-dokumenten-config-->
+    <dependencySet>
+      <outputDirectory>/xplan-dokumenten-config</outputDirectory>
+      <includes>
+        <include>${project.groupId}:xplan-dokumenten-config</include>
+      </includes>
+      <unpack>true</unpack>
+      <useProjectArtifact>false</useProjectArtifact>
+    </dependencySet>
+    <!--xplan-mapserver-config-->
     <dependencySet>
       <outputDirectory>/xplan-mapserver-config</outputDirectory>
       <includes>

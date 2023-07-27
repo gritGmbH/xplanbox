@@ -14,6 +14,7 @@
   <modules>
     <module>xplan-manager-config</module>
     <module>xplan-validator-config</module>
+    <module>xplan-dokumenten-config</module>
     <module>xplan-mapserver-config</module>
   </modules>
 
