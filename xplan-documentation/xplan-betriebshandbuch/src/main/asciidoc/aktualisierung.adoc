@@ -77,6 +77,7 @@ Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versione
 | 5.0              | ja (<<aktualisierung-auf-die-version-5.0, Details>>)  | ja (<<aktualisierung-auf-die-version-5.0, Details>>)
 | 6.0              | ja (<<aktualisierung-auf-xplanbox-version-6.0, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-6.0, Details>>)
 | 6.0.1              | ja (<<aktualisierung-auf-xplanbox-version-6.0.1, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-6.0.1, Details>>)
+| 7.0             | ja (<<aktualisierung-auf-xplanbox-version-7.0, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-7.0, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |===
 
@@ -245,11 +246,6 @@ Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 ** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten ist erforderlich. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (optional)
 
-[[aktualisierung-auf-xplanbox-version-6.1]]
-=== Aktualisierung auf die Version 6.1 der xPlanBox
-
-Mit der Version 6.1 der xPlanBox erfolgte eine Anpassung der Werkseinstellungen für das Logging. Für die Anwendungen XPlanManagerWeb, XPlanManagerAPI, XPlanValidatorWeb und XPlanValidatorAPI sowie alle XPlanDienste werden keine Log-Dateien mehr geschrieben. Alle Log-Ausgaben werden nur noch in die Standardausgabe (stdout) geschrieben. Um das Logging so anzupassen, dass die Log-Ausgaben zusätzlich ach in Log-Dateien geschrieben werden, müssen Anpassungen an der Konfiguration vorgenommen werden. Beispiele dafür sind im Kapitel <<logging>> zu finden.
-
 [[aktualisierung-auf-xplanbox-version-6.0.1]]
 === Aktualisierung auf die Version 6.0.1 der xPlanBox
 
@@ -287,11 +283,15 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 [[aktualisierung-auf-xplanbox-version-7.0]]
 === Aktualisierung auf die Version 7.0 der xPlanBox
 
+Mit der Version 7.0 der xPlanBox erfolgte eine Anpassung der Werkseinstellungen für das Logging. Für die Anwendungen XPlanManagerWeb, XPlanManagerAPI, XPlanValidatorWeb und XPlanValidatorAPI sowie alle XPlanDienste werden keine Log-Dateien mehr geschrieben. Alle Log-Ausgaben werden nur noch in die Standardausgabe (stdout) geschrieben. Um das Logging so anzupassen, dass die Log-Ausgaben zusätzlich auch in Log-Dateien geschrieben werden, müssen Anpassungen an der Konfiguration vorgenommen werden. Beispiele dafür sind im Kapitel <<logging>> zu finden.
+
 Für die Aktualisierung auf die Version 7.0 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
-** Es wird empfohlen zur Absicherung der REST-Schnittstellen der XPlanDienste von der Authentifizierung über einen Tomcat-Nutzer auf API-Key umzustellen. Details dazu finden sich im Abschnitt <<dienste-tomcat>>. Soll weiterhin die Absicherung über einen konfigurierten Tomcat-Nutzer erfolgen, muss in der Datei  <DEEGREE_WORKSPACE_ROOT>/config.apikey_ ein '*' eingetragen werden, um die Absicherung zu deaktivieren.
-
+** Es wird empfohlen zur Absicherung der REST-Schnittstellen der XPlanDienste von der Authentifizierung über einen Tomcat-Nutzer auf API-Key umzustellen. Details dazu finden sich im Abschnitt <<dienste-tomcat>>. Soll weiterhin die Absicherung über einen konfigurierten Tomcat-Nutzer erfolgen, muss in der Datei  <DEEGREE_WORKSPACE_ROOT>/config.apikey_ ein `*` eingetragen werden, um die Absicherung zu deaktivieren.
+* Aktualisierung der Datenbank:
+** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_6.0.1_to_7.0_ im Modul _xplan-manager-workspace_
+* Ausführen der Kommandozeilenwerkzeuge __artefactsTableUpdate__ und __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der XPlanDB ist erforderlich. Der Aufruf der Tools mit `--help` liefert Hinweise zu deren Verwendung.
 
 IMPORTANT: Mit der Version 7.0 der xPlanBox ist die Kartenvorschau im XPlanValidator nicht mehr standardmäßig aktiviert. Hinweise zur Konfiguration der Kartenvorschau sind im Abschnitt <<kartenvorschau-validator>> beschrieben.
 
