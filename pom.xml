@@ -33,7 +33,7 @@
     <spring-data.version>2.7.10</spring-data.version>
     <hibernate.version>5.6.15.Final</hibernate.version>
     <jackson.version>2.14.2</jackson.version>
-    <liquibase.version>4.20.0</liquibase.version>
+    <liquibase.version>4.23.0</liquibase.version>
     <postgresql.version>42.5.2</postgresql.version>
     <owasp.version>8.3.1</owasp.version>
     <!-- project properties -->
