@@ -40,9 +40,11 @@ import org.springframework.security.core.GrantedAuthority;
 /**
  * Maps AD groups to the XPlan user with district authorities.
  *
+ * @deprecated This class be removed in a future version.
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version $Revision: $, $Date: $
  */
+@Deprecated
 public class ActiveDirectoryGrantedAuthoritiesMapper extends RoleHierarchyAuthoritiesMapper {
 
 	private final List<String> superUserGroups;
