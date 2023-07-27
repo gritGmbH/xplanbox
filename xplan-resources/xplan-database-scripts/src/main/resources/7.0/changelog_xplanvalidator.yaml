@@ -42124,7 +42124,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche__0
 #         schemaName: xplanvalidator
 #         tableName: xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche_xplan_position ON xplanvalidator.xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_abweichungvonueberbaubarergrundstuecksfl_pos ON xplanvalidator.xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663512731199-253
     author: latlon
@@ -42628,7 +42628,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_bp_nichtueberbaubaregrundstuecksflaeche_xplan_pos_1
 #         schemaName: xplanvalidator
 #         tableName: xplan_bp_nichtueberbaubaregrundstuecksflaeche
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_nichtueberbaubaregrundstuecksflaeche_xplan_position ON xplanvalidator.xplan_bp_nichtueberbaubaregrundstuecksflaeche USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_nichtueberbaubaregrundstuecksfl_pos ON xplanvalidator.xplan_bp_nichtueberbaubaregrundstuecksflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663512731199-295
     author: latlon
@@ -42676,7 +42676,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_bp_rasterplanaenderung_xplan_geltungsbereichaende_2
 #         schemaName: xplanvalidator
 #         tableName: xplan_bp_rasterplanaenderung
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplanvalidator.xplan_bp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_rasterplanaenderung_geltungsbereichaenderung ON xplanvalidator.xplan_bp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663512731199-299
     author: latlon
@@ -42916,7 +42916,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_bp_verkehrsflaechebesondererzweckbestimmung_xplan_4
 #         schemaName: xplanvalidator
 #         tableName: xplan_bp_verkehrsflaechebesondererzweckbestimmung
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_verkehrsflaechebesondererzweckbestimmung_xplan_position ON xplanvalidator.xplan_bp_verkehrsflaechebesondererzweckbestimmung USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_verkehrsflaechebesondererzweckbestimmung_pos ON xplanvalidator.xplan_bp_verkehrsflaechebesondererzweckbestimmung USING gist (xplan_position);
 - changeSet:
     id: 1663512731199-319
     author: latlon
@@ -43204,7 +43204,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_fp_keinezentrabwasserbeseitigungflaeche_xplan_pos_5
 #         schemaName: xplanvalidator
 #         tableName: xplan_fp_keinezentrabwasserbeseitigungflaeche
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_keinezentrabwasserbeseitigungflaeche_xplan_position ON xplanvalidator.xplan_fp_keinezentrabwasserbeseitigungflaeche USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_keinezentrabwasserbeseitigungflaeche_pos ON xplanvalidator.xplan_fp_keinezentrabwasserbeseitigungflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663512731199-343
     author: latlon
@@ -43300,7 +43300,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_fp_rasterplanaenderung_xplan_geltungsbereichaende_6
 #         schemaName: xplanvalidator
 #         tableName: xplan_fp_rasterplanaenderung
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplanvalidator.xplan_fp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_rasterplanaenderung_geltungsbereichaenderung ON xplanvalidator.xplan_fp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663512731199-351
     author: latlon
@@ -43660,7 +43660,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_lp_rasterplanaenderung_xplan_geltungsbereichaende_7
 #         schemaName: xplanvalidator
 #         tableName: xplan_lp_rasterplanaenderung
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplanvalidator.xplan_lp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_rasterplanaenderung_geltungsbereichaenderung ON xplanvalidator.xplan_lp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663512731199-381
     author: latlon
@@ -43672,7 +43672,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_lp_schutzbestimmterteilevonnaturundlandschaft_xpl_8
 #         schemaName: xplanvalidator
 #         tableName: xplan_lp_schutzbestimmterteilevonnaturundlandschaft
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_schutzbestimmterteilevonnaturundlandschaft_xplan_position ON xplanvalidator.xplan_lp_schutzbestimmterteilevonnaturundlandschaft USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_schutzbestimmterteilevonnaturundlandschaft_pos ON xplanvalidator.xplan_lp_schutzbestimmterteilevonnaturundlandschaft USING gist (xplan_position);
 - changeSet:
     id: 1663512731199-382
     author: latlon
@@ -43756,7 +43756,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz_9
 #         schemaName: xplanvalidator
 #         tableName: xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz_xplan_position ON xplanvalidator.xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_wasserrechtgemeingebreinschraenkungnatursch_pos ON xplanvalidator.xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz USING gist (xplan_position);
 - changeSet:
     id: 1663512731199-389
     author: latlon
@@ -43792,7 +43792,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_lp_wasserrechtwirtschaftabflusshochwschutz_xplan_10
 #         schemaName: xplanvalidator
 #         tableName: xplan_lp_wasserrechtwirtschaftabflusshochwschutz
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_wasserrechtwirtschaftabflusshochwschutz_xplan_position ON xplanvalidator.xplan_lp_wasserrechtwirtschaftabflusshochwschutz USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_wasserrechtwirtschaftabflusshochwschutz_pos ON xplanvalidator.xplan_lp_wasserrechtwirtschaftabflusshochwschutz USING gist (xplan_position);
 - changeSet:
     id: 1663512731199-392
     author: latlon
@@ -43984,7 +43984,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_rp_gemeindefunktionsiedlungsentwicklung_xplan_po_11
 #         schemaName: xplanvalidator
 #         tableName: xplan_rp_gemeindefunktionsiedlungsentwicklung
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_gemeindefunktionsiedlungsentwicklung_xplan_position ON xplanvalidator.xplan_rp_gemeindefunktionsiedlungsentwicklung USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_gemeindefunktionsiedlungsentwicklung_pos ON xplanvalidator.xplan_rp_gemeindefunktionsiedlungsentwicklung USING gist (xplan_position);
 - changeSet:
     id: 1663512731199-408
     author: latlon
@@ -44176,7 +44176,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_rp_naturschutzrechtlichesschutzgebiet_xplan_posi_12
 #         schemaName: xplanvalidator
 #         tableName: xplan_rp_naturschutzrechtlichesschutzgebiet
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_naturschutzrechtlichesschutzgebiet_xplan_position ON xplanvalidator.xplan_rp_naturschutzrechtlichesschutzgebiet USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_naturschutzrechtlichesschutzgebiet_pos ON xplanvalidator.xplan_rp_naturschutzrechtlichesschutzgebiet USING gist (xplan_position);
 - changeSet:
     id: 1663512731199-424
     author: latlon
@@ -44224,7 +44224,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_rp_rasterplanaenderung_xplan_geltungsbereichaend_13
 #         schemaName: xplanvalidator
 #         tableName: xplan_rp_rasterplanaenderung
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplanvalidator.xplan_rp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_rasterplanaenderung_geltungsbereichaenderung ON xplanvalidator.xplan_rp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663512731199-428
     author: latlon
@@ -44668,7 +44668,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_so_rasterplanaenderung_xplan_geltungsbereichaend_14
 #         schemaName: xplanvalidator
 #         tableName: xplan_so_rasterplanaenderung
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplanvalidator.xplan_so_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_rasterplanaenderung_geltungsbereichaenderung ON xplanvalidator.xplan_so_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663512731199-465
     author: latlon
