@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -75,17 +75,27 @@ public class PlanInfoBuilder {
 	}
 
 	public PlanInfo build() {
-		return new PlanInfo().id(Integer.parseInt(xPlan.getId())).importDate(xPlan.getImportDate())
-				.inspirePublished(xPlan.isInspirePublished()).raster(xPlan.isRaster()).version(version())
-				.planStatus(planStatus()).bbox(bbox()).links(links()).type(xPlan.getType())
-				.xplanModelData(xPlanModelData());
+		return new PlanInfo().id(Integer.parseInt(xPlan.getId()))
+			.importDate(xPlan.getImportDate())
+			.inspirePublished(xPlan.isInspirePublished())
+			.raster(xPlan.isRaster())
+			.version(version())
+			.planStatus(planStatus())
+			.bbox(bbox())
+			.links(links())
+			.type(xPlan.getType())
+			.xplanModelData(xPlanModelData());
 	}
 
 	private PlanInfoXplanModelData xPlanModelData() {
-		return new PlanInfoXplanModelData().name(xPlan.getName()).nummer(xPlan.getNumber())
-				.internalId(xPlan.getInternalId()).inkrafttretensDatum(xPlan.getReleaseDate())
-				.rechtsstand(xPlan.getLegislationStatus()).ags(xPlan.getGkz()).gemeindeName(xPlan.getDistrict())
-				.bereiche(bereiche());
+		return new PlanInfoXplanModelData().name(xPlan.getName())
+			.nummer(xPlan.getNumber())
+			.internalId(xPlan.getInternalId())
+			.inkrafttretensDatum(xPlan.getReleaseDate())
+			.rechtsstand(xPlan.getLegislationStatus())
+			.ags(xPlan.getGkz())
+			.gemeindeName(xPlan.getDistrict())
+			.bereiche(bereiche());
 	}
 
 	private PlanStatusEnum planStatus() {
@@ -97,8 +107,10 @@ public class PlanInfoBuilder {
 	}
 
 	private List<Bereich> bereiche() {
-		return xPlan.getBereiche().stream().map(b -> new Bereich().name(b.getName()).nummer(b.getNummer()))
-				.collect(Collectors.toList());
+		return xPlan.getBereiche()
+			.stream()
+			.map(b -> new Bereich().name(b.getName()).nummer(b.getNummer()))
+			.collect(Collectors.toList());
 	}
 
 	private VersionEnum version() {
@@ -137,7 +149,8 @@ public class PlanInfoBuilder {
 		pathSegments.add("plan");
 		pathSegments.add(xPlan.getId());
 		uriBuilder.setPathSegments(pathSegments.stream()
-				.filter(pathSegment -> pathSegment != null && !pathSegment.isEmpty()).collect(Collectors.toList()));
+			.filter(pathSegment -> pathSegment != null && !pathSegment.isEmpty())
+			.collect(Collectors.toList()));
 		try {
 			return uriBuilder.build();
 		}
@@ -170,8 +183,11 @@ public class PlanInfoBuilder {
 	private PlanInfoBbox bbox() {
 		XPlanEnvelope bbox = xPlan.getBbox();
 		if (bbox != null)
-			return new PlanInfoBbox().crs(bbox.getCrs()).minX(bbox.getMinX()).minY(bbox.getMinY()).maxX(bbox.getMaxX())
-					.maxY(bbox.getMaxY());
+			return new PlanInfoBbox().crs(bbox.getCrs())
+				.minX(bbox.getMinX())
+				.minY(bbox.getMinY())
+				.maxX(bbox.getMaxX())
+				.maxY(bbox.getMaxY());
 		return null;
 	}
 

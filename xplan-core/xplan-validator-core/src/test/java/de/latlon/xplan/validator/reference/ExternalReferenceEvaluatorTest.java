@@ -46,10 +46,11 @@ public class ExternalReferenceEvaluatorTest {
 		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/Blankenese29_Test_60.zip");
 		XPlanArchive xPlanArchive = new XPlanArchiveCreator().createXPlanArchiveFromZip("Blankenese29_Test_60",
 				inputStream);
-		XPlanFeatureCollection features = XPlanGmlParserBuilder.newBuilder().build()
-				.parseXPlanFeatureCollection(xPlanArchive);
+		XPlanFeatureCollection features = XPlanGmlParserBuilder.newBuilder()
+			.build()
+			.parseXPlanFeatureCollection(xPlanArchive);
 		ExternalReferenceReport externalReferenceReport = new ExternalReferenceEvaluator()
-				.parseAndAddExternalReferences(features, xPlanArchive);
+			.parseAndAddExternalReferences(features, xPlanArchive);
 
 		assertThat(externalReferenceReport.getReferencesAndStatus().size(), is(2));
 		assertThat(externalReferenceReport.getReferencesAndStatus().get("Blankenese29.png"), is(AVAILABLE));
@@ -60,10 +61,11 @@ public class ExternalReferenceEvaluatorTest {
 	public void testValidateExternalReferences_Missing() throws Exception {
 		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/Blankenese29.gml");
 		XPlanArchive xPlanArchive = new XPlanArchiveCreator().createXPlanArchiveFromGml("Blankenese29", inputStream);
-		XPlanFeatureCollection features = XPlanGmlParserBuilder.newBuilder().build()
-				.parseXPlanFeatureCollection(xPlanArchive);
+		XPlanFeatureCollection features = XPlanGmlParserBuilder.newBuilder()
+			.build()
+			.parseXPlanFeatureCollection(xPlanArchive);
 		ExternalReferenceReport externalReferenceReport = new ExternalReferenceEvaluator()
-				.parseAndAddExternalReferences(features, xPlanArchive);
+			.parseAndAddExternalReferences(features, xPlanArchive);
 
 		assertThat(externalReferenceReport.getReferencesAndStatus().size(), is(2));
 		assertThat(externalReferenceReport.getReferencesAndStatus().get("Blankenese29.png"), is(MISSING));
@@ -75,10 +77,11 @@ public class ExternalReferenceEvaluatorTest {
 		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/StErhVO_Hamm_60_httpRef.gml");
 		XPlanArchive xPlanArchive = new XPlanArchiveCreator().createXPlanArchiveFromGml("StErhVO_Hamm_60_httpRef.gml",
 				inputStream);
-		XPlanFeatureCollection features = XPlanGmlParserBuilder.newBuilder().build()
-				.parseXPlanFeatureCollection(xPlanArchive);
+		XPlanFeatureCollection features = XPlanGmlParserBuilder.newBuilder()
+			.build()
+			.parseXPlanFeatureCollection(xPlanArchive);
 		ExternalReferenceReport externalReferenceReport = new ExternalReferenceEvaluator()
-				.parseAndAddExternalReferences(features, xPlanArchive);
+			.parseAndAddExternalReferences(features, xPlanArchive);
 
 		assertThat(externalReferenceReport.getReferencesAndStatus().size(), is(1));
 		assertThat(externalReferenceReport.getReferencesAndStatus().get("http://test.de/StErhVO_Hamm.pdf"),

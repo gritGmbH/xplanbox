@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -86,7 +86,7 @@ public class SkalierungLookup extends PraesentationsobjektLookup {
 		Feature planFeature = detectPlanFeature(features);
 		if (planFeature != null) {
 			List<Property> erstellungsMassstabProps = planFeature
-					.getProperties(new QName(planFeature.getName().getNamespaceURI(), "erstellungsMassstab"));
+				.getProperties(new QName(planFeature.getName().getNamespaceURI(), "erstellungsMassstab"));
 			if (!erstellungsMassstabProps.isEmpty()) {
 				PrimitiveValue erstellungsMassstabProp = castToPrimitive(erstellungsMassstabProps.get(0));
 				return ((BigInteger) erstellungsMassstabProp.getValue()).intValue();
@@ -111,8 +111,8 @@ public class SkalierungLookup extends PraesentationsobjektLookup {
 
 	private Feature detectPlanFeature(FeatureCollection features) {
 		List<Feature> planFeatures = features.stream()
-				.filter(feature -> feature.getName().getLocalPart().matches("(BP|FP|LP|RP|SO)_Plan"))
-				.collect(Collectors.toList());
+			.filter(feature -> feature.getName().getLocalPart().matches("(BP|FP|LP|RP|SO)_Plan"))
+			.collect(Collectors.toList());
 		if (!planFeatures.isEmpty())
 			return planFeatures.get(0);
 		LOG.warn("Could not find Plan feature.");

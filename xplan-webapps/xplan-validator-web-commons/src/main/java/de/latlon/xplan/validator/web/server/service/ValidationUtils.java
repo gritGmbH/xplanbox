@@ -48,8 +48,9 @@ public class ValidationUtils {
 		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<ValidationSettings>> validate = validator.validate(validationSettings);
 		if (!validate.isEmpty()) {
-			String messages = validate.stream().map(violation -> violation.getMessage())
-					.collect(Collectors.joining(", "));
+			String messages = validate.stream()
+				.map(violation -> violation.getMessage())
+				.collect(Collectors.joining(", "));
 			throw new InvalidParameterException(messages);
 		}
 	}

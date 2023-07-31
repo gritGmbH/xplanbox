@@ -55,7 +55,7 @@ public class S3StorageCleanUpManagerTest {
 		verify(client).listObjects(BUCKET_NAME, "1_");
 		verify(client).deleteObject(BUCKET_NAME, "1_test.png");
 		ArgumentCaptor<de.latlon.xplan.manager.storage.s3.S3Object> argument = ArgumentCaptor
-				.forClass(de.latlon.xplan.manager.storage.s3.S3Object.class);
+			.forClass(de.latlon.xplan.manager.storage.s3.S3Object.class);
 		verify(storageEvent).addDeletedKey(argument.capture());
 		assertThat(argument.getValue().getS3Metadata().getKey(), is("1_test.png"));
 	}

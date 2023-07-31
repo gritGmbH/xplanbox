@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -262,7 +262,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 						currentFeatureGeom);
 				differencesOutsideGeltungsbereich.addAll(differenceOutsideGeltungsbereich);
 				org.deegree.geometry.Geometry intersection = currentFeatureGeom
-						.getIntersection(currentGeltungsbereichGeom);
+					.getIntersection(currentGeltungsbereichGeom);
 				addIntersectionPoints(points, differenceOutsideGeltungsbereich, intersection);
 			});
 		});
@@ -305,7 +305,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 			AbstractDefaultGeometry geltungsbereichGeom, Geometry geltungsbereichWithBuffer,
 			org.deegree.geometry.Geometry currentFeatureGeom) {
 		AbstractDefaultGeometry difference = (AbstractDefaultGeometry) currentFeatureGeom
-				.getDifference(geltungsbereichGeom);
+			.getDifference(geltungsbereichGeom);
 		List<AbstractDefaultGeometry> relevantDifferences = new ArrayList<>();
 		if (difference == null) {
 			return Collections.emptyList();
@@ -316,8 +316,9 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 		else {
 			relevantDifferences.add(difference);
 		}
-		return relevantDifferences.stream().filter(diff -> !geltungsbereichWithBuffer.covers(diff.getJTSGeometry()))
-				.collect(Collectors.toList());
+		return relevantDifferences.stream()
+			.filter(diff -> !geltungsbereichWithBuffer.covers(diff.getJTSGeometry()))
+			.collect(Collectors.toList());
 	}
 
 	private void addIntersectionPoints(List<String> points, List<AbstractDefaultGeometry> difference,
@@ -436,8 +437,10 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 	}
 
 	private String pointAsReadableString(Point p) {
-		return Arrays.stream(p.getAsArray()).filter(value -> !Double.isNaN(value)).mapToObj(Double::toString)
-				.collect(Collectors.joining(",", "(", ")"));
+		return Arrays.stream(p.getAsArray())
+			.filter(value -> !Double.isNaN(value))
+			.mapToObj(Double::toString)
+			.collect(Collectors.joining(",", "(", ")"));
 	}
 
 }

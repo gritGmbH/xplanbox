@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -88,10 +88,11 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 		FileDataBodyPart geoRefFilePart = createFileDataBodyPart("georeferenzdatei", "georeferenz.txt",
 				TEXT_PLAIN_TYPE);
 		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(rasterbasismodel)
-				.bodyPart(rasterFilePart).bodyPart(geoRefFilePart);
+			.bodyPart(rasterFilePart)
+			.bodyPart(geoRefFilePart);
 
 		Response response = target("/plan/2/rasterbasis").request()
-				.post(Entity.entity(multipart, multipart.getMediaType()));
+			.post(Entity.entity(multipart, multipart.getMediaType()));
 		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 
@@ -101,7 +102,8 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 	public void verifyThat_getRasterbasisById_returnsCorrectStatusCodeForValidMediaType() {
 		Response response = target(
 				"/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif")
-						.request(APPLICATION_JSON).get();
+			.request(APPLICATION_JSON)
+			.get();
 
 		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
@@ -116,11 +118,13 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 		FileDataBodyPart geoRefFilePart = createFileDataBodyPart("georeferenzdatei", "georeferenz.txt",
 				TEXT_PLAIN_TYPE);
 		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(rasterbasismodel)
-				.bodyPart(rasterFilePart).bodyPart(geoRefFilePart);
+			.bodyPart(rasterFilePart)
+			.bodyPart(geoRefFilePart);
 
 		Response response = target(
-				"/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif").request()
-						.put(Entity.entity(multipart, multipart.getMediaType()));
+				"/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif")
+			.request()
+			.put(Entity.entity(multipart, multipart.getMediaType()));
 		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 	}
@@ -129,7 +133,8 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 	public void verifyThat_deleteRasterbasisById_returnsCorrectStatusCodeForValidMediaType() {
 		Response response = target(
 				"/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif")
-						.request(APPLICATION_JSON).delete();
+			.request(APPLICATION_JSON)
+			.delete();
 
 		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
@@ -143,10 +148,11 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 		FileDataBodyPart geoRefFilePart = createFileDataBodyPart("georeferenzdatei", "georeferenz.txt",
 				TEXT_PLAIN_TYPE);
 		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(rasterbasismodel)
-				.bodyPart(rasterFilePart).bodyPart(geoRefFilePart);
+			.bodyPart(rasterFilePart)
+			.bodyPart(geoRefFilePart);
 
 		Response response = target("/plan/2/rasterbasis").request()
-				.post(Entity.entity(multipart, multipart.getMediaType()));
+			.post(Entity.entity(multipart, multipart.getMediaType()));
 		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
 	}
 
@@ -158,11 +164,13 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 		FileDataBodyPart geoRefFilePart = createFileDataBodyPart("georeferenzdatei", "georeferenz.txt",
 				TEXT_PLAIN_TYPE);
 		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(rasterbasismodel)
-				.bodyPart(rasterFilePart).bodyPart(geoRefFilePart);
+			.bodyPart(rasterFilePart)
+			.bodyPart(geoRefFilePart);
 
 		Response response = target(
-				"/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif").request()
-						.put(Entity.entity(multipart, multipart.getMediaType()));
+				"/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif")
+			.request()
+			.put(Entity.entity(multipart, multipart.getMediaType()));
 		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
 	}
 
@@ -174,10 +182,11 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 		FileDataBodyPart geoRefFilePart = createFileDataBodyPart("georeferenzdatei", "georeferenz.txt",
 				TEXT_PLAIN_TYPE);
 		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(rasterbasismodel)
-				.bodyPart(rasterFilePart).bodyPart(geoRefFilePart);
+			.bodyPart(rasterFilePart)
+			.bodyPart(geoRefFilePart);
 
 		Response response = target("/plan/7/rasterbasis").request()
-				.post(Entity.entity(multipart, multipart.getMediaType()));
+			.post(Entity.entity(multipart, multipart.getMediaType()));
 		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
 	}
 
@@ -189,11 +198,13 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 		FileDataBodyPart geoRefFilePart = createFileDataBodyPart("georeferenzdatei", "georeferenz.txt",
 				TEXT_PLAIN_TYPE);
 		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(rasterbasismodel)
-				.bodyPart(rasterFilePart).bodyPart(geoRefFilePart);
+			.bodyPart(rasterFilePart)
+			.bodyPart(geoRefFilePart);
 
 		Response response = target(
-				"/plan/7/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif").request()
-						.put(Entity.entity(multipart, multipart.getMediaType()));
+				"/plan/7/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif")
+			.request()
+			.put(Entity.entity(multipart, multipart.getMediaType()));
 		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
 	}
 

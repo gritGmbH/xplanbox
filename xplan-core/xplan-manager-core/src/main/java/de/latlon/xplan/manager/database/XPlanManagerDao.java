@@ -175,13 +175,14 @@ public class XPlanManagerDao extends XPlanDao {
 
 			AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 			List<QName> featureTypeNames = Arrays.stream(schema.getFeatureTypes())
-					.map(featureType -> featureType.getName()).collect(Collectors.toList());
+				.map(featureType -> featureType.getName())
+				.collect(Collectors.toList());
 
 			Set<String> validIds = ids.stream().filter(oldFeatureId -> {
 				Optional<QName> featureType = featureTypeNames.stream()
-						.filter(featureTypeName -> oldFeatureId
-								.startsWith(SYN_FEATURETYPE_PREFIX + featureTypeName.getLocalPart().toUpperCase()))
-						.findFirst();
+					.filter(featureTypeName -> oldFeatureId
+						.startsWith(SYN_FEATURETYPE_PREFIX + featureTypeName.getLocalPart().toUpperCase()))
+					.findFirst();
 				if (featureType.isPresent()) {
 					return true;
 				}

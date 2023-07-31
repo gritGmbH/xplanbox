@@ -42,7 +42,8 @@ public class DBDocumentService implements DocumentService {
 	public List<Document> listDocuments(int planId) {
 		Stream<Artefact> allArtefactsOfPlan = artefactRepository.findAllByPlanId(planId);
 		return allArtefactsOfPlan.filter(artefact -> XPLANGML != artefact.getArtefacttype())
-				.map(artefact -> new Document().fileName(artefact.getId().getFilename())).collect(Collectors.toList());
+			.map(artefact -> new Document().fileName(artefact.getId().getFilename()))
+			.collect(Collectors.toList());
 	}
 
 	@Override

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -529,30 +529,30 @@ class XPlanGeometryInspector implements GeometryInspector {
 		AtomicInteger duplicateControlPointIndex = new AtomicInteger(1);
 
 		List<CurveSegment> curveSegments = ring.getCurveSegments();
-		curveSegments.stream().filter(curveSegment -> LINE_STRING_SEGMENT.equals(curveSegment.getSegmentType()))
-				.forEach(curveSegment -> {
-					Points controlPoints = ((LineStringSegment) curveSegment).getControlPoints();
-					AtomicReference<Point> previous = new AtomicReference<>(null);
-					controlPoints.forEach(cp -> {
-						if (previous.get() == null) {
-							previous.set(cp);
+		curveSegments.stream()
+			.filter(curveSegment -> LINE_STRING_SEGMENT.equals(curveSegment.getSegmentType()))
+			.forEach(curveSegment -> {
+				Points controlPoints = ((LineStringSegment) curveSegment).getControlPoints();
+				AtomicReference<Point> previous = new AtomicReference<>(null);
+				controlPoints.forEach(cp -> {
+					if (previous.get() == null) {
+						previous.set(cp);
+					}
+					else {
+						if (cp.equals(previous.get())) {
+							String duplicateControlPointId = ring.getId() + "_doppelterStuetzpunkt_"
+									+ duplicateControlPointIndex.getAndIncrement();
+							Point duplicateControlPointGeom = new GeometryFactory().createPoint(duplicateControlPointId,
+									cp.get0(), cp.get1(), cp.get2(), ring.getCoordinateSystem());
+							String duplicateControlPointMsg = getMessage(
+									"XPlanGeometryInspector_invalid_duplicateStuetzpunkt_geom");
+							badGeometries.add(new BadGeometry(duplicateControlPointGeom, duplicateControlPointMsg));
+							duplicateControlPoints.add(duplicateControlPointGeom);
 						}
-						else {
-							if (cp.equals(previous.get())) {
-								String duplicateControlPointId = ring.getId() + "_doppelterStuetzpunkt_"
-										+ duplicateControlPointIndex.getAndIncrement();
-								Point duplicateControlPointGeom = new GeometryFactory().createPoint(
-										duplicateControlPointId, cp.get0(), cp.get1(), cp.get2(),
-										ring.getCoordinateSystem());
-								String duplicateControlPointMsg = getMessage(
-										"XPlanGeometryInspector_invalid_duplicateStuetzpunkt_geom");
-								badGeometries.add(new BadGeometry(duplicateControlPointGeom, duplicateControlPointMsg));
-								duplicateControlPoints.add(duplicateControlPointGeom);
-							}
-							previous.set(cp);
-						}
-					});
+						previous.set(cp);
+					}
 				});
+			});
 		return duplicateControlPoints;
 	}
 
@@ -582,8 +582,10 @@ class XPlanGeometryInspector implements GeometryInspector {
 	}
 
 	private String pointAsReadableString(Point geom) {
-		return Arrays.stream(geom.getAsArray()).filter(value -> !Double.isNaN(value)).mapToObj(Double::toString)
-				.collect(Collectors.joining(",", "(", ")"));
+		return Arrays.stream(geom.getAsArray())
+			.filter(value -> !Double.isNaN(value))
+			.mapToObj(Double::toString)
+			.collect(Collectors.joining(",", "(", ")"));
 	}
 
 	private String multipleAsReadableString(MultiGeometry<?> geom) {

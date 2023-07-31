@@ -149,8 +149,12 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		List<FeatureInspector> allFeatureInspectors = featureInspectors.stream().collect(Collectors.toList());
 		allFeatureInspectors.add(aenderungenInspector);
 
-		return XPlanGmlParserBuilder.newBuilder().withSkipBrokenGeometries(true).withDefaultCrs(crs)
-				.withFeatureInspectors(allFeatureInspectors).withGeometryInspectors(geometryInspector).build();
+		return XPlanGmlParserBuilder.newBuilder()
+			.withSkipBrokenGeometries(true)
+			.withDefaultCrs(crs)
+			.withFeatureInspectors(allFeatureInspectors)
+			.withGeometryInspectors(geometryInspector)
+			.build();
 	}
 
 	private void checkAndAddRules(GeometricFeatureInspector fi, ValidatorResult result) {
@@ -168,8 +172,9 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		if (!isOptionTrue(voOptions, SKIP_GELTUNGSBEREICH_OPTION))
 			inspectors.add(new GeltungsbereichInspector(version));
 		inspectors.add(new DoppelbelegungInspector());
-		return inspectors.stream().filter(inspector -> inspector.applicableForVersion(version))
-				.collect(Collectors.toList());
+		return inspectors.stream()
+			.filter(inspector -> inspector.applicableForVersion(version))
+			.collect(Collectors.toList());
 	}
 
 	private void resolveAndValidateXlinks(XPlanGmlParser xPlanGmlParser, ValidatorResult result,

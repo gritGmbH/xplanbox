@@ -184,8 +184,9 @@ public class PlanHandler {
 
 	private PlanStatus determinePlanStatusByRechtsstand(XPlanArchive xPlanArchive)
 			throws XMLStreamException, UnknownCRSException {
-		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder().build()
-				.parseXPlanFeatureCollection(xPlanArchive);
+		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder()
+			.build()
+			.parseXPlanFeatureCollection(xPlanArchive);
 		String legislationStatus = retrieveRechtsstand(fc.getFeatures(), fc.getType());
 		if (legislationStatus != null && !legislationStatus.isEmpty()) {
 			try {

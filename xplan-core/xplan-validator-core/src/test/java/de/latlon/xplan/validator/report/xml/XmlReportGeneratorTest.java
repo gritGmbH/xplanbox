@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -116,9 +116,9 @@ public class XmlReportGeneratorTest {
 		assertThat(xml,
 				EvaluateXPathMatcher.hasXPath("/ValidationReport/Validation/Profile/result", equalTo("nicht valide")));
 		assertThat(xml, EvaluateXPathMatcher
-				.hasXPath("/ValidationReport/Validation/Profile/Rules/Rule[name = 'a']/isValid", equalTo("true")));
+			.hasXPath("/ValidationReport/Validation/Profile/Rules/Rule[name = 'a']/isValid", equalTo("true")));
 		assertThat(xml, EvaluateXPathMatcher
-				.hasXPath("/ValidationReport/Validation/Profile/Rules/Rule[name = 'b']/isValid", equalTo("false")));
+			.hasXPath("/ValidationReport/Validation/Profile/Rules/Rule[name = 'b']/isValid", equalTo("false")));
 	}
 
 	@Test(expected = IllegalArgumentException.class)

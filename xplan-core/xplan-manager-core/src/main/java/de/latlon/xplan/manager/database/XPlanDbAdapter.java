@@ -139,8 +139,8 @@ public class XPlanDbAdapter {
 		List<ZipEntryWithContent> archiveEntries = xPlanFeatureCollection.getArchiveEntries(archive);
 		AtomicInteger i = new AtomicInteger();
 		Set<Artefact> artefacts = archiveEntries.stream()
-				.map(archiveEntry -> createArtefact(plan, xPlanFeatureCollection, i, archiveEntry, xplanGml))
-				.collect(Collectors.toSet());
+			.map(archiveEntry -> createArtefact(plan, xPlanFeatureCollection, i, archiveEntry, xplanGml))
+			.collect(Collectors.toSet());
 		plan.setArtefacts(artefacts);
 		planRepository.save(plan);
 	}
@@ -148,9 +148,11 @@ public class XPlanDbAdapter {
 	public void insertOrReplacePlanWerkWmsMetadata(int planId, String title, String resourceIdentifier,
 			String datasetMetadataUrl, String serviceMetadataUrl) {
 		LOG.info("Insert PlanWerkWmsMetadata");
-		PlanwerkWmsMetadata planwerkWmsMetadata = new PlanwerkWmsMetadata().plan(planId).title(title)
-				.resourceidentifier(resourceIdentifier).servicemetadataurl(serviceMetadataUrl)
-				.datametadataurl(datasetMetadataUrl);
+		PlanwerkWmsMetadata planwerkWmsMetadata = new PlanwerkWmsMetadata().plan(planId)
+			.title(title)
+			.resourceidentifier(resourceIdentifier)
+			.servicemetadataurl(serviceMetadataUrl)
+			.datametadataurl(datasetMetadataUrl);
 		planwerkWmsMetadataRepository.save(planwerkWmsMetadata);
 	}
 
@@ -188,7 +190,8 @@ public class XPlanDbAdapter {
 	public void update(int planId, XPlanType type, FeatureCollection synFc) throws Exception {
 		LOG.info("- Aktualisierung des Plans mit ID '{}'", planId);
 		Plan plan = getRequiredPlanById(planId).rechtsstand(retrieveRechtsstandWert(synFc, type))
-				.sonstPlanArt(retrieveAdditionalTypeWert(synFc, type)).bereiche(createBereiche(synFc));
+			.sonstPlanArt(retrieveAdditionalTypeWert(synFc, type))
+			.bereiche(createBereiche(synFc));
 		planRepository.save(plan);
 	}
 
@@ -260,8 +263,9 @@ public class XPlanDbAdapter {
 	 */
 	public List<XPlan> selectAllXPlans() {
 		Iterable<Plan> plans = planRepository.findAll();
-		return StreamSupport.stream(plans.spliterator(), false).map(plan -> convertToXPlan(plan))
-				.collect(Collectors.toList());
+		return StreamSupport.stream(plans.spliterator(), false)
+			.map(plan -> convertToXPlan(plan))
+			.collect(Collectors.toList());
 	}
 
 	@Transactional(readOnly = true)
@@ -419,9 +423,9 @@ public class XPlanDbAdapter {
 
 	private ArtefactType detectNonXPlanGmlArtefactType(XPlanFeatureCollection xPlanFeatureCollection, String name) {
 		List<ExternalReference> rasterPlanBaseAndUpdateScans = xPlanFeatureCollection.getExternalReferenceInfo()
-				.getRasterPlanBaseAndUpdateScans();
+			.getRasterPlanBaseAndUpdateScans();
 		boolean isRasterBasis = rasterPlanBaseAndUpdateScans.stream()
-				.anyMatch(rasterPlanBaseAndUpdateScan -> name.equals(rasterPlanBaseAndUpdateScan.getReferenzUrl()));
+			.anyMatch(rasterPlanBaseAndUpdateScan -> name.equals(rasterPlanBaseAndUpdateScan.getReferenzUrl()));
 		if (isRasterBasis)
 			return RASTERBASIS;
 		return null;
@@ -460,12 +464,21 @@ public class XPlanDbAdapter {
 			Date endValidity, Date sortDate, String internalId) throws ParseException {
 		String wktFromBboxIn4326 = createWktFromBboxIn4326(fc);
 		org.locationtech.jts.geom.Geometry bbox = new org.locationtech.jts.io.WKTReader().read(wktFromBboxIn4326);
-		Plan plan = new Plan().importDate(new Date(System.currentTimeMillis())).version(archive.getVersion())
-				.type(archive.getType()).name(fc.getPlanName()).nummer(fc.getPlanNummer()).gkz(fc.getPlanGkz())
-				.hasRaster(fc.getHasRaster()).releaseDate(fc.getPlanReleaseDate())
-				.planstatus(retrievePlanStatusMessage(planStatus))
-				.district(retrieveDistrict(fc.getFeatures(), archive.getType())).wmssortdate(sortDate)
-				.gueltigkeitbeginn(beginValidity).gueltigkeitende(endValidity).internalid(internalId).bbox(bbox);
+		Plan plan = new Plan().importDate(new Date(System.currentTimeMillis()))
+			.version(archive.getVersion())
+			.type(archive.getType())
+			.name(fc.getPlanName())
+			.nummer(fc.getPlanNummer())
+			.gkz(fc.getPlanGkz())
+			.hasRaster(fc.getHasRaster())
+			.releaseDate(fc.getPlanReleaseDate())
+			.planstatus(retrievePlanStatusMessage(planStatus))
+			.district(retrieveDistrict(fc.getFeatures(), archive.getType()))
+			.wmssortdate(sortDate)
+			.gueltigkeitbeginn(beginValidity)
+			.gueltigkeitende(endValidity)
+			.internalid(internalId)
+			.bbox(bbox);
 		return plan;
 	}
 
@@ -477,14 +490,17 @@ public class XPlanDbAdapter {
 	}
 
 	private Set<de.latlon.xplan.core.manager.db.model.Bereich> createBereiche(List<Bereich> bereiche) {
-		return bereiche.stream().map(bereich -> new de.latlon.xplan.core.manager.db.model.Bereich()
-				.name(bereich.getName()).nummer(bereich.getNummer())).collect(Collectors.toSet());
+		return bereiche.stream()
+			.map(bereich -> new de.latlon.xplan.core.manager.db.model.Bereich().name(bereich.getName())
+				.nummer(bereich.getNummer()))
+			.collect(Collectors.toSet());
 	}
 
 	private Set<Feature> createFeatures(List<String> featureIds) {
 		AtomicInteger index = new AtomicInteger();
-		return featureIds.stream().map(featureId -> new Feature().fid(featureId).num(index.getAndIncrement()))
-				.collect(Collectors.toSet());
+		return featureIds.stream()
+			.map(featureId -> new Feature().fid(featureId).num(index.getAndIncrement()))
+			.collect(Collectors.toSet());
 	}
 
 	private Artefact createArtefact(Plan plan, XPlanFeatureCollection xPlanFeatureCollection, AtomicInteger i,
@@ -497,8 +513,12 @@ public class XPlanDbAdapter {
 			ArtefactType artefactType = detectArtefactType(xPlanFeatureCollection, archiveEntry);
 			byte[] data = retrieveData(xplanGml, is, artefactType);
 			ArtefactId id = new ArtefactId().plan(plan).filename(name);
-			Artefact artefact = new Artefact().id(id).data(data).mimetype(mimetype).length(contentLength)
-					.artefacttype(artefactType).num(i.getAndIncrement());
+			Artefact artefact = new Artefact().id(id)
+				.data(data)
+				.mimetype(mimetype)
+				.length(contentLength)
+				.artefacttype(artefactType)
+				.num(i.getAndIncrement());
 			return artefact;
 		}
 		catch (IOException e) {
@@ -517,18 +537,22 @@ public class XPlanDbAdapter {
 			Map<String, String> addedRefFileNames, Set<String> removedRefFileNames, int planId, Plan plan)
 			throws Exception {
 		XPlanType type = XPlanType.valueOf(oldXplan.getType());
-		plan.name(fc.getPlanName()).rechtsstand(retrieveRechtsstandWert(synFc, type))
-				.sonstPlanArt(retrieveAdditionalTypeWert(synFc, type)).wmssortdate(sortDate)
-				.gueltigkeitbeginn(newAdditionalPlanData.getStartDateTime())
-				.gueltigkeitende(newAdditionalPlanData.getEndDateTime())
-				.planstatus(retrievePlanStatusMessage(newAdditionalPlanData.getPlanStatus()));
+		plan.name(fc.getPlanName())
+			.rechtsstand(retrieveRechtsstandWert(synFc, type))
+			.sonstPlanArt(retrieveAdditionalTypeWert(synFc, type))
+			.wmssortdate(sortDate)
+			.gueltigkeitbeginn(newAdditionalPlanData.getStartDateTime())
+			.gueltigkeitende(newAdditionalPlanData.getEndDateTime())
+			.planstatus(retrievePlanStatusMessage(newAdditionalPlanData.getPlanStatus()));
 
 		Set<Artefact> planArtefacts = plan.getArtefacts();
-		Optional<Integer> optionalNum = planArtefacts.stream().map(artefact -> artefact.getNum())
-				.max(Integer::compareTo);
+		Optional<Integer> optionalNum = planArtefacts.stream()
+			.map(artefact -> artefact.getNum())
+			.max(Integer::compareTo);
 		int num = optionalNum.isPresent() ? optionalNum.get() : 0;
 		Optional<Artefact> optionalArtefact = planArtefacts.stream()
-				.filter(artefact -> XPLANGML.equals(artefact.getArtefacttype())).findFirst();
+			.filter(artefact -> XPLANGML.equals(artefact.getArtefacttype()))
+			.findFirst();
 		if (!optionalArtefact.isPresent())
 			throw new Exception("Plan mit ID " + planId
 					+ " hat kein Artefakt vom Typ XPLANGML. Plan kann nicht aktualisiert werden.");
@@ -536,8 +560,8 @@ public class XPlanDbAdapter {
 		xPlanGmlArtefact.data(createZipArtefact(new ByteArrayInputStream(planArtefact)));
 
 		List<Artefact> artefactsToDelete = planArtefacts.stream()
-				.filter(artefact -> removedRefFileNames.contains(artefact.getId().getFilename()))
-				.collect(Collectors.toList());
+			.filter(artefact -> removedRefFileNames.contains(artefact.getId().getFilename()))
+			.collect(Collectors.toList());
 		planArtefacts.removeAll(artefactsToDelete);
 
 		for (Map.Entry<String, String> entry : addedRefFileNames.entrySet()) {
@@ -550,8 +574,12 @@ public class XPlanDbAdapter {
 				ArtefactType artefactType = detectNonXPlanGmlArtefactType(fc, fileName);
 
 				ArtefactId id = new ArtefactId().plan(plan).filename(fileName);
-				Artefact artefact = new Artefact().id(id).data(data).mimetype(mimetype).length(size)
-						.artefacttype(artefactType).num(num++);
+				Artefact artefact = new Artefact().id(id)
+					.data(data)
+					.mimetype(mimetype)
+					.length(size)
+					.artefacttype(artefactType)
+					.num(num++);
 				plan.getArtefacts().add(artefact);
 			}
 		}

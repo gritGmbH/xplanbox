@@ -94,11 +94,19 @@ public class PlanRepositoryTest {
 		Plan plan = new Plan();
 		ArtefactId artefactId = new ArtefactId().plan(plan).filename("test.xml");
 		byte[] bytes = "test".getBytes(UTF_8);
-		Artefact artefact = new Artefact().id(artefactId).num(1).artefacttype(ArtefactType.XPLANGML)
-				.mimetype("text/xml").length(Long.valueOf(bytes.length)).data(bytes);
-		plan.importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
-				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature))
-				.artefacts(Collections.singleton(artefact));
+		Artefact artefact = new Artefact().id(artefactId)
+			.num(1)
+			.artefacttype(ArtefactType.XPLANGML)
+			.mimetype("text/xml")
+			.length(Long.valueOf(bytes.length))
+			.data(bytes);
+		plan.importDate(new Date())
+			.version(XPLAN_51)
+			.type(BP_Plan)
+			.hasRaster(false)
+			.bereiche(Collections.singleton(bereich))
+			.features(Collections.singleton(feature))
+			.artefacts(Collections.singleton(artefact));
 		// Not running with HSQL DB (@ActiveProfiles("test-hsql"))
 		// setBbox(plan);
 		assertNull(plan.getId());
@@ -119,8 +127,13 @@ public class PlanRepositoryTest {
 
 		Bereich bereich = new Bereich().nummer("0").name("test");
 		Feature feature = new Feature().num(1).fid("123");
-		Plan plan = new Plan().name(name).importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
-				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature));
+		Plan plan = new Plan().name(name)
+			.importDate(new Date())
+			.version(XPLAN_51)
+			.type(BP_Plan)
+			.hasRaster(false)
+			.bereiche(Collections.singleton(bereich))
+			.features(Collections.singleton(feature));
 		planRepository.save(plan);
 
 		List<Plan> existingPlan = planRepository.findByName(name);
@@ -137,8 +150,13 @@ public class PlanRepositoryTest {
 		String name = "saveAndFindByLikeName";
 		Bereich bereich = new Bereich().nummer("0").name("test");
 		Feature feature = new Feature().num(1).fid("123");
-		Plan plan = new Plan().name(name).importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
-				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature));
+		Plan plan = new Plan().name(name)
+			.importDate(new Date())
+			.version(XPLAN_51)
+			.type(BP_Plan)
+			.hasRaster(false)
+			.bereiche(Collections.singleton(bereich))
+			.features(Collections.singleton(feature));
 		planRepository.save(plan);
 		List<Plan> existingPlan = planRepository.findByNameLike("iKEnAme");
 		assertFalse(existingPlan.isEmpty());
@@ -154,9 +172,14 @@ public class PlanRepositoryTest {
 		Bereich bereich = new Bereich().nummer("0").name("test");
 		Feature feature = new Feature().num(1).fid("123");
 		Date wmsSortDate = new Date();
-		Plan plan = new Plan().name("saveAndFindPlanWithMoreRecentRasterPlan").importDate(new Date()).version(XPLAN_51)
-				.type(BP_Plan).hasRaster(true).wmssortdate(wmsSortDate).bereiche(Collections.singleton(bereich))
-				.features(Collections.singleton(feature));
+		Plan plan = new Plan().name("saveAndFindPlanWithMoreRecentRasterPlan")
+			.importDate(new Date())
+			.version(XPLAN_51)
+			.type(BP_Plan)
+			.hasRaster(true)
+			.wmssortdate(wmsSortDate)
+			.bereiche(Collections.singleton(bereich))
+			.features(Collections.singleton(feature));
 		planRepository.save(plan);
 
 		Date tomorrow = new Date(wmsSortDate.getTime() - (1000 * 60 * 60 * 24));
@@ -177,9 +200,15 @@ public class PlanRepositoryTest {
 		Bereich bereich = new Bereich().nummer("0").name("test");
 		Feature feature = new Feature().num(1).fid("123");
 		Date wmsSortDate = new Date();
-		Plan plan = new Plan().name(name).importDate(new Date()).version(XPLAN_51).type(BP_Plan).planstatus(planstatus)
-				.hasRaster(true).wmssortdate(wmsSortDate).bereiche(Collections.singleton(bereich))
-				.features(Collections.singleton(feature));
+		Plan plan = new Plan().name(name)
+			.importDate(new Date())
+			.version(XPLAN_51)
+			.type(BP_Plan)
+			.planstatus(planstatus)
+			.hasRaster(true)
+			.wmssortdate(wmsSortDate)
+			.bereiche(Collections.singleton(bereich))
+			.features(Collections.singleton(feature));
 		planRepository.save(plan);
 
 		boolean planExists = planRepository.existsPlanByNameAndPlanstatus(name, planstatus);
@@ -199,8 +228,13 @@ public class PlanRepositoryTest {
 		String name = "existsPlanByNameAndPlanstatus";
 		String planstatus = PlanStatus.FESTGESTELLT.name();
 		Date wmsSortDate = new Date();
-		Plan plan = new Plan().name(name).importDate(new Date()).version(XPLAN_51).type(BP_Plan).planstatus(planstatus)
-				.hasRaster(true).wmssortdate(wmsSortDate);
+		Plan plan = new Plan().name(name)
+			.importDate(new Date())
+			.version(XPLAN_51)
+			.type(BP_Plan)
+			.planstatus(planstatus)
+			.hasRaster(true)
+			.wmssortdate(wmsSortDate);
 		planRepository.save(plan);
 
 		boolean planExists = planRepository.existsPlanById(plan.getId());

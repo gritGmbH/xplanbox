@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -78,8 +78,8 @@ public class ValidatorWorkspaceWrapper {
 	 */
 	public Connection openConnection() {
 		ensureWorkspaceInitialized();
-		ConnectionProvider resource = validatorWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class,
-				JDBC_POOL_ID);
+		ConnectionProvider resource = validatorWorkspace.getNewWorkspace()
+			.getResource(ConnectionProviderProvider.class, JDBC_POOL_ID);
 		return resource.getConnection();
 	}
 
@@ -90,8 +90,8 @@ public class ValidatorWorkspaceWrapper {
 	 */
 	public FeatureStore lookupFeatureStore() {
 		ensureWorkspaceInitialized();
-		FeatureStore sfs = validatorWorkspace.getNewWorkspace().getResource(FeatureStoreProvider.class,
-				SQLFEATURESTORE_ID);
+		FeatureStore sfs = validatorWorkspace.getNewWorkspace()
+			.getResource(FeatureStoreProvider.class, SQLFEATURESTORE_ID);
 		if (sfs == null) {
 			throw new IllegalArgumentException("Feature Store '" + SQLFEATURESTORE_ID + "' is not available");
 		}

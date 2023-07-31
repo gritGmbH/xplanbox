@@ -50,7 +50,8 @@ public class XPlanEditService {
 			throws StorageException {
 		if (xPlanDocumentManager != null) {
 			List<Path> uploadedArtefactsAsPaths = uploadedArtefacts.stream()
-					.map(uploadedArtefact -> Paths.get(uploadedArtefact.toURI())).collect(Collectors.toList());
+				.map(uploadedArtefact -> Paths.get(uploadedArtefact.toURI()))
+				.collect(Collectors.toList());
 			xPlanDocumentManager.updateDocuments(planId, uploadedArtefactsAsPaths,
 					externalReferenceInfoToAdd.getNonRasterRefs(), externalReferenceInfoToRemove.getNonRasterRefs());
 		}

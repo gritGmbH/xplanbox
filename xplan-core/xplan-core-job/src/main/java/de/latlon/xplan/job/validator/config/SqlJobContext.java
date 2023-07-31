@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -54,17 +54,24 @@ public class SqlJobContext {
 	@Bean
 	public JobDetail deleteJob(@Value("#{environment.DELETE_AFTER_MINUTES ?: 5}") int deleteAfterInMinutes) {
 		LOG.info("Delete validated plans after {} minutes.", deleteAfterInMinutes);
-		return JobBuilder.newJob().ofType(SqlDeleteJob.class).withIdentity("sqlDeleteJob", "xplan-validator-wms")
-				.storeDurably().withDescription("Delete features from SQLFeatureStore ...")
-				.usingJobData(DELETE_AFTER_KEY, deleteAfterInMinutes).build();
+		return JobBuilder.newJob()
+			.ofType(SqlDeleteJob.class)
+			.withIdentity("sqlDeleteJob", "xplan-validator-wms")
+			.storeDurably()
+			.withDescription("Delete features from SQLFeatureStore ...")
+			.usingJobData(DELETE_AFTER_KEY, deleteAfterInMinutes)
+			.build();
 	}
 
 	@Bean
 	Trigger deleteTrigger(JobDetail deleteJob) {
-		return TriggerBuilder.newTrigger().forJob(deleteJob).withIdentity("sqlDeleteTrigger", "xplan-validator-wms")
-				.withDescription("Delete trigger")
-				.withSchedule(simpleSchedule().withIntervalInSeconds(DELETE_INTERVAL_IN_SECONDS).repeatForever())
-				.startNow().build();
+		return TriggerBuilder.newTrigger()
+			.forJob(deleteJob)
+			.withIdentity("sqlDeleteTrigger", "xplan-validator-wms")
+			.withDescription("Delete trigger")
+			.withSchedule(simpleSchedule().withIntervalInSeconds(DELETE_INTERVAL_IN_SECONDS).repeatForever())
+			.startNow()
+			.build();
 	}
 
 	@Bean

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -72,7 +72,8 @@ public class XPlanDictionary {
 	 */
 	public XPlanDictionaryEntry getDictionaryEntry(String code) {
 		Optional<XPlanDictionaryEntry> dictionaryEntryWithCode = dictionaryEntries.stream()
-				.filter(dictionaryEntry -> dictionaryEntry.getCode().equals(code)).findFirst();
+			.filter(dictionaryEntry -> dictionaryEntry.getCode().equals(code))
+			.findFirst();
 		if (!dictionaryEntryWithCode.isPresent()) {
 			throw new IllegalArgumentException("Unbekannter Code '" + code + "'. Dictionary '" + dictionaryId
 					+ "' enthält keinen entsprechenden Eintrag.");
@@ -90,14 +91,16 @@ public class XPlanDictionary {
 
 	private void checkExistingCodes(String code, String name) {
 		Optional<XPlanDictionaryEntry> dictionaryEntryWithCode = dictionaryEntries.stream()
-				.filter(dictionaryEntry -> dictionaryEntry.getCode().equals(code)).findAny();
+			.filter(dictionaryEntry -> dictionaryEntry.getCode().equals(code))
+			.findAny();
 		if (dictionaryEntryWithCode.isPresent()) {
 			String msg = "Cannot add code '" + code + "' to dictionary '" + dictionaryId
 					+ "' -- code is already defined.";
 			throw new IllegalArgumentException(msg);
 		}
 		Optional<XPlanDictionaryEntry> dictionaryEntryWithName = dictionaryEntries.stream()
-				.filter(dictionaryEntry -> dictionaryEntry.getName().equals(name)).findAny();
+			.filter(dictionaryEntry -> dictionaryEntry.getName().equals(name))
+			.findAny();
 		if (dictionaryEntryWithName.isPresent()) {
 			String msg = "Cannot add code '" + code + "' with name '" + name + "' to dictionary '" + dictionaryId
 					+ "' -- list already defines name '" + name + "' for this code.";

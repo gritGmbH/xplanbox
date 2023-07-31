@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -197,17 +197,23 @@ public class ValidateApi {
 		ValidatorReport validatorReport = validationHandler.validate(archive, xFileName, settings);
 		if (APPLICATION_ZIP_TYPE.equals(mediaType)) {
 			java.nio.file.Path report = validationHandler.zipReports(validatorReport);
-			return Response.ok(FileUtils.readFileToByteArray(report.toFile())).type(APPLICATION_ZIP)
-					.header("Content-Disposition", "attachment; filename=\"" + validationName + ".zip\"").build();
+			return Response.ok(FileUtils.readFileToByteArray(report.toFile()))
+				.type(APPLICATION_ZIP)
+				.header("Content-Disposition", "attachment; filename=\"" + validationName + ".zip\"")
+				.build();
 		}
 		if (APPLICATION_PDF_TYPE.equals(mediaType)) {
 			java.nio.file.Path report = validationHandler.writePdfReport(validatorReport);
-			return Response.ok(Files.readAllBytes(report)).type(APPLICATION_PDF)
-					.header("Content-Disposition", "attachment; filename=\"" + validationName + ".pdf\"").build();
+			return Response.ok(Files.readAllBytes(report))
+				.type(APPLICATION_PDF)
+				.header("Content-Disposition", "attachment; filename=\"" + validationName + ".pdf\"")
+				.build();
 		}
 		URI wmsUrl = validationHandler.addToWms(archive);
 		ValidationReport validationReport = new ValidationReportBuilder().validatorReport(validatorReport)
-				.filename(xFileName).wmsUrl(wmsUrl).build();
+			.filename(xFileName)
+			.wmsUrl(wmsUrl)
+			.build();
 		return Response.ok(validationReport).build();
 	}
 

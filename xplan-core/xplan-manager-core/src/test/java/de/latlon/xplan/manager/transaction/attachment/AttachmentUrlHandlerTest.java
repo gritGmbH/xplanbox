@@ -43,19 +43,19 @@ public class AttachmentUrlHandlerTest {
 
 		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 		List<ExternalReference> externalReferences = externalReferenceScanner.scan(xPlanFeatureCollection.getFeatures())
-				.getAllReferences();
+			.getAllReferences();
 
 		assertTrue(externalReferences.size() == 2);
 		assertTrue(externalReferences.stream()
-				.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_4-0.png"
-						.equals(externalReference.getReferenzUrl())));
+			.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_4-0.png"
+				.equals(externalReference.getReferenzUrl())));
 		assertTrue(externalReferences.stream()
-				.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_4-0.pgw"
-						.equals(externalReference.getGeoRefUrl())));
+			.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_4-0.pgw"
+				.equals(externalReference.getGeoRefUrl())));
 
 		GenericXMLElement referenzURL = findExterneReferenzUrl_4(xPlanFeatureCollection);
 		assertTrue("http://test.de/xdokumente/api/v1/dokument/10/BPlan004_4-0.pdf"
-				.equals((referenzURL.getValue()).getAsText()));
+			.equals((referenzURL.getValue()).getAsText()));
 	}
 
 	@Test
@@ -68,19 +68,19 @@ public class AttachmentUrlHandlerTest {
 
 		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 		List<ExternalReference> externalReferences = externalReferenceScanner.scan(xPlanFeatureCollection.getFeatures())
-				.getAllReferences();
+			.getAllReferences();
 
 		assertTrue(externalReferences.size() == 2);
 		assertTrue(externalReferences.stream()
-				.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_4-1.png"
-						.equals(externalReference.getReferenzUrl())));
+			.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_4-1.png"
+				.equals(externalReference.getReferenzUrl())));
 		assertTrue(externalReferences.stream()
-				.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_4-1.pgw"
-						.equals(externalReference.getGeoRefUrl())));
+			.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_4-1.pgw"
+				.equals(externalReference.getGeoRefUrl())));
 
 		GenericXMLElement referenzURL = findExterneReferenzUrl_4(xPlanFeatureCollection);
 		assertTrue("http://test.de/xdokumente/api/v1/dokument/10/BPlan004_4-1.pdf"
-				.equals((referenzURL.getValue()).getAsText()));
+			.equals((referenzURL.getValue()).getAsText()));
 	}
 
 	@Test
@@ -93,19 +93,19 @@ public class AttachmentUrlHandlerTest {
 
 		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 		List<ExternalReference> externalReferences = externalReferenceScanner.scan(xPlanFeatureCollection.getFeatures())
-				.getAllReferences();
+			.getAllReferences();
 
 		assertTrue(externalReferences.size() == 2);
 		assertTrue(externalReferences.stream()
-				.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-0.png"
-						.equals(externalReference.getReferenzUrl())));
+			.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-0.png"
+				.equals(externalReference.getReferenzUrl())));
 		assertTrue(externalReferences.stream()
-				.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-0.pgw"
-						.equals(externalReference.getGeoRefUrl())));
+			.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-0.pgw"
+				.equals(externalReference.getGeoRefUrl())));
 
 		GenericXMLElement referenzURL = findExterneReferenzUrl(xPlanFeatureCollection);
 		assertTrue("http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-0.pdf"
-				.equals((referenzURL.getValue()).getAsText()));
+			.equals((referenzURL.getValue()).getAsText()));
 	}
 
 	@Test
@@ -118,19 +118,19 @@ public class AttachmentUrlHandlerTest {
 
 		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 		List<ExternalReference> externalReferences = externalReferenceScanner.scan(xPlanFeatureCollection.getFeatures())
-				.getAllReferences();
+			.getAllReferences();
 
 		assertTrue(externalReferences.size() == 2);
 		assertTrue(externalReferences.stream()
-				.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-1.png"
-						.equals(externalReference.getReferenzUrl())));
+			.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-1.png"
+				.equals(externalReference.getReferenzUrl())));
 		assertTrue(externalReferences.stream()
-				.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-1.pgw"
-						.equals(externalReference.getGeoRefUrl())));
+			.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-1.pgw"
+				.equals(externalReference.getGeoRefUrl())));
 
 		GenericXMLElement referenzURL = findExterneReferenzUrl(xPlanFeatureCollection);
 		assertTrue("http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-1.pdf"
-				.equals((referenzURL.getValue()).getAsText()));
+			.equals((referenzURL.getValue()).getAsText()));
 	}
 
 	@Test
@@ -143,19 +143,19 @@ public class AttachmentUrlHandlerTest {
 
 		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 		List<ExternalReference> externalReferences = externalReferenceScanner.scan(xPlanFeatureCollection.getFeatures())
-				.getAllReferences();
+			.getAllReferences();
 
 		assertTrue(externalReferences.size() == 2);
 		assertTrue(externalReferences.stream()
-				.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-2.png"
-						.equals(externalReference.getReferenzUrl())));
+			.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-2.png"
+				.equals(externalReference.getReferenzUrl())));
 		assertTrue(externalReferences.stream()
-				.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-2.pgw"
-						.equals(externalReference.getGeoRefUrl())));
+			.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-2.pgw"
+				.equals(externalReference.getGeoRefUrl())));
 
 		GenericXMLElement referenzURL = findExterneReferenzUrl(xPlanFeatureCollection);
 		assertTrue("http://test.de/xdokumente/api/v1/dokument/10/BPlan004_5-2.pdf"
-				.equals((referenzURL.getValue()).getAsText()));
+			.equals((referenzURL.getValue()).getAsText()));
 	}
 
 	@Test
@@ -168,19 +168,19 @@ public class AttachmentUrlHandlerTest {
 
 		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 		List<ExternalReference> externalReferences = externalReferenceScanner.scan(xPlanFeatureCollection.getFeatures())
-				.getAllReferences();
+			.getAllReferences();
 
 		assertTrue(externalReferences.size() == 2);
 		assertTrue(externalReferences.stream()
-				.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_6-0.png"
-						.equals(externalReference.getReferenzUrl())));
+			.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_6-0.png"
+				.equals(externalReference.getReferenzUrl())));
 		assertTrue(externalReferences.stream()
-				.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_6-0.pgw"
-						.equals(externalReference.getGeoRefUrl())));
+			.anyMatch(externalReference -> "http://test.de/xdokumente/api/v1/dokument/10/BPlan004_6-0.pgw"
+				.equals(externalReference.getGeoRefUrl())));
 
 		GenericXMLElement referenzURL = findExterneReferenzUrl(xPlanFeatureCollection);
 		assertTrue("http://test.de/xdokumente/api/v1/dokument/10/BPlan004_6-0.pdf"
-				.equals((referenzURL.getValue()).getAsText()));
+			.equals((referenzURL.getValue()).getAsText()));
 	}
 
 	@Test
@@ -198,14 +198,14 @@ public class AttachmentUrlHandlerTest {
 		List<RasterReference> rasterReferences = rasterBasis.get(0).getRasterReferences();
 		assertTrue(rasterReferences.size() == 1);
 		assertTrue("http://test.de/xdokumente/api/v1/dokument/10/BPlan004_6-0.png"
-				.equals(rasterReferences.get(0).getReference()));
+			.equals(rasterReferences.get(0).getReference()));
 		assertTrue("http://test.de/xdokumente/api/v1/dokument/10/BPlan004_6-0.pgw"
-				.equals(rasterReferences.get(0).getGeoReference()));
+			.equals(rasterReferences.get(0).getGeoReference()));
 
 		List<Reference> references = xPlanToEdit.getReferences();
 		assertTrue(references.size() == 1);
 		assertTrue("http://test.de/xdokumente/api/v1/dokument/10/BPlan004_6-0.pdf"
-				.equals((references.get(0).getReference())));
+			.equals((references.get(0).getReference())));
 	}
 
 	@Test
@@ -235,35 +235,50 @@ public class AttachmentUrlHandlerTest {
 		InputStream inputStream = ResourceAccessor.readResourceStream(resource);
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(resource, inputStream);
-		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
-				.parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder()
+			.build()
+			.parseXPlanFeatureCollection(archive);
 		return xPlanFeatureCollection;
 	}
 
 	private GenericXMLElement findExterneReferenzUrl(XPlanFeatureCollection xPlanFeatureCollection) {
 		FeatureCollection featureCollection = xPlanFeatureCollection.getFeatures();
 		Feature bpPlan = featureCollection.stream()
-				.filter(feature -> "BP_Plan".equals(feature.getName().getLocalPart())).findFirst().get();
-		Property externeReferenz = bpPlan.getProperties().stream()
-				.filter(property -> "externeReferenz".equals(property.getName().getLocalPart())).findFirst().get();
+			.filter(feature -> "BP_Plan".equals(feature.getName().getLocalPart()))
+			.findFirst()
+			.get();
+		Property externeReferenz = bpPlan.getProperties()
+			.stream()
+			.filter(property -> "externeReferenz".equals(property.getName().getLocalPart()))
+			.findFirst()
+			.get();
 		GenericXMLElement xpSpezExterneReferenz = (GenericXMLElement) externeReferenz.getChildren().get(0);
-		return (GenericXMLElement) xpSpezExterneReferenz.getChildren().stream()
-				.filter(property -> property instanceof GenericXMLElement
-						&& "referenzURL".equals(((GenericXMLElement) property).getName().getLocalPart()))
-				.findFirst().get();
+		return (GenericXMLElement) xpSpezExterneReferenz.getChildren()
+			.stream()
+			.filter(property -> property instanceof GenericXMLElement
+					&& "referenzURL".equals(((GenericXMLElement) property).getName().getLocalPart()))
+			.findFirst()
+			.get();
 	}
 
 	private GenericXMLElement findExterneReferenzUrl_4(XPlanFeatureCollection xPlanFeatureCollection) {
 		FeatureCollection featureCollection = xPlanFeatureCollection.getFeatures();
 		Feature bpPlan = featureCollection.stream()
-				.filter(feature -> "BP_Plan".equals(feature.getName().getLocalPart())).findFirst().get();
-		Property externeReferenz = bpPlan.getProperties().stream()
-				.filter(property -> "refBegruendung".equals(property.getName().getLocalPart())).findFirst().get();
+			.filter(feature -> "BP_Plan".equals(feature.getName().getLocalPart()))
+			.findFirst()
+			.get();
+		Property externeReferenz = bpPlan.getProperties()
+			.stream()
+			.filter(property -> "refBegruendung".equals(property.getName().getLocalPart()))
+			.findFirst()
+			.get();
 		GenericXMLElement xpSpezExterneReferenz = (GenericXMLElement) externeReferenz.getChildren().get(0);
-		return (GenericXMLElement) xpSpezExterneReferenz.getChildren().stream()
-				.filter(property -> property instanceof GenericXMLElement
-						&& "referenzURL".equals(((GenericXMLElement) property).getName().getLocalPart()))
-				.findFirst().get();
+		return (GenericXMLElement) xpSpezExterneReferenz.getChildren()
+			.stream()
+			.filter(property -> property instanceof GenericXMLElement
+					&& "referenzURL".equals(((GenericXMLElement) property).getName().getLocalPart()))
+			.findFirst()
+			.get();
 	}
 
 }

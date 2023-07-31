@@ -84,8 +84,8 @@ public class PlanBasisdatenApiTest extends JerseyTest {
 	@Test
 	public void verifyThat_replaceBasisdaten_returnsCorrectStatusCodeForInvalidBeschreibung()
 			throws URISyntaxException, IOException {
-		final byte[] data = Files.readAllBytes(
-				Paths.get(getClass().getResource("basisdatenmodel_invalidBeschreibungAndName.json").toURI()));
+		final byte[] data = Files
+			.readAllBytes(Paths.get(getClass().getResource("basisdatenmodel_invalidBeschreibungAndName.json").toURI()));
 
 		Response response = target("/plan/2/basisdaten").request().put(Entity.entity(data, APPLICATION_JSON_TYPE));
 		// Test fails in IntelliJ IDEA!

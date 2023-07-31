@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -84,11 +84,15 @@ public class Basisdaten {
 	private @Valid Date untergangsDatum;
 
 	public static Basisdaten fromBaseData(BaseData baseData) {
-		return new Basisdaten().name(baseData.getPlanName()).beschreibung(baseData.getDescription())
-				.planArt(baseData.getPlanTypeCode()).sonstPlanArt(baseData.getOtherPlanTypeCode())
-				.verfahren(baseData.getMethodCode()).rechtsstand(baseData.getLegislationStatusCode())
-				.rechtsverordnungsDatum(baseData.getRegulationDate()).technHerstellDatum(baseData.getCreationDate())
-				.untergangsDatum(baseData.getLossDate());
+		return new Basisdaten().name(baseData.getPlanName())
+			.beschreibung(baseData.getDescription())
+			.planArt(baseData.getPlanTypeCode())
+			.sonstPlanArt(baseData.getOtherPlanTypeCode())
+			.verfahren(baseData.getMethodCode())
+			.rechtsstand(baseData.getLegislationStatusCode())
+			.rechtsverordnungsDatum(baseData.getRegulationDate())
+			.technHerstellDatum(baseData.getCreationDate())
+			.untergangsDatum(baseData.getLossDate());
 	}
 
 	public BaseData toBaseData() {

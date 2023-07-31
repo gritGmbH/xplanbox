@@ -39,8 +39,8 @@ public class S3DocumentService implements DocumentService {
 		String prefix = planId + "_";
 		List<S3ObjectSummary> s3ObjectSummaries = documentStorage.listObjects(prefix);
 		return s3ObjectSummaries.stream()
-				.map(s3ObjectSummary -> new Document().fileName(s3ObjectSummary.getKey().replaceFirst(prefix, "")))
-				.collect(Collectors.toList());
+			.map(s3ObjectSummary -> new Document().fileName(s3ObjectSummary.getKey().replaceFirst(prefix, "")))
+			.collect(Collectors.toList());
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class S3DocumentService implements DocumentService {
 			S3Object object = documentStorage.getObject(key);
 			S3Metadata objectMetadata = object.getS3Metadata();
 			StreamingOutput streamingOutput = outputStream -> new ByteArrayInputStream(object.getContent())
-					.transferTo(outputStream);
+				.transferTo(outputStream);
 			return new DocumentHeaderWithStream(objectMetadata.getContentLength(), objectMetadata.getContentType(),
 					streamingOutput);
 		}

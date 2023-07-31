@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -209,8 +209,10 @@ public class XPlanManager {
 	public String retrievePlanName(String archiveFileName) throws Exception {
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		ICRS crs = CrsUtils.determineActiveCrs(CRSManager.getCRSRef("EPSG:4326"), archive, LOG);
-		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder().withDefaultCrs(crs).build()
-				.parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder()
+			.withDefaultCrs(crs)
+			.build()
+			.parseXPlanFeatureCollection(archive);
 		return fc.getPlanName();
 	}
 
@@ -238,8 +240,9 @@ public class XPlanManager {
 	public Pair<Rechtsstand, PlanStatus> determineRechtsstand(String pathToArchive)
 			throws IOException, XMLStreamException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
-				.parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder()
+			.build()
+			.parseXPlanFeatureCollection(archive);
 		return determineRechtsstandAndPlanstatus(xPlanFeatureCollection, archive.getType());
 	}
 
@@ -272,8 +275,9 @@ public class XPlanManager {
 			throws IOException, XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
 		LOG.info("- Analyse des Vorkommens eines Plans mit gleichem Namen und Planstatus...");
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollections xPlanFeatureCollections = XPlanGmlParserBuilder.newBuilder().build()
-				.parseXPlanFeatureCollectionAllowMultipleInstances(archive);
+		XPlanFeatureCollections xPlanFeatureCollections = XPlanGmlParserBuilder.newBuilder()
+			.build()
+			.parseXPlanFeatureCollectionAllowMultipleInstances(archive);
 		return xPlanFeatureCollections.getxPlanGmlInstances().stream().map(xPlanFeatureCollection -> {
 			String planName = xPlanFeatureCollection.getPlanName();
 			PlanStatus planStatus;
@@ -356,8 +360,9 @@ public class XPlanManager {
 		try {
 			XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
 			originalPlan = xplanDao.retrieveXPlanArtefact(plan.getId());
-			FeatureCollection originalPlanFC = XPlanGmlParserBuilder.newBuilder().build()
-					.parseFeatureCollection(originalPlan, version);
+			FeatureCollection originalPlanFC = XPlanGmlParserBuilder.newBuilder()
+				.build()
+				.parseFeatureCollection(originalPlan, version);
 			return planToEditFactory.createXPlanToEdit(plan, originalPlanFC);
 		}
 		finally {

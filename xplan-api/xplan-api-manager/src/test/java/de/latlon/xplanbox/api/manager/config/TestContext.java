@@ -143,7 +143,8 @@ public class TestContext {
 	public XPlanInsertManager xPlanInsertManager() throws Exception {
 		XPlanInsertManager xplanInsertManager = mock(XPlanInsertManager.class);
 		when(xplanInsertManager.importPlan(any(), nullable(ICRS.class), anyBoolean(), anyBoolean(),
-				nullable(String.class), any())).thenReturn(Collections.singletonList(123));
+				nullable(String.class), any()))
+			.thenReturn(Collections.singletonList(123));
 		return xplanInsertManager;
 	}
 
@@ -181,7 +182,7 @@ public class TestContext {
 		ManagerApiConfiguration managerApiConfiguration = mock(ManagerApiConfiguration.class);
 		when(managerApiConfiguration.getApiUrl()).thenReturn(new URI("http://localhost:8080/xplan-api-manager"));
 		when(managerApiConfiguration.getDefaultValidationConfiguration())
-				.thenReturn(new DefaultValidationConfiguration());
+			.thenReturn(new DefaultValidationConfiguration());
 		return managerApiConfiguration;
 	}
 
@@ -312,15 +313,15 @@ public class TestContext {
 		when(xplanDao.getXPlanById(6)).thenReturn(mockPlan_6);
 		when(xplanDao.getXPlanById(7)).thenReturn(mockPlan_7);
 		when(xplanDao.retrieveXPlanArtefact("2")).thenReturn(getClass().getResourceAsStream("/xplan51.gml"))
-				.thenReturn(getClass().getResourceAsStream("/xplan51.gml"))
-				.thenReturn(getClass().getResourceAsStream("/xplan51-edited.gml"));
+			.thenReturn(getClass().getResourceAsStream("/xplan51.gml"))
+			.thenReturn(getClass().getResourceAsStream("/xplan51-edited.gml"));
 		when(xplanDao.retrieveXPlanArtefact("7")).thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"))
-				.thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"));
+			.thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"));
 		when(xplanDao.retrieveXPlanArtefact(2)).thenReturn(getClass().getResourceAsStream("/xplan51.gml"))
-				.thenReturn(getClass().getResourceAsStream("/xplan51.gml"))
-				.thenReturn(getClass().getResourceAsStream("/xplan51-edited.gml"));
+			.thenReturn(getClass().getResourceAsStream("/xplan51.gml"))
+			.thenReturn(getClass().getResourceAsStream("/xplan51-edited.gml"));
 		when(xplanDao.retrieveXPlanArtefact(7)).thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"))
-				.thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"));
+			.thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"));
 		when(xplanDao.existsPlan(123)).thenReturn(true);
 		List<XPlan> mockList = new ArrayList<>();
 		mockList.add(mockPlan_123);
@@ -340,7 +341,7 @@ public class TestContext {
 		when(mockedConfiguration.getRasterConfigurationCrs()).thenReturn("EPSG:25832");
 		when(mockedConfiguration.getSortConfiguration()).thenReturn(new SortConfiguration());
 		when(mockedConfiguration.getInternalIdRetrieverConfiguration())
-				.thenReturn(new InternalIdRetrieverConfiguration());
+			.thenReturn(new InternalIdRetrieverConfiguration());
 		return mockedConfiguration;
 	}
 

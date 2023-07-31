@@ -120,8 +120,12 @@ public class ArtefactRepositoryTest {
 	private static Artefact createArtefact(Plan plan, String image, ArtefactType artefactType) {
 		ArtefactId artefactId = new ArtefactId().plan(plan).filename(image);
 		byte[] bytes = "test".getBytes(UTF_8);
-		return new Artefact().id(artefactId).num(1).artefacttype(artefactType).mimetype("text/xml")
-				.length(Long.valueOf(bytes.length)).data(bytes);
+		return new Artefact().id(artefactId)
+			.num(1)
+			.artefacttype(artefactType)
+			.mimetype("text/xml")
+			.length(Long.valueOf(bytes.length))
+			.data(bytes);
 	}
 
 }
