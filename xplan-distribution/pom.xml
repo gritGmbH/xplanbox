@@ -242,6 +242,13 @@
       <classifier>xplan-validator-wms-memory-workspace</classifier>
       <type>zip</type>
     </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-workspaces</artifactId>
+      <version>${project.version}</version>
+      <classifier>xplan-validator-wms-sql-workspace</classifier>
+      <type>zip</type>
+    </dependency>
     <!-- Test -->
     <!-- mkdir test -->
     <dependency>
