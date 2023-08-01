@@ -118,8 +118,7 @@ http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&servic
 [[xplansynwfs-koordinatenreferenzsysteme]]
 === Koordinatenreferenzsysteme
 
-Der XPlanSynWFS unterstützt die folgenden
-Koordinatenreferenzsysteme:
+Der XPlanSynWFS unterstützt die folgenden Koordinatenreferenzsysteme:
 
  * EPSG:25832
  * EPSG:25833

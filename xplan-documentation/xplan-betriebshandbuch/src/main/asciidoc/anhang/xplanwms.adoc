@@ -8,8 +8,6 @@ Die folgende Übersicht der Verzeichnisstruktur und der darin enthaltenen Dateie
 ----
 .
 ├── appschemas              <1>
-│   ├── XPlanGML_3_0
-│   │   ├── *.xsd
 │   ├── XPlanGML_4_0
 │   │   ├── *.xsd
 │   ├── XPlanGML_4_1
