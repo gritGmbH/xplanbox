@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -52,8 +52,9 @@ public class ValidationReportBuilderTest {
 	@Test
 	public void verifyThat_Builder_AddsFilename() {
 		ValidatorReport sourceReport = Mockito.mock(ValidatorReport.class);
-		ValidationReport report = new ValidationReportBuilder().validatorReport(sourceReport).filename("test.xml")
-				.build();
+		ValidationReport report = new ValidationReportBuilder().validatorReport(sourceReport)
+			.filename("test.xml")
+			.build();
 		MatcherAssert.assertThat(report.getFilename(), containsString("test.xml"));
 	}
 
@@ -69,7 +70,8 @@ public class ValidationReportBuilderTest {
 	public void verifyThat_Builder_AddsWmsUrl() throws URISyntaxException {
 		ValidatorReport sourceReport = Mockito.mock(ValidatorReport.class);
 		ValidationReport report = new ValidationReportBuilder().validatorReport(sourceReport)
-				.wmsUrl(new URI("file://here")).build();
+			.wmsUrl(new URI("file://here"))
+			.build();
 		MatcherAssert.assertThat(report.getWmsUrl(), is(notNullValue()));
 	}
 
@@ -77,7 +79,9 @@ public class ValidationReportBuilderTest {
 	public void verifyThat_Builder_ReturnsCompleteInstance() throws URISyntaxException {
 		ValidatorReport sourceReport = Mockito.mock(ValidatorReport.class);
 		ValidationReport validationReport = new ValidationReportBuilder().validatorReport(sourceReport)
-				.filename("test.xml").wmsUrl(new URI("file:///no/real/file/name")).build();
+			.filename("test.xml")
+			.wmsUrl(new URI("file:///no/real/file/name"))
+			.build();
 		MatcherAssert.assertThat(validationReport.getWmsUrl(), is(notNullValue()));
 		MatcherAssert.assertThat(validationReport.getFilename(), containsString("test"));
 	}

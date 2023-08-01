@@ -131,12 +131,13 @@ public class ReSynthesizerApplicationRunner implements ApplicationRunner {
 			return;
 		}
 		XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder(featureCollection, planType)
-				.build();
+			.build();
 		boolean useOriginalXPlan = !featureTypeNameSynthesizer.idsMatchSynFeatureType(xPlanFeatureCollection);
 		if (useOriginalXPlan) {
 			try (InputStream originalPlan = xPlanDao.retrieveXPlanArtefact(planId)) {
-				xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
-						.parseXPlanFeatureCollection(originalPlan, version, planType);
+				xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder()
+					.build()
+					.parseXPlanFeatureCollection(originalPlan, version, planType);
 				reassignFids(xPlanFeatureCollection);
 			}
 		}

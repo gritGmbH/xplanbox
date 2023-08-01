@@ -1,3 +1,23 @@
+/*-
+ * #%L
+ * xplan-api-dokumente - XPlanDokumentenAPI
+ * %%
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * #L%
+ */
 package de.latlon.xplanbox.api.dokumente.service.s3;
 
 import com.amazonaws.services.s3.model.S3ObjectSummary;
@@ -39,8 +59,8 @@ public class S3DocumentService implements DocumentService {
 		String prefix = planId + "_";
 		List<S3ObjectSummary> s3ObjectSummaries = documentStorage.listObjects(prefix);
 		return s3ObjectSummaries.stream()
-				.map(s3ObjectSummary -> new Document().fileName(s3ObjectSummary.getKey().replaceFirst(prefix, "")))
-				.collect(Collectors.toList());
+			.map(s3ObjectSummary -> new Document().fileName(s3ObjectSummary.getKey().replaceFirst(prefix, "")))
+			.collect(Collectors.toList());
 	}
 
 	@Override
@@ -65,7 +85,7 @@ public class S3DocumentService implements DocumentService {
 			S3Object object = documentStorage.getObject(key);
 			S3Metadata objectMetadata = object.getS3Metadata();
 			StreamingOutput streamingOutput = outputStream -> new ByteArrayInputStream(object.getContent())
-					.transferTo(outputStream);
+				.transferTo(outputStream);
 			return new DocumentHeaderWithStream(objectMetadata.getContentLength(), objectMetadata.getContentType(),
 					streamingOutput);
 		}

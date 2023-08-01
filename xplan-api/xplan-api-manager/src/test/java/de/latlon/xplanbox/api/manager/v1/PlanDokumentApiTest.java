@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -84,10 +84,10 @@ public class PlanDokumentApiTest extends JerseyTest {
 				MediaType.APPLICATION_JSON_TYPE);
 		FileDataBodyPart filePart = createFileDataBodyPart("datei", "datei.pdf", null);
 		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(filePart)
-				.bodyPart(dokumentmodel);
+			.bodyPart(dokumentmodel);
 
 		Response response = target("/plan/2/dokument").request()
-				.post(Entity.entity(multipart, multipart.getMediaType()));
+			.post(Entity.entity(multipart, multipart.getMediaType()));
 		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 	}
@@ -95,7 +95,8 @@ public class PlanDokumentApiTest extends JerseyTest {
 	@Test
 	public void verifyThat_getDokumentById_returnsCorrectStatusCodeForValidMediaType() {
 		Response response = target("/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf")
-				.request(APPLICATION_JSON).get();
+			.request(APPLICATION_JSON)
+			.get();
 
 		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
@@ -107,10 +108,11 @@ public class PlanDokumentApiTest extends JerseyTest {
 				MediaType.APPLICATION_JSON_TYPE);
 		FileDataBodyPart filePart = createFileDataBodyPart("datei", "datei.pdf", null);
 		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(filePart)
-				.bodyPart(dokumentmodel);
+			.bodyPart(dokumentmodel);
 
 		Response response = target("/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf")
-				.request().put(Entity.entity(multipart, multipart.getMediaType()));
+			.request()
+			.put(Entity.entity(multipart, multipart.getMediaType()));
 		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 	}
@@ -118,7 +120,8 @@ public class PlanDokumentApiTest extends JerseyTest {
 	@Test
 	public void verifyThat_deleteDokumentById_returnsCorrectStatusCodeForValidMediaType() {
 		Response response = target("/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf")
-				.request(APPLICATION_JSON).delete();
+			.request(APPLICATION_JSON)
+			.delete();
 
 		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));

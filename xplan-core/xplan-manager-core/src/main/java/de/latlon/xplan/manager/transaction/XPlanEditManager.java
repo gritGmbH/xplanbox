@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -120,8 +120,9 @@ public class XPlanEditManager extends XPlanTransactionManager {
 		PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
 		AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(version);
 		try (InputStream originalPlan = xplanDao.retrieveXPlanArtefact(planId)) {
-			XPlanFeatureCollection originalPlanFC = XPlanGmlParserBuilder.newBuilder().build()
-					.parseXPlanFeatureCollection(originalPlan, version, type);
+			XPlanFeatureCollection originalPlanFC = XPlanGmlParserBuilder.newBuilder()
+				.build()
+				.parseXPlanFeatureCollection(originalPlan, version, type);
 			String oldDescription = retrieveDescription(originalPlanFC.getFeatures(), type);
 			String oldLegislationStatus = FeatureCollectionUtils.retrieveRechtsstand(originalPlanFC.getFeatures(),
 					type);
@@ -132,8 +133,9 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			FeatureCollection modifiedFeatures = renewFeatureCollection(version, featuresToModify);
 			ExternalReferenceInfo externalReferencesModified = new ExternalReferenceScanner().scan(modifiedFeatures);
 
-			List<String> uploadedFileNames = uploadedArtefacts.stream().map(file -> file.getName())
-					.collect(Collectors.toList());
+			List<String> uploadedFileNames = uploadedArtefacts.stream()
+				.map(file -> file.getName())
+				.collect(Collectors.toList());
 			byte[] xPlanGml = createXPlanGml(version, modifiedFeatures);
 			ExternalReferenceInfo externalReferenceInfoToUpdate = createExternalRefAddedOrUpdated(
 					externalReferencesModified, uploadedArtefacts);
@@ -146,7 +148,8 @@ public class XPlanEditManager extends XPlanTransactionManager {
 					externalReferencesModified, externalReferencesOriginal, uploadedFileNames);
 
 			XPlanFeatureCollection modifiedPlanFc = new XPlanFeatureCollectionBuilder(modifiedFeatures, type)
-					.withExternalReferenceInfo(externalReferenceInfoToUpdate).build();
+				.withExternalReferenceInfo(externalReferenceInfoToUpdate)
+				.build();
 			reassignFids(modifiedPlanFc);
 			FeatureCollection synFc = createSynFeatures(modifiedPlanFc, version);
 			String internalId = xplanDao.retrieveInternalId(planId);

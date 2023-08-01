@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -167,9 +167,9 @@ public class XPlanManipulatorTest {
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
 		editedXplan.getTexts()
-				.add(new Text("id1", "key1", "basis1", "text1", BP_HINWEIS, "reference1", "geoReference1"));
+			.add(new Text("id1", "key1", "basis1", "text1", BP_HINWEIS, "reference1", "geoReference1"));
 		editedXplan.getTexts()
-				.add(new Text("id2", "key2", "basis2", "text2", BP_VERMERK, "reference2", "geoReference2"));
+			.add(new Text("id2", "key2", "basis2", "text2", BP_VERMERK, "reference2", "geoReference2"));
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
 
@@ -187,8 +187,9 @@ public class XPlanManipulatorTest {
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
 		String featureIdUnderTest = "FEATURE_0f870967-bd6f-4367-9150-8a255f0290ad";
-		editedXplan.getTexts().add(new Text(featureIdUnderTest, "key", "base", "BeschreibungstextNeu", BP_HINWEIS,
-				"B-Plan_Klingmuehl_Heideweg_Text", "B-Plan_Klingmuehl_Heideweg_Text.pdf"));
+		editedXplan.getTexts()
+			.add(new Text(featureIdUnderTest, "key", "base", "BeschreibungstextNeu", BP_HINWEIS,
+					"B-Plan_Klingmuehl_Heideweg_Text", "B-Plan_Klingmuehl_Heideweg_Text.pdf"));
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
 
@@ -330,29 +331,35 @@ public class XPlanManipulatorTest {
 		assertThat(exportedPlan,
 				hasXPath("count(//xp:XP_Rasterdarstellung)", is("1")).withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:georefURL",
-				is(rasterBasisReference.getGeoReference())).withNamespaceContext(nsContext(version)));
+				is(rasterBasisReference.getGeoReference()))
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan,
 				hasXPath("//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:georefMimeType",
 						is(rasterBasisReference.getGeorefMimeType().getCode()))
-								.withNamespaceContext(nsContext(version)));
+					.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:art",
-				is(rasterBasisReference.getArt().getCode())).withNamespaceContext(nsContext(version)));
+				is(rasterBasisReference.getArt().getCode()))
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan,
 				hasXPath("//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:informationssystemURL",
-						is(rasterBasisReference.getInformationssystemURL())).withNamespaceContext(nsContext(version)));
+						is(rasterBasisReference.getInformationssystemURL()))
+					.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:referenzName",
-				is(rasterBasisReference.getReferenzName())).withNamespaceContext(nsContext(version)));
+				is(rasterBasisReference.getReferenzName()))
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:referenzURL",
-				is(rasterBasisReference.getReference())).withNamespaceContext(nsContext(version)));
+				is(rasterBasisReference.getReference()))
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan,
 				hasXPath("//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:referenzMimeType",
 						is(rasterBasisReference.getReferenzMimeType().getCode()))
-								.withNamespaceContext(nsContext(version)));
+					.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:beschreibung",
-				is(rasterBasisReference.getBeschreibung())).withNamespaceContext(nsContext(version)));
+				is(rasterBasisReference.getBeschreibung()))
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan,
 				hasXPath("//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:datum", is("2018-03-01"))
-						.withNamespaceContext(nsContext(version)));
+					.withNamespaceContext(nsContext(version)));
 
 		assertThatPlanIsSchemaValid(exportedPlan, version);
 	}
@@ -371,7 +378,7 @@ public class XPlanManipulatorTest {
 		String exportedPlan = exportPlan(featureCollection, xPlanVersion);
 
 		assertThat(exportedPlan, hasXPath("count(//xp:BP_Bereich/xp:rasterBasis)", is("0"))
-				.withNamespaceContext(nsContext(xPlanVersion)));
+			.withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan,
 				hasXPath("count(//xp:XP_Rasterdarstellung)", is("0")).withNamespaceContext(nsContext(xPlanVersion)));
 		assertThatPlanIsSchemaValid(exportedPlan, xPlanVersion);
@@ -401,37 +408,45 @@ public class XPlanManipulatorTest {
 		assertThatPlanIsSchemaValid(exportedPlan, xPlanVersion);
 
 		assertThat(exportedPlan, hasXPath("count(//xp:BP_Bereich/xp:rasterBasis)", is("1"))
-				.withNamespaceContext(nsContext(xPlanVersion)));
+			.withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan,
 				hasXPath("count(//xp:XP_Rasterdarstellung)", is("1")).withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan, hasXPath("//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:referenzURL",
-				is(scan.getReference())).withNamespaceContext(nsContext(xPlanVersion)));
+				is(scan.getReference()))
+			.withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan, hasXPath("//xp:XP_Rasterdarstellung/xp:refScan/xp:XP_ExterneReferenz/xp:georefURL",
-				is(scan.getGeoReference())).withNamespaceContext(nsContext(xPlanVersion)));
+				is(scan.getGeoReference()))
+			.withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan,
 				not(HasXPathMatcher
-						.hasXPath("//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:georefMimeType")
-						.withNamespaceContext(nsContext(xPlanVersion))));
+					.hasXPath("//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:georefMimeType")
+					.withNamespaceContext(nsContext(xPlanVersion))));
 		assertThat(exportedPlan, hasXPath("//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:art",
-				is(legend.getArt().getCode())).withNamespaceContext(nsContext(xPlanVersion)));
+				is(legend.getArt().getCode()))
+			.withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan,
 				hasXPath("//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:informationssystemURL",
-						is(legend.getInformationssystemURL())).withNamespaceContext(nsContext(xPlanVersion)));
+						is(legend.getInformationssystemURL()))
+					.withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan,
 				hasXPath("//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:referenzName",
-						is(legend.getReferenzName())).withNamespaceContext(nsContext(xPlanVersion)));
+						is(legend.getReferenzName()))
+					.withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan,
 				hasXPath("//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:referenzURL",
-						is(legend.getReference())).withNamespaceContext(nsContext(xPlanVersion)));
+						is(legend.getReference()))
+					.withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan,
 				hasXPath("//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:referenzMimeType",
-						is(legend.getReferenzMimeType().getCode())).withNamespaceContext(nsContext(xPlanVersion)));
+						is(legend.getReferenzMimeType().getCode()))
+					.withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan,
 				hasXPath("//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:beschreibung",
-						is(legend.getBeschreibung())).withNamespaceContext(nsContext(xPlanVersion)));
+						is(legend.getBeschreibung()))
+					.withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan,
 				hasXPath("//xp:XP_Rasterdarstellung/xp:refLegende/xp:XP_ExterneReferenz/xp:datum", is("2018-03-01"))
-						.withNamespaceContext(nsContext(xPlanVersion)));
+					.withNamespaceContext(nsContext(xPlanVersion)));
 	}
 
 	@Test
@@ -454,13 +469,15 @@ public class XPlanManipulatorTest {
 		String exportedPlan = exportPlan(featureCollection, xPlanVersion);
 
 		assertThat(exportedPlan, hasXPath("count(//xp:BP_Bereich/xp:rasterBasis)", is("1"))
-				.withNamespaceContext(nsContext(xPlanVersion)));
+			.withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan,
 				hasXPath("count(//xp:XP_RasterplanBasis)", is("1")).withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan, hasXPath("//xp:XP_RasterplanBasis/xp:refScan/xp:XP_ExterneReferenz/xp:georefURL",
-				is(rasterBasisReference.getGeoReference())).withNamespaceContext(nsContext(xPlanVersion)));
+				is(rasterBasisReference.getGeoReference()))
+			.withNamespaceContext(nsContext(xPlanVersion)));
 		assertThat(exportedPlan, hasXPath("//xp:XP_RasterplanBasis/xp:refScan/xp:XP_ExterneReferenz/xp:referenzURL",
-				is(rasterBasisReference.getReference())).withNamespaceContext(nsContext(xPlanVersion)));
+				is(rasterBasisReference.getReference()))
+			.withNamespaceContext(nsContext(xPlanVersion)));
 		assertThatPlanIsSchemaValid(exportedPlan, xPlanVersion);
 	}
 
@@ -639,8 +656,11 @@ public class XPlanManipulatorTest {
 		XPlanToEditFactory xPlanToEditFactory = new XPlanToEditFactory();
 		XPlan xPlan = mockXPlan(version);
 		XPlanToEdit editedXplan = xPlanToEditFactory.createXPlanToEdit(xPlan, featureCollection);
-		RasterBasis rasterBasisBereich0 = editedXplan.getRasterBasis().stream()
-				.filter(rasterBasis -> "0".equals(rasterBasis.getBereichNummer())).findFirst().get();
+		RasterBasis rasterBasisBereich0 = editedXplan.getRasterBasis()
+			.stream()
+			.filter(rasterBasis -> "0".equals(rasterBasis.getBereichNummer()))
+			.findFirst()
+			.get();
 		rasterBasisBereich0.getRasterReferences().clear();
 		// editedXplan.getRasterBasis().remove(rasterBasisBereich0);
 
@@ -650,13 +670,13 @@ public class XPlanManipulatorTest {
 		String exportedPlanUpdate1 = exportPlan(featureCollection, version);
 
 		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xp:nummer = '0']/xp:rasterBasis)", is("0"))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xp:nummer = '0']/xp:refScan)", is("0"))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xp:nummer = '1']/xp:rasterBasis)", is("1"))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xp:nummer = '1']/xp:refScan)", is("0"))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlanUpdate1,
 				hasXPath("count(//xp:XP_RasterplanBasis)", is("1")).withNamespaceContext(nsContext(version)));
 
@@ -665,9 +685,13 @@ public class XPlanManipulatorTest {
 		RasterReference scan = new RasterReference("0", "scanRef", "scanGeoRef", SCAN, null, null, null, null, null,
 				null, null);
 
-		RasterBasis rasterBasisBereich1 = editedXplan.getRasterBasis().stream()
-				.filter(rasterBasis -> "1".equals(rasterBasis.getBereichNummer())).collect(Collectors.toList()).stream()
-				.findFirst().get();
+		RasterBasis rasterBasisBereich1 = editedXplan.getRasterBasis()
+			.stream()
+			.filter(rasterBasis -> "1".equals(rasterBasis.getBereichNummer()))
+			.collect(Collectors.toList())
+			.stream()
+			.findFirst()
+			.get();
 		rasterBasisBereich1.addRasterReference(scan);
 
 		// add rasterbasis to Bereich 1
@@ -676,17 +700,17 @@ public class XPlanManipulatorTest {
 		String exportedPlanUpdate2 = exportPlan(featureCollection, version);
 
 		assertThat(exportedPlanUpdate2, hasXPath("count(//xp:BP_Bereich[xp:nummer = '0']/xp:rasterBasis)", is("0"))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlanUpdate2, hasXPath("count(//xp:BP_Bereich[xp:nummer = '0']/xp:refScan)", is("0"))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlanUpdate2, hasXPath("count(//xp:BP_Bereich[xp:nummer = '1']/xp:rasterBasis)", is("1"))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlanUpdate2, hasXPath("count(//xp:BP_Bereich[xp:nummer = '1']/xp:refScan)", is("0"))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlanUpdate2,
 				hasXPath("count(//xp:XP_RasterplanBasis)", is("1")).withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlanUpdate2, hasXPath("count(//xp:XP_RasterplanBasis/xp:refScan)", is("2"))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 
 		assertThatPlanIsSchemaValid(featureCollection, version);
 	}
@@ -717,15 +741,15 @@ public class XPlanManipulatorTest {
 		assertThat(exportedPlan,
 				hasXPath("//xp:FP_Plan/xp:beschreibung", is(description)).withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:FP_Plan/xp:technHerstellDatum", is(asString(creationDate)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:FP_Plan/xp:untergangsDatum", is(asString(lossDate)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:FP_Plan/xp:rechtsstand", is(Integer.toString(legislationStatusCode)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan,
 				not(HasXPathMatcher.hasXPath("//xp:FP_Plan/xp:verfahren").withNamespaceContext(nsContext(version))));
 		assertThat(exportedPlan, hasXPath("//xp:FP_Plan/xp:planArt", is(Integer.toString(planTypeCode)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan,
 				not(HasXPathMatcher.hasXPath("//xp:FP_Plan/xp:sonstPlanArt").withNamespaceContext(nsContext(version))));
 
@@ -758,15 +782,15 @@ public class XPlanManipulatorTest {
 		assertThat(exportedPlan,
 				hasXPath("//xp:LP_Plan/xp:beschreibung", is(description)).withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:LP_Plan/xp:technHerstellDatum", is(asString(creationDate)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:LP_Plan/xp:untergangsDatum", is(asString(lossDate)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:LP_Plan/xp:rechtsstand", is(Integer.toString(legislationStatusCode)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan,
 				not(HasXPathMatcher.hasXPath("//xp:LP_Plan/xp:verfahren").withNamespaceContext(nsContext(version))));
 		assertThat(exportedPlan, hasXPath("//xp:LP_Plan/xp:planArt", is(Integer.toString(planTypeCode)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan,
 				not(HasXPathMatcher.hasXPath("//xp:LP_Plan/xp:sonstPlanArt").withNamespaceContext(nsContext(version))));
 
@@ -799,15 +823,15 @@ public class XPlanManipulatorTest {
 		assertThat(exportedPlan,
 				hasXPath("//xp:RP_Plan/xp:beschreibung", is(description)).withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:RP_Plan/xp:technHerstellDatum", is(asString(creationDate)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:RP_Plan/xp:untergangsDatum", is(asString(lossDate)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:RP_Plan/xp:rechtsstand", is(Integer.toString(legislationStatusCode)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:RP_Plan/xp:verfahren", is(Integer.toString(methodCode)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:RP_Plan/xp:planArt", is(Integer.toString(planTypeCode)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan,
 				not(HasXPathMatcher.hasXPath("//xp:RP_Plan/xp:sonstPlanArt").withNamespaceContext(nsContext(version))));
 
@@ -838,9 +862,9 @@ public class XPlanManipulatorTest {
 		assertThat(exportedPlan,
 				hasXPath("//xp:SO_Plan/xp:beschreibung", is(description)).withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:SO_Plan/xp:technHerstellDatum", is(asString(creationDate)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan, hasXPath("//xp:SO_Plan/xp:untergangsDatum", is(asString(lossDate)))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan,
 				not(HasXPathMatcher.hasXPath("//xp:SO_Plan/xp:rechtsstand").withNamespaceContext(nsContext(version))));
 		assertThat(exportedPlan,
@@ -877,7 +901,7 @@ public class XPlanManipulatorTest {
 
 		String exportedPlanAddRasterBasis = exportPlan(featureCollection, version);
 		assertThat(exportedPlanAddRasterBasis, hasXPath("count(//xp:BP_Bereich[xp:nummer = '1']/xp:refScan)", is("1"))
-				.withNamespaceContext(nsContext(version)));
+			.withNamespaceContext(nsContext(version)));
 
 		assertThatPlanIsSchemaValid(featureCollection, version);
 
@@ -889,7 +913,7 @@ public class XPlanManipulatorTest {
 
 		assertThat(exportedPlanRemoveRasterBasis,
 				hasXPath("count(//xp:BP_Bereich[xp:nummer = '1']/xp:refScan)", is("0"))
-						.withNamespaceContext(nsContext(version)));
+					.withNamespaceContext(nsContext(version)));
 
 		assertThatPlanIsSchemaValid(featureCollection, version);
 	}
@@ -980,7 +1004,7 @@ public class XPlanManipulatorTest {
 					Feature feature = iterator.next();
 					if (feature.getName().equals(new QName(version.getNamespace(), expectedFeature))) {
 						List<Property> properties = feature
-								.getProperties(new QName(version.getNamespace(), expectedProperty));
+							.getProperties(new QName(version.getNamespace(), expectedProperty));
 						return properties.size() == numberOfOccurences;
 					}
 				}
@@ -1029,7 +1053,7 @@ public class XPlanManipulatorTest {
 					return false;
 				PrimitiveValue value = (PrimitiveValue) properties.get(0).getValue();
 				org.deegree.commons.tom.datetime.Date propertyValue = (org.deegree.commons.tom.datetime.Date) value
-						.getValue();
+					.getValue();
 				return expectedValue.equals(new Date(propertyValue.getTimeInMilliseconds()));
 			}
 
@@ -1070,7 +1094,7 @@ public class XPlanManipulatorTest {
 					Feature feature = iterator.next();
 					if (feature.getName().equals(new QName(version.getNamespace(), expectedFeature))) {
 						List<Property> properties = feature
-								.getProperties(new QName(version.getNamespace(), expectedProperty));
+							.getProperties(new QName(version.getNamespace(), expectedProperty));
 						return properties.isEmpty();
 					}
 				}
@@ -1098,7 +1122,7 @@ public class XPlanManipulatorTest {
 					if (feature.getName().equals(new QName(version.getNamespace(), expectedFeature))) {
 
 						List<Property> properties = feature
-								.getProperties(new QName(version.getNamespace(), expectedProperty));
+							.getProperties(new QName(version.getNamespace(), expectedProperty));
 						if (propertyMatcher.matches(properties))
 							return true;
 					}

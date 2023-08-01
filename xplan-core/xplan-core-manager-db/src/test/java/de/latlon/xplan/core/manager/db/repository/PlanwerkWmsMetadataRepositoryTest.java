@@ -61,9 +61,11 @@ public class PlanwerkWmsMetadataRepositoryTest {
 		Plan plan = new Plan().importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false);
 		planRepository.save(plan);
 
-		PlanwerkWmsMetadata planwerkWmsMetadata = new PlanwerkWmsMetadata().plan(plan.getId()).title("title")
-				.resourceidentifier("resourceidentifier").servicemetadataurl("http:/test.de/servicemetadataurl")
-				.datametadataurl("http:/test.de/datametadataurl");
+		PlanwerkWmsMetadata planwerkWmsMetadata = new PlanwerkWmsMetadata().plan(plan.getId())
+			.title("title")
+			.resourceidentifier("resourceidentifier")
+			.servicemetadataurl("http:/test.de/servicemetadataurl")
+			.datametadataurl("http:/test.de/datametadataurl");
 
 		planwerkWmsMetadataRepository.save(planwerkWmsMetadata);
 

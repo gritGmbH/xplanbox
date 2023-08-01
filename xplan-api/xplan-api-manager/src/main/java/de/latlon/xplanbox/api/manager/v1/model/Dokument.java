@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -57,12 +57,15 @@ public class Dokument extends Referenz {
 			dokument.typ(reference.getType().getSpezExterneReferenceType());
 		}
 		dokument.art(reference.getArt() != null ? reference.getArt().getCode() : null)
-				.beschreibung(reference.getBeschreibung()).datum(reference.getDatum())
-				.georefMimeType(reference.getGeorefMimeType() != null ? reference.getGeorefMimeType().getCode() : null)
-				.georefURL(reference.getGeoReference()).informationssystemURL(reference.getInformationssystemURL())
-				.referenzMimeType(
-						reference.getReferenzMimeType() != null ? reference.getReferenzMimeType().getCode() : null)
-				.referenzURL(reference.getReference()).referenzName(reference.getReferenzName());
+			.beschreibung(reference.getBeschreibung())
+			.datum(reference.getDatum())
+			.georefMimeType(reference.getGeorefMimeType() != null ? reference.getGeorefMimeType().getCode() : null)
+			.georefURL(reference.getGeoReference())
+			.informationssystemURL(reference.getInformationssystemURL())
+			.referenzMimeType(
+					reference.getReferenzMimeType() != null ? reference.getReferenzMimeType().getCode() : null)
+			.referenzURL(reference.getReference())
+			.referenzName(reference.getReferenzName());
 		return dokument;
 	}
 

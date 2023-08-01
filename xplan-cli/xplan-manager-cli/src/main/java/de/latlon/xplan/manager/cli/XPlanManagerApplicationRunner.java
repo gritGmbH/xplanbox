@@ -158,9 +158,9 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 				serviceMetadataRecordCreator.get().createServiceMetadataRecords();
 			}
 			catch (Exception e) {
-				System.out.println(
-						"Bei der Erstellung des Service Metadatensatz fuer alle Plaen ist ein Fehler aufgetreten: "
-								+ e.getMessage());
+				System.out
+					.println("Bei der Erstellung des Service Metadatensatz fuer alle Plaen ist ein Fehler aufgetreten: "
+							+ e.getMessage());
 			}
 		}
 		else {

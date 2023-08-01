@@ -37,7 +37,7 @@ public class JpaConnectionProviderProvider extends ConnectionProviderProvider {
 	static final String CONFIG_NAMESPACE = "http://www.latlon.de/xplan/connectionprovider/jpa";
 
 	static final URL SCHEMA_URL = JpaConnectionProviderProvider.class
-			.getResource("/META-INF/schemas/connectionprovider/jpa/datasource.xsd");
+		.getResource("/META-INF/schemas/connectionprovider/jpa/datasource.xsd");
 
 	@Override
 	public String getNamespace() {

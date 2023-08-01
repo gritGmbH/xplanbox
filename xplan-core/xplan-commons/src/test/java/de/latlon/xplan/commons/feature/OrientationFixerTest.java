@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -50,11 +50,14 @@ public class OrientationFixerTest {
 	@Test
 	public void testOrientationFixer_validLaufrichtung() throws Exception {
 		XPlanArchive testArchive = getArchive("geometryOrientationValid.gml");
-		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
-				.parseXPlanFeatureCollection(testArchive);
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder()
+			.build()
+			.parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointOriginal = getSecondPoint(xPlanFeatureCollection);
 		XPlanFeatureCollection xPlanFeatureCollectionFixOrientation = XPlanGmlParserBuilder.newBuilder()
-				.withFixOrientation(true).build().parseXPlanFeatureCollection(testArchive);
+			.withFixOrientation(true)
+			.build()
+			.parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointRepaired = getSecondPoint(xPlanFeatureCollectionFixOrientation);
 		assertThat(startPointRepaired.getX(), is(startPointOriginal.getX()));
 		assertThat(startPointRepaired.getY(), is(startPointOriginal.getY()));
@@ -63,11 +66,14 @@ public class OrientationFixerTest {
 	@Test
 	public void testOrientationFixer_invalidLaufrichtung() throws Exception {
 		XPlanArchive testArchive = getArchive("geometryOrientationInvalid.gml");
-		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
-				.parseXPlanFeatureCollection(testArchive);
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder()
+			.build()
+			.parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointOriginal = getSecondPoint(xPlanFeatureCollection);
 		XPlanFeatureCollection xPlanFeatureCollectionFixOrientation = XPlanGmlParserBuilder.newBuilder()
-				.withFixOrientation(true).build().parseXPlanFeatureCollection(testArchive);
+			.withFixOrientation(true)
+			.build()
+			.parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointRepaired = getSecondPoint(xPlanFeatureCollectionFixOrientation);
 		assertThat(startPointRepaired.getX(), not(startPointOriginal.getX()));
 		assertThat(startPointRepaired.getY(), not(startPointOriginal.getY()));

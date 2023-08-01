@@ -214,7 +214,7 @@ public class ApplicationContext {
 			XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
 					xQuerySemanticValidatorConfigurationRetriever);
 			semanticValidators
-					.add(new DelegatingSemanticProfileValidator(rulesMetadata.getId(), xQuerySemanticValidator));
+				.add(new DelegatingSemanticProfileValidator(rulesMetadata.getId(), xQuerySemanticValidator));
 		}
 		return semanticValidators;
 	}

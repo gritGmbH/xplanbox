@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -132,8 +132,8 @@ public class ReportWriterTest {
 		ICRS crs = lookup("epsg:4326");
 		String uomURI = "m";
 		Measure measure = new Measure(BigDecimal.TEN, uomURI);
-		badGeometries.add(
-				new BadGeometry(new GeometryFactory().createPoint("id", 20, 10, crs).getBuffer(measure), "Fehler"));
+		badGeometries
+			.add(new BadGeometry(new GeometryFactory().createPoint("id", 20, 10, crs).getBuffer(measure), "Fehler"));
 		GeometricValidatorResult result = new GeometricValidatorResult(Collections.<String>emptyList(),
 				Collections.<String>emptyList(), badGeometries, crs, false);
 		ValidatorReport report = new ValidatorReport();
@@ -205,8 +205,8 @@ public class ReportWriterTest {
 
 			@Override
 			public void describeTo(Description description) {
-				description.appendText(
-						"Zip must contain " + expectedSize + "entries and an entry with name " + expectedName);
+				description
+					.appendText("Zip must contain " + expectedSize + "entries and an entry with name " + expectedName);
 			}
 		};
 	}

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -55,8 +55,10 @@ public class PlansApiTest extends JerseyTest {
 
 	@Test
 	public void verifyThat_GetPlansByName_ReturnCorrectStatus() {
-		Response response = target("/plans").queryParam("planName", "bplan_41").request().accept(APPLICATION_JSON)
-				.get();
+		Response response = target("/plans").queryParam("planName", "bplan_41")
+			.request()
+			.accept(APPLICATION_JSON)
+			.get();
 		assertThat(response.getStatus(), is(200));
 		assertThat(response.readEntity(String.class),
 				containsString("{\"id\":123,\"type\":\"BP_Plan\",\"version\":\"XPLAN_41\","));
@@ -64,8 +66,11 @@ public class PlansApiTest extends JerseyTest {
 
 	@Test
 	public void verifyThat_GetPlansById_ReturnCorrectStatus() {
-		Response response = target("/plans").queryParam("planId", 123).queryParam("planId", 2).request()
-				.accept(APPLICATION_JSON).get();
+		Response response = target("/plans").queryParam("planId", 123)
+			.queryParam("planId", 2)
+			.request()
+			.accept(APPLICATION_JSON)
+			.get();
 		assertThat(response.getStatus(), is(200));
 		String responseEntity = response.readEntity(String.class);
 		assertThat(responseEntity, containsString("{\"id\":123,\"type\":\"BP_Plan\",\"version\":\"XPLAN_41\","));

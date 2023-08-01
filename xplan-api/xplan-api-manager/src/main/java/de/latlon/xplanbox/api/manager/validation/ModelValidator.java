@@ -77,8 +77,9 @@ public @interface ModelValidator {
 			Set<ConstraintViolation<Object>> validate = validator.validate(model);
 			if (!validate.isEmpty()) {
 				context.disableDefaultConstraintViolation();
-				String details = validate.stream().map(val -> val.getPropertyPath() + " " + val.getMessage())
-						.collect(Collectors.joining(","));
+				String details = validate.stream()
+					.map(val -> val.getPropertyPath() + " " + val.getMessage())
+					.collect(Collectors.joining(","));
 				context.buildConstraintViolationWithTemplate(message + details).addConstraintViolation();
 				return false;
 			}

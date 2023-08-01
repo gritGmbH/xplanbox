@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -108,7 +108,7 @@ public class ManagerConfigurationTest {
 		ManagerConfiguration managerConfiguration = new ManagerConfiguration(mockPropertiesLoader());
 
 		SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = managerConfiguration
-				.getSemanticConformityLinkConfiguration();
+			.getSemanticConformityLinkConfiguration();
 		assertThat(semanticConformityLinkConfiguration.retrieveLink(XPLAN_50), is("http://link.de/to.pdf"));
 		assertThat(semanticConformityLinkConfiguration.retrieveLink(XPLAN_51), nullValue());
 	}
@@ -118,7 +118,7 @@ public class ManagerConfigurationTest {
 		ManagerConfiguration managerConfiguration = new ManagerConfiguration(mockPropertiesLoader());
 
 		WorkspaceReloaderConfiguration workspaceReloaderConfiguration = managerConfiguration
-				.getWorkspaceReloaderConfiguration();
+			.getWorkspaceReloaderConfiguration();
 
 		assertThat(workspaceReloaderConfiguration.getUrls().size(), is(2));
 		assertThat(workspaceReloaderConfiguration.getUrls().get(0), is("url1"));

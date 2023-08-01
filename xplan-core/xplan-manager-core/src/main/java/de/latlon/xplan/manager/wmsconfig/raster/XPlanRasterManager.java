@@ -96,7 +96,7 @@ public class XPlanRasterManager {
 		StorageEvent storageEvent = new StorageEvent();
 		try {
 			List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferencesToRemove
-					.getRasterPlanBaseAndUpdateScans();
+				.getRasterPlanBaseAndUpdateScans();
 			for (ExternalReference externalReferenceToRemove : rasterPlanBaseAndUpdateScans) {
 				String referenzUrl = externalReferenceToRemove.getReferenzUrl();
 				if (referenzUrl != null) {

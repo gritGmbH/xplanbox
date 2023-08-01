@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -78,8 +78,9 @@ public class PlanApiTest extends JerseyTest {
 	public void verifyThat_PostPlanOctetStream_ReturnsCorrectStatusCodeForValidMediaType()
 			throws IOException, URISyntaxException {
 		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
-		final Response response = target("/plan").request().accept(APPLICATION_JSON)
-				.post(Entity.entity(data, APPLICATION_OCTET_STREAM));
+		final Response response = target("/plan").request()
+			.accept(APPLICATION_JSON)
+			.post(Entity.entity(data, APPLICATION_OCTET_STREAM));
 		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
@@ -89,8 +90,9 @@ public class PlanApiTest extends JerseyTest {
 	public void verifyThat_PostPlanOctetStream_ReturnsCorrectStatusCodeForValidMediaType_v2()
 			throws IOException, URISyntaxException {
 		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
-		final Response response = target("/plan").request().accept(XPLANBOX_V2_JSON)
-				.post(Entity.entity(data, APPLICATION_OCTET_STREAM));
+		final Response response = target("/plan").request()
+			.accept(XPLANBOX_V2_JSON)
+			.post(Entity.entity(data, APPLICATION_OCTET_STREAM));
 		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(XPLANBOX_V2_JSON));
 		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
@@ -100,8 +102,9 @@ public class PlanApiTest extends JerseyTest {
 	public void verifyThat_PostPlanZip_ReturnsCorrectStatusCodeForValidMediaType()
 			throws IOException, URISyntaxException {
 		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
-		final Response response = target("/plan").request().accept(APPLICATION_JSON)
-				.post(Entity.entity(data, APPLICATION_ZIP));
+		final Response response = target("/plan").request()
+			.accept(APPLICATION_JSON)
+			.post(Entity.entity(data, APPLICATION_ZIP));
 		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
@@ -111,8 +114,9 @@ public class PlanApiTest extends JerseyTest {
 	public void verifyThat_PostPlanXZip_ReturnsCorrectStatusCodeForValidMediaType()
 			throws IOException, URISyntaxException {
 		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
-		final Response response = target("/plan").request().accept(APPLICATION_JSON)
-				.post(Entity.entity(data, APPLICATION_X_ZIP));
+		final Response response = target("/plan").request()
+			.accept(APPLICATION_JSON)
+			.post(Entity.entity(data, APPLICATION_X_ZIP));
 		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
@@ -122,8 +126,9 @@ public class PlanApiTest extends JerseyTest {
 	public void verifyThat_PostPlanXZipCompressed_ReturnsCorrectStatusCodeForValidMediaType()
 			throws IOException, URISyntaxException {
 		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
-		final Response response = target("/plan").request().accept(APPLICATION_JSON)
-				.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
+		final Response response = target("/plan").request()
+			.accept(APPLICATION_JSON)
+			.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
 		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
@@ -133,8 +138,10 @@ public class PlanApiTest extends JerseyTest {
 	public void verifyThat_PostPlanXml_ReturnsCorrectStatusCodeForValidMediaType()
 			throws IOException, URISyntaxException {
 		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/xplan.gml").toURI()));
-		final Response response = target("/plan").queryParam("skipLaufrichtung", "true").request()
-				.accept(APPLICATION_JSON).post(Entity.entity(data, TEXT_XML));
+		final Response response = target("/plan").queryParam("skipLaufrichtung", "true")
+			.request()
+			.accept(APPLICATION_JSON)
+			.post(Entity.entity(data, TEXT_XML));
 		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
@@ -144,8 +151,10 @@ public class PlanApiTest extends JerseyTest {
 	public void verifyThat_PostPlanGml_ReturnsCorrectStatusCodeForValidMediaType()
 			throws IOException, URISyntaxException {
 		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/xplan.gml").toURI()));
-		final Response response = target("/plan").queryParam("skipLaufrichtung", "true").request()
-				.accept(APPLICATION_JSON).post(Entity.entity(data, "application/gml+xml"));
+		final Response response = target("/plan").queryParam("skipLaufrichtung", "true")
+			.request()
+			.accept(APPLICATION_JSON)
+			.post(Entity.entity(data, "application/gml+xml"));
 		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
@@ -155,9 +164,11 @@ public class PlanApiTest extends JerseyTest {
 	public void verifyThat_PostPlanGml_ReturnsCorrectStatusCodeForInvalidXFilename()
 			throws IOException, URISyntaxException {
 		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/xplan.gml").toURI()));
-		final Response response = target("/plan").queryParam("skipLaufrichtung", "true").request()
-				.header("X-Filename", "invalid.filename with blanks").accept(APPLICATION_JSON)
-				.post(Entity.entity(data, "application/gml+xml"));
+		final Response response = target("/plan").queryParam("skipLaufrichtung", "true")
+			.request()
+			.header("X-Filename", "invalid.filename with blanks")
+			.accept(APPLICATION_JSON)
+			.post(Entity.entity(data, "application/gml+xml"));
 		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
 	}
 
@@ -165,8 +176,10 @@ public class PlanApiTest extends JerseyTest {
 	public void verifyThat_PostPlanGml_ReturnsCorrectStatusCodeForInvalidInternalId()
 			throws IOException, URISyntaxException {
 		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/xplan.gml").toURI()));
-		final Response response = target("/plan").queryParam("internalId", "a23 7D8").request().accept(APPLICATION_JSON)
-				.post(Entity.entity(data, "application/gml+xml"));
+		final Response response = target("/plan").queryParam("internalId", "a23 7D8")
+			.request()
+			.accept(APPLICATION_JSON)
+			.post(Entity.entity(data, "application/gml+xml"));
 		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
 	}
 
@@ -175,8 +188,9 @@ public class PlanApiTest extends JerseyTest {
 			throws IOException, URISyntaxException {
 		final String data = new String(
 				Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/xplan.gml").toURI())));
-		final Response response = target("/plan").request().accept(APPLICATION_JSON)
-				.post(Entity.entity(data, TEXT_HTML));
+		final Response response = target("/plan").request()
+			.accept(APPLICATION_JSON)
+			.post(Entity.entity(data, TEXT_HTML));
 		assertThat(response.getStatus(), is(Response.Status.UNSUPPORTED_MEDIA_TYPE.getStatusCode()));
 	}
 

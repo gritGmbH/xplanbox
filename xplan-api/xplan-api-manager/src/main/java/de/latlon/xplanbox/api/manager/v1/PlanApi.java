@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -259,8 +259,10 @@ public class PlanApi {
 		MediaType requestedMediaType = requestedMediaType(request);
 		if (APPLICATION_ZIP_TYPE.equals(requestedMediaType)) {
 			StreamingOutput plan = planHandler.exportPlan(planId);
-			return Response.ok(plan).type(APPLICATION_ZIP)
-					.header("Content-Disposition", "attachment; filename=\"" + planId + ".zip\"").build();
+			return Response.ok(plan)
+				.type(APPLICATION_ZIP)
+				.header("Content-Disposition", "attachment; filename=\"" + planId + ".zip\"")
+				.build();
 		}
 		XPlan planById = planHandler.findPlanById(planId);
 		PlanInfo planInfo = createPlanInfo(requestedMediaType, planById);
@@ -285,8 +287,10 @@ public class PlanApi {
 					example = "123") String planId)
 			throws Exception {
 		StreamingOutput plan = planHandler.exportPlan(planId);
-		return Response.ok(plan).type(APPLICATION_ZIP)
-				.header("Content-Disposition", "attachment; filename=\"" + planId + ".zip\"").build();
+		return Response.ok(plan)
+			.type(APPLICATION_ZIP)
+			.header("Content-Disposition", "attachment; filename=\"" + planId + ".zip\"")
+			.build();
 	}
 
 	@GET
@@ -307,7 +311,8 @@ public class PlanApi {
 		List<XPlan> plans = planHandler.findPlansByName(planName);
 		List<PlanInfo> planInfos = plans.stream().map(xPlan -> {
 			return new PlanInfoBuilder(xPlan, managerApiConfiguration).selfMediaType(APPLICATION_JSON)
-					.alternateMediaType(Arrays.asList(APPLICATION_XML, APPLICATION_ZIP)).build();
+				.alternateMediaType(Arrays.asList(APPLICATION_XML, APPLICATION_ZIP))
+				.build();
 		}).collect(Collectors.toList());
 		return Response.ok().entity(planInfos).build();
 	}
@@ -345,7 +350,8 @@ public class PlanApi {
 	private PlanInfo createPlanInfo(MediaType requestedMediaType, XPlan planById) {
 		List<String> alternateMediaTypes = alternateMediaTypes(requestedMediaType);
 		return new PlanInfoBuilder(planById, managerApiConfiguration).selfMediaType(requestedMediaType.toString())
-				.alternateMediaType(alternateMediaTypes).build();
+			.alternateMediaType(alternateMediaTypes)
+			.build();
 	}
 
 	private URI getSelfLink(List<PlanInfo> planInfos) {
@@ -375,8 +381,10 @@ public class PlanApi {
 	}
 
 	private List<String> alternateMediaTypes(MediaType requestedMediaType) {
-		return Arrays.stream(MEDIA_TYPES_SEARCH).filter(mediaType -> !mediaType.equals(requestedMediaType))
-				.map(mediaType -> mediaType.toString()).collect(Collectors.toList());
+		return Arrays.stream(MEDIA_TYPES_SEARCH)
+			.filter(mediaType -> !mediaType.equals(requestedMediaType))
+			.map(mediaType -> mediaType.toString())
+			.collect(Collectors.toList());
 	}
 
 	private boolean overwriteByRequest(Boolean requested, boolean configured) {
@@ -395,7 +403,8 @@ public class PlanApi {
 		pathSegments.addAll(Arrays.asList(ApplicationPathConfig.APP_PATH.split("/")));
 		pathSegments.add("plans");
 		uriBuilder.setPathSegments(pathSegments.stream()
-				.filter(pathSegment -> pathSegment != null && !pathSegment.isEmpty()).collect(Collectors.toList()));
+			.filter(pathSegment -> pathSegment != null && !pathSegment.isEmpty())
+			.collect(Collectors.toList()));
 		planInfos.stream().forEach(planInfo -> {
 			String id = Integer.toString(planInfo.getId());
 			uriBuilder.addParameter("planId", id);

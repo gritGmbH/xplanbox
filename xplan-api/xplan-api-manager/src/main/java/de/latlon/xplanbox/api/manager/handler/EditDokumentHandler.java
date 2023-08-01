@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -141,8 +141,8 @@ public class EditDokumentHandler extends EditHandler {
 	private Reference getReferenceById(String planId, String dokumentId, List<Reference> references)
 			throws InvalidDokumentId {
 		List<Reference> referencesById = references.stream()
-				.filter(reference -> dokumentId.equals(createDokumentId(planId, reference)))
-				.collect(Collectors.toList());
+			.filter(reference -> dokumentId.equals(createDokumentId(planId, reference)))
+			.collect(Collectors.toList());
 		if (referencesById.size() != 1) {
 			throw new InvalidDokumentId(planId, dokumentId);
 		}
@@ -151,8 +151,9 @@ public class EditDokumentHandler extends EditHandler {
 
 	private Dokument getDokumentById(String planId, String dokumentId, List<Dokument> dokumente)
 			throws InvalidDokumentId {
-		List<Dokument> dokumenteWithId = dokumente.stream().filter(dokument -> dokumentId.equals(dokument.getId()))
-				.collect(Collectors.toList());
+		List<Dokument> dokumenteWithId = dokumente.stream()
+			.filter(dokument -> dokumentId.equals(dokument.getId()))
+			.collect(Collectors.toList());
 		if (dokumenteWithId.size() != 1) {
 			throw new InvalidDokumentId(planId, dokumentId);
 		}
@@ -172,8 +173,8 @@ public class EditDokumentHandler extends EditHandler {
 		id.append('-');
 		if (reference.getReference() != null) {
 			if (attachmentUrlHandler.isPresent()) {
-				String replacedReference = attachmentUrlHandler.get().replaceRelativeUrl(planId,
-						reference.getReference());
+				String replacedReference = attachmentUrlHandler.get()
+					.replaceRelativeUrl(planId, reference.getReference());
 				id.append(replacedReference);
 			}
 			else {
@@ -186,7 +187,7 @@ public class EditDokumentHandler extends EditHandler {
 	private void checkDokumentId(String planId, Dokument dokumentModel, String newDokumentId) throws Exception {
 		List<Dokument> dokumente = retrieveDokumente(planId);
 		boolean dokumentWithSameReferenceUrlExists = dokumente.stream()
-				.anyMatch(dokument -> newDokumentId.equals(dokument.getId()));
+			.anyMatch(dokument -> newDokumentId.equals(dokument.getId()));
 		if (dokumentWithSameReferenceUrlExists) {
 			throw new DuplicateDokument(planId, newDokumentId, dokumentModel.getReferenzName(),
 					dokumentModel.getReferenzURL());

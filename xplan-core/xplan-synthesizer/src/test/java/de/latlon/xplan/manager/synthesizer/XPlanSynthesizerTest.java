@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -88,7 +88,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 			Feature feature = it.next();
 			if ("BP_BaugebietsTeilFlaeche".equals(feature.getName().getLocalPart())) {
 				List<Property> properties = feature
-						.getProperties(new QName(feature.getName().getNamespaceURI(), "besondereArtDerBaulNutzung"));
+					.getProperties(new QName(feature.getName().getNamespaceURI(), "besondereArtDerBaulNutzung"));
 				assertThat(properties.get(0).getValue().toString(), anyOf(is("Art2"), is("Art5")));
 			}
 		}
@@ -123,8 +123,9 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 	}
 
 	private XPlanFeatureCollection parseFeatureCollection(XPlanArchive archive) throws Exception {
-		XPlanFeatureCollection xplanFc = XPlanGmlParserBuilder.newBuilder().build()
-				.parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection xplanFc = XPlanGmlParserBuilder.newBuilder()
+			.build()
+			.parseXPlanFeatureCollection(archive);
 		int id = 1;
 		for (Feature feature : xplanFc.getFeatures()) {
 			feature.setId("FEATURE_" + id++);
@@ -152,7 +153,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 			Feature feature = it.next();
 			if (featureType.equals(feature.getName().getLocalPart())) {
 				List<Property> properties = feature
-						.getProperties(new QName(feature.getName().getNamespaceURI(), propertyName));
+					.getProperties(new QName(feature.getName().getNamespaceURI(), propertyName));
 
 				return properties.get(0).getValue().toString();
 			}

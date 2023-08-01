@@ -39,8 +39,10 @@ public class HsqlJpaContext {
 	@Bean
 	public DataSource dataSource() throws SQLException {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		return builder.addScript("/create-schema.sql").setType(EmbeddedDatabaseType.HSQL).ignoreFailedDrops(true)
-				.build();
+		return builder.addScript("/create-schema.sql")
+			.setType(EmbeddedDatabaseType.HSQL)
+			.ignoreFailedDrops(true)
+			.build();
 	}
 
 	@Bean

@@ -57,7 +57,7 @@ class JpaConnectionProviderMetadata extends AbstractResourceMetadata<ConnectionP
 					location.getAsStream(), workspace);
 			String connid = cfg.getDataSourceConnection();
 			dependencies
-					.add(new DefaultResourceIdentifier<ConnectionProvider>(ConnectionProviderProvider.class, connid));
+				.add(new DefaultResourceIdentifier<ConnectionProvider>(ConnectionProviderProvider.class, connid));
 			return new JpaConnectionProviderBuilder(cfg, this, workspace);
 		}
 		catch (Exception e) {

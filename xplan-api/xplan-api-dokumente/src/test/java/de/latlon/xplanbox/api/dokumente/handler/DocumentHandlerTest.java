@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -155,11 +155,18 @@ public class DocumentHandlerTest {
 		Plan plan = new Plan();
 		byte[] bytes = "test".getBytes(UTF_8);
 		ArtefactId artefactId = new ArtefactId().plan(plan).filename("test.xml");
-		Artefact artefact = new Artefact().id(artefactId).num(1).mimetype("text/xml").length(Long.valueOf(bytes.length))
-				.data(createZipArtefact(bytes));
-		return plan.importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
-				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature))
-				.artefacts(Collections.singleton(artefact));
+		Artefact artefact = new Artefact().id(artefactId)
+			.num(1)
+			.mimetype("text/xml")
+			.length(Long.valueOf(bytes.length))
+			.data(createZipArtefact(bytes));
+		return plan.importDate(new Date())
+			.version(XPLAN_51)
+			.type(BP_Plan)
+			.hasRaster(false)
+			.bereiche(Collections.singleton(bereich))
+			.features(Collections.singleton(feature))
+			.artefacts(Collections.singleton(artefact));
 	}
 
 	private byte[] createZipArtefact(byte[] bytes) throws IOException {

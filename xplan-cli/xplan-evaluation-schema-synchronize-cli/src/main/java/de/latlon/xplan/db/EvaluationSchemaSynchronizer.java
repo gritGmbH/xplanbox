@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -146,14 +146,16 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 			selectGmlGeom.append("SELECT g.gml_id, array_to_string( ");
 			selectGmlGeom.append("xpath( '").append(xPath).append("', ");
 			selectGmlGeom.append("XMLPARSE(CONTENT encode(binary_object, 'escape')), ARRAY[ARRAY['xplan', '")
-					.append(namespace).append("']]),',') ");
+				.append(namespace)
+				.append("']]),',') ");
 			selectGmlGeom.append("as geom ");
 			selectGmlGeom.append("FROM ").append(blobSchema).append(".gml_objects g ");
 			selectGmlGeom.append("INNER JOIN ").append(synTableWithSchema).append(" t ");
 			selectGmlGeom.append("ON t.xplan_gmlid = g.gml_id ");
 			selectGmlGeom.append("WHERE xpath_exists('").append(xPath).append("', ");
 			selectGmlGeom.append("XMLPARSE(CONTENT encode(binary_object, 'escape')), ARRAY[ARRAY['xplan', '")
-					.append(namespace).append("']]) ");
+				.append(namespace)
+				.append("']]) ");
 			selectGmlGeom.append("AND t.xplan_mgr_planid = ?");
 			ps = conn.prepareStatement(selectGmlGeom.toString());
 			ps.setInt(1, xPlanManagerId);
@@ -185,8 +187,9 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 			if (geom != null) {
 				StringBuffer updateGeomColumn = new StringBuffer();
 				updateGeomColumn.append("UPDATE xplanevaluation").append(synTableWithSchema);
-				updateGeomColumn.append(" SET ").append(geomColumn)
-						.append(" = ST_GeomFromWKB( ? ) WHERE xplan_gmlid = ?");
+				updateGeomColumn.append(" SET ")
+					.append(geomColumn)
+					.append(" = ST_GeomFromWKB( ? ) WHERE xplan_gmlid = ?");
 				ps = conn.prepareStatement(updateGeomColumn.toString());
 				byte[] geomBytes = geom.ExportToWkb();
 				ps.setBytes(1, geomBytes);
@@ -227,8 +230,10 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 		PreparedStatement ps = null;
 		try {
 			StringBuffer insertInEvaluationSyn = new StringBuffer();
-			insertInEvaluationSyn.append("DELETE FROM xplanevaluation").append(synSchema).append(".")
-					.append(synTableName);
+			insertInEvaluationSyn.append("DELETE FROM xplanevaluation")
+				.append(synSchema)
+				.append(".")
+				.append(synTableName);
 			insertInEvaluationSyn.append(" WHERE xplan_mgr_planid = ?");
 			ps = conn.prepareStatement(insertInEvaluationSyn.toString());
 			ps.setInt(1, xPlanManagerId);

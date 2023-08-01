@@ -59,8 +59,9 @@ public class XPlanDocumentManagerTest {
 		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/StErhVO_Hamm_60.zip");
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip("StErhVO_Hamm_60.zip", inputStream);
-		FeatureCollection featureCollection = XPlanGmlParserBuilder.newBuilder().build()
-				.parseFeatureCollection(archive);
+		FeatureCollection featureCollection = XPlanGmlParserBuilder.newBuilder()
+			.build()
+			.parseFeatureCollection(archive);
 		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 		ExternalReferenceInfo externalReferenceInfo = externalReferenceScanner.scan(featureCollection,
 				archive.getVersion());

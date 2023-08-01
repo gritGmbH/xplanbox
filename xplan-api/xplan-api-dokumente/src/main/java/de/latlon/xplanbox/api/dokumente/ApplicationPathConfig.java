@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -72,9 +72,11 @@ public class ApplicationPathConfig extends ResourceConfig {
 		packages("de.latlon.xplanbox.api.commons.exception");
 		packages("de.latlon.xplanbox.api.commons.converter");
 		OpenAPI openApi = new OpenAPI();
-		openApi.setInfo(new Info().title("XPlanDokumentenAPI").version("1.0.0").description("XPlanDokumenten REST API")
-				.termsOfService(getTermsOfService(apiConfiguration))
-				.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));
+		openApi.setInfo(new Info().title("XPlanDokumentenAPI")
+			.version("1.0.0")
+			.description("XPlanDokumenten REST API")
+			.termsOfService(getTermsOfService(apiConfiguration))
+			.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));
 		addContact(openApi, apiConfiguration);
 		openApi.servers(servers(servletContext, apiConfiguration));
 		Tag tag = createTag(apiConfiguration);
@@ -82,8 +84,9 @@ public class ApplicationPathConfig extends ResourceConfig {
 
 		DefaultApi openApiResource = new DefaultApi();
 		SwaggerConfiguration oasConfig = new SwaggerConfiguration().openAPI(openApi)
-				.filterClass(OpenApiFilter.class.getCanonicalName()).prettyPrint(true)
-				.resourcePackages(Stream.of("de.latlon.xplanbox.api.dokumente.v1").collect(Collectors.toSet()));
+			.filterClass(OpenApiFilter.class.getCanonicalName())
+			.prettyPrint(true)
+			.resourcePackages(Stream.of("de.latlon.xplanbox.api.dokumente.v1").collect(Collectors.toSet()));
 
 		openApiResource.setOpenApiConfiguration(oasConfig);
 		register(openApiResource);

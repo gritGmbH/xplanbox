@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -75,9 +75,11 @@ public class ApplicationPathConfig extends ResourceConfig {
 		packages("org.glassfish.jersey.examples.multipart");
 		property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 		OpenAPI openApi = new OpenAPI();
-		openApi.setInfo(new Info().title("XPlanManagerAPI").version("1.3.0").description("XPlanManager REST API")
-				.termsOfService(getTermsOfService(managerApiConfiguration))
-				.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));
+		openApi.setInfo(new Info().title("XPlanManagerAPI")
+			.version("1.3.0")
+			.description("XPlanManager REST API")
+			.termsOfService(getTermsOfService(managerApiConfiguration))
+			.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));
 		addContact(openApi, managerApiConfiguration);
 		openApi.servers(servers(servletContext, managerApiConfiguration));
 		List<Tag> tags = createTags(managerApiConfiguration);
@@ -85,8 +87,9 @@ public class ApplicationPathConfig extends ResourceConfig {
 
 		DefaultApi openApiResource = new DefaultApi();
 		SwaggerConfiguration oasConfig = new SwaggerConfiguration().openAPI(openApi)
-				.filterClass(ManagerOpenApiFilter.class.getCanonicalName()).prettyPrint(true)
-				.resourcePackages(Stream.of("de.latlon.xplanbox.api.manager.v1").collect(Collectors.toSet()));
+			.filterClass(ManagerOpenApiFilter.class.getCanonicalName())
+			.prettyPrint(true)
+			.resourcePackages(Stream.of("de.latlon.xplanbox.api.manager.v1").collect(Collectors.toSet()));
 
 		openApiResource.setOpenApiConfiguration(oasConfig);
 		register(openApiResource);
@@ -99,12 +102,12 @@ public class ApplicationPathConfig extends ResourceConfig {
 		Tag manageTag = new Tag().name("manage").description("Manage XPlanGML documents");
 		if (managerApiConfiguration != null && managerApiConfiguration.getDocumentationUrl() != null) {
 			manageTag.externalDocs(new ExternalDocumentation().description("xPlanBox")
-					.url(managerApiConfiguration.getDocumentationUrl()));
+				.url(managerApiConfiguration.getDocumentationUrl()));
 		}
 		Tag searchTag = new Tag().name("search").description("Search for XPlanGML documents");
 		if (managerApiConfiguration != null && managerApiConfiguration.getDocumentationUrl() != null) {
 			searchTag.externalDocs(new ExternalDocumentation().description("xPlanBox")
-					.url(managerApiConfiguration.getDocumentationUrl()));
+				.url(managerApiConfiguration.getDocumentationUrl()));
 		}
 		tags.add(manageTag);
 		tags.add(searchTag);

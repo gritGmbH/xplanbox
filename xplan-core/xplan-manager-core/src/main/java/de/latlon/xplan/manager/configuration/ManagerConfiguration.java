@@ -251,7 +251,7 @@ public class ManagerConfiguration {
 				pathToHaleCli = loadProperties.getProperty(PATH_TO_HALE_CLI);
 				pathToHaleProjectDirectory = parsePathToHaleProjectDirectory(propertiesLoader);
 				coupledResourceConfiguration = CoupledResourceConfiguration
-						.parseCoupledResourceConfiguration(propertiesLoader, loadProperties);
+					.parseCoupledResourceConfiguration(propertiesLoader, loadProperties);
 			}
 			synthesizerConfigDirectory = propertiesLoader.resolveDirectory("synthesizer");
 		}

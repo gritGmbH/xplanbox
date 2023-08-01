@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -94,7 +94,7 @@ public class XPlanDictionariesTest {
 	@Test
 	public void testParseCodelist_GML3() throws Exception {
 		URL codeListFile = XPlanDictionariesTest.class
-				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan4.xml");
+			.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan4.xml");
 		XPlanDictionaries dictionaries = new XPlanDictionariesParser().parseDictionaries(codeListFile, GML_30);
 		XPlanDictionary dictionary = dictionaries.getDictionary("xplan_XP_BesondereArtDerBaulNutzung");
 
@@ -105,7 +105,7 @@ public class XPlanDictionariesTest {
 	@Test
 	public void testParseCodelist_GML32() throws Exception {
 		URL codeListFile = XPlanDictionariesTest.class
-				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan5.xml");
+			.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan5.xml");
 		XPlanDictionaries dictionaries = new XPlanDictionariesParser().parseDictionaries(codeListFile);
 		XPlanDictionary dictionary = dictionaries.getDictionary("XP_BesondereArtDerBaulNutzung");
 

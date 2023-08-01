@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -139,7 +139,8 @@ public class ArtefactsTableUpdaterApplicationRunner implements ApplicationRunner
 
 	private FeatureCollection retrieveFeatureCollection(XPlan plan, Set<Artefact> artefacts) throws Exception {
 		Optional<Artefact> xplanGmlArtefact = artefacts.stream()
-				.filter(artefact -> "xplan.gml".equals(artefact.getId().getFilename())).findFirst();
+			.filter(artefact -> "xplan.gml".equals(artefact.getId().getFilename()))
+			.findFirst();
 		if (!xplanGmlArtefact.isPresent())
 			return null;
 		XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
@@ -150,8 +151,9 @@ public class ArtefactsTableUpdaterApplicationRunner implements ApplicationRunner
 	private List<String> scanRasterReferenceFileNames(FeatureCollection featureCollection) {
 		ExternalReferenceInfo scan = externalReferenceScanner.scan(featureCollection);
 		List<ExternalReference> rasterPlanBaseAndUpdateScans = scan.getRasterPlanBaseAndUpdateScans();
-		return rasterPlanBaseAndUpdateScans.stream().map(externalReference -> externalReference.getReferenzUrl())
-				.collect(Collectors.toList());
+		return rasterPlanBaseAndUpdateScans.stream()
+			.map(externalReference -> externalReference.getReferenzUrl())
+			.collect(Collectors.toList());
 	}
 
 }

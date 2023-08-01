@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -65,11 +65,11 @@ public class TestContext {
 	public DocumentHandler documentHandler() throws Exception {
 		DocumentHandler documentHandler = mock(DocumentHandler.class);
 		when(documentHandler.listDocuments("1"))
-				.thenReturn(Collections.singletonList(new Document().fileName("test.png")));
+			.thenReturn(Collections.singletonList(new Document().fileName("test.png")));
 		when(documentHandler.headDocument("1", "test.png")).thenReturn(new DocumentHeader(5, "image/png"));
 		StreamingOutput stream = outputStream -> IOUtils.write("test", outputStream);
 		when(documentHandler.getDocument("1", "test.png"))
-				.thenReturn(new DocumentHeaderWithStream(5, "image/png", stream));
+			.thenReturn(new DocumentHeaderWithStream(5, "image/png", stream));
 		return documentHandler;
 	}
 

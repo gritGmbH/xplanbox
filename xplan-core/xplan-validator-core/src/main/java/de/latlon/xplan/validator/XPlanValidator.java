@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -233,7 +233,8 @@ public class XPlanValidator {
 		for (String profileId : profiles) {
 
 			Optional<SemanticProfileValidator> profileValidator = semanticProfileValidators.stream()
-					.filter(semanticProfileValidator -> semanticProfileValidator.getId().equals(profileId)).findFirst();
+				.filter(semanticProfileValidator -> semanticProfileValidator.getId().equals(profileId))
+				.findFirst();
 			if (profileValidator.isPresent()) {
 				if (!report.getSyntacticValidatorResult().isValid()) {
 					report.addSemanticProfileValidatorResults(new SemanticValidatorResult(SYNTAX_ERRORS));
@@ -303,8 +304,9 @@ public class XPlanValidator {
 
 	private void parseReferencesAndPlanNames(XPlanArchive archive, ValidatorReport report) {
 		try {
-			XPlanFeatureCollection featureCollection = XPlanGmlParserBuilder.newBuilder().build()
-					.parseXPlanFeatureCollection(archive);
+			XPlanFeatureCollection featureCollection = XPlanGmlParserBuilder.newBuilder()
+				.build()
+				.parseXPlanFeatureCollection(archive);
 			report.setBBoxIn4326(featureCollection.getBboxIn4326());
 			parseAndAddExternalReferences(report, featureCollection, archive);
 			parseAndAddPlanNames(report, featureCollection);
@@ -318,7 +320,7 @@ public class XPlanValidator {
 			XPlanArchive archive) {
 		ExternalReferenceEvaluator externalReferenceEvaluator = new ExternalReferenceEvaluator();
 		ExternalReferenceReport externalReferenceReport = externalReferenceEvaluator
-				.parseAndAddExternalReferences(features, archive);
+			.parseAndAddExternalReferences(features, archive);
 		report.setExternalReferenceReport(externalReferenceReport);
 	}
 
@@ -383,7 +385,7 @@ public class XPlanValidator {
 		if (extendedOptions != null)
 			for (ValidationOption validationOption : extendedOptions) {
 				SemanticValidationOptions semanticValidationOption = SemanticValidationOptions
-						.getByOption(validationOption);
+					.getByOption(validationOption);
 				if (!SemanticValidationOptions.NONE.equals(semanticValidationOption))
 					semanticValidationOptions.add(semanticValidationOption);
 			}

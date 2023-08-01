@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -60,20 +60,27 @@ public class SynchronizeExecutor {
 		try {
 			StringBuilder sb = new StringBuilder();
 			sb.append("SELECT xplanmgrid, ");
-			sb.append("(SELECT xp_version FROM ").append(logTableName)
-					.append(" log0 WHERE log0.xplanmgrid = log.xplanmgrid LIMIT 1), ");
-			sb.append("(SELECT id oldid FROM ").append(logTableName)
-					.append(" log4 WHERE log4.xplanmgrid = log.xplanmgrid ORDER BY datum ASC LIMIT 1), ");
-			sb.append("(SELECT oldplanstatus FROM ").append(logTableName)
-					.append(" log1 WHERE log1.xplanmgrid = log.xplanmgrid ORDER BY datum ASC LIMIT 1), ");
-			sb.append("(SELECT operation oldoperation FROM ").append(logTableName)
-					.append(" log2 WHERE log2.xplanmgrid = log.xplanmgrid ORDER BY datum ASC LIMIT 1), ");
-			sb.append("(SELECT id newid FROM ").append(logTableName)
-					.append(" log4 WHERE log4.xplanmgrid = log.xplanmgrid ORDER BY datum DESC LIMIT 1), ");
-			sb.append("(SELECT newplanstatus FROM ").append(logTableName)
-					.append(" log3 WHERE log3.xplanmgrid = log.xplanmgrid ORDER BY datum DESC LIMIT 1), ");
-			sb.append("(SELECT operation newoperation FROM ").append(logTableName)
-					.append(" log4 WHERE log4.xplanmgrid = log.xplanmgrid ORDER BY datum DESC LIMIT 1) ");
+			sb.append("(SELECT xp_version FROM ")
+				.append(logTableName)
+				.append(" log0 WHERE log0.xplanmgrid = log.xplanmgrid LIMIT 1), ");
+			sb.append("(SELECT id oldid FROM ")
+				.append(logTableName)
+				.append(" log4 WHERE log4.xplanmgrid = log.xplanmgrid ORDER BY datum ASC LIMIT 1), ");
+			sb.append("(SELECT oldplanstatus FROM ")
+				.append(logTableName)
+				.append(" log1 WHERE log1.xplanmgrid = log.xplanmgrid ORDER BY datum ASC LIMIT 1), ");
+			sb.append("(SELECT operation oldoperation FROM ")
+				.append(logTableName)
+				.append(" log2 WHERE log2.xplanmgrid = log.xplanmgrid ORDER BY datum ASC LIMIT 1), ");
+			sb.append("(SELECT id newid FROM ")
+				.append(logTableName)
+				.append(" log4 WHERE log4.xplanmgrid = log.xplanmgrid ORDER BY datum DESC LIMIT 1), ");
+			sb.append("(SELECT newplanstatus FROM ")
+				.append(logTableName)
+				.append(" log3 WHERE log3.xplanmgrid = log.xplanmgrid ORDER BY datum DESC LIMIT 1), ");
+			sb.append("(SELECT operation newoperation FROM ")
+				.append(logTableName)
+				.append(" log4 WHERE log4.xplanmgrid = log.xplanmgrid ORDER BY datum DESC LIMIT 1) ");
 			sb.append("FROM ").append(logTableName).append(" log GROUP BY xplanmgrid;");
 			ps = conn.prepareStatement(sb.toString());
 			LOG.debug("Execute select plans to update: {}", ps);

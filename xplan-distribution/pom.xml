@@ -139,6 +139,12 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-api-dokumente</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>xplansyn-wfs</artifactId>
       <version>${project.version}</version>
       <type>war</type>
@@ -179,6 +185,12 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-validator-config</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-dokumenten-config</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>
@@ -228,6 +240,13 @@
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
       <classifier>xplan-validator-wms-memory-workspace</classifier>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-workspaces</artifactId>
+      <version>${project.version}</version>
+      <classifier>xplan-validator-wms-sql-workspace</classifier>
       <type>zip</type>
     </dependency>
     <!-- Test -->

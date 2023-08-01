@@ -1,3 +1,23 @@
+/*-
+ * #%L
+ * xplan-manager-core - XPlan Manager Core Komponente
+ * %%
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * #L%
+ */
 package de.latlon.xplan.manager.storage.s3;
 
 import com.amazonaws.services.s3.AmazonS3;
@@ -55,7 +75,7 @@ public class S3StorageCleanUpManagerTest {
 		verify(client).listObjects(BUCKET_NAME, "1_");
 		verify(client).deleteObject(BUCKET_NAME, "1_test.png");
 		ArgumentCaptor<de.latlon.xplan.manager.storage.s3.S3Object> argument = ArgumentCaptor
-				.forClass(de.latlon.xplan.manager.storage.s3.S3Object.class);
+			.forClass(de.latlon.xplan.manager.storage.s3.S3Object.class);
 		verify(storageEvent).addDeletedKey(argument.capture());
 		assertThat(argument.getValue().getS3Metadata().getKey(), is("1_test.png"));
 	}

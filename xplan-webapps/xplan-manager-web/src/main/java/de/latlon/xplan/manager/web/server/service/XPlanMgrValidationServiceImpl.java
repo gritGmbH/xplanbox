@@ -127,8 +127,9 @@ public class XPlanMgrValidationServiceImpl extends RemoteServiceServlet implemen
 		planToVerify.setHasMultipleXPlanElements(report.hasMultipleXPlanElements());
 		boolean hasUnresolvedReferences = false;
 		if (report.getExternalReferenceReport() != null)
-			hasUnresolvedReferences = report.getExternalReferenceReport().getReferencesAndStatus()
-					.containsValue(ExternalReferenceStatus.MISSING);
+			hasUnresolvedReferences = report.getExternalReferenceReport()
+				.getReferencesAndStatus()
+				.containsValue(ExternalReferenceStatus.MISSING);
 		planToVerify.setHasUnresolvedReferences(hasUnresolvedReferences);
 	}
 

@@ -76,8 +76,10 @@ public class DokumentApi {
 			@PathParam("fileName") @Parameter(description = "Name of the document", example = "123") String fileName)
 			throws Exception {
 		DocumentHeader document = documentHandler.headDocument(planId, fileName);
-		return Response.ok().header("Content-Length", document.getFileSize())
-				.header("Content-Type", document.getMediaType()).build();
+		return Response.ok()
+			.header("Content-Length", document.getFileSize())
+			.header("Content-Type", document.getMediaType())
+			.build();
 	}
 
 	@GET
@@ -93,9 +95,10 @@ public class DokumentApi {
 			throws Exception {
 		DocumentHeaderWithStream document = documentHandler.getDocument(planId, fileName);
 		return Response.ok(document.getStreamingOutput())
-				.header("Content-Disposition", "attachment; filename=\"" + fileName + "\"")
-				.header("Content-Length", document.getFileSize()).header("Content-Type", document.getMediaType())
-				.build();
+			.header("Content-Disposition", "attachment; filename=\"" + fileName + "\"")
+			.header("Content-Length", document.getFileSize())
+			.header("Content-Type", document.getMediaType())
+			.build();
 	}
 
 }

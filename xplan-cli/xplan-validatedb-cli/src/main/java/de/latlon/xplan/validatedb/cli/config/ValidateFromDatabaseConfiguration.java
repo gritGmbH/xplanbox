@@ -127,9 +127,9 @@ public class ValidateFromDatabaseConfiguration {
 		LOG.info(" - password: {}", password);
 		BasicDataSource dataSource = createDataSource(jdbcurl, user, password);
 		JdbcCursorItemReader<XPlanWithFeatureCollection> xplanItemReader = new JdbcCursorItemReader<>();
-		xplanItemReader.setSql(
-				"SELECT id, xp_version, name, district, filename, data FROM xplanmgr.plans p, xplanmgr.artefacts a "
-						+ "WHERE p.id = a.plan  AND filename = 'xplan.gml'");
+		xplanItemReader
+			.setSql("SELECT id, xp_version, name, district, filename, data FROM xplanmgr.plans p, xplanmgr.artefacts a "
+					+ "WHERE p.id = a.plan  AND filename = 'xplan.gml'");
 		xplanItemReader.setDataSource(dataSource);
 		xplanItemReader.setRowMapper(new BeanPropertyRowMapper<>(XPlanWithFeatureCollection.class));
 		return xplanItemReader;
@@ -182,8 +182,11 @@ public class ValidateFromDatabaseConfiguration {
 	public Step step(JdbcCursorItemReader planFromDatabaseReader, ValidationProcessor validationProcessor,
 			ItemWriter validationResultsWriter) {
 		return stepBuilderFactory.get("validateFromDatabaseStep")
-				.<XPlanWithFeatureCollection, ValidationResultSummary>chunk(1).reader(planFromDatabaseReader)
-				.processor(validationProcessor).writer(validationResultsWriter).build();
+			.<XPlanWithFeatureCollection, ValidationResultSummary>chunk(1)
+			.reader(planFromDatabaseReader)
+			.processor(validationProcessor)
+			.writer(validationResultsWriter)
+			.build();
 	}
 
 	@Bean
@@ -192,8 +195,13 @@ public class ValidateFromDatabaseConfiguration {
 	}
 
 	private BasicDataSource createDataSource(String jdbcurl, String user, String password) {
-		return DataSourceBuilder.create().driverClassName("org.postgresql.Driver").url(jdbcurl)
-				.type(BasicDataSource.class).username(user).password(password).build();
+		return DataSourceBuilder.create()
+			.driverClassName("org.postgresql.Driver")
+			.url(jdbcurl)
+			.type(BasicDataSource.class)
+			.username(user)
+			.password(password)
+			.build();
 	}
 
 }

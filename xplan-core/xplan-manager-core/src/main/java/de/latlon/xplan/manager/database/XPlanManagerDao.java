@@ -1,3 +1,23 @@
+/*-
+ * #%L
+ * xplan-manager-core - XPlan Manager Core Komponente
+ * %%
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * #L%
+ */
 package de.latlon.xplan.manager.database;
 
 import de.latlon.xplan.commons.XPlanSchemas;
@@ -175,13 +195,14 @@ public class XPlanManagerDao extends XPlanDao {
 
 			AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 			List<QName> featureTypeNames = Arrays.stream(schema.getFeatureTypes())
-					.map(featureType -> featureType.getName()).collect(Collectors.toList());
+				.map(featureType -> featureType.getName())
+				.collect(Collectors.toList());
 
 			Set<String> validIds = ids.stream().filter(oldFeatureId -> {
 				Optional<QName> featureType = featureTypeNames.stream()
-						.filter(featureTypeName -> oldFeatureId
-								.startsWith(SYN_FEATURETYPE_PREFIX + featureTypeName.getLocalPart().toUpperCase()))
-						.findFirst();
+					.filter(featureTypeName -> oldFeatureId
+						.startsWith(SYN_FEATURETYPE_PREFIX + featureTypeName.getLocalPart().toUpperCase()))
+					.findFirst();
 				if (featureType.isPresent()) {
 					return true;
 				}

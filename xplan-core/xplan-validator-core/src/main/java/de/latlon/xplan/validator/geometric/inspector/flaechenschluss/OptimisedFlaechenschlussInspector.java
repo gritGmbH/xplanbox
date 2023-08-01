@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -210,7 +210,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	public boolean checkGeometricRule() {
 		try {
 			Map<GeltungsbereichFeature, List<FeatureUnderTest>> allFlaechenschlussFeaturesOfAPlan = flaechenschlussContext
-					.getAllFlaechenschlussFeaturesOfAPlan();
+				.getAllFlaechenschlussFeaturesOfAPlan();
 			Map<PlanFeature, List<FeaturesUnderTest>> planFeaturesWithFeaturesUnderTest = new HashMap<>();
 			Map<BereichFeature, FeaturesUnderTest> bereichFeaturesWithFeaturesUnderTest = new HashMap<>();
 			allFlaechenschlussFeaturesOfAPlan.forEach((geltungsbereichFeature, featuresUnderTest) -> {
@@ -276,7 +276,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				featuresUnderTest);
 		LOG.debug("Found {} intersecting flaechenschluss features.", flaechenschlussFeaturePairs.size());
 		flaechenschlussFeaturePairs
-				.forEach(flaechenschlussFeaturePair -> analyseFlaechenschlussFeaturePair(flaechenschlussFeaturePair));
+			.forEach(flaechenschlussFeaturePair -> analyseFlaechenschlussFeaturePair(flaechenschlussFeaturePair));
 	}
 
 	private void analyseFlaechenschlussUnionFlaechenschlussFeatures(GeltungsbereichFeature geltungsbereichFeature,
@@ -312,8 +312,8 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				WKTWriter.write(flaechenschlussUnion));
 
 		List<FeatureUnderTest> featureUnderTestOfPlan = featuresUnderTests.stream()
-				.flatMap(featuresUnderTest -> featuresUnderTest.getFeaturesUnderTest().stream())
-				.collect(Collectors.toList());
+			.flatMap(featuresUnderTest -> featuresUnderTest.getFeaturesUnderTest().stream())
+			.collect(Collectors.toList());
 		checkFlaechenschlussFeaturesWithGeltungsbereich(planFeature, featureUnderTestOfPlan, flaechenschlussUnion,
 				TestStep.GELTUNGSBEREICH_PLAN);
 	}
@@ -357,9 +357,9 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private Geometry calculateDifference(GeltungsbereichFeature geltungsbereichFeature, Geometry flaechenschlussUnion) {
 		Geometry diffGeltungsbereich1 = geltungsbereichFeature.getOriginalGeometry()
-				.getDifference(flaechenschlussUnion);
+			.getDifference(flaechenschlussUnion);
 		Geometry diffGeltungsbereich2 = flaechenschlussUnion
-				.getDifference(geltungsbereichFeature.getOriginalGeometry());
+			.getDifference(geltungsbereichFeature.getOriginalGeometry());
 		if (diffGeltungsbereich1 == null && diffGeltungsbereich2 == null)
 			return null;
 		if (diffGeltungsbereich1 != null && diffGeltungsbereich2 == null)
@@ -392,11 +392,10 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			List<FeatureUnderTest> intersectingFlaechenschlussFeatures = collectFlaechenschlussFeaturesIntersectingTheInteriorRing(
 					flaechenschlussFeatures, interiorRing);
 			LOG.debug("Analyse flaechenschluss features intersection {}", WKTWriter.write(interiorRing));
-			LOG.debug(
-					"Flaechenschluss Features: \n  " + intersectingFlaechenschlussFeatures.stream()
-							.map(flaechenschlussFeature -> flaechenschlussFeature.getFeatureId() + "("
-									+ flaechenschlussFeature.getFeatureType() + ")")
-							.collect(Collectors.joining("\n  ")));
+			LOG.debug("Flaechenschluss Features: \n  " + intersectingFlaechenschlussFeatures.stream()
+				.map(flaechenschlussFeature -> flaechenschlussFeature.getFeatureId() + "("
+						+ flaechenschlussFeature.getFeatureType() + ")")
+				.collect(Collectors.joining("\n  ")));
 			List<ControlPoint> controlPointsInIntersection = collectControlPointsIntersectingTheInteriorRing(
 					interiorRing, geltungsbereichFeature, intersectingFlaechenschlussFeatures);
 			checkControlPointsAndAddFailures(controlPointsInIntersection, testStep);
@@ -421,7 +420,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		if (isDiffInTolerance(diffGeltungsbereich))
 			return;
 		IntersectionMatrix relate = geltungsbereichFeature.getJtsGeometry()
-				.relate(diffGeltungsbereich.getJTSGeometry());
+			.relate(diffGeltungsbereich.getJTSGeometry());
 		// The feature geometry must have at least one point in common with the interior
 		// of the geltungsbereich geometry. Also the boundaries of the feature and
 		// geltungsbereich geometry.
@@ -434,11 +433,10 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 					flaechenschlussFeatures, exteriorRing);
 			LOG.debug("Analyse flaechenschluss features intersection with difference from geltungsbereich {}",
 					WKTWriter.write(exteriorRing));
-			LOG.debug(
-					"Flaechenschluss Features: \n  " + intersectingFlaechenschlussFeatures.stream()
-							.map(flaechenschlussFeature -> flaechenschlussFeature.getFeatureId() + "("
-									+ flaechenschlussFeature.getFeatureType() + ")")
-							.collect(Collectors.joining("\n  ")));
+			LOG.debug("Flaechenschluss Features: \n  " + intersectingFlaechenschlussFeatures.stream()
+				.map(flaechenschlussFeature -> flaechenschlussFeature.getFeatureId() + "("
+						+ flaechenschlussFeature.getFeatureType() + ")")
+				.collect(Collectors.joining("\n  ")));
 			List<ControlPoint> controlPointsInIntersection = collectControlPointsIntersectingTheInteriorRing(
 					exteriorRing, geltungsbereichFeature, intersectingFlaechenschlussFeatures);
 			boolean foundInvalidControlPoints = checkControlPointsAndAddFailures(controlPointsInIntersection, testStep);
@@ -481,7 +479,8 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	private boolean isDiffInTolerance(AbstractDefaultGeometry diffGeltungsbereich) {
 		double negativeAllowedTolerance = ALLOWEDDISTANCE_METRE / 2 * -1;
 		org.locationtech.jts.geom.Geometry diffGeltungsbereichBufferAllowedTolerance = diffGeltungsbereich
-				.getJTSGeometry().buffer(negativeAllowedTolerance);
+			.getJTSGeometry()
+			.buffer(negativeAllowedTolerance);
 		return diffGeltungsbereichBufferAllowedTolerance.isEmpty();
 	}
 
@@ -492,7 +491,8 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			controlPointsInIntersectionTmp.forEach(cpInIntersection2 -> cpToCheck.checkIfIdentical(cpInIntersection2));
 		});
 		List<ControlPoint> controlPointsWithInvalidFlaechenschluss = controlPoints.stream()
-				.filter(cp -> !cp.hasIdenticalControlPoint()).collect(Collectors.toList());
+			.filter(cp -> !cp.hasIdenticalControlPoint())
+			.collect(Collectors.toList());
 		controlPointsWithInvalidFlaechenschluss.stream().forEach(cp -> {
 			boolean handleAsFailure = handleAsFailure(testStep);
 			String msg;
@@ -561,11 +561,13 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private List<ControlPoint> collectControlPointsIntersectingTheInteriorRing(Ring interiorRing,
 			GeltungsbereichFeature geltungsbereichFeature, List<FeatureUnderTest> intersectingFlaechenschlussFeatures) {
-		List<ControlPoint> controlPointsInIntersection = intersectingFlaechenschlussFeatures.stream().map(
-				flaechenschlussFeature -> parseControlPointsInIntersection(flaechenschlussFeature, interiorRing, false))
-				.flatMap(List::stream).collect(Collectors.toList());
+		List<ControlPoint> controlPointsInIntersection = intersectingFlaechenschlussFeatures.stream()
+			.map(flaechenschlussFeature -> parseControlPointsInIntersection(flaechenschlussFeature, interiorRing,
+					false))
+			.flatMap(List::stream)
+			.collect(Collectors.toList());
 		controlPointsInIntersection
-				.addAll(parseControlPointsInIntersection(geltungsbereichFeature, interiorRing, true));
+			.addAll(parseControlPointsInIntersection(geltungsbereichFeature, interiorRing, true));
 		return controlPointsInIntersection;
 	}
 
@@ -592,7 +594,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		}
 		addHolesFromGeltungsbereich(geltungsbereichFeature, factory, geometries);
 		GeometryCollection geometryCollection = factory
-				.createGeometryCollection(geometries.toArray(new org.locationtech.jts.geom.Geometry[] {}));
+			.createGeometryCollection(geometries.toArray(new org.locationtech.jts.geom.Geometry[] {}));
 
 		org.locationtech.jts.geom.Geometry union = geometryCollection.union();
 		return DEFAULT_GEOM.createFromJTS(union, coordinateSystem);
@@ -608,7 +610,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			geometries.add(((AbstractDefaultGeometry) featuresUnderTest.getFlaechenschlussUnion()).getJTSGeometry());
 		}
 		GeometryCollection geometryCollection = factory
-				.createGeometryCollection(geometries.toArray(new org.locationtech.jts.geom.Geometry[] {}));
+			.createGeometryCollection(geometries.toArray(new org.locationtech.jts.geom.Geometry[] {}));
 
 		org.locationtech.jts.geom.Geometry union = geometryCollection.union();
 		return DEFAULT_GEOM.createFromJTS(union, coordinateSystem);
@@ -652,7 +654,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			flaechenschlussFeaturesCopy.remove(flaechenschlussFeature1);
 			for (FeatureUnderTest flaechenschlussFeature2 : flaechenschlussFeaturesCopy) {
 				IntersectionMatrix relate = flaechenschlussFeature1.getJtsGeometry()
-						.relate(flaechenschlussFeature2.getJtsGeometry());
+					.relate(flaechenschlussFeature2.getJtsGeometry());
 				if (relate.isEquals(2, 2)) {
 					String error = format("FlaechenschlussInspector_error_overlapping",
 							flaechenschlussFeature1.getFeatureId(), flaechenschlussFeature2.getFeatureId());
@@ -687,7 +689,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		FeatureUnderTest flaechenschlussFeature1 = flaechenschlussFeaturePair.getFirst();
 		FeatureUnderTest flaechenschlussFeature2 = flaechenschlussFeaturePair.getSecond();
 		Geometry intersection = flaechenschlussFeature1.getOriginalGeometry()
-				.getIntersection(flaechenschlussFeature2.getOriginalGeometry());
+			.getIntersection(flaechenschlussFeature2.getOriginalGeometry());
 		// intersection may be null if JTS.intersection returns an empty geometry
 		if (intersection != null) {
 			LOG.debug("Intersection of {} ({}) and {} ({}) is {}", flaechenschlussFeature1.getFeatureId(),
@@ -717,8 +719,9 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			FeatureUnderTest flaechenschlussFeature2, MultiGeometry<?> intersection, TestStep testStep) {
 		if (intersection instanceof MultiLineString)
 			return;
-		intersection.stream().forEach(geom -> checkAndAddInvalidFlaechenschlussFeature(flaechenschlussFeature1,
-				flaechenschlussFeature2, (Geometry) geom, testStep));
+		intersection.stream()
+			.forEach(geom -> checkAndAddInvalidFlaechenschlussFeature(flaechenschlussFeature1, flaechenschlussFeature2,
+					(Geometry) geom, testStep));
 	}
 
 	private void checkAndAddInvalidFlaechenschlussFeature(FeatureUnderTest flaechenschlussFeature1,
@@ -733,11 +736,15 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			List<ControlPoint> controlPointsFlaechenschlussFeature2 = parseControlPointsInIntersection(
 					flaechenschlussFeature2, intersection, false);
 			LOG.trace("Control points of flaechenschluss feature {} ({}): {}", flaechenschlussFeature1.getFeatureId(),
-					flaechenschlussFeature1.getFeatureType(), controlPointsFlaechenschlussFeature1.stream()
-							.map(p -> WKTWriter.write(p.getPoint())).collect(Collectors.joining(",")));
+					flaechenschlussFeature1.getFeatureType(),
+					controlPointsFlaechenschlussFeature1.stream()
+						.map(p -> WKTWriter.write(p.getPoint()))
+						.collect(Collectors.joining(",")));
 			LOG.trace("Control points of flaechenschluss feature {} ({}): {}", flaechenschlussFeature2.getFeatureId(),
-					flaechenschlussFeature2.getFeatureType(), controlPointsFlaechenschlussFeature2.stream()
-							.map(p -> WKTWriter.write(p.getPoint())).collect(Collectors.joining(",")));
+					flaechenschlussFeature2.getFeatureType(),
+					controlPointsFlaechenschlussFeature2.stream()
+						.map(p -> WKTWriter.write(p.getPoint()))
+						.collect(Collectors.joining(",")));
 
 			List<ControlPoint> controlPointsToCheck = new ArrayList<>();
 			controlPointsToCheck.addAll(controlPointsFlaechenschlussFeature1);
@@ -803,8 +810,9 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		}
 		else if (flaechenschlussFeatureGeometry instanceof MultiSurface) {
 			MultiSurface<?> multiSurface = (MultiSurface<?>) flaechenschlussFeatureGeometry;
-			multiSurface.stream().forEach(o -> parseControlPointsInIntersection(flaechenschlussFeature, (Geometry) o,
-					intersection, controlPointsInIntersection, handleAsHasIdenticalControlPoints));
+			multiSurface.stream()
+				.forEach(o -> parseControlPointsInIntersection(flaechenschlussFeature, (Geometry) o, intersection,
+						controlPointsInIntersection, handleAsHasIdenticalControlPoints));
 		}
 	}
 
@@ -860,7 +868,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			}
 		}
 		Geometry intersectionWithBuffer = intersection
-				.getBuffer(new Measure(new BigDecimal(ALLOWEDDISTANCE_METRE), "m"));
+			.getBuffer(new Measure(new BigDecimal(ALLOWEDDISTANCE_METRE), "m"));
 		List<ControlPoint> allPoints = new ArrayList<>();
 		for (Points points : pointsList) {
 			Iterator<Point> iterator = points.iterator();

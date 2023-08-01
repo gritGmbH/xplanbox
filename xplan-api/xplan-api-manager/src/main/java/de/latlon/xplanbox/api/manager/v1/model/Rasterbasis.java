@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -56,15 +56,17 @@ public class Rasterbasis extends Referenz {
 	public static Rasterbasis fromRasterReference(String rasterbasisId, RasterReference rasterReference) {
 		Rasterbasis rasterbasis = new Rasterbasis().id(rasterbasisId);
 		rasterbasis.bereichNummer(rasterReference.getBereichNummer())
-				.art(rasterReference.getArt() != null ? rasterReference.getArt().getCode() : null)
-				.beschreibung(rasterReference.getBeschreibung()).datum(rasterReference.getDatum())
-				.georefMimeType(rasterReference.getGeorefMimeType() != null
-						? rasterReference.getGeorefMimeType().getCode() : null)
-				.georefURL(rasterReference.getGeoReference())
-				.informationssystemURL(rasterReference.getInformationssystemURL())
-				.referenzMimeType(rasterReference.getReferenzMimeType() != null
-						? rasterReference.getReferenzMimeType().getCode() : null)
-				.referenzURL(rasterReference.getReference()).referenzName(rasterReference.getReferenzName());
+			.art(rasterReference.getArt() != null ? rasterReference.getArt().getCode() : null)
+			.beschreibung(rasterReference.getBeschreibung())
+			.datum(rasterReference.getDatum())
+			.georefMimeType(
+					rasterReference.getGeorefMimeType() != null ? rasterReference.getGeorefMimeType().getCode() : null)
+			.georefURL(rasterReference.getGeoReference())
+			.informationssystemURL(rasterReference.getInformationssystemURL())
+			.referenzMimeType(rasterReference.getReferenzMimeType() != null
+					? rasterReference.getReferenzMimeType().getCode() : null)
+			.referenzURL(rasterReference.getReference())
+			.referenzName(rasterReference.getReferenzName());
 		return rasterbasis;
 	}
 

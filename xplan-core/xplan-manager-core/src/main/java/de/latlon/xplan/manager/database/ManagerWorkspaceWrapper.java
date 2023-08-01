@@ -69,8 +69,8 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 	@Override
 	public DataSource retrieveDataSource() {
 		ensureWorkspaceInitialized();
-		ConnectionProvider resource = managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class,
-				JDBC_ID_XPLAN);
+		ConnectionProvider resource = managerWorkspace.getNewWorkspace()
+			.getResource(ConnectionProviderProvider.class, JDBC_ID_XPLAN);
 		if (!(resource instanceof DataSourceConnectionProvider))
 			throw new IllegalArgumentException(
 					"Datasource configuration is not supported, must be an deegree DataSourceConnection");
@@ -107,8 +107,8 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 	 */
 	public Connection openConnection() {
 		ensureWorkspaceInitialized();
-		ConnectionProvider resource = managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class,
-				JDBC_ID_XPLAN);
+		ConnectionProvider resource = managerWorkspace.getNewWorkspace()
+			.getResource(ConnectionProviderProvider.class, JDBC_ID_XPLAN);
 		return resource.getConnection();
 	}
 
@@ -148,8 +148,8 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 	}
 
 	private void setJpaTransactionManager(JpaTransactionManager jpaTransactionManager, String jpaJdbcId) {
-		ConnectionProvider resource = managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class,
-				jpaJdbcId);
+		ConnectionProvider resource = managerWorkspace.getNewWorkspace()
+			.getResource(ConnectionProviderProvider.class, jpaJdbcId);
 		if (resource instanceof JpaConnectionProvider)
 			((JpaConnectionProvider) resource).setJpaTransactionManager(jpaTransactionManager);
 	}

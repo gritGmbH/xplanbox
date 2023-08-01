@@ -135,7 +135,7 @@ public class MetadataCouplingHandlerTest {
 
 	private Path createDirectoryWithTemplate() throws IOException {
 		InputStream resourceAsStream = MetadataCouplingHandlerTest.class
-				.getResourceAsStream("iso-service-metadata-example-template.xml");
+			.getResourceAsStream("iso-service-metadata-example-template.xml");
 		Path metadataConfigDirectory = Files.createTempDirectory("metadataConfigDirectoryTest");
 		Path target = Files.createFile(metadataConfigDirectory.resolve("service-iso-metadata-template.xml"));
 		OutputStream output = Files.newOutputStream(target);
