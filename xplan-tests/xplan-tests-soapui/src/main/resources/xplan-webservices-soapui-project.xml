@@ -6947,7 +6947,7 @@ if (documentUrl != null){
               <path>declare namespace gml='http://www.opengis.net/gml';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//gml:featureMember/xplan:BP_Plan/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+//gml:featureMember/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -6960,7 +6960,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //gml:featureMember/xplan:BP_Plan/xplan:planArt</path>
-              <content>1000</content>
+              <content>3000</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -6972,7 +6972,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //gml:featureMember/xplan:BP_Plan/xplan:planArtWert</path>
-              <content>BPlan</content>
+              <content>Vorhabenbezogener BPlan</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -6984,7 +6984,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //gml:featureMember/xplan:BP_Plan/xplan:rechtsstand</path>
-              <content>4000</content>
+              <content>3000</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -6996,7 +6996,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //gml:featureMember/xplan:BP_Plan/xplan:rechtsstandWert</path>
-              <content>InkraftGetreten</content>
+              <content>Satzung</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -7056,6 +7056,11 @@ if (documentUrl != null){
             <con:parameter>
               <con:name>typename</con:name>
               <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>bbox</con:name>
+              <con:value>567341.0196995868,5937557.612716467,567520.2453084125,5937736.838325293</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
           </con:parameters>
@@ -10769,6 +10774,11 @@ if (documentUrl != null){
               <con:value>xplan:BP_Plan</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
+            <con:parameter>
+              <con:name>bbox</con:name>
+              <con:value>567341.0196995868,5937557.612716467,567520.2453084125,5937736.838325293</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
           </con:parameters>
         </con:config>
       </con:testStep>
@@ -10899,6 +10909,11 @@ if (documentUrl != null){
             <con:parameter>
               <con:name>typename</con:name>
               <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>bbox</con:name>
+              <con:value>567341.0196995868,5937557.612716467,567520.2453084125,5937736.838325293</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
           </con:parameters>
