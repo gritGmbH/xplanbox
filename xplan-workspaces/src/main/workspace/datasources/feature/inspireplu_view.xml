@@ -23,7 +23,7 @@
 <SQLFeatureStore xmlns="http://www.deegree.org/datasource/feature/sql"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:app="http://www.deegree.org/app"
-                 xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql https://schemas.deegree.org/3.5/datasource/feature/sql/sql.xsd">
+                 xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql https://schemas.deegree.org/core/3.5/datasource/feature/sql/sql.xsd">
   <JDBCConnId>inspireplu</JDBCConnId>
 
   <FeatureTypeMapping name="app:SpatialPlan" table="inspireplu.VIEWSERVICE_SPATIALPLAN">

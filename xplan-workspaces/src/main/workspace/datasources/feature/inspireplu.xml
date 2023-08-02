@@ -38,7 +38,7 @@
                  xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0"
                  xmlns:swe="http://www.opengis.net/swe/2.0"
                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                 xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql https://schemas.deegree.org/3.5/datasource/feature/sql/sql.xsd">
+                 xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql https://schemas.deegree.org/core/3.5/datasource/feature/sql/sql.xsd">
   <JDBCConnId>inspireplu</JDBCConnId>
   <StorageCRS srid="25832" dim="2D">EPSG:25832</StorageCRS>
   <GMLSchema>../../appschemas/inspireplu/PlannedLandUse.xsd</GMLSchema>
