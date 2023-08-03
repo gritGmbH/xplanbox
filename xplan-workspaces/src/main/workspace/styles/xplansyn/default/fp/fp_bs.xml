@@ -24,7 +24,7 @@
                   xmlns:sed="http://www.deegree.org/se"
                   xmlns:xplan="http://www.deegree.org/xplanung/1/0"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se https://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:FP_Bodenschaetze</FeatureTypeName>
   <Rule>
