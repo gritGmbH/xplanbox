@@ -66,17 +66,21 @@ public class XPlanGmlParser {
 
 	private final List<GeometryInspector> geometryInspectors;
 
+	private final boolean skipResolveReferences;
+
 	private List<String> skippedBrokenGeometryErrors;
 
 	private GmlDocumentIdContext idContext;
 
 	XPlanGmlParser(ICRS defaultCrs, boolean fixOrientation, boolean skipBrokenGeometries,
-			List<FeatureInspector> featureInspectors, List<GeometryInspector> geometryInspectors) {
+			List<FeatureInspector> featureInspectors, List<GeometryInspector> geometryInspectors,
+			boolean skipResolveReferences) {
 		this.defaultCrs = defaultCrs;
 		this.fixOrientation = fixOrientation;
 		this.skipBrokenGeometries = skipBrokenGeometries;
 		this.featureInspectors = featureInspectors;
 		this.geometryInspectors = geometryInspectors;
+		this.skipResolveReferences = skipResolveReferences;
 	}
 
 	public GmlDocumentIdContext getIdContext() {
@@ -193,7 +197,9 @@ public class XPlanGmlParser {
 			throws XMLStreamException, UnknownCRSException {
 		FeatureCollection features = parseFeatures(xmlStream, gmlStreamReader);
 		populateResults(gmlStreamReader);
-		gmlStreamReader.getIdContext().resolveLocalRefs();
+		if (!skipResolveReferences) {
+			gmlStreamReader.getIdContext().resolveLocalRefs();
+		}
 		return features;
 	}
 

@@ -150,6 +150,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		allFeatureInspectors.add(aenderungenInspector);
 
 		return XPlanGmlParserBuilder.newBuilder()
+			.withSkipResolveReferences(true)
 			.withSkipBrokenGeometries(true)
 			.withDefaultCrs(crs)
 			.withFeatureInspectors(allFeatureInspectors)

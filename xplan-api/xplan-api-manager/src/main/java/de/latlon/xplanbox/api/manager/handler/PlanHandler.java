@@ -36,10 +36,10 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
-import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
-import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.commons.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.commons.exception.InvalidPlanIdSyntax;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
+import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.slf4j.Logger;
@@ -185,6 +185,7 @@ public class PlanHandler {
 	private PlanStatus determinePlanStatusByRechtsstand(XPlanArchive xPlanArchive)
 			throws XMLStreamException, UnknownCRSException {
 		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder()
+			.withSkipResolveReferences(true)
 			.build()
 			.parseXPlanFeatureCollection(xPlanArchive);
 		String legislationStatus = retrieveRechtsstand(fc.getFeatures(), fc.getType());
