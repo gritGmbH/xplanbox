@@ -44,9 +44,12 @@ public class GdalRasterEvaluation implements RasterEvaluation {
 
 	private final String configuredRasterCrs;
 
+	private final int configuredRasterCrsEpsgCode;
+
 	public GdalRasterEvaluation(String configuredRasterCrs) {
 		this.rasterAdapter = new GdalRasterAdapter();
 		this.configuredRasterCrs = configuredRasterCrs;
+		this.configuredRasterCrsEpsgCode = asEpsgCode(configuredRasterCrs);
 	}
 
 	@Override
@@ -77,21 +80,29 @@ public class GdalRasterEvaluation implements RasterEvaluation {
 		LOG.trace("Raster was copied to {}.", mainRasterFile);
 		String rasterCrs = rasterAdapter.getRasterCrs(mainRasterFile);
 		if (rasterCrs != null) {
-			LOG.info("Koordinatensystem des Rasters: {}", rasterCrs);
-			boolean isCrsSet = rasterCrs != null && !rasterCrs.isEmpty();
-			boolean isConfiguredCrs = compareConfiguredCrsWithRasterCrs(rasterCrs, configuredRasterCrs);
-			mainRasterFile.delete();
-			return new RasterEvaluationResult(entryName, retrieveAuthorityIfAvailable(rasterCrs), configuredRasterCrs,
-					isCrsSet, isConfiguredCrs, true);
+			String rasterCrsAuthority = retrieveAuthorityIfAvailable(rasterCrs);
+			if (configuredRasterCrsEpsgCode == -1) {
+				LOG.warn("The evaluation of the raster crs is skipped (rasterConfigurationCrs is not configured).");
+				return new RasterEvaluationResult(entryName, rasterCrsAuthority, configuredRasterCrs, true, false,
+						true);
+			}
+			else {
+				LOG.info("Koordinatensystem des Rasters: {}", rasterCrs);
+				boolean isCrsSet = rasterCrs != null && !rasterCrs.isEmpty();
+				boolean isConfiguredCrs = compareConfiguredCrsWithRasterCrs(rasterCrs);
+				mainRasterFile.delete();
+				return new RasterEvaluationResult(entryName, rasterCrsAuthority, configuredRasterCrs, isCrsSet,
+						isConfiguredCrs, true);
+			}
 		}
 		return new RasterEvaluationResult(entryName, null, configuredRasterCrs, false, false, false);
 	}
 
-	private boolean compareConfiguredCrsWithRasterCrs(String rasterCrs, String configuredCrs) {
+	private boolean compareConfiguredCrsWithRasterCrs(String rasterCrs) {
 		SpatialReference rasterReference = new SpatialReference(rasterCrs);
 
 		SpatialReference configuredReference = new SpatialReference();
-		configuredReference.ImportFromEPSG(asEpsgCode(configuredCrs));
+		configuredReference.ImportFromEPSG(configuredRasterCrsEpsgCode);
 
 		int isSame = rasterReference.IsSame(configuredReference);
 		return isSame == 1;
@@ -110,6 +121,10 @@ public class GdalRasterEvaluation implements RasterEvaluation {
 	}
 
 	private int asEpsgCode(String rasterCrs) {
+		if (rasterCrs == null) {
+			LOG.warn("rasterConfigurationCrs is not configured! The evaluation of the raster crs is skipped.");
+			return -1;
+		}
 		String epsgCode = rasterCrs.substring(rasterCrs.indexOf(":") + 1);
 		return Integer.parseInt(epsgCode);
 	}
