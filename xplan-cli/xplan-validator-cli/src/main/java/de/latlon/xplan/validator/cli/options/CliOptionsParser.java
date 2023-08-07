@@ -86,7 +86,8 @@ public class CliOptionsParser {
 		Options options = new Options();
 		Option zipFileNameOption = new Option(is(VALIDATE), HAS_ARG, "zip file path");
 		Option nameOption = new Option(is(NAME), HAS_ARG, "name of the validation");
-		Option voOption = new Option(is(VO), HAS_ARG, "validation options");
+		Option voOption = new Option(is(VO), HAS_ARG,
+				"validation options, possible values are: skip-flaechenschluss=true, skip-geltungsbereich=true, skip-laufrichtung=true. Each value must be passed as single options, e.g: -vo skip-geltungsbereich=true -vo skip-laufrichtung=true");
 		Option vTypeOption = new Option(is(VALIDATE_TYPE), HAS_ARG,
 				"values: syntax, geometric, semantic. multiple types must be comma separated");
 		nameOption.setRequired(false);
