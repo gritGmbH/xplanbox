@@ -311,6 +311,10 @@ Import the plan</con:description>
           <con:params/>
           <con:element>data</con:element>
         </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/gml+xml</con:mediaType>
+          <con:params/>
+        </con:representation>
         <con:request name="Request 1" id="0ab9bfa6-1c76-41df-b253-dabff57568f7" mediaType="application/json" postQueryString="false">
           <con:settings/>
           <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
@@ -3776,8 +3780,8 @@ assert actualHeader != null</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="25c5d5cd-f2f3-4a63-8a9d-c33c8fceb703" name="geometrisch errors">
               <con:configuration>
-                <path>$.validationResult.geometrisch.errors.length()</path>
-                <content>1</content>
+                <path>$.validationResult.geometrisch.errors</path>
+                <content>["Die XLink-Integrität für die Referenz Gml_612F9C72-83DD-4220-98A7-7AB487797D85 konnte nicht sichergestellt werden, ein Feature mit dieser ID existiert nicht."]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
