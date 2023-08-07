@@ -3741,6 +3741,83 @@ assert actualHeader != null</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0.2 XX importPlanExpectValidationErrorNoBereich" id="70f7ce01-5dff-4f14-9854-4e2a5a4a959e">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0.2 XX importPlanExpectValidationError" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f31c01fb-90a3-4d83-b885-5a8e4de34d21" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="b4c91438-41a6-4d2b-8f1e-9fa2dc8b8c7d" name="geometrisch valid">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="25c5d5cd-f2f3-4a63-8a9d-c33c8fceb703" name="geometrisch errors">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.errors.length()</path>
+                <content>1</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_6.0.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>BP_6.0.2.zip</con:contentId>
+              <con:part xsi:nil="true"/>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_6.0.2_NoBereichButReferenceExists.zip</con:url>
+              <con:id>0c70fade-2e59-43eb-a59a-ee6dcbd05e46</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="skipLaufrichtung" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>internalId</con:entry>
+              <con:entry>planStatus</con:entry>
+              <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="POST BP 6.0 XX importPlanUnsupportedContentTypeExpectError" id="e2984b7f-a42e-4bc0-9057-ced0126c448d">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
