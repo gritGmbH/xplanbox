@@ -78,10 +78,7 @@ public class TransformApplicationRunner implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 		TYPE type = determineType(args);
 		Path outDirectory = createOutDirectory(args);
-
-		TransformApplicationRunner tool = new TransformApplicationRunner();
-		tool.run(type, outDirectory);
-
+		run(type, outDirectory);
 	}
 
 	private void run(TYPE type, Path outDirectory) throws Exception {
