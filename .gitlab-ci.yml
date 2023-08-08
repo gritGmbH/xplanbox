@@ -27,8 +27,6 @@ maven-build:
   - 'echo "with Maven goal: $MAVEN_GOAL"'
   - 'mvn $MAVEN_CLI_OPTS $MAVEN_GOAL -DskipTests -Dskip.owasp.check=true -Dxplan-tests.maven.deploy.skip=true'
   rules:
-  - if: $CI_COMMIT_MESSAGE =~ /^release /
-    when: never
   - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
     variables:
       MAVEN_GOAL: "install"
