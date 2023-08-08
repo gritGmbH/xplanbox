@@ -1,0 +1,3 @@
+GRANT USAGE ON SCHEMA xplanevaluation,xplanevaluationxplansyn,xplanevaluationxplansynarchive,xplanevaluationxplansynpre TO '$DB_USER';
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA xplanevaluation,xplanevaluationxplansyn,xplanevaluationxplansynarchive,xplanevaluationxplansynpre TO '$DB_USER';
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA xplanevaluation,xplanevaluationxplansyn,xplanevaluationxplansynarchive,xplanevaluationxplansynpre TO '$DB_USER';

@@ -104,6 +104,8 @@ Das Datenbankschema für die Auswertung muss durch Ausführen der SQL-Skripte au
 . _02_create_tables.sql_
 . _03_create_trigger-function.sql_
 . _04_create_trigger.sql_
+. _05_grant_user.sql_ (zuvor ist die Variable $DB_USER im Skript durch den Namen des Datenbanknutzers auszutauschen, mit dem der XPlanManager und die XPlanDienste auf die XPlaNDB zugreifen, s. Abschnitt "Konfiguration der Datenbank" im Betriebshandbuch)
+
 
 Die Skripte erstellen eine Kopie der drei XPlanSyn-Schemas in den Schemas _xplanevaluationxplansynpre_, _xplanevaluationxplansyn_ und _xplanevaluationxplansynarchive_ sowie eine Log-Tabelle _xplanevaluation.planTableLog_.
 

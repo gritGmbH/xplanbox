@@ -22,6 +22,7 @@ Weiterhin sind zusätzliche SQL-Skripte auszuführen, die sich im Verzeichnis _s
  1. 01_create_tables.sql
  2. 02_create_trigger-functions.sql
  3. 03_create_trigger.sql
+ 4. 04_grant_user.sql (zuvor ist die Variable $DB_USER im Skript durch den Namen des Datenbanknutzers auszutauschen, mit dem der XPlanManager und die XPlanDienste auf die XPlaNDB zugreifen, s. Abschnitt "Konfiguration der Datenbank" im Betriebshandbuch)
 
 [[xplantransform-cli-benutzungsanleitung]]
 === Benutzungshinweise
