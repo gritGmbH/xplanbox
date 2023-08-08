@@ -45,6 +45,8 @@ public class XPlanGmlParserBuilder {
 
 	private List<GeometryInspector> geometryInspectors = new ArrayList<>();
 
+	private boolean skipResolveReferences = false;
+
 	private XPlanGmlParserBuilder() {
 	}
 
@@ -120,11 +122,21 @@ public class XPlanGmlParserBuilder {
 	}
 
 	/**
+	 * @param skipResolveReferences <code>true</code> if resolving of references should be
+	 * skipped, <code>false</code> otherwise
+	 * @return this instance of the {@link XPlanGmlParserBuilder}
+	 */
+	public XPlanGmlParserBuilder withSkipResolveReferences(boolean skipResolveReferences) {
+		this.skipResolveReferences = skipResolveReferences;
+		return this;
+	}
+
+	/**
 	 * @return a new instance of a {@link XPlanGmlParser}
 	 */
 	public XPlanGmlParser build() {
 		return new XPlanGmlParser(defaultCrs, fixOrientation, skipBrokenGeometries, featureInspectors,
-				geometryInspectors);
+				geometryInspectors, skipResolveReferences);
 	}
 
 }

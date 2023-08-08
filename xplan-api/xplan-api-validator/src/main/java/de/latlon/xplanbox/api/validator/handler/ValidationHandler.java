@@ -121,6 +121,7 @@ public class ValidationHandler {
 		try {
 			if (validatorWmsManager != null) {
 				XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder()
+					.withSkipResolveReferences(true)
 					.build()
 					.parseXPlanFeatureCollection(archive);
 				int id = validatorWmsManager.insert(xPlanFeatureCollection);

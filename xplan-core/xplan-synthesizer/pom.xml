@@ -28,6 +28,10 @@
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-impl</artifactId>
     </dependency>
+    <dependency>
+      <groupId>xalan</groupId>
+      <artifactId>serializer</artifactId>
+    </dependency>
     <!-- test -->
     <dependency>
       <groupId>junit</groupId>

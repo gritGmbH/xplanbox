@@ -78,6 +78,7 @@ public class MapPreviewManager {
 		try {
 			XPlanArchive archive = archiveCreator.createXPlanArchive(xPlan);
 			XPlanFeatureCollection featureCollection = XPlanGmlParserBuilder.newBuilder()
+				.withSkipResolveReferences(true)
 				.build()
 				.parseXPlanFeatureCollection(archive);
 			int managerId = this.validatorWmsManager.insert(featureCollection);

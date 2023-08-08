@@ -41,7 +41,7 @@ import org.springframework.context.annotation.Profile;
 @Import({ JobContext.class, SqlJobContext.class })
 public class ValidatorWmsSqlContext {
 
-	private static final Logger LOG = LoggerFactory.getLogger(ValidatorWmsWorkspaceContext.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ValidatorWmsSqlContext.class);
 
 	@Bean
 	public ValidatorWorkspaceWrapper validatorWorkspaceWrapper() throws JobConfigException {

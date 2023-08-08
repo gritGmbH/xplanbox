@@ -25,7 +25,7 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 * <<xplanresources, XPlanRessourcen>>
 * <<xplandb, XPlanDB>>
 
-Die Gesamtarchitektur aller zuvor aufgelisteten Komponten wird in der folgenden Abbildung dargestellt:
+Die Gesamtarchitektur aller zuvor aufgelisteten Komponenten wird in der folgenden Abbildung dargestellt:
 
 .Gesamtarchitektur aller Komponenten der xPlanBox
 image::Architektur_xPlanBox_komplex.png[Komplexe Darstellung]

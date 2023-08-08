@@ -210,6 +210,7 @@ public class XPlanManager {
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		ICRS crs = CrsUtils.determineActiveCrs(CRSManager.getCRSRef("EPSG:4326"), archive, LOG);
 		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder()
+			.withSkipResolveReferences(true)
 			.withDefaultCrs(crs)
 			.build()
 			.parseXPlanFeatureCollection(archive);
@@ -241,6 +242,7 @@ public class XPlanManager {
 			throws IOException, XMLStreamException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
 		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder()
+			.withSkipResolveReferences(true)
 			.build()
 			.parseXPlanFeatureCollection(archive);
 		return determineRechtsstandAndPlanstatus(xPlanFeatureCollection, archive.getType());
@@ -259,7 +261,10 @@ public class XPlanManager {
 	public List<RasterEvaluationResult> evaluateRasterdata(String pathToArchive)
 			throws IOException, XMLStreamException, XMLParsingException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder()
+			.withSkipResolveReferences(true)
+			.build()
+			.parseXPlanFeatureCollection(archive);
 		return xPlanRasterEvaluator.evaluateRasterdata(archive, fc);
 	}
 

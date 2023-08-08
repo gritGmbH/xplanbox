@@ -17,7 +17,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<con:soapui-project id="4497dcb6-2c5f-4d87-bcee-3913ada70576" activeEnvironment="Default" name="xplan-webservices" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" defaultScriptLanguage="Groovy" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="4497dcb6-2c5f-4d87-bcee-3913ada70576" activeEnvironment="Default" name="xplan-webservices" resourceRoot="" soapui-version="5.7.1" abortOnError="false" runType="SEQUENTIAL" defaultScriptLanguage="Groovy" xmlns:con="http://eviware.com/soapui/config">
   <con:description>For local execution use following property values:
 
 baseUrlServices=http://localhost:8083
@@ -6947,7 +6947,7 @@ if (documentUrl != null){
               <path>declare namespace gml='http://www.opengis.net/gml';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//gml:featureMember/xplan:BP_Plan/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+//gml:featureMember/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -6960,7 +6960,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //gml:featureMember/xplan:BP_Plan/xplan:planArt</path>
-              <content>1000</content>
+              <content>3000</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -6972,7 +6972,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //gml:featureMember/xplan:BP_Plan/xplan:planArtWert</path>
-              <content>BPlan</content>
+              <content>Vorhabenbezogener BPlan</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -6984,7 +6984,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //gml:featureMember/xplan:BP_Plan/xplan:rechtsstand</path>
-              <content>4000</content>
+              <content>3000</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -6996,7 +6996,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //gml:featureMember/xplan:BP_Plan/xplan:rechtsstandWert</path>
-              <content>InkraftGetreten</content>
+              <content>Satzung</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -7056,6 +7056,11 @@ if (documentUrl != null){
             <con:parameter>
               <con:name>typename</con:name>
               <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>bbox</con:name>
+              <con:value>567341.0196995868,5937557.612716467,567520.2453084125,5937736.838325293</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
           </con:parameters>
@@ -10646,19 +10651,19 @@ count(//wfs:member)</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs60</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="xpPlanName">
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="name">
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
-declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+declare namespace xplan='http://www.xplanung.de/xplangml/6/0';
 
-//wfs:member/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0"</path>
+//wfs:member/xplan:BP_Plan/xplan:name="BPlan004_6-0"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -10668,22 +10673,10 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArt">
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
-declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+declare namespace xplan='http://www.xplanung.de/xplangml/6/0';
 
-//wfs:member/xplan:BP_Plan/xplan:planArt</path>
-              <content>3000</content>
-              <allowWildcards>false</allowWildcards>
-              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-              <ignoreComments>false</ignoreComments>
-            </con:configuration>
-          </con:assertion>
-          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArtWert">
-            <con:configuration>
-              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
-declare namespace xplan='http://www.deegree.org/xplanung/1/0';
-
-//wfs:member/xplan:BP_Plan/xplan:planArtWert</path>
-              <content>Vorhabenbezogener BPlan</content>
+//wfs:member/xplan:BP_Plan/xplan:planArt="3000"</path>
+              <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -10692,22 +10685,10 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstand">
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
-declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+declare namespace xplan='http://www.xplanung.de/xplangml/6/0';
 
-//wfs:member/xplan:BP_Plan/xplan:rechtsstand</path>
-              <content>3000</content>
-              <allowWildcards>false</allowWildcards>
-              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-              <ignoreComments>false</ignoreComments>
-            </con:configuration>
-          </con:assertion>
-          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstandWert">
-            <con:configuration>
-              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
-declare namespace xplan='http://www.deegree.org/xplanung/1/0';
-
-//wfs:member/xplan:BP_Plan/xplan:rechtsstandWert</path>
-              <content>Satzung</content>
+//wfs:member/xplan:BP_Plan/xplan:rechtsstand="3000"</path>
+              <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -10769,6 +10750,11 @@ if (documentUrl != null){
               <con:value>xplan:BP_Plan</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
+            <con:parameter>
+              <con:name>bbox</con:name>
+              <con:value>567341.0196995868,5937557.612716467,567520.2453084125,5937736.838325293</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
           </con:parameters>
         </con:config>
       </con:testStep>
@@ -10778,19 +10764,19 @@ if (documentUrl != null){
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrlServices}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:endpoint>${#Project#baseUrlServices}/xplan-wfs/services/wfs60</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
             <con:configuration>
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="xpPlanName">
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="name">
             <con:configuration>
               <path>declare namespace gml='http://www.opengis.net/gml';
-declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+declare namespace xplan='http://www.xplanung.de/xplangml/6/0';
 
-//gml:featureMember/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0"</path>
+//gml:featureMember/xplan:BP_Plan/xplan:name="BPlan004_6-0"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -10800,7 +10786,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArt">
             <con:configuration>
               <path>declare namespace gml='http://www.opengis.net/gml';
-declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+declare namespace xplan='http://www.xplanung.de/xplangml/6/0';
 
 //gml:featureMember/xplan:BP_Plan/xplan:planArt</path>
               <content>3000</content>
@@ -10809,37 +10795,13 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArtWert">
-            <con:configuration>
-              <path>declare namespace gml='http://www.opengis.net/gml';
-declare namespace xplan='http://www.deegree.org/xplanung/1/0';
-
-//gml:featureMember/xplan:BP_Plan/xplan:planArtWert</path>
-              <content>Vorhabenbezogener BPlan</content>
-              <allowWildcards>false</allowWildcards>
-              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-              <ignoreComments>false</ignoreComments>
-            </con:configuration>
-          </con:assertion>
           <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstand">
             <con:configuration>
               <path>declare namespace gml='http://www.opengis.net/gml';
-declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+declare namespace xplan='http://www.xplanung.de/xplangml/6/0';
 
-//gml:featureMember/xplan:BP_Plan/xplan:rechtsstand</path>
-              <content>3000</content>
-              <allowWildcards>false</allowWildcards>
-              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-              <ignoreComments>false</ignoreComments>
-            </con:configuration>
-          </con:assertion>
-          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstandWert">
-            <con:configuration>
-              <path>declare namespace gml='http://www.opengis.net/gml';
-declare namespace xplan='http://www.deegree.org/xplanung/1/0';
-
-//gml:featureMember/xplan:BP_Plan/xplan:rechtsstandWert</path>
-              <content>Satzung</content>
+//gml:featureMember/xplan:BP_Plan/xplan:rechtsstand="3000"</path>
+              <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -10899,6 +10861,11 @@ if (documentUrl != null){
             <con:parameter>
               <con:name>typename</con:name>
               <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>bbox</con:name>
+              <con:value>567341.0196995868,5937557.612716467,567520.2453084125,5937736.838325293</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
           </con:parameters>

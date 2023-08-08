@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-api-manager - xplan-api-manager
+ * xplan-update-data-cli - update of database
  * %%
  * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%

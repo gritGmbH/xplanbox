@@ -77,5 +77,5 @@ Bei der Verarbeitung von XPlanArchiven im XPlanValidator und XPlanManager werden
 ==== Lösungsansätze
 - Das Löschen des tmp-Verzeichnisses erfolgt über das Betriebssystem. Unter Linux z. B. bei einem Reboot des Betriebssystems.
 - Die mit Java IO erzeugten temporären Dateien werden nur beim kontrollierten Stoppen der JVM gelöscht. Dazu muss regelmäßig der Tomcat-Server neu gestartet werden.
-- Um ein Löschen der temporären Dateien auch vor einem Neustart (Betriebssystem oder JVM) zu ermöglichen, kann diese Aktion z. B. über einen Cron-Job geschehen. Dieser Job muss auf dem Server mit den XPlanManager und XPlanValidator eingerichtet werden.
+- Um ein Löschen der temporären Dateien auch vor einem Neustart (Betriebssystem oder JVM) zu ermöglichen, kann diese Aktion z. B. über einen Cron-Job geschehen. Dieser Job muss auf dem Server mit dem XPlanManager und XPlanValidator eingerichtet werden.
 

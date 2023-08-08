@@ -23,7 +23,7 @@
 <Themes xmlns="http://www.deegree.org/themes/standard"
         xmlns:d="http://www.deegree.org/metadata/description"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.deegree.org/themes/standard https://schemas.deegree.org/3.5/themes/themes.xsd">
+        xsi:schemaLocation="http://www.deegree.org/themes/standard https://schemas.deegree.org/core/3.5/themes/themes.xsd">
 
   <LayerStoreId>inspireplu</LayerStoreId>
 

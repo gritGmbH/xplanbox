@@ -82,7 +82,12 @@ public class ApplicationContext {
 	private ApplicationEventPublisher applicationEventPublisher;
 
 	@Bean
-	public TransformingValidator transformingValidator(ManagerConfiguration managerConfiguration, XPlanDao xPlanDao) {
+	public TransformingValidator transformingValidator(ManagerConfiguration managerConfiguration, XPlanDao xPlanDao)
+			throws ConfigurationException {
+		if (managerConfiguration.getPathToHaleCli() == null
+				|| managerConfiguration.getPathToHaleProjectDirectory() == null)
+			throw new ConfigurationException(
+					"Hale is not configured correctly. Ensure that 'pathToHaleCli' in managerConfiguration.properties is set and the hale transformation is available.");
 		HaleXplan41ToXplan51Transformer transformer = new HaleXplan41ToXplan51Transformer(
 				managerConfiguration.getPathToHaleCli(), managerConfiguration.getPathToHaleProjectDirectory());
 		XPlanGmlTransformer xPlanGmlTransformer = new XPlanGmlTransformer(transformer);

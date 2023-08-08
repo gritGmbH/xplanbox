@@ -28,6 +28,8 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -49,6 +51,8 @@ import static de.latlon.xplan.manager.cli.XPlanManagerCLI.printUsage;
 @Component
 @Import(ApplicationContext.class)
 public class XPlanManagerApplicationRunner implements ApplicationRunner {
+
+	private static final Logger LOG = LoggerFactory.getLogger(XPlanManagerApplicationRunner.class);
 
 	@Autowired
 	private XPlanManager xPlanManager;
@@ -90,6 +94,7 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			printList(xPlanList);
 		}
 		catch (Exception e) {
+			LOG.debug("Auflisten der Plaene fehlgeschlagen.", e);
 			endWithFatalError("Auflisten der Plaene fehlgeschlagen. Fehlermeldung: " + e.getLocalizedMessage());
 		}
 	}
@@ -109,6 +114,7 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 				System.out.println("XPlan " + planId + " wurde geloescht.");
 			}
 			catch (Exception e) {
+				LOG.debug("Loeschen des Plans mit der id " + planId + " fehlgeschlagen.", e);
 				endWithFatalError("Loeschen des Plans mit der id " + planId + " fehlgeschlagen. Fehlermeldung: "
 						+ e.getLocalizedMessage());
 			}
@@ -220,6 +226,7 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 				xPlanManager.importPlan(planToImport, defaultCRS, force, true, null);
 			}
 			catch (Exception e) {
+				LOG.debug("Import des XPlanArchivs fehlgeschlagen.", e);
 				endWithFatalError("Import des XPlanArchivs fehlgeschlagen. Fehlermeldung: " + e.getLocalizedMessage());
 			}
 		}
@@ -247,6 +254,7 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 				endWithFatalError("Kann FileOutputStream nicht erzeugen: " + e.getMessage());
 			}
 			catch (Exception e) {
+				LOG.debug("Export des Plans fehlgeschlagen.", e);
 				endWithFatalError("Export des Plans fehlgeschlagen. Fehlermeldung: " + e.getLocalizedMessage());
 			}
 			System.out.print("XPlan " + planId + " wurde nach '" + outputFile.getName() + "' exportiert.");

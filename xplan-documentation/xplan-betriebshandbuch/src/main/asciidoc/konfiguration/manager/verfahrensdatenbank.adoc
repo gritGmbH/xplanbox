@@ -38,7 +38,7 @@ Konfigurationsdatei können wie zuvor beschrieben geändert werden):
 ----
 <DataSourceConnectionProvider xmlns="http://www.deegree.org/connectionprovider/datasource"
                               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:schemaLocation="http://www.deegree.org/connectionprovider/datasource https://schemas.deegree.org/3.5/connectionprovider/datasource/datasource.xsd">
+                              xsi:schemaLocation="http://www.deegree.org/connectionprovider/datasource https://schemas.deegree.org/core/3.5/connectionprovider/datasource/datasource.xsd">
 
   <DataSource javaClass="org.apache.commons.dbcp2.BasicDataSource" destroyMethod="close"/>
 

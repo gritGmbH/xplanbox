@@ -2,39 +2,49 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
-## Version 7.0 (2023-MM-TT)
+## Version 7.0 (2023-08-TT)
 
 ### Erweiterungen
-- Unterstützung für MapServer 8.0 zur Bereitstellung des XPlanWMS
+- Unterstützung für MapServer 8.0 zur Bereitstellung von Rasterdaten für XPlanWMS
 - Ablage von Rasterdaten in einem AWS S3-kompatiblen Objektspeicher wird unterstützt
 - Ablage von Begleitdokumenten in einem AWS S3-kompatiblen Objektspeicher wird unterstützt
-- Abruf von Dokumenten und Rasterdaten über die neue Schnittstelle _XPlanDokumentenAPI_
-- Der XML-Prozessor ist so konfiguriert, dass nur lokale statische DTD verwendet werden können, jede externe und jede deklarierte DTD wird nicht mehr zugelassen
+- Abruf von Dokumenten und Rasterdaten über die neue Schnittstelle XPlanDokumentenAPI hergestellt
+- Verbesserter Abruf von Dokumenten und Rasterdaten in der GetFeatureInfo-Abfrage des XPlanWMS und GetFeature-Abfrage des XPlanSynWFS und XPlanWFS
 - Verbesserung der Geltungsbereichsprüfung im XPlanValidator
-- Der Import von XPlanGML-Dateien über den XPlanManagerWeb/API wird unterstützt; eine ZIP-Datei ist nicht mehr erforderlich
+- Prüfung der externen Referenzen bei Validierung eines Plans und Ausgabe des Ergebnisses im Validierungsbericht
+- Der Import von XPlanGML-Dateien über den XPlanManagerWeb und XPlanManagerAPI wird unterstützt; eine ZIP-Datei ist nicht mehr erforderlich
 - Der XPlanValidator kann Daten für den XPlanValidatorWMS temporär in der XPlanDB speichern
-- Konfiguration der PostGIS-Erweiterung mit der Angabe des `srid` für alle Geometriespalten hinzugefügt
-- Import einer XPlanGML-Datei ohne Anhänge im XPlanManager
-- Prüfung der externen Referenzen bei Validierung eines Plans und Ausgabe des Ergebnis im Validierungsbericht
-- Unterstützung einer PostgreSQL Datenbank als temporäre Datenablage für mit dem XPlanValidator validierten Pläne
+- Konfiguration der XPlanDB mit der Angabe des `srid` für alle Geometriespalten hinzugefügt
 - Unterstützung einer neuer StoredQuery mit Filter auf planName und eingegrenzten FeatureType im XPlanSynWFS
 - Unterstützung der StoredQuery mit Filter auf planName im XPlanSynWFS für alle Datenhaltungen
-- Setzen des SRID für Geometrien im XPlanSyn-Schema der XPlanDB
-- Absicherung der deegree console und XPlanwerWMSAPI über ApiKeys
+- Absicherung der deegree REST-API über ApiKeys
 - Unterstützung des vereinfachten Downloads eines XPlanArchiv über die XPlanManagerAPI
-- Verbesserter Abruf von Dokumenten und Rasterdaten in der GetFeatureInfo-Abfrage des XPlanWMS und GetFeature-Abfrage des XPlanSynWFS und XPlanWFS
-- Erweitertung der Sortierung von Textabschnitten
-- Entfernen des Präfix aus den Layername im XPlanWFS
+- Erweiterung der Sortierung von Textabschnitten
+- Entfernen des XML-Namespace Präfixes aus dem FeatureType-Namen in den Capabilities des XPlanWFS
+- Verbesserung der Transaktionalität bei Auftreten unerwarteter Fehler beim Import im XPlanManager
+- Vorgabewert für Verzeichnisse mit Konfigurationsdateien der xPlanBox setzen
+
+### Sicherheitsupdates
+- Schwachstelle im XML-Prozessor von XPlanValidator und XPlanManager behoben, sodass nur lokale statische DTD verwendet werden können; jede externe und jede deklarierte DTD wird nicht mehr zugelassen
+- Schwachstelle im XPlanValidator und XPlanManager gegen persistentes Cross-Site-Scripting (XSS)
+- Schwachstelle im XPlanValidator und XPlanManager beim Upload schadhafter Dateien
+- Aktualisierung von Bibliotheken mit bekannten Sicherheitsmängeln
 
 ### Fehlerbehebungen
 - Fehler in XPlanManagerAPI bei Aufruf von HTTP DELETE für einen Plan behoben
-- Fehler in XPlanValidatorAPI bei der Validierung syntaktisch invalider Pläne
+- Fehler in XPlanValidatorAPI bei der Validierung syntaktisch invalider Pläne behoben
 - Fehler in XPlanWMS bei Aufruf mit GetMap-Anfrage mit WMS 1.1.1 und EPSG:4326 behoben
 - Fehler in XPlanWFS bei Aufruf mit Get-Feature-Anfrage mit WFS 1.1.0 behoben
-- Fehler im Encondig der Attributtabelle von Shapefiles aus dem Validierungsreport des XPlanValidators behoben
+- Fehler im Encoding der Attributtabelle von Shapefiles aus dem Validierungsreport des XPlanValidators behoben
 - Fehler im XPlanWMS bei Aufruf mit GetMap-Anfrage mit WMS 1.1.1 und EPSG:4326 behoben
-- Fehlende Ausgabe der Detaillierten Zweckbestimmung in komplexen Attributen im XPlanSynWFS ergänzt
-- Verbesserung der Transaktionalität bei Auftreten unerwarter Fehler beim Import im XPlanManager
+- Fehlende Ausgabe der detaillierten Zweckbestimmung in komplexen Attributen im XPlanSynWFS ergänzt
+
+### Veraltete Funktionen
+
+Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version der xPlanBox entfernt:
+- LDAP-Schnittstelle ist veraltet (deprecated)
+- Schnittstelle zur Verfahrensdatenbank ist veraltet (deprecated)
+- Filterkategorien im XPlanManagerWeb sind veraltet (deprecated)
 
 ## Version 6.0.3 (2023-06-15)
 

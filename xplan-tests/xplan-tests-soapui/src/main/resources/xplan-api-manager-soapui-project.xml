@@ -17,7 +17,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<con:soapui-project id="adcdfd3f-0f4e-4107-8d7e-086010676cb7" activeEnvironment="Default" name="xplan-api-manager" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="adcdfd3f-0f4e-4107-8d7e-086010676cb7" activeEnvironment="Default" name="xplan-api-manager" resourceRoot="" soapui-version="5.7.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:interface xsi:type="con:RestService" id="4c3b4b1f-f0cd-4a9f-bbc4-433948e85871" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanManagerAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:description>XPlanManager REST API</con:description>
@@ -310,6 +310,10 @@ Import the plan</con:description>
           <con:status>0</con:status>
           <con:params/>
           <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/gml+xml</con:mediaType>
+          <con:params/>
         </con:representation>
         <con:request name="Request 1" id="0ab9bfa6-1c76-41df-b253-dabff57568f7" mediaType="application/json" postQueryString="false">
           <con:settings/>
@@ -1872,7 +1876,7 @@ Search for plan by name</con:description>
             <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /">
               <con:configuration>
                 <path>$.paths./</path>
-                <content>{"get":{"summary":"OpenAPI document","description":"API documentation","operationId":"openApi","responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","example":null},"example":null}}},"406":{"description":"Requested format is not available"}}}}</content>
+                <content>{"get":{"summary":"OpenAPI document","description":"API documentation","operationId":"openApi","responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object"}}}},"406":{"description":"Requested format is not available"}}}}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1881,7 +1885,7 @@ Search for plan by name</con:description>
             <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /plan/{planId}/basisdaten">
               <con:configuration>
                 <path>$.paths./plan/{planId}/basisdaten</path>
-                <content>{"get":{"tags":["edit"],"operationId":"getBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan basisdaten to be returned","required":true,"schema":{"type":"string","example":null},"example":123}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"},"example":null}}},"400":{"description":"Unsupported plan version or planID is not a valid int value"},"404":{"description":"Invalid planID, plan not found"},"406":{"description":"Requested format is not available"}}},"put":{"tags":["edit"],"operationId":"replaceBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan to be returned","required":true,"schema":{"type":"string","example":null},"example":123}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"},"example":null}}},"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"},"example":null}}},"400":{"description":"Unsupported plan version or planID is not a valid int value"},"404":{"description":"Invalid planID, plan not found"},"406":{"description":"Requested format is not available"},"422":{"description":"Request body contains invalid content"}}}}</content>
+                <content>{"get":{"tags":["edit"],"operationId":"getBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan basisdaten to be returned","required":true,"schema":{"type":"string"},"example":123}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"400":{"description":"Unsupported plan version or planID is not a valid int value"},"404":{"description":"Invalid planID, plan not found"},"406":{"description":"Requested format is not available"}}},"put":{"tags":["edit"],"operationId":"replaceBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan to be returned","required":true,"schema":{"type":"string"},"example":123}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"400":{"description":"Unsupported plan version or planID is not a valid int value"},"404":{"description":"Invalid planID, plan not found"},"406":{"description":"Requested format is not available"},"422":{"description":"Request body contains invalid content"}}}}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1890,7 +1894,7 @@ Search for plan by name</con:description>
             <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /plan profiles parameter">
               <con:configuration>
                 <path>$.paths./plan.post.parameters.[?(@.name == 'profiles')]</path>
-                <content>[{"name":"profiles","in":"query","description":"Names of profiles which shall be additionaly used for validation","explode":false,"schema":{"type":"array","example":null,"items":{"type":"string","example":null}}}]</content>
+                <content>[{"name":"profiles","in":"query","description":"Names of profiles which shall be additionaly used for validation","explode":false,"schema":{"type":"array","items":{"type":"string"}}}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -3721,6 +3725,83 @@ assert actualHeader != null</scriptText>
               <con:contentId>BP_6.0.2.zip</con:contentId>
               <con:part xsi:nil="true"/>
               <con:url>${projectDir}/xplan-api-manager/plans/BP_6.0.2.zip</con:url>
+              <con:id>0c70fade-2e59-43eb-a59a-ee6dcbd05e46</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="skipLaufrichtung" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>internalId</con:entry>
+              <con:entry>planStatus</con:entry>
+              <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0.2 XX importPlanExpectValidationErrorNoBereich" id="70f7ce01-5dff-4f14-9854-4e2a5a4a959e">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0.2 XX importPlanExpectValidationError" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f31c01fb-90a3-4d83-b885-5a8e4de34d21" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="b4c91438-41a6-4d2b-8f1e-9fa2dc8b8c7d" name="geometrisch valid">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="25c5d5cd-f2f3-4a63-8a9d-c33c8fceb703" name="geometrisch errors">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.errors</path>
+                <content>["Die XLink-Integrität für die Referenz Gml_612F9C72-83DD-4220-98A7-7AB487797D85 konnte nicht sichergestellt werden, ein Feature mit dieser ID existiert nicht."]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_6.0.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>BP_6.0.2.zip</con:contentId>
+              <con:part xsi:nil="true"/>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_6.0.2_NoBereichButReferenceExists.zip</con:url>
               <con:id>0c70fade-2e59-43eb-a59a-ee6dcbd05e46</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>

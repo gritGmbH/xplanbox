@@ -305,6 +305,7 @@ public class XPlanValidator {
 	private void parseReferencesAndPlanNames(XPlanArchive archive, ValidatorReport report) {
 		try {
 			XPlanFeatureCollection featureCollection = XPlanGmlParserBuilder.newBuilder()
+				.withSkipResolveReferences(true)
 				.build()
 				.parseXPlanFeatureCollection(archive);
 			report.setBBoxIn4326(featureCollection.getBboxIn4326());
