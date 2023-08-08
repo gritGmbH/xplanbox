@@ -3094,7 +3094,7 @@ assert json.version != null</scriptText>
       <con:testStep type="restrequest" name="POST BP 6.0.2 XX validatePlanExpectErrorNoBereich" id="bc80a059-c820-4798-903c-f5135a10bf5e">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 6.0.2 XX validatePlanExpectException" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+          <con:restRequest name="POST BP 6.0.2 XX validatePlanExpectErrorNoBereich" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -3137,6 +3137,24 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$.validationResult.geometrisch.errors</path>
                 <content>["Die XLink-Integrität für die Referenz Gml_612F9C72-83DD-4220-98A7-7AB487797D85 konnte nicht sichergestellt werden, ein Feature mit dieser ID existiert nicht."]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="semantisch valid">
+              <con:configuration>
+                <path>$.validationResult.semantisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="semantisch errors">
+              <con:configuration>
+                <path>$.validationResult.semantisch.rules[?(@.name == '4.1.1.1')].isValid</path>
+                <content>[false]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>

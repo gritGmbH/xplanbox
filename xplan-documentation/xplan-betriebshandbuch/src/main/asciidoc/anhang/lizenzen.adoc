@@ -214,7 +214,7 @@
 (CDDL 1.1) (GPL2 w/ CPE) jaxb-api (javax.xml.bind:jaxb-api:2.3.1 - https://github.com/javaee/jaxb-spec/jaxb-api)
 (http://jaxen.codehaus.org/license.html) jaxen (jaxen:jaxen:1.1.6 - http://jaxen.codehaus.org/)
 (BSD License 2.0) jaxen (jaxen:jaxen:1.2.0 - http://www.cafeconleche.org/jaxen)
-(Unknown license) jgridshift (jgridshift:jgridshift:1.0-deegreeversion - no url defined)
+(GNU Lesser General Public License (LGPL), version 2.1) jgridshift (jgridshift:jgridshift:1.0-deegreeversion - https://github.com/geosolutions-it/jgridshift)
 (Apache License, Version 2.0) Joda-Time (joda-time:joda-time:2.10.8 - https://www.joda.org/joda-time/)
 (Apache 2) Joda-Time (joda-time:joda-time:2.8.1 - http://www.joda.org/joda-time/)
 (Unknown license) jogl (jogl:jogl:1.1.2 - no url defined)

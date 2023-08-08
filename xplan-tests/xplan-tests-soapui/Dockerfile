@@ -1,4 +1,4 @@
-FROM maven:3.9.2-eclipse-temurin-11-alpine
+FROM maven:3.9-eclipse-temurin-11-alpine
 
 RUN apk add py3-pip py3-pillow py3-cffi py3-brotli gcc musl-dev python3-dev pango pango-tools aws-cli
 RUN pip install weasyprint

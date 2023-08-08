@@ -238,7 +238,7 @@ public class ManagerConfiguration {
 					String[] categoriesWithParts = categoriesToPartsProperty.split(";");
 					parseCategories(categoriesWithParts);
 				}
-				rasterConfigurationCrs = loadProperties.getProperty(RASTER_CONFIG_CRS);
+				rasterConfigurationCrs = parseRasterConfigurationCrs(loadProperties, RASTER_CONFIG_CRS);
 				rasterConfigurationType = parseRasterConfigurationType(loadProperties);
 				rasterLayerMinScaleDenominator = parseScaleDenominator(loadProperties,
 						RASTER_LAYER_SCALE_DENOMINATOR_MIN);
@@ -334,6 +334,14 @@ public class ManagerConfiguration {
 			return categoryWithParts.substring(0, indexOfCategoryEnd);
 		}
 		throw new ConfigurationException("Categories was not correctly configured!");
+	}
+
+	private String parseRasterConfigurationCrs(Properties loadProperties, String rasterConfigCrs) {
+		String rasterConfigurationCrsPropertyValue = loadProperties.getProperty(RASTER_CONFIG_CRS);
+		if (rasterConfigurationCrsPropertyValue != null && !rasterConfigurationCrsPropertyValue.trim().isEmpty()) {
+			return rasterConfigurationCrsPropertyValue;
+		}
+		return null;
 	}
 
 	private RasterConfigurationType parseRasterConfigurationType(Properties loadProperties) {
