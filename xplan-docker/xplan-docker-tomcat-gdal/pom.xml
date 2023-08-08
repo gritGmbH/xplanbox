@@ -14,4 +14,38 @@
   <properties>
     <docker-image.skip>false</docker-image.skip>
   </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.prometheus.jmx</groupId>
+      <artifactId>jmx_prometheus_javaagent</artifactId>
+      <version>0.19.0</version>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+		<plugin>
+			<artifactId>maven-jar-plugin</artifactId>
+			<configuration>
+				<skipIfEmpty>true</skipIfEmpty>
+			</configuration>
+		</plugin>
+		<plugin>
+			<artifactId>maven-dependency-plugin</artifactId>
+			<executions>
+				<execution>
+					<goals>
+						<goal>copy-dependencies</goal>
+					</goals>
+					<configuration>
+						<excludeTransitive>true</excludeTransitive>
+						<excludeTypes>pom</excludeTypes>
+						<outputDirectory>${project.build.directory}/deps</outputDirectory>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+    </plugins>
+  </build>
 </project>
