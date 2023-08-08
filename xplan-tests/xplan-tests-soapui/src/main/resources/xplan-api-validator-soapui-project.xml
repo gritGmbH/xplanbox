@@ -3153,8 +3153,8 @@ assert json.version != null</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="semantisch errors">
               <con:configuration>
-                <path>$.validationResult.semantisch.rules[?(@.isValid == false)].name</path>
-                <content>[4.1.1.1]</content>
+                <path>$.validationResult.semantisch.rules[?(@.name == '4.1.1.1')].isValid</path>
+                <content>[false]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
