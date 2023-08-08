@@ -4,7 +4,7 @@ ARG XPLANBOX_IMAGE_NAME_PREFIX=xplanbox
 FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-volume-init:$XPLANBOX_VERSION as volumeInitBuilder 
 
 
-FROM eclipse-temurin:11.0.16_8-jdk-alpine
+FROM eclipse-temurin:11.0.20_8-jdk-alpine
 
 RUN apk --no-cache add bash
 

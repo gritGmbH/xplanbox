@@ -1,6 +1,6 @@
 FROM ubuntu:focal
 
-ARG TOMCAT_VERSION="9.0.65"
+ARG TOMCAT_VERSION="9.0.78"
 # set environment variables
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
