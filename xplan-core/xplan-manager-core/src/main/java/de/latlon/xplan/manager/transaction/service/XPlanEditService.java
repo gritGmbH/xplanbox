@@ -21,7 +21,6 @@
 package de.latlon.xplan.manager.transaction.service;
 
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
@@ -56,24 +55,23 @@ public class XPlanEditService {
 
 	@Transactional(rollbackOn = Exception.class)
 	public void update(XPlan oldXplan, List<File> uploadedArtefacts, int planId, byte[] xPlanGml,
-			ExternalReferenceInfo externalReferenceInfoToUpdate, ExternalReferenceInfo externalReferenceInfoToRemove,
+			Set<String> addedNonRasterRefFileNames, Set<String> removedNonRasterRefFileNames,
 			Map<String, String> addedRefFileNames, Set<String> removedRefFileNames,
 			XPlanFeatureCollection modifiedPlanFc, FeatureCollection synFc, AdditionalPlanData xPlanMetadata,
 			Date sortDate, String internalId) throws Exception {
 		xplanDao.update(oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, sortDate, uploadedArtefacts,
 				addedRefFileNames, removedRefFileNames, internalId);
-		updateDocuments(planId, uploadedArtefacts, externalReferenceInfoToUpdate, externalReferenceInfoToRemove);
+		updateDocuments(planId, uploadedArtefacts, addedNonRasterRefFileNames, removedNonRasterRefFileNames);
 	}
 
-	private void updateDocuments(int planId, List<File> uploadedArtefacts,
-			ExternalReferenceInfo externalReferenceInfoToAdd, ExternalReferenceInfo externalReferenceInfoToRemove)
-			throws StorageException {
+	private void updateDocuments(int planId, List<File> uploadedArtefacts, Set<String> updatedNonRasterRefFileNames,
+			Set<String> removedNonRasterRefFileNames) throws StorageException {
 		if (xPlanDocumentManager != null) {
 			List<Path> uploadedArtefactsAsPaths = uploadedArtefacts.stream()
 				.map(uploadedArtefact -> Paths.get(uploadedArtefact.toURI()))
 				.collect(Collectors.toList());
-			xPlanDocumentManager.updateDocuments(planId, uploadedArtefactsAsPaths,
-					externalReferenceInfoToAdd.getNonRasterRefs(), externalReferenceInfoToRemove.getNonRasterRefs());
+			xPlanDocumentManager.updateDocuments(planId, uploadedArtefactsAsPaths, updatedNonRasterRefFileNames,
+					removedNonRasterRefFileNames);
 		}
 	}
 

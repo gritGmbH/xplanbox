@@ -32,6 +32,8 @@ import org.springframework.context.ApplicationEventPublisher;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -82,11 +84,14 @@ public class XPlanDocumentManager {
 	 * <code>null</code>
 	 * @throws StorageException if the documents could not be updated
 	 */
-	public void updateDocuments(int planId, List<Path> uploadedArtefacts, List<ExternalReference> documentsToAdd,
-			List<ExternalReference> documentsToRemove) throws StorageException {
+	public void updateDocuments(int planId, List<Path> uploadedArtefacts, Set<String> documentsToAdd,
+			Set<String> documentsToRemove) throws StorageException {
 		StorageEvent storageEvent = new StorageEvent();
 		try {
-			for (String referenceToAdd : collectNonHttpReferences(documentsToAdd)) {
+			List<String> referencesToAdd = documentsToAdd.stream()
+				.filter(document -> isNonHttpReference(document))
+				.collect(Collectors.toList());
+			for (String referenceToAdd : referencesToAdd) {
 				Path fileToAdd = getFileToAdd(referenceToAdd, uploadedArtefacts);
 				if (fileToAdd != null) {
 					documentStorage.importDocument(planId, referenceToAdd, fileToAdd, storageEvent);
@@ -96,7 +101,10 @@ public class XPlanDocumentManager {
 				}
 			}
 
-			for (String referenceToRemove : collectNonHttpReferences(documentsToRemove)) {
+			List<String> referencesToRemove = documentsToRemove.stream()
+				.filter(document -> isNonHttpReference(document))
+				.collect(Collectors.toList());
+			for (String referenceToRemove : referencesToRemove) {
 				documentStorage.deleteDocument(planId, referenceToRemove, storageEvent);
 			}
 		}
@@ -122,11 +130,15 @@ public class XPlanDocumentManager {
 		return referencesToAdd;
 	}
 
-	private static void addReference(String reference, List<String> referencesToAdd) {
+	private void addReference(String reference, List<String> referencesToAdd) {
 		String geoRef = reference;
-		if (geoRef != null && !geoRef.startsWith("http")) {
+		if (isNonHttpReference(geoRef)) {
 			referencesToAdd.add(geoRef);
 		}
+	}
+
+	private boolean isNonHttpReference(String ref) {
+		return ref != null && !ref.startsWith("http");
 	}
 
 }

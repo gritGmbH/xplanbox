@@ -71,10 +71,11 @@ import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanName;
+import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectAddedNonRasterRefFileNames;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectAddedRefFileNames;
+import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedNonRasterRefFileNames;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefFileNames;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
-import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
 import static de.latlon.xplan.manager.transaction.TransactionUtils.reassignFids;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 import static java.lang.Integer.parseInt;
@@ -139,13 +140,15 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			byte[] xPlanGml = createXPlanGml(version, modifiedFeatures);
 			ExternalReferenceInfo externalReferenceInfoToUpdate = createExternalRefAddedOrUpdated(
 					externalReferencesModified, uploadedArtefacts);
-			ExternalReferenceInfo externalReferenceInfoToRemove = createExternalRefRemovedOrUpdated(
-					externalReferencesModified, uploadedArtefacts, externalReferencesOriginal);
 			List<String> originalArtefacts = xplanDao.retrieveAllXPlanArtefactFileNames(planId);
 			Set<String> removedRefFileNames = collectRemovedRefFileNames(attachmentUrlHandler, oldXplan.getId(),
 					externalReferencesModified, externalReferencesOriginal, originalArtefacts);
+			Set<String> removedNonRasterRefFileNames = collectRemovedNonRasterRefFileNames(attachmentUrlHandler,
+					oldXplan.getId(), externalReferencesModified, externalReferencesOriginal, originalArtefacts);
 			Map<String, String> addedRefFileNames = collectAddedRefFileNames(attachmentUrlHandler, oldXplan.getId(),
 					externalReferencesModified, externalReferencesOriginal, uploadedFileNames);
+			Set<String> addedNonRasterRefFileNames = collectAddedNonRasterRefFileNames(attachmentUrlHandler,
+					oldXplan.getId(), externalReferencesModified, externalReferencesOriginal, uploadedFileNames);
 
 			XPlanFeatureCollection modifiedPlanFc = new XPlanFeatureCollectionBuilder(modifiedFeatures, type)
 				.withExternalReferenceInfo(externalReferenceInfoToUpdate)
@@ -159,12 +162,12 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			AdditionalPlanData xPlanMetadata = new AdditionalPlanData(newPlanStatus,
 					xPlanToEdit.getValidityPeriod().getStart(), xPlanToEdit.getValidityPeriod().getEnd());
 			Date sortDate = sortPropertyReader.readSortDate(type, version, modifiedFeatures);
-			xPlanEditService.update(oldXplan, uploadedArtefacts, planId, xPlanGml, externalReferenceInfoToUpdate,
-					externalReferenceInfoToRemove, addedRefFileNames, removedRefFileNames, modifiedPlanFc, synFc,
+			xPlanEditService.update(oldXplan, uploadedArtefacts, planId, xPlanGml, addedNonRasterRefFileNames,
+					removedNonRasterRefFileNames, addedRefFileNames, removedRefFileNames, modifiedPlanFc, synFc,
 					xPlanMetadata, sortDate, internalId);
 			startCreationIfPlanNameHasChanged(planId, type, modifiedPlanFc, oldPlanName, oldDescription);
 			updateRasterConfiguration(planId, makeRasterConfig, uploadedArtefacts, type, oldPlanStatus,
-					externalReferenceInfoToRemove, modifiedPlanFc, newPlanStatus, sortDate);
+					removedRefFileNames, addedRefFileNames, newPlanStatus, sortDate);
 			LOG.info("XPlanGML wurde erfolgreich editiert. ID: {}", planId);
 		}
 	}
@@ -176,13 +179,14 @@ public class XPlanEditManager extends XPlanTransactionManager {
 	}
 
 	private void updateRasterConfiguration(int planId, boolean makeRasterConfig, List<File> uploadedArtefacts,
-			XPlanType type, PlanStatus oldPlanStatus, ExternalReferenceInfo externalReferenceInfoToRemove,
-			XPlanFeatureCollection modifiedPlanFc, PlanStatus newPlanStatus, Date sortDate)
+			XPlanType type, PlanStatus oldPlanStatus, Set<String> removedRefFileNames,
+			Map<String, String> addedRefFileNames, PlanStatus newPlanStatus, Date sortDate)
 			throws JAXBException, IOException, ConfigurationException {
-		xPlanRasterManager.removeRasterLayers(planId, externalReferenceInfoToRemove);
+		xPlanRasterManager.removeRasterLayers(planId, removedRefFileNames);
 		if (makeRasterConfig) {
 			XPlanArchiveContentAccess archive = new XPlanPartArchive(uploadedArtefacts);
-			createRasterConfiguration(archive, modifiedPlanFc, planId, type, oldPlanStatus, newPlanStatus, sortDate);
+			createRasterConfiguration(archive, addedRefFileNames.values().stream().collect(Collectors.toList()), planId,
+					type, oldPlanStatus, newPlanStatus, sortDate);
 			reloadWorkspace(planId);
 		}
 		else {

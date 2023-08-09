@@ -24,7 +24,6 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
-import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.manager.storage.StorageEvent;
@@ -35,7 +34,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
@@ -81,8 +80,8 @@ public class XPlanDocumentManagerTest {
 		String referenceToAdd = "test.png";
 		String referenceToRemove = "removed.png";
 		Path uploadedArtefact = createMockedPath(referenceToAdd);
-		List<ExternalReference> documentsToAdd = Collections.singletonList(new ExternalReference(referenceToAdd));
-		List<ExternalReference> documentsToRemove = Collections.singletonList(new ExternalReference(referenceToRemove));
+		Set<String> documentsToAdd = Collections.singleton(referenceToAdd);
+		Set<String> documentsToRemove = Collections.singleton(referenceToRemove);
 		xPlanDocumentManager.updateDocuments(1, Collections.singletonList(uploadedArtefact), documentsToAdd,
 				documentsToRemove);
 		verify(storage).importDocument(eq(1), eq(referenceToAdd), eq(uploadedArtefact), any(StorageEvent.class));
