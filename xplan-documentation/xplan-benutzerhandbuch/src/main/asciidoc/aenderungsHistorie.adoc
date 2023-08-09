@@ -24,12 +24,12 @@ Neben der Aktualisierung auf die aktuelle deegree webservices Version 3.5.0 sind
 - Erweiterung der Sortierung von Textabschnitten
 - Entfernen des XML-Namespace Präfixes aus dem FeatureType-Namen in den Capabilities des XPlanWFS
 - Verbesserung der Transaktionalität bei Auftreten unerwarteter Fehler beim Import im XPlanManager
-- Vorgabewert für Verzeichnisse mit Konfigurationsdateien der xPlanBox setzen
+- Neuer Vorgabewert für Verzeichnisse mit Konfigurationsdateien der xPlanBox
 
 ==== Sicherheitsupdates
 - Schwachstelle im XML-Prozessor von XPlanValidator und XPlanManager behoben, sodass nur lokale statische DTD verwendet werden können; jede externe und jede deklarierte DTD wird nicht mehr zugelassen
-- Schwachstelle im XPlanValidator und XPlanManager gegen persistentes Cross-Site-Scripting (XSS)
-- Schwachstelle im XPlanValidator und XPlanManager beim Upload schadhafter Dateien
+- Schwachstelle im XPlanValidator und XPlanManager gegen persistentes Cross-Site-Scripting (XSS) behoben
+- Schwachstelle im XPlanValidator und XPlanManager beim Upload schadhafter Dateien behoben
 - Aktualisierung von Bibliotheken mit bekannten Sicherheitsmängeln
 
 ==== Fehlerbehebungen
@@ -60,7 +60,7 @@ Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version 
 
 ==== Fehlerbehebungen
 - Aktualisierung der Validierungsregeln auf v1.1.3 mit Korrekturen der Regeln 4.5.1.3 und 5.3.1.2
-- Fehlerkorrektur in der Geltungsgbereichsprüfung
+- Fehlerkorrektur in der Geltungsbereichsprüfung
 
 [[Aenderungshistorie-6.0.1]]
 === Version 6.0.1
@@ -115,75 +115,5 @@ Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neb
 - Fehlerbehandlung für Anfrage von nicht vorhandenen Ressource über XPlanManagerAPI verbessert
 - Fehlende Zeichenvorschriften ergänzt
 - Fehler in der Flächenschlussprüfung für Änderungspläne und bei vollständiger Überlappung behoben
-
-[[Aenderungshistorie-5.0.3]]
-=== Version 5.0.3
-
-==== Fehlerbehebungen
-- Verbesserung der Geltungsbereichsprüfung im XPlanValidator
-    - Ausgabe von Schnittpunkten verbessert
-    - Prüfung von linien- oder punktförmigen Geometrien korrigiert
-- Verbesserungen der Flächenschlussprüfung im XPlanValidator
-    - Abweichungen von Stützpunkten unterhalb von 2mm im Bereich von Lücken werden erkannt
-    - Verbesserte Ausgabe von potenziellen Lücken als Warnungen
-- Fehlermeldung bei Abbruch der geometrischen Validierung im XPlanValidator verbessert
-- Verbesserte Darstellung von geometrischen Warnungen im HTML-Format des Reports des XPlanValidator
-- Korrekturen in der Benutzerdokumentation für den XPlanValidator vorgenommen
-
-[[Aenderungshistorie-5.0.2]]
-=== Version 5.0.2
-
-==== Fehlerbehebungen
-- Fehler in XPlanManagerWeb und XPlanManagerAPI bei Änderungen von Rasterdaten in Instanzdokumenten mit mehreren Bereichen behoben
-
-[[Aenderungshistorie-5.0.1]]
-=== Version 5.0.1
-
-==== Fehlerbehebungen
-- Fehler in OpenAPI-Dokument für XPlanManagerAPI und XPlanValidatorAPI behoben
-
-[[Aenderungshistorie-5.0]]
-=== Version 5.0
-
-Mit der Version 5.0 der xPlanBox wird die Version XPlanGML 5.4 unterstützt. Neben der Aktualisierung auf deegree webservices Version 3.4.27 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 5.0 der xPlanBox ist Java 11 mit Tomcat 9.0 erforderlich. Ältere Java Versionen werden nicht mehr unterstützt.
-
-==== Erweiterungen
-- Umstellung von Java 8 auf Java 11 sowie Tomcat 8.5 auf Tomcat 9.0
-- Unterstützung für XPlanGML 5.4 in allen Komponenten der xPlanBox
-- Import von Instanzdokumenten mit mehreren XP_Plan-Objekten
-- Editieren von BPlänen über XPlanManagerAPI
-- Unterstützung von Links für externe Dokumente in XPlanManager und XPlanWMS GetFeatureInfo
-- Sortierung von Textschlüsseln in XPlanManagerWeb und XPlanWMS GFI-Antwort
-- Konfiguration des XPlanWMS verbessert
-- Dokumenttyp in der GetFeatureInfo-Ausgabe des XPlanWMS ergänzt
-- Editieren von externen Dokumenten über eine vollqualifizierte URL ermöglicht
-- Umstellung der Referenz von Rasterbasis auf XP_Bereich.refScan in der Editierfunktion
-- Unterstützung von externen Dokumenten über eine vollqualifizierte URL
-- Klammern im Dateinamen erlaubt
-- Ausgabe und Reihenfolge der Textschlüssel in der HTML GFI verbessert
-- Verstöße gegen 2.2.2.1 (fehlerhafte Laufrichtung) als Fehler deklariert
-- Option zum Ignorieren/Korrigieren von Verstößen gegen KB 2.2.2.1 (Laufrichtung) ergänzt
-- Verbesserung der Darstellung des XPlanWMS und XPlanwerkWMS
-- Optimierung der geometrischen Validierung: Geltungsbereich (2.2.3.1)
-- Optimierung der geometrischen Validierung: Flächenschlussbedingung (2.2.1.1)
-- Geometrischen Fehler "Die XLink-Integrität konnte nicht sichergestellt werden" als Warnung gekennzeichnet
-- Berührungspunkte zwischen Polygon-Membern von Multiflächen erlaubt
-- Berührungspunkt zwischen Außen- und Innenkontur erlaubt
-- Gemeldete Fehler von Überschneidung zwischen äußeren und inneren Ring verbessert
-- Ausgeben einer Warnung für Konformitätsregel 3.2.6.2
-- Hinzufügen des Kommandozeilenwerkzeugs XPlanValidateDB
-- Hinzufügen des Kommandozeilenwerkzeugs XPlanAuswerteschemaCLI
-- Alternativen Betriebsmodus aus XPlanManagerCLI und Handbuch entfernt
-- Entfernen der Erweiterung für ADE/NSM
-- Log-Warnungen und Fehlermeldungen verbessert
-- Aufrechterhaltung der HTTP Verbindung bei langlaufenden Validierungsprozessen
-- Aktualisierung der Validierungsregeln auf v0.11.1
-- Aktualisierung auf deegree 3.4.27
-- Aktualisierung auf GDAL 3.0
-- Aktualisieren der Apache Log4J Abhängigkeiten
-
-==== Fehlerbehebungen
-- Fehler in der Workspace Konfiguration des XPlanWMS behoben
-- Fehler "org.deegree.geometry.standard.multi.DefaultMultiPoint cannot be cast to class org.deegree.geometry.primitive.Point" beim Import eines Plans behoben
 
 Die vollständige Änderungshistorie ist auf der https://gitlab.opencode.de/diplanung/ozgxplanung/[OpenCoDE-Plattform] zu finden.

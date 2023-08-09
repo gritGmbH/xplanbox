@@ -20,6 +20,22 @@ include::XPlanValidator-Einleitung.adoc[]
 include::XPlanValidator_Web.adoc[leveloffset=-2]
 
 == Änderungshistorie
+=== XPlanValidator Version 7.0
+
+Mit der Version 7.0 wurden folgende Änderungen an den Prüfungen im XPlanValidator vorgenommen:
+
+- Verbesserung der Geltungsbereichsprüfung
+- Prüfung der externen Referenzen bei Validierung eines Plans und Ausgabe des Ergebnisses im Validierungsbericht
+- Fehler im Encoding der Attributtabelle von Shapefiles aus dem Validierungsreport des XPlanValidators behoben
+
+=== XPlanValidator Version 6.0.3
+
+- Aktualisierung der Validierungsregeln auf v1.1.4 mit Korrektur der Regel 5.3.1.2 für Flächennutzungspläne in der Version XPlanGML 5.1
+
+=== XPlanValidator Version 6.0.2
+
+- Aktualisierung der Validierungsregeln auf v1.1.3 mit Korrekturen der Regeln 4.5.1.3 und 5.3.1.2
+- Fehlerkorrektur in der Geltungsbereichsprüfung
 
 === XPlanValidator Version 6.0
 
