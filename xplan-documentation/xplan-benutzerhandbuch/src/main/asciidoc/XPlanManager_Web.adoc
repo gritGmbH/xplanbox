@@ -116,7 +116,7 @@ unbeabsichtigt zu einer Zustandsänderung des Plans kommen kann!
 
 *Gültigkeitszeitraum*
 
- * Der Zeitraum in dem ein Plan gültig ist. Für dieses Feld gibt es keine
+ * Der Zeitraum in dem ein Plan im XPlanWMSInAufstellung angezeigt wird. Für dieses Feld gibt es keine
 Entsprechung im XPlanGML. Die Angabe des Zeitraums, wie sie beim Import
 erfolgt ist, wird beim Ändern des Zeitraums überschrieben.
 
