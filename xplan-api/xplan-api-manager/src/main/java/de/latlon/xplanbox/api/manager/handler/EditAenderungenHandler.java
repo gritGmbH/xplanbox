@@ -61,7 +61,7 @@ public class EditAenderungenHandler extends EditHandler {
 		XPlan plan = findPlanById(planId);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
 		xPlanToEdit.setChanges(aenderungen.toChanges());
-		manager.editPlan(plan, xPlanToEdit, false, Collections.emptyList());
+		manager.editPlan(plan, xPlanToEdit, true, Collections.emptyList());
 		return aenderungen;
 	}
 

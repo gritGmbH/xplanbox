@@ -88,7 +88,7 @@ public class EditTextHandler extends EditHandler {
 		texts.add(textToAdd);
 
 		List<File> uploadedArtefacts = file != null ? Collections.singletonList(file) : Collections.emptyList();
-		manager.editPlan(plan, xPlanToEdit, false, uploadedArtefacts);
+		manager.editPlan(plan, xPlanToEdit, true, uploadedArtefacts);
 		Optional<de.latlon.xplan.manager.web.shared.edit.Text> insertedText = manager
 			.getXPlanToEdit(findPlanById(planId))
 			.getTexts()
@@ -116,7 +116,7 @@ public class EditTextHandler extends EditHandler {
 		textToAdd.setFeatureId(textId);
 		texts.add(textToAdd);
 		List<File> uploadedArtefacts = file != null ? Collections.singletonList(file) : Collections.emptyList();
-		manager.editPlan(plan, xPlanToEdit, false, uploadedArtefacts);
+		manager.editPlan(plan, xPlanToEdit, true, uploadedArtefacts);
 		Optional<de.latlon.xplan.manager.web.shared.edit.Text> insertedText = manager
 			.getXPlanToEdit(findPlanById(planId))
 			.getTexts()

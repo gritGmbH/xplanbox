@@ -105,7 +105,7 @@ public class EditRasterbasisHandler extends EditHandler {
 
 		rasterBasis.getRasterReferences().add(rasterReferenceToAdd);
 		List<File> uploadedArtefacts = createUploadedArtefactsList(referenz, geoReferenz);
-		manager.editPlan(plan, xPlanToEdit, false, uploadedArtefacts);
+		manager.editPlan(plan, xPlanToEdit, true, uploadedArtefacts);
 		return retrieveInsertedRasterbasis(planId, rasterbasisModel, newRasterbasisId);
 	}
 
@@ -136,7 +136,7 @@ public class EditRasterbasisHandler extends EditHandler {
 		rasterBasis.getRasterReferences().remove(rasterReferenceToReplace);
 		rasterBasis.getRasterReferences().add(rasterReferenceToAdd);
 		List<File> uploadedArtefacts = createUploadedArtefactsList(referenz, geoReferenz);
-		manager.editPlan(plan, xPlanToEdit, false, uploadedArtefacts);
+		manager.editPlan(plan, xPlanToEdit, true, uploadedArtefacts);
 
 		return retrieveInsertedRasterbasis(planId, rasterbasisModel, newRasterbasisId);
 	}
@@ -157,7 +157,7 @@ public class EditRasterbasisHandler extends EditHandler {
 		rasterBasis.getRasterReferences().remove(rasterReferenceToDelete);
 		if (rasterBasis.getRasterReferences().isEmpty())
 			xPlanToEdit.addRasterBasis(null);
-		manager.editPlan(plan, xPlanToEdit, false, Collections.emptyList());
+		manager.editPlan(plan, xPlanToEdit, true, Collections.emptyList());
 		return Rasterbasis.fromRasterReference(rasterbasisId, rasterReferenceToDelete);
 	}
 

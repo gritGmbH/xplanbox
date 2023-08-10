@@ -60,7 +60,7 @@ public class EditGueltigkeitHandler extends EditHandler {
 		XPlan plan = findPlanById(planId);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
 		xPlanToEdit.setValidityPeriod(gueltigkeit.toValidityPeriod());
-		manager.editPlan(plan, xPlanToEdit, false, Collections.emptyList());
+		manager.editPlan(plan, xPlanToEdit, true, Collections.emptyList());
 		return gueltigkeit;
 	}
 
