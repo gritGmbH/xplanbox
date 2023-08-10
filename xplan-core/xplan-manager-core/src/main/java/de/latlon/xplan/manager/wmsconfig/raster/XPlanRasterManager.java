@@ -41,7 +41,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import static de.latlon.xplan.manager.wmsconfig.raster.RasterUtils.findRasterplanZipEntries;
 
@@ -91,7 +90,7 @@ public class XPlanRasterManager {
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 * @param referenzUrlToRemove list of referenceUrls (relative) to remove
 	 */
-	public void removeRasterLayers(int planId, Set<String> referenzUrlToRemove) {
+	public void removeRasterLayers(int planId, List<String> referenzUrlToRemove) {
 		StorageEvent storageEvent = new StorageEvent();
 		try {
 			for (String referenzUrl : referenzUrlToRemove) {

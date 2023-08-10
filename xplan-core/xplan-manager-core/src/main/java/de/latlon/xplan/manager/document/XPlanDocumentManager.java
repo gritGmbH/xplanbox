@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.document;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import de.latlon.xplan.manager.edit.EditedArtefacts;
 import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.slf4j.Logger;
@@ -32,8 +33,10 @@ import org.springframework.context.ApplicationEventPublisher;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+
+import static de.latlon.xplan.manager.edit.ArtefactType.NONRASTER;
+import static de.latlon.xplan.manager.edit.EditType.ADDED;
+import static de.latlon.xplan.manager.edit.EditType.REMOVED;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -84,13 +87,11 @@ public class XPlanDocumentManager {
 	 * <code>null</code>
 	 * @throws StorageException if the documents could not be updated
 	 */
-	public void updateDocuments(int planId, List<Path> uploadedArtefacts, Set<String> documentsToAdd,
-			Set<String> documentsToRemove) throws StorageException {
+	public void updateDocuments(int planId, List<Path> uploadedArtefacts, EditedArtefacts editedArtefacts)
+			throws StorageException {
 		StorageEvent storageEvent = new StorageEvent();
 		try {
-			List<String> referencesToAdd = documentsToAdd.stream()
-				.filter(document -> isNonHttpReference(document))
-				.collect(Collectors.toList());
+			List<String> referencesToAdd = editedArtefacts.getFileNames(NONRASTER, ADDED);
 			for (String referenceToAdd : referencesToAdd) {
 				Path fileToAdd = getFileToAdd(referenceToAdd, uploadedArtefacts);
 				if (fileToAdd != null) {
@@ -101,9 +102,7 @@ public class XPlanDocumentManager {
 				}
 			}
 
-			List<String> referencesToRemove = documentsToRemove.stream()
-				.filter(document -> isNonHttpReference(document))
-				.collect(Collectors.toList());
+			List<String> referencesToRemove = editedArtefacts.getFileNames(NONRASTER, REMOVED);
 			for (String referenceToRemove : referencesToRemove) {
 				documentStorage.deleteDocument(planId, referenceToRemove, storageEvent);
 			}
