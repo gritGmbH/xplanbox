@@ -5,7 +5,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 ## Version 7.0 (2023-08-TT)
 
 ### Erweiterungen
-- Unterstützung für MapServer 8.0 zur Bereitstellung von Rasterdaten für XPlanWMS
+- Unterstützung für MapServer 8.0 zur Bereitstellung von Rasterdaten für XPlanWMS hergestellt
 - Ablage von Rasterdaten in einem AWS S3-kompatiblen Objektspeicher wird unterstützt
 - Ablage von Begleitdokumenten in einem AWS S3-kompatiblen Objektspeicher wird unterstützt
 - Abruf von Dokumenten und Rasterdaten über die neue Schnittstelle XPlanDokumentenAPI hergestellt
@@ -22,12 +22,12 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 - Erweiterung der Sortierung von Textabschnitten
 - Entfernen des XML-Namespace Präfixes aus dem FeatureType-Namen in den Capabilities des XPlanWFS
 - Verbesserung der Transaktionalität bei Auftreten unerwarteter Fehler beim Import im XPlanManager
-- Vorgabewert für Verzeichnisse mit Konfigurationsdateien der xPlanBox setzen
+- Neuer Vorgabewert für Verzeichnisse mit Konfigurationsdateien der xPlanBox
 
 ### Sicherheitsupdates
 - Schwachstelle im XML-Prozessor von XPlanValidator und XPlanManager behoben, sodass nur lokale statische DTD verwendet werden können; jede externe und jede deklarierte DTD wird nicht mehr zugelassen
-- Schwachstelle im XPlanValidator und XPlanManager gegen persistentes Cross-Site-Scripting (XSS)
-- Schwachstelle im XPlanValidator und XPlanManager beim Upload schadhafter Dateien
+- Schwachstelle im XPlanValidator und XPlanManager gegen persistentes Cross-Site-Scripting (XSS) behoben
+- Schwachstelle im XPlanValidator und XPlanManager beim Upload schadhafter Dateien behoben
 - Aktualisierung von Bibliotheken mit bekannten Sicherheitsmängeln
 
 ### Fehlerbehebungen

@@ -68,13 +68,12 @@ Folgende Tabelle listet auf, bei welchen xPlanBox Versionen die Datenhaltung bet
 
 In der Tabelle sind nur Versionen aufgelistet, die auch Änderungen an der Datenhaltung enthalten. Anhand der Übersicht lässt sich ableiten, welche Schritte bei einer Aktualisierung ausgeführt werden müssen. Die Schritt-für-Schritt-Anleitung zur Aktualisierung der jeweiligen Versionen sind in den nachfolgenden Kapiteln enthalten.
 
-Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versionen zusammen mit der aktuellen Liefereinheit bereitgestellt. Bei Fragen zur Aktualisierung von früheren Versionen (5.0 und älter), wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].
+Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versionen zusammen mit der aktuellen Liefereinheit bereitgestellt. Bei Fragen zur Aktualisierung von früheren Versionen (6.0 und älter), wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].
 
-.Überblick über die Datenhaltung betreffenden Änderungen (ab Version 5.0)
+.Überblick über die Datenhaltung betreffenden Änderungen (ab Version 6.0)
 [cols="3*^", options="header,footer"]
 |===
 | xPlanBox Version | Änderungen an den Workspaces/ der Konfiguration? | Änderungen am Datenbankschema?
-| 5.0              | ja (<<aktualisierung-auf-die-version-5.0, Details>>)  | ja (<<aktualisierung-auf-die-version-5.0, Details>>)
 | 6.0              | ja (<<aktualisierung-auf-xplanbox-version-6.0, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-6.0, Details>>)
 | 6.0.1              | ja (<<aktualisierung-auf-xplanbox-version-6.0.1, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-6.0.1, Details>>)
 | 7.0             | ja (<<aktualisierung-auf-xplanbox-version-7.0, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-7.0, Details>>)
@@ -147,8 +146,6 @@ SQL-Skript durchgeführt werden. Für die Aktualisierungen der XPlanDB liegen di
 
 Führen Sie die zu der Version passenden SQL-Skripte aus dem entsprechenden Unterordner aus:
 
-- von 5.0 auf 5.0.2 aus dem Verzeichnis _from_5.0_to_5.0.2/_
-- von 5.0.2 auf 6.0 aus dem Verzeichnis _from_5.0.2_to_6.0/_
 - von 6.0 auf 6.0.1 aus dem Verzeichnis _from_6.0_to_6.0.1/_
 - von 6.0.1 auf 7.0 aus dem Verzeichnis _from_6.0.1_to_7.0/_
 
@@ -168,63 +165,6 @@ Zur Aktualisierung der Daten stehen Kommandozeilenwerkzeuge im Modul _xplan-upda
 
 Weitere Informationen stehen im Kapitel <<kommandozeilen-anwendungen>>.
 
-[[aktualisierung-auf-die-version-5.0]]
-=== Aktualisierung auf die Version 5.0
-
-Mit der Version 5.0 der xPlanBox kann die xPlanBox ausschließlich unter Java 11 mit Tomcat 9 betrieben werden, außerdem wird die Version XPlanGML 5.4 unterstützt. Weiterhin sind einige Erweiterungen und Verbesserungen am XPlanValidator, XPlanManagerWeb und den XPlanDiensten vorgenommen worden. Zwei Kommandozeilenwerkzeuge (XPlanAuswerteschemaCLI und XPlanValidateDB) sind neu hinzugekommen.
-
-Für die Aktualisierung auf die Version 5.0 sind folgende Schritte auszuführen:
-
-* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
-* Aktualisierung der Datenbank:
-** Ausführen der Skripte für die Erstellung der Datenhaltung für 5.4 aus dem Modul _xplan-manager-workspace_:
-*** _fix/xplan54/create.sql_
-*** _pre/xplan54/create.sql_
-*** _archive/xplan54/create.sql_
-** Ausführen der Skripte im Verzeichnis _from_4.2_to_5.0_ im Modul _xplan-update-data-cli_ in der vorgegebenen Reihenfolge
-** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
-
-IMPORTANT:  Java 1.8 wird nicht mehr unterstützt.
-
-IMPORTANT: Die SQL-Skripte für die Aktualisierung der XPlanDB auf die Version 5.0 werden ab xPlanBox Version 6.0 nicht mehr ausgeliefert. Bei Fragen zur Aktualisierung von früheren Versionen (5.0 und älter), wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].
-
-[[aktualisierung-auf-die-version-5.0.1]]
-=== Aktualisierung auf die Version 5.0.1
-
-Für eine Installation der Bugfix-Version ist ein Austausch der beiden Webapps erforderlich:
-
-* _xplan-api-manager.war_
-* _xplan-api-validator.war_
-
-TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden. Anpassungen an den Konfigurationsdateien sind ebenfalls nicht erforderlich.
-
-[[aktualisierung-auf-die-version-5.0.2]]
-=== Aktualisierung auf die Version 5.0.2
-
-Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
-
-* Austausch der beiden Webapps:
-** _xplan-api-manager.war_
-** _xplan-manager-web.war_
-* Ausführen des Skripts _01_addBereichTable.sql_ im Verzeichnis _sql/update/from_5.0_to_5.0.2_ im Modul _xplan-manager-workspace_
-* Ausführen des Kommandozeilenwerkzeugs _databaseUpdate_ (für Version 5.0.2) im Modul _xplan-update-data-cli_ zur Aktualisierung der XPlanSyn-Datenhaltung, z.B. mit `./databaseUpdate -c <XPLANBOX_CONFIG>/`
-
-TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
-
-[[aktualisierung-auf-die-version-5.0.3]]
-=== Aktualisierung auf die Version 5.0.3
-
-Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
-
-* Setzen der Variable `jts.overlay=ng` im _Anwendungs-Tomcat_ und _API-Tomcat_, siehe auch Kapitel <<anwendungs-tomcat>>.
-* Austausch der Webapps:
-** _xplan-api-validator.war_
-** _xplan-api-manager.war_
-** _xplan-validator-web.war_
-** _xplan-manager-web.war_
-
-TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
 [[aktualisierung-auf-xplanbox-version-6.0]]
 === Aktualisierung auf die Version 6.0 der xPlanBox
@@ -270,6 +210,8 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 ** _xplan-validator-web.war_
 ** _xplan-manager-web.war_
 
+TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
+
 [[aktualisierung-auf-die-version-6.0.3]]
 === Aktualisierung auf die Version 6.0.3
 
@@ -280,6 +222,8 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 ** _xplan-api-manager.war_
 ** _xplan-validator-web.war_
 ** _xplan-manager-web.war_
+
+TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
 [[aktualisierung-auf-xplanbox-version-7.0]]
 === Aktualisierung auf die Version 7.0 der xPlanBox

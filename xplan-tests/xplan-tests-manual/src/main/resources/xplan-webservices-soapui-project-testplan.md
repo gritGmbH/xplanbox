@@ -59,26 +59,43 @@
 * Property Transfer
 * getAttachment
 * Delete BPlan41_HH_Bergedorf110_1Aend_soapui-webservices.zip
+* Cleanup Properties
 ## PlanwerkWMS
 * Import Eidelstedt_4_V4-soapui-webservices.zip
 * Property Transfer
 * GetCapabilities
-* GetCapabilities-with-whitespaces
+* GetCapabilities with whitespaces
 * Delete Eidelstedt_4_V4-soapui-webservices.zip
+* GetCapabilities should fail
+* Cleanup Properties
 ## GetMap
 * Import Eidelstedt_4_V4-soapui-webservices.zip
 * Property Transfer
 * GetMap
 * Delete Eidelstedt_4_V4-soapui-webservices.zip
+* Cleanup Properties
 ## GetFeatureInfo
+* OpenAPIInfo
 * Import Eidelstedt_4_V4-soapui-webservices.zip
 * Import BPlan002_5-3.zip
+* Import BPlan004_6-0.zip
 * Property Transfer
 * GetFeatureInfo-html BP_BaugebietsTeilFlaeche
+* GetFeatureInfo-html BP_Blan
 * GetFeatureInfo-xml BP_BaugebietsTeilFlaeche
 * GetFeatureInfo-xml BP_Plan
 * Delete Eidelstedt_4_V4-soapui-webservices.zip
 * Delete BPlan002_5-3.zip
+* Delete BPlan004_6-0.zip
+* Cleanup Properties
+## RESTAPI
+* GET /config
+* GET /config/restart
+* GET /config/restart invalidApiKey
+* GET /config/update
+* GET /config/update invalidApiKey
+* DELETE /planwerkwmsapi/{planId}
+* DELETE /planwerkwmsapi/{planId} invalidApiKey
 # xplansyn-wfs
 ## xplansynwfs
 * GetCapabilities
@@ -93,15 +110,33 @@
 * XPlanSynWFS DescribeStoredQueries
 * XPlanSynWFS PlanId
 * XPlanSynWFS PlanName
+* XPlanSynWFS PlanNameAndType
 * Delete Eidelstedt4V4-with-nummer-soapui-webservices.zip
+* Cleanup Properties
 ## GetFeature
-* Import Eidelstedt_4_V4-soapui-webservices.zip
+* OpenAPIInfo
 * Import Osdorf48_Test_60.zip
+* Import BPlan004_6-0.zip
+* Import BP_5.1_Textsortierung_1.zip
+* Import BP_5.2_Textsortierung_2.zip
+* Import BP_5.1_Textsortierung_3.zip
+* Import BP_5.1_Textsortierung_4.zip
 * Property Transfer
-* GetFeature
+* GetFeature 2.0.0 BP_Plan
+* GetFeature 1.1.0 BP_Plan
+* GetFeature BP_GruenFlaeche
 * GetFeature Archive
-* Delete Eidelstedt_4_V4-soapui-webservices.zip
+* GetFeature BP_Plan Textsortierung_1
+* GetFeature BP_Plan Textsortierung_2
+* GetFeature BP_Plan Textsortierung_3
+* GetFeature BP_Plan Textsortierung_4
 * Delete Osdorf48_Test_60.zip
+* Delete BPlan004_6-0.zip
+* Delete BP_5.1_Textsortierung_1.zip
+* Delete BP_5.2_Textsortierung_2.zip
+* Delete BP_5.1_Textsortierung_3.zip
+* Delete BP_5.1_Textsortierung_4.zip
+* Cleanup Properties
 # xplan-wfs
 ## wfs40
 * GetCapabilities
@@ -159,8 +194,30 @@
 * XPlanWFS PlanId
 * XPlanWFS PlanName
 * Delete Eidelstedt4V4-with-nummer-soapui-webservices.zip
+* Cleanup Properties
+## StoredQuery-ArchivedPlan
+* Import Osdorf48_Test_60
+* Property Transfer
+* XPlanWFS ListStoredQueries
+* XPlanWFS DescribeStoredQueries
+* XPlanWFS PlanName
+* Delete Osdorf48_Test_60
+* Cleanup Properties
+## GetFeature
+* OpenAPIInfo
+* Import BPlan004_6-0.zip
+* Property Transfer
+* GetFeature 2.0.0 BP_Plan
+* GetFeature 1.1.0 BP_Plan
+* Delete BPlan004_6-0.zip
+* Cleanup Properties
 # xplan-inspireplu
 ## viewservice
 * GetCapabilities
 ## downloadservice
 * GetCapabilities
+# mapserver-wms
+## GetCapabilities
+* GetCapabilities
+## GetMap
+* GetMap
