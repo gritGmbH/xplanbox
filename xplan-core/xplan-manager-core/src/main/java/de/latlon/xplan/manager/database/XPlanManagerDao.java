@@ -151,7 +151,7 @@ public class XPlanManagerDao extends XPlanDao {
 			FeatureCollection synFc, byte[] planArtefact, Date sortDate, List<File> uploadedArtefacts,
 			EditedArtefacts editedArtefacts, String internalId) throws Exception {
 		try {
-			LOG.info("Delete XPlan {}", oldXplan.getId());
+			LOG.info("Update XPlan {}", oldXplan.getId());
 			long begin = System.currentTimeMillis();
 
 			int planId = getXPlanIdAsInt(oldXplan.getId());
