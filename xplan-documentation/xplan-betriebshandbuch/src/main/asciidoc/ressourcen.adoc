@@ -1,7 +1,7 @@
 === XPlanRessourcen
 
 Die Einstiegsseite der Komponente XPlanRessourcen enthält Referenzen zu
-den anderen Komponenten der xPlanBox, die Referenzen müssen ggf. an die
+den anderen Komponenten der xPlanBox. Die Referenzen müssen ggf. an die
 Umgebung der Installation angepasst werden. In der Datei _index.html_
 müssen die URLs zu den XPlanDiensten modifiziert werden:
 

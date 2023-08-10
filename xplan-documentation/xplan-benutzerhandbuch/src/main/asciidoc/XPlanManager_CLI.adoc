@@ -131,10 +131,8 @@ _--force_
 Enthält das XPlanGML-Dokument Geometriefehler o.ä., ist es
 dringend angeraten, diese vor einem Import zu bereinigen. Der Import eines Planes kann mit dem Parameter `force` erzwungen werden.
 
-CAUTION: Bitte beachten Sie, dass dabei vorliegenden Geometriefehler o.ä.
-übernommen werden und der importierte Plan dadurch fehlerhaft ist. Die
-Auswirkungen können von einer fehlerhaften Darstellung des Plans bis hin
-zu unerwarteten Verhalten der xPlanBox reichen.
+CAUTION: Bitte beachten Sie, dass dabei vorliegenden Geometriefehler o.ä. übernommen werden und der importierte Plan dadurch fehlerhaft ist. Die
+Auswirkungen können von einer fehlerhaften Darstellung des Plans bis hin zu unerwarteten Verhalten der xPlanBox reichen.
 
 ----
 ./XPlanManager --import --force ../Input-Planverzeichnis/Infrastruktur.zip

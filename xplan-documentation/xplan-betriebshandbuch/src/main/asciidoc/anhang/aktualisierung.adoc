@@ -1,14 +1,15 @@
 [appendix]
-== Checkliste für Aktualisierung einer Installation
+[[appendix_checklists]]
+== Checklisten für die Aktualisierung einer Installation
 
 === Voraussetzungen
 Im Folgenden wird für _Dienste-Tomcat_, _Anwendungs-Tomcat_ und _API-Tomcat_ jeweils das Verzeichnis _<CATALINA_HOME>_ der entsprechenden Tomcat-Instanz vorausgesetzt und angewendet (siehe Kapitel <<konfiguration-der-applikationsserver>>).
 
-Als Basisverzeichnisse werden im Folgenden _<DEEGREE_WORKSPACE_ROOT>_, _<XPLANBOX_CONFIG>_ und temporär zur Ablage der Sicherungskopie _<BACKUP_CONFIG>_ (z.B. _/home/user/tmp_) sowie _<WORK_DIR> als Download-Verzeichnis mit der entpackten Distributionsdatei vorausgesetzt.
+Als Basisverzeichnisse werden im Folgenden _<DEEGREE_WORKSPACE_ROOT>_, _<XPLANBOX_CONFIG>_ und temporär zur Ablage der Sicherungskopie _<BACKUP_CONFIG>_ (z.B. _/home/user/tmp_) sowie _<WORK_DIR>_ als Download-Verzeichnis mit der entpackten Distributionsdatei vorausgesetzt.
 
-Die Zuordnung der Anwendungskomponenten zu den jeweiligen Konfigurationen ist im Kapitel <<installationskomponenten, Installationskomponenten>> und <<konfiguration>> beschrieben.
+Die Zuordnung der Anwendungskomponenten zu den jeweiligen Konfigurationen ist im Kapitel <<installationskomponenten,Installationskomponenten>> und <<konfiguration>> beschrieben.
 
-=== Checkliste für Aktualisierung der Webanwendungen
+=== Checkliste für die Aktualisierung der Webanwendungen
 
 * [ ] Alle Tomcat-Instanzen sind gestoppt
 * [ ] Sicherungskopie der WAR-Dateien bzw. die entpackten Verzeichnisse aus _Dienste-Tomcat/webapps/_, _Anwendungs-Tomcat/webapps/_, _API-Tomcat/webapps/_ ist im Verzeichnis _<BACKUP_CONFIG>_ abgelegt.
@@ -44,7 +45,7 @@ Die Zuordnung der Anwendungskomponenten zu den jeweiligen Konfigurationen ist im
   ** _Anwendungs-Tomcat/webapps/xplan-validator-web/masterportal/template/config.template.json_ kopieren
   ** _Anwendungs-Tomcat/webapps/xplan-validator-web/masterportal/template/services-internet.template.json_ kopieren
 
-=== Checklist für die Übernahme der Konfigurationen aus deegree Workspaces
+=== Checkliste für die Übernahme der Konfigurationen aus deegree Workspaces
 
 * [ ] Alle Verzeichnisse mit den Konfigurationsdateien aus _<DEEGREE_WORKSPACE_ROOT>_ und _<XPLANBOX_CONFIG>_ sind im Verzeichnis _<BACKUP_CONFIG>_ gesichert.
 * [ ] deegree Workspaces ZIP-Dateien sind entpackt und im jeweiligen Verzeichnisse unterhalb von _<DEEGREE_WORKSPACE_ROOT>_ kopiert.
@@ -105,6 +106,7 @@ NOTE: Weitere Hinweise zu der Verzeichnisstruktur und der Ablage von Rasterdatei
 
 === Checkliste für Aktualisierung der Datenbank
 
+* [ ] Backup der Datenbank ist erstellt
 * [ ] <<aktualisierung-der-schemas, Aktualisierung des Datenbankschemas>> ausgeführt
 * [ ] <<aktualisierung-der-daten, Aktualisierung der Daten>> ausgeführt
 

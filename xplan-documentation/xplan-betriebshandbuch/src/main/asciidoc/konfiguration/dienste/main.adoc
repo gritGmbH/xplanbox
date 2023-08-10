@@ -1,5 +1,5 @@
 [[konfiguration-dienste]]
-== XPlanDienste
+== Konfiguration der XPlanDienste
 
 In den nachfolgenden Kapiteln wird die Konfiguration der XPlanDienste: <<xplanwms,XPlanWMS/XPlanWerkWMS/XPlanArtWMS>>, <<xplanwfs,XPlanWFS>> und <<xplansynwfs,XPlanSynWFS>> beschrieben.
 

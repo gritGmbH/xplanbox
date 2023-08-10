@@ -1,9 +1,9 @@
 [[konfiguration-der-datenbank]]
 === Konfiguration der Datenbank
 
-Das Anlegen der Datenbank XPlanDB kann mit einem beliebigen Datenbankwerkzeug, wie z. B. https://www.pgadmin.org[pgAdmin], erfolgen.
+Das Anlegen der Datenbank XPlanDB kann mit einem beliebigen Datenbankwerkzeug, wie z. B. dem Kommandozeilentool `psql` oder https://www.pgadmin.org[pgAdmin] erfolgen.
 
-Dafür müssen die folgenden Schritte ausgeführt werden:
+Für die Erstellung der XPlanDB müssen die folgenden Schritte ausgeführt werden:
 
  . Anlegen einer neuen Datenbank.
  . Installation der PostGIS-Erweiterung für die neue Datenbank.
@@ -25,7 +25,7 @@ Es müssen die folgenden Schritte ausgeführt werden:
 
  . Anlegen einer neuen Datenbank.
  . Installation der PostGIS-Erweiterung für die neue Datenbank.
- . Die folgenden SQL-Create-Skripte aus dem Verzeichnis _xplan-manager-workspace/sql/inspireplu_ in der neu angelegten Datenbank ausführen (in dieser Reihenfolge):
+ . Die folgenden SQL-Skripte aus dem Verzeichnis _xplan-manager-workspace/sql/inspireplu_ in der neu angelegten Datenbank ausführen (in der genannten Reihenfolge):
  .. _04_create_inspireplu_schema.sql_
  .. _05_create_inspireplu_view.sql_
  . Anpassen der Datenbank-Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace:

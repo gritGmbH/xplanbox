@@ -40,10 +40,10 @@ include::s3storage.adoc[]
 
 include::logging.adoc[]
 
-include::bekannteProbleme.adoc[]
-
 include::aktualisierung.adoc[]
 
 include::migration.adoc[]
+
+include::bekannteProbleme.adoc[]
 
 include::anhang.adoc[]
