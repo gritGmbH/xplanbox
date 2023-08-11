@@ -220,9 +220,9 @@ lediglich die Planumringe sichtbar.
 ===== Gültigkeitszeitraum
 
 Der Gültigkeitszeitraum bestimmt die Sichtbarkeit der Inhalte eines Plans bei Aufruf des XPlanWMSInAufstellung über die GetMap-Operation. Der Gültigkeitszeitraum eines Plans kann beim Import über den XPlanManagerWeb als Zeitspanne angegeben werden.
-Wird der XPlanWMSInAufstellung innerhalb des gewählten Zeitraums angefragt, so werden die Plandaten, sowohl Vektor- als auch Rasterdaten, angezeigt. Liegt die Anfrage ausserhalb des Zeitraums, so werden keine Plandaten.
+Wird der XPlanWMSInAufstellung innerhalb des gewählten Zeitraums angefragt, so werden die Plandaten, sowohl Vektor- als auch Rasterdaten, angezeigt. Liegt der Zeitpunkt der GetMap-Anfrage an den XPlanWMSInAufstellung ausserhalb des Zeitraums, so werden keine Plandaten angezeigt.
 
-Ausnahme: Die Sichtbarkeit der Layer, die den Geltungsbereich darstellen, werden nicht über den Gültigkeitszeitraum verändert und werden immer verfügbar.
+NOTE: Ausnahme: Die Sichtbarkeit der Layer, die den Geltungsbereich darstellen, werden nicht über den Gültigkeitszeitraum verändert und werden immer angezeigt.
 
 [[xplanwms-getfeatureinfo]]
 ==== GetFeatureInfo
