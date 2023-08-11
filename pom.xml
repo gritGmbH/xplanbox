@@ -39,8 +39,6 @@
     <owasp.version>8.3.1</owasp.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <skip.unit.tests>false</skip.unit.tests>
-    <skip.owasp.check>false</skip.owasp.check>
     <tests.jvm.xmx>1000m</tests.jvm.xmx>
     <build.key /> <!-- can be set by build job -->
   </properties>
@@ -251,6 +249,7 @@
                 <execution>
                   <goals>
                     <goal>build</goal>
+                    <goal>source</goal>
                   </goals>
                 </execution>
               </executions>
@@ -277,6 +276,15 @@
           <url>https://repo.lat-lon.de/repository/xplanbox-snapshots/</url>
         </snapshotRepository>
       </distributionManagement>
+    </profile>
+    <profile>
+      <id>skipping</id>
+      <properties>
+		<dependency-check.skip>true</dependency-check.skip> <!-- dependency-check-maven -->  
+		<enforcer.skip>true</enforcer.skip> <!-- maven-enforcer-plugin -->  
+		<skipTests>true</skipTests> <!-- surefire & failsafe -->
+		<spring-javaformat.skip>true</spring-javaformat.skip> <!-- spring-javaformat-maven-plugin -->
+	  </properties>
     </profile>
   </profiles>
 
@@ -404,7 +412,6 @@
           <cveValidForHours>24</cveValidForHours>
           <failBuildOnCVSS>10</failBuildOnCVSS>
           <knownExploitedEnabled>false</knownExploitedEnabled>
-          <skip>${skip.owasp.check}</skip>
         </configuration>
         <executions>
           <execution>
@@ -501,7 +508,6 @@
           <version>3.1.2</version>
           <configuration>
             <argLine>-Xmx${tests.jvm.xmx} @{jacoco.argLine}</argLine>
-            <skip>${skip.unit.tests}</skip>
           </configuration>
         </plugin>
         <plugin>
