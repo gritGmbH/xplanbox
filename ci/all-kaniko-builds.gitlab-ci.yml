@@ -1,0 +1,132 @@
+# template
+.kaniko:build:
+  stage: build:docker
+  image:
+    name: gcr.io/kaniko-project/executor:v1.9.0-debug
+    entrypoint: [""]
+  script:
+  - /kaniko/executor --context=tar://${CI_PROJECT_DIR}/$tarGzFile --destination=$destination:$dockerTag
+    --build-arg="XPLANBOX_IMAGE_NAME_PREFIX=${CI_REGISTRY_IMAGE}/xplanbox"
+    --build-arg="XPLANBOX_VERSION=${dockerTag}"
+  rules:
+  - if: $CI_PIPELINE_SOURCE == 'schedule'
+    when: never 
+  - when: on_success 
+  variables:
+    destination: ${CI_REGISTRY_IMAGE}/xplanbox/xplan-docker-tomcat-gdal
+    tarGzFile: xplan-docker/xplan-docker-tomcat-gdal/target/docker/xplanbox/xplan-docker-tomcat-gdal/tmp/docker-build.tar.gz
+
+## job per image to produce
+
+kaniko:xplan-db-updater:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-db-updater
+    tarGzFile: xplan-resources/xplan-database-scripts/target/docker/xplanbox/xplan-db-updater/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-others
+
+kaniko:xplan-docker-tomcat-gdal:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-docker-tomcat-gdal
+    tarGzFile: xplan-docker/xplan-docker-tomcat-gdal/target/docker/xplanbox/xplan-docker-tomcat-gdal/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-others
+    - kaniko:xplan-docker-tomcat
+
+kaniko:xplan-docker-tomcat:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-docker-tomcat
+    tarGzFile: xplan-docker/xplan-docker-tomcat/target/docker/xplanbox/xplan-docker-tomcat/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-others
+
+kaniko:xplan-docker-volume-init:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-docker-volume-init
+    tarGzFile: xplan-docker/xplan-docker-volume-init/target/docker/xplanbox/xplan-docker-volume-init/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-others
+
+kaniko:xplan-dokumente-api:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-validator-api
+    tarGzFile: xplan-api/xplan-api-dokumente/target/docker/xplanbox/xplan-dokumente-api/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-apis
+    - kaniko:xplan-docker-tomcat
+
+kaniko:xplan-manager-api:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-manager-api
+    tarGzFile: xplan-api/xplan-api-manager/target/docker/xplanbox/xplan-manager-api/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-apis
+    - kaniko:xplan-docker-tomcat-gdal
+
+kaniko:xplan-mapserver:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-mapserver
+    tarGzFile: xplan-docker/xplan-docker-mapserver/target/docker/xplanbox/xplan-mapserver/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-others
+
+kaniko:xplan-manager-web:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-manager-web
+    tarGzFile: xplan-webapps/xplan-manager-web/target/docker/xplanbox/xplan-manager-web/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-web-apps
+    - kaniko:xplan-docker-tomcat-gdal
+
+kaniko:xplan-services:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-services
+    tarGzFile: xplan-webservices/xplan-services-docker/target/docker/xplanbox/xplan-services/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-others
+    - kaniko:xplan-docker-tomcat-gdal
+
+kaniko:xplan-tests-soapui:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-tests-soapui
+    tarGzFile: xplan-tests/xplan-tests-soapui/target/docker/xplanbox/xplan-tests-soapui/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-others
+
+kaniko:xplan-validator-api:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-validator-api
+    tarGzFile: xplan-api/xplan-api-validator/target/docker/xplanbox/xplan-validator-api/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-apis
+    - kaniko:xplan-docker-tomcat
+ 
+
+kaniko:xplan-validator-web:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-validator-web
+    tarGzFile: xplan-webapps/xplan-validator-web/target/docker/xplanbox/xplan-validator-web/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-web-apps
+    - kaniko:xplan-docker-tomcat
+
+kaniko:xplan-validator-wms:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-validator-wms
+    tarGzFile: xplan-webservices/xplan-validator-wms/target/docker/xplanbox/xplan-validator-wms/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-others
+    - kaniko:xplan-docker-tomcat

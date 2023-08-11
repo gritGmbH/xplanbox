@@ -8,9 +8,9 @@ FROM eclipse-temurin:11.0.20_8-jdk-alpine
 
 RUN apk --no-cache add bash
 
-COPY maven/xplan-manager-cli-* /xplanbox/xplan-manager-cli/
-COPY maven/xplan-transform-cli-* /xplanbox/xplan-transform-cli/
-COPY maven/xplan-update-data-* /xplanbox/xplan-update-data/
+COPY target/unpacked-deps/xplan-manager-cli-* /xplanbox/xplan-manager-cli/
+COPY target/unpacked-deps/xplan-transform-cli-* /xplanbox/xplan-transform-cli/
+COPY target/unpacked-deps/xplan-update-data-* /xplanbox/xplan-update-data/
 
 RUN mkdir /xplanbox/xplan-manager-cli/logs \
 	&& mkdir /xplanbox/xplan-transform-cli/logs \
