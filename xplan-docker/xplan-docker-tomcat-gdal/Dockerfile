@@ -17,7 +17,9 @@ RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/
 	&& rm /tmp/tomcat.tar.gz \
 	&& chmod -R a+rX /usr/local/tomcat \
 	&& chmod a+w /usr/local/tomcat/conf /usr/local/tomcat/logs /usr/local/tomcat/webapps /usr/local/tomcat/work /usr/local/tomcat/temp \
-	&& rm -rf /usr/local/tomcat/webapps/*
+	&& rm -rf /usr/local/tomcat/webapps/* \
+	&& cat /usr/local/tomcat/conf/server.xml | tr '\n' '|' | sed 's|<Valve [^>]*/>||g' | tr '|' '\n' > /tmp/server.xml && mv /tmp/server.xml /usr/local/tomcat/conf \
+	&& sed -i /usr/local/tomcat/conf/logging.properties -e 's/^handlers/handlers = java.util.logging.ConsoleHandler\n# handlers/'
 
 ADD setenv.sh /usr/local/tomcat/bin/
 

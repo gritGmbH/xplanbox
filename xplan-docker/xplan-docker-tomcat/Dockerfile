@@ -12,7 +12,9 @@ RUN chmod o+w /opt/bitnami/tomcat/bin/setenv.sh \
 	&& chmod o+w /opt/bitnami/tomcat/logs/ \
 	&& chmod o+w /opt/bitnami/tomcat/conf /opt/bitnami/tomcat/conf/* \
 	&& chmod o+w /opt/bitnami/tomcat/work/ \
-	&& chmod o+w /opt/bitnami/tomcat/temp
+	&& chmod o+w /opt/bitnami/tomcat/temp \
+	&& cat /opt/bitnami/tomcat/conf/server.xml | tr '\n' '|' | sed 's|<Valve [^>]*/>||g' | tr '|' '\n' > /tmp/server.xml && mv /tmp/server.xml /opt/bitnami/tomcat/conf \
+	&& sed -i /opt/bitnami/tomcat/conf/logging.properties -e 's/^handlers/handlers = java.util.logging.ConsoleHandler\n# handlers/'
 
 
 RUN cp /opt/bitnami/scripts/tomcat-env.sh /opt/bitnami/scripts/tomcat-env.original.sh
