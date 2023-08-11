@@ -81,10 +81,7 @@ public class XPlanDocumentManager {
 	 * @param planId the id of the plan, never <code>null</code>
 	 * @param uploadedArtefacts a list of all uploaded artefacts, may be empty but never
 	 * <code>null</code>
-	 * @param documentsToAdd a list of documents added, may be empty but never *
-	 * <code>null</code>
-	 * @param documentsToRemove a list of documents removed, may be empty but never * *
-	 * <code>null</code>
+	 * @param editedArtefacts describing the edited artefacts, never <code>null</code>
 	 * @throws StorageException if the documents could not be updated
 	 */
 	public void updateDocuments(int planId, List<Path> uploadedArtefacts, EditedArtefacts editedArtefacts)

@@ -103,7 +103,7 @@ public class ExternalReferenceUtils {
 	}
 
 	/**
-	 * Detects all external references not longer referenced by the plan.
+	 * Detects all external references no longer referenced by the plan.
 	 * @param attachmentUrlHandler used to get original filenames, may be
 	 * <code>null</code>
 	 * @param planId required to get original filenames if the attachmentUrlHandler is
@@ -198,11 +198,19 @@ public class ExternalReferenceUtils {
 		Set<String> removedRefs = new HashSet<>();
 		for (ExternalReference externalRefOriginal : externalRefsOriginal) {
 			String ref = externalRefOriginal.getReferenzUrl();
-			if (ref != null && !isReferenced(ref, externalRefModified))
-				removedRefs.add(findOriginalFileName(attachmentUrlHandler, planId, originalFileNames, ref));
+			if (ref != null && !isReferenced(ref, externalRefModified)) {
+				String originalFileName = findOriginalFileName(attachmentUrlHandler, planId, originalFileNames, ref);
+				if (isNonHttpReference(originalFileName)) {
+					removedRefs.add(originalFileName);
+				}
+			}
 			String georef = externalRefOriginal.getGeoRefUrl();
-			if (georef != null && !isReferenced(georef, externalRefModified))
-				removedRefs.add(findOriginalFileName(attachmentUrlHandler, planId, originalFileNames, georef));
+			if (georef != null && !isReferenced(georef, externalRefModified)) {
+				String originalFileName = findOriginalFileName(attachmentUrlHandler, planId, originalFileNames, georef);
+				if (isNonHttpReference(originalFileName)) {
+					removedRefs.add(originalFileName);
+				}
+			}
 		}
 		return removedRefs;
 	}
@@ -253,6 +261,10 @@ public class ExternalReferenceUtils {
 				return true;
 		}
 		return false;
+	}
+
+	private static boolean isNonHttpReference(String ref) {
+		return ref != null && !ref.startsWith("http");
 	}
 
 }
