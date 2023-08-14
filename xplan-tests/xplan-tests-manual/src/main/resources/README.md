@@ -28,7 +28,7 @@ Eingabe:
 Ausgabe:
 
 1. xplan-api-manager-soapui-project-testplan.md
-2. xplan-api-validator-testplan.md
+2. xplan-api-validator-soapui-project-testplan.md
 3. xplan-webservices-soapui-project-testplan.md
 4. xplan-api-dokumente-soapui-project-testplan.md
 
