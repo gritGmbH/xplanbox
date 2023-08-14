@@ -37,6 +37,7 @@ import de.latlon.xplan.core.manager.db.repository.ArtefactRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanwerkWmsMetadataRepository;
 import de.latlon.xplan.manager.CategoryMapper;
+import de.latlon.xplan.manager.edit.EditedArtefact;
 import de.latlon.xplan.manager.edit.EditedArtefacts;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
@@ -80,6 +81,7 @@ import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechts
 import static de.latlon.xplan.commons.util.MimeTypeDetector.getArtefactMimeType;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.RASTERBASIS;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.XPLANGML;
+import static de.latlon.xplan.manager.edit.ArtefactType.RASTER;
 import static de.latlon.xplan.manager.edit.EditType.ADDED;
 import static de.latlon.xplan.manager.edit.EditType.REMOVED;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
@@ -435,6 +437,13 @@ public class XPlanDbAdapter {
 		return null;
 	}
 
+	private ArtefactType detectNonXPlanGmlArtefactType(EditedArtefact editedArtefact) {
+		de.latlon.xplan.manager.edit.ArtefactType artefactType = editedArtefact.getArtefactType();
+		if (artefactType == RASTER)
+			return RASTERBASIS;
+		return null;
+	}
+
 	private PlanStatus retrievePlanStatus(String planStatusMessage) {
 		if (planStatusMessage != null && planStatusMessage.length() > 0)
 			return PlanStatus.findByMessage(planStatusMessage);
@@ -568,14 +577,15 @@ public class XPlanDbAdapter {
 			.collect(Collectors.toList());
 		planArtefacts.removeAll(artefactsToDelete);
 
-		List<String> addedRefFileNames = editedArtefacts.getFileNames(ADDED);
-		for (String fileName : addedRefFileNames) {
+		List<EditedArtefact> addedRefFileNames = editedArtefacts.getEditedArtefacts(ADDED);
+		for (EditedArtefact editedArtefact : addedRefFileNames) {
+			String fileName = editedArtefact.getFileName();
 			File file = retrieveUploadedArtefact(fileName, uploadedArtefacts);
 			long size = Files.size(file.toPath());
 			try (FileInputStream fileInputStream = new FileInputStream(file)) {
 				byte[] data = createZipArtefact(fileInputStream);
 				String mimetype = getArtefactMimeType(fileName);
-				ArtefactType artefactType = detectNonXPlanGmlArtefactType(fc, fileName);
+				ArtefactType artefactType = detectNonXPlanGmlArtefactType(editedArtefact);
 
 				ArtefactId id = new ArtefactId().plan(plan).filename(fileName);
 				Artefact artefact = new Artefact().id(id)
