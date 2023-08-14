@@ -26,6 +26,6 @@ package de.latlon.xplan.manager.edit;
  */
 public enum ArtefactType {
 
-	RASTER, NONRASTER;
+	RASTER, RASTER_GEOREFERENCE, NONRASTER;
 
 }
