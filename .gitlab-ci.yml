@@ -25,7 +25,7 @@ maven-build:
   image: registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest
   script:
   - 'echo "with Maven goal: $MAVEN_GOAL"'
-  - 'mvn $MAVEN_CLI_OPTS $MAVEN_GOAL -Pskipping -Dxplan-tests.maven.deploy.skip=true'
+  - 'mvn $MAVEN_CLI_OPTS $MAVEN_GOAL -PskipAll -Dxplan-tests.maven.deploy.skip=true'
   rules:
   - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
     variables:

@@ -278,7 +278,7 @@
       </distributionManagement>
     </profile>
     <profile>
-      <id>skipping</id>
+      <id>skipAll</id>
       <properties>
 		<dependency-check.skip>true</dependency-check.skip> <!-- dependency-check-maven -->  
 		<enforcer.skip>true</enforcer.skip> <!-- maven-enforcer-plugin -->  
