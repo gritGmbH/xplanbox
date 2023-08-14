@@ -93,11 +93,11 @@ public class XPlanRasterManager {
 	public void removeRasterLayers(int planId, List<String> referenzUrlToRemove) {
 		StorageEvent storageEvent = new StorageEvent();
 		try {
-			for (String referenzUrl : referenzUrlToRemove) {
-				if (referenzUrl != null) {
-					String rasterId = createRasterId(referenzUrl);
+			for (String fileName : referenzUrlToRemove) {
+				if (fileName != null) {
+					String rasterId = createRasterId(fileName);
 					rasterConfigManager.removeRasterLayer(planId, rasterId);
-					rasterStorage.deleteRasterFile(planId, rasterId, storageEvent);
+					rasterStorage.deleteRasterFile(planId, fileName, storageEvent);
 				}
 			}
 		}

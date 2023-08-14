@@ -39,6 +39,7 @@ import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.edit.ArtefactType.NONRASTER;
 import static de.latlon.xplan.manager.edit.ArtefactType.RASTER;
+import static de.latlon.xplan.manager.edit.ArtefactType.RASTER_GEOREFERENCE;
 import static de.latlon.xplan.manager.edit.EditType.ADDED;
 import static de.latlon.xplan.manager.edit.EditType.REMOVED;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectEditedArtefacts;
@@ -93,39 +94,39 @@ public class ExternalReferenceUtilsTest {
 
 	@Test
 	public void testCollectEditedArtefacts() {
-		List<String> originalFileNames = Arrays.asList("A.tif", "D.png", "F.png");
-		List<String> uploadedFileNames = Arrays.asList("A.tif", "X.pdf", "Z.pdf", "B.png", "C.png");
+		List<String> originalFileNames = Arrays.asList("A.tif", "D.png", "D.pgw", "F.png", "F.pgw");
+		List<String> uploadedFileNames = Arrays.asList("A.tif", "X.pdf", "Z.pdf", "B.png", "C.png", "C.pgw");
 		ExternalReferenceInfo externalRefsModified = new ExternalReferenceInfoBuilder()
 			.addRasterPlanBaseScan(new ExternalReference("A.tif"))
 			.addNonRasterReference(new ExternalReference("X.pdf"))
 			.addNonRasterReference(new ExternalReference("Z.pdf"))
-			.addRasterPlanUpdateScan(new ExternalReference("C.png"))
-			.addRasterPlanUpdateScan(new ExternalReference("D.png"))
+			.addRasterPlanUpdateScan(new ExternalReference("C.png", "C.pgw"))
+			.addRasterPlanUpdateScan(new ExternalReference("D.png", "D.pgw"))
 			.build();
 		ExternalReferenceInfo externalRefsOriginal = new ExternalReferenceInfoBuilder()
 			.addRasterPlanBaseScan(new ExternalReference("A.tif"))
 			.addNonRasterReference(new ExternalReference("X.pdf"))
 			.addNonRasterReference(new ExternalReference("Y.pdf"))
-			.addRasterPlanUpdateScan(new ExternalReference("D.png"))
-			.addRasterPlanUpdateScan(new ExternalReference("F.png"))
+			.addRasterPlanUpdateScan(new ExternalReference("D.png", "D.pgw"))
+			.addRasterPlanUpdateScan(new ExternalReference("F.png", "F.pgw"))
 			.build();
 
 		EditedArtefacts editedArtefacts = collectEditedArtefacts(null, "1", externalRefsModified, externalRefsOriginal,
 				originalFileNames, uploadedFileNames);
 
-		List<String> removedRaster = editedArtefacts.getFileNames(RASTER, REMOVED);
-		assertThat(removedRaster.size(), is(1));
-		assertThat(removedRaster, hasItems("F.png"));
+		List<String> removedRaster = editedArtefacts.getFileNames(REMOVED, RASTER, RASTER_GEOREFERENCE);
+		assertThat(removedRaster.size(), is(2));
+		assertThat(removedRaster, hasItems("F.png", "F.pgw"));
 
-		List<String> addedRaster = editedArtefacts.getFileNames(RASTER, ADDED);
-		assertThat(addedRaster.size(), is(1));
-		assertThat(addedRaster, hasItems("C.png"));
+		List<String> addedRaster = editedArtefacts.getFileNames(ADDED, RASTER, RASTER_GEOREFERENCE);
+		assertThat(addedRaster.size(), is(2));
+		assertThat(addedRaster, hasItems("C.png", "C.pgw"));
 
-		List<String> removedNonRaster = editedArtefacts.getFileNames(NONRASTER, REMOVED);
+		List<String> removedNonRaster = editedArtefacts.getFileNames(REMOVED, NONRASTER);
 		assertThat(removedNonRaster.size(), is(1));
 		assertThat(removedNonRaster, hasItems("Y.pdf"));
 
-		List<String> addedNonRaster = editedArtefacts.getFileNames(NONRASTER, ADDED);
+		List<String> addedNonRaster = editedArtefacts.getFileNames(ADDED, NONRASTER);
 		assertThat(addedNonRaster.size(), is(1));
 		assertThat(addedNonRaster, hasItems("Z.pdf"));
 	}

@@ -27,12 +27,13 @@ import java.io.IOException;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @since 7.0
  */
 public interface RasterStorage {
 
 	String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive, StorageEvent storageEvent)
 			throws IOException, StorageException;
 
-	void deleteRasterFile(int planId, String rasterId, StorageEvent storageEvent) throws IOException, StorageException;
+	void deleteRasterFile(int planId, String fileName, StorageEvent storageEvent) throws IOException, StorageException;
 
 }

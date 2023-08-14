@@ -45,6 +45,10 @@ public class ExternalReference {
 		this(null, null, referenzUrl, null, null, true);
 	}
 
+	public ExternalReference(String referenzUrl, String geoRefUrl) {
+		this(geoRefUrl, null, referenzUrl, null, null, true);
+	}
+
 	ExternalReference(String geoRefUrl, String geoRefMimeType, String referenzUrl, String referenzName,
 			String referenzMimeTypeCode, boolean isPlan) {
 		this.geoRefUrl = geoRefUrl;

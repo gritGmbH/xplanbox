@@ -71,6 +71,7 @@ import java.util.stream.Collectors;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanName;
 import static de.latlon.xplan.manager.edit.ArtefactType.RASTER;
+import static de.latlon.xplan.manager.edit.ArtefactType.RASTER_GEOREFERENCE;
 import static de.latlon.xplan.manager.edit.EditType.ADDED;
 import static de.latlon.xplan.manager.edit.EditType.REMOVED;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectEditedArtefacts;
@@ -173,11 +174,11 @@ public class XPlanEditManager extends XPlanTransactionManager {
 	private void updateRasterConfiguration(int planId, boolean makeRasterConfig, List<File> uploadedArtefacts,
 			XPlanType type, PlanStatus oldPlanStatus, EditedArtefacts editedArtefacts, PlanStatus newPlanStatus,
 			Date sortDate) throws JAXBException, IOException, ConfigurationException {
-		List<String> removedRefFileNames = editedArtefacts.getFileNames(RASTER, REMOVED);
+		List<String> removedRefFileNames = editedArtefacts.getFileNames(REMOVED, RASTER, RASTER_GEOREFERENCE);
 		xPlanRasterManager.removeRasterLayers(planId, removedRefFileNames);
 		if (makeRasterConfig) {
 			XPlanArchiveContentAccess archive = new XPlanPartArchive(uploadedArtefacts);
-			List<String> addedRefFileNames = editedArtefacts.getFileNames(RASTER, ADDED);
+			List<String> addedRefFileNames = editedArtefacts.getFileNames(ADDED, RASTER);
 			createRasterConfiguration(archive, addedRefFileNames, planId, type, oldPlanStatus, newPlanStatus, sortDate);
 			reloadWorkspace(planId);
 		}

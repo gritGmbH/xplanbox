@@ -88,7 +88,7 @@ public class XPlanDocumentManager {
 			throws StorageException {
 		StorageEvent storageEvent = new StorageEvent();
 		try {
-			List<String> referencesToAdd = editedArtefacts.getFileNames(NONRASTER, ADDED);
+			List<String> referencesToAdd = editedArtefacts.getFileNames(ADDED, NONRASTER);
 			for (String referenceToAdd : referencesToAdd) {
 				Path fileToAdd = getFileToAdd(referenceToAdd, uploadedArtefacts);
 				if (fileToAdd != null) {
@@ -99,7 +99,7 @@ public class XPlanDocumentManager {
 				}
 			}
 
-			List<String> referencesToRemove = editedArtefacts.getFileNames(NONRASTER, REMOVED);
+			List<String> referencesToRemove = editedArtefacts.getFileNames(REMOVED, NONRASTER);
 			for (String referenceToRemove : referencesToRemove) {
 				documentStorage.deleteDocument(planId, referenceToRemove, storageEvent);
 			}

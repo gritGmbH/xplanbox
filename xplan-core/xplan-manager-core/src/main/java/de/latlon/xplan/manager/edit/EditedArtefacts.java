@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.edit;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,13 +64,24 @@ public class EditedArtefacts {
 
 	/**
 	 * @param editType used for filtering, never <code>null</code>
+	 * @return all ${link EditedArtefact}s with the passed editType, may be empty but
+	 * never <code>null</code>
+	 */
+	public List<EditedArtefact> getEditedArtefacts(EditType editType) {
+		return editedArtefacts.stream()
+			.filter(editedArtefact -> editedArtefact.getEditType() == editType)
+			.collect(Collectors.toList());
+	}
+
+	/**
 	 * @param editType used for filtering, never <code>null</code>
+	 * @@param artefactType used for filtering, never <code>null</code>
 	 * @return all fileNames of artefacts with the passed editType and editType, may be
 	 * empty but never <code>null</code>
 	 */
-	public List<String> getFileNames(ArtefactType artefactType, EditType editType) {
+	public List<String> getFileNames(EditType editType, ArtefactType... artefactType) {
 		return editedArtefacts.stream()
-			.filter(editedArtefact -> editedArtefact.getArtefactType() == artefactType
+			.filter(editedArtefact -> Arrays.stream(artefactType).anyMatch(at -> editedArtefact.getArtefactType() == at)
 					&& editedArtefact.getEditType() == editType)
 			.map(editedArtefact -> editedArtefact.getFileName())
 			.collect(Collectors.toList());
