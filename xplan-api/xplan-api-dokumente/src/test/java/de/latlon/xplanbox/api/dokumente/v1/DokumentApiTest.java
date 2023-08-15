@@ -20,25 +20,25 @@
  */
 package de.latlon.xplanbox.api.dokumente.v1;
 
-import de.latlon.xplanbox.api.dokumente.config.ApplicationContext;
-import de.latlon.xplanbox.api.dokumente.config.TestContext;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.test.JerseyTest;
-import org.glassfish.jersey.test.TestProperties;
-import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
+import org.glassfish.jersey.test.TestProperties;
+import org.junit.jupiter.api.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import de.latlon.xplanbox.api.dokumente.config.ApplicationContext;
+import de.latlon.xplanbox.api.dokumente.config.TestContext;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @since 7.0
  */
-public class DokumentApiTest extends JerseyTest {
+class DokumentApiTest extends JerseyTest {
 
 	@Override
 	protected Application configure() {
@@ -52,21 +52,21 @@ public class DokumentApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_ListDokumente_Response_ContainsCorrectStatusCode() {
+	void verifyThat_ListDokumente_Response_ContainsCorrectStatusCode() {
 		final Response response = target("/dokument/1").request().get();
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
 	}
 
 	@Test
-	public void verifyThat_HeadDokument_Response_ContainsCorrectStatusCode() {
+	void verifyThat_HeadDokument_Response_ContainsCorrectStatusCode() {
 		final Response response = target("/dokument/1/test.png").request().head();
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
 	}
 
 	@Test
-	public void verifyThat_GetDokument_Response_ContainsCorrectStatusCode() {
+	void verifyThat_GetDokument_Response_ContainsCorrectStatusCode() {
 		final Response response = target("/dokument/1/test.png").request().get();
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
 	}
 
 }

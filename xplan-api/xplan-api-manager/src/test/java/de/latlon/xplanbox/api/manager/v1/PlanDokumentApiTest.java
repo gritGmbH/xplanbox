@@ -20,11 +20,17 @@
  */
 package de.latlon.xplanbox.api.manager.v1;
 
-import de.latlon.xplan.core.manager.db.config.JpaContext;
-import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
-import de.latlon.xplanbox.api.manager.config.ApplicationContext;
-import de.latlon.xplanbox.api.manager.config.HsqlJpaContext;
-import de.latlon.xplanbox.api.manager.config.TestContext;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.File;
+import java.net.URISyntaxException;
+
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
@@ -33,24 +39,19 @@ import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.io.File;
-import java.net.URISyntaxException;
-
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import de.latlon.xplan.core.manager.db.config.JpaContext;
+import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
+import de.latlon.xplanbox.api.manager.config.ApplicationContext;
+import de.latlon.xplanbox.api.manager.config.HsqlJpaContext;
+import de.latlon.xplanbox.api.manager.config.TestContext;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class PlanDokumentApiTest extends JerseyTest {
+class PlanDokumentApiTest extends JerseyTest {
 
 	@Override
 	protected Application configure() {
@@ -71,15 +72,15 @@ public class PlanDokumentApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_getDokumente_returnsCorrectStatusCodeForValidMediaType() {
+	void verifyThat_getDokumente_returnsCorrectStatusCodeForValidMediaType() {
 		Response response = target("/plan/2/dokument").request(APPLICATION_JSON).get();
 
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 	}
 
 	@Test
-	public void verifyThat_addDokument_returnsCorrectStatusCodeForValidMediaType() throws URISyntaxException {
+	void verifyThat_addDokument_returnsCorrectStatusCodeForValidMediaType() throws URISyntaxException {
 		FileDataBodyPart dokumentmodel = createFileDataBodyPart("dokumentmodel", "dokumentmodel.json",
 				MediaType.APPLICATION_JSON_TYPE);
 		FileDataBodyPart filePart = createFileDataBodyPart("datei", "datei.pdf", null);
@@ -88,22 +89,22 @@ public class PlanDokumentApiTest extends JerseyTest {
 
 		Response response = target("/plan/2/dokument").request()
 			.post(Entity.entity(multipart, multipart.getMediaType()));
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 	}
 
 	@Test
-	public void verifyThat_getDokumentById_returnsCorrectStatusCodeForValidMediaType() {
+	void verifyThat_getDokumentById_returnsCorrectStatusCodeForValidMediaType() {
 		Response response = target("/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf")
 			.request(APPLICATION_JSON)
 			.get();
 
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 	}
 
 	@Test
-	public void verifyThat_replaceDokumentById_returnsCorrectStatusCodeForValidMediaType() throws URISyntaxException {
+	void verifyThat_replaceDokumentById_returnsCorrectStatusCodeForValidMediaType() throws URISyntaxException {
 		FileDataBodyPart dokumentmodel = createFileDataBodyPart("dokumentmodel", "dokumentmodel.json",
 				MediaType.APPLICATION_JSON_TYPE);
 		FileDataBodyPart filePart = createFileDataBodyPart("datei", "datei.pdf", null);
@@ -113,18 +114,18 @@ public class PlanDokumentApiTest extends JerseyTest {
 		Response response = target("/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf")
 			.request()
 			.put(Entity.entity(multipart, multipart.getMediaType()));
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 	}
 
 	@Test
-	public void verifyThat_deleteDokumentById_returnsCorrectStatusCodeForValidMediaType() {
+	void verifyThat_deleteDokumentById_returnsCorrectStatusCodeForValidMediaType() {
 		Response response = target("/plan/2/dokument/B-Plan_Klingmuehl_Heideweg_Leg-B-Plan_Klingmuehl_Heideweg_Legpdf")
 			.request(APPLICATION_JSON)
 			.delete();
 
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 	}
 
 	private FileDataBodyPart createFileDataBodyPart(String name, String resource, MediaType mediaType)

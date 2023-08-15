@@ -26,20 +26,20 @@ import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @since 7.0
  */
-public class StatusApiTest extends JerseyTest {
+class StatusApiTest extends JerseyTest {
 
 	@Override
 	protected Application configure() {
@@ -52,7 +52,7 @@ public class StatusApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
+	void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
 		final Response response = target("/status").request().get();
 
 		assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());

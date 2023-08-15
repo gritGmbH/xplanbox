@@ -20,27 +20,27 @@
  */
 package de.latlon.xplanbox.api.validator.config;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mockito;
 
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
 
 public class ApplicationContextTest {
 
-	@ClassRule
-	public final static TemporaryFolder tempFolder = new TemporaryFolder();
+	@TempDir
+	public static File tempFolder;
 
 	@Test
-	public void rulesPathShouldGetPathFromJarIfNotConfigured() throws Exception {
+	void rulesPathShouldGetPathFromJarIfNotConfigured() throws Exception {
 		ValidatorConfiguration validatorConfig = Mockito.mock(ValidatorConfiguration.class);
 		Path rulesPath = new ApplicationContext().rulesPath(validatorConfig);
 
@@ -51,8 +51,8 @@ public class ApplicationContextTest {
 	}
 
 	@Test
-	public void rulesPathShouldUseConfiguredPath() throws Exception {
-		Path tmpDir = tempFolder.newFolder().toPath();
+	void rulesPathShouldUseConfiguredPath() throws Exception {
+		Path tmpDir = newFolder(tempFolder, "junit").toPath();
 		Path p = tmpDir.resolve("xplangml54/2.1.2.1.xq");
 		Files.createDirectories(p.getParent());
 		Files.writeString(p, "hello world", StandardCharsets.UTF_8);
@@ -65,6 +65,15 @@ public class ApplicationContextTest {
 
 		String content = Files.readString(path, StandardCharsets.UTF_8);
 		assertEquals("hello world", content);
+	}
+
+	private static File newFolder(File root, String... subDirs) throws IOException {
+		String subFolder = String.join("/", subDirs);
+		File result = new File(root, subFolder);
+		if (!result.mkdirs()) {
+			throw new IOException("Couldn't create folders " + root);
+		}
+		return result;
 	}
 
 }

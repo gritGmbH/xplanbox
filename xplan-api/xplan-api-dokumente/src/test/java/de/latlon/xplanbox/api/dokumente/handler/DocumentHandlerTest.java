@@ -20,6 +20,31 @@
  */
 package de.latlon.xplanbox.api.dokumente.handler;
 
+import static de.latlon.xplan.commons.XPlanType.BP_Plan;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.apache.commons.io.IOUtils.copyLarge;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.zip.GZIPOutputStream;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
+
 import de.latlon.xplan.core.manager.db.model.Artefact;
 import de.latlon.xplan.core.manager.db.model.ArtefactId;
 import de.latlon.xplan.core.manager.db.model.Bereich;
@@ -34,37 +59,15 @@ import de.latlon.xplanbox.api.dokumente.exception.InvalidDocument;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeader;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeaderWithStream;
 import de.latlon.xplanbox.api.dokumente.v1.model.Document;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Commit;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.zip.GZIPOutputStream;
-
-import static de.latlon.xplan.commons.XPlanType.BP_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
-import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.apache.commons.io.IOUtils.copyLarge;
-import static org.junit.Assert.assertTrue;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 7.0
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ApplicationContext.class, HsqlJpaContext.class })
 @Transactional
-public class DocumentHandlerTest {
+class DocumentHandlerTest {
 
 	@Autowired
 	private DocumentHandler documentHandler;
@@ -74,79 +77,95 @@ public class DocumentHandlerTest {
 
 	@Test
 	@Commit
-	public void test_listDocuments() throws Exception {
+	void test_listDocuments() throws Exception {
 		Plan plan = createPlanWithArtefact();
 		planRepository.save(plan);
 
 		List<Document> documents = documentHandler.listDocuments(String.valueOf(plan.getId()));
-		assertTrue(documents.size() == 1);
+		assertEquals(1, documents.size());
 	}
 
-	@Test(expected = InvalidPlanIdSyntax.class)
-	public void test_listDocuments_invalidPlanId() throws Exception {
-		documentHandler.listDocuments("stringid");
+	@Test
+	void test_listDocuments_invalidPlanId() throws Exception {
+		assertThrows(InvalidPlanIdSyntax.class, () -> {
+			documentHandler.listDocuments("stringid");
+		});
 	}
 
-	@Test(expected = InvalidPlanId.class)
-	public void test_listDocuments_unknownPlanId() throws Exception {
-		documentHandler.listDocuments("99");
+	@Test
+	void test_listDocuments_unknownPlanId() throws Exception {
+		assertThrows(InvalidPlanId.class, () -> {
+			documentHandler.listDocuments("99");
+		});
 	}
 
 	@Test
 	@Commit
-	public void test_headDocument() throws Exception {
+	void test_headDocument() throws Exception {
 		Plan plan = createPlanWithArtefact();
 		planRepository.save(plan);
 
 		DocumentHeader documentHeader = documentHandler.headDocument(String.valueOf(plan.getId()), "test.xml");
-		assertTrue(documentHeader.getFileSize() == 4);
-		assertTrue(documentHeader.getMediaType().equals("text/xml"));
+		assertEquals(4, documentHeader.getFileSize());
+		assertEquals("text/xml", documentHeader.getMediaType());
 	}
 
-	@Test(expected = InvalidPlanIdSyntax.class)
-	public void test_headDocument_invalidPlanId() throws Exception {
-		documentHandler.headDocument("stringid", "test.xml");
+	@Test
+	void test_headDocument_invalidPlanId() throws Exception {
+		assertThrows(InvalidPlanIdSyntax.class, () -> {
+			documentHandler.headDocument("stringid", "test.xml");
+		});
 	}
 
-	@Test(expected = InvalidPlanId.class)
-	public void test_headDocument_unknownPlanId() throws Exception {
-		documentHandler.headDocument("99", "test.xml");
+	@Test
+	void test_headDocument_unknownPlanId() throws Exception {
+		assertThrows(InvalidPlanId.class, () -> {
+			documentHandler.headDocument("99", "test.xml");
+		});
 	}
 
-	@Test(expected = InvalidDocument.class)
-	public void test_headDocument_unknownDocument() throws Exception {
-		Plan plan = createPlanWithArtefact();
-		planRepository.save(plan);
-		documentHandler.headDocument(String.valueOf(plan.getId()), "unknown.xml");
+	@Test
+	void test_headDocument_unknownDocument() throws Exception {
+		assertThrows(InvalidDocument.class, () -> {
+			Plan plan = createPlanWithArtefact();
+			planRepository.save(plan);
+			documentHandler.headDocument(String.valueOf(plan.getId()), "unknown.xml");
+		});
 	}
 
 	@Test
 	@Commit
-	public void test_getDocument() throws Exception {
+	void test_getDocument() throws Exception {
 		Plan plan = createPlanWithArtefact();
 		planRepository.save(plan);
 
 		DocumentHeaderWithStream documentHeader = documentHandler.getDocument(String.valueOf(plan.getId()), "test.xml");
-		assertTrue(documentHeader.getFileSize() == 4);
-		assertTrue(documentHeader.getMediaType().equals("text/xml"));
+		assertEquals(4, documentHeader.getFileSize());
+		assertEquals("text/xml", documentHeader.getMediaType());
 		assertTrue(documentHeader.getStreamingOutput() != null);
 	}
 
-	@Test(expected = InvalidPlanIdSyntax.class)
-	public void test_getDocument_invalidPlanId() throws Exception {
-		documentHandler.getDocument("stringid", "test.xml");
+	@Test
+	void test_getDocument_invalidPlanId() throws Exception {
+		assertThrows(InvalidPlanIdSyntax.class, () -> {
+			documentHandler.getDocument("stringid", "test.xml");
+		});
 	}
 
-	@Test(expected = InvalidPlanId.class)
-	public void test_getDocument_unknownPlanId() throws Exception {
-		documentHandler.getDocument("99", "test.xml");
+	@Test
+	void test_getDocument_unknownPlanId() throws Exception {
+		assertThrows(InvalidPlanId.class, () -> {
+			documentHandler.getDocument("99", "test.xml");
+		});
 	}
 
-	@Test(expected = InvalidDocument.class)
-	public void test_getDocument_unknownDocument() throws Exception {
-		Plan plan = createPlanWithArtefact();
-		planRepository.save(plan);
-		documentHandler.getDocument(String.valueOf(plan.getId()), "unknown.xml");
+	@Test
+	void test_getDocument_unknownDocument() throws Exception {
+		assertThrows(InvalidDocument.class, () -> {
+			Plan plan = createPlanWithArtefact();
+			planRepository.save(plan);
+			documentHandler.getDocument(String.valueOf(plan.getId()), "unknown.xml");
+		});
 	}
 
 	private Plan createPlanWithArtefact() throws IOException {

@@ -20,28 +20,28 @@
  */
 package de.latlon.xplanbox.api.dokumente.v1;
 
-import de.latlon.xplanbox.api.dokumente.config.ApplicationContext;
-import de.latlon.xplanbox.api.dokumente.config.TestContext;
-import org.apache.http.HttpHeaders;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.test.JerseyTest;
-import org.glassfish.jersey.test.TestProperties;
-import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
+import org.apache.http.HttpHeaders;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
+import org.glassfish.jersey.test.TestProperties;
+import org.junit.jupiter.api.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import de.latlon.xplanbox.api.dokumente.config.ApplicationContext;
+import de.latlon.xplanbox.api.dokumente.config.TestContext;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @since 7.0
  */
-public class InfoApiTest extends JerseyTest {
+class InfoApiTest extends JerseyTest {
 
 	@Override
 	protected Application configure() {
@@ -54,7 +54,7 @@ public class InfoApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
+	void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
 		final Response response = target("/info").request(APPLICATION_JSON).get();
 
 		assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
@@ -62,10 +62,10 @@ public class InfoApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsVersion() {
+	void verifyThat_Response_ContainsVersion() {
 		final String response = target("/info").request(APPLICATION_JSON).get(String.class);
 
-		assertThat(response, containsString("version"));
+		assertThat(response).contains("version");
 	}
 
 }

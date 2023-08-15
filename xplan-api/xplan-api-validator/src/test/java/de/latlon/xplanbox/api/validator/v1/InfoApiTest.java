@@ -20,40 +20,39 @@
  */
 package de.latlon.xplanbox.api.validator.v1;
 
-import de.latlon.xplanbox.api.validator.config.ApplicationContext;
-import de.latlon.xplanbox.api.validator.config.TestContext;
-import org.apache.http.HttpHeaders;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.test.JerseyTest;
-import org.glassfish.jersey.test.TestProperties;
-import org.junit.BeforeClass;
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.File;
+import java.io.IOException;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertEquals;
+import org.apache.http.HttpHeaders;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
+import org.glassfish.jersey.test.TestProperties;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.io.File;
-import java.io.IOException;
+import de.latlon.xplanbox.api.validator.config.ApplicationContext;
+import de.latlon.xplanbox.api.validator.config.TestContext;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 public class InfoApiTest extends JerseyTest {
 
-	@ClassRule
-	public final static TemporaryFolder tempFolder = new TemporaryFolder();
+	@TempDir
+	public static File tempFolder;
 
-	@BeforeClass
-	public static void setupFakedWorkspace() throws IOException {
-		File workspace = tempFolder.newFolder("xplan-validator-wms-memory-workspace");
+	@BeforeAll
+	static void setupFakedWorkspace() throws IOException {
+		File workspace = newFolder(tempFolder, "xplan-validator-wms-memory-workspace");
 		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParentFile().toString());
 	}
 
@@ -68,7 +67,7 @@ public class InfoApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
+	void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
 		final Response response = target("/info").request(APPLICATION_JSON).get();
 
 		assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
@@ -76,11 +75,20 @@ public class InfoApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsSupportedXplanGmlVersionsAndProfiles() {
+	void verifyThat_Response_ContainsSupportedXplanGmlVersionsAndProfiles() {
 		final String response = target("/info").request(APPLICATION_JSON).get(String.class);
 
-		assertThat(response, containsString("supportedXPlanGmlVersions"));
-		assertThat(response, containsString("profiles"));
+		assertThat(response).contains("supportedXPlanGmlVersions");
+		assertThat(response).contains("profiles");
+	}
+
+	private static File newFolder(File root, String... subDirs) throws IOException {
+		String subFolder = String.join("/", subDirs);
+		File result = new File(root, subFolder);
+		if (!result.mkdirs()) {
+			throw new IOException("Couldn't create folders " + root);
+		}
+		return result;
 	}
 
 }
