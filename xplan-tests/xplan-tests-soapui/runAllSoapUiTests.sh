@@ -1,13 +1,13 @@
 #!/bin/bash
 
 echo "Executing tests..."
-mvn test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DDbaseUrlManagerApi=$XPLAN_API_MANAGER_BASE_URL -DbaseUrlServices=$XPLAN_BASE_URL_DIENSTE  -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD
+mvn test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_API_MANAGER_BASE_URL -DbaseUrlServices=$XPLAN_BASE_URL_DIENSTE  -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD
 
-mvn test -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project -Dendpoint=$XPLAN_API_VALIDATOR_ENDPOINT -Dusername=$XPLAN_API_VALIDATOR_USERNAME -Dpassword=$XPLAN_API_VALIDATOR_PASSWORD
+mvn test -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=$XPLAN_API_VALIDATOR_ENDPOINT -Dusername=$XPLAN_API_VALIDATOR_USERNAME -Dpassword=$XPLAN_API_VALIDATOR_PASSWORD
 
 if [ -z ${XPLAN_API_DOKUMENTE_BASE_URL+x} ];
 then
-	echo "XPlaNDokumentenAPI Tests are skipped!"
+	echo "XPlanDokumentenAPI Tests are skipped!"
 else
  mvn clean test -Psystem-tests -DtestFileName=xplan-api-dokumente-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_API_MANAGER_BASE_URL -DbaseUrlDokumentenApi=$XPLAN_API_DOKUMENTE_BASE_URL -Dusername=$XPLAN_API_VALIDATOR_USERNAME -Dpassword=$XPLAN_API_VALIDATOR_PASSWORD
 fi

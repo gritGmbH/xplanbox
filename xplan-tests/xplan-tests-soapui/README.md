@@ -66,6 +66,7 @@ Der Report im PDF Format kann zu einem S3 Bucket hochgeladen werden, dafür müs
 - `XPLAN_S3_ACCESS_KEY`: der S3-Zugangschlüssel
 - `XPLAN_S3_SECRET_ACCESS_KEY`: der S3-Geheimzugangschlüssel
 - `XPLAN_S3_REGION`: die S3 Region
+- `XPLAN_S3_BUCKET_NAME`: der Name des Buckets
 
 Der Report kann aus S3 lokal kopiert werden, z,B. mit:
 
