@@ -57,6 +57,7 @@
         <baseUrlMapServer />
         <username />
         <password />
+        <apiKey />
         <endpoint />
       </properties>
       <build>
@@ -95,6 +96,7 @@
                     <value>baseUrlMapServer=${baseUrlMapServer}</value>
                     <value>username=${username}</value>
                     <value>password=${password}</value>
+                    <value>apiKey=${apiKey}</value>
                   </projectProperties>
                 </configuration>
               </execution>

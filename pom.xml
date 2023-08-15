@@ -280,11 +280,11 @@
     <profile>
       <id>skipAll</id>
       <properties>
-		<dependency-check.skip>true</dependency-check.skip> <!-- dependency-check-maven -->  
-		<enforcer.skip>true</enforcer.skip> <!-- maven-enforcer-plugin -->  
-		<skipTests>true</skipTests> <!-- surefire & failsafe -->
-		<spring-javaformat.skip>true</spring-javaformat.skip> <!-- spring-javaformat-maven-plugin -->
-	  </properties>
+        <dependency-check.skip>true</dependency-check.skip> <!-- dependency-check-maven -->
+        <enforcer.skip>true</enforcer.skip> <!-- maven-enforcer-plugin -->
+        <skipTests>true</skipTests> <!-- surefire & failsafe -->
+        <spring-javaformat.skip>true</spring-javaformat.skip> <!-- spring-javaformat-maven-plugin -->
+      </properties>
     </profile>
   </profiles>
 
