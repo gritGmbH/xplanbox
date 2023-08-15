@@ -35,6 +35,7 @@ import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.configuration.ConfigurationException;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.edit.EditedArtefacts;
 import de.latlon.xplan.manager.edit.XPlanManipulator;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
@@ -64,17 +65,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.TimeZone;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanName;
-import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectAddedRefFileNames;
-import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefFileNames;
+import static de.latlon.xplan.manager.edit.ArtefactType.RASTER;
+import static de.latlon.xplan.manager.edit.ArtefactType.RASTER_GEOREFERENCE;
+import static de.latlon.xplan.manager.edit.EditType.ADDED;
+import static de.latlon.xplan.manager.edit.EditType.REMOVED;
+import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectEditedArtefacts;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
-import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
 import static de.latlon.xplan.manager.transaction.TransactionUtils.reassignFids;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 import static java.lang.Integer.parseInt;
@@ -139,13 +140,9 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			byte[] xPlanGml = createXPlanGml(version, modifiedFeatures);
 			ExternalReferenceInfo externalReferenceInfoToUpdate = createExternalRefAddedOrUpdated(
 					externalReferencesModified, uploadedArtefacts);
-			ExternalReferenceInfo externalReferenceInfoToRemove = createExternalRefRemovedOrUpdated(
-					externalReferencesModified, uploadedArtefacts, externalReferencesOriginal);
 			List<String> originalArtefacts = xplanDao.retrieveAllXPlanArtefactFileNames(planId);
-			Set<String> removedRefFileNames = collectRemovedRefFileNames(attachmentUrlHandler, oldXplan.getId(),
-					externalReferencesModified, externalReferencesOriginal, originalArtefacts);
-			Map<String, String> addedRefFileNames = collectAddedRefFileNames(attachmentUrlHandler, oldXplan.getId(),
-					externalReferencesModified, externalReferencesOriginal, uploadedFileNames);
+			EditedArtefacts editedArtefacts = collectEditedArtefacts(attachmentUrlHandler, oldXplan.getId(),
+					externalReferencesModified, externalReferencesOriginal, originalArtefacts, uploadedFileNames);
 
 			XPlanFeatureCollection modifiedPlanFc = new XPlanFeatureCollectionBuilder(modifiedFeatures, type)
 				.withExternalReferenceInfo(externalReferenceInfoToUpdate)
@@ -159,12 +156,11 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			AdditionalPlanData xPlanMetadata = new AdditionalPlanData(newPlanStatus,
 					xPlanToEdit.getValidityPeriod().getStart(), xPlanToEdit.getValidityPeriod().getEnd());
 			Date sortDate = sortPropertyReader.readSortDate(type, version, modifiedFeatures);
-			xPlanEditService.update(oldXplan, uploadedArtefacts, planId, xPlanGml, externalReferenceInfoToUpdate,
-					externalReferenceInfoToRemove, addedRefFileNames, removedRefFileNames, modifiedPlanFc, synFc,
-					xPlanMetadata, sortDate, internalId);
+			xPlanEditService.update(oldXplan, uploadedArtefacts, planId, xPlanGml, editedArtefacts, modifiedPlanFc,
+					synFc, xPlanMetadata, sortDate, internalId);
 			startCreationIfPlanNameHasChanged(planId, type, modifiedPlanFc, oldPlanName, oldDescription);
-			updateRasterConfiguration(planId, makeRasterConfig, uploadedArtefacts, type, oldPlanStatus,
-					externalReferenceInfoToRemove, modifiedPlanFc, newPlanStatus, sortDate);
+			updateRasterConfiguration(planId, makeRasterConfig, uploadedArtefacts, type, oldPlanStatus, editedArtefacts,
+					newPlanStatus, sortDate);
 			LOG.info("XPlanGML wurde erfolgreich editiert. ID: {}", planId);
 		}
 	}
@@ -176,13 +172,14 @@ public class XPlanEditManager extends XPlanTransactionManager {
 	}
 
 	private void updateRasterConfiguration(int planId, boolean makeRasterConfig, List<File> uploadedArtefacts,
-			XPlanType type, PlanStatus oldPlanStatus, ExternalReferenceInfo externalReferenceInfoToRemove,
-			XPlanFeatureCollection modifiedPlanFc, PlanStatus newPlanStatus, Date sortDate)
-			throws JAXBException, IOException, ConfigurationException {
-		xPlanRasterManager.removeRasterLayers(planId, externalReferenceInfoToRemove);
+			XPlanType type, PlanStatus oldPlanStatus, EditedArtefacts editedArtefacts, PlanStatus newPlanStatus,
+			Date sortDate) throws JAXBException, IOException, ConfigurationException {
+		List<String> removedRefFileNames = editedArtefacts.getFileNames(REMOVED, RASTER, RASTER_GEOREFERENCE);
+		xPlanRasterManager.removeRasterLayers(planId, removedRefFileNames);
 		if (makeRasterConfig) {
 			XPlanArchiveContentAccess archive = new XPlanPartArchive(uploadedArtefacts);
-			createRasterConfiguration(archive, modifiedPlanFc, planId, type, oldPlanStatus, newPlanStatus, sortDate);
+			List<String> addedRefFileNames = editedArtefacts.getFileNames(ADDED, RASTER);
+			createRasterConfiguration(archive, addedRefFileNames, planId, type, oldPlanStatus, newPlanStatus, sortDate);
 			reloadWorkspace(planId);
 		}
 		else {

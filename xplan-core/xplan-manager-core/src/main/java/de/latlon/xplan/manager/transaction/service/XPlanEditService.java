@@ -21,9 +21,9 @@
 package de.latlon.xplan.manager.transaction.service;
 
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
+import de.latlon.xplan.manager.edit.EditedArtefacts;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
@@ -35,8 +35,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -56,24 +54,20 @@ public class XPlanEditService {
 
 	@Transactional(rollbackOn = Exception.class)
 	public void update(XPlan oldXplan, List<File> uploadedArtefacts, int planId, byte[] xPlanGml,
-			ExternalReferenceInfo externalReferenceInfoToUpdate, ExternalReferenceInfo externalReferenceInfoToRemove,
-			Map<String, String> addedRefFileNames, Set<String> removedRefFileNames,
-			XPlanFeatureCollection modifiedPlanFc, FeatureCollection synFc, AdditionalPlanData xPlanMetadata,
-			Date sortDate, String internalId) throws Exception {
+			EditedArtefacts editedArtefacts, XPlanFeatureCollection modifiedPlanFc, FeatureCollection synFc,
+			AdditionalPlanData xPlanMetadata, Date sortDate, String internalId) throws Exception {
 		xplanDao.update(oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, sortDate, uploadedArtefacts,
-				addedRefFileNames, removedRefFileNames, internalId);
-		updateDocuments(planId, uploadedArtefacts, externalReferenceInfoToUpdate, externalReferenceInfoToRemove);
+				editedArtefacts, internalId);
+		updateDocuments(planId, uploadedArtefacts, editedArtefacts);
 	}
 
-	private void updateDocuments(int planId, List<File> uploadedArtefacts,
-			ExternalReferenceInfo externalReferenceInfoToAdd, ExternalReferenceInfo externalReferenceInfoToRemove)
+	private void updateDocuments(int planId, List<File> uploadedArtefacts, EditedArtefacts editedArtefacts)
 			throws StorageException {
 		if (xPlanDocumentManager != null) {
 			List<Path> uploadedArtefactsAsPaths = uploadedArtefacts.stream()
 				.map(uploadedArtefact -> Paths.get(uploadedArtefact.toURI()))
 				.collect(Collectors.toList());
-			xPlanDocumentManager.updateDocuments(planId, uploadedArtefactsAsPaths,
-					externalReferenceInfoToAdd.getNonRasterRefs(), externalReferenceInfoToRemove.getNonRasterRefs());
+			xPlanDocumentManager.updateDocuments(planId, uploadedArtefactsAsPaths, editedArtefacts);
 		}
 	}
 

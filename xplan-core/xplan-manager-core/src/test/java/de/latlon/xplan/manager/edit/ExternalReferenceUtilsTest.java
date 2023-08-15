@@ -23,7 +23,6 @@ package de.latlon.xplan.manager.edit;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfoBuilder;
-import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
@@ -36,14 +35,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectAddedRefFileNames;
-import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefFileNames;
+import static de.latlon.xplan.manager.edit.ArtefactType.NONRASTER;
+import static de.latlon.xplan.manager.edit.ArtefactType.RASTER;
+import static de.latlon.xplan.manager.edit.ArtefactType.RASTER_GEOREFERENCE;
+import static de.latlon.xplan.manager.edit.EditType.ADDED;
+import static de.latlon.xplan.manager.edit.EditType.REMOVED;
+import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectEditedArtefacts;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
-import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static org.hamcrest.CoreMatchers.hasItems;
@@ -57,8 +57,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ExternalReferenceUtilsTest {
 
 	@Test
-	public void testCreateExternalRefAddedOrUpdated_ExternalReferenceInfo() throws Exception {
-		ExternalReferenceInfo externalRefsOriginalPlan = createExternalReferenceInfo("A.tif", "C.png", "D.png");
+	public void testCreateExternalRefAddedOrUpdated_ExternalReferenceInfo() {
+		ExternalReferenceInfo externalRefsOriginalPlan = createExternalReferenceInfo("A.tif", "X.pdf", "C.png",
+				"D.png");
 		List<File> uploadedArtefacts = createUploadedFileList("A.tif", "B.jpg", "C.png");
 
 		ExternalReferenceInfo externalReferenceInfo = createExternalRefAddedOrUpdated(externalRefsOriginalPlan,
@@ -71,7 +72,7 @@ public class ExternalReferenceUtilsTest {
 	}
 
 	@Test
-	public void testCreateExternalRefAddedOrUpdated_XPlanToEdit() throws Exception {
+	public void testCreateExternalRefAddedOrUpdated_XPlanToEdit() {
 		XPlanToEdit planToEdit = new XPlanToEdit();
 		RasterBasis rasterBasis = new RasterBasis();
 		RasterReference rasterReference1 = new RasterReference("0", "G.tif", null, LEGEND, null, null, null, null, null,
@@ -92,94 +93,53 @@ public class ExternalReferenceUtilsTest {
 	}
 
 	@Test
-	public void testCreateExternalRefRemovedOrUpdated() throws Exception {
-		ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo("A.tif", "C.png", "D.png");
-		List<File> uploadedArtefacts = createUploadedFileList("A.tif", "B.jpg", "C.png");
-		ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo("A.tif", "D.png", "F.png");
+	public void testCollectEditedArtefacts() {
+		List<String> originalFileNames = Arrays.asList("A.tif", "D.png", "D.pgw", "F.png", "F.pgw");
+		List<String> uploadedFileNames = Arrays.asList("A.tif", "X.pdf", "Z.pdf", "B.png", "C.png", "C.pgw");
+		ExternalReferenceInfo externalRefsModified = new ExternalReferenceInfoBuilder()
+			.addRasterPlanBaseScan(new ExternalReference("A.tif"))
+			.addNonRasterReference(new ExternalReference("X.pdf"))
+			.addNonRasterReference(new ExternalReference("Z.pdf"))
+			.addRasterPlanUpdateScan(new ExternalReference("C.png", "C.pgw"))
+			.addRasterPlanUpdateScan(new ExternalReference("D.png", "D.pgw"))
+			.build();
+		ExternalReferenceInfo externalRefsOriginal = new ExternalReferenceInfoBuilder()
+			.addRasterPlanBaseScan(new ExternalReference("A.tif"))
+			.addNonRasterReference(new ExternalReference("X.pdf"))
+			.addNonRasterReference(new ExternalReference("Y.pdf"))
+			.addRasterPlanUpdateScan(new ExternalReference("D.png", "D.pgw"))
+			.addRasterPlanUpdateScan(new ExternalReference("F.png", "F.pgw"))
+			.build();
 
-		ExternalReferenceInfo externalReferences = createExternalRefRemovedOrUpdated(externalRefsModified,
-				uploadedArtefacts, externalRefsOriginal);
+		EditedArtefacts editedArtefacts = collectEditedArtefacts(null, "1", externalRefsModified, externalRefsOriginal,
+				originalFileNames, uploadedFileNames);
 
-		List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferences.getRasterPlanBaseAndUpdateScans();
-		assertThat(rasterPlanBaseAndUpdateScans.size(), is(2));
-		assertThat(rasterPlanBaseAndUpdateScans, hasExternalReference("A.tif"));
-		assertThat(rasterPlanBaseAndUpdateScans, hasExternalReference("F.png"));
+		List<String> removedRaster = editedArtefacts.getFileNames(REMOVED, RASTER, RASTER_GEOREFERENCE);
+		assertThat(removedRaster.size(), is(2));
+		assertThat(removedRaster, hasItems("F.png", "F.pgw"));
+
+		List<String> addedRaster = editedArtefacts.getFileNames(ADDED, RASTER, RASTER_GEOREFERENCE);
+		assertThat(addedRaster.size(), is(2));
+		assertThat(addedRaster, hasItems("C.png", "C.pgw"));
+
+		List<String> removedNonRaster = editedArtefacts.getFileNames(REMOVED, NONRASTER);
+		assertThat(removedNonRaster.size(), is(1));
+		assertThat(removedNonRaster, hasItems("Y.pdf"));
+
+		List<String> addedNonRaster = editedArtefacts.getFileNames(ADDED, NONRASTER);
+		assertThat(addedNonRaster.size(), is(1));
+		assertThat(addedNonRaster, hasItems("Z.pdf"));
 	}
 
-	@Test
-	public void testCollectRemovedRefFileNames() {
-		List<String> originalFileNames = Arrays.asList("A.tif", "D.png", "F.png");
-		ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo("A.tif", "C.png", "D.png");
-		ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo("A.tif", "D.png", "F.png");
-
-		Set<String> removedRefs = collectRemovedRefFileNames(null, "1", externalRefsModified, externalRefsOriginal,
-				originalFileNames);
-
-		assertThat(removedRefs.size(), is(1));
-		assertThat(removedRefs, hasItems("F.png"));
-	}
-
-	@Test
-	public void testCollectRemovedRefFileNames_withReplacedUrl() {
-		AttachmentUrlHandler attachmentUrlHandler = new AttachmentUrlHandler(
-				"http://test.de/xdokumente/api/v1/dokument/{planId}/{fileName}");
-		List<String> originalFileNames = Arrays.asList("A.tif", "D.png", "F.png");
-		ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo(
-				"http://test.de/xdokumente/api/v1/dokument/1/A.tif",
-				"http://test.de/xdokumente/api/v1/dokument/1/C.png",
-				"http://test.de/xdokumente/api/v1/dokument/1/D.png");
-		ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo(
-				"http://test.de/xdokumente/api/v1/dokument/1/A.tif",
-				"http://test.de/xdokumente/api/v1/dokument/1/D.png",
-				"http://test.de/xdokumente/api/v1/dokument/1/F.png");
-
-		Set<String> removedRefs = collectRemovedRefFileNames(attachmentUrlHandler, "1", externalRefsModified,
-				externalRefsOriginal, originalFileNames);
-
-		assertThat(removedRefs.size(), is(1));
-		assertThat(removedRefs, hasItems("F.png"));
-	}
-
-	@Test
-	public void testCollectAddedRefFileNames() {
-		List<String> uploadedFileNames = Arrays.asList("A.tif", "B.png", "C.png");
-		ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo("A.tif", "C.png", "D.png");
-		ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo("A.tif", "D.png", "F.png");
-
-		Map<String, String> addedRefs = collectAddedRefFileNames(null, "1", externalRefsModified, externalRefsOriginal,
-				uploadedFileNames);
-
-		assertThat(addedRefs.size(), is(1));
-		assertThat(addedRefs.get("C.png"), is("C.png"));
-	}
-
-	@Test
-	public void testCollectAddedRefFileNames_withReplacedUrl() {
-		AttachmentUrlHandler attachmentUrlHandler = new AttachmentUrlHandler(
-				"http://test.de/xdokumente/api/v1/dokument/{planId}/{fileName}");
-		List<String> uploadedFileNames = Arrays.asList("A.tif", "B.png", "C.png");
-		ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo(
-				"http://test.de/xdokumente/api/v1/dokument/1/A.tif",
-				"http://test.de/xdokumente/api/v1/dokument/1/C.png",
-				"http://test.de/xdokumente/api/v1/dokument/1/D.png");
-		ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo(
-				"http://test.de/xdokumente/api/v1/dokument/1/A.tif",
-				"http://test.de/xdokumente/api/v1/dokument/1/D.png",
-				"http://test.de/xdokumente/api/v1/dokument/1/F.png");
-
-		Map<String, String> addedRefs = collectAddedRefFileNames(attachmentUrlHandler, "1", externalRefsModified,
-				externalRefsOriginal, uploadedFileNames);
-
-		assertThat(addedRefs.size(), is(1));
-		assertThat(addedRefs.get("http://test.de/xdokumente/api/v1/dokument/1/C.png"), is("C.png"));
-	}
-
-	private ExternalReferenceInfo createExternalReferenceInfo(String rasterPlanBaseScan, String... rasterUploads) {
+	private ExternalReferenceInfo createExternalReferenceInfo(String rasterPlanBaseScan, String nonRasterReference,
+			String... rasterUploads) {
 		List<ExternalReference> updateScans = Arrays.stream(rasterUploads)
 			.map(rasterUpload -> new ExternalReference(rasterUpload))
 			.collect(Collectors.toList());
+		ExternalReference nonRasterRef = nonRasterReference != null ? new ExternalReference(nonRasterReference) : null;
 		return new ExternalReferenceInfoBuilder().addRasterPlanBaseScan(new ExternalReference(rasterPlanBaseScan))
 			.addRasterPlanUpdateScans(updateScans)
+			.addNonRasterReference(nonRasterRef)
 			.build();
 	}
 

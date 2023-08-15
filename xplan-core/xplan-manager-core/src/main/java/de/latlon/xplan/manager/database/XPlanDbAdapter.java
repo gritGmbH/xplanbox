@@ -37,6 +37,8 @@ import de.latlon.xplan.core.manager.db.repository.ArtefactRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanwerkWmsMetadataRepository;
 import de.latlon.xplan.manager.CategoryMapper;
+import de.latlon.xplan.manager.edit.EditedArtefact;
+import de.latlon.xplan.manager.edit.EditedArtefacts;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -64,7 +66,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -80,6 +81,9 @@ import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechts
 import static de.latlon.xplan.commons.util.MimeTypeDetector.getArtefactMimeType;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.RASTERBASIS;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.XPLANGML;
+import static de.latlon.xplan.manager.edit.ArtefactType.RASTER;
+import static de.latlon.xplan.manager.edit.EditType.ADDED;
+import static de.latlon.xplan.manager.edit.EditType.REMOVED;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static org.apache.commons.io.IOUtils.copyLarge;
 
@@ -171,18 +175,20 @@ public class XPlanDbAdapter {
 	 * <code>null</code>
 	 * @param planArtefact the edited xplan gml, never <code>null</code>
 	 * @param sortDate the date added to syn feature collection, may be <code>null</code>
-	 * @param removedRefFileNames
+	 * @param uploadedArtefacts list of uploaded files, may be empty but never
+	 * <code>null</code>
+	 * @param editedArtefacts describing the edited artefacts, never <code>null</code>
 	 * @throws Exception
 	 */
 	@Transactional(propagation = Propagation.MANDATORY)
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, Date sortDate, List<File> uploadedArtefacts,
-			Map<String, String> addedRefFileNames, Set<String> removedRefFileNames) throws Exception {
+			EditedArtefacts editedArtefacts) throws Exception {
 		int planId = Integer.parseInt(oldXplan.getId());
 		LOG.info("- Aktualisierung der XPlan-Artefakte von Plan mit ID '{}'", planId);
 		Plan plan = getRequiredPlanById(planId);
 		updatePlan(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, sortDate, uploadedArtefacts,
-				addedRefFileNames, removedRefFileNames, planId, plan);
+				editedArtefacts, planId, plan);
 		planRepository.save(plan);
 	}
 
@@ -431,6 +437,13 @@ public class XPlanDbAdapter {
 		return null;
 	}
 
+	private ArtefactType detectNonXPlanGmlArtefactType(EditedArtefact editedArtefact) {
+		de.latlon.xplan.manager.edit.ArtefactType artefactType = editedArtefact.getArtefactType();
+		if (artefactType == RASTER)
+			return RASTERBASIS;
+		return null;
+	}
+
 	private PlanStatus retrievePlanStatus(String planStatusMessage) {
 		if (planStatusMessage != null && planStatusMessage.length() > 0)
 			return PlanStatus.findByMessage(planStatusMessage);
@@ -534,8 +547,7 @@ public class XPlanDbAdapter {
 
 	private void updatePlan(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, Date sortDate, List<File> uploadedArtefacts,
-			Map<String, String> addedRefFileNames, Set<String> removedRefFileNames, int planId, Plan plan)
-			throws Exception {
+			EditedArtefacts editedArtefacts, int planId, Plan plan) throws Exception {
 		XPlanType type = XPlanType.valueOf(oldXplan.getType());
 		plan.name(fc.getPlanName())
 			.rechtsstand(retrieveRechtsstandWert(synFc, type))
@@ -559,19 +571,21 @@ public class XPlanDbAdapter {
 		Artefact xPlanGmlArtefact = optionalArtefact.get();
 		xPlanGmlArtefact.data(createZipArtefact(new ByteArrayInputStream(planArtefact)));
 
+		List<String> removedRefFileNames = editedArtefacts.getFileNames(REMOVED);
 		List<Artefact> artefactsToDelete = planArtefacts.stream()
 			.filter(artefact -> removedRefFileNames.contains(artefact.getId().getFilename()))
 			.collect(Collectors.toList());
 		planArtefacts.removeAll(artefactsToDelete);
 
-		for (Map.Entry<String, String> entry : addedRefFileNames.entrySet()) {
-			String fileName = entry.getValue();
+		List<EditedArtefact> addedRefFileNames = editedArtefacts.getEditedArtefacts(ADDED);
+		for (EditedArtefact editedArtefact : addedRefFileNames) {
+			String fileName = editedArtefact.getFileName();
 			File file = retrieveUploadedArtefact(fileName, uploadedArtefacts);
 			long size = Files.size(file.toPath());
 			try (FileInputStream fileInputStream = new FileInputStream(file)) {
 				byte[] data = createZipArtefact(fileInputStream);
 				String mimetype = getArtefactMimeType(fileName);
-				ArtefactType artefactType = detectNonXPlanGmlArtefactType(fc, fileName);
+				ArtefactType artefactType = detectNonXPlanGmlArtefactType(editedArtefact);
 
 				ArtefactId id = new ArtefactId().plan(plan).filename(fileName);
 				Artefact artefact = new Artefact().id(id)

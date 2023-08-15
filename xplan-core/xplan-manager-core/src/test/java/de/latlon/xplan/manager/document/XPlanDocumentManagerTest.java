@@ -24,9 +24,10 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
-import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
+import de.latlon.xplan.manager.edit.EditedArtefact;
+import de.latlon.xplan.manager.edit.EditedArtefacts;
 import de.latlon.xplan.manager.storage.StorageEvent;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
@@ -34,9 +35,12 @@ import org.springframework.context.ApplicationEventPublisher;
 
 import java.io.InputStream;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
+import static de.latlon.xplan.manager.edit.ArtefactType.NONRASTER;
+import static de.latlon.xplan.manager.edit.EditType.ADDED;
+import static de.latlon.xplan.manager.edit.EditType.REMOVED;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.ArgumentMatchers.eq;
@@ -81,10 +85,11 @@ public class XPlanDocumentManagerTest {
 		String referenceToAdd = "test.png";
 		String referenceToRemove = "removed.png";
 		Path uploadedArtefact = createMockedPath(referenceToAdd);
-		List<ExternalReference> documentsToAdd = Collections.singletonList(new ExternalReference(referenceToAdd));
-		List<ExternalReference> documentsToRemove = Collections.singletonList(new ExternalReference(referenceToRemove));
-		xPlanDocumentManager.updateDocuments(1, Collections.singletonList(uploadedArtefact), documentsToAdd,
-				documentsToRemove);
+		EditedArtefact documentToAdd = new EditedArtefact(referenceToAdd, NONRASTER, ADDED);
+		EditedArtefact documentToRemove = new EditedArtefact(referenceToRemove, NONRASTER, REMOVED);
+
+		EditedArtefacts editedArtefacts = new EditedArtefacts(Arrays.asList(documentToAdd, documentToRemove));
+		xPlanDocumentManager.updateDocuments(1, Collections.singletonList(uploadedArtefact), editedArtefacts);
 		verify(storage).importDocument(eq(1), eq(referenceToAdd), eq(uploadedArtefact), any(StorageEvent.class));
 		verify(storage).deleteDocument(eq(1), eq(referenceToRemove), any(StorageEvent.class));
 		verify(applicationEventPublisher).publishEvent(any(StorageEvent.class));

@@ -60,7 +60,7 @@ public class EditBasisdatenHandler extends EditHandler {
 		XPlan plan = findPlanById(planId);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
 		xPlanToEdit.setBaseData(basisdaten.toBaseData());
-		manager.editPlan(plan, xPlanToEdit, false, Collections.emptyList());
+		manager.editPlan(plan, xPlanToEdit, true, Collections.emptyList());
 		return basisdaten;
 	}
 

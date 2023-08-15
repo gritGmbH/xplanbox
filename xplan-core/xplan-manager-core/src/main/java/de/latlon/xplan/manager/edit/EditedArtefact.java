@@ -18,22 +18,45 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster.storage;
-
-import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
-import de.latlon.xplan.manager.storage.StorageEvent;
-
-import java.io.IOException;
+package de.latlon.xplan.manager.edit;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 7.0
  */
-public interface RasterStorage {
+public class EditedArtefact {
 
-	String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive, StorageEvent storageEvent)
-			throws IOException, StorageException;
+	private String fileName;
 
-	void deleteRasterFile(int planId, String fileName, StorageEvent storageEvent) throws IOException, StorageException;
+	private ArtefactType artefactType;
+
+	private EditType editType;
+
+	public EditedArtefact(String fileName, ArtefactType artefactType, EditType editType) {
+		this.fileName = fileName;
+		this.artefactType = artefactType;
+		this.editType = editType;
+	}
+
+	/**
+	 * @return the fileName, never <code>null</code>
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * @return the artefactType, never <code>null</code>
+	 */
+	public ArtefactType getArtefactType() {
+		return artefactType;
+	}
+
+	/**
+	 * @return the editType, never <code>null</code>
+	 */
+	public EditType getEditType() {
+		return editType;
+	}
 
 }

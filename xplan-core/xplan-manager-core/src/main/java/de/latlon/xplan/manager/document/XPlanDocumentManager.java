@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.document;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import de.latlon.xplan.manager.edit.EditedArtefacts;
 import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.slf4j.Logger;
@@ -32,6 +33,10 @@ import org.springframework.context.ApplicationEventPublisher;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+
+import static de.latlon.xplan.manager.edit.ArtefactType.NONRASTER;
+import static de.latlon.xplan.manager.edit.EditType.ADDED;
+import static de.latlon.xplan.manager.edit.EditType.REMOVED;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -76,17 +81,15 @@ public class XPlanDocumentManager {
 	 * @param planId the id of the plan, never <code>null</code>
 	 * @param uploadedArtefacts a list of all uploaded artefacts, may be empty but never
 	 * <code>null</code>
-	 * @param documentsToAdd a list of documents added, may be empty but never *
-	 * <code>null</code>
-	 * @param documentsToRemove a list of documents removed, may be empty but never * *
-	 * <code>null</code>
+	 * @param editedArtefacts describing the edited artefacts, never <code>null</code>
 	 * @throws StorageException if the documents could not be updated
 	 */
-	public void updateDocuments(int planId, List<Path> uploadedArtefacts, List<ExternalReference> documentsToAdd,
-			List<ExternalReference> documentsToRemove) throws StorageException {
+	public void updateDocuments(int planId, List<Path> uploadedArtefacts, EditedArtefacts editedArtefacts)
+			throws StorageException {
 		StorageEvent storageEvent = new StorageEvent();
 		try {
-			for (String referenceToAdd : collectNonHttpReferences(documentsToAdd)) {
+			List<String> referencesToAdd = editedArtefacts.getFileNames(ADDED, NONRASTER);
+			for (String referenceToAdd : referencesToAdd) {
 				Path fileToAdd = getFileToAdd(referenceToAdd, uploadedArtefacts);
 				if (fileToAdd != null) {
 					documentStorage.importDocument(planId, referenceToAdd, fileToAdd, storageEvent);
@@ -96,7 +99,8 @@ public class XPlanDocumentManager {
 				}
 			}
 
-			for (String referenceToRemove : collectNonHttpReferences(documentsToRemove)) {
+			List<String> referencesToRemove = editedArtefacts.getFileNames(REMOVED, NONRASTER);
+			for (String referenceToRemove : referencesToRemove) {
 				documentStorage.deleteDocument(planId, referenceToRemove, storageEvent);
 			}
 		}
@@ -122,11 +126,15 @@ public class XPlanDocumentManager {
 		return referencesToAdd;
 	}
 
-	private static void addReference(String reference, List<String> referencesToAdd) {
+	private void addReference(String reference, List<String> referencesToAdd) {
 		String geoRef = reference;
-		if (geoRef != null && !geoRef.startsWith("http")) {
+		if (isNonHttpReference(geoRef)) {
 			referencesToAdd.add(geoRef);
 		}
+	}
+
+	private boolean isNonHttpReference(String ref) {
+		return ref != null && !ref.startsWith("http");
 	}
 
 }

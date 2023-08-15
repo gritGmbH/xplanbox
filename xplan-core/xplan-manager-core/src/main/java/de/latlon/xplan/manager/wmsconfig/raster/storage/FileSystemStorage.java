@@ -29,9 +29,6 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.function.BiPredicate;
-import java.util.stream.Stream;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -63,16 +60,20 @@ public class FileSystemStorage implements RasterStorage {
 	}
 
 	@Override
-	public void deleteRasterFile(int planId, String rasterId, StorageEvent storageEvent) throws IOException {
-		final String rasterLayerFileName = planId + "_" + rasterId;
-		deleteFilesWithPrefix((path, basicFileAttributes) -> {
-			String fileName = path.getFileName().toString();
-			String nameWithoutPrefix = fileName;
-			int lastIndexOfDot = fileName.lastIndexOf(".");
-			if (lastIndexOfDot > 0)
-				nameWithoutPrefix = fileName.substring(0, lastIndexOfDot);
-			return rasterLayerFileName.startsWith(nameWithoutPrefix);
-		}, storageEvent);
+	public void deleteRasterFile(int planId, String fileName, StorageEvent storageEvent) {
+		final String rasterLayerFileName = planId + "_" + fileName;
+		Path file = dataDirectory.resolve(rasterLayerFileName);
+		LOG.info("- Entferne Raster-Datei '" + file + "'...");
+		try {
+			byte[] bytes = Files.readAllBytes(file);
+			Files.delete(file);
+			storageEvent.addDeletedPath(file, bytes);
+			LOG.info("OK");
+		}
+		catch (Exception e) {
+			LOG.error("Fehler: " + e.getMessage());
+			LOG.debug("Fehler: ", e);
+		}
 	}
 
 	protected String createFileName(int planId, String fileName) {
@@ -81,27 +82,6 @@ public class FileSystemStorage implements RasterStorage {
 
 	protected Path createTargetFile(String newFileName) {
 		return dataDirectory.resolve(newFileName);
-	}
-
-	private void deleteFilesWithPrefix(BiPredicate<Path, BasicFileAttributes> filenameFilter, StorageEvent storageEvent)
-			throws IOException {
-		if (!Files.exists(dataDirectory) || !Files.isDirectory(dataDirectory)) {
-			return;
-		}
-		Stream<Path> filesToDelete = Files.find(dataDirectory, Integer.MAX_VALUE, filenameFilter);
-		filesToDelete.forEach(file -> {
-			LOG.info("- Entferne Raster-Datei '" + file + "'...");
-			try {
-				byte[] bytes = Files.readAllBytes(file);
-				Files.delete(file);
-				storageEvent.addDeletedPath(file, bytes);
-				LOG.info("OK");
-			}
-			catch (Exception e) {
-				LOG.error("Fehler: " + e.getMessage());
-				LOG.debug("Fehler: ", e);
-			}
-		});
 	}
 
 }

@@ -23,9 +23,6 @@ package de.latlon.xplan.manager.wmsconfig.raster;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.reference.ExternalReference;
-import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.manager.configuration.ConfigurationException;
 import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -91,24 +88,22 @@ public class XPlanRasterManager {
 	/**
 	 * Removes the configuration of the plan with the given id.
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
+	 * @param referenzUrlToRemove list of referenceUrls (relative) to remove
 	 */
-	public void removeRasterLayers(int planId, ExternalReferenceInfo externalReferencesToRemove) {
+	public void removeRasterLayers(int planId, List<String> referenzUrlToRemove) {
 		StorageEvent storageEvent = new StorageEvent();
 		try {
-			List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferencesToRemove
-				.getRasterPlanBaseAndUpdateScans();
-			for (ExternalReference externalReferenceToRemove : rasterPlanBaseAndUpdateScans) {
-				String referenzUrl = externalReferenceToRemove.getReferenzUrl();
-				if (referenzUrl != null) {
-					String rasterId = createRasterId(referenzUrl);
+			for (String fileName : referenzUrlToRemove) {
+				if (fileName != null) {
+					String rasterId = createRasterId(fileName);
 					rasterConfigManager.removeRasterLayer(planId, rasterId);
-					rasterStorage.deleteRasterFile(planId, rasterId, storageEvent);
+					rasterStorage.deleteRasterFile(planId, fileName, storageEvent);
 				}
 			}
 		}
 		catch (Exception e) {
-			LOG.trace("Configuration of the plan with id " + planId + " failed.!", e);
-			LOG.error("Modifizierung der Themes-Datei fehlgeschlagen: {}", e.getMessage());
+			LOG.trace("Rasterlayers of plan with id " + planId + " could not be removed!", e);
+			LOG.error("Rasterlayers of plan with id " + planId + " could not be removed: {}", e.getMessage());
 		}
 		finally {
 			applicationEventPublisher.publishEvent(storageEvent);
@@ -119,8 +114,7 @@ public class XPlanRasterManager {
 	 * Creates one raster layer for each referenced raster. Sorts the raster layer after
 	 * the plan with the moreRecentPlanId or at the end.
 	 * @param archive containing the rasterdata to evaluate, never <code>null</code>
-	 * @param planFeatureCollection featureCollection of the xplan, never
-	 * <code>null</code>
+	 * @param rasterRefsFileNamesToAdd list of refrences to add, never <code>null</code>
 	 * @param planId the id of the plan, never <code>null</code>
 	 * @param moreRecentPlanId the id of the plan with release date immediate before the
 	 * release date of the plan (if the plan has one), if <code>null</code> the plan will
@@ -134,7 +128,7 @@ public class XPlanRasterManager {
 	 * layer was created, but never <code>null</code>
 	 */
 	public List<String> updateWmsWorkspaceWithRasterLayers(XPlanArchiveContentAccess archive,
-			XPlanFeatureCollection planFeatureCollection, int planId, String moreRecentPlanId, XPlanType type,
+			List<String> rasterRefsFileNamesToAdd, int planId, String moreRecentPlanId, XPlanType type,
 			PlanStatus planStatus, PlanStatus newPlanStatus, Date sortDate) {
 		long begin = System.currentTimeMillis();
 
@@ -146,9 +140,8 @@ public class XPlanRasterManager {
 		LOG.info("- Erzeugen/Einsortieren der Rasterkonfigurationen (nach Datum: {} )...", sortDateAsString);
 		StorageEvent storageEvent = new StorageEvent();
 		try {
-			List<String> scanFiles = collectRasterScanFiles(planFeatureCollection);
-			logScanFiles(begin, scanFiles);
-			List<ArchiveEntry> rasterplanEntries = findRasterplanZipEntries(archive, scanFiles);
+			logScanFiles(begin, rasterRefsFileNamesToAdd);
+			List<ArchiveEntry> rasterplanEntries = findRasterplanZipEntries(archive, rasterRefsFileNamesToAdd);
 
 			List<String> rasterIds = copyRasterfilesAndCreateConfig(archive, rasterplanEntries, planId, storageEvent);
 			rasterConfigManager.insertRasterLayers(planId, moreRecentPlanId, type, planStatus, newPlanStatus, rasterIds,
@@ -208,14 +201,6 @@ public class XPlanRasterManager {
 
 	private String createRasterId(String dataFileName) {
 		return dataFileName.replaceAll(".tiff?", "");
-	}
-
-	private List<String> collectRasterScanFiles(XPlanFeatureCollection fc) {
-		List<String> scanFiles = new ArrayList<>();
-		for (ExternalReference externalRef : fc.getExternalReferenceInfo().getRasterPlanBaseScans()) {
-			scanFiles.add(externalRef.getReferenzUrl());
-		}
-		return scanFiles;
 	}
 
 	private void logScanFiles(long begin, List<String> scanFiles) {

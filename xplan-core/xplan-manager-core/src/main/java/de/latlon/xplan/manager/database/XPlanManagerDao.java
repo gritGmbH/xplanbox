@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -25,6 +25,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.manager.edit.EditedArtefacts;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
@@ -45,7 +46,6 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -141,23 +141,24 @@ public class XPlanManagerDao extends XPlanDao {
 	 * <code>null</code>
 	 * @param planArtefact the edited xplan gml, never <code>null</code>
 	 * @param sortDate the date added to syn feature collection, may be <code>null</code>
-	 * @param removedRefFileNames
-	 * @param internalId
+	 * @param uploadedArtefacts list of uploaded files, may be empty but never
+	 * <code>null</code>
+	 * @param editedArtefacts describing the edited artefacts, never <code>null</code>
+	 * @param internalId of the plan, may be <code>null</code>
 	 * @throws Exception
 	 */
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, Date sortDate, List<File> uploadedArtefacts,
-			Map<String, String> addedRefFileNames, Set<String> removedRefFileNames, String internalId)
-			throws Exception {
+			EditedArtefacts editedArtefacts, String internalId) throws Exception {
 		try {
-			LOG.info("Delete XPlan {}", oldXplan.getId());
+			LOG.info("Update XPlan {}", oldXplan.getId());
 			long begin = System.currentTimeMillis();
 
 			int planId = getXPlanIdAsInt(oldXplan.getId());
 			Set<String> oldFids = xPlanDbAdapter.selectFids(planId);
 
 			xPlanDbAdapter.update(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, sortDate, uploadedArtefacts,
-					addedRefFileNames, removedRefFileNames);
+					editedArtefacts);
 			manipulateXPlanSynGml(synFc, newAdditionalPlanData.getStartDateTime(),
 					newAdditionalPlanData.getEndDateTime(), planId, sortDate, internalId);
 

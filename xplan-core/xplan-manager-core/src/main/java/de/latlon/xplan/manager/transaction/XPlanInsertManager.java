@@ -26,6 +26,7 @@ import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
+import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.CrsUtils;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
@@ -175,10 +176,19 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		if (makeRasterConfig) {
 			for (PlanImportData importedPlanData : importedPlansData) {
 				XPlanArchive archive = importedPlanData.getxPlanArchive();
-				createRasterConfiguration(archive, importedPlanData.getxPlanFC(), importedPlanData.getPlanId(),
+				List<String> rasterRefsFileNamesToAdd = collectRasterScanFiles(importedPlanData.getxPlanFC());
+				createRasterConfiguration(archive, rasterRefsFileNamesToAdd, importedPlanData.getPlanId(),
 						archive.getType(), importedPlanData.getPlanStatus(), null, importedPlanData.getSortDate());
 			}
 		}
+	}
+
+	private List<String> collectRasterScanFiles(XPlanFeatureCollection fc) {
+		List<String> scanFiles = new ArrayList<>();
+		for (ExternalReference externalRef : fc.getExternalReferenceInfo().getRasterPlanBaseScans()) {
+			scanFiles.add(externalRef.getReferenzUrl());
+		}
+		return scanFiles;
 	}
 
 	private void performSchemaValidation(XPlanArchive archive) throws UnsupportPlanException {

@@ -49,8 +49,6 @@ public class S3Storage {
 
 	private static final Logger LOG = LoggerFactory.getLogger(S3Storage.class);
 
-	public static final int NOT_FOUND = 404;
-
 	private final AmazonS3 client;
 
 	private final String bucketName;

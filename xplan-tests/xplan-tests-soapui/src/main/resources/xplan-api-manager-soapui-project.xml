@@ -7629,7 +7629,7 @@ if (documentUrl != "null"){
     <con:testCase id="f8bd9db4-54ba-4413-bf50-dbf9bcabe16f" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId}/dokument/{id} TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/plan/{planId}/dokument/{id}] located at [/plan/{planId}/dokument/{id}]</con:description>
       <con:settings/>
-      <con:testStep type="restrequest" name="GET BP 5.3 pI,id currentStatus" id="d3b20647-dba2-4cab-b722-8aa5ba28dc00">
+      <con:testStep type="restrequest" name="GET BP 5.0 pI,id currentStatus" id="d3b20647-dba2-4cab-b722-8aa5ba28dc00">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument/{id}" methodName="getDokumentById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET BP 5.3 pI,id currentStatus" id="56551b29-0562-4766-aa09-c8d2c2206fe8" mediaType="application/json">
@@ -7668,7 +7668,7 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="PUT BP 5.3 pI,id modifyStatusXSSExpectError" id="a8caec28-d0ba-45fc-80fa-65c099f58db0">
+      <con:testStep type="restrequest" name="PUT BP 5.0 pI,id modifyStatusXSSExpectError" id="a8caec28-d0ba-45fc-80fa-65c099f58db0">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument/{id}" methodName="replaceDokumentById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="PUT BP 5.3 pI,id modifyStatusXSSExpectError" id="98bfb182-e199-47f6-8ee0-9bb98b24a279" mediaType="multipart/form-data" postQueryString="false">
@@ -7719,7 +7719,7 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="PUT BP 5.3 pI,id modifyStatus" id="42635047-6761-4ec5-9691-41b4759987e2">
+      <con:testStep type="restrequest" name="PUT BP 5.0 pI,id modifyStatus" id="42635047-6761-4ec5-9691-41b4759987e2">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument/{id}" methodName="replaceDokumentById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="PUT BP 5.3 pI,id modifyStatus" id="98bfb182-e199-47f6-8ee0-9bb98b24a279" mediaType="multipart/form-data" postQueryString="false">
@@ -7780,13 +7780,13 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="transfer" name="Property Transfer BP 5.3" id="43d347ca-b625-401c-adc4-0f0a60d811a3">
+      <con:testStep type="transfer" name="Property Transfer BP 5.0" id="43d347ca-b625-401c-adc4-0f0a60d811a3">
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>dokumentId</con:name>
             <con:sourceType>Response</con:sourceType>
-            <con:sourceStep>PUT BP 5.3 pI,id modifyStatus</con:sourceStep>
+            <con:sourceStep>PUT BP 5.0 pI,id modifyStatus</con:sourceStep>
             <con:sourcePath>$.id</con:sourcePath>
             <con:targetType>dokumentId</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
@@ -7796,7 +7796,7 @@ if (documentUrl != "null"){
           </con:transfers>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="PUT BP 5.3 pI,id modifyStatusExpectError" id="2f67756f-e1cf-4981-a417-c93b531a1975">
+      <con:testStep type="restrequest" name="PUT BP 5.0 pI,id modifyStatusExpectError" id="2f67756f-e1cf-4981-a417-c93b531a1975">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument/{id}" methodName="replaceDokumentById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="PUT BP 5.3 pI,id modifyStatusExpectError" id="98bfb182-e199-47f6-8ee0-9bb98b24a279" mediaType="multipart/form-data" postQueryString="false">
@@ -7840,7 +7840,7 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="DEL BP 5.3 pI,id modifyStatus" id="4c238cb0-13f0-467d-8bf9-3c3ff2431b17">
+      <con:testStep type="restrequest" name="DEL BP 5.0 pI,id modifyStatus" id="4c238cb0-13f0-467d-8bf9-3c3ff2431b17">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument/{id}" methodName="deleteDokumentById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="DEL BP 5.3 pI,id modifyStatus" id="75badc2b-3b16-4c31-8c0b-605aaa90b73f" mediaType="application/json" postQueryString="false">
@@ -7896,7 +7896,7 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="GET BP 5.3 pI,id verifyStatus" id="210ba62e-b844-41e8-8465-626363ad2597">
+      <con:testStep type="restrequest" name="GET BP 5.0 pI,id verifyStatus" id="210ba62e-b844-41e8-8465-626363ad2597">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument/{id}" methodName="getDokumentById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET BP 5.3 pI,id verifyStatus" id="56551b29-0562-4766-aa09-c8d2c2206fe8" mediaType="application/json">
