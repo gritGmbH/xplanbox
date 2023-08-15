@@ -25,11 +25,12 @@ echo -e "\n"
 echo "Generating html report..."
 mvn surefire-report:report-only -q
 
-REPORT_PATH=target/test-report.pdf
-echo "Transforming to PDF $REPORT_PATH..."
+REPORT_PATH_PDF=target/test-report.pdf
+echo "Transforming to PDF $REPORT_PATH_PDF..."
 sed -i 's/display:none;//' target/site/surefire-report.html
-weasyprint file://$PWD/target/site/surefire-report.html $REPORT_PATH
-
+weasyprint file://$PWD/target/site/surefire-report.html $REPORT_PATH_PDF
+REPORT_PATH_TAR=target/test-report.tar.gz
+tar -cvzf $REPORT_PATH_TAR target/site
 
 if [ "$XPLAN_UPLOAD_TEST_REPORT" = "true" ];
 then
@@ -38,9 +39,12 @@ then
 	export AWS_DEFAULT_REGION="$XPLAN_S3_REGION"
 	XPLAN_S3_REPORT_ID="${XPLAN_S3_REPORT_ID:-`date +%y-%m-%dT%H:%m:%S`}"
 	XPLAN_S3_REPORT_PATH="${XPLAN_S3_REPORT_PATH:-test-reports}"
-	S3_PATH="s3://$XPLAN_S3_BUCKET_NAME/$XPLAN_S3_REPORT_PATH/report-$XPLAN_S3_REPORT_ID.pdf"
+
+	S3_PATH_REPORT_PATH_TAR="s3://$XPLAN_S3_BUCKET_NAME/$XPLAN_S3_REPORT_PATH/report-$XPLAN_S3_REPORT_ID.tar.gz"
+	S3_PATH_PDF="s3://$XPLAN_S3_BUCKET_NAME/$XPLAN_S3_REPORT_PATH/report-$XPLAN_S3_REPORT_ID.pdf"
 	echo "Uploading report to $S3_PATH..."
-	aws --endpoint-url $XPLAN_S3_ENDPOINT s3 cp $REPORT_PATH $S3_PATH
+	aws --endpoint-url $XPLAN_S3_ENDPOINT s3 cp $REPORT_PATH_TAR $S3_PATH_REPORT_PATH_TAR
+	aws --endpoint-url $XPLAN_S3_ENDPOINT s3 cp $REPORT_PATH_PDF $S3_PATH_PDF
 else
 	echo "No upload to S3 configured"
 fi
