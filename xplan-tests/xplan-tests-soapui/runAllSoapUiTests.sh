@@ -9,7 +9,7 @@ if [ -z ${XPLAN_API_DOKUMENTE_BASE_URL+x} ];
 then
 	echo "XPlanDokumentenAPI Tests are skipped!"
 else
- mvn test -Psystem-tests -DtestFileName=xplan-api-dokumente-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_API_MANAGER_BASE_URL -DbaseUrlDokumentenApi=$XPLAN_API_DOKUMENTE_BASE_URL -Dusername=$XPLAN_API_VALIDATOR_USERNAME -Dpassword=$XPLAN_API_VALIDATOR_PASSWORD
+ mvn test -Psystem-tests -DtestFileName=xplan-api-dokumente-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_API_MANAGER_BASE_URL -DbaseUrlDokumentenApi=$XPLAN_API_DOKUMENTE_BASE_URL -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD
 fi
 
 mvn test -Psystem-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=$XPLAN_MANAGER_WEB_ENDPOINT -Dusername=$XPLAN_MANAGER_WEB_USERNAME -Dpassword=$XPLAN_MANAGER_WEB_PASSWORD
@@ -29,7 +29,7 @@ echo "Transforming to PDF $REPORT_PATH_PDF..."
 sed -i 's/display:none;//' target/site/surefire-report.html
 weasyprint file://$PWD/target/site/surefire-report.html $REPORT_PATH_PDF
 REPORT_PATH_TAR=target/test-report.tar.gz
-tar -cvzf $REPORT_PATH_TAR target/site
+tar -cvzf $REPORT_PATH_TAR -C target/site .
 
 if [ "$XPLAN_UPLOAD_TEST_REPORT" = "true" ];
 then

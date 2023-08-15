@@ -39,8 +39,6 @@ docker run --env ... xplanbox/xplan-tests-soapui
 - `XPLAN_API_MANAGER_PASSWORD`
 
 - `XPLAN_API_VALIDATOR_ENDPOINT`
-- `XPLAN_API_VALIDATOR_USERNAME`
-- `XPLAN_API_VALIDATOR_PASSWORD`
 
 - `XPLAN_API_DOKUMENTE_BASE_URL` optional: XPlanDokumentenAPI Tests werden geskipped, wenn die Umgebungsvariable nicht gesetzt ist.
 
