@@ -32,9 +32,9 @@ Dies gilt für jede einzelne Planart: Für die URL für BPläne muss z. B.
 mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens
 ein FPlan mit Rasterdaten.
 
-=== XPlanWMS - Darstellung von Plämen mit Gültigkeitszeitraum
+=== XPlanWMS - Darstellung von Plänen mit Gültigkeitszeitraum
 
-Bei einer GetMap-Anfrage zum Zeitpunkt ausserhalb des für einen Plans angegebenen Gültigkeitszeitraums, werden derzeit keine Vektordaten des Plans angezeigt. Dies gilt für alle XPlanWMS unabhängig vom Planststatus. Die Rasterdaten werden dagegen wie für den XPlanWMSArchiviert und XPlanWMSFestgestellt angezeigt und für den XPlanWMSInAufstellung nicht.
+Wenn beim Import eines Plans über den XPlanManager ein Gültigkeitszeitraum angegeben wird, werden derzeit keine Vektordaten bei GetMap-Anfragen an den XPlanWMS angezeigt. Dies gilt für alle XPlanWMS unabhängig vom Planststatus.
 
 === XPlanManagerWeb - Anzeige der Pläne auf der letzten Seite
 
@@ -63,9 +63,10 @@ Wird ein Text, Dokument oder eine Rasterbasis mit dem Namen _xplan.gml_ über di
 
 IMPORTANT: Der Fehler kann nicht in der xPlanBox behoben werden! Das XPlanArchiv muss aus der Datenhaltung entfernt, korrigiert und dann erneut über den XPlanManager importiert werden.
 
-=== XPlanManagerWeb und XPlanManagerAPI - Sortierung der Rasterdaten nach dem Editieren wird nicht angapsst
+=== XPlanManagerWeb und XPlanManagerAPI - Sortierung der Rasterdaten wird nach Änderungen nicht aktualisiert
 
-Wird durch das Editieren das für die Sortierung der Daten in der Visualisierung verwnendete Datumsfeld angepasst, erfolgt derzeit keine Anpassung der Sortierung der Rasterdaten, wenn diese durch deegree bereitgestellt werden. In Folge werden die Rasterdaten bei der Anzeige im XPlanMWS möglicherweise nicht wie erwartete Visualisiert. In diesem Fall muss der Adminstrator der xPlanBox das Werkzeug _xplan-update-data-cli/bin/sortDateUpdate_ ausführen um die Sortierung zu korrigieren. Hinweise dazu finden sich im Betriebshandbuch.
+Wird über den XPlanManager ein für die Sortierung der Pläne in der Darstellung im XPlanWMS verwendete Datumsfeld angepasst, erfolgt derzeit keine automatische Aktualisierung der Konfiguration des XPlanWMS.
+Für eine Aktualisierung der Konfiguration des XPlanWMS steht ein Kommandozeilenwerkzeug für den Administrator zur Verfügung, weitere Hinweise zur Verwendung finden sich im Betriebshandbuch.
 
 === XPlanValidatorAPI - Verwendung von vollqualifizierten Pfaden im HTTP-Header "X-Filename"
 
