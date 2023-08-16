@@ -32,6 +32,10 @@ Dies gilt für jede einzelne Planart: Für die URL für BPläne muss z. B.
 mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens
 ein FPlan mit Rasterdaten.
 
+=== XPlanWMS - Darstellung von Plämen mit Gültigkeitszeitraum
+
+Bei einer GetMap-Anfrage zum Zeitpunkt ausserhalb des für einen Plans angegebenen Gültigkeitszeitraums, werden derzeit keine Vektordaten des Plans angezeigt. Dies gilt für alle XPlanWMS unabhängig vom Planststatus. Die Rasterdaten werden dagegen wie für den XPlanWMSArchiviert und XPlanWMSFestgestellt angezeigt und für den XPlanWMSInAufstellung nicht.
+
 === XPlanManagerWeb - Anzeige der Pläne auf der letzten Seite
 
 Die Ansicht der Pläne im XPlanManagerWeb zeigt auf der letzten Seite immer die letzten 15 Pläne an. Dieses Verhalten tritt sowohl mit oder ohne Auswahl eines Filters auf (siehe dazu die Funktionsbeschreibung in <<xplanmanager-web-auflistung>>).
@@ -58,6 +62,10 @@ Bei dem Hinzufügen einer Rasterbasis wird ohne Angabe des Typs ("Keine Auswahl"
 Wird ein Text, Dokument oder eine Rasterbasis mit dem Namen _xplan.gml_ über die Editorfunktion des XPlanManagerWeb hinzugefügt und gespeichert, kann dieses XPlanArchiv danach nicht mehr geöffnet werden. Beim wiederholten Aufruf der Editorfunktion zeigt das System dann den Fehler "500" an.
 
 IMPORTANT: Der Fehler kann nicht in der xPlanBox behoben werden! Das XPlanArchiv muss aus der Datenhaltung entfernt, korrigiert und dann erneut über den XPlanManager importiert werden.
+
+=== XPlanManagerWeb und XPlanManagerAPI - Sortierung der Rasterdaten nach dem Editieren wird nicht angapsst
+
+Wird durch das Editieren das für die Sortierung der Daten in der Visualisierung verwnendete Datumsfeld angepasst, erfolgt derzeit keine Anpassung der Sortierung der Rasterdaten, wenn diese durch deegree bereitgestellt werden. In Folge werden die Rasterdaten bei der Anzeige im XPlanMWS möglicherweise nicht wie erwartete Visualisiert. In diesem Fall muss der Adminstrator der xPlanBox das Werkzeug _xplan-update-data-cli/bin/sortDateUpdate_ ausführen um die Sortierung zu korrigieren. Hinweise dazu finden sich im Betriebshandbuch.
 
 === XPlanValidatorAPI - Verwendung von vollqualifizierten Pfaden im HTTP-Header "X-Filename"
 
