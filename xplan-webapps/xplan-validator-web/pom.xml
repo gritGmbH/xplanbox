@@ -9,7 +9,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-webapps</artifactId>
-    <version>7.0-SNAPSHOT</version>
+    <version>7.0</version>
   </parent>
 
   <properties>
