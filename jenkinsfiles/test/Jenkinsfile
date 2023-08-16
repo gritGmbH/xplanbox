@@ -7,6 +7,7 @@ pipeline {
    parameters {
       string(name: 'BRANCH', defaultValue: "main", description: 'Set branch')
       string(name: 'CREDENTIALS_ID', defaultValue: "xplanbox.lat-lon.de", description: 'Set id of Jenkins credentials to login to environment (BASIC AUTH)')
+      string(name: 'SERVICES_API_KEY', defaultValue: "xplanbox", description: 'Set ApiKey to acces /config of XPlanDienste')
       string(name: 'ENDPOINT_VALIDATOR_API', defaultValue: "https://xplanbox.lat-lon.de/xvalidator/api/v1", description: 'Set endpoint of XPlanValidatorAPI')
       string(name: 'ENDPOINT_MANAGER_WEB', defaultValue: "https://xplanbox.lat-lon.de/xplan-manager-web", description: 'Set endpoint of XPlanManagerWeb')
       string(name: 'BASE_URL_DIENSTE', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDienste')
@@ -61,7 +62,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=${BASE_URL_DIENSTE} -DbaseUrlInspirePlu=${BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlMapServer=${BASE_URL_MAPSERVER} -Dusername=$Username -Dpassword=$Password'
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=${BASE_URL_DIENSTE} -DbaseUrlInspirePlu=${BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlMapServer=${BASE_URL_MAPSERVER} -Dusername=$Username -Dpassword=$Password -DapiKey=${SERVICES_API_KEY}'
             }
          }
       }
