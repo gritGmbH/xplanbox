@@ -1,11 +1,11 @@
 [[bekannte-probleme]]
 == Bekannte Probleme
 
-=== Verwendung von Internet Explorer
+=== Unterstützung von Internet Explorer
 
-IMPORTANT: Die Unterstützung von Microsoft Internet Explorer 9/10/11 ist mit Version 4.2 der xPlanBox abgekündigt worden. Bitte nutzen Sie einen anderen Browser wie z. B. Microsoft Edge, Firefox oder Google Chrome.
+IMPORTANT: Die Unterstützung von Microsoft Internet Explorer 9/10/11 ist mit Version 4.2 der xPlanBox abgekündigt worden. Bitte nutzen Sie einen anderen Browser wie z. B. https://www.microsoft.com/de-de/edge[Microsoft Edge], https://www.mozilla.org/de/firefox[Firefox] oder https://www.google.com/intl/de_de/chrome/[Google Chrome].
 
-=== XPlanValidator - Darstellung von geometrischen Fehlern in einer Grafik und im Shape-Datei
+=== XPlanValidator - Darstellung von geometrischen Fehlern in einer Shape-Datei
 
 Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) im Validierungsbericht des XPlanValidator ausgegeben, Multigeometrien werden nicht dargestellt. In die Shape-Datei können nur Geometrien geschrieben werden, wenn diese auch gerendert werden können.
 
@@ -32,6 +32,10 @@ Dies gilt für jede einzelne Planart: Für die URL für BPläne muss z. B.
 mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens
 ein FPlan mit Rasterdaten.
 
+=== XPlanWMS - Darstellung von Plänen mit Gültigkeitszeitraum
+
+Wenn beim Import eines Plans über den XPlanManager ein Gültigkeitszeitraum angegeben wird, werden derzeit keine Vektordaten bei GetMap-Anfragen an den XPlanWMS angezeigt. Dies gilt für alle XPlanWMS unabhängig vom Planststatus.
+
 === XPlanManagerWeb - Anzeige der Pläne auf der letzten Seite
 
 Die Ansicht der Pläne im XPlanManagerWeb zeigt auf der letzten Seite immer die letzten 15 Pläne an. Dieses Verhalten tritt sowohl mit oder ohne Auswahl eines Filters auf (siehe dazu die Funktionsbeschreibung in <<xplanmanager-web-auflistung>>).
@@ -57,23 +61,18 @@ Bei dem Hinzufügen einer Rasterbasis wird ohne Angabe des Typs ("Keine Auswahl"
 
 Wird ein Text, Dokument oder eine Rasterbasis mit dem Namen _xplan.gml_ über die Editorfunktion des XPlanManagerWeb hinzugefügt und gespeichert, kann dieses XPlanArchiv danach nicht mehr geöffnet werden. Beim wiederholten Aufruf der Editorfunktion zeigt das System dann den Fehler "500" an.
 
-Der Fehler kann nicht in der xPlanBox behoben werden! Das XPlanArchiv muss aus der Datenhaltung entfernt, korrigiert und dann erneut über den XPlanManager importiert werden.
+IMPORTANT: Der Fehler kann nicht in der xPlanBox behoben werden! Das XPlanArchiv muss aus der Datenhaltung entfernt, korrigiert und dann erneut über den XPlanManager importiert werden.
+
+=== XPlanManagerWeb und XPlanManagerAPI - Sortierung der Rasterdaten wird nach Änderungen nicht aktualisiert
+
+Wird über den XPlanManager ein für die Sortierung der Pläne in der Darstellung im XPlanWMS verwendete Datumsfeld angepasst, erfolgt derzeit keine automatische Aktualisierung der Konfiguration des XPlanWMS.
+Für eine Aktualisierung der Konfiguration des XPlanWMS steht ein Kommandozeilenwerkzeug für den Administrator zur Verfügung, weitere Hinweise zur Verwendung finden sich im Betriebshandbuch.
 
 === XPlanValidatorAPI - Verwendung von vollqualifizierten Pfaden im HTTP-Header "X-Filename"
 
 Wird der HTTP-Header "X-Filename" mit einem vollqualifizierten Pfad angegeben, kommt es bei der Anfrage eines Reports im Format PDF zu einem HTTP-Statusfehler 500.
 
 Der Fehler kann dadurch umgangen werden, dass im HTTP-Header nur der Dateiname angegeben wird. Der Fehler tritt nicht auf, wenn über den HTTP-Header "Accept" Json oder XML angefragt werden.
-
-
-=== XPlanManagerCLI - Nutzung falscher Bibliotheken kann beim Import eines Plans zu fehlerhaft erzeugter Konfiguration führen
-
-Für die Erzeugung der deegree Konfigurationsdateien muss zwingend die Bibliothek Apache Xalan 2.7.2 verwendet werden.
-Zusätzlich muss sichergestellt sein, dass im Java Classpath des Prozesses, der den XPlanManagerCLI aufruft, keine anderen JAXP (SAX/DOM) Implementierungen vorhanden sind als die Dateien _Saxon-HE-9.9.x.jar_ und _xalan-2.7.2.jar_.
-
-Falls diese Voraussetzungen nicht erfüllt werden, können die erzeugten deegree Konfigurationsdateien für Layer und Themes leere XML Namespace Attribute in Form von `xmlns=""` aufweisen.
-Diese Konfigurationsdateien können nicht von deegree geparst werden. Und führen zu einem Systemfehler und verhindern den Start der Dienste.
-Eine Umgehung des Fehlers ist möglich, wenn die leeren XML-Namespace-Attribute manuell entfernt werden, ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
 
 === XPlanWMS - Darstellungsvorschriften für Raumordnungspläne
 
@@ -139,10 +138,10 @@ Derzeit werden die folgenden Attribute bei der Visualisierung berücksichtigt:
 [[fehler-melden]]
 == Fehler melden
 
-Für den Fall, dass Sie einen Fehler in der xPlanBox finden, erstellen Sie bitte einen  Fehlerbericht unter https://gitlab.opencode.de/diplanung/ozgxplanung/-/issues[OpenCoDE Gitlab Issues].
+Für den Fall, dass Sie einen Fehler in der xPlanBox finden, erstellen Sie bitte einen  Fehlerbericht unter https://gitlab.opencode.de/diplanung/ozgxplanung/-/issues[Open CoDE GitLab Issues].
 
 [[support]]
 == Support
 
-Professionellen Support per Telefon oder E-Mail bieten Ihnen die Entwickler von https://www.lat-lon.de[lat/lon] an.
-Ihre Supportanfragen schicken Sie bitte an: ​support@lat-lon.de​.
+Für professionellen Support per Telefon oder E-Mail kontaktieren Sie bitte die https://www.lat-lon.de[lat/lon GmbH].
+

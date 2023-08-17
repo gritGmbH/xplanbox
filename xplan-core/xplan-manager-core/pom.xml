@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-core</artifactId>
-    <version>6.0-SNAPSHOT</version>
+    <version>7.0</version>
   </parent>
 
   <dependencies>
@@ -71,6 +71,10 @@
       <artifactId>xplan-synthesizer</artifactId>
     </dependency>
     <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-core-manager-db</artifactId>
+    </dependency>
+    <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
     </dependency>
@@ -108,12 +112,21 @@
     </dependency>
     <!-- Spring Security -->
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-core</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
+    </dependency>
+    <!-- AWS SDK For Java -->
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-s3</artifactId>
     </dependency>
     <!-- test -->
     <dependency>
@@ -138,6 +151,12 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>io.findify</groupId>
+      <artifactId>s3mock_2.13</artifactId>
+      <version>0.2.6</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-tests-resources</artifactId>
       <scope>test</scope>
@@ -154,6 +173,16 @@
       <artifactId>deegree-layers-feature</artifactId>
       <version>${deegree3.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>de.latlon.product.xplanbox</groupId>
+      <artifactId>xplan-core-manager-deegree</artifactId>
+      <version>7.0</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
 

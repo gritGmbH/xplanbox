@@ -8,7 +8,6 @@ Inhalt des Verzeichnisses src/main/resources:
 --------------------------
 xplan-resources/xplan-database-scripts/src/main/resources/
 ├── 6.0
-│   ├── changelog_postgisext.yaml
 │   ├── changelog_schemas.yaml
 │   ├── changelog_v60.yaml
 │   ├── changelog_xplan40archive.yaml
@@ -39,4 +38,19 @@ xplan-resources/xplan-database-scripts/src/main/resources/
 │   ├── changelog_xplansynarchive.yaml
 │   ├── changelog_xplansynpre.yaml
 │   └── changelog_xplansyn.yaml
+├── 6.0.1
+│   ├── changelog_v601.yaml
+│   ├── changelog_xplansynarchive.yaml
+│   ├── changelog_xplansynpre.yaml
+│   └── changelog_xplansyn.yaml
+├── 7.0
+│   ├── changelog_grant_privileges.yaml
+│   ├── changelog_inspireplu.yaml
+│   ├── changelog_schemas.yaml
+│   ├── changelog_srid.yaml
+│   ├── changelog_v70.yaml
+│   ├── changelog_xplanmgr.yaml
+│   └── changelog_xplanvalidator.yaml
 ├── changelog_xplandb.yaml
+├── liquibase-diff.properties
+└── liquibase.properties

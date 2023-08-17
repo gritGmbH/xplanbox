@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-documentation</artifactId>
-    <version>6.0-SNAPSHOT</version>
+    <version>7.0</version>
   </parent>
 
   <build>
@@ -37,4 +37,12 @@
     </plugins>
   </build>
 
+  <profiles>
+    <profile>
+      <id>docker</id>
+      <properties>
+        <docker-image.skip>false</docker-image.skip>
+      </properties>
+    </profile>
+  </profiles>
 </project>

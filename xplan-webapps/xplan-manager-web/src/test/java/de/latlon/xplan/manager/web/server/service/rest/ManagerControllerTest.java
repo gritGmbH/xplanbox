@@ -2,18 +2,18 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -41,11 +41,8 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.isA;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -82,12 +79,12 @@ public class ManagerControllerTest {
 
 	@Test
 	public void verifyThatManagerReturnList_WhenValidRequestIsSend() throws Exception {
-		doNothing().when(mockReportProvider).writeHtmlReport(isA(HttpServletResponse.class), isA(String.class),
-				isA(String.class));
-		Mockito.when(mockManager.list(false)).thenReturn(new ArrayList<XPlan>());
-		assertThat(this.managerController, is(notNullValue()));
+		doNothing().when(mockReportProvider)
+			.writeHtmlReport(isA(HttpServletResponse.class), isA(String.class), isA(String.class));
+		Mockito.when(mockManager.list()).thenReturn(new ArrayList<XPlan>());
+		assertNotNull(this.managerController);
 		mockMvc.perform(get("/manager/plans")).andExpect(status().isOk());
-		verify(mockManager, times(1)).list(any(Boolean.class));
+		verify(mockManager, times(1)).list();
 	}
 
 }

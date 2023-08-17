@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-commons - xplan-api-commons
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +20,7 @@
  */
 package de.latlon.xplanbox.api.commons.exception;
 
-import javax.ws.rs.core.Response;
+import static de.latlon.xplanbox.api.commons.exception.StatusCodes.UNPROCESSABLE_CONTENT;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -33,7 +33,7 @@ public class InvalidXPlanGmlOrArchive extends XPlanApiException {
 
 	@Override
 	public int getStatusCode() {
-		return Response.Status.NOT_ACCEPTABLE.getStatusCode();
+		return UNPROCESSABLE_CONTENT;
 	}
 
 }

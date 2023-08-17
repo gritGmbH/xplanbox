@@ -2,18 +2,18 @@
  * #%L
  * xplan-api-validator - Modul zur Gruppierung der REST-API
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -22,8 +22,6 @@ package de.latlon.xplanbox.api.validator.config;
 
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
-import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
@@ -45,20 +43,21 @@ import de.latlon.xplan.validator.semantic.profile.SemanticProfileValidator;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
-import de.latlon.xplan.validator.wms.ValidatorWmsManager;
+import de.latlon.xplan.validator.wms.config.ValidatorWmsContext;
 import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
-import org.deegree.commons.config.DeegreeWorkspace;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -73,13 +72,10 @@ import static java.nio.file.Paths.get;
  */
 @Configuration
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.validator.handler", "de.latlon.xplanbox.api.validator.v1" })
+@Import(ValidatorWmsContext.class)
 public class ApplicationContext {
 
-	private static final Logger LOG = LoggerFactory.getLogger(ApplicationContext.class);
-
 	private static final String RULES_DIRECTORY = "/rules";
-
-	private static final String XPLAN_GML_WMS_WORKSPACE = "xplan-validator-wms-workspace";
 
 	@Bean
 	public SystemConfigHandler systemConfigHandler(XQuerySemanticValidatorConfigurationRetriever configurationRetriever,
@@ -90,11 +86,6 @@ public class ApplicationContext {
 	@Bean
 	public Path uploadFolder() throws IOException {
 		return createTempDirectory("xplan-validator");
-	}
-
-	@Bean
-	public XPlanGmlParser xPlanGmlParser() {
-		return new XPlanGmlParser();
 	}
 
 	@Bean
@@ -157,7 +148,7 @@ public class ApplicationContext {
 			XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
 					xQuerySemanticValidatorConfigurationRetriever);
 			semanticValidators
-					.add(new DelegatingSemanticProfileValidator(rulesMetadata.getId(), xQuerySemanticValidator));
+				.add(new DelegatingSemanticProfileValidator(rulesMetadata.getId(), xQuerySemanticValidator));
 		}
 		return semanticValidators;
 	}
@@ -199,30 +190,21 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public ValidatorWmsManager validatorWmsManager(ValidatorConfiguration validatorConfiguration) {
-		LOG.trace("Using validatorConfiguration: " + validatorConfiguration);
-		String validatorWmsEndpoint = validatorConfiguration.getValidatorWmsEndpoint();
-		if (validatorWmsEndpoint == null) {
-			LOG.warn("XPlanValidatorWMS endpoint URL is not configured. Map preview will not be available.");
-			return null;
-		}
-		try {
-			XPlanSynthesizer synthesizer = new XPlanSynthesizer();
-			Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);
-			return new ValidatorWmsManager(synthesizer, workspaceLocation);
-		}
-		catch (IOException | IllegalArgumentException e) {
-			LOG.error("Could not initialise ValidatorWmsManager. WMS resources cannot be created. Reason: {}",
-					e.getMessage(), e);
-		}
-		return null;
-	}
-
-	@Bean
-	public Path rulesPath(ValidatorConfiguration validatorConfiguration) throws URISyntaxException {
+	public Path rulesPath(ValidatorConfiguration validatorConfiguration) throws URISyntaxException, IOException {
 		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
 		if (validationRulesDirectory != null)
 			return validationRulesDirectory;
+
+		String aResourceInRulesJar = RULES_DIRECTORY + "/xplangml60/2.1.5.xq";
+		URL uri = getClass().getResource(aResourceInRulesJar);
+		if ("jar".equals(uri.getProtocol())) {
+			String jarPath = uri.getFile().replaceFirst("file:(.*)!.*", "$1");
+			if (jarPath != null) {
+				FileSystem zipfs = FileSystems.newFileSystem(Path.of(jarPath), getClass().getClassLoader());
+				return zipfs.getPath(RULES_DIRECTORY);
+			}
+		}
+
 		URI rulesPath = getClass().getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
 	}

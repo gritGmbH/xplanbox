@@ -2,18 +2,18 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -25,13 +25,11 @@ import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
-import de.latlon.xplan.commons.reference.ExternalReference;
-import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
-import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
+import de.latlon.xplan.validator.reference.ExternalReferenceEvaluator;
 import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.report.ValidatorReport;
@@ -50,7 +48,6 @@ import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationType;
 import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,7 +64,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.INTERNAL_ERRORS;
 import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.SYNTAX_ERRORS;
 import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
 import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
@@ -92,8 +88,6 @@ public class XPlanValidator {
 	private final ReportArchiveGenerator reportArchiveGenerator;
 
 	private final XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-
-	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	private XPlanSchemas schemas;
 
@@ -236,22 +230,23 @@ public class XPlanValidator {
 
 	private void validateSemanticProfiles(XPlanArchive archive, List<String> profiles, ValidatorReport report)
 			throws ValidatorException {
-		if (!report.getSyntacticValidatorResult().isValid()) {
-			report.addSemanticProfileValidatorResults(new SemanticValidatorResult(SYNTAX_ERRORS));
-		}
-		else {
-			for (String profileId : profiles) {
-				Optional<SemanticProfileValidator> profileValidator = semanticProfileValidators.stream()
-						.filter(semanticProfileValidator -> semanticProfileValidator.getId().equals(profileId))
-						.findFirst();
-				if (profileValidator.isPresent()) {
+		for (String profileId : profiles) {
+
+			Optional<SemanticProfileValidator> profileValidator = semanticProfileValidators.stream()
+				.filter(semanticProfileValidator -> semanticProfileValidator.getId().equals(profileId))
+				.findFirst();
+			if (profileValidator.isPresent()) {
+				if (!report.getSyntacticValidatorResult().isValid()) {
+					report.addSemanticProfileValidatorResults(new SemanticValidatorResult(SYNTAX_ERRORS));
+				}
+				else {
 					SemanticValidatorResult semanticValidatorResult = validateSemanticallyAndWriteResult(
 							profileValidator.get(), archive, Collections.emptyList());
 					report.addSemanticProfileValidatorResults(semanticValidatorResult);
 				}
-				else {
-					throw new ValidatorException("Profile with id " + profileId + " does not exist");
-				}
+			}
+			else {
+				throw new ValidatorException("Profile with id " + profileId + " does not exist");
 			}
 		}
 	}
@@ -309,9 +304,12 @@ public class XPlanValidator {
 
 	private void parseReferencesAndPlanNames(XPlanArchive archive, ValidatorReport report) {
 		try {
-			XPlanFeatureCollection featureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
+			XPlanFeatureCollection featureCollection = XPlanGmlParserBuilder.newBuilder()
+				.withSkipResolveReferences(true)
+				.build()
+				.parseXPlanFeatureCollection(archive);
 			report.setBBoxIn4326(featureCollection.getBboxIn4326());
-			parseAndAddExternalReferences(report, featureCollection);
+			parseAndAddExternalReferences(report, featureCollection, archive);
 			parseAndAddPlanNames(report, featureCollection);
 		}
 		catch (XMLStreamException | UnknownCRSException e) {
@@ -319,29 +317,12 @@ public class XPlanValidator {
 		}
 	}
 
-	private void parseAndAddExternalReferences(ValidatorReport report, XPlanFeatureCollection features) {
-		ExternalReferenceReport externalReferenceReport;
-		if (features != null)
-			externalReferenceReport = parseAndAddExternalReferences(features.getFeatures());
-		else
-			externalReferenceReport = new ExternalReferenceReport(INTERNAL_ERRORS);
+	private void parseAndAddExternalReferences(ValidatorReport report, XPlanFeatureCollection features,
+			XPlanArchive archive) {
+		ExternalReferenceEvaluator externalReferenceEvaluator = new ExternalReferenceEvaluator();
+		ExternalReferenceReport externalReferenceReport = externalReferenceEvaluator
+			.parseAndAddExternalReferences(features, archive);
 		report.setExternalReferenceReport(externalReferenceReport);
-	}
-
-	private ExternalReferenceReport parseAndAddExternalReferences(FeatureCollection fc) {
-		ExternalReferenceScanner scanner = new ExternalReferenceScanner();
-		ExternalReferenceInfo externalReferenceInfo = scanner.scan(fc);
-		List<ExternalReference> allExternalReferences = externalReferenceInfo.getExternalRefs();
-		List<String> references = new ArrayList<>();
-		for (ExternalReference ref : allExternalReferences) {
-			String referenzUrl = ref.getReferenzUrl();
-			if (referenzUrl != null)
-				references.add(referenzUrl);
-			String geoRefUrl = ref.getGeoRefUrl();
-			if (geoRefUrl != null)
-				references.add(geoRefUrl);
-		}
-		return new ExternalReferenceReport(references);
 	}
 
 	private void parseAndAddPlanNames(ValidatorReport report, XPlanFeatureCollection featureCollection) {
@@ -405,7 +386,7 @@ public class XPlanValidator {
 		if (extendedOptions != null)
 			for (ValidationOption validationOption : extendedOptions) {
 				SemanticValidationOptions semanticValidationOption = SemanticValidationOptions
-						.getByOption(validationOption);
+					.getByOption(validationOption);
 				if (!SemanticValidationOptions.NONE.equals(semanticValidationOption))
 					semanticValidationOptions.add(semanticValidationOption);
 			}

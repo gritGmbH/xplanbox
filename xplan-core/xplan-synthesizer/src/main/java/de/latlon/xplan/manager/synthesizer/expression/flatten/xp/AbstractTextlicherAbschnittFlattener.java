@@ -1,10 +1,8 @@
-package de.latlon.xplan.manager.synthesizer.expression.flatten.xp;
-
 /*-
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +18,7 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten.xp;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.manager.synthesizer.expression.flatten.xp;
 
 import de.latlon.xplan.commons.synthesizer.Features;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.AbstractFlattener;
@@ -49,9 +48,9 @@ public abstract class AbstractTextlicherAbschnittFlattener extends AbstractFlatt
 			schluessel = replaceDelimiter(schluessel);
 			textAbschnittText.append(schluessel);
 		}
+		textAbschnittText.append(" | ");
+		int lengthWithSchluessel = textAbschnittText.length();
 		if (text != null && !text.isEmpty()) {
-			if (textAbschnittText.length() > 1)
-				textAbschnittText.append(" | ");
 			text = replaceDelimiter(text);
 			textAbschnittText.append(text);
 		}
@@ -61,7 +60,7 @@ public abstract class AbstractTextlicherAbschnittFlattener extends AbstractFlatt
 			textAbschnittText.append(" (Gesetzliche Grundlage: ").append(gesetzlicheGrundlage).append(")");
 		}
 		if (externeReferenzUrl != null && !externeReferenzUrl.isEmpty()) {
-			if (textAbschnittText.length() > 1)
+			if (textAbschnittText.length() > lengthWithSchluessel)
 				textAbschnittText.append(" | ");
 			textAbschnittText.append("Externe Referenz: ").append(externeReferenzUrl);
 		}

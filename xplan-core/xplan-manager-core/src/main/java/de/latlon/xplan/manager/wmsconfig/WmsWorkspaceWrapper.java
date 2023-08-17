@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,24 +20,24 @@
  */
 package de.latlon.xplan.manager.wmsconfig;
 
-import static java.lang.String.format;
-import static java.util.Arrays.asList;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
-import javax.xml.bind.JAXBException;
-
+import de.latlon.xplan.manager.configuration.ConfigurationException;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.xml.jaxb.JAXBUtils;
 import org.deegree.theme.persistence.standard.StandardThemeProvider;
 import org.deegree.theme.persistence.standard.jaxb.ThemeType;
 import org.deegree.theme.persistence.standard.jaxb.Themes;
 
-import de.latlon.xplan.manager.configuration.ConfigurationException;
+import javax.xml.bind.JAXBException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
+import static java.lang.String.format;
+import static java.util.Arrays.asList;
 
 /**
  * Wraps a wms workspace and provides some useful methods.
@@ -46,6 +46,8 @@ import de.latlon.xplan.manager.configuration.ConfigurationException;
  * @version $Revision: $, $Date: $
  */
 public class WmsWorkspaceWrapper {
+
+	private static final String DATA_DIRECTORY = "data";
 
 	public static final List<String> supportedTypes = asList("bplan", "fplan", "rplan", "lplan", "soplan", "bplanpre",
 			"fplanpre", "rplanpre", "lplanpre", "soplanpre", "bplanarchive", "fplanarchive", "rplanarchive",
@@ -65,6 +67,13 @@ public class WmsWorkspaceWrapper {
 	 */
 	public File getLocation() {
 		return workspace.getLocation();
+	}
+
+	/**
+	 * @return the workspace location (must not exist!), never <code>null</code>
+	 */
+	public Path getDataDirectory() {
+		return Paths.get(getLocation().toURI()).resolve(DATA_DIRECTORY);
 	}
 
 	/**

@@ -1,30 +1,28 @@
 [[logging]]
 == Logging
 
-Die Anwendungen XPlanManagerWeb, XPlanManagerCLI, XPlanValidatorWeb
-und XPlanValidatorCLI und alle XPlanDienste schreiben Log-Ausgaben standardmäßig nach
+Die Anwendungen XPlanManagerWeb, XPlanManagerApi, XPlanValidatorWeb und XPlanValidatorApi, sowie alle XPlanDienste und Kommandozeilenwerkzeuge schreiben Log-Ausgaben standardmäßig nach
 Standard-Out. Für die Web-Anwendungen und die Webservices ist dies die Logging-Datei des
-Java Applikationsserver (Apache Tomcat: _catalina.out_) und bei den CLI-Anwendungen die Konsole.
-Nach Standard-Out werden nur Warnungen und Fehler geschrieben.
+Java Applikationsserver (Apache Tomcat: _catalina.out_) und bei den Kommandozeilenwerkzeugen die Konsole.
+Nach Standard-Out werden Informationen, Warnungen und Fehler geschrieben.
 
 === Protokolldateien der Komponenten
 
-Zusätzlich wird eine Log-Datei für alle Anwendungen und Dienste in einer entsprechenden benannten Datei im Log-Verzeichnis des Tomcat-Servers _${catalina.base}/logs/_ geschrieben.
+Zusätzlich wird eine Log-Datei für alle Kommandozeilenwerkzeuge in einer entsprechend benannten Datei im Log-Verzeichnis des Tomcat-Servers _${catalina.base}/logs/_ geschrieben.
 In die Log-Dateien werden Informationen, Warnungen und Fehler geschrieben.
 
 [width="88%",cols="35%,65%",options="header"]
 |===
 |Anwendung |Log-Datei
-|XPlanManagerWeb |${catalina.base}/logs/xplan-manager-web.log
-|XPlanManagerAPI |${catalina.base}/logs/xplan-manager-api.log
 |XPlanManagerCLI |./xplan-manager-cli.log
-|XPlanValidatorWeb |${catalina.base}/logs/xplan-validator-web.log
-|XPlanValidatorAPI |${catalina.base}/logs/xplan-validator-api.log
 |XPlanValidatorCLI |./xplan-validator-cli.log
-|XPlanWMS |${catalina.base}/logs/xplan-wms.log
-|XPlanWFS |${catalina.base}/logs/xplan-wfs.log
-|XPlanSynWFS |${catalina.base}/logs/xplansyn-wfs.log
+|XPlanTransformCLI |./xplan-transform-cli.log
+|XPlanValidateDB |./xplan-validatedb-cli.log
+|XPlanAuswerteschemaCLI|./xplan-evaluation-schema-synchronize-cli.log
+|XPlanUpdateDataCLI |./xplan-update-data-cli.log
 |===
+
+NOTE: Ab der xPlanBox Version 7.0 ist die Ausgabe in Log-Dateien deaktiviert. Für die Konfiguration kann das Beispiel für die Ausgabe über einen `RollingFile`-Appender im folgenden Kapitel <<logging-konfiguration>> verwendet werden.
 
 === Protokollebenen
 
@@ -37,6 +35,7 @@ In den Anwendungen werden für die Nachrichten verschiedenen Protokollebenen (Lo
 - DEBUG: Detaillierte Informationen zum Programmablauf, die vom Entwickler zur Fehler- und Laufzeitanalyse ausgewertet werden können (Vorgabeeinstellung: deaktiviert, wird bei Bedarf und nur temporär aktiviert)
 - TRACE: noch detailliertere Informationen zum Programmablauf (Vorgabeeinstellung: deaktiviert, wird bei Bedarf und nur temporär aktiviert, erzeugt viele Nachrichten)
 
+[[logging-konfiguration]]
 === Konfiguration
 
 Die Konfiguration des verwendeten Apache Log4j-Frameworks erfolgt über die Konfigurationsdatei `log4j2.yaml`. Diese Datei ist in allen Komponenten enthalten und liegt in den Webapps im Verzeichnis `WEB-INF/classes` und bei den Kommandozeilenwerkzeugen im Verzeichnis `etc/`.
@@ -104,12 +103,12 @@ Im Abschnitt `Properties` können zusätzliche Eigenschaften definiert werden, d
   Properties:
     Property:
       - name: log.file <1>
-        value: xplan-validator-api.log
+        value: xplan-validator-cli.log
       - name: log.path <2>
-        value: ${sys:catalina.base:-.}/logs
+        value: ${sys:basedir:-.}/logs
 ----
-<1> Definiert die Variable `log.file` mit dem Wert `xplan-validator-api.log`
-<2> Definiert die Variable `log.path` mit dem Wert `${sys:catalina.base:-.}/logs`, dabei wird die Systemvariable `catalina.base` ausgewertet und dem Verzeichnisnamen `logs` vorangestellt. Ist die Systemvariable nicht gesetzt `:-`, wird der Vorgabewert `.` (Basisverzeichnis des Prozesses) verwendet und dem Verzeichnisnamen `logs` vorangestellt.
+<1> Definiert die Variable `log.file` mit dem Wert `xplan-validator-cli.log`
+<2> Definiert die Variable `log.path` mit dem Wert `${sys:basedir:-.}/logs`, dabei wird die Systemvariable `basedir` ausgewertet und dem Verzeichnisnamen `logs` vorangestellt. Ist die Systemvariable nicht gesetzt `:-`, wird der Vorgabewert `.` (Basisverzeichnis des Prozesses) verwendet und dem Verzeichnisnamen `logs` vorangestellt.
 
 Weitere Informationen zur Konfiguration von Log4j sind auf den Seiten des Projekts unter https://logging.apache.org/log4j/2.x/manual/configuration.html zu finden.
 

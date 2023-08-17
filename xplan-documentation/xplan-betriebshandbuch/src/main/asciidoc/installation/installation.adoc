@@ -1,22 +1,24 @@
 [[anwendung-installieren]]
 === Anwendung installieren
 
+Speichern Sie die Distributionsdatei in einem lokalen Verzeichnis und entpacken Sie die ZIP-Datei. Prüfen Sie die Vollständigkeit der Distributionsdatei anhand der Auflistung der im Kapitel <<installationskomponenten>>.
+
 [[konfiguration]]
 ==== Konfigurationsdateien der Anwendungskomponenten
 
-Die ZIP-Archive mit den Konfigurationen (s. <<installationskomponenten>>) müssen in das
-Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (Vorgabewert ist das _.deegree_ im Home-Verzeichnis des Nutzers, s. <<vorbereitung-der-installation>>) kopiert und entpackt werden:
+Die ZIP-Archive mit den deegree Workspaces (s. <<installationskomponenten>>) müssen in das Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (s. <<vorbereitung-der-installation>>) entpackt werden:
 
 * _xplan-wfs-workspace_
 * _xplansyn-wfs-workspace_
 * _xplansyn-wms-workspace_
-* _xplan-inspireplu-workspace_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
-* _xplan-validator-wms-workspace_
+* _xplan-validator-wms-memory-workspace_ *oder* _xplan-validator-wms-sql-workspace_ (siehe <<konfiguration-xplanvalidatorwms>>)
 * _xplan-manager-workspace_
+* _xplan-inspireplu-workspace_ (optional)
+
+Die ZIP-Archive mit den Konfigurationen für die XPlanManager und XPlanValidator (s. <<installationskomponenten>>) müssen in das Verzeichnis _<XPLANBOX_CONFIG>_ (s. <<vorbereitung-der-installation>>) entpackt werden:
+
 * _xplan-manager-config_
 * _xplan-validator-config_ (nur erforderlich, wenn ausschließlich der XPlanValidator installiert werden soll)
-
-IMPORTANT: Die Verzeichnisse mit der Konfiguration der Komponenten der xPlanBox müssen alle unterhalb desselben Basis-Verzeichnisses liegen.
 
 [[web-anwendungen]]
 ==== Web-Anwendungen
@@ -48,8 +50,24 @@ Die WAR-Archive der REST-API werden über eine weitere Tomcat-Instanz _API-Tomca
 * _xplan-api-manager.war_ (XPlanManagerAPI)
 * _xplan-api-validator.war_ (XPlanValidatorAPI)
 
-
 TIP: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp der Instanz _Anwendungs-Tomcat_ zu installieren. Das WAR-Archiv _xplan-root.war_ muss dafür im Verzeichnis _ROOT_ entpackt werden.
+
+==== Verknüpfung von Webapp und Workspace
+
+Für die Tomcat-Instanz _Dienste-Tomcat_ muss eine _webapp.properties_ Datei angelegt werden.
+Diese enthält die Verknüpfung zwischen der Webapp und dem Workspace.
+
+.Beispiel für _webapps.properties_ für den _Dienste-Tomcat_:
+[source,properties]
+----
+/xplan-wms=xplansyn-wms-workspace
+/xplansyn-wfs=xplansyn-wfs-workspace
+/xplan-wfs=xplan-wfs-workspace
+/xplan-validator-wms=xplan-validator-wms-sql-workspace
+/xplan-inspireplu=xplan-inspireplu-workspace
+----
+
+Weitere Informationen zur Konfiguration des XPlanValidatorWMS sind im Kapitel <<konfiguration-xplanvalidatorwms>> zu finden.
 
 [[kommandozeilen-anwendungen]]
 ==== Kommandozeilen-Anwendungen
@@ -67,6 +85,10 @@ Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an belie
 ** _xplan-update-data-cli/bin/reSynthesizer_ - ermöglicht die Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** _xplan-update-data-cli/bin/sortDateUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Sortierfelder. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
+TIP: Um die Kommandozeilenwerkzeuge von einem beliebigen Ort aufrufen zu können, empfiehlt es sich, die Pfade in die `PATH` Variable mit aufzunehmen.
+
+IMPORTANT: Je nach Kommandozeilenwerkzeug müssen über Umgebungsvariablen wie z. B. `DEEGREE_WORKSPACE_ROOT` der Pfad zum deegree Workspace und mit `LD_LIBRARY_PATH` der Pfad zum Installationsverzeichnis von GDAL gesetzt werden (siehe auch <<installation-gdal>>).
+
 [[install-xplanevaluationschemasynchronize-cli]]
 ===== XPlanAuswerteschemaCLI
 
@@ -75,13 +97,15 @@ Das Kommandozeilenwerkzeug XPlanAuswerteschemaCLI erzeugt ein weiteres Datenbank
 ====== Installation
 
 Die Installation dieses Kommandozeilenwerkzeugs sowie das Anlegen des zusätzlichen Datenbankschemas ist optional. Für den Betrieb der xPlanBox sind diese nicht erforderlich.
-Das Datenbankschema für die Auswertung muss durch Ausführen der SQL-Skripte aus dem Ordner _scripts/_ angelegt werden. Folgende Reihenfolge muss beibehalten werden:
+Das Datenbankschema für die Auswertung muss durch Ausführen der SQL-Skripte aus dem Verzeichnis _scripts/_ angelegt werden. Folgende Reihenfolge muss beibehalten werden:
 
 . _00_create_schema.sql_
 . _01_create_function.sql_
 . _02_create_tables.sql_
 . _03_create_trigger-function.sql_
 . _04_create_trigger.sql_
+. _05_grant_user.sql_ (zuvor ist die Variable $DB_USER im Skript durch den Namen des Datenbanknutzers auszutauschen, mit dem der XPlanManager und die XPlanDienste auf die XPlaNDB zugreifen, s. Abschnitt "Konfiguration der Datenbank" im Betriebshandbuch)
+
 
 Die Skripte erstellen eine Kopie der drei XPlanSyn-Schemas in den Schemas _xplanevaluationxplansynpre_, _xplanevaluationxplansyn_ und _xplanevaluationxplansynarchive_ sowie eine Log-Tabelle _xplanevaluation.planTableLog_.
 

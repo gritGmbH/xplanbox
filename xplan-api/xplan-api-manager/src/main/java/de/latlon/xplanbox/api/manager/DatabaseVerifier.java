@@ -1,25 +1,24 @@
-package de.latlon.xplanbox.api.manager;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager;
 
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import liquibase.changelog.RanChangeSet;
@@ -43,13 +42,14 @@ import static org.slf4j.LoggerFactory.getLogger;
  * database using liquibase API.
  *
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ * @since 6.0
  */
 @Component
 public class DatabaseVerifier {
 
 	private static final Logger LOG = getLogger(DatabaseVerifier.class);
 
-	private static final String DB_VERSION = "v_6.0";
+	private static final String DB_VERSION = "v_7.0";
 
 	private ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
@@ -64,7 +64,7 @@ public class DatabaseVerifier {
 
 		try (Connection connection = managerWorkspaceWrapper.openConnection()) {
 			Database database = DatabaseFactory.getInstance()
-					.findCorrectDatabaseImplementation(new JdbcConnection(connection));
+				.findCorrectDatabaseImplementation(new JdbcConnection(connection));
 			if (database.getDatabaseChangeLogTableName().isEmpty()) {
 				LOG.error("Liquibase tables are missing, unable to verify version of application database XPlanDB."
 						+ " Verify your installation and the database setup.");

@@ -6,31 +6,8 @@ Die nachfolgenden Konfigurationen müssen in der Datei _<XPLANBOX_CONFIG>/manage
 [[kartenvorschau-xplanwms]]
 ==== XPlanWMS
 
-Um den XPlanWMS zu konfigurieren, muss der Wert des Schlüssels _wmsUrl_
-angepasst werden. Über die Schlüssel _vectorWmsName_ und _rasterWmsName_
-können die in der Kartenvorschau dargestellte Namen für Vektor- und
-Rasterlayer konfiguriert werden:
-
-----
-wmsUrl=http://<host>:<port>/xplan-wms/services
-vectorWmsName=XPlan-WMS: Vektorkarten
-rasterWmsName=XPlan-WMS: Rasterkarten
-wmsEndpoint=wms
-wmsPreEndpoint=wmspre
-wmsArchiveEndpoint=wmsarchive
-----
-
-Über die Schlüssel _wmsEndpoint_, _wmsPreEndpoint_ und
-_wmsArchiveEndpoint_ wird angegeben welcher XPlanWMS für die
-Kartenvorschau verwendet wird, wenn ein Plan 'In Aufstellung',
-'Festgestellt' oder 'Archiviert' ist. Wird nur eine
-Datenhaltungskomponente verwendet, sollte die _wmsUrl_ konfiguriert sein
-(mit einem '?' am Ende). Andernfalls wird bei Plänen mit dem Status
-'Festgestellt' der mit dem Schlüssel _wmsEndpoint_ konfigurierte
-Endpunkt an die WMS URL angehängt, bei Plänen mit dem Status 'In
-Aufstellung' der mit dem Schlüssel _wmsPreEndpoint_ konfigurierte
-Endpunkt oder bei Plänen mit dem Status 'Archiviert' der mit dem
-Schlüssel _wmsArchiveEndpoint_ konfigurierte Endpunkt.
+Um den XPlanWMS im XPlanManagerWeb für die Kartenvorschau zu konfigurieren, muss der Wert des Schlüssels _wmsUrl_ angepasst werden.
+Über die Schlüssel _vectorWmsName_ und _rasterWmsName_ können die in der Kartenvorschau dargestellte Namen für Vektor- und Rasterlayer konfiguriert werden:
 
 _Beispiel der Konfiguration des XPlanWMS für die Kartenvorschau:_
 ----
@@ -41,6 +18,12 @@ wmsEndpoint=wms
 wmsPreEndpoint=wmspre
 wmsArchiveEndpoint=wmsarchive
 ----
+
+Über die Schlüssel _wmsEndpoint_, _wmsPreEndpoint_ und
+_wmsArchiveEndpoint_ wird angegeben welcher Endpunkt des XPlanWMS für die
+Kartenvorschau verwendet wird, wenn ein Plan 'In Aufstellung',
+'Festgestellt' oder 'Archiviert' ist. Die URL setzt sich bei Plänen mit dem Status
+'Festgestellt' aus der _wmsUrl_ und dem Wert für _wmsEndpoint_ zusammen. Bei Plänen mit dem Status 'In Aufstellung' wird der Wert für _wmsPreEndpoint_ und bei Plänen mit dem Status 'Archiviert' der mit dem Wert _wmsArchiveEndpoint_ verwendet.
 
 [[hintergrundkarte]]
 ==== Hintergrundkarte
@@ -62,7 +45,7 @@ kann über den Schlüssel _mapCrs_ und dem dazugehörigen Wert konfiguriert
 werden:
 
 ----
-mapCrs=epsg:25832
+mapCrs=EPSG:25832
 ----
 
 [[kartenausschnitt]]

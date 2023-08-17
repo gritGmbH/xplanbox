@@ -2,7 +2,7 @@
  * #%L
  * xplan-transform-cli - Kommandozeilentool fuer die Transformation zwischen XPlanGML Versionen
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -63,7 +64,7 @@ public class FileTransformationResultWriter implements TransformationResultWrite
 			write(transformationResult.getTransformationResult(), gmlOutputStream);
 			String validationResult = validatorResult.isValid() ? "valid"
 					: validatorResult.getMessages().stream().collect(Collectors.joining(","));
-			write(validationResult, validationResultOutputStream);
+			write(validationResult, validationResultOutputStream, Charset.defaultCharset());
 		}
 		catch (IOException e) {
 			LOG.warn("Could not write results to file");

@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-api</artifactId>
-    <version>6.0-SNAPSHOT</version>
+    <version>7.0</version>
   </parent>
 
   <build>
@@ -113,6 +113,11 @@
       <artifactId>jersey-media-jaxb</artifactId>
       <version>${jersey.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.glassfish.jersey.ext</groupId>
+      <artifactId>jersey-bean-validation</artifactId>
+      <version>${jersey.version}</version>
+    </dependency>
     <!-- Swagger 3 -->
     <dependency>
       <groupId>io.swagger.core.v3</groupId>
@@ -184,6 +189,10 @@
       <groupId>org.liquibase.ext</groupId>
       <artifactId>liquibase-postgresql</artifactId>
     </dependency>
+    <dependency>
+      <groupId>net.bytebuddy</groupId>
+      <artifactId>byte-buddy</artifactId>
+    </dependency>
     <!-- test -->
     <dependency>
       <groupId>junit</groupId>
@@ -253,6 +262,21 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+    <profile>
+      <id>docker</id>
+      <properties>
+        <docker-image.skip>false</docker-image.skip>
+        <docker-image.name>xplan-manager-api</docker-image.name>
+      </properties>
+      <dependencies>
+        <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
+          <groupId>de.latlon.product.xplanbox</groupId>
+          <artifactId>xplan-docker-tomcat-gdal</artifactId>
+          <version>${project.version}</version>
+          <type>pom</type>
+        </dependency>
+      </dependencies>
     </profile>
   </profiles>
 </project>

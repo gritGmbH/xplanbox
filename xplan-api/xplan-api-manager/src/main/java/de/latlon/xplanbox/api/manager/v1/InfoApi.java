@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -53,8 +53,10 @@ public class InfoApi {
 	@Produces({ "application/json" })
 	@Operation(summary = "Show system and application configuration",
 			description = "Returns the system and application configuration",
-			responses = { @ApiResponse(responseCode = "200", description = "successful operation",
-					content = @Content(schema = @Schema(implementation = ManagerSystemConfig.class))) })
+			responses = {
+					@ApiResponse(responseCode = "200", description = "successful operation",
+							content = @Content(schema = @Schema(implementation = ManagerSystemConfig.class))),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Response showConfig() throws IOException {
 		ManagerSystemConfig managerSystemConfig = configHandler.describeManagerSystem();
 		return Response.ok().entity(managerSystemConfig).build();

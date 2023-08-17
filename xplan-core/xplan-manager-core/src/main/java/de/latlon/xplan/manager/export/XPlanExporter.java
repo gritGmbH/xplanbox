@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.export;
 
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.core.manager.db.model.Artefact;
 import org.deegree.commons.xml.stax.IndentingXMLStreamWriter;
 import org.deegree.cs.exceptions.TransformationException;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -35,10 +36,12 @@ import org.slf4j.LoggerFactory;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import java.io.InputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.TimeZone;
 import java.util.UUID;
 import java.util.zip.GZIPInputStream;
@@ -64,14 +67,14 @@ public class XPlanExporter {
 	/**
 	 * Exports the content of a plan as zip archive.
 	 * @param outputStream to write the artefacts into, never <code>null</code>
-	 * @param contents the content to write, the underlying artefacts stream is closed
+	 * @param artefacts the content to write, the underlying artefacts stream is closed
 	 * after the export, never <code>null</code>
 	 * @throws NullPointerException if outputStream or contents is <code>null</code>
 	 * @throws XPlanExportException if an error occurred during export
 	 */
-	public void export(OutputStream outputStream, XPlanArchiveContent contents) {
+	public void export(OutputStream outputStream, List<Artefact> artefacts) {
 		long begin = System.currentTimeMillis();
-		writeContentToStream(outputStream, contents);
+		writeContentToStream(outputStream, artefacts);
 		long elapsed = System.currentTimeMillis() - begin;
 		LOG.info("OK [" + elapsed + " ms]");
 	}
@@ -118,10 +121,10 @@ public class XPlanExporter {
 		writer.close();
 	}
 
-	private void writeContentToStream(OutputStream outputStream, XPlanArchiveContent contents) {
+	private void writeContentToStream(OutputStream outputStream, List<Artefact> artefacts) {
 		try {
 			ZipOutputStream zipOS = new ZipOutputStream(outputStream);
-			writeArchiveContentToStream(zipOS, contents);
+			artefacts.forEach(artefact -> writeArtefactToStream(zipOS, artefact));
 			zipOS.close();
 		}
 		catch (XPlanExportException e) {
@@ -133,21 +136,12 @@ public class XPlanExporter {
 		}
 	}
 
-	private void writeArchiveContentToStream(ZipOutputStream zipOS, XPlanArchiveContent contents) throws Exception {
-		XPlanArtefactIterator artefacts = contents.getArtefacts();
-		while (artefacts.hasNext()) {
-			XPlanArtefact artefact = artefacts.next();
-			writeArtefactToStream(zipOS, artefact);
-		}
-		artefacts.close();
-	}
-
-	private void writeArtefactToStream(ZipOutputStream zos, XPlanArtefact artefact) {
-		String fileName = artefact.getFileName();
+	private void writeArtefactToStream(ZipOutputStream zos, Artefact artefact) {
+		String fileName = artefact.getId().getFilename();
 		LOG.info("- Schreibe Artefakt '" + fileName + "'...");
-		try {
-			InputStream artefactContent = artefact.getContent();
-			GZIPInputStream is = new GZIPInputStream(artefactContent);
+		byte[] artefactContent = artefact.getData();
+		try (ByteArrayInputStream bis = new ByteArrayInputStream(artefactContent);
+				GZIPInputStream is = new GZIPInputStream(bis)) {
 			ZipEntry entry = new ZipEntry(fileName);
 			zos.putNextEntry(entry);
 			byte[] buffer = new byte[10240];
@@ -155,11 +149,17 @@ public class XPlanExporter {
 			while ((read = is.read(buffer)) != -1) {
 				zos.write(buffer, 0, read);
 			}
-			zos.closeEntry();
 		}
 		catch (Exception e) {
 			throw new XPlanExportException("Fehler beim Rekonstruieren des XPlan-Artefakts mit Namen " + fileName + ": "
 					+ e.getLocalizedMessage(), e);
+		}
+		finally {
+			try {
+				zos.closeEntry();
+			}
+			catch (IOException e) {
+			}
 		}
 	}
 

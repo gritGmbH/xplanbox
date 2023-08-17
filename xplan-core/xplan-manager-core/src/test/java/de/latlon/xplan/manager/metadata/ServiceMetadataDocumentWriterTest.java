@@ -2,18 +2,18 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -46,7 +46,7 @@ public class ServiceMetadataDocumentWriterTest {
 	@Test
 	public void testWriteServiceMetadataDocument() throws Exception {
 		byte[] template = IOUtils.toByteArray(ServiceMetadataDocumentWriterTest.class
-				.getResourceAsStream("iso-service-metadata-example-template.xml"));
+			.getResourceAsStream("iso-service-metadata-example-template.xml"));
 
 		ByteArrayOutputStream serviceMetadataInstance = new ByteArrayOutputStream();
 
@@ -58,23 +58,24 @@ public class ServiceMetadataDocumentWriterTest {
 
 		assertThat(serviceMetadataInstance.toString(),
 				hasXPath("//gmd:MD_Metadata/gmd:hierarchyLevel/gmd:MD_ScopeCode", is(TYPE))
-						.withNamespaceContext(nsContext()));
+					.withNamespaceContext(nsContext()));
 
 		assertThat(serviceMetadataInstance.toString(),
 				hasXPath("//gmd:MD_Metadata/gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue", is(TYPE))
-						.withNamespaceContext(nsContext()));
+					.withNamespaceContext(nsContext()));
 
 		assertThat(serviceMetadataInstance.toString(),
 				hasXPath("//gmd:MD_Metadata/gmd:hierarchyLevelName/gco:CharacterString", is(TYPE))
-						.withNamespaceContext(nsContext()));
+					.withNamespaceContext(nsContext()));
 
 		assertThat(serviceMetadataInstance.toString(),
 				hasXPath("//gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString", is("NOVALUE"))
-						.withNamespaceContext(nsContext()));
+					.withNamespaceContext(nsContext()));
 
 		assertThat(serviceMetadataInstance.toString(), hasXPath(
 				"//gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString",
-				is("WMS Bebauungsplan " + TITLE)).withNamespaceContext(nsContext()));
+				is("WMS Bebauungsplan " + TITLE))
+			.withNamespaceContext(nsContext()));
 	}
 
 	private Properties properties() {

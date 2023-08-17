@@ -2,18 +2,18 @@
  * #%L
  * xplan-api-validator - Modul zur Gruppierung der REST-API
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -71,9 +71,11 @@ public class ApplicationPathConfig extends ResourceConfig {
 		packages("de.latlon.xplanbox.api.commons.exception");
 		packages("de.latlon.xplanbox.api.commons.converter");
 		OpenAPI openApi = new OpenAPI();
-		openApi.setInfo(new Info().title("XPlanValidatorAPI").version("1.0.0").description("XPlanValidator REST API")
-				.termsOfService(getTermsOfService(validatorApiConfiguration))
-				.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));
+		openApi.setInfo(new Info().title("XPlanValidatorAPI")
+			.version("1.2.0")
+			.description("XPlanValidator REST API")
+			.termsOfService(getTermsOfService(validatorApiConfiguration))
+			.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));
 		addContact(openApi, validatorApiConfiguration);
 		openApi.servers(servers(servletContext, validatorApiConfiguration));
 		Tag tag = createTag(validatorApiConfiguration);
@@ -81,8 +83,9 @@ public class ApplicationPathConfig extends ResourceConfig {
 
 		DefaultApi openApiResource = new DefaultApi();
 		SwaggerConfiguration oasConfig = new SwaggerConfiguration().openAPI(openApi)
-				.filterClass(OpenApiFilter.class.getCanonicalName()).prettyPrint(true)
-				.resourcePackages(Stream.of("de.latlon.xplanbox.api.validator.v1").collect(Collectors.toSet()));
+			.filterClass(OpenApiFilter.class.getCanonicalName())
+			.prettyPrint(true)
+			.resourcePackages(Stream.of("de.latlon.xplanbox.api.validator.v1").collect(Collectors.toSet()));
 
 		openApiResource.setOpenApiConfiguration(oasConfig);
 		register(openApiResource);
@@ -93,7 +96,7 @@ public class ApplicationPathConfig extends ResourceConfig {
 		Tag tag = new Tag().name("validate").description("Validate XPlanGML documents");
 		if (validatorApiConfiguration != null && validatorApiConfiguration.getDocumentationUrl() != null) {
 			tag.externalDocs(new ExternalDocumentation().description("xPlanBox")
-					.url(validatorApiConfiguration.getDocumentationUrl()));
+				.url(validatorApiConfiguration.getDocumentationUrl()));
 		}
 		return tag;
 	}

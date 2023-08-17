@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplanbox</artifactId>
-    <version>6.0-SNAPSHOT</version>
+    <version>7.0</version>
   </parent>
 
   <build>
@@ -139,6 +139,12 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-api-dokumente</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>xplansyn-wfs</artifactId>
       <version>${project.version}</version>
       <type>war</type>
@@ -184,6 +190,18 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-dokumenten-config</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-mapserver-config</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
       <classifier>xplan-manager-workspace</classifier>
@@ -221,7 +239,14 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
-      <classifier>xplan-validator-wms-workspace</classifier>
+      <classifier>xplan-validator-wms-memory-workspace</classifier>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-workspaces</artifactId>
+      <version>${project.version}</version>
+      <classifier>xplan-validator-wms-sql-workspace</classifier>
       <type>zip</type>
     </dependency>
     <!-- Test -->

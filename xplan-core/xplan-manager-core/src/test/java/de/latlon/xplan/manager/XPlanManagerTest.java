@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -30,11 +30,17 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import org.apache.commons.io.IOUtils;
+import de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext;
+import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import org.deegree.commons.utils.Pair;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,8 +49,10 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.List;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType.gdal;
-import static de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager.isGdalSuccessfullInitialized;
+import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
+import static de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter.isGdalSuccessfullInitialized;
+import static org.apache.commons.io.IOUtils.close;
+import static org.apache.commons.io.IOUtils.copy;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeTrue;
@@ -55,7 +63,13 @@ import static org.mockito.Mockito.when;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version 1.0
  */
+// TODO enable Sprint TestContext and turn all mock objects created here into Spring
+// Beans.
+// @RunWith(SpringRunner.class)
+// @ContextConfiguration(classes = {CoreTestContext.class, RasterStorageContext.class})
 public class XPlanManagerTest {
+
+	private static final String CONFIGURED_CRS = "epsg:4326";
 
 	private File managerWorkspaceDirectory;
 
@@ -100,7 +114,7 @@ public class XPlanManagerTest {
 
 		Pair<Rechtsstand, PlanStatus> legislationStatus = xPlanManager.determineRechtsstand(pathToArchive);
 
-		assertThat(legislationStatus.first.getCodeNumber(), is(4000));
+		assertThat(legislationStatus.first.getCodeNumber(), is(3000));
 		assertThat(legislationStatus.second, is(PlanStatus.FESTGESTELLT));
 	}
 
@@ -108,23 +122,50 @@ public class XPlanManagerTest {
 		XPlanDao xPlanDao = mock(XPlanDao.class);
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		ManagerConfiguration managerConfiguration = mockManagerConfig();
-		ManagerWorkspaceWrapper managerWorkspaceWrapper = mock(ManagerWorkspaceWrapper.class);
-		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration);
 		WmsWorkspaceWrapper wmsWorkspaceWrapper = mock(WmsWorkspaceWrapper.class);
 		when(wmsWorkspaceWrapper.getLocation()).thenReturn(wmsWorkspaceDirectory.getAbsoluteFile());
-		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null, wmsWorkspaceWrapper);
+		RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
+		XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(rasterEvaluation);
+		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
+		RasterConfigManager rasterConfigManager = createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+		ApplicationEventPublisher applicationEventPublisher = createApplicationEventPublisher();
+		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterConfigManager,
+				applicationEventPublisher);
+		return new XPlanManager(xPlanDao, archiveCreator, managerConfiguration, wmsWorkspaceWrapper, null,
+				xPlanRasterEvaluator, xPlanRasterManager, null, null, null, null, null);
+	}
+
+	private ApplicationEventPublisher createApplicationEventPublisher() {
+		return mock(ApplicationEventPublisher.class);
+	}
+
+	private RasterConfigManager createRasterConfigManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			ManagerConfiguration managerConfiguration) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+	}
+
+	private RasterStorage createRasterStorage(ManagerConfiguration managerConfiguration,
+			WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
+	}
+
+	private RasterEvaluation createRasterEvaluation(ManagerConfiguration managerConfiguration) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterEvaluation(managerConfiguration);
 	}
 
 	private ManagerConfiguration mockManagerConfig() {
 		ManagerConfiguration mockedConfiguration = mock(ManagerConfiguration.class);
 		when(mockedConfiguration.getRasterConfigurationType()).thenReturn(gdal);
-		when(mockedConfiguration.getRasterConfigurationCrs()).thenReturn("epsg:4326");
+		when(mockedConfiguration.getRasterConfigurationCrs()).thenReturn(CONFIGURED_CRS);
 		when(mockedConfiguration.getSortConfiguration()).thenReturn(new SortConfiguration());
 		return mockedConfiguration;
 	}
 
 	private String copyPlan() throws IOException {
-		InputStream resource = ResourceAccessor.readResourceStream("xplan41/V4_1_ID_103.zip");
+		InputStream resource = ResourceAccessor.readResourceStream("xplan41/BPlan001_4-1.zip");
 		FileOutputStream output = null;
 		try {
 			File resourceFile = File.createTempFile("XPlanManagerTest_", ".zip");
@@ -132,8 +173,8 @@ public class XPlanManagerTest {
 			return resourceFile.getAbsolutePath();
 		}
 		finally {
-			IOUtils.copy(resource, output);
-			IOUtils.closeQuietly(resource);
+			copy(resource, output);
+			close(resource);
 		}
 	}
 

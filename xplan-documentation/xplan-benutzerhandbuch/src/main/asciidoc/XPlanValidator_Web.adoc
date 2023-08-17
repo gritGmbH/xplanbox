@@ -27,10 +27,10 @@ Bitte beachten Sie die Anforderungen an den Dateinamen. Der Dateiname darf nur f
  * Klammern `(` und `)`
  * Punkte `.`
 
-Sonderzeichen wie z.B. Umlaute, Zeilenumbrüche und Leerzeichen sind nicht erlaubt.
+Sonderzeichen wie z. B. Umlaute, Zeilenumbrüche und Leerzeichen sind nicht erlaubt.
 ====
 
-WARNING: Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validierung.
+NOTE: Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validierung.
 
 [[xplanvalidator-web-validieren]]
 ===== Schritt 2 – Bezeichnung des Validierungsberichts und Validierungstyp wählen
@@ -42,7 +42,7 @@ image::validator/Validierungsbezeichnung_Datei.png[Dateiname als Bezeichner des 
 
 Sie können der aktuellen Validierung, falls notwendig, eine beliebige Bezeichnung geben. Diese erscheint ausschließlich auf dem Validierungsbericht.
 
-TIP: Vermeiden Sie auch hier Umlaute, Sonderzeichen und/oder Leerzeichen.
+TIP: Vermeiden Sie auch hier Umlaute, Sonderzeichen und/oder Leerzeichen. Es gelten die gleichen Anforderungen wie an den Dateinamen.
 
 [.bordered]
 image::validator/Validierungsbezeichnung.png[Bezeichnung des Validierungsberichts]
@@ -77,7 +77,7 @@ Die semantische Validierung überprüft die fachlich-inhaltliche Kohärenz der X
 Die Konformitätsregeln sind für die Version 5.0 und höher optimiert!
 ====
 
-Eine XPlanGML-Datei ist dann zu der jeweiligen XPlanGML Version konform, wenn das XMLDokument gegen das jeweilige XPlanGML Schema validiert und alle in den Konformitätsbedingungen spezifizierten Regeln erfüllt werden.
+Eine XPlanGML-Datei ist dann zu der jeweiligen XPlanGML-Version konform, wenn das XMLDokument gegen das jeweilige XPlanGML Schema validiert und alle in den Konformitätsbedingungen spezifizierten Regeln erfüllt werden.
 
 [NOTE]
 ====
@@ -100,7 +100,7 @@ Die Regel "8.1.7.1 Die Einschränkung auf Punktgeometrie" bezieht sich auf LP_Pu
 
 Bei der geometrischen Validierung wird die Korrektheit der Geometrien überprüft. XPlanung bezieht sich auf das https://www.ogc.org/standards/sfa[Simple Feature Model des OGC]. Räumliche Objekte werden hier als Punkte, Linien oder Flächen mit speziellen geometrischen Eigenschaften modellhaft abgebildet. Als Fehler werden z. B. sich überschneidende Polygone identifiziert.
 
-Folgende Prüfungen werden in Abhängigkeit vom Geometrietyp durchgeführt, es handelt sich um die Basis-Geometrischen Prüfungen:
+Folgende Prüfungen werden in Abhängigkeit vom Geometrietyp durchgeführt, es handelt sich um die basisgeometrischen Prüfungen:
 
  * Punkte: Prüfung auf 2D-Koordinaten
  * Linien: Segment-Kontinuität
@@ -127,7 +127,7 @@ Wenn sich zwei aneinandergrenzende Flächenschlussobjekte an einer Geraden berü
 ====
 
 * *„Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“*: +
-Wenn Fehler im Geltungsbereich, z.B. in Kreisbögen, nicht korrigiert werden können, selektieren Sie in Ausnahmefällen die Option „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“. Bei Überlappungen des Geltungsbereiches gilt eine Toleranz von 1 mm. Grundsätzlich sollten alle Fehler, die den Geltungsbereich betreffen, behoben werden.
+Wenn Fehler im Geltungsbereich, z. B. in Kreisbögen, nicht korrigiert werden können, selektieren Sie in Ausnahmefällen die Option „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“. Bei Überlappungen des Geltungsbereiches gilt eine Toleranz von 1 mm. Grundsätzlich sollten alle Fehler, die den Geltungsbereich betreffen, behoben werden.
 
 [NOTE]
 ====
@@ -153,9 +153,9 @@ Zusätzlich können noch Profile ausgewählt werden, die zusätzliche Validierun
 [.bordered]
 image::validator/Validierungsprofile.png[Validierungsprofile]
 
-===== Schritt 3 – Validierungsergebnis und Validierungsbericht
+===== Schritt 3 – Validierungsbericht und -ergebnis
 
-====== Das Validierungsergebnis
+====== Der Validierungsbericht
 
 *1) Allgemeine Informationen*
 
@@ -164,7 +164,11 @@ Der Kopf des Validierungsberichts gibt Ihnen einen Überblick über die Informat
 [.bordered]
 image::validator/Validierungsbericht_2.png[Validierungsbericht]
 
-Neben dem Namen des XPlanArchivs, des Datums der Validierung sowie der Version der XPlanGML-Datei werden auch die in dem XPlanGML-Dokument enthaltenen Instanzen mit deren Namen sowie externe Referenzen angezeigt, wenn z.B. Rasterdaten in Form von PNG- mit PGW-Dateien im XPlanArchiv hinterlegt sind. Das Validierungsergebnis wird für alle in dem XPlanArchiv enthaltenen Instanzen angezeigt. Es müssen alle Validierungstypen für alle Instanzen fehlerfrei sein, damit das Gesamtergebnis valide ist. Die zu den jeweiligen Validierungstypen detaillierten Validierungsergebnisse werden in den folgenden Abschnitten ausgegeben.
+Neben dem Namen des XPlanArchivs bzw. der XPlanGML-Datei, des Datums der Validierung sowie der Version des XPlanGML-Dokuments werden auch die in dem XPlanGML-Dokument enthaltenen Instanzen mit deren Namen aufgelistet.
+
+Wenn Rasterdaten z. B. als PNG- mit PGW-Dateien im XPlanGML-Dokument referenziert werden, so werden diese aufgelistet und zu jeder Datei angezeigt, ob diese im XPlanArchiv vorhanden ist oder nicht. Für Dateien, die über eine URL referenziert werden, wird keine Prüfung durchgeführt und als Status immer _"nicht geprüft"_ angezeigt.
+
+Das angezeigte Ergebnis wird für alle in dem XPlanGML-Dokument enthaltenen Instanzen angezeigt. Es müssen alle ausgewählten Validierungstypen für alle Instanzen fehlerfrei sein, damit das Gesamtergebnis valide ist. Die zu den jeweiligen Validierungstypen detaillierten Validierungsergebnisse werden in den folgenden Abschnitten ausgegeben.
 
 *2) Semantische Validierung – valide*
 

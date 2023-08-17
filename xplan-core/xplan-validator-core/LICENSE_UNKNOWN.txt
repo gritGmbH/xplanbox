@@ -10,6 +10,14 @@ Inhalt des Verzeichnisses src/test/resources:
 │   └── latlon
 │       └── xplan
 │           └── validator
+│               ├── configuration
+│               │   ├── profile-invalidId.yaml
+│               │   ├── profile-invalidName.yaml
+│               │   ├── profiles-duplicateId.yaml
+│               │   ├── profiles-duplicateName.yaml
+│               │   ├── profiles.yaml
+│               │   ├── profile.yaml
+│               │   └── validatorConfiguration.properties
 │               ├── geometric
 │               │   ├── curve.gml
 │               │   ├── duplicateControlPointRing.gml
@@ -23,7 +31,15 @@ Inhalt des Verzeichnisses src/test/resources:
 │               │   │   │   ├── BPlan_6-0_4-5-2-4-Ueberlappung_valide.gml
 │               │   │   │   └── xplan60-4_5_2_4.gml
 │               │   │   ├── flaechenschluss
+│               │   │   │   ├── BP_Alles_Parmis.gfs
+│               │   │   │   ├── BP_Alles_Parmis.gml
 │               │   │   │   ├── BPlan001_5-4_Toleranz_Geltungsbereich_0008.gml
+│               │   │   │   ├── BPlan_Kompensationsbereich_6-0-2.gml
+│               │   │   │   ├── BPlan_Kompensationsbereich_6-0-2_Luecke.gml
+│               │   │   │   ├── BPlan_Kompensationsbereich_6-0-2_Ueberlappung.gml
+│               │   │   │   ├── BPlan_TeilbereichAusserhalbPlanbereich_6-0-2.gml
+│               │   │   │   ├── BPlan_Wirksamkeit_6-0-2_invalide.gml
+│               │   │   │   ├── BPlan_Wirksamkeit_6-0-2_valide.gml
 │               │   │   │   ├── equalFlaechenschlussGeometries.gml
 │               │   │   │   ├── Flaechenschluss-Test_1mm.gml
 │               │   │   │   ├── Flaechenschluss-Test_1mm-nichtUeberlappend.gml
@@ -33,6 +49,8 @@ Inhalt des Verzeichnisses src/test/resources:
 │               │   │   │   ├── test41-54_1-missing-gehoertZuBereich-multipleBereiche.gml
 │               │   │   │   ├── Test_Insel_Luecke_5mm.gml
 │               │   │   │   ├── Test_Luecke.gml
+│               │   │   │   ├── V4_1_ID_103_kein-flaechenschluss.gml
+│               │   │   │   ├── V4_1_ID_103_wirksamkeit.gml
 │               │   │   │   ├── xplan51-5_1_4_1_Flaechenschlussfehler.gml
 │               │   │   │   ├── xplan51-5_1_4_2_Flaechenschlussfehler.gml
 │               │   │   │   ├── xplan51-5_5_4_2_Flaechenschlussfehler.gml
@@ -43,19 +61,33 @@ Inhalt des Verzeichnisses src/test/resources:
 │               │   │   │   ├── xplan60_Aenderungsplan_Luecke.gml
 │               │   │   │   └── xplan60_Aenderungsplan_valide.gml
 │               │   │   └── geltungsbereich
+│               │   │       ├── 1_Geltungsbereich-Test.gml
 │               │   │       ├── 1_Schnittpunkte_Geltungsbereich_Polygon.gml
+│               │   │       ├── 2_Geltungsbereich-Test.gml
 │               │   │       ├── 2_Schnittpunkte_Geltungsbereich_Polygon.gml
+│               │   │       ├── 3_Geltungsbereich-Test.gml
 │               │   │       ├── 3_Schnittpunkte_Geltungsbereich_Polygon.gml
+│               │   │       ├── 4_Geltungsbereich-Test.gml
 │               │   │       ├── 4_Schnittpunkte_Geltungsbereich_Polygon.gml
+│               │   │       ├── 5_Geltungsbereich-Test.gml
 │               │   │       ├── 5_Schnittpunkte_Geltungsbereich_Linie.gml
+│               │   │       ├── 6_Geltungsbereich-Test.gml
 │               │   │       ├── 6_Schnittpunkte_Geltungsbereich_Linie.gml
+│               │   │       ├── 7_Geltungsbereich-Test.gml
 │               │   │       ├── 7_Schnittpunkte_Geltungsbereich_Linie.gml
 │               │   │       ├── 8_Schnittpunkte_Geltungsbereich_Linie.gml
 │               │   │       ├── BPlan001_5-4_Sliver-Polygon.gml
 │               │   │       ├── BPlan002_5-2_Schnittpunkt_Geltungsbereich.gml
+│               │   │       ├── BPlan_Kompensationsbereich_6-0-2_valide.gml
+│               │   │       ├── BPlan_Teilbereich_6-0-2_invalide.gml
 │               │   │       ├── HafenCity11_HafenCity14_Bereich_ohne_Geometrie.gml
+│               │   │       ├── SystematischeGeltungsbereichspruefung_GPundGB.jpg
 │               │   │       ├── test41-54_1-missing-gehoertZuBereich.gml
-│               │   │       └── test41-54_1-missing-gehoertZuBereich-multipleBereiche.gml
+│               │   │       ├── test41-54_1-missing-gehoertZuBereich-multipleBereiche.gml
+│               │   │       ├── Testplan_position_geltungsbereich.gml
+│               │   │       ├── Testplan_position_geltungsbereichLoch.gml
+│               │   │       └── V4_1_ID_103_withtolerance.gml
+│               │   ├── invalidSelfintersectionDeteced.gml
 │               │   ├── multiSurface-covering.gml
 │               │   ├── multiSurface.gml
 │               │   ├── multiSurface-intersection.gml
@@ -70,6 +102,27 @@ Inhalt des Verzeichnisses src/test/resources:
 │               │   ├── selfIntersectingRing-samePoint.gml
 │               │   └── surface.gml
 │               └── semantic
+│                   ├── configuration
+│                   │   └── xquery
+│                   │       └── rules
+│                   │           ├── exists.xq
+│                   │           ├── falseStatement.xq
+│                   │           ├── gmlIds.xq
+│                   │           ├── gmlId-warningsAndErrors.xq
+│                   │           ├── gmlId.xq
+│                   │           ├── so
+│                   │           │   ├── SOignore.unrule
+│                   │           │   └── SOignore.xq
+│                   │           ├── sub
+│                   │           │   └── Sub.xq
+│                   │           ├── xplangml40
+│                   │           │   └── hello.xq
+│                   │           └── xplangml41
+│                   │               ├── 41.xq
+│                   │               └── xp
+│                   │                   ├── 41_XPignore.xq
+│                   │                   └── subXp
+│                   │                       └── 41_XPignore_Sub.xq
 │                   └── xquery
 │                       ├── 5.0
 │                       │   ├── BP2070.gml
@@ -96,3 +149,4 @@ Inhalt des Verzeichnisses src/test/resources:
 │                       ├── BP_Wegerecht-Polygon-flaechenschlussFehlt.xml
 │                       ├── inhaltBPPlan-referenziertSO.xml
 │                       ├── xplan.gml
+│                       └── XP_PPO-positionPoint-keinFlaechenschluss.xml

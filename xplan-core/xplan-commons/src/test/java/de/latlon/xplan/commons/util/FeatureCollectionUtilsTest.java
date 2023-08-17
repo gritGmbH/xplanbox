@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -21,17 +21,14 @@
 package de.latlon.xplan.commons.util;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.gml.GMLStreamReader;
 import org.junit.Test;
 
-import javax.xml.stream.XMLStreamReader;
 import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
@@ -39,7 +36,6 @@ import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeatur
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveBereiche;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -54,16 +50,16 @@ public class FeatureCollectionUtilsTest {
 
 	@Test
 	public void testFindPlanFeatureWithXPlan40() throws Exception {
-		FeatureCollection fc = getMainFileAsFeatureCollection("xplan40/V4_1_ID_66.zip");
+		FeatureCollection fc = getMainFileAsFeatureCollection("xplan40/BPlan004_4-0.zip");
 		Feature planFeature = findPlanFeature(fc, BP_Plan);
 		String id = planFeature.getId();
 		String name = planFeature.getName().toString();
 		String envelope = planFeature.getEnvelope().toString();
 
-		assertThat(id, is("FEATURE_8f28013a-8756-48cd-8374-9e16edcdcc34"));
+		assertThat(id, is("GML_88bfe952-199f-4bba-bea2-c2b441737144"));
 		assertThat(name, is("{http://www.xplanung.de/xplangml/4/0}BP_Plan"));
 		assertThat(envelope, is(
-				"min: (417894.13,5715502.733), max: (418222.672,5715793.336), span0: 328.54200000001583, span1: 290.6030000001192 , crs: {uri=EPSG:25833, resolved=true}"));
+				"min: (567386.293,5937595.479), max: (567474.996,5937698.959), span0: 88.70300000009593, span1: 103.47999999951571 , crs: {uri=EPSG:25832, resolved=true}"));
 	}
 
 	@Test
@@ -137,15 +133,7 @@ public class FeatureCollectionUtilsTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		XPlanVersion version = archive.getVersion();
-		XMLStreamReader xmlReader = archive.getMainFileXmlReader();
-		GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
-		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version));
-		FeatureCollection fc = gmlReader.readFeatureCollection();
-		gmlReader.getIdContext().resolveLocalRefs();
-		gmlReader.close();
-		xmlReader.close();
-		return fc;
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(archive);
 	}
 
 }

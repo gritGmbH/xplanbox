@@ -1,10 +1,8 @@
-package de.latlon.xplanbox.api.commons.v1.model;
-
 /*-
  * #%L
  * xplan-api-commons - xplan-api-commons
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +18,7 @@ package de.latlon.xplanbox.api.commons.v1.model;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.commons.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -59,7 +58,7 @@ public class SemanticInvalidRuleResult {
 		return this;
 	}
 
-	@ArraySchema(schema = @Schema(description = "GML-ID", example = "GML_b4e47d29-d21c-42ab-85b7-b12ea57e89f2"))
+	@ArraySchema(schema = @Schema(description = "GML-Id", example = "GML_b4e47d29-d21c-42ab-85b7-b12ea57e89f2"))
 	@JsonProperty("invalidGmlIds")
 	public List<String> getInvalidGmlIds() {
 		return invalidGmlIds;

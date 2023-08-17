@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -23,6 +23,7 @@ package de.latlon.xplan.validator;
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
@@ -53,7 +54,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -65,14 +65,14 @@ import static java.util.Collections.singletonList;
 import static org.deegree.cs.persistence.CRSManager.lookup;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 /**
  * Tests for <link>XPlanValidator</link>
@@ -103,7 +103,7 @@ public class XPlanValidatorTest {
 
 	@BeforeClass
 	public static void initFileToValidate() throws IOException {
-		InputStream input = ResourceAccessor.readResourceStream("xplan51/V4_1_ID_103.gml");
+		InputStream input = ResourceAccessor.readResourceStream("xplan60/Blankenese29.gml");
 		Path xPlanGml = Files.createTempFile("XPlanValidatorTest", ".gml");
 		FileOutputStream output = new FileOutputStream(xPlanGml.toFile());
 		IOUtils.copy(input, output);
@@ -119,8 +119,8 @@ public class XPlanValidatorTest {
 
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
-		verifyZeroInteractions(semVal);
-		verifyZeroInteractions(xPlanGmlParser);
+		verifyNoInteractions(semVal);
+		verifyNoInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -130,8 +130,8 @@ public class XPlanValidatorTest {
 
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
-		verifyZeroInteractions(semVal);
-		verifyZeroInteractions(xPlanGmlParser);
+		verifyNoInteractions(semVal);
+		verifyNoInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -141,8 +141,8 @@ public class XPlanValidatorTest {
 
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(1)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
-		verifyZeroInteractions(xPlanGmlParser);
-		verifyZeroInteractions(semVal);
+		verifyNoInteractions(xPlanGmlParser);
+		verifyNoInteractions(semVal);
 	}
 
 	@Test
@@ -153,7 +153,7 @@ public class XPlanValidatorTest {
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verify(semVal, times(1)).validateSemantic(archive(), list());
-		verifyZeroInteractions(xPlanGmlParser);
+		verifyNoInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -165,7 +165,7 @@ public class XPlanValidatorTest {
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(1)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verify(semVal, times(1)).validateSemantic(archive(), list());
-		verifyZeroInteractions(xPlanGmlParser);
+		verifyNoInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -176,7 +176,7 @@ public class XPlanValidatorTest {
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verify(semVal, times(0)).validateSemantic(archive(), list());
-		verifyZeroInteractions(xPlanGmlParser);
+		verifyNoInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -318,7 +318,7 @@ public class XPlanValidatorTest {
 
 	private ValidatorReport executeValidator(GeometricValidator geomVal, SemanticValidator semVal,
 			SyntacticValidator synVal, ValidationSettings settings)
-			throws IOException, ValidatorException, ParseException, ReportGenerationException {
+			throws IOException, ValidatorException, ReportGenerationException {
 		return executeValidator(geomVal, semVal, synVal, Collections.emptyList(), settings);
 	}
 
@@ -355,7 +355,7 @@ public class XPlanValidatorTest {
 	}
 
 	private XPlanGmlParser mockXPlanGmlParser() {
-		return spy(new XPlanGmlParser());
+		return spy(XPlanGmlParserBuilder.newBuilder().build());
 	}
 
 	private List emptyList() {

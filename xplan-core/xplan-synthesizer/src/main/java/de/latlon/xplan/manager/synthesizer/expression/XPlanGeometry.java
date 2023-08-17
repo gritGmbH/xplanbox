@@ -2,7 +2,7 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.feature.Feature;
@@ -64,8 +65,8 @@ public class XPlanGeometry implements Expression {
 	}
 
 	@Override
-	public Geometry evaluate(Feature feature, FeatureCollection features) {
-		TypedObjectNodeArray<?> geometries = castToArray(xpath.evaluate(feature, features));
+	public Geometry evaluate(Feature feature, FeatureCollection features, PlanContext planContext) {
+		TypedObjectNodeArray<?> geometries = castToArray(xpath.evaluate(feature, features, planContext));
 		if (geometries == null) {
 			return null;
 		}

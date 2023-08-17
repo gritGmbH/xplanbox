@@ -23,9 +23,9 @@ bereitgestellt werden. Die Bereitstellung des AsciiDoc Quellcode erfolgt über d
 
 Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Dirk Stenger,
 Sebastian Goerke, Lyn Elisa Goltz, Carmen Tawalika, Jeronimo Wanhoff,
-Lena Rippolz.
+Lena Rippolz, Julian Zilz.
 
-Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
+Copyright (C) 2010 - 2023, lat/lon GmbH, Bonn.
 
 [[lizenz]]
 === Lizenz
@@ -33,7 +33,7 @@ Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
 Die Komponenten der xPlanBox sind urheberrechtlich geschützt und werden unter der https://www.gnu.org/licenses/agpl-3.0.en.html[GNU Affero General Public License, Version 3 oder jeder späteren Version] veröffentlicht. +
 Die xPlanBox basiert auf dem https://www.deegree.org[OSGeo-Projekt deegree], welches Bestandteil der xPlanBox ist. Der Quellcode von deegree ist urheberrechtlich geschützt und wird unter der http://www.gnu.org/licenses/lgpl-2.1.html[GNU Lesser General Public License (LGPL), version 2.1] veröffentlicht. Bitte beachten Sie auch die Lizenzen der verwendeten Bibliotheken im <<appendix_license,Anhang>>.
 
-Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
+Copyright (C) 2010 - 2023, lat/lon GmbH, Bonn.
 
 [[softwareüberlassung]]
 ==== Softwareüberlassung

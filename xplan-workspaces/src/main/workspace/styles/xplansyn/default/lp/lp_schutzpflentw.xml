@@ -3,7 +3,7 @@
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -24,7 +24,7 @@
                   xmlns:sed="http://www.deegree.org/se"
                   xmlns:xplan="http://www.deegree.org/xplanung/1/0"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se https://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:LP_SchutzPflegeEntwicklung</FeatureTypeName>
   <!-- Fläche -->

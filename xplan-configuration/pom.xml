@@ -8,12 +8,14 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplanbox</artifactId>
-    <version>6.0-SNAPSHOT</version>
+    <version>7.0</version>
   </parent>
 
   <modules>
     <module>xplan-manager-config</module>
     <module>xplan-validator-config</module>
+    <module>xplan-dokumenten-config</module>
+    <module>xplan-mapserver-config</module>
   </modules>
 
   <build>

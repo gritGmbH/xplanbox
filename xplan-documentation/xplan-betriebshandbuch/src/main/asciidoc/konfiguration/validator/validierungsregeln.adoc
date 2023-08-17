@@ -6,14 +6,14 @@ Um statt der mit dem xPlanBox ausgelieferten Regeln externen Regeln zu verwenden
 Der Pfad zu den semantischen Regeln muss in der Datei _<XPLANBOX_CONFIG>/validatorConfiguration.properties_ wie folgt konfiguriert werden:
 
 ----
-validationRulesDirectory=/home/xplanbox/semantischeRegeln/0.12.1/
+validationRulesDirectory=/home/xplanbox/semantischeRegeln/1.0/
 ----
 
 NOTE: Diese Konfiguration wirkt sich auf die Komponenten XPlanManagerAPI, XPlanManagerWeb und XPlanManagerCLI sowie XPlanValidatorAPI, XPlanValidatorWeb und XPlanValidatorCLI aus.
 
 NOTE: Ist der Pfad nicht konfiguriert, werden die internen Validierungsregeln für die genannten Komponenten verwendet.
 
-IMPORTANT: Das Basisverzeichnis _rules/_ darf nur Unterverzeichnisse enthalten, die der Namenskonvention _xplangml<VERSION>_ entsprechen, wobei der Bezeichner _<VERSION>_ eine Versionsnummer ohne Trennzeichen enthält z. B. _54_ für XPlanGML Version 5.4. Des Weiteren dürfen nur Unterverzeichnisse mit Validierungsregeln vorkommen, deren XPlanGML-Version von der xPlanBox unterstützt wird.
+IMPORTANT: Das Basisverzeichnis _rules/_ darf nur Unterverzeichnisse enthalten, die der Namenskonvention _xplangml<VERSION>_ entsprechen, wobei der Bezeichner _<VERSION>_ eine Versionsnummer ohne Trennzeichen enthält z. B. _54_ für XPlanGML-Version 5.4. Des Weiteren dürfen nur Unterverzeichnisse mit Validierungsregeln vorkommen, deren XPlanGML-Version von der xPlanBox unterstützt wird.
 
 Wenn innerhalb des Validierungsberichts die Version und die Quelle der semantischen Validierungsregeln angezeigt werden sollen, dann muss im Verzeichnis aus _validationRulesDirectory_ eine Textdatei mit dem Dateinamen _version.properties_ und folgendem Inhalt angelegt werden:
 
@@ -21,8 +21,8 @@ Wenn innerhalb des Validierungsberichts die Version und die Quelle der semantisc
 .Beispiel für version.properties:
 [source,properties]
 ----
-version=0.12.1 <1>
-source=https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.12.1.zip <2>
+version=1.1.4 <1>
+source=https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard/-/tree/v1.1.4 <2>
 ----
 <1> Angabe zur Version der Validierungsregeln (optional)
 <2> Angabe zur Quelle der Validierungsregeln (optional)

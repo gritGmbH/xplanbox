@@ -2,18 +2,18 @@
  * #%L
  * xplan-inspireplu-transformation - Transformation XPlanGML nach INSPIRE PLU
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -52,14 +52,14 @@ public class HaleCliInspirePluTransformator implements InspirePluTransformator {
 	private final HaleTransformer haleTransformator;
 
 	private static final Map<XPlanVersion, String> VERSION_TO_HALEPROJECT = Collections.unmodifiableMap(Stream
-			.of(new SimpleEntry<>(XPLAN_41, "xplan41/xplanGml41-inspirePlu.halex"),
-					new SimpleEntry<>(XPLAN_50, "xplan50/xplanGml50-inspirePlu.halex"),
-					new SimpleEntry<>(XPLAN_51, "xplan51/xplanGml51-inspirePlu.halex"),
-					new SimpleEntry<>(XPLAN_52, "xplan52/xplanGml52-inspirePlu.halex"),
-					new SimpleEntry<>(XPLAN_53, "xplan53/xplanGml53-inspirePlu.halex"),
-					new SimpleEntry<>(XPLAN_54, "xplan54/xplanGml54-inspirePlu.halex"),
-					new SimpleEntry<>(XPLAN_60, "xplan60/xplanGml60-inspirePlu.halex"))
-			.collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())));
+		.of(new SimpleEntry<>(XPLAN_41, "xplan41/xplanGml41-inspirePlu.halex"),
+				new SimpleEntry<>(XPLAN_50, "xplan50/xplanGml50-inspirePlu.halex"),
+				new SimpleEntry<>(XPLAN_51, "xplan51/xplanGml51-inspirePlu.halex"),
+				new SimpleEntry<>(XPLAN_52, "xplan52/xplanGml52-inspirePlu.halex"),
+				new SimpleEntry<>(XPLAN_53, "xplan53/xplanGml53-inspirePlu.halex"),
+				new SimpleEntry<>(XPLAN_54, "xplan54/xplanGml54-inspirePlu.halex"),
+				new SimpleEntry<>(XPLAN_60, "xplan60/xplanGml60-inspirePlu.halex"))
+		.collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())));
 
 	public HaleCliInspirePluTransformator(String haleCli, Path haleProjectDirectory) {
 		this.haleProjectDirectory = haleProjectDirectory;

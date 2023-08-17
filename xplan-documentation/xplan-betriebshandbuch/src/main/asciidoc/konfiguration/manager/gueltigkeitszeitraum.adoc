@@ -8,10 +8,12 @@ der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ aktiviert oder 
 activateValidityPeriodDialog=[true|false]
 ----
 
-Weiterhin muss die Auswertung des Gültigkeitszeitraums für Rasterdaten im XPlanWMSInAufstellung konfiguriert sein. Andernfalls werden die im Plan referenzierten Rasterdaten grundsätzlich angezeigt. Diese Option ist  für den XPlanWMSInAufstellung implementiert und standardmäßig konfiguriert. Bei den anderen beiden Endpunkten (XPlanWMSFestgestellt und XPlanWMSArchiviert) erfolgt keine Auswertung des Gültigkeitszeitraums für Rasterdaten.
+Weiterhin muss die Auswertung des Gültigkeitszeitraums für Rasterdaten im XPlanWMSInAufstellung konfiguriert sein. Andernfalls werden die im Plan referenzierten Rasterdaten grundsätzlich angezeigt. Diese Option ist für den XPlanWMSInAufstellung implementiert und standardmäßig konfiguriert. Bei den anderen beiden Endpunkten (XPlanWMSFestgestellt und XPlanWMSArchiviert) erfolgt keine Auswertung des Gültigkeitszeitraums für Rasterdaten.
 
-Dazu ist folgender Abschnitt in der Datei _.deegree/xplansyn-wms-workspace/wmspre.xml_ vorhanden. Bei Bedarf kann dieser entfernt werden, wodurch auch für den XPlanWMSInAufstellung keine Auswertung des Gültigkeitszeitraums für Rasterdaten erfolgt. Anschließend ist ein Neustart des Applikationsservers erforderlich.
+Dazu ist folgender Abschnitt in der Datei _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/wmspre.xml_ vorhanden. Bei Bedarf kann dieser entfernt werden, wodurch auch für den XPlanWMSInAufstellung keine Auswertung des Gültigkeitszeitraums für Rasterdaten erfolgt. Anschließend ist ein Neustart des Applikationsservers erforderlich.
 
+.Auszug aus der Datei _wmspre.xml_
+[source,xml]
 ----
 <wms:VisibilityInspector xmlns:wms="http://www.deegree.org/services/wms">
   <wms:JavaClass>de.latlon.xplan.wms.visibility.PreValidityPeriodInspector</wms:JavaClass>

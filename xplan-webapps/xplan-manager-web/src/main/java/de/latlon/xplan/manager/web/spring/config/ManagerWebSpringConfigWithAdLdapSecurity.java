@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +20,11 @@
  */
 package de.latlon.xplan.manager.web.spring.config;
 
+import de.latlon.xplan.core.manager.db.config.JpaContext;
+import de.latlon.xplan.manager.document.config.DocumentStorageContext;
+import de.latlon.xplan.manager.storage.config.StorageCleanUpContext;
+import de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
@@ -28,12 +33,14 @@ import org.springframework.context.annotation.ImportResource;
  * Imports the basic {@link ManagerWebSpringConfig} and active directory ldap security
  * configuration. The security configuration can be configured in security.properties.
  *
+ * @deprecated This class be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @version $Revision: $, $Date: $
  */
 @Configuration
-@Import(BasicSpringConfig.class)
+@Import({ BasicSpringConfig.class, JpaContext.class, RasterStorageContext.class, AmazonS3RasterStorageContext.class,
+		DocumentStorageContext.class, StorageCleanUpContext.class })
 @ImportResource("classpath:/de/latlon/xplan/manager/web/spring/security-ad.xml")
+@Deprecated
 public class ManagerWebSpringConfigWithAdLdapSecurity {
 
 }

@@ -2,7 +2,7 @@
 <!--#%L
   xplan-tests-soapui - SoapUI-Tests
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -17,7 +17,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<con:soapui-project id="45582ef9-4bae-43d8-9226-a378e02ff0b5" activeEnvironment="Default" name="xplan-api-validator" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="45582ef9-4bae-43d8-9226-a378e02ff0b5" activeEnvironment="Default" name="xplan-api-validator" resourceRoot="" soapui-version="5.7.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:interface xsi:type="con:RestService" id="85ec4fc3-149e-4a77-a566-194de2899fd3" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanValidatorAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:description>XPlanValidator REST API</con:description>
@@ -195,7 +195,7 @@ Validate XPlanGML or XPlanArchive</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>415 500 400 406 404 405</con:status>
+          <con:status>415 500 400 406 404 405 422</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -623,8 +623,26 @@ Validate XPlanGML or XPlanArchive</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>application/json</con:mediaType>
-          <con:status>400</con:status>
+          <con:status>400 406 415</con:status>
           <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
         </con:representation>
         <con:representation type="RESPONSE">
           <con:mediaType xsi:nil="true"/>
@@ -704,7 +722,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="fb838b6f-0eaa-45a1-8a43-f87364021182" name="JsonPath Match path /">
               <con:configuration>
                 <path>$.paths./</path>
-                <content>{"get":{"summary":"OpenAPI document","description":"API documentation","operationId":"openApi","responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object"}}}}}}}</content>
+                <content>{"get":{"summary":"OpenAPI document","description":"API documentation","operationId":"openApi","responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object"}}}},"406":{"description":"Requested format is not available"}}}}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -713,7 +731,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="fb838b6f-0eaa-45a1-8a43-f87364021182" name="JsonPath Match path /validate X-Filename parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'X-Filename')]</path>
-                <content>[{"name":"X-Filename","in":"header","description":"Name of the file to be uploaded","schema":{"pattern":"^[A-Za-z0-9.()_-]*$","type":"string"},"example":"File names such as xplan.gml, xplan.xml, xplan.zip"}]</content>
+                <content>[{"name":"X-Filename","in":"header","description":"Name of the file to be uploaded","schema":{"pattern":"^[A-Za-z0-9.()_\\-]*$","type":"string"},"example":"File names such as xplan.gml, xplan.xml, xplan.zip"}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -722,7 +740,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate name parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'name')]</path>
-                <content>[{"name":"name","in":"query","description":"Name of the validation","schema":{"type":"string"},"example":"xplan-1, Prüfbericht_Torstrasse_10, report#4223"}]</content>
+                <content>[{"name":"name","in":"query","description":"Name of the validation","schema":{"pattern":"^[A-Za-z0-9.()_\\-]*$","type":"string"},"example":"xplan-1Pruefbericht_Torstrasse_10_report-4223"}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -776,7 +794,25 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate profiles parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'profiles')]</path>
-                <content>[{"name":"profiles","in":"query","description":"Angabe der Profile, gegen die validiert werden soll","explode":false,"schema":{"type":"array","items":{"type":"string"}}}]</content>
+                <content>[{"name":"profiles","in":"query","description":"Names of profiles which shall be additionaly used for validation","explode":false,"schema":{"type":"array","items":{"type":"string"}}}]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="jsonPath Match path validationReport externalReferences items type">
+              <con:configuration>
+                <path>$.components.schemas.ValidationReport.properties.externalReferences.items.type</path>
+                <content>string</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="jsonPath Match path validationReport externalReferencesResult items ref">
+              <con:configuration>
+                <path>$.components.schemas.ValidationReport.properties.externalReferencesResult.items.$ref</path>
+                <content>#/components/schemas/ExternalReferenceResult</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -825,6 +861,16 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="81fc7cf2-d170-45a8-ba3f-26d3c82a741a" name="versionNotNull">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.version != null</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:assertion type="JsonPath Existence Match" id="d1a2a299-a358-4dcb-b245-b5ce405449b0" name="supportedXPlanGmlVersions">
               <con:configuration>
                 <path>$.supportedXPlanGmlVersions</path>
@@ -852,6 +898,54 @@ Validate XPlanGML or XPlanArchive</con:description>
     <con:testCase id="85d037a4-a7b1-4109-84a5-6102ac7aeea0" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/validate TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/validate] located at [/validate]</con:description>
       <con:settings/>
+      <con:testStep type="restrequest" name="POST BP 5.0 XX validatePlanExternalEntityExpectError" id="8d1802b2-8658-407c-b77c-1796e336f477">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.0 XX validatePlanExternalEntityExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>422</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_6.0.gml</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>BP_5.0_Entity.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.0_Entity.zip</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlan" id="0ebc453c-d1cb-4899-ad47-a320c5251fe0">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -945,7 +1039,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="0a3750ed-207e-40f8-a4c9-2d50e525f2b1" name="geometrisch">
               <con:configuration>
                 <path>$..geometrisch</path>
-                <content>[{"valid":false,"errors":["2.2.3.1: Das Objekt mit der gml id FEATURE_dc61f364-f67c-4e0f-846c-fb8da12644fe liegt vollständig außerhalb des Geltungsbereichs des Bereichs/Plans."],"warnings":[]}]</content>
+                <content>[{"valid":false,"errors":["2.2.3.1: Das Objekt mit der gml id FEATURE_dc61f364-f67c-4e0f-846c-fb8da12644fe liegt vollständig außerhalb des Geltungsbereichs des Plans."],"warnings":[]}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1071,6 +1165,15 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:configuration>
                 <path>$.valid</path>
                 <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="bbb944e1-8347-474f-ab9e-3aa8ab78e65b" name="status">
+              <con:configuration>
+                <path>$.status</path>
+                <content>Die Validierung wurde ausgeführt.</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1272,6 +1375,15 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:configuration>
                 <path>$.valid</path>
                 <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="bbb944e1-8347-474f-ab9e-3aa8ab78e65b" name="status">
+              <con:configuration>
+                <path>$.status</path>
+                <content>Die Validierung wurde ausgeführt.</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1541,10 +1653,10 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanRequestBodyApplication/ZIPExpectError" id="8e15b574-4b91-4e98-8f73-4b7f5098b500">
+      <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanRequestBodyApplication/ZIPContentTypeText/XMLExpectError" id="8e15b574-4b91-4e98-8f73-4b7f5098b500">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 5.1 XX validatePlanRequestBodyApplication/ZIPExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 XX validatePlanRequestBodyApplication/ZIPContentTypeText/XMLExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1553,7 +1665,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>406</codes>
+                <codes>422</codes>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -1855,10 +1967,292 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 5.2 XX validatePlanMissingAndUncheckedReference" id="8a114ae7-bc4d-4720-8337-95fb2144a363">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.2 XX validatePlanMissingAndUncheckedReference" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="37c2a727-6da3-439f-a453-0b8fa39c15ca" name="Valid Reference Status AVAILABLE">
+              <con:configuration>
+                <path>$.externalReferencesResult[?(@.name=='BPlan003_5-2.png')].status</path>
+                <content>[AVAILABLE]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a3407af2-233e-45c5-9895-7e5a853c67a7" name="Valid Reference Status MISSING">
+              <con:configuration>
+                <path>$.externalReferencesResult[?(@.name=='testreference.png')].status</path>
+                <content>[MISSING]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="bb0dfc6c-c2b8-4341-8021-2d55f729785c" name="Valid Reference Status UNCHECKED">
+              <con:configuration>
+                <path>$.externalReferencesResult[?(@.name=='https://www.deegree.org/')].status</path>
+                <content>[UNCHECKED]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_5.3.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>${projectDir}/xplan-api-validator/plans/BP_5.2_MissingAndUncheckedReference.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.2_MissingAndUncheckedReference.zip</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="POST BP 5.3 XX validatePlan" id="9a521ff6-c17e-483a-88a6-c9bd4e40820d">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 5.3 XX validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="filename">
+              <con:configuration>
+                <path>$.filename</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="status">
+              <con:configuration>
+                <path>$.status</path>
+                <content>Die Validierung wurde ausgeführt.</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_5.3.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>BP_5.3.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3.zip</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 5.3 XX validateMultiplePlansWfsFcAdditionalObjects" id="c7eabfb2-5fba-456d-974d-b7da03c93d2a">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.3 XX validateMultiplePlansWfsFcAdditionalObjects" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="filename">
+              <con:configuration>
+                <path>$.filename</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_5.3.zip</con:name>
+              <con:contentType>text/xml</con:contentType>
+              <con:contentId>BP_5.3_FeatureCollection_additionalObjects.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3_MultiplePlansWfsFcAdditionalObjects.gml</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 5.3 XX validateMultiplePlansWfsFcGml" id="a93fcac6-f495-4472-860a-d3ef99016273">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.3 XX validateMultiplePlansWfsFcGml" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="filename">
+              <con:configuration>
+                <path>$.filename</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_5.3.zip</con:name>
+              <con:contentType>text/xml</con:contentType>
+              <con:contentId>BP_5.3_FeatureCollection_additionalObjects.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3_MultiplePlansWfsFc.gml</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 5.3 XX validateMultiplePlansWfsFcZip" id="592590bf-2a3f-43de-b68d-be07cd7204b4">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.3 XX validateMultiplePlansWfsFcZip" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1900,8 +2294,286 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:attachment>
               <con:name>BP_5.3.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>BP_5.3_FeatureCollection_additionalObjects.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3_MultiplePlansWfsFc.zip</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 5.3 XX validatePlanWfsFcGml" id="41dfa687-5135-41e9-95f9-97f8c33a986b">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.3 XX validatePlanWfsFcGml" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="filename">
+              <con:configuration>
+                <path>$.filename</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_5.3.zip</con:name>
+              <con:contentType>text/xml</con:contentType>
+              <con:contentId>BP_5.3_FeatureCollection_additionalObjects.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3_WfsFc.gml</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 5.3 XX validatePlanWfsFcZip" id="d62b26c5-4114-48a0-a7d6-c968274f50cc">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.3 XX validatePlanWfsFcZip" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="filename">
+              <con:configuration>
+                <path>$.filename</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_5.3.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>BP_5.3_FeatureCollection_additionalObjects.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3_WfsFc.zip</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 5.3 XX validatePlanInvalidNameXSSExpectError" id="5aaddc4c-043b-4248-9020-4df59fb05767">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.3 XX validatePlanInvalidNameXSSExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_5.3.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_5.3.zip</con:contentId>
               <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3.zip</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="profiles" value=""/>
+              <con:entry key="name" value="&lt;TestXSS>"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 5.3 XX validatePlanInvalidXFilenameXSSExpectError" id="e0c8b649-4288-4f10-b483-36a864ee54f5">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.3 XX validatePlanInvalidXFilenameXSSExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/pdf" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_5.3.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>BP_5.3.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3.zip</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="profiles" value=""/>
+              <con:entry key="X-Filename" value="C:\XPB\test.gml"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0 XX validatePlanUnsupportedContentTypeExpectError" id="a8514f95-0065-416a-8eb5-ff2acd8fff0a">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0 XX validatePlanUnsupportedContentTypeExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>415</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_6.0.gml</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>Blankenese29_Test_60_InvalidContent.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/Blankenese29_Test_60_InvalidContent.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1985,6 +2657,110 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:parameters>
               <con:entry key="profiles" value=""/>
               <con:entry key="skipGeometrisch" value="true"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0 XX validatePlanWithSyntaxError" id="30bd38db-1511-4412-87db-b788f2bbabbe">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0 XX validatePlanWithSyntaxError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/gml+xml" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="filename">
+              <con:configuration>
+                <path>$.filename</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="status">
+              <con:configuration>
+                <path>$.status</path>
+                <content>Aufgrund von syntaktischen Fehlern konnten nicht alle Validierungsschritte ausgeführt werden. Zudem konnte die BBox und externalReferences nicht ermittelt werden.</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="semantisch invalid">
+              <con:configuration>
+                <path>$.validationResult.semantisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch invalid">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="syntaktisch invalid">
+              <con:configuration>
+                <path>$.validationResult.syntaktisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_6.0.zip</con:name>
+              <con:contentType>application/gml+xml</con:contentType>
+              <con:contentId>BP_6.0_syntaxErrors.gml</con:contentId>
+              <con:part xsi:nil="true"/>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0_syntaxErrors.gml</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="profiles" value=""/>
+              <con:entry key="X-Filename" value="BP_6.0_syntaxErrors.gml"/>
             </con:parameters>
             <con:parameterOrder>
               <con:entry>X-Filename</con:entry>
@@ -2137,6 +2913,513 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0.2 XX validatePlan" id="1f73bac9-dd54-48ef-8090-c396952466af">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0.2 XX validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="filename">
+              <con:configuration>
+                <path>$.filename</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch valid">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.valid</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch errors">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.errors.length()</path>
+                <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_6.0.gml</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>BP_6.0.2_valide.zip</con:contentId>
+              <con:part xsi:nil="true"/>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.2_valide.zip</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0.2 XX validatePlanExpectError" id="8c73fa04-98fc-45ce-91ef-20f278be2d75">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0.2 XX validatePlanExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="filename">
+              <con:configuration>
+                <path>$.filename</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch valid">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.valid</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch errors">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.errors.length()</path>
+                <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="semantisch invalid">
+              <con:configuration>
+                <path>$.validationResult.semantisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_6.0.gml</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>BP_6.0.2_invalide.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.2_invalide.zip</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0.2 XX validatePlanExpectErrorNoBereich" id="bc80a059-c820-4798-903c-f5135a10bf5e">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0.2 XX validatePlanExpectErrorNoBereich" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="filename">
+              <con:configuration>
+                <path>$.filename</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch valid">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch errors">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.errors</path>
+                <content>["Die XLink-Integrität für die Referenz Gml_612F9C72-83DD-4220-98A7-7AB487797D85 konnte nicht sichergestellt werden, ein Feature mit dieser ID existiert nicht."]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="semantisch valid">
+              <con:configuration>
+                <path>$.validationResult.semantisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="semantisch errors">
+              <con:configuration>
+                <path>$.validationResult.semantisch.rules[?(@.name == '4.1.1.1')].isValid</path>
+                <content>[false]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_6.0.gml</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>BP_6.0.2_valide.zip</con:contentId>
+              <con:part xsi:nil="true"/>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.2_NoBereichButReferenceExists.zip</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST FP 6.0.2 XX validatePlan" id="5536844b-0850-46cd-a401-f1d922bbfe60">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST FP 6.0.2 XX validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="filename">
+              <con:configuration>
+                <path>$.filename</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch valid">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.valid</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch errors">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.errors.length()</path>
+                <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_6.0.gml</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>FP_6.0.2_valide.zip</con:contentId>
+              <con:part xsi:nil="true"/>
+              <con:url>${projectDir}/xplan-api-validator/plans/FP_6.0.2_valide.zip</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST FP 6.0.2 XX validatePlanExpectError" id="19d7ec6e-2bf4-40b0-aafe-6ec4b1d84b64">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST FP 6.0.2 XX validatePlanExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="filename">
+              <con:configuration>
+                <path>$.filename</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="valid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch valid">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.valid</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch errors">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.errors.length()</path>
+                <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="semantisch valid">
+              <con:configuration>
+                <path>$.validationResult.semantisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_6.0.gml</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>FP_6.0.2_invalide.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/FP_6.0.2_invalide.zip</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST XX X.X XX validateFileUnsupportedContentTypeExpectError" id="0c665025-9cf6-4f59-b5c1-afade57e42bb">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST XX X.X XX validateFileUnsupportedContentTypeExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>415</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>invalidContentType.odt</con:name>
+              <con:contentType>application/vnd.oasis.opendocument.text</con:contentType>
+              <con:contentId>invalidContentType.odt</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/invalidContentType.odt</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>name</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipGeometrisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:properties/>
     </con:testCase>
     <con:properties/>
@@ -2222,7 +3505,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="transfer" name="Property Transfer" id="1981f43d-8575-437e-a961-5eb93451d0e6">
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>profilesId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>GET XX X.X XX showConfig</con:sourceStep>
@@ -2233,12 +3516,12 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>profilesSecondId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>GET XX X.X XX showConfig</con:sourceStep>
             <con:sourcePath>$.profiles[1].id</con:sourcePath>
-            <con:targetType>profilesSecondId</con:targetType>
+            <con:targetType xsi:nil="true"/>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
@@ -2329,110 +3612,21 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 6.0 pf validatePlanWithMultipleProfile" id="a99e442f-4e9c-4758-b479-0c4262783c59">
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="f37b9039-1b55-4870-9b1d-61f0e352bbc0" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Cleanup Properies" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="transfer" name="Property Transfer" id="b7495b1f-8626-4198-b433-87c453ce2797">
         <con:settings/>
-        <con:config service="XPlanValidatorAPI" methodName="validate" resourcePath="/validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 6.0 pf validatePlanWithMultipleProfile" id="c6f9a486-2252-4934-aa53-bfdfd986768e" mediaType="application/octet-stream" postQueryString="false">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:encoding>UTF-8</con:encoding>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f4dcada-c13f-4671-84c1-8a94197dfc67" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match profile">
-              <con:configuration>
-                <path>$.validationResult.profile</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match profile name">
-              <con:configuration>
-                <path>$.validationResult.profile[0].name</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match profile description">
-              <con:configuration>
-                <path>$.validationResult.profile[0].description</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match profile ergebnis">
-              <con:configuration>
-                <path>$.validationResult.profile[0].ergebnis</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match second profile name">
-              <con:configuration>
-                <path>$.validationResult.profile[1].name</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match second profile description">
-              <con:configuration>
-                <path>$.validationResult.profile[1].description</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match second profile ergebnis">
-              <con:configuration>
-                <path>$.validationResult.profile[1].ergebnis</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
-              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
-              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
-              <con:preemptive>true</con:preemptive>
-              <con:authType>Preemptive</con:authType>
-            </con:credentials>
-            <con:attachment>
-              <con:name>BP_6.0.zip</con:name>
-              <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>BP_6.0.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.zip</con:url>
-              <con:id>3940446e-fc4f-45cd-93d1-9f53341835ba</con:id>
-            </con:attachment>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="profiles" value="${#TestSuite#profilesId},${#TestSuite#profilesSecondId}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-            <con:parameterOrder>
-              <con:entry>profiles</con:entry>
-            </con:parameterOrder>
-          </con:restRequest>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>profilesId</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:targetType>profilesId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:properties/>
@@ -2440,15 +3634,16 @@ Validate XPlanGML or XPlanArchive</con:description>
     <con:properties>
       <con:property>
         <con:name>profilesId</con:name>
-        <con:value>test2</con:value>
-      </con:property>
-      <con:property>
-        <con:name>profilesSecondId</con:name>
-        <con:value>test1</con:value>
+        <con:value/>
       </con:property>
     </con:properties>
   </con:testSuite>
-  <con:properties/>
+  <con:properties>
+    <con:property>
+      <con:name>null</con:name>
+      <con:value/>
+    </con:property>
+  </con:properties>
   <con:wssContainer/>
   <con:oAuth2ProfileContainer/>
   <con:oAuth1ProfileContainer/>

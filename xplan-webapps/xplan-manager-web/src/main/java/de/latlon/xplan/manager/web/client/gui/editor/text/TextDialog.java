@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -22,12 +22,12 @@ package de.latlon.xplan.manager.web.client.gui.editor.text;
 
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
 import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
+import de.latlon.xplan.manager.web.client.gui.widget.PatternTextArea;
+import de.latlon.xplan.manager.web.client.gui.widget.PatternTextBox;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
@@ -36,8 +36,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_GESETZ_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_KEY_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.XL_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.XS_LENGTH;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
+import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
 
 /**
  * Dialog to edit an existing or create a new {@link Text}
@@ -47,11 +54,11 @@ import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60
  */
 public class TextDialog extends EditDialogBoxWithRasterUpload {
 
-	private final TextBox key = createTextInput();
+	private final PatternTextBox key = createPatternTextInput(TEXT_KEY_PATTERN, XS_LENGTH);
 
-	private final TextArea text = createTextAreaInput();
+	private final PatternTextArea text = createPatternTextAreaInput(TEXT_PATTERN, XL_LENGTH);
 
-	private final TextBox basis = createTextInput();
+	private final PatternTextBox basis = createPatternTextInput(TEXT_GESETZ_PATTERN, S_LENGTH);
 
 	private final Text textToEdit;
 
@@ -107,7 +114,7 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 
 	@Override
 	public boolean isValid() {
-		return validate();
+		return areComponentsValid(key, text, basis) & validate();
 	}
 
 	private boolean validate() {

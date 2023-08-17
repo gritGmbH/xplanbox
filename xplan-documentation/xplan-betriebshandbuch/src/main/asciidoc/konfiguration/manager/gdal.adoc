@@ -1,17 +1,15 @@
 [[konfiguration-gdal]]
 === GDAL
 
-Die GDAL Unterstützung erfordert die Installation von GDAL, diese ist im
-Abschnitt Installation <<installation-gdal>> beschrieben.
+Um im XPlanManger die GDAL-Unterstützung zu aktivieren, muss vorher die <<installation-gdal,Installation>> und <<konfiguration-gdal,Konfiguration>> von GDAL erfolgt sein.
 
 Um die GDAL Unterstützung zu aktivieren, muss die
-GDAL-Hauptkonfiguration erzeugt werden. Dazu wird im Root-Ordner des
-Workspaces _xplansyn-wms-workspace_ eine Datei mit dem Namen _gdal.xml_
-und mit folgendem Inhalt abgelegt:
+GDAL-Konfigurationsdatei erzeugt werden. Dazu wird Workspace-Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace_ eine Datei mit dem Namen _gdal.xml_ und mit folgendem Inhalt abgelegt:
 
+[source,xml]
 ----
 <GDALSettings xmlns="http://www.deegree.org/gdal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://www.deegree.org/gdal https://schemas.deegree.org/3.5/commons/gdal/gdal.xsd">
+              xsi:schemaLocation="http://www.deegree.org/gdal https://schemas.deegree.org/core/3.5/commons/gdal/gdal.xsd">
   <OpenDatasets>5</OpenDatasets>
 </GDALSettings>
 ----
@@ -19,16 +17,18 @@ und mit folgendem Inhalt abgelegt:
 Damit beim Import von Rasterdaten eine GDAL Konfiguration erzeugt wird,
 muss in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ die folgende Option aktiviert sein:
 
+[source,properties]
 ----
-#must be gdal or geotiff, default is gdal
+# must be gdal, geotiff or mapserver, default is gdal
 rasterConfigurationType=gdal
 ----
 
 Ist die GDAL-Bibliothek nicht installiert, kann stattdessen der
 Konfigurationstyp für das GeoTiff Format konfiguriert werden:
 
+[source,properties]
 ----
-#must be gdal or geotiff, default is gdal
+# must be gdal, geotiff or mapserver, default is gdal
 rasterConfigurationType=geotiff
 ----
 

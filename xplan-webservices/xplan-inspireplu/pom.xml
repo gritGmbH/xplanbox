@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-webservices</artifactId>
-    <version>6.0-SNAPSHOT</version>
+    <version>7.0</version>
   </parent>
 
   <dependencies>
@@ -29,5 +29,46 @@
       <artifactId>log4j-web</artifactId>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>docker</id>
+      <properties>
+        <docker-image.skip>false</docker-image.skip>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>exploded</goal>
+                </goals>
+                </execution>
+              </executions>
+              <configuration>
+                <webappDirectory>${project.build.directory}/exploded-webapp</webappDirectory>
+              </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <dependencies>
+          <dependency> <!-- faked maven dependency to be after volume initializer in the reactor build  -->
+            <groupId>de.latlon.product.xplanbox</groupId>
+            <artifactId>xplan-docker-volume-init</artifactId>
+            <version>${project.version}</version>
+            <type>pom</type>
+          </dependency>
+          <dependency> <!-- faked maven dependency to be after xplan-sql-scripts image in the reactor build  -->
+            <groupId>de.latlon.product.xplanbox</groupId>
+            <artifactId>xplan-sql-scripts</artifactId>
+            <version>${project.version}</version>
+            <type>pom</type>
+          </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 
 </project>

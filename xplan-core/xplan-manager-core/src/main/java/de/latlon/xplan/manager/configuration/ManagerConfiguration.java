@@ -2,18 +2,18 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -26,7 +26,7 @@ import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
-import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType;
+import de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType;
 import de.latlon.xplan.manager.workspace.WorkspaceReloadAction;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import org.slf4j.Logger;
@@ -36,11 +36,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
 import static de.latlon.xplan.manager.workspace.WorkspaceReloadAction.ALL;
 
 /**
@@ -59,11 +61,11 @@ public class ManagerConfiguration {
 
 	static final String RASTER_LAYER_SCALE_DENOMINATOR_MAX = "rasterLayerMaxScaleDenominator";
 
-	static final String ACTIVATE_SEPARATED_DATAMANAGEMENT = "activateSeparatedDataManagement";
-
 	static final String RASTER_CONFIG_TYPE = "rasterConfigurationType";
 
 	static final String WORKSPACE_RELOAD_URLS = "workspaceReloadUrls";
+
+	static final String WORKSPACE_RELOAD_API_KEY = "workspaceReloadApiKey";
 
 	static final String WORKSPACE_RELOAD_USER = "workspaceReloadUser";
 
@@ -81,9 +83,11 @@ public class ManagerConfiguration {
 
 	private final SortConfiguration sortConfiguration = new SortConfiguration();
 
+	private final Map<String, String> environmentVariables;
+
 	private String rasterConfigurationCrs;
 
-	private RasterConfigurationType rasterConfigurationType;
+	private RasterConfigurationType rasterConfigurationType = gdal;
 
 	private double rasterLayerMinScaleDenominator = Double.NaN;
 
@@ -104,6 +108,12 @@ public class ManagerConfiguration {
 	private CoupledResourceConfiguration coupledResourceConfiguration;
 
 	public ManagerConfiguration(PropertiesLoader propertiesLoader) throws ConfigurationException {
+		this(propertiesLoader, Collections.emptyMap());
+	}
+
+	public ManagerConfiguration(PropertiesLoader propertiesLoader, Map<String, String> environmentVariables)
+			throws ConfigurationException {
+		this.environmentVariables = environmentVariables;
 		loadProperties(propertiesLoader);
 		verifyConfiguration();
 		logConfiguration();
@@ -112,7 +122,9 @@ public class ManagerConfiguration {
 	/**
 	 * Retrieves the category mappings (category assigned to a list of parts).
 	 * @return the category mapping, may be empty but never <code>null</code>
+	 * @deprecated method will be removed in a future version.
 	 */
+	@Deprecated
 	public Map<String, List<String>> getCategoryMapping() {
 		return categoriesToParts;
 	}
@@ -125,15 +137,15 @@ public class ManagerConfiguration {
 	}
 
 	/**
-	 * @return the type to use in the raster configuration (gdal or geotiff), never
-	 * <code>null</code>
+	 * @return the type to use in the raster configuration (gdal, geotiff or mapserver),
+	 * never <code>null</code>
 	 */
 	public RasterConfigurationType getRasterConfigurationType() {
 		return rasterConfigurationType;
 	}
 
 	/**
-	 * @return the max scale denominator the raster layer is visible (a value less then 0
+	 * @return the max scale denominator the raster layer is visible (a value less than 0
 	 * means the visibility is not limited)
 	 */
 	public double getRasterLayerMaxScaleDenominator() {
@@ -141,7 +153,7 @@ public class ManagerConfiguration {
 	}
 
 	/**
-	 * @return the min scale denominator the raster layer is visible (a value less then 0
+	 * @return the min scale denominator the raster layer is visible (a value less than 0
 	 * means the visibility is not limited)
 	 */
 	public double getRasterLayerMinScaleDenominator() {
@@ -158,6 +170,7 @@ public class ManagerConfiguration {
 	}
 
 	/**
+	 * @deprecated InternalIdRetrieverConfiguration will be removed in a future version.
 	 * @return the {@link InternalIdRetrieverConfiguration}, never <code>null</code>
 	 */
 	public InternalIdRetrieverConfiguration getInternalIdRetrieverConfiguration() {
@@ -207,6 +220,15 @@ public class ManagerConfiguration {
 		return coupledResourceConfiguration;
 	}
 
+	/**
+	 * @param key of the environment variable, must not tbe <code>null</code>
+	 * @return the value of the environment variable, may be <code>null</code> if not
+	 * available
+	 */
+	public String getEnvironmentVariableValue(String key) {
+		return environmentVariables.get(key);
+	}
+
 	private void loadProperties(PropertiesLoader propertiesLoader) throws ConfigurationException {
 		if (propertiesLoader != null) {
 			Properties loadProperties = propertiesLoader.loadProperties(MANAGER_CONFIGURATION);
@@ -216,7 +238,7 @@ public class ManagerConfiguration {
 					String[] categoriesWithParts = categoriesToPartsProperty.split(";");
 					parseCategories(categoriesWithParts);
 				}
-				rasterConfigurationCrs = loadProperties.getProperty(RASTER_CONFIG_CRS);
+				rasterConfigurationCrs = parseRasterConfigurationCrs(loadProperties, RASTER_CONFIG_CRS);
 				rasterConfigurationType = parseRasterConfigurationType(loadProperties);
 				rasterLayerMinScaleDenominator = parseScaleDenominator(loadProperties,
 						RASTER_LAYER_SCALE_DENOMINATOR_MIN);
@@ -229,7 +251,7 @@ public class ManagerConfiguration {
 				pathToHaleCli = loadProperties.getProperty(PATH_TO_HALE_CLI);
 				pathToHaleProjectDirectory = parsePathToHaleProjectDirectory(propertiesLoader);
 				coupledResourceConfiguration = CoupledResourceConfiguration
-						.parseCoupledResourceConfiguration(propertiesLoader, loadProperties);
+					.parseCoupledResourceConfiguration(propertiesLoader, loadProperties);
 			}
 			synthesizerConfigDirectory = propertiesLoader.resolveDirectory("synthesizer");
 		}
@@ -263,6 +285,12 @@ public class ManagerConfiguration {
 		LOG.info("-------------------------------------------");
 		LOG.info("  workspace reloader configuration");
 		LOG.info("   - urls of service to reload: {}", workspaceReloaderConfiguration.getUrls().toString());
+		if (workspaceReloaderConfiguration.isApiKeyConfigured())
+			LOG.info("   - apiKey used for authentication: {}",
+					replaceWithX(workspaceReloaderConfiguration.getApiKey()));
+		else
+			LOG.info("   - user/password used for authentication: {}/{}", workspaceReloaderConfiguration.getUser(),
+					replaceWithX(workspaceReloaderConfiguration.getPassword()));
 		LOG.info("-------------------------------------------");
 		LOG.info("  InternalIdRetriever");
 		LOG.info("   - workspace: {}", internalIdRetrieverConfiguration.getWorkspaceName());
@@ -287,6 +315,9 @@ public class ManagerConfiguration {
 		LOG.info("-------------------------------------------");
 		semanticConformityLinkConfiguration.logConfiguration(LOG);
 		LOG.info("-------------------------------------------");
+		LOG.info("Additional environment variables (contains only the variables available via manager configuration)");
+		environmentVariables.entrySet().forEach(entry -> LOG.info("   - {}: {}", entry.getKey(), entry.getValue()));
+		LOG.info("-------------------------------------------");
 	}
 
 	private void parseCategories(String[] categoriesWithParts) throws ConfigurationException {
@@ -305,6 +336,14 @@ public class ManagerConfiguration {
 		throw new ConfigurationException("Categories was not correctly configured!");
 	}
 
+	private String parseRasterConfigurationCrs(Properties loadProperties, String rasterConfigCrs) {
+		String rasterConfigurationCrsPropertyValue = loadProperties.getProperty(RASTER_CONFIG_CRS);
+		if (rasterConfigurationCrsPropertyValue != null && !rasterConfigurationCrsPropertyValue.trim().isEmpty()) {
+			return rasterConfigurationCrsPropertyValue;
+		}
+		return null;
+	}
+
 	private RasterConfigurationType parseRasterConfigurationType(Properties loadProperties) {
 		String rasterConfigTypePropertyValue = loadProperties.getProperty(RASTER_CONFIG_TYPE);
 		if (rasterConfigTypePropertyValue != null) {
@@ -314,7 +353,7 @@ public class ManagerConfiguration {
 			catch (IllegalArgumentException e) {
 			}
 		}
-		return RasterConfigurationType.gdal;
+		return gdal;
 	}
 
 	private List<String> parseParts(String categoryWithParts) {
@@ -335,12 +374,13 @@ public class ManagerConfiguration {
 
 	private WorkspaceReloaderConfiguration parseWorkspaceReloaderConfiguration(Properties loadProperties) {
 		String urls = loadProperties.getProperty(WORKSPACE_RELOAD_URLS);
+		String apiKey = loadProperties.getProperty(WORKSPACE_RELOAD_API_KEY);
 		String user = loadProperties.getProperty(WORKSPACE_RELOAD_USER);
 		String password = loadProperties.getProperty(WORKSPACE_RELOAD_PASSWORD);
-		if (urls != null && user != null && password != null && !"".equals(urls)) {
+		if (urls != null && !"".equals(urls) && (apiKey != null || (user != null && password != null))) {
 			List<String> urlList = Arrays.asList(urls.split(","));
 			WorkspaceReloadAction workspaceReloadAction = parseWorkspaceReloadAction(loadProperties);
-			return new WorkspaceReloaderConfiguration(urlList, user, password, workspaceReloadAction);
+			return new WorkspaceReloaderConfiguration(urlList, apiKey, user, password, workspaceReloadAction);
 		}
 		return new WorkspaceReloaderConfiguration();
 	}
@@ -422,11 +462,9 @@ public class ManagerConfiguration {
 		return Double.parseDouble(propertyValue);
 	}
 
-	private boolean parseBoolean(Properties loadProperties, String propName, boolean defaultValue) {
-		String property = loadProperties.getProperty(propName);
-		if (property == null || "".equals(property))
-			return defaultValue;
-		return Boolean.parseBoolean(property);
+	private String replaceWithX(String apiKey) {
+		int length = apiKey.length();
+		return "X".repeat(length);
 	}
 
 }

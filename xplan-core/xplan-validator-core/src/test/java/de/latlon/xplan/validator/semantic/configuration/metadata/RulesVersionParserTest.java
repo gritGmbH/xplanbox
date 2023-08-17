@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -38,7 +38,7 @@ public class RulesVersionParserTest {
 	public void verifyThatParseVersionReturnsValue() throws URISyntaxException {
 		RulesVersionParser rulesVersionParser = new RulesVersionParser();
 		RulesVersion rulesVersion = rulesVersionParser
-				.parserRulesVersion(Path.of(RulesVersionParserTest.class.getResource("/rules").toURI()));
+			.parserRulesVersion(Path.of(RulesVersionParserTest.class.getResource("/rules").toURI()));
 		assertThat(rulesVersion.getVersion(), is("0.0.1"));
 		assertThat(rulesVersion.getSource(), containsString("xplan-validator-core"));
 	}

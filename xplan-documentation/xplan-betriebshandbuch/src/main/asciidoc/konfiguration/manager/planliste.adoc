@@ -27,7 +27,7 @@ Mehrere Spalten müssen komma-separiert angegeben werden. Der folgenden Tabelle 
 |Bezirk/Gemeinde
 |COMMUNITY
 
-|XPlanGML Version
+|XPlanGML-Version
 |VERSION
 
 |Planart

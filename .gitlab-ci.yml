@@ -1,56 +1,101 @@
+workflow:
+  name: '$PIPELINE_NAME'
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "schedule" && $OPERATION == "owasp"'
+    variables:
+      PIPELINE_NAME: 'OWASP dependencies check'
+  - if: '$CI_PIPELINE_SOURCE == "schedule" && $OPERATION == "base-image"'
+    variables:
+      PIPELINE_NAME: 'Maven base build image'
+  - when: always
+
 variables:
-  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN"
+  MAVEN_OPTS: "-Xmx500m -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN"
   MAVEN_CLI_OPTS: "--batch-mode -DinstallAtEnd=true -DdeployAtEnd=true -DskipDeployBigArtefact=true -s $CI_PROJECT_DIR/ci_settings.xml"
 
+stages:
+- build
+- build:jvm
+- build:docker
+- deploy
+
 maven-build:
-  stage: build
-  image: maven:3.8.6-jdk-11
+  stage: build:jvm
+#  image: maven:3.8.6-jdk-11
+  image: registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest
   script:
-    - 'echo "with Maven goal: $MAVEN_GOAL"'
-    - 'git clone --branch xplanbox-deegree-3.5-PRE1 https://github.com/lat-lon/deegree3.git'
-    - 'cd deegree3'
-    - 'mvn -q $MAVEN_CLI_OPTS install -DskipTests'
-    - 'cd ..'
-    - 'mvn $MAVEN_CLI_OPTS $MAVEN_GOAL -DskipTests'
+  - 'echo "with Maven goal: $MAVEN_GOAL"'
+  - 'mvn $MAVEN_CLI_OPTS $MAVEN_GOAL -PskipAll -Dxplan-tests.maven.deploy.skip=true'
   rules:
-    - if: $CI_COMMIT_MESSAGE =~ /^release /
-      when: never 
-    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
-      variables:
-        MAVEN_GOAL: "install"
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-      variables:
-        MAVEN_GOAL: "deploy"
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+    variables:
+      MAVEN_GOAL: "install"
+  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    variables:
+      MAVEN_GOAL: "deploy"
 
 maven-release:
-  image: maven:3.8.6-jdk-11
+#  image: maven:3.8.6-jdk-11
+  image: registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest
   stage: deploy
   only:
     - main
   when: manual
   before_script:
-    - mkdir -p ~/.ssh/
-    - cp $DEPLOY_PRIVATE_KEY ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
-    - cp $KNOWN_HOSTS ~/.ssh/known_hosts
-    - apt-get update && apt-get install -y git
-    - git config --global user.email "noreply@gitlab.opencode.de"
-    - git config --global user.name "xplanung GitLab CI"
-    - git checkout -B "$CI_COMMIT_REF_NAME"
+  - mkdir -p ~/.ssh/
+  - cp $DEPLOY_PRIVATE_KEY ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+  - cp $KNOWN_HOSTS ~/.ssh/known_hosts
+  - apt-get update && apt-get install -y git
+  - git config --global user.email "noreply@gitlab.opencode.de"
+  - git config --global user.name "xplanung GitLab CI"
+  - git checkout -B "$CI_COMMIT_REF_NAME"
   script:
-    - 'git clone --branch xplanbox-deegree-3.5-PRE1 https://github.com/lat-lon/deegree3.git'
-    - 'cd deegree3'
-    - 'mvn -q $MAVEN_CLI_OPTS install -DskipTests'
-    - 'cd ..'
-    - mvn release:prepare release:perform $MAVEN_CLI_OPTS -DscmReleaseCommitComment="release @{releaseLabel}" -DtagNameFormat="v@{project.version}" -DskipTests -Darguments=-DskipTests
+  - mvn release:prepare release:perform $MAVEN_CLI_OPTS -DscmReleaseCommitComment="release @{releaseLabel}" -DtagNameFormat="v@{project.version}"
 
 gitlab-release:
   stage: deploy
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   rules:
-    - if: $CI_COMMIT_TAG
+  - if: $CI_PIPELINE_SOURCE == 'schedule'
+    when: never 
+  - if: $CI_COMMIT_TAG
   script:
-    - echo "Running the release job for $CI_COMMIT_TAG"
+  - echo "Running the release job for $CI_COMMIT_TAG"
   release:
     tag_name: $CI_COMMIT_TAG
     name: 'Release $CI_COMMIT_TAG'
     description: 'Release created using the release-cli.'
+
+# ---------------------------------------------------------------------------------------------------------------------------  
+# ---------------------------------------------------------------------------------------------------------------------------
+create-maven-build-image:
+  stage: deploy
+  image:
+    name: gcr.io/kaniko-project/executor:v1.9.1-debug
+    entrypoint: [""]
+  script:
+  - /kaniko/executor
+    --context "${CI_PROJECT_DIR}"
+    --dockerfile "${CI_PROJECT_DIR}/ci/mvnBuildImage.Dockerfile"
+    --destination "${CI_REGISTRY_IMAGE}/mvn-build-image:latest"
+    --cache=true --compressed-caching=false --use-new-run --cleanup
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "schedule" && $OPERATION == "base-image"'
+
+# ---------------------------------------------------------------------------------------------------------------------------  
+# ---------------------------------------------------------------------------------------------------------------------------
+dependency-check:
+  stage: build
+#  image: maven:3.8.6-jdk-11
+  image: registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest
+  script:
+  - 'mvn org.owasp:dependency-check-maven:aggregate -Ddependency-check.skip=false -Dformats=JUNIT'
+  artifacts:
+    when: always
+    paths:
+    - target/dependency-check-junit.xml
+    reports:
+      junit: target/dependency-check-junit.xml
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "schedule" && $OPERATION == "owasp"'
+ 

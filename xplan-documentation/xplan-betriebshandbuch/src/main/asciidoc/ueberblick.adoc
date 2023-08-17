@@ -68,7 +68,7 @@ https://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK 1
 als auch OpenJDK 11 (https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot[AdoptOpenJDK 11]
 oder https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html[Amazon Corretto 11]) unterstützt.
 
-TIP: Empfohlen wird AdoptOpenJDK/Temurin 11.0.13+.
+TIP: Empfohlen wird AdoptOpenJDK/Temurin 11.0+.
 
 
 [[java-applikationsserver]]
@@ -80,7 +80,7 @@ Das Installationsarchiv findet sich bei der https://tomcat.apache.org[Apache Fou
 Um eine spätere Trennung der Dienste (Web-Anwendungen) zu gewährleisten, wird die Konfiguration von mehreren Tomcat-Instanzen empfohlen (siehe Kapitel <<web-anwendungen>>).
 
 TIP: Die minimale Anforderung an den Applikationsserver ist das Java EE 7 Web
-Profil. Empfohlen wird Apache Tomcat Version 9.0.65.
+Profil. Empfohlen wird Apache Tomcat Version 9.0+.
 
 [[datenbank]]
 === Datenbank
@@ -88,17 +88,25 @@ Profil. Empfohlen wird Apache Tomcat Version 9.0.65.
 Als Datenbanksystem ist eine Installation von PostgreSQL 12+ mit der
 Erweiterung PostGIS 3.1+ erforderlich.
 
-TIP: Empfohlen wird PostgreSQL 12+ mit PostGIS 3.1+.
+TIP: Empfohlen wird PostgreSQL 14+ mit PostGIS 3.3+.
 
+[[gdal]]
 === GDAL
 
-Optional kann die Installation der https://gdal.org/[GDAL-Bibliothek] erforderlich sein. Liegen Teil-Vektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTiff vor, die mit der xPlanBox verwaltet werden sollen, ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen nur im GeoTiff-Format vor, wird GDAL nicht benötigt.
+Optional kann die https://gdal.org/[GDAL-Bibliothek] installiert werden. Wenn teilvektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTiff vorliegen, die mit der xPlanBox verwaltet werden sollen, dann ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen nur im GeoTiff-Format vor, wird GDAL nicht benötigt.
 Weitere Informationen zur Installation von GDAL befinden sich im Abschnitt <<installation-gdal>>.
 
-IMPORTANT: Erforderlich ist GDAL 3.0.
+IMPORTANT: Erforderlich ist GDAL 3.0+.
+
+[[mapserver]]
+=== MapServer
+
+Optional kann der https://mapserver.org[MapServer] installiert werden. Wenn für die Bereitstellung von Rasterdaten der MapServer verwendet werden soll, dann muss dieser zusammen mit <<gdal, GDAL>> installiert werden. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-mapserver>>.
+
+IMPORTANT: Erforderlich ist MapServer 8.0.0.
 
 === HALE CLI
 
-Optional kann die Installation von https://github.com/halestudio/hale-cli/[HALE CLI] erforderlich sein. HALE CLI wird für die Transformation von Daten der xPlanBox verwendet. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale-cli>>.
+Optional kann das https://github.com/halestudio/hale-cli/[HALE CLI] installiert werden. Wenn Daten der xPlanBox transformiert werden sollen, dann ist der Einsatz des HALE CLI erforderlich. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale-cli>>.
 
-IMPORTANT: Erforderlich ist HALE CLI 4.0+.
+IMPORTANT: Erforderlich ist HALE CLI 3.4.0.

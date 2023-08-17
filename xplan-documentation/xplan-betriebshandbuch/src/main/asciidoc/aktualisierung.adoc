@@ -7,7 +7,7 @@ Datenunabhängige Aktualisierungsschritte:
 
 * Stoppen aller Tomcat-Instanzen
 * <<austausch-der-web-archive, Austausch der Web-Archive in den Tomcat-Instanzen>>
-* <<austausch-der-commandline-tools, Austausch der Commandline-Tools>>
+* <<austausch-der-commandline-tools, Austausch der Kommandozeilenwerkzeuge>>
 
 Aktualisierungsschritte, die die Datenhaltung betreffen:
 
@@ -19,13 +19,15 @@ Nachdem alle Aktualisierungsschritte erfolgreich durchgeführt worden, wird die 
 
 * <<neustart-tomcat, Starten aller Tomcat-Instanzen>>
 
-abgeschlossen.
+abgeschlossen. Im <<appendix_checklists,Anhang sind Checklisten>> hinterlegt, die bei der Aktualisierung helfen, die erforderlichen Schritte vollständig auszuführen.
 
 [[austausch-der-web-archive]]
 === Austausch der Web-Archive
 
 Es müssen die bereitgestellten WAR-Dateien in das Verzeichnis _webapps/_
-der jeweiligen Tomcat-Instanz kopiert werden:
+der jeweiligen Tomcat-Instanz kopiert werden.
+
+Als Platzhalter werden im Folgenden __<WORK_DIR>__ als Download-Verzeichnis mit der entpackten Distributionsdatei und __<CATALINA_HOME>__ mit dem Installationsverzeichnis des Tomcat-Servers verwendet.
 
 ----
 cp ${WORK_DIR}/web/xplan-manager-web.war <CATALINA_HOME>/webapps/
@@ -47,9 +49,9 @@ NOTE: Falls die Hintergrundkarte der Kartenvorschau im XPlanValidatorWeb angepas
 Es müssen alle Tomcat-Instanzen neu gestartet werden. Der Neustart muss nach der Aktualisierung der Workspaces erfolgen (s. <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>>).
 
 [[austausch-der-commandline-tools]]
-=== Austausch der Commandline-Tools
+=== Austausch der Kommandozeilenwerkzeuge
 
-Die ZIP-Archive mit den Kommandozeilen-Tools müssen entpackt werden:
+Die ZIP-Archive mit den Kommandozeilenwerkzeugen müssen entpackt werden:
 
 ----
 unzip ${WORK_DIR}/cli/xplan-manager-cli-${VERSION}.zip 
@@ -66,14 +68,15 @@ Folgende Tabelle listet auf, bei welchen xPlanBox Versionen die Datenhaltung bet
 
 In der Tabelle sind nur Versionen aufgelistet, die auch Änderungen an der Datenhaltung enthalten. Anhand der Übersicht lässt sich ableiten, welche Schritte bei einer Aktualisierung ausgeführt werden müssen. Die Schritt-für-Schritt-Anleitung zur Aktualisierung der jeweiligen Versionen sind in den nachfolgenden Kapiteln enthalten.
 
-Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versionen zusammen mit der aktuellen Liefereinheit bereitgestellt. Bei Fragen zur Aktualisierung von früheren Versionen (5.0 und älter), wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].
+Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versionen zusammen mit der aktuellen Liefereinheit bereitgestellt. Bei Fragen zur Aktualisierung von früheren Versionen (6.0 und älter), wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].
 
-.Überblick über die Datenhaltung betreffenden Änderungen (ab Version 5.0)
+.Überblick über die Datenhaltung betreffenden Änderungen (ab Version 6.0)
 [cols="3*^", options="header,footer"]
 |===
 | xPlanBox Version | Änderungen an den Workspaces/ der Konfiguration? | Änderungen am Datenbankschema?
-| 5.0              | ja (<<aktualisierung-auf-die-version-5.0, Details>>)  | ja (<<aktualisierung-auf-die-version-5.0, Details>>)
 | 6.0              | ja (<<aktualisierung-auf-xplanbox-version-6.0, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-6.0, Details>>)
+| 6.0.1              | ja (<<aktualisierung-auf-xplanbox-version-6.0.1, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-6.0.1, Details>>)
+| 7.0             | ja (<<aktualisierung-auf-xplanbox-version-7.0, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-7.0, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |===
 
@@ -82,42 +85,42 @@ Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versione
 
 Bei der Aktualisierung der Workspaces ist zwischen einer vollständigen und teilweisen Aktualisierung zu unterscheiden. Bei der im Abschnitt <<vollstaendige-aktualisierung>> beschriebenen vollständigen Aktualisierung werden z. B. Rasterdaten aus Plänen, die bereits importiert wurden, verworfen. Sollen vorhandene Daten beibehalten werden, ist das im Abschnitt <<teilweise-aktualisierung>> beschriebene Vorgehen durchzuführen.
 
-IMPORTANT: Das HTML-Template für die XPlanWMS GFI Ausgabe muss, wie in <<konfiguration_xplanwms>> beschrieben, angepasst werden.
+IMPORTANT: Das HTML-Template für die XPlanWMS GFI Ausgabe muss, wie in <<konfiguration-xplanwms-gfi>> beschrieben, angepasst werden.
 
-IMPORTANT: Alle Konfigurationsänderungen in _xplan-manager-config.properties_ und _xplan-validator-config.properties_  müssen manuell übertragen werden.
+IMPORTANT: Alle Konfigurationsänderungen in den Verzeichnissen _xplan-manager-config/_ und _xplan-validator-config/_  müssen manuell übertragen werden.
 
 [[vollstaendige-aktualisierung]]
 ==== Vollständige Aktualisierung der Workspaces
 
-Es müssen die bereitgestellten Konfigurationsdateien in das Verzeichnis _<DEEGREE_DIR>_, z. B. _.deegree/_ kopiert werden.
+Es müssen die bereitgestellten Konfigurationsdateien in das Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ kopiert werden.
 Diese ersetzen die bereits vorhandenen:
 
 ----
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wms-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wms-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
 ----
 
 [[teilweise-aktualisierung]]
 ==== Teilweise Aktualisierung der Workspaces
 
 Es müssen die bereit gestellten Konfigurationsdateien mit Ausnahme des _xplansyn-wms-workspace_ in das Verzeichnis
-_<DEEGREE_DIR>_, z. B. _.deegree/_ kopiert werden. Diese ersetzen die bereits vorhanden:
+_<DEEGREE_WORKSPACE_ROOT>_ kopiert werden. Diese ersetzen die bereits vorhanden:
 
 ----
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}-${ENV}.zip
-cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
 ----
 
-Folgende Ordner des neuen _xplansyn-wms-workspace_ müssen in die bestehende Installation integriert werden:
+Folgende Verzeichnisse des neuen _xplansyn-wms-workspace_ müssen in die bestehende Installation integriert werden:
 
 * _appschemas/_
 * _datasources/feature/_
@@ -126,16 +129,16 @@ Folgende Ordner des neuen _xplansyn-wms-workspace_ müssen in die bestehende Ins
 * _styles/_
 * _themes/_
 
-CAUTION: Im Ordner _themes/_ nicht die Dateien, die auf _raster.xml_ enden, ersetzen!
+IMPORTANT: Im Verzeichnis _themes/_ nicht die Dateien, die auf _raster.xml_ enden, ersetzen!
 
 
 [[aktualisierung-der-schemas]]
 === Aktualisierung der Datenbank XPlanDB
 
-IMPORTANT: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen. Für den Fall, dass dies nicht notwendig ist, kann die Datenbank XPlanDB neu aufgesetzt werden. Mehr Details hierzu finden Sie im Kapitel <<konfiguration-der-datenbank>>.
+IMPORTANT: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen. Wenn dies nicht notwendig ist, kann die Datenbank XPlanDB neu aufgesetzt werden (siehe Kapitel <<konfiguration-der-datenbank>>).
 
 Die SQL-Skripte für die Datenbankschemas jeder Version befinden sich im
-_xplan-manager-workspace_ im Ordner _sql/_. Für jedes Datenbankschema gibt es dort
+_xplan-manager-workspace_ im Verzeichnis _sql/_. Für jedes Datenbankschema gibt es dort
 einen eigenen Unterordner. Neu hinzugekommene Datenbankschemas können zu der
 Datenbank hinzugefügt werden und stehen danach für die Anwendung
 bereit. Bei Änderungen an einem Datenbankschema müssen diese durch ein
@@ -143,80 +146,27 @@ SQL-Skript durchgeführt werden. Für die Aktualisierungen der XPlanDB liegen di
 
 Führen Sie die zu der Version passenden SQL-Skripte aus dem entsprechenden Unterordner aus:
 
-- von 5.0 auf 5.0.2 aus dem Ordner _from_5.0_to_5.0.2/_
-- von 5.0.2 auf 6.0 aus dem Ordner _from_5.0.2_to_6.0/_
+- von 6.0 auf 6.0.1 aus dem Verzeichnis _from_6.0_to_6.0.1/_
+- von 6.0.1 auf 7.0 aus dem Verzeichnis _from_6.0.1_to_7.0/_
+
+IMPORTANT: Erstellen Sie vor der Aktualisierung ein Backup der Datenbank! Und achten Sie bei der Ausführung der SQL-Skripte darauf, dass diese vollständig ausgeführt werden! Nutzen Sie für die Ausführung der SQL-Skripte das `psql`-Tool z.B. mit dem Aufruf `psql -h $PGHOST -p $PGPORT -U $PGUSER -d $PGDATABASE -f $PATH_TO_SCRIPTS/UPDATE_SCRIPT.sql`.
 
 NOTE: Bei der Aktualisierung der XPlanDB kann es bei Ausführung der SQL zu folgender Fehlermeldungen kommen: _ERROR:  relation "databasechangeloglock" already exists_ kommen. Diese Fehlermeldung kann ignoriert werden.
+
+NOTE: Manuelle Änderungen an den Datenbank-Schemata können die fehlerfreie Ausführung der SQL-Skripte verhindern. Wenn Sie Änderungen an den Datenbank-Schemata vorgenommen haben, müssen diese vor Ausführung der SQL-Skripte zurückgesetzt werden.
 
 [[aktualisierung-der-daten]]
 === Aktualisierung der Daten
 
-IMPORTANT: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen. Für den Fall, dass dies nicht notwendig ist, kann die Datenbank XPlanDB neu aufgesetzt werden. Dieser Schritt sollte bereits während der Anwendung des Kapitels <<aktualisierung-der-schemas>> durchgeführt worden sein.
+IMPORTANT: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen. Wenn dies nicht notwendig ist, kann die Datenbank XPlanDB neu aufgesetzt werden (siehe Kapitel <<konfiguration-der-datenbank>>).
 
-Zur Aktualisierung der Daten stehen Kommandozeilenwerkzeuge im Modul _xplan-update-data-cli_ zur Verfügung:
+Zur Aktualisierung der Daten stehen Kommandozeilenwerkzeuge im Modul _xplan-update-data-cli_ zur Verfügung. Diese müssen nacheinander ausgeführt werden:
 - _bereichUpdate_
 - _destrictUpdate_
 - _reSynthesizer_
 
-Weitere Informationen stehen im Kapitel <<kommandozeilen-anwendungen>>.
+Weitere Informationen zu den Tools stehen im Kapitel <<kommandozeilen-anwendungen>>.
 
-[[aktualisierung-auf-die-version-5.0]]
-=== Aktualisierung auf die Version 5.0
-
-Mit der Version 5.0 der xPlanBox kann die xPlanBox ausschließlich unter Java 11 mit Tomcat 9 betrieben werden, außerdem wird die Version XPlanGML 5.4 unterstützt. Weiterhin sind einige Erweiterungen und Verbesserungen am XPlanValidator, XPlanManagerWeb und den XPlanDiensten vorgenommen worden. Zwei Kommandozeilenwerkzeuge (XPlanAuswerteschemaCLI und XPlanValidateDB) sind neu hinzugekommen.
-
-Für die Aktualisierung auf die Version 5.0 sind folgende Schritte auszuführen:
-
-* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
-* Aktualisierung der Datenbank:
-** Ausführen der Skripte für die Erstellung der Datenhaltung für 5.4 aus dem Modul _xplan-manager-workspace_:
-*** _fix/xplan54/create.sql_
-*** _pre/xplan54/create.sql_
-*** _archive/xplan54/create.sql_
-** Ausführen der Skripte im Verzeichnis _from_4.2_to_5.0_ im Modul _xplan-update-data-cli_ in der vorgegebenen Reihenfolge
-** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
-
-IMPORTANT:  Java 1.8 wird nicht mehr unterstützt.
-
-IMPORTANT: Die SQL-Skripte für die Aktualisierung der XPlanDB auf die Version 5.0 werden ab xPlanBox Version 6.0 nicht mehr ausgeliefert. Bei Fragen zur Aktualisierung von früheren Versionen (5.0 und älter), wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].
-
-[[aktualisierung-auf-die-version-5.0.1]]
-=== Aktualisierung auf die Version 5.0.1
-
-Für eine Installation der Bugfix-Version ist ein Austausch der beiden Webapps erforderlich:
-
-* _xplan-api-manager.war_
-* _xplan-api-validator.war_
-
-TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden. Anpassungen an den Konfigurationsdateien sind ebenfalls nicht erforderlich.
-
-[[aktualisierung-auf-die-version-5.0.2]]
-=== Aktualisierung auf die Version 5.0.2
-
-Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
-
-* Austausch der beiden Webapps:
-** _xplan-api-manager.war_
-** _xplan-manager-web.war_
-* Ausführen des Skripts _01_addBereichTable.sql_ im Verzeichnis _sql/update/from_5.0_to_5.0.2_ im Modul _xplan-manager-workspace_
-* Ausführen des Kommandozeilenwerkzeugs _databaseUpdate_ (für Version 5.0.2) im Modul _xplan-update-data-cli_ zur Aktualisierung der XPlanSyn-Datenhaltung, z.B. mit `./databaseUpdate -c <XPLANBOX_CONFIG>/`
-
-TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
-
-[[aktualisierung-auf-die-version-5.0.3]]
-=== Aktualisierung auf die Version 5.0.3
-
-Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
-
-* Setzen der Variable `jts.overlay=ng` im _Anwendungs-Tomcat_ und _API-Tomcat_, siehe auch Kapitel <<anwendungs-tomcat>>.
-* Austausch der Webapps:
-** _xplan-api-validator.war_
-** _xplan-api-manager.war_
-** _xplan-validator-web.war_
-** _xplan-manager-web.war_
-
-TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
 [[aktualisierung-auf-xplanbox-version-6.0]]
 === Aktualisierung auf die Version 6.0 der xPlanBox
@@ -237,12 +187,67 @@ Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 ** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_5.0.2_to_6.0_ im Modul _xplan-manager-workspace_
 ** Ausführen des Skripts _databasechangelog_v60.sql_ im Verzeichnis _sql/changelog_ im Modul _xplan-manager-workspace_
 ** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten ist erforderlich. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
+** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (optional)
+
+[[aktualisierung-auf-xplanbox-version-6.0.1]]
+=== Aktualisierung auf die Version 6.0.1 der xPlanBox
+
+Mit der Version 6.0.1 der xPlanBox ist unter anderem die Umsetzung der Bugfix Version XPlanGML 6.0.2 erfolgt. Von den Änderungen betroffen sind alle Komponenten der xPlanBox.
+
+Für die Aktualisierung auf die Version 6.0.1 sind folgende Schritte auszuführen:
+
+* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+* Aktualisierung der Datenbank:
+** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_6.0_to_6.0.1_ im Modul _xplan-manager-workspace_
+** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten ist erforderlich. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+
+[[aktualisierung-auf-die-version-6.0.2]]
+=== Aktualisierung auf die Version 6.0.2
+
+Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
+
+* Austausch der Webapps:
+** _xplan-api-validator.war_
+** _xplan-api-manager.war_
+** _xplan-validator-web.war_
+** _xplan-manager-web.war_
+
+TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
+
+[[aktualisierung-auf-die-version-6.0.3]]
+=== Aktualisierung auf die Version 6.0.3
+
+Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
+
+* Austausch der Webapp:
+** _xplan-api-validator.war_
+** _xplan-api-manager.war_
+** _xplan-validator-web.war_
+** _xplan-manager-web.war_
+
+TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
+
+[[aktualisierung-auf-xplanbox-version-7.0]]
+=== Aktualisierung auf die Version 7.0 der xPlanBox
+
+Mit der Version 7.0 der xPlanBox erfolgte eine Anpassung der Werkseinstellungen für das Logging. Für die Anwendungen XPlanManagerWeb, XPlanManagerAPI, XPlanValidatorWeb und XPlanValidatorAPI sowie alle XPlanDienste werden keine Log-Dateien mehr geschrieben. Alle Log-Ausgaben werden nur noch in die Standardausgabe (stdout) geschrieben. Um das Logging so anzupassen, dass die Log-Ausgaben zusätzlich auch in Log-Dateien geschrieben werden, müssen Anpassungen an der Konfiguration vorgenommen werden. Beispiele dafür sind im Kapitel <<logging>> zu finden.
+
+Für die Aktualisierung auf die Version 7.0 sind folgende Schritte auszuführen:
+
+* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+** Es wird empfohlen zur Absicherung der REST-Schnittstellen der XPlanDienste von der Authentifizierung über einen Tomcat-Nutzer auf API-Key umzustellen. Details dazu finden sich im Abschnitt <<dienste-tomcat>>. Soll weiterhin die Absicherung über einen konfigurierten Tomcat-Nutzer erfolgen, muss in der Datei _<DEEGREE_WORKSPACE_ROOT>/config.apikey_ ein `*` eingetragen werden, um die Absicherung zu deaktivieren.
+* Aktualisierung der Datenbank:
+** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_6.0.1_to_7.0_ im Modul _xplan-manager-workspace_
+*** vor Ausführung des Skripts muss die Variable `${xplan.srid}` mit dem verwendeten CRS ausgetauscht werden. Die Datei _migrate_25832.sql_ beinhaltet bereits die Ersetzung durch den CRS Code `25832` und kann ohne Änderungen ausgeführt werden.
+* Ausführen der Kommandozeilenwerkzeuge __artefactsTableUpdate__ und __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der XPlanDB ist erforderlich. Der Aufruf der Tools mit `--help` liefert Hinweise zu deren Verwendung.
+
+IMPORTANT: Mit der Version 7.0 der xPlanBox ist die Kartenvorschau im XPlanValidator nicht mehr standardmäßig aktiviert. Hinweise zur Konfiguration der Kartenvorschau sind im Abschnitt <<kartenvorschau-validator>> beschrieben.
 
 === Troubleshooting
 
-Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:
+Bei unerwartetem Verhalten der xPlanBox nach einer Aktualisierung können folgende Aktionen helfen:
 
-* Löschen des Verzeichnisses _<CATALINA_HOME>/work/_ der Tomcat-Server. Der Tomcat-Server muss zuvor gestoppt und anschließend neu gestartet werden.
+* Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten.
+* Löschen des Verzeichnisses _<CATALINA_HOME>/work/_ des Tomcat-Servers. Der Tomcat-Server muss zuvor gestoppt und anschließend neu gestartet werden.
 * Reload der Workspaces der XPlanDienste.
 * Löschen des Browser-Caches.

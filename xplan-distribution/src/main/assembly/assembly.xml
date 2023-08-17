@@ -60,6 +60,7 @@
         <include>de.latlon.product.xplanbox:xplan-root:war:*</include>
         <include>de.latlon.product.xplanbox:xplan-validator-web:war:*</include>
         <include>de.latlon.product.xplanbox:xplan-api-validator:war:*</include>
+        <include>de.latlon.product.xplanbox:xplan-api-dokumente:war:*</include>
         <include>de.latlon.product.xplanbox:xplansyn-wfs:war:*</include>
         <include>de.latlon.product.xplanbox:xplan-wfs:war:*</include>
         <include>de.latlon.product.xplanbox:xplan-wms:war:*</include>
@@ -74,6 +75,8 @@
       <includes>
         <include>de.latlon.product.xplanbox:xplan-manager-config:zip:*</include>
         <include>de.latlon.product.xplanbox:xplan-validator-config:zip:*</include>
+        <include>de.latlon.product.xplanbox:xplan-dokumenten-config:zip:*</include>
+        <include>de.latlon.product.xplanbox:xplan-mapserver-config:zip:*</include>
         <include>de.latlon.product.xplanbox:xplan-workspaces:zip:*</include>
       </includes>
     </dependencySet>

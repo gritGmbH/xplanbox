@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 01.08.2022 15:45:17-->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:wfs="http://www.opengis.net/wfs/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:wfs="http://www.opengis.net/wfs/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.2">
   <include schemaLocation="XPlanGML.xsd" />
   <import namespace="http://www.opengis.net/wfs/2.0" schemaLocation="http://schemas.opengis.net/wfs/2.0/wfs.xsd" />
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="GmlProfile/gmlProfilexplan.xsd" />

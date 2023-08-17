@@ -2,7 +2,7 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,10 +18,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+
 package de.latlon.xplan.manager.synthesizer;
 
-import de.latlon.xplan.commons.XPlanVersion;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -29,17 +28,9 @@ import org.junit.Test;
  */
 public class XplanSynthesizerXplan40Test extends AbstractXplanSynthesizerTest {
 
-	private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
-
-	@Ignore("File size of referenced plan was too large for Github. Test plan was removed from repository.")
 	@Test
-	public void testId106() throws Exception {
-		createSynFeatures("xplan40/V4_1_ID_106.zip");
-	}
-
-	@Override
-	XPlanVersion getXPlanVersion() {
-		return XPlanVersion.XPLAN_41;
+	public void testBPlan004_40() throws Exception {
+		createSynFeatures("xplan40/BPlan004_4-0.zip");
 	}
 
 }

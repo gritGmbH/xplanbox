@@ -1,6 +1,5 @@
 == XPlanDB
 
-
 [[datenzugriff-xplandb]]
 === Zugriff auf Daten der XPlanDB
 

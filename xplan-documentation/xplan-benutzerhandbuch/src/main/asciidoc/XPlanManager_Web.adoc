@@ -3,47 +3,41 @@
 
 Die Komponente XPlanManagerWeb ist eine Web-Oberfläche, die dem
 Fachadministrator der xPlanBox ermöglicht, die Datenhaltung zu
-kontrollieren und zu verwalten. Mit dem XPlanManagerWeb kann der Benutzer XPlanArchive in die Datenhaltung laden, diese editieren, löschen sowie bereits importiere XPlanArchive wieder exportieren und in einer Liste anzeigen.
+kontrollieren und zu verwalten.
 
 [[xplanmanager-web-benutzungsanleitung]]
 ==== Einstiegsseite
 
-Die Webanwendung XPlanManagerWeb dient der Verwaltung von <<xplanarchiv, XPlanArchiven>> und ist unter:
+Die Webanwendung XPlanManagerWeb kann mit einem Browser aufgerufen werden. Die Adresse der Webanwendung lautet:
 
 ----
 http://<host>:<port>/xplan-manager-web/
 ----
 
-verfügbar und kann mit einem Web-Browser aufgerufen werden.
-
 ==== Funktionen des XPlanManagerWeb
 
-[[xplanmanager-web-hilfe]]
-===== Hilfe
-
-Die Hilfe mit den Angaben zu den unterstützten Funktionen lässt sich durch
-Betätigen des Buttons _Hilfe_ ausgeben.
+Mit dem XPlanManagerWeb kann der Benutzer <<xplanarchiv, XPlanArchive>> und <<xplangmlfile, XPlanGML-Dateien>> in die Datenhaltung laden, diese editieren und löschen sowie bereits importiere Planwerke wieder exportieren.
 
 [[xplanmanager-web-hinzufuegen]]
 ===== Hinzufügen
 
-Vor dem Importieren eines XPlanGML-Dokuments in die Datenhaltung,
-muss dieses über die Web-Oberfläche hochgeladen und validiert werden.
-Im ersten Schritt wird das XPlanArchiv ausgewählt und über den Browser hochgeladen. Hierfür kann die Datei über den Button _Durchsuchen_ ausgewählt und durch einen Klick auf
-_Hinzufügen_ hochgeladen werden. Der Benutzer wird über das erfolgreiche bzw. fehlerhafte Hinzufügen der Datei in Form eines PopUp-Fensters informiert.
+Vor dem Importieren eines XPlanArchives oder XPlanGML-Dokuments in die Datenhaltung,
+muss die Datei über die Web-Oberfläche hochgeladen und validiert werden.
+Dazu muss die Datei ausgewählt und über den Browser hochgeladen werden. Hierfür kann die Datei über den Button _Durchsuchen_ ausgewählt und durch einen Klick auf
+_Hinzufügen_ hochgeladen werden. Der Benutzer wird über den Abschluss des Vorgangs über einen Hinweis in einem PopUp-Fenster informiert.
 
 [[xplanmanager-web-validieren]]
 ===== Validieren
 
-Nachdem das XPlanArchiv hochgeladen wurde, kann dieses
+Nachdem die Datei hochgeladen wurde, kann diese
 validiert werden. Hier stehen die Auswahlmöglichkeiten des <<xplanvalidator-web-validieren, XPlanValidatorWeb>> zur Verfügung.
 
-IMPORTANT: Bei der Validierung werden immer die syntaktische und Basis-Geometrische Prüfung (s. Abschnitt <<xplanvalidator-web-geometrisch, geometrische Validierung>>) ausgeführt. Diese Prüfungen stellen sicher, dass ein Plan keine schwerwiegenden Fehler enthält, die einen Import verhindern. Um die automatische Korrektur der Laufrichtung von Polygonen beim Import zu erzwingen, muss die Option "Prüfung der Laufrichtung (2.2.2.1) überspringen" aktiviert sein.
+IMPORTANT: Bei der Validierung werden die syntaktische und basisgeometrische Prüfung (s. Abschnitt <<xplanvalidator-web-geometrisch, geometrische Validierung>>) immer mit ausgeführt. Diese Prüfungen stellen sicher, dass ein Plan keine schwerwiegenden Fehler enthält, die einen Import verhindern. Um die automatische Korrektur der Laufrichtung von Polygonen beim Import zu erzwingen, muss die Option "Prüfung der Laufrichtung (2.2.2.1) überspringen" aktiviert sein.
 
 [[xplanmanager-web-import]]
 ===== Import
 
-Wenn das XPlanArchiv erfolgreich validiert wurde, kann der Plan in die Datenhaltung durch Klick auf den Button _Import_ in die Datenhaltung übernommen werden. Ist der Plan nicht valide, dann ist der Button _Import_ deaktiviert. Der Benutzer wird über den erfolgreichen bzw. fehlerhaften Import des Plans in Form eines PopUps informiert.
+Wenn die Datei erfolgreich validiert wurde, kann der Plan in die Datenhaltung durch Klick auf den Button _Import_ in die Datenhaltung übernommen werden. Ist der Plan nicht valide, dann ist der Button _Import_ deaktiviert. Der Benutzer wird über den erfolgreichen bzw. fehlerhaften Import des Plans in Form eines PopUp-Fensters informiert.
 
 Ist ein Import nicht möglich und soll ein anderer Plan importiert werden, dann kann der Plan über den Button _Entfernen_ aus der laufenden Sitzung entfernt werden.
 
@@ -51,7 +45,7 @@ Ist ein Import nicht möglich und soll ein anderer Plan importiert werden, dann 
 ===== Auflistung
 
 Standardmäßig werden alle importierten Pläne in einer Liste angezeigt.
-Diese Liste kann nach den angezeigten Spaltennamen auf- oder absteigend sortiert werden. Sind mehr als 15 Pläne in der Auswahl, so wird unterhalb der Liste eine Navigation angezeigt, die ein seitenweises Vor- und Zurückblättern innerhalb der Ergebnismenge erlaubt.
+Die Liste kann nach den angezeigten Spaltennamen auf- oder absteigend sortiert werden. Sind mehr als 15 Pläne in der Auswahl, so wird unterhalb der Liste eine Navigation angezeigt, die ein seitenweises Vor- und Zurückblättern innerhalb der Ergebnismenge erlaubt.
 
 [[xplanmanager-filter]]
 ===== Filter
@@ -66,13 +60,13 @@ Fenster, indem der XPlan visualisiert wird. Im Hintergrund befindet sich
 eine Hintergrundkarte. Durch den Klick auf _Schließen_ wird die
 Kartenvorschau wieder geschlossen.
 
-TIP: Die Kartenvorschau verwendet den Browser-Cache. Falls in der Kartenvorschau nicht der aktuelle Status des Plans angezeigt wird, muss der Cache des genutzten Web-Browsers gelöscht werden.
+TIP: Der Browser verwendet bei der Kartenvorschau die Dateien aus dem Cache des Browsers. Wenn in der Kartenvorschau nicht der aktuelle Stand des Plans angezeigt wird, muss der Cache des Browsers gelöscht werden.
 
 [[xplanmanager-web-herunterladen]]
 ===== Herunterladen
 
 Die importierten Pläne können vom Benutzer durch den Klick auf den
-Button _Herunterladen_ wieder als XPlanArchiv heruntergeladen werden.
+Button _Herunterladen_ als XPlanArchiv heruntergeladen werden.
 
 [[loeschen]]
 ===== Löschen
@@ -85,9 +79,11 @@ Benutzer keine entsprechende Rechte, so wird der Button grau dargestellt.
 ===== Editieren
 
 Abhängig von den Benutzerrechten können Pläne editiert werden. Fehlen dem Benutzer die entsprechenden Rechte ist die Funktion deaktiviert und der Button __Editieren__ wird grau dargestellt.
-Die Editieransicht öffnet sich durch Klick auf den Button __Editieren__. Die Ansicht ist in verschiedene Bereiche aufgeteilt, die insgesamt die Bearbeitung folgender Elemente im XPlanGML über die Oberfläche zulässt. Je nach Planart kann die Liste der änderbaren Element variieren. Unterstützt werden Bebauungspläne ab der Version 4.1, Flächennutzungspläne, Regionalpläne und Sonstige Pläne ab der Version 5.0 sowie Landschaftspläne ab der Version 6.0.
+Die Editieransicht öffnet sich durch Klick auf den Button __Editieren__. Die Ansicht ist in verschiedene Bereiche aufgeteilt, die die Bearbeitung einzelner Elemente im XPlanGML über die Oberfläche zulässt. Je nach Planart kann die Liste der änderbaren Elemente variieren. Unterstützt werden Bebauungspläne ab der Version 4.1, Flächennutzungspläne, Regionalpläne und Sonstige Pläne ab der Version 5.0 sowie Landschaftspläne ab der Version 6.0.
 
 *Basisdaten*
+
+Folgende Basisdaten eines Plans können geändert werden:
 
  * _name_
  * _beschreibung_
@@ -98,11 +94,13 @@ Die Editieransicht öffnet sich durch Klick auf den Button __Editieren__. Die An
  * _rechtsstand_
  * _rechtsverordnungsDatum_
 
+Alle Texteingaben werden von der Anwendung sowohl client- als auch serverseitig geprüft. Dabei sind die zugelassenen Zeichen (und Zeichenketten) limitiert und dienen dem Schutz vor Angriffen wie z. B. Cross Site Scripting (XSS) und SQL-Injection.
+
 IMPORTANT: Das Editieren des Rechtsstands kann dazu führen, dass eine
 Zustandsänderung des Plans eintritt. Damit verbunden ist das Verschieben
 der Vektor- und Rasterdaten in die entsprechende Datenhaltung. Übergänge
-sind beliebig zwischen den drei Zuständen 'Festgestellt', 'In
-Aufstellung' und 'Archiviert' möglich. Eine Zustandsänderung von
+zwischen den drei Zuständen 'Festgestellt', 'In
+Aufstellung' und 'Archiviert' sind möglich. Eine Zustandsänderung von
 'Festgestellt' nach 'In Aufstellung' tritt beispielsweise beim Ändern
 des Rechtsstands von 'InkraftGetreten' nach 'Untergegangen' ein.
 
@@ -118,7 +116,7 @@ unbeabsichtigt zu einer Zustandsänderung des Plans kommen kann!
 
 *Gültigkeitszeitraum*
 
- * Der Zeitraum in dem ein Plan gültig ist. Für dieses Feld gibt es keine
+ * Der Zeitraum in dem ein Plan im XPlanWMSInAufstellung angezeigt wird. Für dieses Feld gibt es keine
 Entsprechung im XPlanGML. Die Angabe des Zeitraums, wie sie beim Import
 erfolgt ist, wird beim Ändern des Zeitraums überschrieben.
 
@@ -140,7 +138,7 @@ ab XPlanGML 6.0:
 
 *Dokumente*
 
-Abhängig von der XPlanGML Version können folgende Elemente editiert werden:
+Abhängig von der XPlanGML-Version können folgende Elemente editiert werden:
 
 XPlanGML 4.1:
 
@@ -179,6 +177,11 @@ Die ebenfalls in diesem Abschnitt editierbaren Referenzen auf Texte (refText) un
 
 Abhängig von den Benutzerrechten können Pläne im Datenthema INSPIRE Planned Land Use veröffentlicht werden. Fehlen dem Benutzer die entsprechenden Rechte ist die Funktion deaktiviert und der Button __Bereitstellung als INSPIRE Datensatz__ wird nicht dargestellt.
 
-Durch Klick auf den Button __Bereitstellung als INSPIRE Datensatz__ wird der Plan in das INSPIRE PLU Datenschema überführt und in den INSPIRE konformen Download Service importiert. Anschließend kann der transformierte Plan über den INSPIRE Download Service (XPlanInspirePluWFS) und INSPIRE View Service (XPlanInspirePluWMS) abgerufen werden.
+Durch Klick auf den Button __Bereitstellung als INSPIRE Datensatz__ wird der Plan in das INSPIRE PLU Datenschema transformiert. Anschließend kann der Plan über den INSPIRE Download Service (<<xplaninspirepluwfs,XPlanInspirePluWFS>>) und INSPIRE View Service (<<xplaninspirepluwms, XPlanInspirePluWMS>>) abgerufen werden.
 
-NOTE: Die Bereitstellung als INSPIRE PLU Datensatz steht nur für BPläne in den XPlanGML Versionen 4.1, 5.0, 5.1, 5.2, 5.3, 5.4 und 6.0 zur Verfügung.
+NOTE: Die Bereitstellung als INSPIRE PLU Datensatz steht nur für BPläne in den XPlanGML-Versionen 4.1, 5.0, 5.1, 5.2, 5.3, 5.4 und 6.0 zur Verfügung.
+
+[[xplanmanager-web-hilfe]]
+===== Hilfe
+
+Eine Hilfeseite mit einer Kurzbeschreibung der Funktionen des XPlanManagerWeb lässt sich durch Betätigen des Buttons _Hilfe_ anzeigen.

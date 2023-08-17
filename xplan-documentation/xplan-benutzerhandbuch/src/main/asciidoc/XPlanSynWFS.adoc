@@ -3,7 +3,7 @@
 
 Der XPlanSynWFS ist ein auf der Open Source Software https://www.deegree.org[deegree] basierender Dienst zur Abfrage von Vektordaten und ist konform zum Standard Web Feature Service (Version 1.1.0 und 2.0.0) des Open Geospatial Consortium (OGC).
 
-Der XPlanSynWFS dient der Abbildung des synthetisierten XPlanGML-Anwendungsschemas (XPlanSynGML). Dieses stellt eine vereinfachte und zusammenfassende Form der von der xPlanBox unterstützten XPlanGML Versionen dar. Die vom XPlanSynWFS bereitgestellten Geometrien basieren auf dem  https://www.ogc.org/standards/sfa[Simple Feature Model des OGC]. Die Werte aus den Codelisten von XPlanGML werden durch die textlichen Äquivalente dargestellt.
+Der XPlanSynWFS dient der Abbildung des synthetisierten XPlanGML-Anwendungsschemas (XPlanSynGML). Dieses stellt eine vereinfachte und zusammenfassende Form der von der xPlanBox unterstützten XPlanGML-Versionen dar. Die vom XPlanSynWFS bereitgestellten Geometrien basieren auf dem  https://www.ogc.org/standards/sfa[Simple Feature Model des OGC]. Die Werte aus den Codelisten von XPlanGML werden durch die textlichen Äquivalente dargestellt.
 
 [[xplansynwfs-benutzung-des-xplansynwfs]]
 === Benutzung des XPlanSynWFS
@@ -91,18 +91,20 @@ drei weitere StoredQueries an:
  * urn:ogc:def:query:OGC-WFS::InternalId
  * urn:ogc:def:query:OGC-WFS::PlanId
  * urn:ogc:def:query:OGC-WFS::PlanName
+ * urn:ogc:def:query:OGC-WFS::PlanNameAndType
 
 Darüber lassen sich die Vektordaten eines einzelnen Plans über die vom
 XPlanManager vergebene interne Id, die im XPlanGML vergebene Nummer bzw.
 den im XPlanGML angegebenen Namen abrufen.
 
 Aufgrund der Eigenschaften des XPlanSynWFS lassen sich aktuell nur für die StoredQuery
-_PlanName_ zu einem Plan gehörigen Vektordaten abrufen.
+_PlanName_ alle zu einem Plan gehörigen Vektordaten abrufen.
 Die StoredQueries _InternalId_ und _PlanId_
-geben nur die Vektordaten des feature types BP_Plan (bzw. FP_Plan, LP_Plan, RP_Plan und SO_Plan) zurück,
+geben nur die Vektordaten des Feature Types BP_Plan (bzw. FP_Plan, LP_Plan, RP_Plan und SO_Plan) zurück,
 nicht ggf. referenzierte Vektordaten.
+Die StoredQuery _PlanNameAndType_ gibt dagegen die Vektordaten des mit dem Parameter _typeNames_ angefragten Feature Types zurück. Es kann an dieser Stelle nur ein Feature Type angegeben werden.
 
-Um die Eindeutigkeit der StoredQueries _PlanId_ und _PlanName_ zu gewährleisten,
+Um die Eindeutigkeit der StoredQueries _PlanId_, _PlanName_ und _PlanNameAndType_ zu gewährleisten,
 muss sichergestellt werden, dass bei den importierten Plänen die Nummer und der Name
 des Plans eindeutig sind.
 
@@ -116,8 +118,7 @@ http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&servic
 [[xplansynwfs-koordinatenreferenzsysteme]]
 === Koordinatenreferenzsysteme
 
-Der XPlanSynWFS unterstützt die folgenden
-Koordinatenreferenzsysteme:
+Der XPlanSynWFS unterstützt die folgenden Koordinatenreferenzsysteme:
 
  * EPSG:25832
  * EPSG:25833

@@ -2,18 +2,18 @@
  * #%L
  * xplan-api-commons - xplan-api-commons
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -49,32 +49,37 @@ public class SystemConfigHandler {
 
 	public RulesMetadata getRulesMetadata() throws IOException {
 		SemanticValidatorConfiguration semanticValidatorConfiguration = xQuerySemanticValidatorConfigurationRetriever
-				.retrieveConfiguration();
+			.retrieveConfiguration();
 		if (semanticValidatorConfiguration == null) {
 			return new RulesMetadata();
 		}
 		de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata defaultRulesMetadata = semanticValidatorConfiguration
-				.getRulesMetadata();
+			.getRulesMetadata();
 		return createRulesMetadata(defaultRulesMetadata);
 	}
 
 	public List<RulesMetadata> getProfiles() {
-		return profileMetadata.stream().map(profileMetadata -> createRulesMetadata(profileMetadata))
-				.collect(Collectors.toList());
+		return profileMetadata.stream()
+			.map(profileMetadata -> createRulesMetadata(profileMetadata))
+			.collect(Collectors.toList());
 	}
 
 	public List<VersionEnum> allSupportedVersions() {
-		return Arrays.stream(XPlanVersion.values()).filter(xPlanVersion -> !XPlanVersion.XPLAN_SYN.equals(xPlanVersion))
-				.map(xPlanVersion -> VersionEnum.fromValue(xPlanVersion.name())).collect(Collectors.toList());
+		return Arrays.stream(XPlanVersion.values())
+			.filter(xPlanVersion -> !XPlanVersion.XPLAN_SYN.equals(xPlanVersion))
+			.map(xPlanVersion -> VersionEnum.fromValue(xPlanVersion.name()))
+			.collect(Collectors.toList());
 	}
 
 	private RulesMetadata createRulesMetadata(
 			de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata sourceRulesMetadata) {
 		RulesMetadata rulesMetadata = new RulesMetadata();
 		if (sourceRulesMetadata != null) {
-			rulesMetadata.id(sourceRulesMetadata.getId()).name(sourceRulesMetadata.getName())
-					.description(sourceRulesMetadata.getDescription()).source(sourceRulesMetadata.getSource())
-					.version(sourceRulesMetadata.getVersion());
+			rulesMetadata.id(sourceRulesMetadata.getId())
+				.name(sourceRulesMetadata.getName())
+				.description(sourceRulesMetadata.getDescription())
+				.source(sourceRulesMetadata.getSource())
+				.version(sourceRulesMetadata.getVersion());
 		}
 		return rulesMetadata;
 	}

@@ -26,6 +26,36 @@ Bei lang andauernden Anfragen im XPlanValidatorWeb oder XPlanManagerWeb kann es 
 
 - Erhöhen der HTTP Timeout und Keepalive Zeiten in der Konfiguration der eingesetzten Webserver wie z.B. Apache httpd oder nginx sowie sonstiger Netzwerkkomponenten, die den Webkomponenten vorgeschaltet sind.
 
+[[troubleshooting-managercli-xmllib]]
+=== XPlanManagerCLI - Nutzung falscher Bibliotheken kann beim Import eines Plans zu fehlerhaft erzeugter Konfiguration führen
+
+==== Problembeschreibung
+
+Wenn die erzeugten deegree Konfigurationsdateien für Layer und Themes leere XML-Namensraum-Attribute in Form von `xmlns=""` aufweisen, können diese nicht von deegree geparst werden. Dies führt zu einem Laufzeitfehler und verhindern den Start der XPlanDienste.
+
+==== Lösungsansätze
+
+- Für die Erzeugung der deegree Konfigurationsdateien muss zwingend die Bibliothek Apache Xalan 2.7.2 verwendet werden.
+- Zusätzlich muss sichergestellt sein, dass im Java Classpath des Prozesses, der den XPlanManagerCLI aufruft, keine anderen JAXP (SAX/DOM) Implementierungen vorhanden sind als die Dateien _Saxon-HE-9.9.x.jar_ und _xalan-2.7.2.jar_.
+- Eine Umgehung des Fehlers ist möglich, wenn die leeren XML-Namensraum-Attribute manuell entfernt werden. Dann ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
+
+[[troubleshooting-managercli-gdal]]
+=== XPlanManagerCLI - Fehler aufgrund fehlender Installation von GDAL
+
+==== Problembeschreibung
+
+Tritt bei Aufruf des XPlanManagerCLI der Fehler `java.lang.UnsatisfiedLinkError: no gdalalljni in java.library.path` auf, dann ist eine Nutzung des XPlanManagerCLI nicht möglich. Dieser Fehler tritt auch dann auf, wenn in der Konfigurationsdatei _managerconfiguration.properties_ das Rasterdatenformat GeoTIFF für die Datenhaltung des XPlanWMS über den Eintrag `rasterConfigurationType=geotiff` gesetzt ist.
+
+==== Lösungsansätze
+
+* Ist das Rasterdatenformat *GeoTIFF* für die Datenhaltung des XPlanWMS über den Eintrag `rasterConfigurationType=geotiff` konfiguriert, müssen folgenden Dateien aus dem _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/_ gelöscht werden:
+
+** datasources/tile/dummy.ignore
+** datasources/tile/tilematrixset/dummy.ignore
+** layers/dummyrasterlayer.ignore
+
+* Ist das Rasterdatenformat *GDAL* für die Datenhaltung des XPlanWMS über den Eintrag `rasterConfigurationType=gdal` konfiguriert, muss die Installation der GDAL-Bibliothek wie im Abschnitt <<installation-gdal>> beschrieben erfolgen.
+
 [[troubleshooting-resources]]
 === Kapazitätsbezogene Einschränkungen
 
@@ -36,4 +66,16 @@ Sowohl für den XPlanManagerWeb als auch den XPlanManagerAPI gelten Obergrenzen 
 - Für die Bereitstellung von mehr als 500 XPlanArchiven über die Dienste
 XPlanWMS, XPlanWFS oder XPlanSynWFS müssen Server-seitig dann die Systemvoraussetzungen wie in der <<empfohlene-systemkonfiguration>>
  erfüllt sein. Das Antwortzeitverhalten der Dienste ist von den verfügbaren System-Ressourcen abhängig.
-- Die Anwendungskomponenten der xPlanBox benötigt min. 1,5 GB freien Festplattenspeicherplatz. Anwachsende Daten über die Dauer der Laufzeit der Anwendung sind die Datenhaltung für die Pläne inkl. der Anhänge und die Systemlogdateien. Zur Kapazitätsplanung kann folgende Abschätzung gegeben werden: Der Festplattenspeicherplatz für die Daten ist erforderlich auf dem Server mit der <<XPlanDB>> und der Tomcat-Instanz mit dem <<XPlanManager>>. Folgende Formel kann bei der Kapazitätsplanung zur Hilfe gezogen werden: _Größe eines XPlanArchivs (inkl. der Anhänge) * Anzahl der XPlanArchive * 2_. Wenn also zum Beispiel 500 Pläne mit einer durchschnittlichen Größe von 50 MB inkl. der Anhänge importiert werden sollen, dann sind ca. 50 GB Festplattenspeicherplatz je Server notwendig.
+- Die Anwendungskomponenten der xPlanBox benötigt min. 1,5 GB freien Festplattenspeicherplatz. Anwachsende Daten über die Dauer der Laufzeit der Anwendung sind die Datenhaltung für die Pläne inkl. der Anhänge und die Systemlogdateien. Zur Kapazitätsplanung kann folgende Abschätzung gegeben werden: Der Festplattenspeicherplatz für die Daten ist erforderlich auf dem Server mit der <<XPlanDB>> und der Tomcat-Instanz mit dem <<XPlanManager>>. Folgende Formel kann bei der Kapazitätsplanung zur Hilfe gezogen werden: _Größe eines XPlanArchivs (inkl. der Anhänge) * Anzahl der XPlanArchive * 2_. Wenn also zum Beispiel 500 Pläne mit einer durchschnittlichen Größe von 50 MB inkl. der Anhänge importiert werden sollen, dann sind ca. 50 GB Festplattenspeicherplatz je Server notwendig
+
+[[troubleshooting-tempfiles]]
+=== Löschen von temporären Dateien
+
+==== Problembeschreibung
+Bei der Verarbeitung von XPlanArchiven im XPlanValidator und XPlanManager werden temporäre Dateien erzeugt und im Verzeichnis für temporäre Dateien des Betriebssystems abgespeichert, z. B. unter Linux unterhalb von _/tmp/_. Bei intensiver Nutzung der Komponenten und großen XPlanArchiven können sich in diesem Verzeichnis schnell größere Datenmengen ansammeln.
+
+==== Lösungsansätze
+- Das Löschen des tmp-Verzeichnisses erfolgt über das Betriebssystem. Unter Linux z. B. bei einem Reboot des Betriebssystems.
+- Die mit Java IO erzeugten temporären Dateien werden nur beim kontrollierten Stoppen der JVM gelöscht. Dazu muss regelmäßig der Tomcat-Server neu gestartet werden.
+- Um ein Löschen der temporären Dateien auch vor einem Neustart (Betriebssystem oder JVM) zu ermöglichen, kann diese Aktion z. B. über einen Cron-Job geschehen. Dieser Job muss auf dem Server mit dem XPlanManager und XPlanValidator eingerichtet werden.
+

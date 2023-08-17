@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -21,11 +21,11 @@
 package de.latlon.xplan.manager.edit;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import de.latlon.xplan.manager.web.shared.edit.Change;
@@ -36,20 +36,12 @@ import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.GeometryFactory;
-import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLStreamReader;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
@@ -79,6 +71,7 @@ import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.INFORMELL;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSPLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.VERORDNUNG;
 import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.SO_SONSTIGES;
@@ -240,10 +233,9 @@ public class XPlanToEditFactoryTest {
 	}
 
 	@Test
-	@Parameters({ "xplan41/V4_1_ID_103.gml, XPLAN_41", "xplan50/V4_1_ID_103.gml, XPLAN_50" })
-	public void testCreateXPlanToEdit_References_Texts(String planResource, String xplanVersion) throws Exception {
-		XPlanVersion version = XPlanVersion.valueOf(xplanVersion);
-		FeatureCollection featureCollection = readXPlanGml(version, planResource);
+	public void testCreateXPlanToEdit_References_Texts_V4_1_ID_103_41() throws Exception {
+		XPlanVersion version = XPLAN_41;
+		FeatureCollection featureCollection = readXPlanGml(version, "xplan41/V4_1_ID_103.gml");
 
 		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(version, BP_Plan), featureCollection);
 
@@ -324,6 +316,61 @@ public class XPlanToEditFactoryTest {
 	}
 
 	@Test
+	public void testCreateXPlanToEdit_References_Texts_BPlan004_50() throws Exception {
+		XPlanVersion version = XPLAN_50;
+		FeatureCollection featureCollection = readXPlanArchive(version, "xplan50/BPlan004_5-0.zip");
+
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(version, BP_Plan), featureCollection);
+
+		BaseData baseData = xPlanToEdit.getBaseData();
+		assertThat(baseData.getPlanName(), is("BPlan004_5-0"));
+		assertThat(baseData.getLegislationStatusCode(), is(3000));
+		assertThat(baseData.getPlanTypeCode(), is(3000));
+		assertThat(baseData.getCreationDate(), is(asDate("2017-03-20")));
+
+		List<Change> changes = xPlanToEdit.getChanges();
+		assertThat(changes.size(), is(0));
+
+		List<Reference> references = xPlanToEdit.getReferences();
+		assertThat(references.size(), is(1));
+
+		Reference firstReference = references.get(0);
+		assertThat(firstReference.getGeoReference(), is(nullValue()));
+		assertThat(firstReference.getReference(), is("BPlan004_5-0.pdf"));
+		assertThat(firstReference.getReferenzName(), is(nullValue()));
+		assertThat(firstReference.getType(), is(INFORMELL));
+
+		List<Text> texts = xPlanToEdit.getTexts();
+		assertThat(texts.size(), is(9));
+
+		String featureIdOfText = "GML_c27ab7dd-8e16-4f88-abae-6b23d49e7a90";
+		Text text = texts.stream().filter(t -> featureIdOfText.equals(t.getFeatureId())).findFirst().get();
+		assertThat(text.getFeatureId(), is(featureIdOfText));
+		assertThat(text.getKey(), is("§2 Nr.4"));
+		assertThat(text.getBasis(), is(nullValue()));
+		assertThat(text.getText(), is(
+				"Im allgemeinen Wohngebiet darf die festgesetzte Grundflächenzahl\nfür Tiefgaragen bis zu einer Grundflächenzahl\nvon 1,0 überschritten werden."));
+
+		String bereichNummer = "0";
+		List<RasterBasis> allRasterBasis = xPlanToEdit.getRasterBasis();
+		assertThat(allRasterBasis.size(), is(1));
+
+		RasterBasis rasterBasis = allRasterBasis.get(0);
+		assertThat(rasterBasis.getBereichNummer(), is(bereichNummer));
+		assertThat(rasterBasis.getFeatureId(), is("Gml_FEC4F42F-5D66-4A59-9A47-6E03D1A3139A"));
+
+		List<RasterReference> rasterBasisReferences = rasterBasis.getRasterReferences();
+		assertThat(rasterBasisReferences.size(), is(1));
+
+		RasterReference scan = getByType(rasterBasisReferences, SCAN);
+		assertThat(scan, is(notNullValue()));
+		assertThat(scan.getFeatureId(), nullValue());
+		assertThat(scan.getBereichNummer(), is(bereichNummer));
+		assertThat(scan.getGeoReference(), is("BPlan004_5-0.pgw"));
+		assertThat(scan.getReference(), is("BPlan004_5-0.png"));
+	}
+
+	@Test
 	public void testCreateXPlanToEdit_XPlan53_withoutBereich() throws Exception {
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_53, "xplan53/BPlan_ohneBereich.gml");
 
@@ -381,7 +428,7 @@ public class XPlanToEditFactoryTest {
 	public void testCreateXPlanToEdit_XPlan51_SOPlan() throws Exception {
 		FeatureCollection featureCollection = readXPlanArchive(XPLAN_51, "xplan51/StErhVO_Heidberg_51.zip");
 
-		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_51, SO_Plan), featureCollection);
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(XPLAN_51, SO_Plan, featureCollection);
 		assertThat(xPlanToEdit.isHasBereich(), is(true));
 
 		BaseData baseData = xPlanToEdit.getBaseData();
@@ -474,13 +521,14 @@ public class XPlanToEditFactoryTest {
 
 	private RasterBasis getByBereichNummer(List<RasterBasis> rasterBasis, String bereichNummer) {
 		Optional<RasterBasis> rasterBasisWithNumber = rasterBasis.stream()
-				.filter(rb -> rb.getBereichNummer().equals(bereichNummer)).findFirst();
+			.filter(rb -> rb.getBereichNummer().equals(bereichNummer))
+			.findFirst();
 		return rasterBasisWithNumber.isPresent() ? rasterBasisWithNumber.get() : null;
 	}
 
 	private FeatureCollection readXPlanGml(XPlanVersion xplanVersion, String plan) throws Exception {
 		InputStream xplanGml = this.getClass().getResourceAsStream(plan);
-		return readXPlanGml(xplanVersion, xplanGml);
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(xplanGml, xplanVersion);
 	}
 
 	private FeatureCollection readXPlanArchive(XPlanVersion xplanVersion, String resource)
@@ -489,20 +537,7 @@ public class XPlanToEditFactoryTest {
 		InputStream inputStream = ResourceAccessor.readResourceStream(resource);
 		XPlanArchive xPlanArchiveFromZip = archiveCreator.createXPlanArchiveFromZip(resource, inputStream);
 		InputStream mainFileInputStream = xPlanArchiveFromZip.getMainFileInputStream();
-		return readXPlanGml(xplanVersion, mainFileInputStream);
-	}
-
-	private FeatureCollection readXPlanGml(XPlanVersion xplanVersion, InputStream xplanGml)
-			throws XMLStreamException, UnknownCRSException {
-		XMLStreamReader reader = XMLInputFactory.newInstance().createXMLStreamReader(xplanGml);
-		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(reader, null);
-
-		GeometryFactory geomFac = new GeometryFactory();
-		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(xplanVersion.getGmlVersion(), xmlStream);
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(xplanVersion);
-		gmlStream.setApplicationSchema(schema);
-		gmlStream.setGeometryFactory(geomFac);
-		return (FeatureCollection) gmlStream.readFeature();
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(mainFileInputStream, xplanVersion);
 	}
 
 	private Date asDate(String string) throws ParseException {

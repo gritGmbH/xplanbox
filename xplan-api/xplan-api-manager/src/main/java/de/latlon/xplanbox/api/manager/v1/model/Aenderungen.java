@@ -1,25 +1,24 @@
-package de.latlon.xplanbox.api.manager.v1.model;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.latlon.xplan.manager.web.shared.edit.Change;
@@ -53,23 +52,27 @@ public class Aenderungen {
 
 	public static Aenderungen fromChanges(List<Change> changes) {
 		Aenderungen aenderungen = new Aenderungen();
-		aenderungen.aendert(changes
-				.stream().filter(change -> CHANGES.equals(change.getType())).map(c -> new Aenderung()
-						.nummer(c.getNumber()).planName(c.getPlanName()).rechtscharakter(c.getLegalNatureCode()))
-				.collect(Collectors.toList()));
-		aenderungen.wurdeGeaendertVon(changes.stream().filter(change -> CHANGED_BY.equals(change.getType()))
-				.map(c -> new Aenderung()).collect(Collectors.toList()));
+		aenderungen.aendert(changes.stream()
+			.filter(change -> CHANGES.equals(change.getType()))
+			.map(c -> new Aenderung().nummer(c.getNumber())
+				.planName(c.getPlanName())
+				.rechtscharakter(c.getLegalNatureCode()))
+			.collect(Collectors.toList()));
+		aenderungen.wurdeGeaendertVon(changes.stream()
+			.filter(change -> CHANGED_BY.equals(change.getType()))
+			.map(c -> new Aenderung())
+			.collect(Collectors.toList()));
 		return aenderungen;
 	}
 
 	public List<Change> toChanges() {
 		List<Change> changes = new ArrayList<>();
 		changes.addAll(aendert.stream()
-				.map(a -> new Change(a.getPlanName(), asInt(a.getRechtscharakter()), a.getNummer(), CHANGES))
-				.collect(Collectors.toList()));
+			.map(a -> new Change(a.getPlanName(), asInt(a.getRechtscharakter()), a.getNummer(), CHANGES))
+			.collect(Collectors.toList()));
 		changes.addAll(wurdeGeaendertVon.stream()
-				.map(a -> new Change(a.getPlanName(), asInt(a.getRechtscharakter()), a.getNummer(), CHANGED_BY))
-				.collect(Collectors.toList()));
+			.map(a -> new Change(a.getPlanName(), asInt(a.getRechtscharakter()), a.getNummer(), CHANGED_BY))
+			.collect(Collectors.toList()));
 		return changes;
 	}
 

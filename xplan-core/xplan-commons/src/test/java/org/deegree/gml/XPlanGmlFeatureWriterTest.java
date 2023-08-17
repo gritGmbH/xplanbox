@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -24,7 +24,7 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.junit.Test;
 
@@ -66,8 +66,7 @@ public class XPlanGmlFeatureWriterTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
-		return xPlanGmlParser.parseXPlanFeatureCollection(archive);
+		return XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(archive);
 	}
 
 	private Map<String, String> nsContext() {

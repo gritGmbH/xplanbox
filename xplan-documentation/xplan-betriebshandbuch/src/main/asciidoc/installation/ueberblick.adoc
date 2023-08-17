@@ -24,11 +24,14 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
 |xplan-wfs-<VERSION>.war |xplan-workspaces-<VERSION>-xplan-wfs-workspace.zip
 |xplan-wms-<VERSION>.war |xplan-workspaces-<VERSION>-xplansyn-wms-workspace.zip
 |xplan-inspireplu-<VERSION>.war |xplan-workspaces-<VERSION>-xplan-inspireplu-workspace.zip
-|xplan-validator-wms-<VERSION>.war |xplan-workspaces-<VERSION>-xplan-validator-wms-workspace.zip
+|xplan-validator-wms-<VERSION>.war |xplan-workspaces-<VERSION>-xplan-validator-wms-memory-workspace.zip, xplan-workspaces-<VERSION>-xplan-validator-wms-sql-workspace.zip
 |===
 
- * Dokumentation (in HTML und PDF-Format):
+* MapServer Konfiguration
+ ** xplan-mapserver-config-<VERSION>.zip
+
+* Dokumentation (in HTML und PDF-Format):
  ** XPlanBenutzerhandbuch - Benutzerhandbuch für die Komponenten der xPlanBox
  ** XPlanBetriebshandbuch - Betriebshandbuch und Installationsanleitung für die xPlanBox
 
-Bitte kontaktieren Sie https://www.lat-lon.de[lat/lon GmbH], per E-mail an info@lat-lon.de, wenn Installationskomponenten fehlen.
+NOTE: Bitte kontaktieren Sie https://www.lat-lon.de[lat/lon GmbH], per E-mail an info@lat-lon.de, wenn Installationskomponenten fehlen.

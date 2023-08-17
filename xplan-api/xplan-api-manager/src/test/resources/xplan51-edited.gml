@@ -3,7 +3,7 @@
   #%L
   xplan-api-manager - xplan-api-manager
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -10170,6 +10170,14 @@
       </xplan:refScan>
       <xplan:refScan>
         <xplan:XP_ExterneReferenz>
+          <xplan:georefURL>Added.tfw</xplan:georefURL>
+          <xplan:art>PlanMitGeoreferenz</xplan:art>
+          <xplan:referenzName>Added</xplan:referenzName>
+          <xplan:referenzURL>Added.tif</xplan:referenzURL>
+        </xplan:XP_ExterneReferenz>
+      </xplan:refScan>
+      <xplan:refScan>
+        <xplan:XP_ExterneReferenz>
           <xplan:georefURL>Test-Karte.tfw</xplan:georefURL>
           <xplan:art>PlanMitGeoreferenz</xplan:art>
           <xplan:referenzName>Test-Karte</xplan:referenzName>
@@ -10186,8 +10194,8 @@
       <xplan:refLegende>
         <xplan:XP_ExterneReferenz>
           <xplan:art>Dokument</xplan:art>
-          <xplan:referenzName>Legende</xplan:referenzName>
-          <xplan:referenzURL>Legende.pdf</xplan:referenzURL>
+          <xplan:referenzName>Beschreibung</xplan:referenzName>
+          <xplan:referenzURL>Beschreibung.pdf</xplan:referenzURL>
         </xplan:XP_ExterneReferenz>
       </xplan:refLegende>
     </xplan:XP_Rasterdarstellung>

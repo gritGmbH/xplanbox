@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +20,8 @@
  */
 package de.latlon.xplan.validator.web.shared;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
@@ -34,6 +36,8 @@ public class ValidationSettings implements Serializable {
 
 	private static final long serialVersionUID = 6120360074178016611L;
 
+	@NotNull
+	@Pattern(regexp = "^[A-Za-z0-9.()_-]*$")
 	private String validationName;
 
 	private List<ValidationType> validationTypes;

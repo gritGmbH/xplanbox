@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -78,7 +78,7 @@ public class SyntacticValidatorImpl implements SyntacticValidator {
 	@Override
 	public void validateReferences(XPlanArchive archive, ExternalReferenceInfo externalReferenceInfo, boolean force)
 			throws ValidatorException {
-		for (ExternalReference ref : externalReferenceInfo.getExternalRefs()) {
+		for (ExternalReference ref : externalReferenceInfo.getAllReferences()) {
 			String referenceUrl = ref.getReferenzUrl();
 			if (referenceUrl != null && !referenceUrl.contains(":/") && archive.getEntry(referenceUrl) == null) {
 				sendErrorReference(referenceUrl, force);

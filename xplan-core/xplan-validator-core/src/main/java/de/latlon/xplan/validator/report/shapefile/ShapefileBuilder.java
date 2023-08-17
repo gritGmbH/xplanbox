@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,17 +20,7 @@
  */
 package de.latlon.xplan.validator.report.shapefile;
 
-import static org.geotools.data.DataUtilities.createType;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
+import de.latlon.xplan.validator.report.ReportGenerationException;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.geotools.data.DefaultTransaction;
 import org.geotools.data.Transaction;
@@ -45,8 +35,21 @@ import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.geometry.jts.Geometries;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.validator.report.ReportGenerationException;
+import java.io.IOException;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.geotools.data.DataUtilities.createType;
 
 /**
  * Creates Shapefiles of different Types
@@ -55,6 +58,8 @@ import de.latlon.xplan.validator.report.ReportGenerationException;
  * @version $Revision: $, $Date: $
  */
 class ShapefileBuilder {
+
+	private static final Logger LOG = LoggerFactory.getLogger(ShapefileBuilder.class);
 
 	private final SimpleFeatureType TYPE;
 
@@ -125,17 +130,20 @@ class ShapefileBuilder {
 
 	/**
 	 * Writes shapefiles containing the Geometry which was added by addGeometry()
-	 * @param shapeFile An empty file with ending .shp which will become the shapefile
+	 * @param shapeFileDirectory An empty file with ending .shp which will become the
+	 * shapefile
+	 * @param shpName
 	 * @throws ReportGenerationException if the generation of the shapefile failed
 	 */
-	void writeToShapefile(File shapeFile) throws ReportGenerationException {
+	void writeToShapefile(Path shapeFileDirectory, String shpName) throws ReportGenerationException {
 		try {
+			Path shapeFile = shapeFileDirectory.resolve(shpName + ".shp");
 			ShapefileDataStoreFactory dataStoreFactory = new ShapefileDataStoreFactory();
-			Map<String, Serializable> params = new HashMap<String, Serializable>();
-			params.put("url", shapeFile.toURI().toURL());
+			Map<String, Serializable> params = new HashMap<>();
+			params.put("url", shapeFile.toUri().toURL());
 			params.put("create spatial index", Boolean.TRUE);
 			ShapefileDataStore newDataStore = (ShapefileDataStore) dataStoreFactory.createNewDataStore(params);
-
+			newDataStore.setCharset(UTF_8);
 			newDataStore.createSchema(TYPE);
 
 			Transaction transaction = new DefaultTransaction("create");
@@ -149,11 +157,12 @@ class ShapefileBuilder {
 				featureStore.setTransaction(transaction);
 				try {
 					featureStore.addFeatures(collection);
+					writeCpgFile(shapeFileDirectory, shpName);
 					transaction.commit();
 				}
-				catch (Exception problem) {
-					problem.printStackTrace();
+				catch (Exception e) {
 					transaction.rollback();
+					throw new ReportGenerationException("Shapefile could not be written!", e);
 				}
 				finally {
 					transaction.close();
@@ -166,6 +175,11 @@ class ShapefileBuilder {
 		catch (IOException e) {
 			throw new ReportGenerationException("Shapefile could not be written!", e);
 		}
+	}
+
+	private static void writeCpgFile(Path shapeFileDirectory, String shpName) throws IOException {
+		Path cpgFile = shapeFileDirectory.resolve(shpName + ".cpg");
+		Files.writeString(cpgFile, "UTF-8", UTF_8);
 	}
 
 }

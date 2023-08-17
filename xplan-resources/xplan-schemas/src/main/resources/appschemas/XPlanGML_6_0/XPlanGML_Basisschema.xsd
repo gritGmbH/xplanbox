@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 01.08.2022 16:06:31-->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.1">
+<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 02.11.2022 15:51:45-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.2">
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="GmlProfile/gmlProfilexplan.xsd" />
   <!--=========================================================================================-->
   <!--XP_Aenderungsarten-->
@@ -287,7 +287,7 @@
           </element>
           <element name="geltungsbereich" minOccurs="0" type="gml:GeometryPropertyType">
             <annotation>
-              <documentation>Räumliche Abgrenzung des Bereiches. Wenn dieses Attribut nicht spezifiziert ist, gilt für den Bereich der auf Planebene (&lt;i&gt;XP_Plan&lt;/i&gt;) spezifizierte Geltungsbereich.</documentation>
+              <documentation>Räumliche Abgrenzung des Bereiches.</documentation>
             </annotation>
           </element>
           <element name="refScan" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_ExterneReferenzPropertyType">
@@ -441,6 +441,9 @@ Standardmäßig wird der Wert des Attributes &lt;i&gt;referenzName &lt;/i&gt;ver
       </element>
       <element name="referenzMimeType" minOccurs="0" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:XP_MimeTypes</referenzierteCodelist>
+          </appinfo>
           <documentation>Mime-Type des referierten Dokuments</documentation>
         </annotation>
       </element>
@@ -3669,6 +3672,9 @@ Gebundene Präsentationsobjekte mit Raumbezug dienen &lt;b&gt;ausschließlich &l
         <sequence>
           <element name="stylesheetId" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:XP_StylesheetListe</referenzierteCodelist>
+              </appinfo>
               <documentation>Das Attribut "&lt;i&gt;stylesheetId&lt;/i&gt;" zeigt auf ein extern definiertes Stylesheet, das Parameter zur Visualisierung von Fl&amp;#228;chen, Linien, Punkten und Texten enth&amp;#228;lt. Jedem Stylesheet ist weiterhin eine Darstellungspriorit&amp;#228;t zugeordnet. Au&amp;#223;erdem kann ein Stylesheet logische Elemente enthalten,  die die Visualisierung abh&amp;#228;ngig machen vom Wert des durch "&lt;i&gt;art&lt;/i&gt;" definierten Attributes des Fachobjektes, das durch die Relation "&lt;i&gt;dientZurDarstellungVon&lt;/i&gt;" referiert wird.</documentation>
             </annotation>
           </element>
@@ -3679,7 +3685,7 @@ Gebundene Präsentationsobjekte mit Raumbezug dienen &lt;b&gt;ausschließlich &l
           </element>
           <element name="art" minOccurs="0" maxOccurs="unbounded" type="string">
             <annotation>
-              <documentation>"art" gibt die Namen der Attribute an, die mit dem Präsentationsobjekt dargestellt werden sollen. Dabei ist beim Verweis auf komplexe Attribute des Fachobjekts die Xpath-Syntax zu verwenden. Wenn das zugehörige Attribut oder Sub-Attribut des Fachobjekts mehrfach belegt ist, muss die []-Syntax zur Spezifikation des zugehörigen Instanz-Attributs benutzt werden. 
+              <documentation>"art" gibt die Namen der Attribute an, die mit dem Präsentationsobjekt dargestellt werden sollen. Dabei ist beim Verweis auf die Attribute des Fachobjekts die XPath-Syntax zu verwenden. Die Pfadangabe ist relativ zu dem Objekt, auf das die Relation &lt;i&gt;dientZurDarstellungVon &lt;/i&gt;zeigt.Der XPath-Ausdruck muss auswertbar sein, was insbes. die Verwendung qualifizierten Attributnamen (incl. Namespace-Kürzel xplan) erfordert. Wenn das zugehörige Attribut oder Sub-Attribut des Fachobjekts mehrfach belegt ist, muss die []-Syntax zur Spezifikation des zugehörigen Instanz-Attributs benutzt werden. 
 
 Das Attribut 'art' darf nur bei "Freien Präsentationsobjekten" (dientZurDarstellungVon = NULL) nicht belegt sein.</documentation>
             </annotation>

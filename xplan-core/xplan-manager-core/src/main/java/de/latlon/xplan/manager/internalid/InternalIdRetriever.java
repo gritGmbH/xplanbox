@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -41,10 +41,11 @@ import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
 /**
  * Retrieves the internal id of a plan by the plan name from database.
  *
+ * @deprecated This class be removed in a future version.
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @version $Revision: $, $Date: $
  */
+@Deprecated
 public class InternalIdRetriever {
 
 	private static final Logger LOG = LoggerFactory.getLogger(InternalIdRetriever.class);

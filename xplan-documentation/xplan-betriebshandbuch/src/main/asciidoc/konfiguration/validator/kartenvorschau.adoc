@@ -28,3 +28,34 @@ jar uf xplan-validator-web.war masterportal/template/services-internet.template.
 ----
 
 NOTE: Die Zeilen mit den Angaben für `${SERVICESCONFIG}`, `id` und `name` dürfen nicht angepasst werden!
+
+[[konfiguration-xplanvalidatorwms]]
+==== Konfiguration des XPlanValidatorWMS
+
+Im XPlanValidatorWMS werden die im XPlanValidator hochgeladenen XPlanGML-Dateien visualisiert und über die Kartenvorschau im XPlanValidatorWeb angezeigt. Der XPlanValidatorWMS kann für die temporäre Datenhaltung so konfiguriert werden, dass die Daten ausschliesslich im Arbeitsspeicher vorgehalten oder in einer Datenbank gespeichert werden.
+
+Über den _xplan-validator-wms-memory-workspace_ (dies ist der Vorgabewert) steht eine Konfiguration für den XPlanValidatorWMS bereit, die die Daten ausschliesslich im Arbeitsspeicher vorhält. Mit dem _xplan-validator-wms-sql-workspace_ kann stattdessen die XPlanDB als Datenhaltung ausgewählt werden. Dabei muss ein separates Schema für den XPlanValidatorWMS in der XPlanDB angelegt werden (weitere Informationen zur Einrichtung der XPlanDB im Kapitel <<konfiguration-der-datenbank>>).
+
+Die Aktivierung des jeweiligen Workspace erfolgt über die Datei _<DEEGREE_WORKSPACE_ROOT>/webapps.properties_.
+
+.Beispiel für den Eintrag in der _webapps.properties_ mit der Auswahl der XPlanDB als Datenhaltung für den XPlanValidatorWMS:
+[source,properties]
+----
+/xplan-validator-wms=xplan-validator-wms-sql-workspace
+----
+
+[IMPORTANT]
+====
+Um die Kartenvorschau zu aktivieren, muss zusätzlich die Umgebungsvariable `spring_profiles_active` für XPlanValidatorWeb, XPlanValidatorAPI und XPlanValidatorWMS wie folgt gesetzt werden:
+
+* Für die Speicherung der Daten im Arbeitsspeicher: `spring_profiles_active=validatorwmsmemory`
+* Für die Speicherung der Daten in der XPlanDB: `spring_profiles_active=validatorwmssql`
+====
+
+==== Konfiguration des Löschens von Daten aus dem XPlanValidatorWMS
+
+Standardmäßig werden Pläne fünf Minuten nach der Validierung wieder aus dem XPlanValidatorWMS entfernt und sind in der Kartenvorschau nicht mehr sichtbar.
+Der Zeitraum, in dem validierte Pläne für die Kartenvorschau vorgehalten werden, kann angepasst werden. Die Konfiguration unterscheidet sich je nachdem ob die Daten im Arbeitsspeicher oder in der XPlanDB abgelegt werden. Im folgenden Beispiel wird der Zeitraum, in der die Daten über den XPlanValidatorWMS sichtbar sind, auf 15 Minuten erhöht:
+
+* Bei Speicherung der Daten im Arbeitsspeicher: Setzen der Umgebungsvariable `DELETE_AFTER_MINUTES=15` für den XPlanValidatorWMS.
+* Bei Speicherung der Daten in der XPlanDB: Setzen der Umgebungsvariable `DELETE_AFTER_MINUTES=15` für XPlanValidatorWeb *und* XPlanValidatorAPI.

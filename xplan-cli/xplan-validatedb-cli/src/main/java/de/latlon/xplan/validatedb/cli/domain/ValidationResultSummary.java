@@ -2,7 +2,7 @@
  * #%L
  * xplan-evaluation-schema-synchronize-cli - Datenbankschema für die Auswertung der XPlanGML-Daten
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -79,8 +79,10 @@ public class ValidationResultSummary {
 	public String getFailedRules() {
 		if (validatorReport instanceof SemanticValidatorResult) {
 			List<RuleResult> rules = ((SemanticValidatorResult) validatorReport).getRules();
-			return rules.stream().filter(rule -> !rule.isValid()).map(rule -> rule.getName())
-					.collect(Collectors.joining(","));
+			return rules.stream()
+				.filter(rule -> !rule.isValid())
+				.map(rule -> rule.getName())
+				.collect(Collectors.joining(","));
 		}
 		return null;
 	}

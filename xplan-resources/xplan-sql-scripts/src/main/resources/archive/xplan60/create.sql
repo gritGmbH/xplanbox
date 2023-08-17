@@ -2,18 +2,18 @@
 -- #%L
 -- xplan-sql-scripts - SQL Skripte zum Aufsetzen der Datenhaltung.
 -- %%
--- Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+-- Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
 -- %%
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU Affero General Public License as published by
 -- the Free Software Foundation, either version 3 of the License, or
 -- (at your option) any later version.
---
+-- 
 -- This program is distributed in the hope that it will be useful,
 -- but WITHOUT ANY WARRANTY; without even the implied warranty of
 -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 -- GNU General Public License for more details.
---
+-- 
 -- You should have received a copy of the GNU Affero General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- #L%
@@ -25,7 +25,7 @@ SET search_path TO xplan60archive,public;
 /* --- END schema setup --- */
 CREATE TABLE FEATURE_TYPES (id smallint PRIMARY KEY, qname text NOT NULL);
 COMMENT ON TABLE FEATURE_TYPES IS 'Ids and bboxes of concrete feature types';
-SELECT ADDGEOMETRYCOLUMN('xplan60archive', 'feature_types','bbox','0','GEOMETRY',2);
+SELECT ADDGEOMETRYCOLUMN('xplan60archive', 'feature_types','bbox','25832','GEOMETRY',2);
 INSERT INTO FEATURE_TYPES  (id,qname) VALUES (0,'{http://www.opengis.net/gml/3.2}AbstractDiscreteCoverage');
 INSERT INTO FEATURE_TYPES  (id,qname) VALUES (1,'{http://www.opengis.net/gml/3.2}MultiPointCoverage');
 INSERT INTO FEATURE_TYPES  (id,qname) VALUES (2,'{http://www.opengis.net/gml/3.2}RectifiedGridCoverage');
@@ -200,6 +200,6 @@ INSERT INTO FEATURE_TYPES  (id,qname) VALUES (170,'{http://www.xplanung.de/xplan
 INSERT INTO FEATURE_TYPES  (id,qname) VALUES (171,'{http://www.xplanung.de/xplangml/6/0}XP_TextAbschnitt');
 CREATE TABLE GML_OBJECTS (id serial PRIMARY KEY, gml_id text UNIQUE NOT NULL, ft_type smallint REFERENCES FEATURE_TYPES , binary_object bytea, plan_id text, plan_name text, internal_id text, rechtsstand text);
 COMMENT ON TABLE GML_OBJECTS IS 'All objects (features and geometries)';
-SELECT ADDGEOMETRYCOLUMN('xplan60archive', 'gml_objects','gml_bounded_by','0','GEOMETRY',2);
+SELECT ADDGEOMETRYCOLUMN('xplan60archive', 'gml_objects','gml_bounded_by','25832','GEOMETRY',2);
 ALTER TABLE GML_OBJECTS ADD CONSTRAINT gml_objects_geochk CHECK (ST_IsValid(gml_bounded_by));
 CREATE INDEX gml_objects_sidx ON GML_OBJECTS  USING GIST (gml_bounded_by);

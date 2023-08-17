@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!-- 
-  #%L
+ #%L
   xplanbox-syn - Automatisiert erzeugte Konfiguration
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-
+  
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-
+  
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 24.10.2022, 07:13:49
+  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 15.03.2023, 10:57:58
 -->
 <FeatureLayers xmlns="http://www.deegree.org/layers/feature" xmlns:l="http://www.deegree.org/layers/base" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial">
   <FeatureStoreId>xplansynpre</FeatureStoreId>
@@ -115,6 +115,54 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_allggruenfl</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_AnpflanzungBindungErhaltung</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+            <ogc:Literal>SO_Plan</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>lp_anpflanzbinderh</l:Name>
+    <d:Title>lp_anpflanzungbindungerhaltung</d:Title>
+    <d:Abstract>LP_AnpflanzungBindungErhaltung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/lp/lp_anpflanzbinderh</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -598,6 +646,54 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_Landschaftsbild</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+            <ogc:Literal>SO_Plan</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>lp_landschaftsbild</l:Name>
+    <d:Title>lp_landschaftsbild</d:Title>
+    <d:Abstract>LP_Landschaftsbild</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/lp/lp_landschaftsbild</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_NutzungsAusschluss</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
@@ -787,6 +883,54 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_planerischevertief</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_RasterplanAenderung</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+            <ogc:Literal>SO_Plan</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>lp_rasterplanaenderung</l:Name>
+    <d:Title>lp_rasterplanaenderung</d:Title>
+    <d:Abstract>LP_RasterplanAenderung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/lp/lp_rasterplanaenderung</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1315,6 +1459,54 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_zieleerfordernissemassnahmen</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_ZuBegruenendeGrundstueckflaeche</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+            <ogc:Literal>SO_Plan</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>lp_zubegruenendegrundstueckflaeche</l:Name>
+    <d:Title>lp_zubegruenendegrundstueckflaeche</d:Title>
+    <d:Abstract>LP_ZuBegruenendeGrundstueckflaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/lp/lp_zubegruenendegrundstueckflaeche</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>

@@ -1,10 +1,8 @@
-package de.latlon.xplanbox.api.manager.handler;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +18,9 @@ package de.latlon.xplanbox.api.manager.handler;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.handler;
 
+import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
@@ -32,6 +32,7 @@ import de.latlon.xplanbox.api.manager.exception.MissingBereichNummer;
 import de.latlon.xplanbox.api.manager.exception.UnexpectedError;
 import de.latlon.xplanbox.api.manager.v1.model.Rasterbasis;
 import org.deegree.commons.utils.Pair;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
@@ -51,6 +52,9 @@ import java.util.stream.Collectors;
 @Singleton
 public class EditRasterbasisHandler extends EditHandler {
 
+	@Autowired
+	private Optional<AttachmentUrlHandler> attachmentUrlHandler;
+
 	/**
 	 * @param planId the ID of the plan, never <code>null</code>
 	 * @return all Rasterbasis of the plan. May be an empty list but not <code>null</code>
@@ -59,11 +63,14 @@ public class EditRasterbasisHandler extends EditHandler {
 	public List<Rasterbasis> retrieveRasterbasis(String planId) throws Exception {
 		XPlan plan = findPlanById(planId);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
-		return xPlanToEdit.getRasterBasis().stream().flatMap(rb -> rb.getRasterReferences().stream())
-				.map(rasterReference -> {
-					String rasterbasisId = createRasterbasisId(rasterReference);
-					return Rasterbasis.fromRasterReference(rasterbasisId, rasterReference);
-				}).collect(Collectors.toList());
+		return xPlanToEdit.getRasterBasis()
+			.stream()
+			.flatMap(rb -> rb.getRasterReferences().stream())
+			.map(rasterReference -> {
+				String rasterbasisId = createRasterbasisId(planId, rasterReference);
+				return Rasterbasis.fromRasterReference(rasterbasisId, rasterReference);
+			})
+			.collect(Collectors.toList());
 	}
 
 	/**
@@ -90,15 +97,16 @@ public class EditRasterbasisHandler extends EditHandler {
 		XPlan plan = findPlanById(planId);
 		checkBereichNummer(planId, rasterbasisModel);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
-		RasterBasis rasterBasis = getRasterBasisByBereichNummer(rasterbasisModel, xPlanToEdit);
+		String bereichNummer = rasterbasisModel.getBereichNummer();
+		RasterBasis rasterBasis = getRasterBasisByBereichNummer(bereichNummer, xPlanToEdit);
 		RasterReference rasterReferenceToAdd = rasterbasisModel.toRasterReference();
-		String newRasterbasisId = createRasterbasisId(rasterReferenceToAdd);
+		String newRasterbasisId = createRasterbasisId(planId, rasterReferenceToAdd);
 		checkRasterbasisId(planId, rasterbasisModel, newRasterbasisId);
 
 		rasterBasis.getRasterReferences().add(rasterReferenceToAdd);
 		List<File> uploadedArtefacts = createUploadedArtefactsList(referenz, geoReferenz);
-		manager.editPlan(plan, xPlanToEdit, false, uploadedArtefacts);
-		return rasterbasisModel.id(newRasterbasisId);
+		manager.editPlan(plan, xPlanToEdit, true, uploadedArtefacts);
+		return retrieveInsertedRasterbasis(planId, rasterbasisModel, newRasterbasisId);
 	}
 
 	/**
@@ -115,20 +123,22 @@ public class EditRasterbasisHandler extends EditHandler {
 		XPlan plan = findPlanById(planId);
 		checkBereichNummer(planId, rasterbasisModel);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
-		RasterBasis rasterBasis = getRasterBasisByBereichNummer(rasterbasisModel, xPlanToEdit);
+		String bereichNummer = rasterbasisModel.getBereichNummer();
+		RasterBasis rasterBasis = getRasterBasisByBereichNummer(bereichNummer, xPlanToEdit);
 		if (rasterBasis == null)
 			throw new UnexpectedError("Could not find a RasterBasis assigned to Bereich with nummer "
 					+ rasterbasisModel.getBereichNummer());
 		RasterReference rasterReferenceToReplace = getRasterReferenceById(planId, rasterbasisId, rasterBasis);
 		RasterReference rasterReferenceToAdd = rasterbasisModel.toRasterReference();
-		String newRasterbasisId = createRasterbasisId(rasterReferenceToAdd);
+		String newRasterbasisId = createRasterbasisId(planId, rasterReferenceToAdd);
 		checkRasterbasisId(planId, rasterbasisId, rasterbasisModel, newRasterbasisId);
 
 		rasterBasis.getRasterReferences().remove(rasterReferenceToReplace);
 		rasterBasis.getRasterReferences().add(rasterReferenceToAdd);
 		List<File> uploadedArtefacts = createUploadedArtefactsList(referenz, geoReferenz);
-		manager.editPlan(plan, xPlanToEdit, false, uploadedArtefacts);
-		return rasterbasisModel.id(newRasterbasisId);
+		manager.editPlan(plan, xPlanToEdit, true, uploadedArtefacts);
+
+		return retrieveInsertedRasterbasis(planId, rasterbasisModel, newRasterbasisId);
 	}
 
 	/**
@@ -147,15 +157,16 @@ public class EditRasterbasisHandler extends EditHandler {
 		rasterBasis.getRasterReferences().remove(rasterReferenceToDelete);
 		if (rasterBasis.getRasterReferences().isEmpty())
 			xPlanToEdit.addRasterBasis(null);
-		manager.editPlan(plan, xPlanToEdit, false, Collections.emptyList());
+		manager.editPlan(plan, xPlanToEdit, true, Collections.emptyList());
 		return Rasterbasis.fromRasterReference(rasterbasisId, rasterReferenceToDelete);
 	}
 
-	private RasterBasis getRasterBasisByBereichNummer(Rasterbasis rasterbasisModel, XPlanToEdit xPlanToEdit)
+	private RasterBasis getRasterBasisByBereichNummer(String bereichNummer, XPlanToEdit xPlanToEdit)
 			throws InvalidPlanToEdit {
-		String bereichNummer = rasterbasisModel.getBereichNummer();
-		Optional<RasterBasis> rasterBasisCandidate = xPlanToEdit.getRasterBasis().stream()
-				.filter(rb -> rb.getBereichNummer().equals(bereichNummer)).findFirst();
+		Optional<RasterBasis> rasterBasisCandidate = xPlanToEdit.getRasterBasis()
+			.stream()
+			.filter(rb -> rb.getBereichNummer().equals(bereichNummer))
+			.findFirst();
 		if (rasterBasisCandidate.isPresent())
 			return rasterBasisCandidate.get();
 		throw new InvalidPlanToEdit("Could not find bereich with nummer " + bereichNummer);
@@ -164,9 +175,10 @@ public class EditRasterbasisHandler extends EditHandler {
 	private Pair<RasterBasis, RasterReference> getRasterReferenceById(String planId, String rasterbasisId,
 			XPlanToEdit xPlanToEdit) throws InvalidRasterbasisId {
 		for (RasterBasis rasterBasis : xPlanToEdit.getRasterBasis()) {
-			List<RasterReference> rasterReferencesById = rasterBasis.getRasterReferences().stream()
-					.filter(rasterReference -> rasterbasisId.equals(createRasterbasisId(rasterReference)))
-					.collect(Collectors.toList());
+			List<RasterReference> rasterReferencesById = rasterBasis.getRasterReferences()
+				.stream()
+				.filter(rasterReference -> rasterbasisId.equals(createRasterbasisId(planId, rasterReference)))
+				.collect(Collectors.toList());
 			return new Pair<>(rasterBasis, rasterReferencesById.get(0));
 		}
 		throw new InvalidRasterbasisId(planId, rasterbasisId);
@@ -179,8 +191,8 @@ public class EditRasterbasisHandler extends EditHandler {
 			throw new InvalidRasterbasisId(planId, rasterbasisId);
 		}
 		List<RasterReference> rasterReferencesById = rasterReferences.stream()
-				.filter(rasterReference -> rasterbasisId.equals(createRasterbasisId(rasterReference)))
-				.collect(Collectors.toList());
+			.filter(rasterReference -> rasterbasisId.equals(createRasterbasisId(planId, rasterReference)))
+			.collect(Collectors.toList());
 		if (rasterReferencesById.size() != 1) {
 			throw new InvalidRasterbasisId(planId, rasterbasisId);
 		}
@@ -189,12 +201,23 @@ public class EditRasterbasisHandler extends EditHandler {
 
 	private Rasterbasis getRasterbasisById(String planId, String rasterbasisId, List<Rasterbasis> rasterbasis)
 			throws InvalidRasterbasisId {
-		List<Rasterbasis> rasterbasisWithId = rasterbasis.stream().filter(rb -> rasterbasisId.equals(rb.getId()))
-				.collect(Collectors.toList());
+		List<Rasterbasis> rasterbasisWithId = rasterbasis.stream()
+			.filter(rb -> rasterbasisId.equals(rb.getId()))
+			.collect(Collectors.toList());
 		if (rasterbasisWithId.size() != 1) {
 			throw new InvalidRasterbasisId(planId, rasterbasisId);
 		}
 		return rasterbasisWithId.get(0);
+	}
+
+	private Rasterbasis retrieveInsertedRasterbasis(String planId, Rasterbasis rasterbasisModel,
+			String newRasterbasisId) throws Exception {
+		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(findPlanById(planId));
+		RasterBasis rasterBasisByBereichNummer = getRasterBasisByBereichNummer(rasterbasisModel.getBereichNummer(),
+				xPlanToEdit);
+		RasterReference insertedReference = getRasterReferenceById(planId, newRasterbasisId,
+				rasterBasisByBereichNummer);
+		return Rasterbasis.fromRasterReference(newRasterbasisId, insertedReference);
 	}
 
 	private List<File> createUploadedArtefactsList(File referenz, File geoReferenz) {
@@ -206,21 +229,31 @@ public class EditRasterbasisHandler extends EditHandler {
 		return uploadedArtefacts;
 	}
 
-	private static String createRasterbasisId(RasterReference rasterReference) {
+	private String createRasterbasisId(String planId, RasterReference rasterReference) {
 		StringBuilder id = new StringBuilder();
 		if (rasterReference.getReferenzName() != null)
 			id.append(rasterReference.getReferenzName());
 		id.append('-');
-		if (rasterReference.getReference() != null)
-			id.append(rasterReference.getReference());
+		if (rasterReference.getReference() != null) {
+			if (attachmentUrlHandler.isPresent()) {
+				String replacedReference = attachmentUrlHandler.get()
+					.replaceRelativeUrl(planId, rasterReference.getReference());
+				id.append(replacedReference);
+			}
+			else {
+				id.append(rasterReference.getReference());
+			}
+		}
+
 		return id.toString().replaceAll("[^a-zA-Z0-9\\-_]", "");
 	}
 
 	private void checkRasterbasisId(String planId, Rasterbasis rasterbasisModel, String newRasterbasisId)
 			throws Exception {
 		List<Rasterbasis> rasterbasis = retrieveRasterbasis(planId);
-		long noOfRasterbasisWithNewId = rasterbasis.stream().filter(rb -> newRasterbasisId.equals(rb.getId())).count();
-		if (noOfRasterbasisWithNewId > 0) {
+		boolean rasterbasisWithSameReferenceUrlExists = rasterbasis.stream()
+			.anyMatch(rb -> newRasterbasisId.equals(rb.getId()));
+		if (rasterbasisWithSameReferenceUrlExists) {
 			throw new DuplicateRasterbasis(planId, newRasterbasisId, rasterbasisModel.getReferenzName(),
 					rasterbasisModel.getReferenzURL());
 		}

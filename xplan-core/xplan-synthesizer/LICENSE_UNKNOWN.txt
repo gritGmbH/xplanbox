@@ -6,14 +6,14 @@ unter https://xleitstelle.de/xplanung/releases-xplanung übernommen und werden m
 
 Inhalt des Verzeichnisses src/main/resources:
 ---------------------------------------------
-├── codelists
+├── enumeration
+│   ├── XPlanGML_4_0_Enumerationen.xml
 │   ├── XPlanGML_5_0_Enumerationen.xml
 │   ├── XPlanGML_5_1_Enumerationen.xml
 │   ├── XPlanGML_5_2_Enumerationen.xml
 │   ├── XPlanGML_5_3_Enumerationen.xml
 │   ├── XPlanGML_5_4_Enumerationen.xml
-│   ├── XPlanGML_6_0_1_Enumerationen.xml
-│   ├── XPlanGML_Enumerationen_4_0.xml
+│   ├── XPlanGML_6_0_2_Enumerationen.xml
 │   └── XPlanGML_Enumerationen_4_1.xml
 
 Die Testdaten im Verzeichnis src/test/resources werden zu Testzwecken verwendet.
@@ -22,30 +22,30 @@ Dritte ausser zu Testzwecken der Anwendung xPlanBox ist nicht gestattet.
 
 Inhalt des Verzeichnisses src/test/resources:
 ---------------------------------------------
-├── HafenCity7.gml
-├── Rotherbaum27.gml
 ├── de
 │   └── latlon
 │       └── xplan
 │           └── manager
+│               ├── dictionary
+│               │   └── exampleCodelist.xml
 │               └── synthesizer
 │                   ├── BP_DetailArtDerBaulNutzung.xml
-│                   ├── XP_BesondereArtDerBaulNutzung-XPlan4.xml
-│                   ├── XP_BesondereArtDerBaulNutzung-XPlan5.xml
 │                   ├── expression
 │                   │   ├── FeatureWithCurve.xml
-│                   │   ├── MultipleDates.gml
-│                   │   ├── Praesentationsobjekte.gml
 │                   │   ├── flatten
 │                   │   │   ├── BpDachgestaltung.xml
+│                   │   │   ├── BP_KomplexeZweckbestGruen.xml
 │                   │   │   ├── XpSPEMassnahmenDaten.xml
 │                   │   │   ├── XpTextAbschnittFlattener.xml
 │                   │   │   ├── XpTextAbschnittWithRefText.xml
 │                   │   │   └── XpVerbundenerPlanFlattener.xml
+│                   │   ├── MultipleDates.gml
+│                   │   ├── Praesentationsobjekte.gml
 │                   │   ├── xplan40.xml
 │                   │   ├── xplan41.xml
 │                   │   ├── xplan50.xml
-│                   │   └── xplan53.xml
+│                   │   ├── xplan53.xml
+│                   │   └── xplan60.xml
 │                   ├── plans
 │                   │   ├── xplan41
 │                   │   │   ├── BP2070.xml
@@ -73,3 +73,12 @@ Inhalt des Verzeichnisses src/test/resources:
 │                   │   ├── BPlan003_4-1.gml
 │                   │   ├── FP_5-2_PPO-Test.gml
 │                   │   └── Test_PPO_index-1.gml
+│                   ├── XP_BesondereArtDerBaulNutzung-XPlan4.xml
+│                   ├── XP_BesondereArtDerBaulNutzung-XPlan5.xml
+│                   ├── xplan41_BP_DetailArtDerBaulNutzung.syn
+│                   ├── xplan41.syn
+│                   └── xplan41_XP_BesondereArtDerBaulNutzung.syn
+├── HafenCity7.gml
+├── log4j2.yaml
+└── Rotherbaum27.gml
+

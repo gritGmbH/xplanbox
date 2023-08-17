@@ -1,228 +1,228 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!-- 
-  #%L
+ #%L
   xplanbox-syn - Automatisiert erzeugte Konfiguration
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-
+  
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-
+  
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 24.10.2022, 07:13:49
+  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 15.03.2023, 10:57:58
 -->
 <Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial">
   <LayerStoreId>soplan</LayerStoreId>
   <Theme>
     <Identifier>SO_Planvektor</Identifier>
     <d:Title>SOPlan Vektor</d:Title>
-    <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+    <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
     <Theme>
       <Identifier>so_wasserwirtschaft</Identifier>
       <d:Title>SO_Wasserwirtschaft</d:Title>
       <d:Abstract>SO_Wasserwirtschaft</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_wasserwirtschaft</Layer>
     </Theme>
     <Theme>
       <Identifier>so_textabschnittflaeche</Identifier>
       <d:Title>SO_TextAbschnittFlaeche</d:Title>
       <d:Abstract>SO_TextAbschnittFlaeche</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_textabschnittflaeche</Layer>
     </Theme>
     <Theme>
       <Identifier>so_strassenverkehr</Identifier>
       <d:Title>SO_Strassenverkehr</d:Title>
       <d:Abstract>SO_Strassenverkehr</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_strassenverkehr</Layer>
     </Theme>
     <Theme>
       <Identifier>so_sichtflaeche</Identifier>
       <d:Title>SO_Sichtflaeche</d:Title>
       <d:Abstract>SO_Sichtflaeche</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_sichtflaeche</Layer>
     </Theme>
     <Theme>
       <Identifier>so_baubeschraenkung</Identifier>
       <d:Title>SO_Baubeschraenkung</d:Title>
       <d:Abstract>SO_Baubeschraenkung</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_baubeschraenkung</Layer>
     </Theme>
     <Theme>
       <Identifier>so_sonstigesrecht</Identifier>
       <d:Title>SO_SonstigesRecht</d:Title>
       <d:Abstract>SO_SonstigesRecht</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_sonstigesrecht</Layer>
     </Theme>
     <Theme>
       <Identifier>so_bodenschutzrecht</Identifier>
       <d:Title>SO_Bodenschutzrecht</d:Title>
       <d:Abstract>SO_Bodenschutzrecht</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_bodenschutzrecht</Layer>
     </Theme>
     <Theme>
       <Identifier>so_denkmalschutzrecht</Identifier>
       <d:Title>SO_Denkmalschutzrecht</d:Title>
       <d:Abstract>SO_Denkmalschutzrecht</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_denkmalschutzrecht</Layer>
     </Theme>
     <Theme>
       <Identifier>so_forstrecht</Identifier>
       <d:Title>SO_Forstrecht</d:Title>
       <d:Abstract>SO_Forstrecht</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_forstrecht</Layer>
     </Theme>
     <Theme>
       <Identifier>so_luftverkehrsrecht</Identifier>
       <d:Title>SO_Luftverkehrsrecht</d:Title>
       <d:Abstract>SO_Luftverkehrsrecht</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_luftverkehrsrecht</Layer>
     </Theme>
     <Theme>
       <Identifier>so_schienenverkehrsrecht</Identifier>
       <d:Title>SO_Schienenverkehrsrecht</d:Title>
       <d:Abstract>SO_Schienenverkehrsrecht</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_schienenverkehrsrecht</Layer>
     </Theme>
     <Theme>
       <Identifier>so_schutzgebietNaturschutzrecht</Identifier>
       <d:Title>SO_SchutzgebietNaturschutzrecht</d:Title>
       <d:Abstract>SO_SchutzgebietNaturschutzrecht</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_schutzgebietNaturschutzrecht</Layer>
     </Theme>
     <Theme>
       <Identifier>so_schutzgebietsonstigesrecht</Identifier>
       <d:Title>SO_SchutzgebietSonstigesRecht</d:Title>
       <d:Abstract>SO_SchutzgebietSonstigesRecht</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_schutzgebietsonstigesrecht</Layer>
     </Theme>
     <Theme>
       <Identifier>so_schutzgebietwasserrecht</Identifier>
       <d:Title>SO_SchutzgebietWasserrecht</d:Title>
       <d:Abstract>SO_SchutzgebietWasserrecht</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_schutzgebietwasserrecht</Layer>
     </Theme>
     <Theme>
       <Identifier>so_strassenverkehrsrecht</Identifier>
       <d:Title>SO_Strassenverkehrsrecht</d:Title>
       <d:Abstract>SO_Strassenverkehrsrecht</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_strassenverkehrsrecht</Layer>
     </Theme>
     <Theme>
       <Identifier>so_bauverbotszone</Identifier>
       <d:Title>SO_Bauverbotszone</d:Title>
       <d:Abstract>SO_Bauverbotszone</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_bauverbotszone</Layer>
     </Theme>
     <Theme>
       <Identifier>so_gewaesser</Identifier>
       <d:Title>SO_Gewaesser</d:Title>
       <d:Abstract>SO_Gewaesser</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_gewaesser</Layer>
     </Theme>
     <Theme>
       <Identifier>so_wasserrecht</Identifier>
       <d:Title>SO_Wasserrecht</d:Title>
       <d:Abstract>SO_Wasserrecht</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_wasserrecht</Layer>
     </Theme>
     <Theme>
       <Identifier>so_gebiet</Identifier>
       <d:Title>SO_Gebiet</d:Title>
       <d:Abstract>SO_Gebiet</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_gebiet</Layer>
     </Theme>
     <Theme>
       <Identifier>so_grenze</Identifier>
       <d:Title>SO_Grenze</d:Title>
       <d:Abstract>SO_Grenze</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_grenze</Layer>
     </Theme>
     <Theme>
       <Identifier>so_gelaendemorphologie</Identifier>
       <d:Title>SO_Gelaendemorphologie</d:Title>
       <d:Abstract>SO_Gelaendemorphologie</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_gelaendemorphologie</Layer>
     </Theme>
     <Theme>
       <Identifier>so_bereich</Identifier>
       <d:Title>SO_Bereich</d:Title>
       <d:Abstract>SO_Bereich</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>so_bereich</Layer>
     </Theme>
     <Theme>
       <Identifier>so_beschriftung</Identifier>
       <d:Title>SO Beschriftung</d:Title>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Theme>
         <Identifier>so_xp_fpo</Identifier>
         <d:Title>XP_FPO</d:Title>
         <d:Abstract>XP_FPO</d:Abstract>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_xp_fpo</Layer>
       </Theme>
       <Theme>
         <Identifier>so_xp_lpo</Identifier>
         <d:Title>XP_LPO</d:Title>
         <d:Abstract>XP_LPO</d:Abstract>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_xp_lpo</Layer>
       </Theme>
       <Theme>
         <Identifier>so_xp_lto</Identifier>
         <d:Title>XP_LTO</d:Title>
         <d:Abstract>XP_LTO</d:Abstract>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_xp_lto</Layer>
       </Theme>
       <Theme>
         <Identifier>so_xp_ppo</Identifier>
         <d:Title>XP_PPO</d:Title>
         <d:Abstract>XP_PPO</d:Abstract>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_xp_ppo</Layer>
       </Theme>
       <Theme>
         <Identifier>so_xp_pto</Identifier>
         <d:Title>XP_PTO</d:Title>
         <d:Abstract>XP_PTO</d:Abstract>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_xp_pto</Layer>
       </Theme>
       <Theme>
         <Identifier>so_plan</Identifier>
         <d:Title>SO Plan</d:Title>
         <d:Abstract>SO_Plan</d:Abstract>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_plan</Layer>
       </Theme>
     </Theme>

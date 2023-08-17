@@ -14,4 +14,4 @@ Die REST-API des XPlanValidator stellt folgende Ressourcen bereit:
 
 Eine vollständige Beschreibung der HTTP Status-Codes und der unterstützten Formate (Encodings) für die jeweiligen Ressourcen sind in der OpenAPI Schnittstellenbeschreibung enthalten.
 
-NOTE: Die URL für die REST-API des XPlanValidator setzt sich wie folgt zusammen http://<host>:<port>/xplan-api-validator/xvalidator/api/v1/. Die URL für die xPlanBox-Demo lautet https://xplanbox.lat-lon.de/xvalidator/api/v1.
+NOTE: Die URL für die REST-API des XPlanValidator setzt sich wie folgt zusammen http://<host>:<port>/xplan-api-validator/xvalidator/api/v1/. Die URL für die xPlanBox-Demo lautet https://xplanbox.lat-lon.de/xvalidator/api/v1/.

@@ -2,18 +2,18 @@
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -34,6 +34,7 @@ import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.server.ServerProperties;
 import org.slf4j.Logger;
 
 import javax.servlet.ServletContext;
@@ -72,10 +73,13 @@ public class ApplicationPathConfig extends ResourceConfig {
 		packages("de.latlon.xplanbox.api.commons.exception");
 		packages("de.latlon.xplanbox.api.commons.converter");
 		packages("org.glassfish.jersey.examples.multipart");
+		property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 		OpenAPI openApi = new OpenAPI();
-		openApi.setInfo(new Info().title("XPlanManagerAPI").version("1.1.0").description("XPlanManager REST API")
-				.termsOfService(getTermsOfService(managerApiConfiguration))
-				.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));
+		openApi.setInfo(new Info().title("XPlanManagerAPI")
+			.version("1.3.0")
+			.description("XPlanManager REST API")
+			.termsOfService(getTermsOfService(managerApiConfiguration))
+			.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));
 		addContact(openApi, managerApiConfiguration);
 		openApi.servers(servers(servletContext, managerApiConfiguration));
 		List<Tag> tags = createTags(managerApiConfiguration);
@@ -83,8 +87,9 @@ public class ApplicationPathConfig extends ResourceConfig {
 
 		DefaultApi openApiResource = new DefaultApi();
 		SwaggerConfiguration oasConfig = new SwaggerConfiguration().openAPI(openApi)
-				.filterClass(ManagerOpenApiFilter.class.getCanonicalName()).prettyPrint(true)
-				.resourcePackages(Stream.of("de.latlon.xplanbox.api.manager.v1").collect(Collectors.toSet()));
+			.filterClass(ManagerOpenApiFilter.class.getCanonicalName())
+			.prettyPrint(true)
+			.resourcePackages(Stream.of("de.latlon.xplanbox.api.manager.v1").collect(Collectors.toSet()));
 
 		openApiResource.setOpenApiConfiguration(oasConfig);
 		register(openApiResource);
@@ -97,12 +102,12 @@ public class ApplicationPathConfig extends ResourceConfig {
 		Tag manageTag = new Tag().name("manage").description("Manage XPlanGML documents");
 		if (managerApiConfiguration != null && managerApiConfiguration.getDocumentationUrl() != null) {
 			manageTag.externalDocs(new ExternalDocumentation().description("xPlanBox")
-					.url(managerApiConfiguration.getDocumentationUrl()));
+				.url(managerApiConfiguration.getDocumentationUrl()));
 		}
 		Tag searchTag = new Tag().name("search").description("Search for XPlanGML documents");
 		if (managerApiConfiguration != null && managerApiConfiguration.getDocumentationUrl() != null) {
 			searchTag.externalDocs(new ExternalDocumentation().description("xPlanBox")
-					.url(managerApiConfiguration.getDocumentationUrl()));
+				.url(managerApiConfiguration.getDocumentationUrl()));
 		}
 		tags.add(manageTag);
 		tags.add(searchTag);

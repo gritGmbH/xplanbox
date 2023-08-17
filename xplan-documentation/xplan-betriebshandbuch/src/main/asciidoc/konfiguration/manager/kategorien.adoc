@@ -5,6 +5,8 @@ Filterkategorien können genutzt werden, damit ein Benutzer im XPlanManagerWeb d
 
 Um den Filter nach Kategorien zu aktivieren, muss die Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ entsprechend angepasst werden.
 
+IMPORTANT: Die Filterung nach Filterkategorien ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt.
+
 [[kategorien-filtern]]
 ==== Gemeinden
 

@@ -1,10 +1,8 @@
-package de.latlon.xplanbox.api.manager.openapi;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +18,7 @@ package de.latlon.xplanbox.api.manager.openapi;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.openapi;
 
 import io.swagger.v3.core.model.ApiDescription;
 import io.swagger.v3.oas.models.Operation;
@@ -45,7 +44,8 @@ public class ManagerOpenApiFilter extends de.latlon.xplanbox.api.commons.openapi
 		if (content.containsKey("multipart/form-data")) {
 			MediaType mediaType = content.get("multipart/form-data");
 			if (mediaType != null && mediaType.getSchema() != null) {
-				Schema schema = mediaType.getSchema();
+				Schema<?> schema = mediaType.getSchema();
+				@SuppressWarnings("rawtypes")
 				Map<String, Schema> properties = schema.getProperties();
 				if (properties.containsKey("datei")) {
 					mediaType.addEncoding("datei",

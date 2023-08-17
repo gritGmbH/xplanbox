@@ -1,18 +1,20 @@
 [[konfiguration-der-datenbank]]
 === Konfiguration der Datenbank
 
-Das Anlegen der Datenbank XPlanDB kann mit einem beliebigen Datenbankwerkzeug, wie z. B. https://www.pgadmin.org[pgAdmin], erfolgen.
+Das Anlegen der Datenbank XPlanDB kann mit einem beliebigen Datenbankwerkzeug, wie z. B. dem Kommandozeilentool `psql` oder https://www.pgadmin.org[pgAdmin] erfolgen.
 
-Dafür müssen die folgenden Schritte ausgeführt werden:
+Für die Erstellung der XPlanDB müssen die folgenden Schritte ausgeführt werden:
 
  . Anlegen einer neuen Datenbank.
  . Installation der PostGIS-Erweiterung für die neue Datenbank.
- . Das SQL-Create-Skript _create.sql_ aus dem Verzeichnis _xplan-manager-workspace/sql_ in der neu angelegten Datenbank ausführen.
+ . Das SQL-Skript _create.sql_ aus dem Verzeichnis _xplan-manager-workspace/sql_ in der neu angelegten Datenbank ausführen.
  . Anpassen der Datenbank-Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace:
- .. _.deegree/xplan-manager-workspace/jdbc/xplan.xml_
- .. _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
- .. _.deegree/xplansyn-wfs-workspace/jdbc/xplan.xml_
- .. _.deegree/xplansyn-wms-workspace/jdbc/xplan.xml_
+ .. _<DEEGREE_WORKSPACE_ROOT>/xplan-manager-workspace/jdbc/xplan.xml_
+ .. _<DEEGREE_WORKSPACE_ROOT>/xplan-wfs-workspace/jdbc/xplan.xml_
+ .. _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wfs-workspace/jdbc/xplan.xml_
+ .. _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/jdbc/xplan.xml_
+. Anpassen der Datenbank-Verbindungen im XPlanValidatorWMS, wenn die persistente Datenhaltung verwendet wird (siehe <<konfiguration-xplanvalidatorwms>>)
+.. _<DEEGREE_WORKSPACE_ROOT>/xplan-validator-wms-sql-workspace/jdbc/xplan.xml_
 
 [[aufsetzen-plu-db-schema]]
 ==== Manuelles Aufsetzen der Datenbank für die Bereitstellung von INSPIRE PLU
@@ -23,12 +25,12 @@ Es müssen die folgenden Schritte ausgeführt werden:
 
  . Anlegen einer neuen Datenbank.
  . Installation der PostGIS-Erweiterung für die neue Datenbank.
- . Die folgenden SQL-Create-Skripte aus dem Verzeichnis _xplan-manager-workspace/sql/inspireplu_ in der neu angelegten Datenbank ausführen (in dieser Reihenfolge):
+ . Die folgenden SQL-Skripte aus dem Verzeichnis _xplan-manager-workspace/sql/inspireplu_ in der neu angelegten Datenbank ausführen (in der genannten Reihenfolge):
  .. _04_create_inspireplu_schema.sql_
  .. _05_create_inspireplu_view.sql_
  . Anpassen der Datenbank-Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace:
- .. _.deegree/xplan-inspireplu-workspace/jdbc/inspireplu.xml_
- .. _.deegree/xplan-manager-workspace/jdbc/inspireplu.xml_
+ .. _<DEEGREE_WORKSPACE_ROOT>/xplan-inspireplu-workspace/jdbc/inspireplu.xml_
+ .. _<DEEGREE_WORKSPACE_ROOT>/xplan-manager-workspace/jdbc/inspireplu.xml_
 
 ==== Weiterführende Informationen zur Konfiguration des Datenbankzugriffs
 

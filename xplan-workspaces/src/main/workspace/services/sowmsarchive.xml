@@ -2,7 +2,7 @@
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +20,7 @@
   -->
 <wms:deegreeWMS xmlns:wms="http://www.deegree.org/services/wms"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:schemaLocation="http://www.deegree.org/services/wms https://schemas.deegree.org/3.5/services/wms/wms_configuration.xsd">
+                xsi:schemaLocation="http://www.deegree.org/services/wms https://schemas.deegree.org/core/3.5/services/wms/wms_configuration.xsd">
 
   <wms:ServiceConfiguration>
     <wms:DefaultLayerOptions>

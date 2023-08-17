@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -37,10 +37,10 @@ import java.util.Properties;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.Files.isDirectory;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -108,7 +108,7 @@ public class ValidatorConfigurationParserTest {
 		Path actualValidationReportDirectory = validatorConfiguration.getValidationReportDirectory();
 		Path expectedValidationReportDirectory = Paths.get("/home/xplanbox/report/");
 
-		assertThat(actualValidationReportDirectory, is(expectedValidationReportDirectory));
+		assertEquals(expectedValidationReportDirectory, actualValidationReportDirectory);
 	}
 
 	@Test
@@ -119,7 +119,7 @@ public class ValidatorConfigurationParserTest {
 
 		Path actualValidationReportDirectory = validatorConfiguration.getValidationReportDirectory();
 
-		assertThat(isDirectory(actualValidationReportDirectory), is(true));
+		assertTrue(isDirectory(actualValidationReportDirectory));
 	}
 
 	@Test
@@ -130,7 +130,7 @@ public class ValidatorConfigurationParserTest {
 
 		Path actualValidationReportDirectory = validatorConfiguration.getValidationReportDirectory();
 
-		assertThat(isDirectory(actualValidationReportDirectory), is(true));
+		assertTrue(isDirectory(actualValidationReportDirectory));
 	}
 
 	@Test
@@ -142,7 +142,7 @@ public class ValidatorConfigurationParserTest {
 		Path actualValidationReportDirectory = validatorConfiguration.getValidationReportDirectory();
 		Path expectedValidationReportDirectory = Paths.get("/home/xplanbox/file/configuration/report/");
 
-		assertThat(actualValidationReportDirectory, is(expectedValidationReportDirectory));
+		assertEquals(expectedValidationReportDirectory, actualValidationReportDirectory);
 	}
 
 	@Test
@@ -151,7 +151,7 @@ public class ValidatorConfigurationParserTest {
 		ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
 		ValidatorConfiguration validatorConfiguration = validatorConfigurationParser.parse(propertiesLoader);
 
-		assertThat(validatorConfiguration.getValidatorProfiles().size(), is(3));
+		assertEquals(3, validatorConfiguration.getValidatorProfiles().size());
 	}
 
 	@Test(expected = ConfigurationException.class)

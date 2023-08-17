@@ -1,13 +1,16 @@
 :doctype: book
 :encoding: utf-8
+:docinfo: shared,private-head
 :toc: macro
+:toc-title: Inhaltsverzeichnis
 :chapter-label:
 :numbered:
-:toc-title: Inhaltsverzeichnis
-:docinfo: shared,private-head
+:appendix-caption: Anhang
+:table-caption: Tabelle
 :icons: font
 :imagesdir: images
 :title-logo-image: images/logo_latlon.png
+:figure-caption: Abbildung
 
 = Benutzerhandbuch für die xPlanBox
 
@@ -20,6 +23,8 @@ include::ueberblick.adoc[]
 include::XPlanValidator.adoc[]
 
 include::XPlanManager.adoc[]
+
+include::XPlanDokumentenAPI.adoc[]
 
 include::XPlanTransform_CLI.adoc[]
 
@@ -35,7 +40,7 @@ include::XPlanInspirePluWFS.adoc[]
 
 include::bekannteProbleme.adoc[]
 
-include::ausblick.adoc
+include::ausblick.adoc[]
 
 include::aenderungsHistorie.adoc[]
 

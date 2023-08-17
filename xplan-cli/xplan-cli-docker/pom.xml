@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>xplan-cli-docker</artifactId>
+  <packaging>pom</packaging>
+
+  <parent>
+    <groupId>de.latlon.product.xplanbox</groupId>
+    <artifactId>xplan-cli</artifactId>
+  	<version>7.0</version>
+  </parent>
+
+  <properties>
+    <docker-image.skip>false</docker-image.skip>
+    <docker-image.name>xplan-cli</docker-image.name>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <images>
+            <image>
+              <build>
+                <assembly>
+                  <inline>
+                    <dependencySets>
+                      <dependencySet>
+                        <includes>
+                          <include>${project.groupId}:xplan-manager-cli:zip</include>
+                        </includes>
+                        <unpack>true</unpack>
+                      </dependencySet>
+                      <dependencySet>
+                        <includes>
+                          <include>${project.groupId}:xplan-transform-cli:zip</include>
+                        </includes>
+                        <unpack>true</unpack>
+                      </dependencySet>
+                      <dependencySet>
+                        <includes>
+                          <include>${project.groupId}:xplan-update-data-cli:zip</include>
+                        </includes>
+                        <unpack>true</unpack>
+                      </dependencySet>
+                    </dependencySets>
+                  </inline>
+                </assembly>
+              </build>
+            </image>
+          </images>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-manager-cli</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-transform-cli</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-update-data-cli</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
+    <dependency> <!-- faked maven dependency to be after volume initializer in the reactor build  -->
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-docker-volume-init</artifactId>
+      <version>${project.version}</version>
+      <type>pom</type>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+</project>

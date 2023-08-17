@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -40,9 +40,11 @@ import org.springframework.security.core.GrantedAuthority;
 /**
  * Maps AD groups to the XPlan user with district authorities.
  *
+ * @deprecated This class be removed in a future version.
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version $Revision: $, $Date: $
  */
+@Deprecated
 public class ActiveDirectoryGrantedAuthoritiesMapper extends RoleHierarchyAuthoritiesMapper {
 
 	private final List<String> superUserGroups;

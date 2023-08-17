@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -24,18 +24,14 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
-import org.deegree.feature.FeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import org.deegree.geometry.Envelope;
 import org.deegree.geometry.SimpleGeometryFactory;
-import org.deegree.gml.GMLStreamReader;
 import org.junit.Test;
 
-import javax.xml.stream.XMLStreamReader;
 import java.text.SimpleDateFormat;
 
 import static org.deegree.cs.CRSUtils.EPSG_4326;
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -48,15 +44,15 @@ import static org.junit.Assert.assertNull;
 public class XPlanFeatureCollectionTest {
 
 	@Test
-	public void testV4_1_ID_66_40() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan40/V4_1_ID_66.zip");
-		Envelope expectedBbox = createEnvelopeIn4326(13.81485304869009, 51.58459550871735, 13.819661964336056,
-				51.587255713842126);
+	public void testBPlan004_40() throws Exception {
+		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan40/BPlan004_4-0.zip");
+		Envelope expectedBbox = createEnvelopeIn4326(10.017888167320903, 53.58286374820989, 10.019250192073962,
+				53.58380514142527);
 
-		assertEquals("12062425", fc.getPlanGkz());
-		assertEquals("\"Weinbergstrasse\"", fc.getPlanName());
-		assertEquals("Nr. 2", fc.getPlanNummer());
-		assertEquals(545, fc.getFeatures().size());
+		assertEquals("02000000", fc.getPlanGkz());
+		assertEquals("BPlan004_4-0", fc.getPlanName());
+		assertNull(fc.getPlanNummer());
+		assertEquals(64, fc.getFeatures().size());
 		assertThat(fc.getBboxIn4326().getMin().get0(), is(expectedBbox.getMin().get0()));
 		assertThat(fc.getBboxIn4326().getMin().get1(), is(expectedBbox.getMin().get1()));
 		assertThat(fc.getBboxIn4326().getMax().get0(), is(expectedBbox.getMax().get0()));
@@ -169,16 +165,16 @@ public class XPlanFeatureCollectionTest {
 	}
 
 	@Test
-	public void testV4_1_ID_103_41() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan41/V4_1_ID_103.zip");
-		Envelope expectedBbox = createEnvelopeIn4326(13.81519026784244, 51.58617350816596, 13.823968763528068,
-				51.58945636520396);
+	public void testBPlan001_41() throws Exception {
+		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan41/BPlan001_4-1.zip");
+		Envelope expectedBbox = createEnvelopeIn4326(10.008563938531246, 53.538185265541415, 10.01873241781561,
+				53.5407955356869);
 
-		assertEquals("12062425", fc.getPlanGkz());
-		assertEquals("\"Heideweg\"", fc.getPlanName());
-		assertEquals("Nr.1", fc.getPlanNummer());
-		assertEquals(500, fc.getFeatures().size());
-		assertThat(fc.getPlanReleaseDate(), is(new SimpleDateFormat("yyyy-MM-dd").parse("2002-02-01")));
+		assertEquals("02000000", fc.getPlanGkz());
+		assertEquals("BPlan001_4-1", fc.getPlanName());
+		assertNull(fc.getPlanNummer());
+		assertEquals(206, fc.getFeatures().size());
+		assertNull(fc.getPlanReleaseDate());
 		assertThat(fc.getBboxIn4326().getMin().get0(), is(expectedBbox.getMin().get0()));
 		assertThat(fc.getBboxIn4326().getMin().get1(), is(expectedBbox.getMin().get1()));
 		assertThat(fc.getBboxIn4326().getMax().get0(), is(expectedBbox.getMax().get0()));
@@ -201,15 +197,7 @@ public class XPlanFeatureCollectionTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		XPlanVersion version = archive.getVersion();
-		XMLStreamReader xmlReader = archive.getMainFileXmlReader();
-		GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
-		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version));
-		FeatureCollection fc = gmlReader.readFeatureCollection();
-		gmlReader.getIdContext().resolveLocalRefs();
-		gmlReader.close();
-		xmlReader.close();
-		return new XPlanFeatureCollectionBuilder(fc, archive.getType()).build();
+		return XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(archive);
 	}
 
 	private Envelope createEnvelopeIn4326(double minx, double miny, double maxx, double maxy) {

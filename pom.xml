@@ -4,7 +4,7 @@
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
   <packaging>pom</packaging>
-  <version>6.0-SNAPSHOT</version>
+  <version>7.0</version>
   <name>xPlanBox</name>
   <description>Software zur Verwaltung von XPlanGML Daten</description>
   <inceptionYear>2008</inceptionYear>
@@ -18,22 +18,29 @@
     <java.version>11</java.version>
     <maven.version>3.8.1</maven.version>
     <!-- version properties -->
-    <deegree3.version>3.5-PRE1</deegree3.version>
-    <xplanung.regeln.version>1.0</xplanung.regeln.version>
+    <deegree3.version>3.5.0.2</deegree3.version>
+    <xplanung.regeln.version>1.1.4</xplanung.regeln.version>
     <gwt.version>2.10.0</gwt.version>
-    <geotools.version>26.6</geotools.version>
+    <geotools.version>29.2</geotools.version>
+    <jacoco.argLine />
+    <jacoco.skip>true</jacoco.skip>
+    <jacoco.version>0.8.10</jacoco.version>
     <log4j.version>2.17.2</log4j.version>
     <slf4j.version>1.7.36</slf4j.version>
-    <spring.version>5.3.23</spring.version>
-    <spring-boot.version>2.5.14</spring-boot.version>
-    <spring-batch.version>4.3.6</spring-batch.version>
+    <spring.version>5.3.29</spring.version>
+    <spring-boot.version>2.7.14</spring-boot.version>
+    <spring-batch.version>4.3.8</spring-batch.version>
     <spring-security.version>5.5.8</spring-security.version>
-    <jackson.version>2.13.4</jackson.version>
-    <liquibase.version>4.15.0</liquibase.version>
-    <postgresql.version>42.4.2</postgresql.version>
+    <spring-data.version>2.7.14</spring-data.version>
+    <hibernate.version>5.6.15.Final</hibernate.version>
+    <jackson.version>2.14.3</jackson.version>
+    <liquibase.version>4.23.0</liquibase.version>
+    <postgresql.version>42.5.4</postgresql.version>
+    <owasp.version>8.3.1</owasp.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <skip.unit.tests>false</skip.unit.tests>
+    <tests.jvm.xmx>1000m</tests.jvm.xmx>
+    <build.key /> <!-- can be set by build job -->
   </properties>
 
   <modules>
@@ -57,7 +64,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>3.0.1</version>
+            <version>3.1.0</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
@@ -88,38 +95,19 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>license-maven-plugin</artifactId>
-            <version>2.0.0</version>
+            <version>2.2.0</version>
             <configuration>
+              <canUpdateCopyright>true</canUpdateCopyright>
+              <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
               <inceptionYear>${project.inceptionYear}</inceptionYear>
               <organizationName>${project.organization.name}</organizationName>
               <projectName>${project.name} - ${project.description}</projectName>
-              <copyrightOwners>lat/lon GmbH, info@lat-lon.de, www.lat-lon.de</copyrightOwners>
+              <copyrightOwners>Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH</copyrightOwners>
               <licenseName>agpl_v3</licenseName>
               <roots>
                 <root>src/main</root>
                 <root>src/test</root>
               </roots>
-              <excludes>
-                <exclude>*/codelists/**</exclude>
-                <exclude>*/appschemas/**</exclude>
-                <exclude>*/masterportal/**</exclude>
-                <exclude>*/xplanmgrweb/js/**</exclude>
-                <exclude>*/appschemas/XPlanGML_3_0/**</exclude>
-                <exclude>*/appschemas/XPlanGML_4_0/**</exclude>
-                <exclude>*/appschemas/XPlanGML_4_1/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_0/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_1/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_2/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_3/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
-                <exclude>*/xplan-database-scripts/src/main/resource/**/*.yaml</exclude>
-                <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-manager/**</exclude>
-                <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-validator/**</exclude>
-                <exclude>*/xplan-tests-soapui/src/main/resource/xplan-webservices/**</exclude>
-                <exclude>*/xplan-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
-                <exclude>**/*.json</exclude>
-              </excludes>
               <extraExtensions>
                 <xq>xml</xq>
                 <gfi>xml</gfi>
@@ -132,15 +120,70 @@
                 <syn>properties</syn>
                 <yaml>properties</yaml>
                 <yuml>properties</yuml>
+                <map>properties</map>
               </extraExtensions>
             </configuration>
+            <executions>
+              <execution>
+                <id>javaAndOther</id>
+                <goals>
+                  <goal>update-file-header</goal>
+                </goals>
+                <phase>process-sources</phase>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <excludes>
+                    <exclude>*/codelists/**</exclude>
+                    <exclude>*/appschemas/**</exclude>
+                    <exclude>*/masterportal/**</exclude>
+                    <exclude>*/xplanmgrweb/js/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_3_0/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_4_0/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_4_1/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_0/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_1/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_2/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_3/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
+                    <exclude>*/xplan-database-scripts/src/main/resource/**/*.yaml</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-manager/**</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-validator/**</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-webservices/**</exclude>
+                    <exclude>*/xplan-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
+                    <exclude>**/*.json</exclude>
+                    <exclude>**./.properties</exclude>
+                  </excludes>
+                  <includes>
+                    <include>**/bbox_cache_gml.properties</include>
+                    <include>**/bbox_cache_syn.properties</include>
+                  </includes>
+                </configuration>
+              </execution>
+              <execution>
+                <id>properties</id>
+                <goals>
+                  <goal>update-file-header</goal>
+                </goals>
+                <phase>process-sources</phase>
+                <configuration>
+                  <encoding>ISO-8859-1</encoding>
+                  <excludes>
+                    <exclude>**/bbox_cache_gml.properties</exclude>
+                    <exclude>**/bbox_cache_syn.properties</exclude>
+                  </excludes>
+                  <includes>
+                    <include>**/*.properties</include>
+                  </includes>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
           <!-- Workaround to replace XML comments with XQuery comments,
                since licence:update-file-header goal does not support xq files yet! -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.8</version>
             <executions>
               <execution>
                 <id>replace-xml-comment</id>
@@ -166,6 +209,83 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+      <id>docker</id>
+      <properties>
+        <docker-image.skip>true</docker-image.skip>
+        <docker-image.namePrefix>xplanbox</docker-image.namePrefix>
+        <docker-image.name>${project.artifactId}</docker-image.name>
+      </properties>
+      <modules>
+        <module>xplan-docker</module>
+      </modules>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>io.fabric8</groupId>
+              <artifactId>docker-maven-plugin</artifactId>
+              <version>0.43.0</version>
+              <configuration>
+                <skip>${docker-image.skip}</skip>
+                <images>
+                  <image>
+                    <name>${docker-image.namePrefix}/${docker-image.name}</name>
+                    <build>
+                      <dockerFileDir>${project.basedir}</dockerFileDir>
+                      <args>
+                        <XPLANBOX_VERSION>${project.version}</XPLANBOX_VERSION>
+                        <XPLANBOX_IMAGE_NAME_PREFIX>${docker-image.namePrefix}</XPLANBOX_IMAGE_NAME_PREFIX>
+                        <WEB_CONTEXT>${project.artifactId}</WEB_CONTEXT>
+                      </args>
+                      <tags>
+                        <tag>${project.version}</tag>
+                      </tags>
+                    </build>
+                  </image>
+                </images>
+              </configuration>
+              <executions>
+                <execution>
+                  <goals>
+                    <goal>build</goal>
+                    <goal>source</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>latlon</id>
+      <distributionManagement>
+        <repository>
+          <id>latlon-deploy</id>
+          <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
+        </repository>
+        <snapshotRepository>
+          <id>latlon-deploy</id>
+          <url>https://repo.lat-lon.de/repository/xplanbox-snapshots/</url>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
+    <profile>
+      <id>skipAll</id>
+      <properties>
+        <dependency-check.skip>true</dependency-check.skip> <!-- dependency-check-maven -->
+        <enforcer.skip>true</enforcer.skip> <!-- maven-enforcer-plugin -->
+        <skipTests>true</skipTests> <!-- surefire & failsafe -->
+        <spring-javaformat.skip>true</spring-javaformat.skip> <!-- spring-javaformat-maven-plugin -->
+      </properties>
+    </profile>
   </profiles>
 
   <reporting>
@@ -173,12 +293,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.4.1</version>
+        <version>3.4.5</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.4.1</version>
+        <version>3.5.0</version>
         <configuration>
           <doclint>none</doclint>
           <detectLinks>false</detectLinks>
@@ -198,29 +318,16 @@
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>4.4.2</version>
+        <version>4.7.3.5</version>
         <configuration>
           <xmlOutput>true</xmlOutput>
           <spotbugsXmlOutput>true</spotbugsXmlOutput>
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.8</version>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <!-- select non-aggregate reports -->
-              <report>report</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-      <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>7.2.1</version>
+        <version>${owasp.version}</version>
       </plugin>
     </plugins>
   </reporting>
@@ -229,7 +336,7 @@
       <plugin>
         <groupId>io.spring.javaformat</groupId>
         <artifactId>spring-javaformat-maven-plugin</artifactId>
-        <version>0.0.34</version>
+        <version>0.0.39</version>
         <executions>
           <execution>
             <phase>validate</phase>
@@ -243,7 +350,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>3.3.0</version>
         <executions>
           <execution>
             <id>enforce-versions</id>
@@ -271,12 +378,9 @@
                 <banDuplicateClasses>
                   <ignoreClasses>
                     <ignoreClass>javax.activation.*</ignoreClass>
-                    <ignoreClass>javax.annotation.*</ignoreClass>
-                    <ignoreClass>javax.servlet.*</ignoreClass>
                     <ignoreClass>javax.xml.stream.*</ignoreClass>
                     <ignoreClass>org.aopalliance.*</ignoreClass>
                     <ignoreClass>org.apache.commons.logging.*</ignoreClass>
-                    <ignoreClass>org.w3c.css.*</ignoreClass>
                     <ignoreClass>org.w3c.dom.*</ignoreClass>
                   </ignoreClasses>
                   <scopes>
@@ -295,9 +399,85 @@
           <dependency>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>extra-enforcer-rules</artifactId>
-            <version>1.6.1</version>
+            <version>1.7.0</version>
           </dependency>
         </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <version>${owasp.version}</version>
+        <configuration>
+          <formats>HTML,XML</formats>
+          <cveValidForHours>24</cveValidForHours>
+          <failBuildOnCVSS>10</failBuildOnCVSS>
+          <knownExploitedEnabled>false</knownExploitedEnabled>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>io.github.git-commit-id</groupId>
+        <artifactId>git-commit-id-maven-plugin</artifactId>
+        <version>6.0.0</version>
+        <executions>
+          <execution>
+            <id>get-the-git-infos</id>
+            <goals>
+              <goal>revision</goal>
+            </goals>
+            <phase>initialize</phase>
+          </execution>
+        </executions>
+        <configuration>
+          <includeOnlyProperties>
+            <includeOnlyProperty>git.commit.id</includeOnlyProperty>
+          </includeOnlyProperties>
+          <verbose>true</verbose>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <configuration>
+          <includes>de.latlon.xplanbox.*</includes>
+          <propertyName>jacoco.argLine</propertyName>
+        </configuration>
+        <executions>
+          <execution>
+            <id>default-prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-prepare-agent-integration</id>
+            <goals>
+              <goal>prepare-agent-integration</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>3.1.2</version>
+        <configuration>
+          <argLine>-Xmx${tests.jvm.xmx} @{jacoco.argLine}</argLine>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
     <pluginManagement>
@@ -305,17 +485,18 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.10.1</version>
+          <version>3.11.0</version>
           <configuration>
             <source>${java.version}</source>
             <target>${java.version}</target>
             <encoding>utf8</encoding>
+            <parameters>true</parameters>
           </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.3</version>
+          <version>3.0.1</version>
           <configuration>
             <preparationGoals>clean install</preparationGoals>
             <autoVersionSubmodules>true</autoVersionSubmodules>
@@ -324,41 +505,20 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.2</version>
+          <version>3.1.2</version>
           <configuration>
-            <skip>${skip.unit.tests}</skip>
-            <excludes>
-              <exclude>**/*IT*</exclude>
-            </excludes>
+            <argLine>-Xmx${tests.jvm.xmx} @{jacoco.argLine}</argLine>
           </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-failsafe-plugin</artifactId>
-          <version>2.22.2</version>
-          <configuration>
-            <includes>
-              <include>**/*IT*</include>
-            </includes>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>integration-test</goal>
-                <goal>verify</goal>
-              </goals>
-            </execution>
-          </executions>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>appassembler-maven-plugin</artifactId>
-          <version>1.10</version>
+          <version>2.1.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
-          <version>3.3.2</version>
+          <version>3.4.0</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -367,7 +527,7 @@
           <configuration>
             <disableCastChecking>true</disableCastChecking>
             <disableClassMetadata>true</disableClassMetadata>
-            <extraJvmArgs>-Xmx2g -Xss1024k</extraJvmArgs>
+            <extraJvmArgs>-Xmx500M</extraJvmArgs>
             <module>${gwt.moduleName}</module>
             <runTarget>index.html</runTarget>
             <hostedWebapp>${project.build.directory}/${project.build.finalName}</hostedWebapp>
@@ -406,7 +566,7 @@
             <dependency>
               <groupId>jakarta.xml.bind</groupId>
               <artifactId>jakarta.xml.bind-api</artifactId>
-              <version>2.3.2</version>
+              <version>2.3.3</version>
             </dependency>
             <dependency>
               <groupId>xerces</groupId>
@@ -418,12 +578,17 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.4.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.3.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.4.1</version>
+          <version>3.5.0</version>
           <configuration>
             <failOnError>false</failOnError>
           </configuration>
@@ -431,22 +596,22 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.7</version>
+          <version>3.1.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
-          <version>3.2.1</version>
+          <version>3.3.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
-          <version>3.4.2</version>
+          <version>3.6.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>3.6.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -454,27 +619,37 @@
           <version>3.12.1</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
           <groupId>com.smartbear.soapui</groupId>
           <artifactId>soapui-maven-plugin</artifactId>
-          <version>5.1.3</version>
+          <version>5.7.1</version>
         </plugin>
         <!-- asciidoc -->
         <plugin>
           <groupId>org.asciidoctor</groupId>
           <artifactId>asciidoctor-maven-plugin</artifactId>
-          <version>2.2.2</version>
+          <version>2.2.4</version>
           <dependencies>
             <dependency>
               <groupId>org.asciidoctor</groupId>
               <artifactId>asciidoctorj-pdf</artifactId>
-              <version>1.6.2</version>
+              <version>2.3.9</version>
             </dependency>
           </dependencies>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
-          <version>2.12.0</version>
+          <version>2.16.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -493,6 +668,11 @@
         <artifactId>el-api</artifactId>
         <version>2.2.1-b04</version>
         <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.persistence</groupId>
+        <artifactId>jakarta.persistence-api</artifactId>
+        <version>2.2.3</version>
       </dependency>
       <!-- deegree -->
       <dependency>
@@ -559,6 +739,11 @@
       </dependency>
       <dependency>
         <groupId>de.latlon</groupId>
+        <artifactId>deegree-core-workspace</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-connectionprovider-datasource</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
@@ -584,7 +769,17 @@
       </dependency>
       <dependency>
         <groupId>de.latlon</groupId>
+        <artifactId>deegree-protocol-wfs</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-sqldialect-postgis</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.latlon</groupId>
+        <artifactId>deegree-services-config</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <!--deegree webservices -->
@@ -596,17 +791,17 @@
       </dependency>
       <!-- gwt -->
       <dependency>
-        <groupId>com.google.gwt</groupId>
+        <groupId>org.gwtproject</groupId>
         <artifactId>gwt-user</artifactId>
         <version>${gwt.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.google.gwt</groupId>
+        <groupId>org.gwtproject</groupId>
         <artifactId>gwt-dev</artifactId>
         <version>${gwt.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.google.gwt</groupId>
+        <groupId>org.gwtproject</groupId>
         <artifactId>gwt-servlet</artifactId>
         <version>${gwt.version}</version>
       </dependency>
@@ -650,7 +845,7 @@
       <dependency>
         <groupId>commons-fileupload</groupId>
         <artifactId>commons-fileupload</artifactId>
-        <version>1.3.3</version>
+        <version>1.5</version>
         <exclusions>
           <exclusion>
             <groupId>commons-io</groupId>
@@ -681,7 +876,7 @@
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-dbcp2</artifactId>
-        <version>2.7.0</version>
+        <version>2.9.0</version>
         <exclusions>
           <exclusion>
             <groupId>commons-logging</groupId>
@@ -690,20 +885,30 @@
         </exclusions>
       </dependency>
       <dependency>
-        <groupId>org.javassist</groupId>
-        <artifactId>javassist</artifactId>
-        <version>3.27.0-GA</version>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-text</artifactId>
+        <version>1.10.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>2.1.214</version>
       </dependency>
       <dependency>
         <groupId>net.bytebuddy</groupId>
         <artifactId>byte-buddy</artifactId>
-        <version>1.9.10</version>
-        <scope>test</scope>
+        <version>1.14.5</version>
       </dependency>
       <dependency>
         <groupId>org.objenesis</groupId>
         <artifactId>objenesis</artifactId>
         <version>2.6</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.hsqldb</groupId>
+        <artifactId>hsqldb</artifactId>
+        <version>2.7.2</version>
         <scope>test</scope>
       </dependency>
       <!-- xerces -->
@@ -716,7 +921,12 @@
       <dependency>
         <groupId>xalan</groupId>
         <artifactId>xalan</artifactId>
-        <version>2.7.2</version>
+        <version>2.7.3</version>
+      </dependency>
+      <dependency>
+        <groupId>xalan</groupId>
+        <artifactId>serializer</artifactId>
+        <version>2.7.3</version>
       </dependency>
       <!-- xml stuff -->
       <dependency>
@@ -748,7 +958,7 @@
       <dependency>
         <groupId>com.sun.xml.bind</groupId>
         <artifactId>jaxb-impl</artifactId>
-        <version>2.3.5</version>
+        <version>2.3.8</version>
       </dependency>
       <dependency>
         <groupId>jakarta.annotation</groupId>
@@ -799,6 +1009,17 @@
         <groupId>org.locationtech.jts</groupId>
         <artifactId>jts-core</artifactId>
         <version>1.19.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.quartz-scheduler</groupId>
+        <artifactId>quartz</artifactId>
+        <version>2.3.2</version>
+        <exclusions>
+          <exclusion>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP-java7</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.liquibase</groupId>
@@ -860,6 +1081,11 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
+        <artifactId>xplan-core-job</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
         <artifactId>xplan-manager-core</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -881,6 +1107,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>xplan-synthesizer</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>xplan-core-manager-db</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -916,6 +1147,12 @@
         <scope>test</scope>
       </dependency>
       <dependency>
+        <groupId>uk.org.webcompere</groupId>
+        <artifactId>system-stubs-junit4</artifactId>
+        <version>2.0.2</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
         <groupId>org.hamcrest</groupId>
         <artifactId>hamcrest-all</artifactId>
         <version>1.3</version>
@@ -924,43 +1161,25 @@
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
-        <version>2.28.2</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-api-mockito2</artifactId>
-        <version>2.0.9</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-core</artifactId>
-        <version>2.0.9</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-module-junit4</artifactId>
-        <version>2.0.9</version>
+        <version>5.4.0</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.xmlunit</groupId>
         <artifactId>xmlunit-core</artifactId>
-        <version>2.8.2</version>
+        <version>2.9.1</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.xmlunit</groupId>
         <artifactId>xmlunit-matchers</artifactId>
-        <version>2.8.2</version>
+        <version>2.9.1</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>com.jayway.jsonpath</groupId>
         <artifactId>json-path-assert</artifactId>
-        <version>2.4.0</version>
+        <version>2.8.0</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -1007,6 +1226,11 @@
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
         <artifactId>spring-expression</artifactId>
         <version>${spring.version}</version>
       </dependency>
@@ -1023,6 +1247,21 @@
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-webmvc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
         <version>${spring.version}</version>
       </dependency>
       <dependency>
@@ -1065,6 +1304,10 @@
           <exclusion>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -1116,6 +1359,17 @@
         <artifactId>spring-security-ldap</artifactId>
         <version>${spring-security.version}</version>
       </dependency>
+      <!-- Spring Data -->
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-commons</artifactId>
+        <version>${spring-data.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-jpa</artifactId>
+        <version>${spring-data.version}</version>
+      </dependency>
       <!-- reports -->
       <dependency>
         <groupId>net.sourceforge.dynamicreports</groupId>
@@ -1125,6 +1379,10 @@
           <exclusion>
             <groupId>net.sf.barcode4j</groupId>
             <artifactId>barcode4j</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -1200,6 +1458,30 @@
         <version>6.1.7.Final</version>
       </dependency>
       <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-entitymanager</artifactId>
+        <version>${hibernate.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-spatial</artifactId>
+        <version>${hibernate.version}</version>
+      </dependency>
+      <dependency>
         <groupId>jakarta.validation</groupId>
         <artifactId>jakarta.validation-api</artifactId>
         <version>2.0.2</version>
@@ -1215,6 +1497,23 @@
         <artifactId>postgresql</artifactId>
         <version>${postgresql.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.apache.tika</groupId>
+        <artifactId>tika-core</artifactId>
+        <version>2.8.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.yaml</groupId>
+        <artifactId>snakeyaml</artifactId>
+        <version>1.33</version>
+      </dependency>
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-bom</artifactId>
+        <version>1.12.520</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -1222,11 +1521,11 @@
     <connection>scm:git:git@bitbucket.org:latlon/xplanbox.git</connection>
     <developerConnection>scm:git:git@bitbucket.org:latlon/xplanbox.git</developerConnection>
     <url>https://bitbucket.org/latlon/xplanbox</url>
-    <tag>HEAD</tag>
+    <tag>xplanbox-7.0</tag>
   </scm>
 
   <repositories>
-    <repository>
+    <repository> <!-- better to try central first as long as most dependencies comes from there -->
       <id>central</id>
       <url>https://repo.maven.apache.org/maven2</url>
       <releases>
@@ -1237,12 +1536,38 @@
       </snapshots>
     </repository>
     <repository>
-      <id>latlon</id>
-      <url>https://repo.lat-lon.de/repository/maven-public/</url>
+      <id>opencode-xplan-deegree</id>
+      <url>https://gitlab.opencode.de/api/v4/projects/622/packages/maven</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>deegree</id>
+      <url>https://repo.deegree.org/repository/public/</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </repository>
     <repository>
       <id>xleitstelle-xplanung-validierungsregeln</id>
       <url>https://gitlab.opencode.de/api/v4/projects/398/packages/maven</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>xleitstelle-xplanung-validierungsregeln-berlin</id>
+      <url>https://gitlab.opencode.de/api/v4/projects/397/packages/maven</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
@@ -1273,13 +1598,17 @@
   </repositories>
 
   <pluginRepositories>
+    <pluginRepository> <!-- better to try central first as long as most plugins come from there -->
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </pluginRepository>
     <pluginRepository>
-      <id>latlon</id>
-      <url>https://repo.lat-lon.de/repository/maven-public/</url>
+      <id>deegree</id>
+      <url>https://repo.deegree.org/repository/public/</url>
     </pluginRepository>
     <pluginRepository>
       <id>SmartBearPluginRepository</id>
-      <url>http://smartbearsoftware.com/repository/maven2</url>
+      <url>https://smartbearsoftware.com/repository/maven2</url>
     </pluginRepository>
   </pluginRepositories>
 

@@ -10,15 +10,13 @@ Listenausgaben zu erzeugen sowie Service-Metadaten für den XPlanWerkWMS zu erze
 [[xplanmanager-cli-benutzungsanleitung]]
 ==== Benutzungsanleitung
 
-Beim XPlanManagerCLI handelt es sich um ein Kommandozeilentool, das
+Beim XPlanManagerCLI handelt es sich um ein Kommandozeilenwerkzeug, das
 parametrisiert aufgerufen wird. Da diese Anwendung bei der Installation
 in die PATH Variable aufgenommen wird, ist diese von einem beliebigen
 Ort aufrufbar.
 
-Der Workspace `xplan-manager-workspace` muss im Verzeichnis _.deegree_ des
-Home-Verzeichnis des Nutzers liegen, der das XPlanManagerCLI aufruft.
-Alternativ kann das Verzeichnis, in dem der Workspace liegt durch Angabe
-der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ gesetzt werden.
+Das Basisverzeichnis mit dem Workspace `xplan-manager-workspace` muss über
+die Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ gesetzt werden.
 
 [[xplanmanager-cli-konfiguration-ueber-datei]]
 ===== Konfiguration über Datei
@@ -133,10 +131,8 @@ _--force_
 Enthält das XPlanGML-Dokument Geometriefehler o.ä., ist es
 dringend angeraten, diese vor einem Import zu bereinigen. Der Import eines Planes kann mit dem Parameter `force` erzwungen werden.
 
-CAUTION: Bitte beachten Sie, dass dabei vorliegenden Geometriefehler o.ä.
-übernommen werden und der importierte Plan dadurch fehlerhaft ist. Die
-Auswirkungen können von einer fehlerhaften Darstellung des Plans bis hin
-zu unerwarteten Verhalten der xPlanBox reichen.
+CAUTION: Bitte beachten Sie, dass dabei vorliegenden Geometriefehler o.ä. übernommen werden und der importierte Plan dadurch fehlerhaft ist. Die
+Auswirkungen können von einer fehlerhaften Darstellung des Plans bis hin zu unerwarteten Verhalten der xPlanBox reichen.
 
 ----
 ./XPlanManager --import --force ../Input-Planverzeichnis/Infrastruktur.zip
@@ -196,7 +192,7 @@ Die Prüfung beinhaltet das CRS des Rasterplans, sowie das Format.
 Beispiel Aufruf:
 
 ----
-./XPlanManager --import ~/test-data/V4_1_ID_103-25832.zip --managerconfiguration=<XPLANBOX_CONFIG>
+./XPlanManager --import ~/test-data/BPlan002_5-2.zip --managerconfiguration=<XPLANBOX_CONFIG>
 ----
 
 Beispiel Ausgabe:

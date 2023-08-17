@@ -7,7 +7,7 @@ Dabei stehen drei verschiedene Konfigurationsvarianten zur Verfügung:
 
 1. Datei-basierte Benutzerverwaltung (siehe <<simple_security>>)
 2. Datenbank-basierte Benutzerverwaltung (siehe <<database_security>>)
-3. Anbindung an ein LDAP bzw. Microsoft Active Directory (AD) Server (siehe <<ldap_security>>)
+3. Anbindung an ein LDAP bzw. Microsoft Active Directory (AD) Server (siehe <<ldap_security>>, diese Variante ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt)
 
 [[enable_security]]
 ==== Absicherung aktivieren
@@ -326,6 +326,8 @@ NOTE: Sowohl die dynamische als auch die statische Gruppenhierarchie wird
 während des Starts der Webapp einmalig ausgewertet. Wenn es zur Laufzeit
 Änderungen an den Hierarchien gibt, muss die Webapp neu gestartet
 werden, damit die Änderungen von der Software erkannt und ausgewertet werden können.
+
+IMPORTANT: Die Absicherung mit  LDAP ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt.
 
 [[disable_security]]
 ==== Absicherung deaktivieren

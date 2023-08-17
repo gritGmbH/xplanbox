@@ -15,7 +15,7 @@ URL der XPlanManagerAPI, die im OpenAPI Dokument ausgegeben wird. Diese Konfigur
 Beispiel:
 
 ----
-apiUrl=http://xplanbox.lat-lon.de
+apiUrl=https://xplanbox.lat-lon.de
 ----
 
 ==== Kontakt E-Mail Adresse
@@ -33,16 +33,16 @@ URL zu den "Terms of Services", die im OpenAPI Dokument ausgegeben wird. Diese K
 Beispiel:
 
 ----
-termsOfServiceUrl=
+termsOfServiceUrl=https://opensource.org/tos/
 ----
 
-==== URL zur Dokumentation der xPLanBox
+==== URL zur Dokumentation der xPlanBox
 
 URL zur Dokumentation, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
 Beispiel:
 
 ----
-documentationUrl=
+documentationUrl=https://xplanbox.lat-lon.de/xPlanBox-Benutzerhandbuch/
 ----
 
 ==== WMS URL
@@ -84,7 +84,7 @@ URL der XPlanManagerAPI, die im OpenAPI Dokument ausgegeben wird.
 Beispiel:
 
 ----
-apiUrl=http://xplanbox.lat-lon.de
+apiUrl=https://xplanbox.lat-lon.de
 ----
 
 ==== Kontakt E-Mail Adresse
@@ -102,7 +102,7 @@ URL zu den "Terms of Services", die im OpenAPI Dokument ausgegeben wird. Diese K
 Beispiel:
 
 ----
-termsOfServiceUrl=
+termsOfServiceUrl=https://opensource.org/tos/
 ----
 
 ==== URL zur Dokumentation der xPLanBox
@@ -111,5 +111,48 @@ URL zur Dokumentation, die im OpenAPI Dokument ausgegeben wird. Diese Konfigurat
 Beispiel:
 
 ----
-documentationUrl=
+documentationUrl=https://xplanbox.lat-lon.de/xPlanBox-Benutzerhandbuch/
+----
+
+[[konfiguration-document-api]]
+=== XPlanDokumentenAPI
+Die Konfiguration der XPlanDokumentenAPI erfolgt in der Datei _<XPLANBOX_CONFIG>/dokumentenApiConfiguration.properties_.
+
+Folgende Konfiguration kann für die XPlanDokumentenAPI vorgenommen werden.
+
+==== API URL
+
+URL der XPlanDokumentenAPI, die im OpenAPI Dokument ausgegeben wird.
+Beispiel:
+
+----
+apiUrl=https://xplanbox.lat-lon.de
+----
+Wird keine URL angegeben, dann wird eine relative URL ausgegeben
+
+==== Kontakt E-Mail Adresse
+
+E-Mail Adresse des Kontakts, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
+Beispiel:
+
+----
+contactEMailAddress=info@lat-lon.de
+----
+
+==== URL zu den "Terms of Service"
+
+URL zu den "Terms of Services", die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
+Beispiel:
+
+----
+termsOfServiceUrl=https://opensource.org/tos/
+----
+
+==== URL zur Dokumentation der xPLanBox
+
+URL zur Dokumentation, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
+Beispiel:
+
+----
+documentationUrl=https://xplanbox.lat-lon.de/xPlanBox-Benutzerhandbuch/
 ----

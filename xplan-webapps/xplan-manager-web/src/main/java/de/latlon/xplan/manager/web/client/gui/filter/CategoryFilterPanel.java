@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,9 +20,6 @@
  */
 package de.latlon.xplan.manager.web.client.gui.filter;
 
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static java.util.Arrays.asList;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -30,19 +27,22 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
-
 import de.latlon.xplan.manager.web.client.filter.CategoryFilter;
 import de.latlon.xplan.manager.web.client.filter.PlanFilter;
 import de.latlon.xplan.manager.web.client.i18n.DynamicXPlanWebMessages;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+import static java.util.Arrays.asList;
+
 /**
  * GUI component containing the category filter of the plan list.
  *
+ * @deprecated This class be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @version $Revision: $, $Date: $
  */
+@Deprecated
 public class CategoryFilterPanel extends AbstractFilterPanel implements ResetableFilterPanel {
 
 	private final XPlanWebMessages messages = GWT.create(XPlanWebMessages.class);

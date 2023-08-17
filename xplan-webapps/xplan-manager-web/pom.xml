@@ -9,7 +9,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-webapps</artifactId>
-    <version>6.0-SNAPSHOT</version>
+    <version>7.0</version>
   </parent>
 
   <properties>
@@ -54,6 +54,7 @@
               <directory>src/main/webapp</directory>
               <includes>
                 <include>index.html</include>
+                <include>version.txt</include>
               </includes>
               <filtering>true</filtering>
             </resource>
@@ -61,6 +62,7 @@
               <directory>src/main/webapp</directory>
               <excludes>
                 <exclude>index.html</exclude>
+                <exclude>version.txt</exclude>
               </excludes>
               <filtering>false</filtering>
             </resource>
@@ -80,7 +82,7 @@
       <artifactId>el-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.google.gwt</groupId>
+      <groupId>org.gwtproject</groupId>
       <artifactId>gwt-user</artifactId>
       <scope>provided</scope>
       <exclusions>
@@ -88,10 +90,15 @@
           <groupId>javax.validation</groupId>
           <artifactId>validation-api</artifactId>
         </exclusion>
+        <exclusion>
+          <!-- already contained in xml-apis:xml-apis-ext:1.3.04 -->
+          <groupId>org.w3c.css</groupId>
+          <artifactId>sac</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>com.google.gwt</groupId>
+      <groupId>org.gwtproject</groupId>
       <artifactId>gwt-servlet</artifactId>
       <scope>runtime</scope>
     </dependency>
@@ -132,6 +139,13 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+      <classifier>sources</classifier>
+      <type>jar</type>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
@@ -219,6 +233,10 @@
       <artifactId>spring-security-ldap</artifactId>
     </dependency>
     <dependency>
+      <groupId>net.bytebuddy</groupId>
+      <artifactId>byte-buddy</artifactId>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
     </dependency>
@@ -227,17 +245,67 @@
       <artifactId>mockito-core</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.powermock</groupId>
-      <artifactId>powermock-api-mockito2</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.powermock</groupId>
-      <artifactId>powermock-module-junit4</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
     </dependency>
   </dependencies>
 
+  <profiles>
+    <profile>
+      <id>docker</id>
+      <properties>
+        <docker-image.skip>false</docker-image.skip>
+      </properties>
+      <dependencies>
+        <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
+          <groupId>de.latlon.product.xplanbox</groupId>
+          <artifactId>xplan-docker-tomcat-gdal</artifactId>
+          <version>${project.version}</version>
+          <type>pom</type>
+        </dependency>
+        <dependency> <!-- faked maven dependency to be after volume initializer in the reactor build  -->
+          <groupId>de.latlon.product.xplanbox</groupId>
+          <artifactId>xplan-docker-volume-init</artifactId>
+          <version>${project.version}</version>
+          <type>pom</type>
+        </dependency>
+        <dependency> <!-- faked maven dependency to be after xplan-sql-scripts image in the reactor build  -->
+          <groupId>de.latlon.product.xplanbox</groupId>
+          <artifactId>xplan-sql-scripts</artifactId>
+          <version>${project.version}</version>
+          <type>pom</type>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <configuration>
+              <images>
+                <image>
+                  <name>${docker-image.namePrefix}/${docker-image.name}</name>
+                </image>
+                <image>
+                  <name>${docker-image.namePrefix}/${docker-image.name}-hale</name>
+                  <build>
+                    <contextDir>${project.basedir}</contextDir>
+                    <dockerFile>DockerfileHale</dockerFile>
+                    <args>
+                      <XPLANBOX_VERSION>${project.version}</XPLANBOX_VERSION>
+                      <XPLANBOX_IMAGE_NAME_PREFIX>${docker-image.namePrefix}</XPLANBOX_IMAGE_NAME_PREFIX>
+                      <WEB_CONTEXT>${project.artifactId}</WEB_CONTEXT>
+                    </args>
+                    <tags>
+                      <tag>${project.version}</tag>
+                    </tags>
+                  </build>
+                </image>
+              </images>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

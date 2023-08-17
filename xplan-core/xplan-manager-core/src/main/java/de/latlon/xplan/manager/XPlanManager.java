@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -26,25 +26,21 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.archive.XPlanPartArchive;
-import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.feature.FeatureCollectionParseException;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
-import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
-import de.latlon.xplan.manager.codelists.XPlanCodeLists;
-import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
+import de.latlon.xplan.core.manager.db.model.Artefact;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfigurationAnalyser;
-import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.dictionary.XPlanDictionaries;
+import de.latlon.xplan.manager.dictionary.XPlanEnumerationFactory;
 import de.latlon.xplan.manager.edit.XPlanToEditFactory;
-import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
-import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.UnsupportPlanException;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanEditManager;
@@ -58,8 +54,8 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
-import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.deegree.commons.utils.Pair;
 import org.deegree.commons.xml.XMLParsingException;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -89,7 +85,7 @@ import static org.apache.commons.io.IOUtils.closeQuietly;
 
 /**
  * An instance of XPlanManager provides the service methods to manage instances of XPlan.
- * Supports XPlan version 3, 4.x, and 5.x.
+ * Supports XPlan version 4.x, 5.x. and 6.x.
  *
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
  * @since 1.0
@@ -108,6 +104,8 @@ public class XPlanManager {
 
 	private final XPlanRasterManager xPlanRasterManager;
 
+	private final XPlanRasterEvaluator xPlanRasterEvaluator;
+
 	private final SortPropertyReader sortPropertyReader;
 
 	private final InspirePluPublisher inspirePluPublisher;
@@ -118,53 +116,42 @@ public class XPlanManager {
 
 	private final XPlanDeleteManager xPlanDeleteManager;
 
-	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
-
 	/**
 	 * @param xPlanDao mandatory XPlan data access object
 	 * @param archiveCreator mandatory archive creator
-	 * @param managerWorkspaceWrapper mandatory manager workspace configuration
-	 * @param workspaceReloader reloads a deegree workspace, if <code>null</code>, no
-	 * workspace is reloaded
-	 * @param inspirePluTransformator transforms XPlanGML to INSPIRE PLU, may be
-	 * <code>null</code>
-	 * @param xPlanGmlTransformer transforms between different versions of XPlanGML, may
-	 * be <code>null</code>
+	 * @param managerConfiguration mandatory manager configuration
 	 * @param wmsWorkspaceWrapper mandatory WMS workspace configuration
+	 * @param xPlanExporter
+	 * @param sortPropertyReader
+	 * @param inspirePluPublisher
+	 * @param xPlanInsertManager
+	 * @param xPlanEditManager
+	 * @param xPlanDeleteManager
 	 * @throws Exception if mandatory arguments are missing or something went wrong
 	 */
 	public XPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			InspirePluTransformator inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper) throws Exception {
-		if (xPlanDao == null || archiveCreator == null || managerWorkspaceWrapper == null
-				|| wmsWorkspaceWrapper == null) {
+			ManagerConfiguration managerConfiguration, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			XPlanExporter xPlanExporter, XPlanRasterEvaluator xPlanRasterEvaluator,
+			XPlanRasterManager xPlanRasterManager, SortPropertyReader sortPropertyReader,
+			InspirePluPublisher inspirePluPublisher, XPlanInsertManager xPlanInsertManager,
+			XPlanEditManager xPlanEditManager, XPlanDeleteManager xPlanDeleteManager) throws Exception {
+		if (xPlanDao == null || archiveCreator == null || managerConfiguration == null || wmsWorkspaceWrapper == null) {
 			throw new IllegalArgumentException("Mandatory argument must not be null");
 		}
+		this.xPlanExporter = xPlanExporter;
+		this.sortPropertyReader = sortPropertyReader;
+		this.inspirePluPublisher = inspirePluPublisher;
+		this.xPlanInsertManager = xPlanInsertManager;
+		this.xPlanEditManager = xPlanEditManager;
+		this.xPlanDeleteManager = xPlanDeleteManager;
 		this.xplanDao = xPlanDao;
 		this.archiveCreator = archiveCreator;
+		this.xPlanRasterEvaluator = xPlanRasterEvaluator;
+		this.xPlanRasterManager = xPlanRasterManager;
 
 		ManagerConfigurationAnalyser managerConfigurationAnalyser = new ManagerConfigurationAnalyser(
-				managerWorkspaceWrapper.getConfiguration(), wmsWorkspaceWrapper);
+				managerConfiguration, wmsWorkspaceWrapper);
 		managerConfigurationAnalyser.checkConfiguration();
-
-		this.xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper,
-				managerWorkspaceWrapper.getConfiguration());
-		SortConfiguration sortConfiguration = createSortConfiguration(managerWorkspaceWrapper.getConfiguration());
-		this.sortPropertyReader = new SortPropertyReader(sortConfiguration);
-		this.xPlanExporter = new XPlanExporter();
-		XPlanSynthesizer xPlanSynthesizer = createXPlanSynthesizer(managerWorkspaceWrapper.getConfiguration());
-		if (inspirePluTransformator != null)
-			this.inspirePluPublisher = new InspirePluPublisher(xplanDao, inspirePluTransformator);
-		else
-			this.inspirePluPublisher = null;
-		this.xPlanInsertManager = new XPlanInsertManager(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager,
-				workspaceReloader, managerWorkspaceWrapper.getConfiguration(), managerWorkspaceWrapper,
-				sortPropertyReader);
-		this.xPlanEditManager = new XPlanEditManager(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager,
-				workspaceReloader, managerWorkspaceWrapper.getConfiguration(), managerWorkspaceWrapper,
-				sortPropertyReader);
-		this.xPlanDeleteManager = new XPlanDeleteManager(xplanDao, xPlanRasterManager, workspaceReloader,
-				managerWorkspaceWrapper.getConfiguration());
 	}
 
 	public XPlanArchive analyzeArchive(String fileName) throws IOException {
@@ -222,7 +209,11 @@ public class XPlanManager {
 	public String retrievePlanName(String archiveFileName) throws Exception {
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		ICRS crs = CrsUtils.determineActiveCrs(CRSManager.getCRSRef("EPSG:4326"), archive, LOG);
-		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive, crs);
+		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder()
+			.withSkipResolveReferences(true)
+			.withDefaultCrs(crs)
+			.build()
+			.parseXPlanFeatureCollection(archive);
 		return fc.getPlanName();
 	}
 
@@ -250,7 +241,10 @@ public class XPlanManager {
 	public Pair<Rechtsstand, PlanStatus> determineRechtsstand(String pathToArchive)
 			throws IOException, XMLStreamException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder()
+			.withSkipResolveReferences(true)
+			.build()
+			.parseXPlanFeatureCollection(archive);
 		return determineRechtsstandAndPlanstatus(xPlanFeatureCollection, archive.getType());
 	}
 
@@ -267,8 +261,11 @@ public class XPlanManager {
 	public List<RasterEvaluationResult> evaluateRasterdata(String pathToArchive)
 			throws IOException, XMLStreamException, XMLParsingException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive);
-		return xPlanRasterManager.evaluateRasterdata(archive, fc);
+		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder()
+			.withSkipResolveReferences(true)
+			.build()
+			.parseXPlanFeatureCollection(archive);
+		return xPlanRasterEvaluator.evaluateRasterdata(archive, fc);
 	}
 
 	/**
@@ -283,8 +280,9 @@ public class XPlanManager {
 			throws IOException, XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
 		LOG.info("- Analyse des Vorkommens eines Plans mit gleichem Namen und Planstatus...");
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollections xPlanFeatureCollections = xPlanGmlParser
-				.parseXPlanFeatureCollectionAllowMultipleInstances(archive);
+		XPlanFeatureCollections xPlanFeatureCollections = XPlanGmlParserBuilder.newBuilder()
+			.build()
+			.parseXPlanFeatureCollectionAllowMultipleInstances(archive);
 		return xPlanFeatureCollections.getxPlanGmlInstances().stream().map(xPlanFeatureCollection -> {
 			String planName = xPlanFeatureCollection.getPlanName();
 			PlanStatus planStatus;
@@ -320,7 +318,7 @@ public class XPlanManager {
 		XPlanArchiveContentAccess archive = new XPlanPartArchive(uploadedArtefacts);
 		ExternalReferenceInfo externalReferenceInfoToUpdate = createExternalRefAddedOrUpdated(xPlanToEdit,
 				uploadedArtefacts);
-		return xPlanRasterManager.evaluateRasterdata(archive, externalReferenceInfoToUpdate);
+		return xPlanRasterEvaluator.evaluateRasterdata(archive, externalReferenceInfoToUpdate);
 	}
 
 	/**
@@ -331,20 +329,18 @@ public class XPlanManager {
 	 * @throws Exception
 	 */
 	public void export(String planId, OutputStream outputStream) throws Exception {
-		XPlanArchiveContent xplanContentsToExport = xplanDao.retrieveAllXPlanArtefacts(planId);
-		xPlanExporter.export(outputStream, xplanContentsToExport);
+		List<Artefact> artefacts = xplanDao.retrieveAllXPlanArtefacts(planId);
+		xPlanExporter.export(outputStream, artefacts);
 		LOG.info("XPlanArchiv {} wurde erfolgreich exportiert", planId);
 	}
 
 	/**
 	 * Retrieve a list of all XPlans.
-	 * @param includeNoOfFeature <code>true</code> if the number of features of each
-	 * feature collection should be requested, <code>false</code> otherwise
 	 * @return list of XPlans
 	 * @throws Exception
 	 */
-	public List<XPlan> list(boolean includeNoOfFeature) throws Exception {
-		return xplanDao.getXPlanList(includeNoOfFeature);
+	public List<XPlan> list() throws Exception {
+		return xplanDao.getXPlanList();
 	}
 
 	/**
@@ -353,7 +349,7 @@ public class XPlanManager {
 	 * @return a single plan
 	 * @throws Exception
 	 */
-	public XPlan getXPlanById(int planId) throws Exception {
+	public XPlan getXPlanById(int planId) {
 		return xplanDao.getXPlanById(planId);
 	}
 
@@ -369,11 +365,13 @@ public class XPlanManager {
 		try {
 			XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
 			originalPlan = xplanDao.retrieveXPlanArtefact(plan.getId());
-			FeatureCollection originalPlanFC = xPlanGmlParser.parseFeatureCollection(originalPlan, version);
+			FeatureCollection originalPlanFC = XPlanGmlParserBuilder.newBuilder()
+				.build()
+				.parseFeatureCollection(originalPlan, version);
 			return planToEditFactory.createXPlanToEdit(plan, originalPlanFC);
 		}
 		finally {
-			closeQuietly(originalPlan);
+			closeQuietly(originalPlan, null);
 		}
 	}
 
@@ -427,7 +425,6 @@ public class XPlanManager {
 		else {
 			String planId = plan.getId();
 			inspirePluPublisher.transformAndPublish(planId, XPlanVersion.valueOf(plan.getVersion()));
-			xplanDao.setPlanWasInspirePublished(planId);
 		}
 	}
 
@@ -456,10 +453,10 @@ public class XPlanManager {
 	}
 
 	private String translateRechtsstand(XPlanVersion version, XPlanType type, int rechtsstandCode) {
-		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
-		String codeListId = findCodeListId(type);
+		XPlanDictionaries dictionaries = XPlanEnumerationFactory.get(version);
+		String dictionaryId = findDictionaryId(type);
 		try {
-			return xPlanCodeLists.getTranslation(codeListId, Integer.toString(rechtsstandCode));
+			return dictionaries.getTranslation(dictionaryId, Integer.toString(rechtsstandCode));
 		}
 		catch (Exception e) {
 			LOG.error("Could not translate rechtsstand code {}: {}", rechtsstandCode, e.getMessage());
@@ -468,7 +465,7 @@ public class XPlanManager {
 		}
 	}
 
-	private String findCodeListId(XPlanType xPlanType) {
+	private String findDictionaryId(XPlanType xPlanType) {
 		switch (xPlanType) {
 			case BP_Plan:
 				return "BP_Rechtsstand";
@@ -482,18 +479,6 @@ public class XPlanManager {
 				break;
 		}
 		return "XP_Rechtsstand";
-	}
-
-	private SortConfiguration createSortConfiguration(ManagerConfiguration managerConfiguration) {
-		if (managerConfiguration != null)
-			return managerConfiguration.getSortConfiguration();
-		return new SortConfiguration();
-	}
-
-	private XPlanSynthesizer createXPlanSynthesizer(ManagerConfiguration managerConfiguration) {
-		if (managerConfiguration != null)
-			return new XPlanSynthesizer(managerConfiguration.getSynthesizerConfigurationDirectory());
-		return new XPlanSynthesizer();
 	}
 
 }

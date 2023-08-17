@@ -2,6 +2,76 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+## Version 7.0 (2023-08-TT)
+
+### Erweiterungen
+- Unterstützung für MapServer 8.0 zur Bereitstellung von Rasterdaten für XPlanWMS hergestellt
+- Ablage von Rasterdaten in einem AWS S3-kompatiblen Objektspeicher wird unterstützt
+- Ablage von Begleitdokumenten in einem AWS S3-kompatiblen Objektspeicher wird unterstützt
+- Abruf von Dokumenten und Rasterdaten über die neue Schnittstelle XPlanDokumentenAPI hergestellt
+- Verbesserter Abruf von Dokumenten und Rasterdaten in der GetFeatureInfo-Abfrage des XPlanWMS und GetFeature-Abfrage des XPlanSynWFS und XPlanWFS
+- Verbesserung der Geltungsbereichsprüfung im XPlanValidator
+- Prüfung der externen Referenzen bei Validierung eines Plans und Ausgabe des Ergebnisses im Validierungsbericht
+- Der Import von XPlanGML-Dateien über den XPlanManagerWeb und XPlanManagerAPI wird unterstützt; eine ZIP-Datei ist nicht mehr erforderlich
+- Der XPlanValidator kann Daten für den XPlanValidatorWMS temporär in der XPlanDB speichern
+- Konfiguration der XPlanDB mit der Angabe des `srid` für alle Geometriespalten hinzugefügt
+- Unterstützung einer neuer StoredQuery mit Filter auf planName und eingegrenzten FeatureType im XPlanSynWFS
+- Unterstützung der StoredQuery mit Filter auf planName im XPlanSynWFS für alle Datenhaltungen
+- Absicherung der deegree REST-API über ApiKeys
+- Unterstützung des vereinfachten Downloads eines XPlanArchiv über die XPlanManagerAPI
+- Erweiterung der Sortierung von Textabschnitten
+- Entfernen des XML-Namespace Präfixes aus dem FeatureType-Namen in den Capabilities des XPlanWFS
+- Verbesserung der Transaktionalität bei Auftreten unerwarteter Fehler beim Import im XPlanManager
+- Neuer Vorgabewert für Verzeichnisse mit Konfigurationsdateien der xPlanBox
+
+### Sicherheitsupdates
+- Schwachstelle im XML-Prozessor von XPlanValidator und XPlanManager behoben, sodass nur lokale statische DTD verwendet werden können; jede externe und jede deklarierte DTD wird nicht mehr zugelassen
+- Schwachstelle im XPlanValidator und XPlanManager gegen persistentes Cross-Site-Scripting (XSS) behoben
+- Schwachstelle im XPlanValidator und XPlanManager beim Upload schadhafter Dateien behoben
+- Aktualisierung von Bibliotheken mit bekannten Sicherheitsmängeln
+
+### Fehlerbehebungen
+- Fehler in XPlanManagerAPI bei Aufruf von HTTP DELETE für einen Plan behoben
+- Fehler in XPlanValidatorAPI bei der Validierung syntaktisch invalider Pläne behoben
+- Fehler in XPlanWMS bei Aufruf mit GetMap-Anfrage mit WMS 1.1.1 und EPSG:4326 behoben
+- Fehler in XPlanWFS bei Aufruf mit Get-Feature-Anfrage mit WFS 1.1.0 behoben
+- Fehler im Encoding der Attributtabelle von Shapefiles aus dem Validierungsreport des XPlanValidators behoben
+- Fehler im XPlanWMS bei Aufruf mit GetMap-Anfrage mit WMS 1.1.1 und EPSG:4326 behoben
+- Fehlende Ausgabe der detaillierten Zweckbestimmung in komplexen Attributen im XPlanSynWFS ergänzt
+
+### Veraltete Funktionen
+
+Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version der xPlanBox entfernt:
+- LDAP-Schnittstelle ist veraltet (deprecated)
+- Schnittstelle zur Verfahrensdatenbank ist veraltet (deprecated)
+- Filterkategorien im XPlanManagerWeb sind veraltet (deprecated)
+
+## Version 6.0.3 (2023-06-15)
+
+### Fehlerbehebungen
+- Aktualisierung der Validierungsregeln auf v1.1.4 mit Korrektur der Regel 5.3.1.2 für Flächennutzungspläne in der Version XPlanGML 5.1
+- Externe Codes werden beim Import über den XPlanManagerWeb nicht übersetzt
+
+## Version 6.0.2 (2023-04-13)
+
+### Fehlerbehebungen
+- Aktualisierung der Validierungsregeln auf v1.1.3 mit Korrekturen der Regeln 4.5.1.3 und 5.3.1.2
+- Fehlerkorrektur in der Geltungsgbereichsprüfung
+
+## Version 6.0.1 (2023-03-30)
+
+### Erweiterungen
+- Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.2
+
+### Fehlerbehebungen
+- Aktualisierung der Validierungsregeln auf v1.1.2 für die XPlanGML-Version 6.0.2
+- Korrektur der Reihenfolge der Textabschnitte im XPlanSynWMS und GFI des XPlanWMS, wenn kein Schlüssel angegeben ist
+- Wiederherstellung der Bearbeitungsmöglichkeit des Gültigkeitszeitraums im Editiermodus des XPlanManagerWeb
+- Verbesserung der geometrischen Validierung bzgl. inkorrekten Meldungen von Selbstüberschneidungen
+- Hinzufügen fehlender Layer im XPlanWMS und FeatureTypes im XPlanSynWFS
+- Warnung XPlanWMS "Error while trying to repair an expression" im Log behoben
+- Fehlerkorrektur bei der parallelen Ausführung von Validierungen
+
 ## Version 6.0 (2022-10-28)
 
 ### Erweiterungen
@@ -11,10 +81,10 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 - Verfahren kann nicht mehr über die Editierfunktion im XPlanManagerWeb für XPlanGML 6.0 geändert werden
 - Im XPlanManagerWeb können über die Editierfunktion nun auch Flächennutzungspläne, Regionalpläne, Landschaftspläne und Sonstigen Pläne geändert werden
 - Versionierung des Datenbankschemas mit Liquibase
-- Aktualisierung der XPlanGML Schemadateien auf Version 6.0.1
-- Aktualisierung der Validierungsregeln auf v0.12.2 für XPlanGML Version 6.0.1
+- Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.1
+- Aktualisierung der Validierungsregeln auf v1.0 für XPlanGML Version 6.0.1
 - VERSION.txt durch version.properties-Datei für Standard-Validierungsregeln ersetzt
-- Validierung eines XPlan GML mit xsi:type ermöglicht
+- Validierung eines XPlanGML mit `xsi:type` ermöglicht
 - Verbesserungen am XPlanSyn-Schema
 - Langfassung für Übersetzung von Enumerationswerten im XPlanSynWFS und XPlanWMS
 - Vereinheitlichen der Layernamen im XPlanWMS und XPlanWerkWMS
@@ -63,7 +133,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 
 ## Version 5.0 (2022-03-28)
 
-Veröffentlichung des Quellcodes unter einer Open Source Lizenz auf der OpenCoDE-Plattform.
+Veröffentlichung des Quellcodes unter einer Open Source Lizenz auf der Open CoDE-Plattform.
 
 ### Erweiterungen
 - Umstellung von Java 8 auf Java 11 sowie Tomcat 8.5 auf Tomcat 9.0
@@ -92,7 +162,7 @@ Veröffentlichung des Quellcodes unter einer Open Source Lizenz auf der OpenCoDE
 - Hinzufügen des Kommandozeilenwerkzeugs XPlanValidateDB
 - Hinzufügen des Kommandozeilenwerkzeugs XPlanAuswerteschemaCLI
 - Alternativen Betriebsmodus aus XPlanManagerCLI und Handbuch entfernt
-- Entfernern der Erweiterung für ADE/NSM
+- Entfernen der Erweiterung für ADE/NSM
 - Log-Warnungen und Fehlermeldungen verbessert
 - Aufrechterhaltung der HTTP Verbindung bei langlaufenden Validierungsprozessen
 - Aktualisierung der Validierungsregeln auf v0.11.1

@@ -1,36 +1,39 @@
-package de.latlon.xplanbox.api.manager.v1.model;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
 import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
+import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 
 /**
@@ -46,20 +49,24 @@ public class Rasterbasis extends Referenz {
 
 	private String id;
 
+	@Size(max = S_LENGTH)
+	@Pattern(regexp = SIMPLE_NAME_PATTERN)
 	private String bereichNummer;
 
 	public static Rasterbasis fromRasterReference(String rasterbasisId, RasterReference rasterReference) {
 		Rasterbasis rasterbasis = new Rasterbasis().id(rasterbasisId);
 		rasterbasis.bereichNummer(rasterReference.getBereichNummer())
-				.art(rasterReference.getArt() != null ? rasterReference.getArt().getCode() : null)
-				.beschreibung(rasterReference.getBeschreibung()).datum(rasterReference.getDatum())
-				.georefMimeType(rasterReference.getGeorefMimeType() != null
-						? rasterReference.getGeorefMimeType().getCode() : null)
-				.georefURL(rasterReference.getGeoReference())
-				.informationssystemURL(rasterReference.getInformationssystemURL())
-				.referenzMimeType(rasterReference.getReferenzMimeType() != null
-						? rasterReference.getReferenzMimeType().getCode() : null)
-				.referenzURL(rasterReference.getReference()).referenzName(rasterReference.getReferenzName());
+			.art(rasterReference.getArt() != null ? rasterReference.getArt().getCode() : null)
+			.beschreibung(rasterReference.getBeschreibung())
+			.datum(rasterReference.getDatum())
+			.georefMimeType(
+					rasterReference.getGeorefMimeType() != null ? rasterReference.getGeorefMimeType().getCode() : null)
+			.georefURL(rasterReference.getGeoReference())
+			.informationssystemURL(rasterReference.getInformationssystemURL())
+			.referenzMimeType(rasterReference.getReferenzMimeType() != null
+					? rasterReference.getReferenzMimeType().getCode() : null)
+			.referenzURL(rasterReference.getReference())
+			.referenzName(rasterReference.getReferenzName());
 		return rasterbasis;
 	}
 

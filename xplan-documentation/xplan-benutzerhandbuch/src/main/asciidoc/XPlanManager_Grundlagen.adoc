@@ -1,51 +1,43 @@
 [[xplanmanager-grundlagen]]
 === XPlanManager Grundlagen
 
-Der XPlanManager dient zur Verwaltung von XPlanArchiven innerhalb der xPlanBox. Mit
-dem XPlanManager können XPlanArchive importiert, editiert oder gelöscht werden.
-Nachdem ein XPlanArchiv erfolgreich über den XPlanManager importiert wurde, können die Daten über die Dienste
-XPlanWFS und XPlanWMS abgerufen werden. Im folgenden Abschnitt werden die Anforderungen an ein XPlanArchiv beschrieben.
+Der XPlanManager dient zur Verwaltung von Planwerken innerhalb der xPlanBox. Mit
+dem XPlanManager können XPlanGML-Dateien und XPlanArchive importiert, editiert oder gelöscht werden.
+Nachdem ein Planwerk erfolgreich über den XPlanManager importiert wurde, können die Daten über die Dienste <<xplanwfs,XPlanWFS>>, <<xplansynwfs,XPlanSynWFS>> und <<xplanwms,XPlanWMS>> abgerufen werden. In den folgenden Abschnitten werden die Anforderungen an ein XPlanGML-Dokument und XPlanArchiv beschrieben.
 
-[[xplanarchiv]]
-==== Das XPlanArchiv
-
-Das XPlanArchiv ist eine ZIP-Datei mit folgendem Aufbau:
-
- * Im Basisverzeichnis muss die XPlanGML-Datei mit dem Dateinamen __xplan.gml__ vorhanden sein.
- * Rasterdaten, die in der XPlanGML-Datei referenziert sind, müssen ebenfalls im Basisverzeichnis der ZIP-Datei liegen, siehe dazu auch <<referenzierung-von-rasterdaten-im-xplangml>>.
- * Alle anderen in der XPlanGML-Datei referenzierten Anhänge müssen entweder im Basisverzeichnis der ZIP-Datei liegen oder werden über einen Link auf eine externe Datei (URL) referenziert.
-
-IMPORTANT: Dateinamen dürfen keine Sonderzeichen wie z. B. `&`, `#` , `/`, `\`, `"`, `'` (doppeltes oder einfaches Anführungszeichen),
-Leerzeichen oder auch Umlaute beinhalten. Gross- und Kleinschreibung in den Dateinamen (auch der Dateiendung) werden berücksichtigt
-und müssen vollständig mit den Referenzen im Dokument übereinstimmen!
-
+[[xplangmlfile]]
 ==== Das XPlanGML-Dokument
 
 Das XPlanGML-Dokument muss folgende Eigenschaften aufweisen:
 
- * Das XPlanGML-Dokument ist wohlgeformt und hat den Dateinamen __xplan.gml__.
- * Das XPlanGML-Dokument beinhaltet nur ein oder mehrere Elemente vom Typ `xplan:XP_PLAN`. Beinhaltet eine Datei mehrere dieser Elemente, so dürfen keine nicht referenzierte Features im XPlanGML-Dokument vorkommen, wie z. B. ein freies Präsentationsobjekt ohne Bezug zum Bereich!
+ * Das XPlanGML-Dokument ist wohlgeformt und hat die Dateiendung `.gml` oder `.xml` (Dateiformat `application/xml`).
+ * Das Wurzelelement ist ein `xplan:XPlanAuszug` (aus dem Namensraum der jeweiligen XPlanGML-Version) oder eine `wfs:FeatureCollection` (aus dem Namensraum `http://www.opengis.net/wfs/2.0` aus dem OGC-Standard WFS 2.0)
+ * Das XPlanGML-Dokument beinhaltet nur ein oder mehrere Elemente vom Typ `xplan:XP_Plan`. Beinhaltet eine Datei mehrere dieser Elemente, so dürfen keine nicht-referenzierten Features im XPlanGML-Dokument vorkommen, wie z. B. ein freies Präsentationsobjekt ohne Bezug zum Fachobjekt.
  * Wenn das XPlanGML-Dokument mehrere `BP_Bereich`-Elemente beinhaltet, muss das Element `xplan:nummer` für jeden `xplan:BP_Bereich` eindeutig sein.
- * Das XPlanGML-Dokument beinhaltet keine interne Referenzen auf andere Planobjekte über eines der folgenden Elemente `aendert/XP_VerbundenerPlan/verbundenerPlan` oder `wurdeGeaendertVon/XP_VerbundenerPlan/verbundenerPlan` bzw. in XPlanGML 6.0 über
+ * Das XPlanGML-Dokument beinhaltet keine internen Referenzen auf andere Planobjekte über eines der folgenden Elemente `aendert/XP_VerbundenerPlan/verbundenerPlan` oder `wurdeGeaendertVon/XP_VerbundenerPlan/verbundenerPlan` bzw. in XPlanGML 6.0 über
 `aendertPlan/XP_VerbundenerPlan/verbundenerPlan`,
-`wurdeGeaendertVonPLan/XP_VerbundenerPlan/verbundenerPlan`,
+`wurdeGeaendertVonPlan/XP_VerbundenerPlan/verbundenerPlan`,
 `aendertPlanBereich/XP_VerbundenerPlanBereich/verbundenerPlanBereich` oder
-`wurdeGeaendertVonPLanBereich/XP_VerbundenerPlanBereich/verbundenerPlanBereich`. Wird eines der Elemente in einem XPlanGML-Dokument verwendet, dann kann der Plan nicht importiert werden.
+`wurdeGeaendertVonPlanBereich/XP_VerbundenerPlanBereich/verbundenerPlanBereich`. Wird eines der Elemente in einem XPlanGML-Dokument verwendet, dann kann der Plan nicht importiert werden!
 
-[[anlegen-von-deegree-konfigurationsstrukturen-fuer-rasterdaten]]
-==== Anlegen von deegree Konfigurationsstrukturen für Rasterdaten
+[[xplanarchiv]]
+==== Das XPlanArchiv
 
-Beim Import von Planarchiven mit Rasterdaten werden Konfigurationsdateien für den XPlanWMS automatisch angelegt, die eine Visualisierung im XPlanWMS ermöglichen.
+Das XPlanArchiv ist eine ZIP-Datei (Dateiformat `application/zip`) mit folgendem Aufbau:
 
-Für jede importierte Rasterdatei werden folgende Konfigurationen
-angelegt:
+* Im Basisverzeichnis muss die XPlanGML-Datei mit dem Dateinamen __xplan.gml__ vorhanden sein. Die Datei muss die Eigenschaften eines <<xplangmlfile,XPlanGML-Dokuments>> erfüllen.
+* Alle in der XPlanGML-Datei referenzierten Anhänge wie Rasterdaten und Begleitdokumente müssen entweder im Basisverzeichnis der ZIP-Datei liegen oder werden über einen Link auf eine externe Datei (URL) referenziert.
+* Referenzen auf Rasterdaten müssen entsprechend der XPlanGML-Version korrekt gesetzt sein, siehe Kapitel <<referenzierung-von-rasterdaten-im-xplangml>>.
+* Das XPlanArchiv kann Dateien in folgenden Dateiformaten enthalten:
+  ** `application/xml`
+  ** `image/tiff`
+  ** `image/png`
+  ** `text/plain`
+  ** `application/pdf`
 
-  * eine Konfigurationsdatei für einen GeoTiffTileStore oder
-  GDALTileStore,
-  * eine Konfigurationsdatei für einen TileLayer und
-  * in der Ebenenbaum-Konfiguration wird ein neuer Layer in die
-  Kategorieebene eingefügt, die die Rasterpläne nach Datum sortiert
-  beinhaltet.
+IMPORTANT: Dateinamen dürfen keine Sonderzeichen wie z. B. `&`, `#` , `/`, `\`, `"`, `'` (doppeltes oder einfaches Anführungszeichen),
+Leerzeichen oder auch Umlaute beinhalten. Groß- und Kleinschreibung in den Dateinamen (auch der Dateiendung) werden berücksichtigt
+und müssen vollständig mit den Referenzen im Dokument übereinstimmen!
 
 [[referenzierung-von-rasterdaten-im-xplangml]]
 ===== Referenzierung von Rasterdaten im XPlanGML
@@ -167,15 +159,14 @@ Beispiel:
 </gml:featureMember>
 ----
 
-Ab Version 6.0 wird nur noch die zweite Variante über das Element `<refScan/>` unterstützt.
+Ab Version 6.0 wird nur noch die Variante über das Element `<refScan/>` unterstützt.
 
 NOTE: Über die Editor-Funktion des XPlanManager können Rasterdaten über XP_RasterplanBasis oder über das Element `<refScan/>` innerhalb eines von XP_Bereich abgeleiteten Feature Type angezeigt werden. Weitere Informationen dazu auch im Kapitel <<xplanmanager-web-editieren>>.
 
 [[voraussetzungen-fuer-die-rasterdaten]]
 ===== Voraussetzungen für die Rasterdaten
 
-
-Um Rasterdaten importieren und diese über den XPlanWMS-Ebene zur Verfügung
+Um Rasterdaten importieren und diese über die XPlanWMS-Ebene zur Verfügung
 stellen zu können, müssen die Daten folgende Anforderungen erfüllen.
 
 Die Unterstützung verschiedener Rasterdatenformate ist vom gesetzten
@@ -223,3 +214,75 @@ Folgende Voraussetzung werden an die einzelnen Formate gestellt:
   sein. Für den XPlanManagerWeb ist dies keine Voraussetzung, da der
   Fachadministrator beim Import der Daten das Koordinatenreferenzsystem der
   PNG-Datei über einen Dialog bestätigen kann.
+
+[[anlegen-von-deegree-konfigurationsstrukturen-fuer-rasterdaten]]
+==== Anlegen von deegree Konfigurationsstrukturen für Rasterdaten
+
+Beim Import von XPlanArchiven mit Rasterdaten werden Konfigurationsdateien für den XPlanWMS automatisch angelegt, die eine Darstellung im XPlanWMS ermöglichen.
+
+Für jede importierte Rasterdatei werden folgende Konfigurationen
+angelegt:
+
+* eine Konfigurationsdatei für einen GeoTiffTileStore oder
+GDALTileStore,
+* eine Konfigurationsdatei für einen TileLayer und
+* in der Ebenenbaum-Konfiguration wird ein neuer Layer in die
+Kategorieebene eingefügt, die die Rasterpläne nach Datum sortiert
+beinhaltet.
+
+[[sortierung-textabschnitte]]
+===== Sortierung von Textabschnitten
+
+Textabschnitte können über das Element `XP_TextAbschnitt` je Planart im XPlanGML hinterlegt werden. Da eine Sortierung auf Basis der Reihenfolge im XPlanGML-Dokument bei der Ausgabe technisch nicht gewährleistet werden kann, werden Textabschnitte in der xPlanBox über den Textschlüssel im Element `XP_TextAbschnitt/schluessel` sortiert ausgegeben. Die Sortierung erfolgt in der GetFeatureInfo-Ausgabe des <<xplanwms,XPlanWMS>> und bei der Anzeige von Textabschnitten in der <<xplanmanager-web-editieren,Editieroberfläche des XPlanManagerWeb>>.
+
+Um die gewünschte Sortierung zu erreichen, müssen die Textschlüssel einem bestimmten Aufbau folgen. Für die Sortierung werden alle Ziffern und Buchstaben bis zum ersten Leerzeichen im Textschlüssel berücksichtigt. Dabei unterstützt die xPlanBox folgende Sortierungen nach Ordnungszahlen und -buchstaben:
+
+* Sortierung nach Ziffern
+----
+1.1 text
+1.2 text
+2.1 text
+2.2 text
+----
+
+* Sortierung nach Kleinbuchstaben
+----
+a) text
+b) text
+c) text
+----
+
+* Sortierung nach Ziffern mit Kleinbuchstaben
+----
+1.a) text
+1.b) text
+2.a) text
+2.b) text
+----
+
+* Sortierung mit einer Mischform aus Ziffern und Kleinbuchstaben mit Priorität auf Ziffern
+----
+1.1 text
+1.2 text
+2.1 text
+a) text
+b) text
+----
+
+* Sortierung mit einer Mischform aus Großbuchstaben mit Ziffern
+----
+A text
+A.1.1 text
+A.1.2 text
+B text
+B.1.1 text
+B.1.2 text
+----
+
+* Abweichend sortiert werden Textschlüssel, die mit einem Paragrafenzeichen (`§`) beginnen. Hier werden nur die Zahlen bei der Sortierung berücksichtigt:
+----
+§1 Nr.1
+§1 Nr.2
+§2 Nr.1.1
+§2 Nr.1.2
+----

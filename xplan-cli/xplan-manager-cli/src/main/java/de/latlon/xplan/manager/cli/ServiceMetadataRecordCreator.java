@@ -2,18 +2,18 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -26,7 +26,6 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadataBuilder;
@@ -58,16 +57,16 @@ public class ServiceMetadataRecordCreator {
 	/**
 	 * @param xPlanDao used to access the database, never <code>null</code>
 	 * @param managerConfiguration configuration of the manager, never <code>null</code>
+	 * @param metadataCouplingHandler never <code>null</code>
 	 */
-	public ServiceMetadataRecordCreator(XPlanDao xPlanDao, ManagerConfiguration managerConfiguration)
-			throws DataServiceCouplingException {
+	public ServiceMetadataRecordCreator(XPlanDao xPlanDao, ManagerConfiguration managerConfiguration,
+			MetadataCouplingHandler metadataCouplingHandler) {
 		this.xPlanDao = xPlanDao;
 		this.managerConfiguration = managerConfiguration;
 		if (managerConfiguration == null || managerConfiguration.getCoupledResourceConfiguration() == null)
 			throw new IllegalArgumentException(
 					"The configuration used to create service is invalid. Service metadata records could not be created.");
-		this.metadataCouplingHandler = new MetadataCouplingHandler(xPlanDao,
-				managerConfiguration.getCoupledResourceConfiguration());
+		this.metadataCouplingHandler = metadataCouplingHandler;
 	}
 
 	/**
@@ -75,7 +74,7 @@ public class ServiceMetadataRecordCreator {
 	 * written to the XPlanWerkWMS capabilities document.
 	 */
 	public void createServiceMetadataRecords() throws Exception {
-		List<XPlan> plans = xPlanDao.getXPlanList(false);
+		List<XPlan> plans = xPlanDao.getXPlanList();
 		for (XPlan plan : plans) {
 			try {
 				createServiceMetadataRecords(plan);
@@ -115,11 +114,11 @@ public class ServiceMetadataRecordCreator {
 		Envelope envelope = xPlanFeatureCollection.getBboxIn4326();
 
 		CoupledResourceConfiguration coupledResourceConfiguration = managerConfiguration
-				.getCoupledResourceConfiguration();
+			.getCoupledResourceConfiguration();
 		PlanwerkServiceMetadataBuilder builder = new PlanwerkServiceMetadataBuilder(type, planName, description,
 				envelope, coupledResourceConfiguration);
 		PlanwerkServiceMetadata planwerkServiceMetadata = builder
-				.build(lookup(managerConfiguration.getRasterConfigurationCrs()));
+			.build(lookup(managerConfiguration.getRasterConfigurationCrs()));
 		metadataCouplingHandler.processMetadataCoupling(id, name, planwerkServiceMetadata);
 	}
 

@@ -8,7 +8,7 @@ pipeline {
     jdk 'openjdk11'
   }
   environment {
-      MAVEN_OPTS='-Djava.awt.headless=true -Xmx4096m'
+      MAVEN_OPTS='-Djava.awt.headless=true -Xmx1000m'
   }
   stages {
     stage('Preparation') {
@@ -18,13 +18,8 @@ pipeline {
     }
     stage('Build') {
       steps {
-        withMaven(mavenLocalRepo: '.repository') {
-            sh 'mvn -B -C -q clean install'
-        }
-      }
-      post {
-        always {
-          junit '**/target/surefire-reports/*.xml'
+        withMaven(mavenLocalRepo: '.repository', mavenSettingsConfig: 'mvn-empty-settings', options: [junitPublisher(healthScaleFactor: 1.0)], publisherStrategy: 'EXPLICIT') {
+            sh 'mvn -B -C clean install -Ddependency-check.skip=true'
         }
       }
     }

@@ -3,7 +3,7 @@
   #%L
   xplan-validator-core - XPlan Validator Core Komponente
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -9687,5 +9687,99 @@
       <xplan:drehwinkel uom="deg">0</xplan:drehwinkel>
       <xplan:skalierung>0.3</xplan:skalierung>
     </xplan:XP_PPO>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_Plan gml:id="GML_18e6f5cd-9896-4e80-b4f3-ce0d8cc8a0c4">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:31467">
+          <gml:lowerCorner>3478519.018 5889194.887</gml:lowerCorner>
+          <gml:upperCorner>3480922.418 5890728.997</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:name>BP2070-Ref1</xplan:name>
+      <xplan:beschreibung>Testdatensatz XPlabGML Ref1</xplan:beschreibung>
+      <xplan:technHerstellDatum>2001-08-06</xplan:technHerstellDatum>
+      <xplan:aendert>
+        <xplan:XP_VerbundenerPlan>
+          <xplan:rechtscharakter>1100</xplan:rechtscharakter>
+          <xplan:verbundenerPlan xlink:href="#GML_18e6f5cd-9896-4e80-b4f3-ce0d8cc8a0c4"/>
+        </xplan:XP_VerbundenerPlan>
+      </xplan:aendert>
+      <xplan:wurdeGeaendertVon>
+        <xplan:XP_VerbundenerPlan>
+          <xplan:rechtscharakter>1000</xplan:rechtscharakter>
+          <xplan:nummer>0</xplan:nummer>
+          <xplan:verbundenerPlan xlink:href="#GML_5792983e-433f-11e8-88d4-b3eda89dad90"/>
+        </xplan:XP_VerbundenerPlan>
+      </xplan:wurdeGeaendertVon>
+      <xplan:raeumlicherGeltungsbereich>
+        <gml:Polygon srsName="EPSG:31467" gml:id="GML_92f9c5f1-3bc7-41bd-bff7-18fc3f12f575">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsDimension="2" count="378">3479367.656 5889625.167 3479364.766 5889617.858 3479361.087 5889608.551 3479367.656 5889625.167
+              </gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:raeumlicherGeltungsbereich>
+      <xplan:gemeinde>
+        <xplan:XP_Gemeinde>
+          <xplan:ags>4011000</xplan:ags>
+          <xplan:gemeindeName>Bremen</xplan:gemeindeName>
+        </xplan:XP_Gemeinde>
+      </xplan:gemeinde>
+      <xplan:planArt>1000</xplan:planArt>
+      <xplan:veraenderungssperre>false</xplan:veraenderungssperre>
+      <xplan:staedtebaulicherVertrag>false</xplan:staedtebaulicherVertrag>
+      <xplan:erschliessungsVertrag>false</xplan:erschliessungsVertrag>
+      <xplan:durchfuehrungsVertrag>false</xplan:durchfuehrungsVertrag>
+    </xplan:BP_Plan>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_Plan gml:id="GML_5792983e-433f-11e8-88d4-b3eda89dad90">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:31467">
+          <gml:lowerCorner>3478519.018 5889194.887</gml:lowerCorner>
+          <gml:upperCorner>3480922.418 5890728.997</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:name>BP2070-Ref2</xplan:name>
+      <xplan:beschreibung>Testdatensatz XPlabGML Ref2</xplan:beschreibung>
+      <xplan:technHerstellDatum>2001-08-06</xplan:technHerstellDatum>
+      <xplan:aendert>
+        <xplan:XP_VerbundenerPlan>
+          <xplan:rechtscharakter>1100</xplan:rechtscharakter>
+          <xplan:verbundenerPlan xlink:href="#GML_18e6f5cd-9896-4e80-b4f3-ce0d8cc8a0c4"/>
+        </xplan:XP_VerbundenerPlan>
+      </xplan:aendert>
+      <xplan:wurdeGeaendertVon>
+        <xplan:XP_VerbundenerPlan>
+          <xplan:rechtscharakter>1000</xplan:rechtscharakter>
+          <xplan:nummer>0</xplan:nummer>
+          <xplan:verbundenerPlan xlink:href="#GML_5792983e-433f-11e8-88d4-b3eda89dad90"/>
+        </xplan:XP_VerbundenerPlan>
+      </xplan:wurdeGeaendertVon>
+      <xplan:raeumlicherGeltungsbereich>
+        <gml:Polygon srsName="EPSG:31467" gml:id="GML_92f9c5f1-3bc7-41bd-bff7-18fc3f12f575">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsDimension="2" count="378">3479367.656 5889625.167 3479364.766 5889617.858 3479361.087 5889608.551 3479367.656 5889625.167
+              </gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:raeumlicherGeltungsbereich>
+      <xplan:gemeinde>
+        <xplan:XP_Gemeinde>
+          <xplan:ags>4011000</xplan:ags>
+          <xplan:gemeindeName>Bremen</xplan:gemeindeName>
+        </xplan:XP_Gemeinde>
+      </xplan:gemeinde>
+      <xplan:planArt>1000</xplan:planArt>
+      <xplan:veraenderungssperre>false</xplan:veraenderungssperre>
+      <xplan:staedtebaulicherVertrag>false</xplan:staedtebaulicherVertrag>
+      <xplan:erschliessungsVertrag>false</xplan:erschliessungsVertrag>
+      <xplan:durchfuehrungsVertrag>false</xplan:durchfuehrungsVertrag>
+    </xplan:BP_Plan>
   </gml:featureMember>
 </xplan:XPlanAuszug>

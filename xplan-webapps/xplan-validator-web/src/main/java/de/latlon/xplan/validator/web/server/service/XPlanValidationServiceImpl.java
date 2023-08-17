@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-web - Modul zur Gruppierung aller Webapps
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -27,6 +27,7 @@ import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.client.service.ValidationService;
+import de.latlon.xplan.validator.web.shared.InvalidParameterException;
 import de.latlon.xplan.validator.web.shared.ValidationException;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationSummary;
@@ -41,6 +42,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 import static org.springframework.web.context.support.SpringBeanAutowiringSupport.processInjectionBasedOnServletContext;
 
@@ -83,8 +85,9 @@ public class XPlanValidationServiceImpl extends RemoteServiceServlet implements 
 
 	@Override
 	public ValidationSummary validate(ValidationSettings validationSettings)
-			throws ValidationException, IllegalArgumentException {
+			throws ValidationException, InvalidParameterException {
 		LOG.debug("Starting validation of plan with {}", validationSettings.toString());
+		ValidationUtils.validate(validationSettings);
 		try {
 			XPlan planToVerify = planArchiveManager.readPlanFromSession(session);
 			String planUuid = planToVerify.getId();
@@ -94,7 +97,7 @@ public class XPlanValidationServiceImpl extends RemoteServiceServlet implements 
 			ValidatorReport report = xPlanValidator.validateNotWriteReport(validationSettings, archive,
 					planToVerify.getName());
 
-			File reportDirectory = planArchiveManager.createReportDirectory(planUuid);
+			Path reportDirectory = planArchiveManager.createReportDirectory(planUuid);
 
 			LOG.debug("Validation report for {} written to file {}", planUuid, reportDirectory);
 			reportWriter.writeArtefacts(report, reportDirectory);

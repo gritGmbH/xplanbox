@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  #%L
+<!--#%L
   xplan-tests-soapui - SoapUI-Tests
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -17,10 +16,8 @@
   
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%
-  -->
-
-<con:soapui-project activeEnvironment="Default" name="xplan-manager-web" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" id="d6b438c5-e36f-447d-97b3-c0ed43c1c1a2" xmlns:con="http://eviware.com/soapui/config">
+  #L%-->
+<con:soapui-project activeEnvironment="Default" name="xplan-manager-web" resourceRoot="" soapui-version="5.7.1" abortOnError="false" runType="SEQUENTIAL" id="d6b438c5-e36f-447d-97b3-c0ed43c1c1a2" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="MANAGER" type="rest" basePath="/xplanmgrweb/rest" definitionUrl="" id="e35a1adf-d31f-49f2-8d74-efe2e22f0380" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:settings/>

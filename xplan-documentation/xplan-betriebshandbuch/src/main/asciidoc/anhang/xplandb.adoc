@@ -3,7 +3,7 @@
 == Datenbankmodell der XPlanDB
 
 Die XPlanDB enthält für jede unterstützte XPlanGML-Version ein eigenes Datenbankschema.
-Die Datenbankschema je XPlanGML-Version unterscheiden sich nur im Namen des Schemas und nutzen das BLOB-Mapping von deegree (siehe https://download.deegree.org/documentation/current/html/#anchor-blob-mode[deegree webservices BLOB mapping]) für die Ablage von XPlanGML-Dokumenten.
+Die Datenbankschemata je XPlanGML-Version unterscheiden sich nur im Namen des Schemas. Alle Schemata nutzen das BLOB-Mapping von deegree (siehe https://download.deegree.org/documentation/current/html/#anchor-blob-mode[deegree webservices BLOB mapping]) für die Ablage von XPlanGML-Dokumenten.
 
 [[appendix_xplandb_xplan53]]
 === Datenbankschema für XPlanGML 5.3
@@ -11,7 +11,7 @@ Die Datenbankschema je XPlanGML-Version unterscheiden sich nur im Namen des Sche
 Das folgende Diagramm zeigt exemplarisch die Tabellenstruktur aus dem Datenbankschema `xplan53` für die Ablage von XPlanGML-Dokumenten in der Version 5.3.
 In der Tabelle `feature_types` werden die in XPlanGML 5.3 enthaltenen Feature Types gespeichert. In der Tabelle `gml_objects` werden die in den XPlanGML-Dokumenten enthaltenen Features in `xplan53.gml_objects.binary_object` gespeichert.
 
-.Datenbankschema 'xplan53' für XPlanGML Version 5.3
+.Datenbankschema 'xplan53' für XPlanGML-Version 5.3
 image::xplandb_schema_53.png[Schema xplan53]
 
 Die Tabellenstruktur aus diesem Schema unterscheidet sich nicht zu den anderen von der xPlanBox unterstützten XPlanGML-Versionen. Nur die Inhalte in den jeweiligen `feature_types` Tabellen der anderen Schemata unterscheiden sich je nach XPlanGML-Version.
@@ -24,7 +24,7 @@ In der aktuellen Version der xPlanBox sind dies die XPlanGML-Versionen 4.0 bis 6
 
 IMPORTANT: Wird eine ältere XPlanGML-Version abgekündigt oder eine neue XPlanGML-Version hinzugefügt, ändert sich das XPlanSyn-Schema!
 
-Die folgenden Diagramme zeigen die Tabellenstruktur für ausgewählte Fachdatenobjekte (abgeleitete Feature Types aus den XPlanGML-Schema) aus dem Schema `xplansyn`.
+Die folgenden Diagramme zeigen die Tabellenstruktur für ausgewählte Fachdatenobjekte (abgeleitete Feature Types aus dem XPlanGML-Schema) aus dem Schema `xplansyn`.
 
 .Datenbankschema 'xplansyn' - BPlan (Ausschnitt 1 - BP_Baugebiet)
 image::xplandb_xplansyn_bplan1.png[Schema xplansyn - BPlan (Ausschnitt 1 - BP_Baugebiet)]
@@ -58,4 +58,4 @@ image::xplandb_xplanmgr.png[Schema xplanmgr]
 
 NOTE: Die Rasterdateien werden zusätzlich für die Bereitstellung über den XPlanWMS auch im Workspace des XPlanWMS abgelegt. Die Verzeichnisstruktur im Kapitel <<appendix_xplanwms-workspace>> beschrieben.
 
-NOTE: Die Tabelle planslog beinhaltet eine Historie jedes Plans ab dem Zeitpunkt an dem die Tabelle inkl. Function und Trigger angelegt wurde. Die Historie umfasst den Zeitpunkt wann ein Plan importiert (INSERT), aktualisiert (UPDATE) und gelöscht (DELETE) wurde
+NOTE: Die Tabelle `planslog` beinhaltet eine Historie jedes Plans ab dem Zeitpunkt an dem die Tabelle inkl. Function und Trigger angelegt wurde. Die Historie umfasst den Zeitpunkt wann ein Plan importiert (INSERT), aktualisiert (UPDATE) und gelöscht (DELETE) wurde

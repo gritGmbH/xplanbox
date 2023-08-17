@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  #%L
+  xplan-workspaces - Modul zur Gruppierung aller Workspaces
+  %%
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
@@ -7,7 +28,6 @@
    height="100%"
    viewBox="-5 -3.5 100 100"
    id="svg2"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
@@ -15,65 +35,6 @@
     <style
        type="text/css"
        id="style6" />
-    <symbol
-       id="SymbolDauerkleingarten"
-       style="overflow:visible">
-      <rect
-         width="9"
-         height="6"
-         x="-4.5"
-         y="-3"
-         id="rect9"
-         style="fill:none;stroke:#000000;stroke-width:0.30000001" />
-      <path
-         d="M -4.5,0 L 4.5,0"
-         id="path11"
-         style="fill:none;stroke:#000000;stroke-width:0.30000001" />
-      <path
-         d="M -1.5,-3 L -1.5,3"
-         id="path13"
-         style="fill:none;stroke:#000000;stroke-width:0.30000001" />
-      <path
-         d="M 1.5,-3 L 1.5,3"
-         id="path15"
-         style="fill:none;stroke:#000000;stroke-width:0.30000001" />
-      <circle
-         cx="-3"
-         cy="-1.5"
-         r="0.5"
-         id="circle17"
-         style="fill:#000000;stroke:none" />
-      <circle
-         cx="0"
-         cy="-1.5"
-         r="0.5"
-         id="circle19"
-         style="fill:#000000;stroke:none" />
-      <circle
-         cx="3"
-         cy="-1.5"
-         r="0.5"
-         id="circle21"
-         style="fill:#000000;stroke:none" />
-      <circle
-         cx="-3"
-         cy="1.5"
-         r="0.5"
-         id="circle23"
-         style="fill:#000000;stroke:none" />
-      <circle
-         cx="0"
-         cy="1.5"
-         r="0.5"
-         id="circle25"
-         style="fill:#000000;stroke:none" />
-      <circle
-         cx="3"
-         cy="1.5"
-         r="0.5"
-         id="circle27"
-         style="fill:#000000;stroke:none" />
-    </symbol>
   </defs>
   <rect
      style="fill:#ffffff;stroke-width:2.4732"
@@ -82,12 +43,42 @@
      height="67.025085"
      x="-4.6415763"
      y="12.987455" />
-  <use
-     transform="matrix(10.705834,0,0,10.705834,45,46.5)"
+  <g
      id="use29"
-     x="0"
-     y="0"
-     width="10"
-     height="7"
-     xlink:href="#SymbolDauerkleingarten" />
+     transform="matrix(10.705834,0,0,10.705834,45,46.5)">
+    <path
+       id="rect20"
+       style="fill:none;stroke:#000000;stroke-width:0.3"
+       d="m -4.5,-3 h 9 v 6 h -9 z" />
+    <path
+       d="m -4.5,0 h 9"
+       id="path22"
+       style="fill:none;stroke:#000000;stroke-width:0.3" />
+    <path
+       d="M -1.5,-3 V 3"
+       id="path24"
+       style="fill:none;stroke:#000000;stroke-width:0.3" />
+    <path
+       d="M 1.5,-3 V 3"
+       id="path26"
+       style="fill:none;stroke:#000000;stroke-width:0.3" />
+    <path
+       id="circle28"
+       d="M -2.5,-1.5 A 0.5,0.5 0 0 1 -3,-1 0.5,0.5 0 0 1 -3.5,-1.5 0.5,0.5 0 0 1 -3,-2 a 0.5,0.5 0 0 1 0.5,0.5 z" />
+    <path
+       id="circle30"
+       d="M 0.5,-1.5 A 0.5,0.5 0 0 1 0,-1 0.5,0.5 0 0 1 -0.5,-1.5 0.5,0.5 0 0 1 0,-2 0.5,0.5 0 0 1 0.5,-1.5 Z" />
+    <path
+       id="circle32"
+       d="M 3.5,-1.5 A 0.5,0.5 0 0 1 3,-1 0.5,0.5 0 0 1 2.5,-1.5 0.5,0.5 0 0 1 3,-2 0.5,0.5 0 0 1 3.5,-1.5 Z" />
+    <path
+       id="circle34"
+       d="M -2.5,1.5 A 0.5,0.5 0 0 1 -3,2 0.5,0.5 0 0 1 -3.5,1.5 0.5,0.5 0 0 1 -3,1 0.5,0.5 0 0 1 -2.5,1.5 Z" />
+    <path
+       id="circle36"
+       d="M 0.5,1.5 A 0.5,0.5 0 0 1 0,2 0.5,0.5 0 0 1 -0.5,1.5 0.5,0.5 0 0 1 0,1 0.5,0.5 0 0 1 0.5,1.5 Z" />
+    <path
+       id="circle38"
+       d="M 3.5,1.5 A 0.5,0.5 0 0 1 3,2 0.5,0.5 0 0 1 2.5,1.5 0.5,0.5 0 0 1 3,1 0.5,0.5 0 0 1 3.5,1.5 Z" />
+  </g>
 </svg>

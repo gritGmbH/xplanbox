@@ -31,7 +31,7 @@ http://<host>:<port>/xplan-wms/services/wms?
 [[xplanwms-beispielanfragen]]
 ==== Adresse des XPlanWerkWMS
 
-Die Adresse des XPlanWerkWMS ist abhängig von dem Planwerk das angefragt werden soll. Der Name des Plans wird im XPlanManager (s. <<xplanmanager-web>>) in der Auflistung der Pläne angezeigt und in der URL für den Platzhalter <PLANNAME> angegeben. Der Planname wird aus dem XPlanGML Element `xplan:name` abgeleitet. Dabei werden Sonderzeichen wie `/` entfernt und der Planname für die Erstellung der URL des XPlanWerkWMS kodiert (weitere Informationen zu URL Syntax und Zeichenkodierung in https://datatracker.ietf.org/doc/html/rfc3986[RFC 3986 – Uniform Resource Identifier (URI)]).
+Die Adresse des XPlanWerkWMS ist abhängig von dem Planwerk das angefragt werden soll. Der Name des Plans wird im XPlanManager (s. <<xplanmanager-web>>) in der Auflistung der Pläne angezeigt und in der URL für den Platzhalter <PLANNAME> angegeben. Der Planname wird aus dem XPlanGML-Element `xplan:name` abgeleitet. Dabei werden Sonderzeichen wie `/` entfernt und der Planname für die Erstellung der URL des XPlanWerkWMS kodiert (weitere Informationen zu URL Syntax und Zeichenkodierung in https://datatracker.ietf.org/doc/html/rfc3986[RFC 3986 – Uniform Resource Identifier (URI)]).
 
 Die vollständige XPlanWerkWMS URL kann über die Kartenvorschau im XPlanManagerWeb abgerufen werden.
 
@@ -181,11 +181,11 @@ http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=
 [[xplanwms-styles]]
 ===== Styles
 
-Bei der GetMap Operation gibt es die Möglichkeit zwischen zwei
+Bei der GetMap-Operation gibt es die Möglichkeit zwischen zwei
 verschieden Styles zu wechseln, die die Darstellung der Inhalte des
 Kartendienstes beeinflussen. Dabei liegen alle Zeichenvorschriften
 (Styles) für alle Ebenen des XPlanWMS in transparenter und in
-vollflächiger Form vor. Bei GetMap Operationen kann mittels des
+vollflächiger Form vor. Bei GetMap-Operationen kann mittels des
 Style-Parameters zwischen beiden Darstellungen gewechselt werden. Im
 XPlanWMS ist als Default-Style die vollflächige Darstellung
 eingestellt, im XPlanWMSInAufstellung und im XPlanWMSArchiviert hingegen die
@@ -219,22 +219,16 @@ lediglich die Planumringe sichtbar.
 [[xplanwms-gueltigkeitszeitraum]]
 ===== Gültigkeitszeitraum
 
-Der Gültigkeitszeitraum bestimmt die Sichtbarkeit der Inhalte des
-Kartendienstes bei der GetMap Operation. Der Gültigkeitszeitraum eines
-Plans wird beim Import in Form einer Zeitspanne angegeben. Handelt es
-sich dabei um eine aktuelle Zeitspanne, so werden die Plandaten bei der
-GetMap Operation angezeigt. Handelt es sich wiederum um einen
-abgelaufenen bzw. noch nicht begonnenen Gültigkeitszeitraums, so werden
-die Plandaten bei einer GetMap Operation nicht dargestellt.
+Der Gültigkeitszeitraum bestimmt die Sichtbarkeit der Inhalte eines Plans bei Aufruf des XPlanWMSInAufstellung über die GetMap-Operation. Der Gültigkeitszeitraum eines Plans kann beim Import über den XPlanManagerWeb als Zeitspanne angegeben werden.
+Wird der XPlanWMSInAufstellung innerhalb des gewählten Zeitraums angefragt, so werden die Plandaten, sowohl Vektor- als auch Rasterdaten, angezeigt. Liegt der Zeitpunkt der GetMap-Anfrage an den XPlanWMSInAufstellung ausserhalb des Zeitraums, so werden keine Plandaten angezeigt.
 
-Ausnahme: Die Layer, die den Geltungsbereich darstellen, werden nicht
-über den Gültigkeitszeitraum definiert und sind immer verfügbar.
+NOTE: Ausnahme: Die Sichtbarkeit der Layer, die den Geltungsbereich darstellen, werden nicht über den Gültigkeitszeitraum verändert und werden immer angezeigt.
 
 [[xplanwms-getfeatureinfo]]
 ==== GetFeatureInfo
 
 Die Operation GetFeatureInfo ermöglicht die Ausgabe von
-Sachinformationen zu Planobjekten. In der HTML Ausgabe dieser
+Sachinformationen zu Planobjekten. In der HTML-Ausgabe dieser
 Sachinformationen besteht neben der Ausgabe der entsprechenden
 Eigenschaften der Planobjekte auch die Möglichkeit, referenzierte
 Dokumente und Grafiken über die Operation <<xplanwms-getattachement>> abzurufen.
