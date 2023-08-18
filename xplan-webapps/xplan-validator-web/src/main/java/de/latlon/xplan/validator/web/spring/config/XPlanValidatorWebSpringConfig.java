@@ -2,18 +2,18 @@
  * #%L
  * xplan-validator-web - Modul zur Gruppierung aller Webapps
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -22,7 +22,6 @@ package de.latlon.xplan.validator.web.spring.config;
 
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
-import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
@@ -49,21 +48,22 @@ import de.latlon.xplan.validator.web.server.service.ValidatorReportProvider;
 import de.latlon.xplan.validator.wms.MapPreviewCreationException;
 import de.latlon.xplan.validator.wms.MapPreviewManager;
 import de.latlon.xplan.validator.wms.ValidatorWmsManager;
-import org.deegree.commons.config.DeegreeWorkspace;
+import de.latlon.xplan.validator.wms.config.ValidatorWmsContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.nio.file.Paths.get;
@@ -74,13 +74,12 @@ import static java.nio.file.Paths.get;
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  */
 @Configuration
+@Import(ValidatorWmsContext.class)
 public class XPlanValidatorWebSpringConfig {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanValidatorWebSpringConfig.class);
 
 	private static final String RULES_DIRECTORY = "/rules";
-
-	private static final String XPLAN_GML_WMS_WORKSPACE = "xplan-validator-wms-workspace";
 
 	@Bean
 	public SyntacticValidator syntacticValidator() {
@@ -134,7 +133,7 @@ public class XPlanValidatorWebSpringConfig {
 			XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
 					xQuerySemanticValidatorConfigurationRetriever);
 			semanticValidators
-					.add(new DelegatingSemanticProfileValidator(rulesMetadata.getId(), xQuerySemanticValidator));
+				.add(new DelegatingSemanticProfileValidator(rulesMetadata.getId(), xQuerySemanticValidator));
 		}
 		return semanticValidators;
 	}
@@ -183,18 +182,21 @@ public class XPlanValidatorWebSpringConfig {
 	}
 
 	@Bean
-	public MapPreviewManager mapPreviewManager(GeometricValidator geometricValidator,
-			ValidatorConfiguration validatorConfiguration) {
+	public MapPreviewManager mapPreviewManager(Optional<ValidatorWmsManager> validatorWmsManager,
+			GeometricValidator geometricValidator, ValidatorConfiguration validatorConfiguration) {
+		if (!validatorWmsManager.isPresent()) {
+			LOG.warn("ValidatorWmsManager is not configured. Map preview will not be available.");
+			return null;
+		}
 		String validatorWmsEndpoint = validatorConfiguration.getValidatorWmsEndpoint();
 		if (validatorWmsEndpoint == null) {
 			LOG.warn("XPlanValidatorWMS endpoint URL is not configured. Map preview will not be available.");
 			return null;
 		}
 		try {
-			ValidatorWmsManager validatorWmsManager = createValidatorWmsManager();
-			return new MapPreviewManager(validatorWmsManager, geometricValidator, validatorWmsEndpoint);
+			return new MapPreviewManager(validatorWmsManager.get(), geometricValidator, validatorWmsEndpoint);
 		}
-		catch (IOException | IllegalArgumentException | MapPreviewCreationException e) {
+		catch (IllegalArgumentException | MapPreviewCreationException e) {
 			LOG.error("Could not initialise ValidatorWmsManager. WMS resources cannot be created. Reason: {}",
 					e.getMessage(), e);
 		}
@@ -208,12 +210,6 @@ public class XPlanValidatorWebSpringConfig {
 			return validationRulesDirectory;
 		URI rulesPath = XPlanValidatorWebSpringConfig.class.getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
-	}
-
-	private ValidatorWmsManager createValidatorWmsManager() throws IOException {
-		XPlanSynthesizer synthesizer = new XPlanSynthesizer();
-		Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);
-		return new ValidatorWmsManager(synthesizer, workspaceLocation);
 	}
 
 }

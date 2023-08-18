@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +20,17 @@
  */
 package de.latlon.xplan.manager.web.shared.edit;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
+
+import static de.latlon.xplan.commons.util.TextPatternConstants.DESCRIPTION_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.L_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.M_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.URL_PATTERN;
 
 /**
  * TODO add class documentation here
@@ -30,22 +40,41 @@ import java.util.Date;
  */
 public abstract class AbstractReference {
 
+	@Size(max = M_LENGTH)
+	@Pattern(regexp = URL_PATTERN)
+	@Valid
 	private String geoReference;
 
+	@Valid
 	private MimeTypes georefMimeType;
 
+	@Valid
 	private ExterneReferenzArt art;
 
+	@Size(max = M_LENGTH)
+	@Pattern(regexp = URL_PATTERN)
+	@Valid
 	private String informationssystemURL;
 
+	@Size(max = M_LENGTH)
+	@Pattern(regexp = URL_PATTERN)
+	@Valid
 	private String reference;
 
+	@Valid
 	private MimeTypes referenzMimeType;
 
+	@Size(max = S_LENGTH)
+	@Pattern(regexp = NAME_PATTERN)
+	@Valid
 	private String referenzName;
 
+	@Size(max = L_LENGTH)
+	@Pattern(regexp = DESCRIPTION_PATTERN)
+	@Valid
 	private String beschreibung;
 
+	@Valid
 	private Date datum;
 
 	public AbstractReference() {

@@ -2,18 +2,18 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -30,14 +30,17 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -65,11 +68,14 @@ public class ReportWriterTest {
 
 	private ReportWriter reportWriter = new ReportWriter();
 
-	private File targetDirectory;
+	@Rule
+	public TemporaryFolder temporaryFolder = new TemporaryFolder();
+
+	private Path targetDirectory;
 
 	@Before
 	public void createTargetDirectory() throws Exception {
-		targetDirectory = createDirectory();
+		targetDirectory = Paths.get(temporaryFolder.newFolder("ReportWriterTest").toURI());
 	}
 
 	@Test
@@ -93,10 +99,10 @@ public class ReportWriterTest {
 	public void testRetrieveHtmlReport_ShouldExistWithCorrectName() throws Exception {
 		reportWriter.writeArtefacts(createReport(), targetDirectory);
 
-		File htmlReport = reportWriter.retrieveHtmlReport(VALIDATION_NAME, targetDirectory);
+		Path htmlReport = reportWriter.retrieveHtmlReport(VALIDATION_NAME, targetDirectory);
 
-		assertThat(htmlReport.exists(), is(true));
-		assertThat(htmlReport.getName(), is(VALIDATION_NAME + ".html"));
+		assertThat(Files.exists(htmlReport), is(true));
+		assertThat(htmlReport.getFileName().toString(), is(VALIDATION_NAME + ".html"));
 	}
 
 	@Test
@@ -126,8 +132,8 @@ public class ReportWriterTest {
 		ICRS crs = lookup("epsg:4326");
 		String uomURI = "m";
 		Measure measure = new Measure(BigDecimal.TEN, uomURI);
-		badGeometries.add(
-				new BadGeometry(new GeometryFactory().createPoint("id", 20, 10, crs).getBuffer(measure), "Fehler"));
+		badGeometries
+			.add(new BadGeometry(new GeometryFactory().createPoint("id", 20, 10, crs).getBuffer(measure), "Fehler"));
 		GeometricValidatorResult result = new GeometricValidatorResult(Collections.<String>emptyList(),
 				Collections.<String>emptyList(), badGeometries, crs, false);
 		ValidatorReport report = new ValidatorReport();
@@ -145,18 +151,12 @@ public class ReportWriterTest {
 		return report;
 	}
 
-	private static File createDirectory() throws IOException {
-		File targetDirectory = Files.createTempDirectory("ReportWriterTest").toFile();
-		targetDirectory.deleteOnExit();
-		return targetDirectory;
-	}
-
-	private Matcher<? super File> containsFile(final String fileName) {
-		return new TypeSafeMatcher<File>() {
+	private Matcher<? super Path> containsFile(final String fileName) {
+		return new TypeSafeMatcher<>() {
 
 			@Override
-			public boolean matchesSafely(File directory) {
-				return new File(directory, fileName).isFile();
+			public boolean matchesSafely(Path directory) {
+				return Files.isRegularFile(directory.resolve(fileName));
 			}
 
 			@Override
@@ -166,12 +166,12 @@ public class ReportWriterTest {
 		};
 	}
 
-	private Matcher<? super File> containsDirectory(final String directoryName) {
-		return new TypeSafeMatcher<File>() {
+	private Matcher<? super Path> containsDirectory(final String directoryName) {
+		return new TypeSafeMatcher<>() {
 
 			@Override
-			public boolean matchesSafely(File directory) {
-				return new File(directory, directoryName).isDirectory();
+			public boolean matchesSafely(Path directory) {
+				return Files.isDirectory(directory.resolve(directoryName));
 			}
 
 			@Override
@@ -182,7 +182,7 @@ public class ReportWriterTest {
 	}
 
 	private Matcher<ZipInputStream> hasEntryWithNameAndSize(final String expectedName, final int expectedSize) {
-		return new TypeSafeMatcher<ZipInputStream>() {
+		return new TypeSafeMatcher<>() {
 			@Override
 			protected boolean matchesSafely(ZipInputStream zip) {
 				try {
@@ -205,8 +205,8 @@ public class ReportWriterTest {
 
 			@Override
 			public void describeTo(Description description) {
-				description.appendText(
-						"Zip must contain " + expectedSize + "entries and an entry with name " + expectedName);
+				description
+					.appendText("Zip must contain " + expectedSize + "entries and an entry with name " + expectedName);
 			}
 		};
 	}

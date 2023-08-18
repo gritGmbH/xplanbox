@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-commons - xplan-api-commons
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -62,11 +62,16 @@ public class OpenApiFilter extends AbstractSpecFilter {
 	}
 
 	private void addOpenApiPath(OpenAPI openAPI) {
-		ApiResponses apiResponses = new ApiResponses().addApiResponse("200",
-				new ApiResponse().description("successful operation").content(new Content()
-						.addMediaType("application/json", new MediaType().schema(new Schema().type("object")))));
-		PathItem openApiPath = new PathItem().get(new Operation().operationId("openApi").summary("OpenAPI document")
-				.description("API documentation").responses(apiResponses));
+		ApiResponses apiResponses = new ApiResponses()
+			.addApiResponse("200",
+					new ApiResponse().description("successful operation")
+						.content(new Content().addMediaType("application/json",
+								new MediaType().schema(new Schema().type("object")))))
+			.addApiResponse("406", new ApiResponse().description("Requested format is not available"));
+		PathItem openApiPath = new PathItem().get(new Operation().operationId("openApi")
+			.summary("OpenAPI document")
+			.description("API documentation")
+			.responses(apiResponses));
 		openAPI.getPaths().addPathItem("/", openApiPath);
 
 	}
@@ -84,7 +89,7 @@ public class OpenApiFilter extends AbstractSpecFilter {
 	}
 
 	private String createNewKey(String path) {
-		Pattern pattern = Pattern.compile("\\/(xvalidator|xmanager)\\/api\\/v[\\d_\\-\\.]*(\\/|)");
+		Pattern pattern = Pattern.compile("\\/(xvalidator|xmanager|xdokumente)\\/api\\/v[\\d_\\-\\.]*(\\/|)");
 		Matcher matcher = pattern.matcher(path);
 		return matcher.replaceFirst("/");
 	}

@@ -2,18 +2,18 @@
  * #%L
  * xplan-api-validator - Modul zur Gruppierung der REST-API
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -36,6 +36,7 @@ import java.util.List;
 @Provider
 public class StringListConverterProvider implements ParamConverterProvider {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> ParamConverter<T> getConverter(Class<T> aClass, Type type, Annotation[] annotations) {
 		if (isListWithStrings(aClass, type)) {
@@ -50,7 +51,7 @@ public class StringListConverterProvider implements ParamConverterProvider {
 			if (actualTypeArguments.length == 1) {
 				Type actualTypeArgument = actualTypeArguments[0];
 				if (actualTypeArgument instanceof Class
-						&& ((Class) actualTypeArgument).isAssignableFrom(String.class)) {
+						&& ((Class<?>) actualTypeArgument).isAssignableFrom(String.class)) {
 					return true;
 				}
 			}

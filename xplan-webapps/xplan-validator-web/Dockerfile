@@ -1,0 +1,22 @@
+ARG XPLANBOX_VERSION=latest
+ARG XPLANBOX_IMAGE_NAME_PREFIX=xplanbox
+
+FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat:$XPLANBOX_VERSION
+ARG WEB_CONTEXT=xplan-validator-web
+
+# set environment variables
+ENV TOMCAT_ADDITIONAL_ARG_APP="-DXPLANBOX_CONFIG=/xplanbox/xplan-validator-config -Dlog4j2.configurationFile=classpath:/log4j2.yaml -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng -Duser.timezone=Europe/Berlin"
+ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree
+
+USER root
+
+# add xplan-validator-web directly unpacked
+ADD target/xplan-validator-web-*.war /tmp/
+RUN mkdir /opt/bitnami/tomcat/webapps/$WEB_CONTEXT \
+	&& cd /opt/bitnami/tomcat/webapps/$WEB_CONTEXT \
+	&& jar xf /tmp/xplan-validator-web-*.war \
+	&& rm /tmp/xplan-validator-web-*.war
+
+RUN chmod -R a+w /bitnami/tomcat/webapps/xplan-validator-web/masterportal
+
+USER 1001

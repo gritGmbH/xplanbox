@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -71,14 +71,17 @@ public class LiquibaseConfigurationIT {
 			Connection connection = openConnection();
 
 			Database database = DatabaseFactory.getInstance()
-					.findCorrectDatabaseImplementation(new JdbcConnection(connection));
+				.findCorrectDatabaseImplementation(new JdbcConnection(connection));
 			Liquibase liquibase = new liquibase.Liquibase("changelog_v60.yaml", new ClassLoaderResourceAccessor(),
 					database);
 			liquibase.validate();
 			ValidationErrors errors = database.validate();
 			assertFalse(errors.hasErrors());
-			RanChangeSet changeSet60 = database.getRanChangeSetList().stream()
-					.filter(changeSet -> changeSet.getId().equalsIgnoreCase("1663512741090-1")).findAny().orElse(null);
+			RanChangeSet changeSet60 = database.getRanChangeSetList()
+				.stream()
+				.filter(changeSet -> changeSet.getId().equalsIgnoreCase("1663512741090-1"))
+				.findAny()
+				.orElse(null);
 			assertNotNull(changeSet60);
 			assertTrue(database.doesTagExist("v_6.0"));
 			connection.close();

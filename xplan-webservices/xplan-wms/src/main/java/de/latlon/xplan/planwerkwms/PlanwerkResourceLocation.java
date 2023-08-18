@@ -2,7 +2,7 @@
  * #%L
  * xplan-wms - deegree XPlan WebMapService
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -39,7 +39,7 @@ import java.net.URL;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class PlanwerkResourceLocation extends DefaultResourceLocation {
+public class PlanwerkResourceLocation extends DefaultResourceLocation<OWS> {
 
 	private byte[] bytes;
 

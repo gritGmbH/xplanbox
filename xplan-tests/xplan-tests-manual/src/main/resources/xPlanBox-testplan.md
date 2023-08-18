@@ -542,7 +542,7 @@ Schritt |Beschreibung |Erwartetes Ergebnis
 **06** | Der Benutzer importiert den Plan erneut. | Der Plan wird erfolgreich importiert. 
 **07** | Der Benutzer bewegt das Kartenbild in QGIS. | Der WMS wird neu geladen. 
 **08** | Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (GetFeatureInfo Operation). | Es werden die Objektinformationen der neuen Codeliste im entsprechenden Feld angezeigt. Dieser Wert stellt die Übersetzung des Codes dar. 
-**09** | Der Benutzer navigiert in den Ordner [1] und editiert dort in {{{xplan_[CODELIST_NAME].xml}}} den übersetzten Wert (gml:description) des in Schritt 8 überprüften Codes in einen beliebigen anderen Wert.
+**09** | Der Benutzer navigiert in den Ordner [1] und editiert dort in `xplan_[CODELIST_NAME].xml` den übersetzten Wert (gml:description) des in Schritt 8 überprüften Codes in einen beliebigen anderen Wert.
 **10** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wird gelöscht. 
 **11** | Der Benutzer importiert den Plan erneut. |Der Plan wird erfolgreich importiert. 
 **12** | Der Benutzer bewegt das Kartenbild in QGIS. | Der WMS wird neu geladen. 
@@ -550,7 +550,7 @@ Schritt |Beschreibung |Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] ~/.deegree/mananger-configuration/synthesizer 
+* [1] <XPLANBOX_CONFIG>/synthesizer 
 * Gibt es diesen Ordner noch nicht muss dieser noch angelegt werden.
 
 **Beispiel einer xplan41.syn-Datei:**

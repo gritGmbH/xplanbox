@@ -7,8 +7,20 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-cli</artifactId>
-    <version>6.0-SNAPSHOT</version>
+    <version>7.0</version>
   </parent>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <plugins>
@@ -31,6 +43,10 @@
             <program>
               <mainClass>de.latlon.xplan.update.tool.BereichUpdateTool</mainClass>
               <id>bereichUpdate</id>
+            </program>
+            <program>
+              <mainClass>de.latlon.xplan.update.tool.ArtefactsTableUpdateTool</mainClass>
+              <id>artefactsTableUpdate</id>
             </program>
             <program>
               <mainClass>de.latlon.xplan.update.tool.DistrictUpdateTool</mainClass>
@@ -76,10 +92,11 @@
               <target>
                 <chmod perm="+x">
                   <fileset dir="target/appassembler/bin">
-                    <include name="databaseUpdate" />
+                    <include name="bereichUpdate" />
+                    <include name="artefactsTableUpdate" />
                     <include name="districtUpdate" />
                     <include name="reSynthesizer" />
-                    <include name="serviceMetadataRecordCreator" />
+                    <include name="sortDateUpdate" />
                   </fileset>
                 </chmod>
               </target>
@@ -105,6 +122,37 @@
     <dependency>
       <groupId>de.latlon</groupId>
       <artifactId>deegree-sqldialect-postgis</artifactId>
+    </dependency>
+    <!-- spring -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>net.bytebuddy</groupId>
+      <artifactId>byte-buddy</artifactId>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>

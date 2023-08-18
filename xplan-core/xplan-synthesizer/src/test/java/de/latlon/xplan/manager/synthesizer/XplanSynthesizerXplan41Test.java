@@ -2,7 +2,7 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.synthesizer;
 
-import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -32,18 +31,12 @@ import org.junit.Test;
 import javax.xml.namespace.QName;
 import java.util.List;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class XplanSynthesizerXplan41Test extends AbstractXplanSynthesizerTest {
-
-	@Override
-	XPlanVersion getXPlanVersion() {
-		return XPLAN_41;
-	}
 
 	@Test
 	public void testBp2070() throws Exception {
@@ -95,8 +88,8 @@ public class XplanSynthesizerXplan41Test extends AbstractXplanSynthesizerTest {
 	}
 
 	@Test
-	public void testId103() throws Exception {
-		createSynFeatures("xplan41/V4_1_ID_103.zip");
+	public void testBPlan001_41() throws Exception {
+		createSynFeatures("xplan41/BPlan001_4-1.zip");
 	}
 
 	private Matcher<? super FeatureCollection> hasFeature(final String featureName) {

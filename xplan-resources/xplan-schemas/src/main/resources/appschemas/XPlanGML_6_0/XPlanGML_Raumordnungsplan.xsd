@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 01.08.2022 16:07:21-->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.1">
+<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 02.11.2022 15:52:37-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.2">
   <include schemaLocation="XPlanGML_Basisschema.xsd" />
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="GmlProfile/gmlProfilexplan.xsd" />
   <include schemaLocation="XPlanGML_LPlan_Kernmodell.xsd" />
@@ -369,6 +369,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="sonstPlanArt" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:RP_SonstPlanArt</referenzierteCodelist>
+              </appinfo>
               <documentation>Spezifikation einer weiteren Planart (CodeList) bei planArt == 9999.</documentation>
             </annotation>
           </element>
@@ -389,6 +392,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="status" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:RP_Status</referenzierteCodelist>
+              </appinfo>
               <documentation>Status des Plans, definiert über eine CodeList.</documentation>
             </annotation>
           </element>
@@ -5446,6 +5452,9 @@ Kongruenzgebots. Der Kongruenzraum beschreibt den Raum im Umfeld eines Zentralen
         <sequence>
           <element name="typ" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:RP_GenerischesObjektTypen</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine CodeList definierte Zweckbestimmung der Festlegung.</documentation>
             </annotation>
           </element>
@@ -5478,6 +5487,9 @@ Kongruenzgebots. Der Kongruenzraum beschreibt den Raum im Umfeld eines Zentralen
           </element>
           <element name="sonstTyp" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:RP_SonstGrenzeTypen</referenzierteCodelist>
+              </appinfo>
               <documentation>Erweiterter Typ.</documentation>
             </annotation>
           </element>

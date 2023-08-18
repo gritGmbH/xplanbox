@@ -1,10 +1,8 @@
-package de.latlon.xplan.commons.feature;
-
 /*-
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +18,7 @@ package de.latlon.xplan.commons.feature;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.commons.feature;
 
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
@@ -37,7 +36,7 @@ import java.util.List;
  */
 public abstract class XPlanFeatureCollection {
 
-	protected final FeatureCollection features;
+	protected FeatureCollection features;
 
 	protected final XPlanType type;
 
@@ -102,6 +101,10 @@ public abstract class XPlanFeatureCollection {
 
 	public FeatureCollection getFeatures() {
 		return features;
+	}
+
+	public void setFeatures(FeatureCollection features) {
+		this.features = features;
 	}
 
 	public ExternalReferenceInfo getExternalReferenceInfo() {

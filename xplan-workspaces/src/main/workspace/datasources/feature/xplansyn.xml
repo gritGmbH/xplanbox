@@ -1,25 +1,25 @@
-<!--  #%L
+<!-- #%L
   xplanbox-syn - Automatisiert erzeugte Konfiguration
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-
+  
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-
+  
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 24.10.2022, 07:13:49-->
-<SQLFeatureStore xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/3.5/datasource/feature/sql/sql.xsd" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2">
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 15.03.2023, 10:57:58-->
+<SQLFeatureStore xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql https://schemas.deegree.org/core/3.5/datasource/feature/sql/sql.xsd" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2">
   <JDBCConnId>xplan</JDBCConnId>
-  <StorageCRS srid="0" dim="2D">EPSG:25832</StorageCRS>
+  <StorageCRS srid="25832" dim="2D">EPSG:25832</StorageCRS>
   <GMLSchema>../../appschemas/XPlanGML_Syn/XPlanSyn.xsd</GMLSchema>
   <FeatureTypeMapping name="xplan:BP_AbgrabungsFlaeche" table="xplansyn.xplan_bp_abgrabungsflaeche">
     <FIDMapping prefix="XPLAN_BP_ABGRABUNGSFLAECHE_">
@@ -7976,6 +7976,7 @@
     <Primitive path="xplan:referenziertLPObjekt" mapping="xplan_referenziertlpobjekt"/>
     <Primitive path="xplan:wirdReferenziertVon" mapping="xplan_wirdreferenziertvon"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel"/>
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkeluom"/>
@@ -8181,6 +8182,7 @@
     <Primitive path="xplan:referenziertLPObjekt" mapping="xplan_referenziertlpobjekt"/>
     <Primitive path="xplan:wirdReferenziertVon" mapping="xplan_wirdreferenziertvon"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel"/>
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkeluom"/>
@@ -8345,6 +8347,7 @@
     <Primitive path="xplan:referenziertLPObjekt" mapping="xplan_referenziertlpobjekt"/>
     <Primitive path="xplan:wirdReferenziertVon" mapping="xplan_wirdreferenziertvon"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung"/>
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
@@ -8739,6 +8742,7 @@
     <Primitive path="xplan:referenziertLPObjekt" mapping="xplan_referenziertlpobjekt"/>
     <Primitive path="xplan:wirdReferenziertVon" mapping="xplan_wirdreferenziertvon"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel"/>
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkeluom"/>
@@ -9051,6 +9055,7 @@
     <Primitive path="xplan:referenziertLPObjekt" mapping="xplan_referenziertlpobjekt"/>
     <Primitive path="xplan:wirdReferenziertVon" mapping="xplan_wirdreferenziertvon"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel"/>
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkeluom"/>
@@ -9358,6 +9363,7 @@
     <Primitive path="xplan:referenziertLPObjekt" mapping="xplan_referenziertlpobjekt"/>
     <Primitive path="xplan:wirdReferenziertVon" mapping="xplan_wirdreferenziertvon"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
+    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel"/>
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkeluom"/>
@@ -12592,6 +12598,19 @@
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
     <Primitive path="xplan:sonstRechtscharakter" mapping="xplan_sonstrechtscharakter"/>
     <Primitive path="xplan:sonstRechtscharakterWert" mapping="xplan_sonstrechtscharakterwert"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
@@ -12724,6 +12743,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
@@ -12781,6 +12813,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
@@ -12838,6 +12883,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
@@ -12898,6 +12956,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:gemeinde" mapping="xplan_gemeinde"/>
@@ -12958,6 +13029,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
@@ -13008,6 +13092,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
@@ -13058,6 +13155,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:textSchluessel" mapping="xplan_textschluessel"/>
     <Primitive path="xplan:textSchluesselBegruendung" mapping="xplan_textschluesselbegruendung"/>
@@ -13108,6 +13218,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:textSchluessel" mapping="xplan_textschluessel"/>
     <Primitive path="xplan:textSchluesselBegruendung" mapping="xplan_textschluesselbegruendung"/>
@@ -13154,6 +13277,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
@@ -13212,6 +13348,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Primitive path="xplan:textSchluessel" mapping="xplan_textschluessel"/>
     <Primitive path="xplan:textSchluesselBegruendung" mapping="xplan_textschluesselbegruendung"/>
     <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich"/>
@@ -13344,6 +13493,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
@@ -13518,6 +13680,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
@@ -13583,6 +13758,19 @@
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
     <Primitive path="xplan:sonstRechtscharakter" mapping="xplan_sonstrechtscharakter"/>
     <Primitive path="xplan:sonstRechtscharakterWert" mapping="xplan_sonstrechtscharakterwert"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:art" mapping="xplan_art"/>
@@ -13623,6 +13811,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
@@ -13686,6 +13887,19 @@
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
     <Primitive path="xplan:sonstRechtscharakter" mapping="xplan_sonstrechtscharakter"/>
     <Primitive path="xplan:sonstRechtscharakterWert" mapping="xplan_sonstrechtscharakterwert"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
@@ -13879,6 +14093,19 @@
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
     <Primitive path="xplan:sonstRechtscharakter" mapping="xplan_sonstrechtscharakter"/>
     <Primitive path="xplan:sonstRechtscharakterWert" mapping="xplan_sonstrechtscharakterwert"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
   </FeatureTypeMapping>
@@ -13912,6 +14139,19 @@
     <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
     <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
@@ -13976,6 +14216,19 @@
     <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
     <Primitive path="xplan:sonstRechtscharakter" mapping="xplan_sonstrechtscharakter"/>
     <Primitive path="xplan:sonstRechtscharakterWert" mapping="xplan_sonstrechtscharakterwert"/>
+    <Primitive path="xplan:vonGenehmigungAusgenommen" mapping="xplan_vongenehmigungausgenommen"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPFlaeche" mapping="xplan_wirdausgeglichendurchfpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchFPSPE" mapping="xplan_wirdausgeglichendurchfpspe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPFlaeche" mapping="xplan_wirdausgeglichendurchbpflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPABE" mapping="xplan_wirdausgeglichendurchbpabe"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEMassnahme" mapping="xplan_wirdausgeglichendurchbpspemassnahme"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPSPEFlaeche" mapping="xplan_wirdausgeglichendurchbpspeflaeche"/>
+    <Primitive path="xplan:wirdAusgeglichenDurchBPMassnahme" mapping="xplan_wirdausgeglichendurchbpmassnahme"/>
+    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
+    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
+    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
+    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
+    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>

@@ -1,0 +1,2 @@
+#xplan_BP_SonstPlanArt.xml
+BP_Plan/sonstPlanArtWert=xplanExternalCodeLookup(xpath('xplan:sonstPlanArt'), 'xplan_BP_SonstPlanArt.xml')

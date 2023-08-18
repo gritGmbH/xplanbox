@@ -11,12 +11,11 @@ Konfiguration der drei Tomcat-Instanzen beschrieben.
 
 Im _Anwendungs-Tomcat_ muss folgende Konfiguration vorgenommen werden:
 
-. Für den XPlanManagerWeb muss die Variable _XPLANBOX_CONFIG_ als Java Property gesetzt werden. Das mit Hilfe dieser Variable referenzierte Verzeichnis muss die Konfiguration des XPlanManagerWeb und XPlanValidatorWeb enthalten, mit den Dateien _managerConfiguration.properties_,
-_managerWebConfiguration.properties_ und _validatorConfiguration.properties_. Wurde der Anleitung in Abschnitt <<anwendung-installieren>> gefolgt, befindet sich das Verzeichnis mit dem Namen _xplan-manager-config_ im Verzeichnis _.deegree_ im Home-Verzeichnis des Nutzers. Wird ausschließlich der XPlanValidatorWeb installiert, heißt das Verzeichnis _xplan-validator-config_.
-. Die Bibliothek JTS muss über die Variable `jts.overlay=ng` konfiguriert werden.
+. Für die Komponenten XPlanManager und XPlanValidator muss die Umgebungsvariable _XPLANBOX_CONFIG_ gesetzt werden. Das in dieser Variable gesetzte Verzeichnis muss die Konfigurationsdateien _managerConfiguration.properties_, _managerWebConfiguration.properties_ und _validatorConfiguration.properties_ enthalten (siehe Kapitel <<vorbereitung-der-installation>> und  <<anwendung-installieren>>).
+. Das Verzeichnis mit den deegree Workspaces ist über die Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ gesetzt (siehe Kapitel <<vorbereitung-der-installation>>).
 . Die Bibliothek deegree muss über die Variable `javax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl` konfiguriert werden.
+. Die Bibliothek JTS muss über die Variable `jts.overlay=ng` konfiguriert werden.
 
-IMPORTANT: Wurden die Workspaces nicht im Verzeichnis _.deegree_ des Home-Verzeichnis abgelegt, ist das Setzen der Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ zwingend erforderlich.
 
 TIP: Es wird empfohlen die Zeitzone im _Anwendungs-Tomcat_ auf "Europe/Berlin" zu konfigurieren, wenn dies nicht bereits auf Ebene des Betriebssystems gesetzt ist. Andernfalls kann es beim Editieren eines Plans veränderten Datumsangaben (z. B. Herstellungsdatum) kommen. Für die Konfiguration im Tomcat muss folgende Option zusätzlich in den `CATALINA_OPTS` ergänzt werden: `-Duser.timezone=Europe/Berlin`.
 
@@ -28,7 +27,7 @@ Unter Linux muss im Verzeichnis _<CATALINA_HOME>/bin_ der Instanz _Anwendungs-To
 In dieser Datei wird die Variable `CATALINA_OPTS` wie folgt erweitert:
 
 ----
-export CATALINA_OPTS='-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=/pfad/zu/den/workspaces -Djts.overlay=ng -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin'
+export CATALINA_OPTS='-DXPLANBOX_CONFIG=/opt/xplanbox/xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=/opt/deegree -Djts.overlay=ng -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin'
 ----
 
 Falls bereits ein Export von `CATALINA_OPTS` in dieser Datei vorhanden ist, muss die Variable `CATALINA_OPTS` erweitert werden.
@@ -41,7 +40,7 @@ Unter Windows muss im Verzeichnis _<CATALINA_HOME>/bin_ der Instanz _Anwendungs-
 In dieser Datei wird die Variable `CATALINA_OPTS` wie folgt erweitert:
 
 ----
-export CATALINA_OPTS='-DXPLANBOX_CONFIG=C:\.deegree\xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=C:\pfad\zu\den\workspaces -Djts.overlay=ng -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin'
+export CATALINA_OPTS='-DXPLANBOX_CONFIG=C:\xplanbox\xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=C:\deegree -Djts.overlay=ng -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin'
 ----
 
 Falls bereits ein Export von `CATALINA_OPTS` in dieser Datei vorhanden ist, muss die Variable  `CATALINA_OPTS` erweitert werden.
@@ -51,32 +50,27 @@ IMPORTANT: Der _Anwendungs-Tomcat_ muss mindestens über 4GB Arbeitsspeicher ver
 [[dienste-tomcat]]
 ==== Dienste-Tomcat
 
-Falls der XPlanManager nach jedem Einfügen und Löschen eines Plan den
-XPlanWMS und XPlanWerkWMS aktualisieren soll, muss ein Tomcat-Nutzer angelegt werden.
-Ansonsten ist ein manueller Workspace-Reload nötig, um die neu
-importieren bzw. gelöschten Rasterpläne im XPlanWMS darzustellen bzw. zu
-entfernen.
+Falls der XPlanManager nach jedem Einfügen und Löschen eines Plans den
+XPlanWMS und XPlanWerkWMS aktualisieren soll, muss ein Workspace-Reload ausgeführt werden. Damit der XPlanManager auf die REST-Schnittstelle des XPlanWMS/XPlanWerkWMS zugreifen kann, muss zur Authentifizierung ein API-Key eingerichtet werden. Ansonsten ist ein manueller Workspace-Reload nötig, um die neu
+importieren bzw. gelöschten Rasterpläne im XPlanWMS darzustellen bzw. zu entfernen.
 
-Dafür müssen in der Datei _<CATALINA_HOME>/conf/tomcat-users.xml_ der Instanz _Dienste-Tomcat_ folgende
-Zeilen hinzugefügt werden:
+Für die Instanz _Dienste-Tomcat_ muss die Datei _<DEEGREE_WORKSPACE_ROOT>/config.apikey_ angelegt werden, in dieser wird der API-Key für die REST-Schnittstelle aller XPlanDienste eingetragen.
 
+.Beispiel für den Inhalt der Datei config.apikey:
 ----
-<role rolename="deegree"/>
-<user username="<NUTZERNAME>" password="<PASSWORT>" roles="deegree"/>
+xplanbox
 ----
-Weitere Informationen zur https://tomcat.apache.org/tomcat-9.0-doc/realm-howto.html[Konfiguration von Benutzern] ist in der Dokumentation von Apache Tomcat zu finden.
 
-NOTE: Der Nutzername und das Passwort müssen in die
-_managerConfiguration.properties_ eingetragen werden (s. Kapitel
-<<automatischer-workspace-reload>>.
+Der API-Key wird beim Start der XPlanDienste automatisch angelegt und ein generierter Key gesetzt. Dieser kann nachträglich angepasst werden. Weitere Informationen finden sich dazu im Handbuch von https://download.deegree.org/documentation/current/html/#%5Fsetting%5Fup%5Fthe%5Finterface[deegree webservices].
+Der API-Key muss auch in die _managerConfiguration.properties_ eingetragen werden (s. Kapitel <<automatischer-workspace-reload>>)!
 
 Für den _Dienste-Tomcat_ muss auch die Variable `CATALINA_OPTS` wie folgt erweitert werden:
 
 ----
-export CATALINA_OPTS='-DDEEGREE_WORKSPACE_ROOT=/pfad/zu/den/workspaces -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl'
+export CATALINA_OPTS='-DDEEGREE_WORKSPACE_ROOT=/opt/deegree -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl'
 ----
 
-CAUTION: Der _Dienste-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
+IMPORTANT: Der _Dienste-Tomcat_ muss mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch Setzen der Umgebungsvariable: `export JAVA_OPTS='-Xmx4096m'` erfolgen.
 
 [[api-tomcat]]
@@ -85,10 +79,10 @@ dies kann durch Setzen der Umgebungsvariable: `export JAVA_OPTS='-Xmx4096m'` erf
 Für den _API-Tomcat_ muss auch die Variable `CATALINA_OPTS` wie auch für den <<dienste-tomcat,_Dienste-Tomcat_>> wie folgt erweitert werden:
 
 ----
-export CATALINA_OPTS='-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=/pfad/zu/den/workspaces -Djts.overlay=ng -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin'
+export CATALINA_OPTS='-DXPLANBOX_CONFIG=/opt/xplanbox/xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=/opt/deegree -Djts.overlay=ng -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin'
 ----
 
-CAUTION: Der _API-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
+IMPORTANT: Der _API-Tomcat_ muss mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch Setzen der Umgebungsvariable: `export JAVA_OPTS='-Xmx4096m'` erfolgen.
 
 ==== Absicherung des Tomcat und der Webanwendungen
@@ -97,8 +91,12 @@ Wenn die xPlanBox in einer produktiven Umgebung betrieben wird, sollte der Apach
 
 Zusätzlich sollte die xPlanBox wie folgt konfiguriert sein:
 
-. die deegree webservice console für die Dienste _xplan-wms_, _xplan-wfs_, _xplansyn-wfs_ und _xplan-inspireplu_ im _Dienste-Tomcat_ ist durch ein Kennwort geschützt (Datei _console.pw_ im deegree Workspace).
-. die deegree REST-Schnittstelle ist durch Benutzername und Kennwort abgesichert (Datei _web.xml_ und _tomcat-users.xml_ im Tomcat-Konfigurationsverzeichnis, siehe Kapitel <<dienste-tomcat>>).
-. der Zugriff auf die deegree webservice console ist auf IP-Adressbereiche bzw. Domänen eingeschränkt (Datei _context.xml_ innerhalb der Webanwendungen).
-. die Tomcat-Instanzen werden hinter einem Proxy (z. B. Apache httpd) betrieben (Datei _server.xml_ im Tomcat-Konfigurationsverzeichnis).
+. die deegree webservice console (Kontextpfad _/console_) für die Dienste _xplan-wms_, _xplan-wfs_, _xplansyn-wfs_ und _xplan-inspireplu_ im _Dienste-Tomcat_ ist durch ein Kennwort geschützt (Datei _console.pw_ im deegree Workspace).
+. die deegree REST-Schnittstelle (Kontextpfad _/config_) für die Dienste _xplan-wms_, _xplan-wfs_, _xplansyn-wfs_ und _xplan-inspireplu_ ist durch einen API-Key abgesichert (Datei _config.apikey_ im Workspace-Verzeichnis, siehe Kapitel <<dienste-tomcat>>).
+. zusätzlich wird die Einschränkung des Zugriffs auf die deegree webservice console und deegree REST-Schnittstelle auf IP-Adressbereiche bzw. Domänen empfohlen (Datei _context.xml_ innerhalb der Webanwendungen).
+. die Tomcat-Instanzen werden hinter einem Proxy (z. B. Apache httpd oder nginx) betrieben.
 . der Zugriff auf den XPlanManagerWeb ist durch Benutzername und Kennwort abgesichert (siehe Kapitel <<security>>).
+. die Komponente XPlanManagerAPI ist ebenfalls über Benutzername und Kennwort abgesichert.
+. die über den XPlanManagerAPI/Web sowie XPlanValidatorAPI/Web hochgeladenen Dateien sollten vorher durch einen Proxy mit Virenscanner auf Viren und Malware geprüft werden.
+
+CAUTION: Der Betrieb der xPlanBox *ohne* die Umsetzung dieser Maßnahmen kann die IT-Sicherheit der Anwendung gefährden!

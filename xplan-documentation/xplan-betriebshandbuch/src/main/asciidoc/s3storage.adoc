@@ -1,0 +1,54 @@
+[[s3-storage]]
+== S3-Objektspeicher
+
+Die Ablage von Rasterdaten und Begleitdokumente im Objektspeicher von AWS S3 wird ab der Version 7.0 der xPlanBox unterstützt.
+
+[[s3-storage-image]]
+=== Rasterdaten
+
+Rasterdaten können im Objektspeicher von AWS S3 gespeichert und über den MapServer abgerufen werden.
+
+Dazu müssen in der Konfiguration für <<konfiguration-xplanwms-mapserver,MapServer>> und <<konfiguration-manager-mapserver,XPlanManager>> die Verbindungsdaten für das AWS S3-API angegeben werden. Für den MapServer steht in dem Distributionspaket _xplan-mapserver-config-<VERSION>.zip_ eine Konfigurationsdatei _mapserver.map_ bereit. In dieser Datei müssen die Angaben für `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_S3_ENDPOINT` (siehe https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html[AWS CLI Umgebungsvariablen]) angepasst werden.
+
+TIP: Weitere Informationen zur Konfiguration des https://aws.amazon.com/de/s3/[S3] Objekspeichers im MapServer https://mapserver.org/mapfile/map.html[Mapfile] und https://gdal.org/user/virtual_file_systems.html[GDAL Virtual File Systems].
+
+Für den XPlanManager müssen die Angaben für den S3-Objektspeicher über Umgebungsvariablen gesetzt werden:
+
+[source,properties]
+----
+XPLAN_S3_ACCESS_KEY=MY_ACCESS_KEY <1>
+XPLAN_S3_SECRET_ACCESS_KEY=MY_SECRET_KEY <2>
+XPLAN_S3_BUCKET_NAME=myimagebucket <3>
+XPLAN_S3_REGION=eu-central-1 <4>
+XPLAN_S3_ENDPOINT=https://s3.amazonaws.com <5>
+----
+<1> Hier muss der S3 Accesskey gesetzt werden
+<2> Hier muss der S3 Secretkey gesetzt werden
+<3> Hier muss der Name des S3 Bucket für die Rasterdaten gesetzt werden, hier als Beispiel `myimagebucket`
+<4> Hier muss die S3 Region gesetzt werden
+<5> Hier kann die S3 Endpoint URL gesetzt werden (optional)
+
+NOTE: Für die Aktivierung des S3-Objektspeichers für die Ablage von Rasterdaten muss zusätzlich auch die Umgebungsvariable `spring_profiles_active=s3img` gesetzt werden.
+
+[[s3-storage-doc]]
+=== Begleitdokumente
+
+Für die Ablage von Begleitdokumenten im S3-Objektspeicher müssen folgende Umgebungsvariablen gesetzt werden:
+
+[source,properties]
+----
+XPLAN_S3_ACCESS_KEY=MY_ACCESS_KEY <1>
+XPLAN_S3_SECRET_ACCESS_KEY=MY_SECRET_KEY <2>
+XPLAN_S3_BUCKET_NAME=mydocumentbucket <3>
+XPLAN_S3_REGION=eu-central-1 <4>
+XPLAN_S3_ENDPOINT=https://s3.amazonaws.com <5>
+XPLAN_S3_PUBLIC_URL=http://mydocumentbucket.s3.eu-central-1.amazonaws.com <6>
+----
+<1> Hier muss der S3 Accesskey gesetzt werden
+<2> Hier muss der S3 Secretkey gesetzt werden
+<3> Hier muss der Name des S3 Bucket für die Begleitdokumente gesetzt werden, hier als Beispiel `mydocumentbucket`
+<4> Hier muss die S3 Region gesetzt werden
+<5> Hier kann die S3 Endpoint URL gesetzt werden (optional)
+<6> Hier kann die öffentliche S3 Endpoint URL gesetzt werden (optional), setzt sich aus (3), (4) und (5) zusammen.
+
+NOTE: Für die Aktivierung des S3 Objektspeichers für die Ablage von Begleitdokumenten muss zusätzlich auch die Umgebungsvariable `spring_profiles_active=s3doc` gesetzt werden.

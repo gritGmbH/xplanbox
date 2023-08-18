@@ -2,7 +2,7 @@
 -- #%L
 -- xplan-transform-cli - Kommandozeilentool fuer die Transformation zwischen XPlanGML Versionen
 -- %%
--- Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+-- Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
 -- %%
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU Affero General Public License as published by
@@ -29,4 +29,4 @@ CREATE TABLE xplanmgr.transformToolPlanTableLog (
     fids text []
 );
 
-COMMENT ON TABLE xplanmgr.transformToolPlanTableLog IS 'Logs inserted, updated and deleted plans for TransformTool';
+COMMENT ON TABLE xplanmgr.transformToolPlanTableLog IS 'Logs inserted, updated and deleted plans for XPlanTransformCLI';

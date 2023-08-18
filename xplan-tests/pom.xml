@@ -8,9 +8,14 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplanbox</artifactId>
-    <version>6.0-SNAPSHOT</version>
+    <version>7.0</version>
   </parent>
 
+  <properties>
+	<xplan-tests.maven.deploy.skip>false</xplan-tests.maven.deploy.skip>
+	<maven.deploy.skip>${xplan-tests.maven.deploy.skip}</maven.deploy.skip>
+  </properties>
+  
   <modules>
     <module>xplan-tests-resources</module>
     <module>xplan-tests-soapui</module>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gml:Dictionary gml:id="xplan_BP_SonstPlanArt" xmlns:gml="http://www.opengis.net/gml">
+  <gml:name>xplan:BP_SonstPlanArt</gml:name>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="id_11001">
+      <gml:description>FluchtlinienPlan</gml:description>
+      <gml:name codeSpace="http//www.xplanbox.de/xplanung/bp">11001</gml:name>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="id_11002">
+      <gml:description>TeilbebauungsPlan</gml:description>
+      <gml:name codeSpace="http//www.xplanbox.de/xplanung/bp">11002</gml:name>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="id_11003">
+      <gml:description>BaustufenPlan</gml:description>
+      <gml:name codeSpace="http//www.xplanbox.de/xplanung/bp">11003</gml:name>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="id_11004">
+      <gml:description>DurchfuehrungsPlan</gml:description>
+      <gml:name codeSpace="http//www.xplanbox.de/xplanung/bp">11004</gml:name>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+</gml:Dictionary>

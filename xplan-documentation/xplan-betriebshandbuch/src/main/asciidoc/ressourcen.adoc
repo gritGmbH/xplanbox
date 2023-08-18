@@ -1,0 +1,19 @@
+=== XPlanRessourcen
+
+Die Einstiegsseite der Komponente XPlanRessourcen enthält Referenzen zu
+den anderen Komponenten der xPlanBox. Die Referenzen müssen ggf. an die
+Umgebung der Installation angepasst werden. In der Datei _index.html_
+müssen die URLs zu den XPlanDiensten modifiziert werden:
+
+* http://localhost:8080/xplan-wms/services/wms?service=WMS&request=GetCapabilities
+* http://localhost:8080/xplansyn-wfs/services/xplansynwfs?service=WFS&request=GetCapabilities
+* http://localhost:8080/xplan-wfs/services/wfs40?service=WFS&request=GetCapabilities
+* http://localhost:8080/xplan-wfs/services/wfs41?service=WFS&request=GetCapabilities
+* http://localhost:8080/xplan-wfs/services/wfs50?service=WFS&request=GetCapabilities
+* http://localhost:8080/xplan-wfs/services/wfs51?service=WFS&request=GetCapabilities
+* http://localhost:8080/xplan-wfs/services/wfs52?service=WFS&request=GetCapabilities
+* http://localhost:8080/xplan-wfs/services/wfs60?service=WFS&request=GetCapabilities
+
+Weiterhin kann es notwendig sein, die relativ angegeben Referenzen zu
+den Komponenten XPlanManagerWeb und XPlanValidatorWeb
+sowie dem XPlanBenutzerhandbuch und dem XPlanBetriebshandbuch anzupassen.

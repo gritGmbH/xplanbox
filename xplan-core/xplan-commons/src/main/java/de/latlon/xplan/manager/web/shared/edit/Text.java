@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +20,17 @@
  */
 package de.latlon.xplan.manager.web.shared.edit;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_GESETZ_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_KEY_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.XL_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.XS_LENGTH;
+
 /**
  * Encapsulates the text of a plan.
  *
@@ -28,14 +39,25 @@ package de.latlon.xplan.manager.web.shared.edit;
  */
 public class Text extends AbstractReference {
 
+	@Valid
 	private String featureId;
 
+	@Size(max = XS_LENGTH)
+	@Pattern(regexp = TEXT_KEY_PATTERN)
+	@Valid
 	private String key;
 
+	@Size(max = S_LENGTH)
+	@Pattern(regexp = TEXT_GESETZ_PATTERN)
+	@Valid
 	private String basis;
 
+	@Size(max = XL_LENGTH)
+	@Pattern(regexp = TEXT_PATTERN)
+	@Valid
 	private String text;
 
+	@Valid
 	private TextRechtscharacterType rechtscharakter;
 
 	public Text() {

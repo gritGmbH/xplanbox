@@ -2,18 +2,18 @@
  * #%L
  * xplan-api-validator - Modul zur Gruppierung der REST-API
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -21,11 +21,14 @@
 package de.latlon.xplanbox.api.validator.v1;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.ValidationReportBuilder;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedHeaderValue;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.validator.handler.ValidationHandler;
 import io.swagger.v3.oas.annotations.Hidden;
@@ -55,8 +58,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.util.List;
 
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
+import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_PDF;
@@ -104,8 +110,11 @@ public class ValidateApi {
 											description = "XPlanGML or XPlanArchive (application/zip) file to upload",
 											implementation = Object.class)) }),
 					@ApiResponse(responseCode = "400", description = "Invalid input"),
-					@ApiResponse(responseCode = "406",
-							description = "Invalid content only XPlanGML or ZIP with XPlanGML is accepted") },
+					@ApiResponse(responseCode = "406", description = "Requested format is not available"),
+					@ApiResponse(responseCode = "415",
+							description = "Unsupported media type or content - only xml/gml, zip are accepted; all zip files entries must also match the supported content types for XPlanArchives"),
+					@ApiResponse(responseCode = "422",
+							description = "Invalid content - the content of the XPlanGML file must conform to the specification of xPlanBox XPlanGML files") },
 			requestBody = @RequestBody(content = {
 					@Content(mediaType = "application/octet-stream",
 							schema = @Schema(type = "string", format = "binary",
@@ -126,9 +135,10 @@ public class ValidateApi {
 	public Response validate(@Context Request request, @Valid File body,
 			@HeaderParam("X-Filename") @Parameter(description = "Name of the file to be uploaded",
 					example = "File names such as xplan.gml, xplan.xml, xplan.zip",
-					schema = @Schema(pattern = "^[A-Za-z0-9.()_-]*$")) String xFilename,
+					schema = @Schema(pattern = SIMPLE_NAME_PATTERN)) String xFilename,
 			@QueryParam("name") @Parameter(description = "Name of the validation",
-					example = "xplan-1, Prüfbericht_Torstrasse_10, report#4223") String name,
+					schema = @Schema(pattern = SIMPLE_NAME_PATTERN),
+					example = "xplan-1Pruefbericht_Torstrasse_10_report-4223") String name,
 			@QueryParam("skipSemantisch") @DefaultValue("false") @Parameter(
 					description = "skip semantische Validierung") Boolean skipSemantisch,
 			@QueryParam("skipGeometrisch") @DefaultValue("false") @Parameter(
@@ -139,9 +149,12 @@ public class ValidateApi {
 					description = "skip Geltungsbereich Ueberpruefung") Boolean skipGeltungsbereich,
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") @Parameter(
 					description = "skip Laufrichtung Ueberpruefung") Boolean skipLaufrichtung,
-			@QueryParam("profiles") @Parameter(description = "Angabe der Profile, gegen die validiert werden soll",
+			@QueryParam("profiles") @Parameter(
+					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles)
-			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
+			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive,
+			UnsupportedContentTypeException, UnsupportedParameterValue, UnsupportedHeaderValue {
+		checkContentTypesOfXPlanArchiveOrGml(body.toPath());
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromGml(body, validationName);
 
@@ -153,16 +166,20 @@ public class ValidateApi {
 	@Consumes({ "application/octet-stream", "application/zip", "application/x-zip", "application/x-zip-compressed" })
 	@Produces({ "application/json", "application/xml", "text/xml", "application/pdf", "application/zip" })
 	@Hidden
-	public Response validateZip(@Context Request request, @Valid File body, @HeaderParam("X-Filename") String xFilename,
-			@QueryParam("name") String name,
+	public Response validateZip(@Context Request request, @Valid File body,
+			@HeaderParam("X-Filename") @Parameter(schema = @Schema(pattern = SIMPLE_NAME_PATTERN)) String xFilename,
+			@QueryParam("name") @Parameter(schema = @Schema(pattern = SIMPLE_NAME_PATTERN)) String name,
 			@QueryParam("skipSemantisch") @DefaultValue("false") Boolean skipSemantisch,
 			@QueryParam("skipGeometrisch") @DefaultValue("false") Boolean skipGeometrisch,
 			@QueryParam("skipFlaechenschluss") @DefaultValue("false") Boolean skipFlaechenschluss,
 			@QueryParam("skipGeltungsbereich") @DefaultValue("false") Boolean skipGeltungsbereich,
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") Boolean skipLaufrichtung,
-			@QueryParam("profiles") @Parameter(description = "Angabe der Profile, gegen die validiert werden soll",
+			@QueryParam("profiles") @Parameter(
+					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles)
-			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
+			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive,
+			UnsupportedContentTypeException, UnsupportedParameterValue, UnsupportedHeaderValue {
+		checkContentTypesOfXPlanArchiveOrGml(body.toPath());
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromZip(body, validationName);
 
@@ -180,17 +197,23 @@ public class ValidateApi {
 		ValidatorReport validatorReport = validationHandler.validate(archive, xFileName, settings);
 		if (APPLICATION_ZIP_TYPE.equals(mediaType)) {
 			java.nio.file.Path report = validationHandler.zipReports(validatorReport);
-			return Response.ok(FileUtils.readFileToByteArray(report.toFile())).type(APPLICATION_ZIP)
-					.header("Content-Disposition", "attachment; filename=\"" + validationName + ".zip\"").build();
+			return Response.ok(FileUtils.readFileToByteArray(report.toFile()))
+				.type(APPLICATION_ZIP)
+				.header("Content-Disposition", "attachment; filename=\"" + validationName + ".zip\"")
+				.build();
 		}
 		if (APPLICATION_PDF_TYPE.equals(mediaType)) {
-			File report = validationHandler.writePdfReport(validatorReport);
-			return Response.ok(FileUtils.readFileToByteArray(report)).type(APPLICATION_PDF)
-					.header("Content-Disposition", "attachment; filename=\"" + validationName + ".pdf\"").build();
+			java.nio.file.Path report = validationHandler.writePdfReport(validatorReport);
+			return Response.ok(Files.readAllBytes(report))
+				.type(APPLICATION_PDF)
+				.header("Content-Disposition", "attachment; filename=\"" + validationName + ".pdf\"")
+				.build();
 		}
 		URI wmsUrl = validationHandler.addToWms(archive);
 		ValidationReport validationReport = new ValidationReportBuilder().validatorReport(validatorReport)
-				.filename(xFileName).wmsUrl(wmsUrl).build();
+			.filename(xFileName)
+			.wmsUrl(wmsUrl)
+			.build();
 		return Response.ok(validationReport).build();
 	}
 

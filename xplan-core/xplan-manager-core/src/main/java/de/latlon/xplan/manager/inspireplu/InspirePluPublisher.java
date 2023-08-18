@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -30,6 +30,7 @@ import org.deegree.gml.GMLStreamReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.transaction.Transactional;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import java.io.FileInputStream;
@@ -73,11 +74,13 @@ public class InspirePluPublisher {
 	 * @param xPlanVersion the version of the xplan, never <code>null</code>
 	 * @throws Exception if an exception occurs
 	 */
+	@Transactional(rollbackOn = Exception.class)
 	public void transformAndPublish(String planId, XPlanVersion xPlanVersion) throws Exception {
 		Path xPlanGml = retrieveXPlan(planId);
 		Path inspirePlu = transformator.transformToPlu(xPlanGml, xPlanVersion);
 		FeatureCollection featureCollection = parseFeatureCollection(inspirePlu);
 		xPlanDao.insertInspirePlu(featureCollection);
+		xPlanDao.setPlanWasInspirePublished(planId);
 	}
 
 	private FeatureCollection parseFeatureCollection(Path inspirePlu) throws Exception {

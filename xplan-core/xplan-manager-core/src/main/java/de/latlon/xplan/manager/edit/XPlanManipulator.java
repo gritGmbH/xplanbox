@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -168,7 +168,8 @@ public class XPlanManipulator {
 		List<RasterBasis> rasterBasis = changes.getRasterBasis();
 		String nummer = retrieveNummer(bereichFeature);
 		List<RasterBasis> rasterBasisOfBereich = rasterBasis.stream()
-				.filter(rb -> nummer == null || nummer.equals(rb.getBereichNummer())).collect(Collectors.toList());
+			.filter(rb -> nummer == null || nummer.equals(rb.getBereichNummer()))
+			.collect(Collectors.toList());
 		if (rasterBasisOfBereich.isEmpty() || countRasterReferences(rasterBasisOfBereich).isEmpty()) {
 			removeRasterBasis(version, planToEdit, bereichFeature, rasterBasis, featuresToRemove, referencesToRemove,
 					bereichFeature.getName().getNamespaceURI());
@@ -954,7 +955,7 @@ public class XPlanManipulator {
 
 	private String retrieveNummer(Feature bereichFeature) {
 		List<Property> nummerProps = bereichFeature
-				.getProperties(new QName(bereichFeature.getName().getNamespaceURI(), "nummer"));
+			.getProperties(new QName(bereichFeature.getName().getNamespaceURI(), "nummer"));
 		if (nummerProps != null && !nummerProps.isEmpty()) {
 			TypedObjectNode nummerValue = nummerProps.get(0).getValue();
 			if (nummerValue instanceof PrimitiveValue) {
@@ -966,13 +967,15 @@ public class XPlanManipulator {
 
 	private List<RasterReference> collectRasterReferencesByType(List<RasterReference> rasterReferences,
 			RasterReferenceType type) {
-		return rasterReferences.stream().filter(rasterReference -> type.equals(rasterReference.getType()))
-				.collect(Collectors.toList());
+		return rasterReferences.stream()
+			.filter(rasterReference -> type.equals(rasterReference.getType()))
+			.collect(Collectors.toList());
 	}
 
 	private List<RasterReference> countRasterReferences(List<RasterBasis> rasterBasisOfBereich) {
-		return rasterBasisOfBereich.stream().flatMap(rb -> rb.getRasterReferences().stream())
-				.collect(Collectors.toList());
+		return rasterBasisOfBereich.stream()
+			.flatMap(rb -> rb.getRasterReferences().stream())
+			.collect(Collectors.toList());
 	}
 
 	private void checkVersionAndType(XPlanVersion version, XPlanType type) {

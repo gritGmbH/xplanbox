@@ -3,7 +3,7 @@
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -26,7 +26,7 @@
                xmlns:s="http://www.deegree.org/metadata/spatial"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xmlns:app="http://www.deegree.org/app"
-               xsi:schemaLocation="http://www.deegree.org/layers/feature https://schemas.deegree.org/3.5/layers/feature/feature.xsd">
+               xsi:schemaLocation="http://www.deegree.org/layers/feature https://schemas.deegree.org/core/3.5/layers/feature/feature.xsd">
 
   <FeatureStoreId>inspireplu_view</FeatureStoreId>
 

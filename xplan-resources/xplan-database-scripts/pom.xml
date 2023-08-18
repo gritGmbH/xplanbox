@@ -8,7 +8,7 @@
     <parent>
         <groupId>de.latlon.product.xplanbox</groupId>
         <artifactId>xplan-resources</artifactId>
-        <version>6.0-SNAPSHOT</version>
+        <version>7.0</version>
     </parent>
 
     <build>
@@ -56,7 +56,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
                 <executions>
                     <execution>
                         <phase>initialize</phase>
@@ -459,6 +458,18 @@
                                     <defaultSchemaName>xplan40archive</defaultSchemaName>
                                     <outputChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan40archive.yaml
+                                    </outputChangeLogFile>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>inspireplu</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>generateChangeLog</goal>
+                                </goals>
+                                <configuration>
+                                    <defaultSchemaName>inspireplu</defaultSchemaName>
+                                    <outputChangeLogFile>${project.basedir}/target/generated-resources/changelog_inspireplu.yaml
                                     </outputChangeLogFile>
                                 </configuration>
                             </execution>
@@ -867,5 +878,12 @@
                 </plugins>
             </build>
         </profile>
+		<profile>
+			<id>docker</id>
+			<properties>
+				<docker-image.skip>false</docker-image.skip>
+				<docker-image.name>xplan-db-updater</docker-image.name>
+			</properties>
+		</profile>
     </profiles>
 </project>

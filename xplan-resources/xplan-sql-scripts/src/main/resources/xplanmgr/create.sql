@@ -2,7 +2,7 @@
 -- #%L
 -- xplan-sql-scripts - SQL Skripte zum Aufsetzen der Datenhaltung.
 -- %%
--- Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+-- Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
 -- %%
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU Affero General Public License as published by
@@ -55,12 +55,16 @@ CREATE TABLE features (
 );
 COMMENT ON TABLE features IS 'Feature ids for plans';
 
+CREATE TYPE artefacttype AS ENUM ('XPLANGML', 'RASTERBASIS');
+
 CREATE TABLE artefacts (
     plan integer references plans ON DELETE CASCADE,
     filename text NOT NULL,
     data bytea NOT NULL,
     num integer NOT NULL,
-    mimetype text NOT NULL
+    mimetype text NOT NULL,
+    length bigint NOT NULL default -1,
+    artefacttype artefacttype
 );
 COMMENT ON TABLE artefacts IS 'Plan artefacts';
 

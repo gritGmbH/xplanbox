@@ -1,7 +1,7 @@
 [[xplanmanager-api]]
 === XPlanManagerAPI
 
-Die REST-API des XPlanManager ermöglicht es, die Funktionen des XPlanManager über eine Web-API aufzurufen. Bei der Festlegung der Ressourcen wurden Begriffe aus drei Domänen verwendet. Die REST API Ressourcen wie z.B. `/plan` oder `/info` sind in Englisch und der Einstiegspunkt für eine Entität. Ressourcen unterhalb einer Entität wie z.B. `/plan/{planId}/aenderung` oder `/plan/{planId}/gueltigkeit` sind in Deutsch und aus der Oberfläche des XPlanManagerWeb abgeleitet. Die verwendeten Datentypen sind ebenfalls in Deutsch und aus den Bezeichnern des XPlanung-Datenmodells (XPlanGML-Applikationsschema) abgeleitet. Bezeichner wie z. B. `{planId}` in einer Ressource sind Variablen und müssen durch entsprechende Werte ausgetauscht werden. Folgende Variablen werden in der API verwendet:
+Die REST-API des XPlanManager ermöglicht es, die Funktionen des XPlanManager über eine Web-API aufzurufen. Bei der Festlegung der Ressourcen wurden Begriffe aus drei Domänen verwendet. Die REST-API Ressourcen wie z.B. `/plan` oder `/info` sind in Englisch und der Einstiegspunkt für eine Entität. Ressourcen unterhalb einer Entität wie z.B. `/plan/{planId}/aenderung` oder `/plan/{planId}/gueltigkeit` sind in Deutsch und aus der Oberfläche des XPlanManagerWeb abgeleitet. Die verwendeten Datentypen sind ebenfalls in Deutsch und aus den Bezeichnern des XPlanung-Datenmodells (XPlanGML-Applikationsschema) abgeleitet. Bezeichner wie z. B. `{planId}` in einer Ressource sind Variablen und müssen durch entsprechende Werte ausgetauscht werden. Folgende Variablen werden in der API verwendet:
 
 - `{planId}` - eindeutiger Schlüssel eines Plans (numerischer Wert, z.B. 10)
 - `{planName}` - eindeutiger Name eines Plans (alphanumerischer Wert, z.B. HafenCity14)
@@ -42,9 +42,9 @@ Die REST-API des XPlanManager stellt folgende Ressourcen bereit:
 |`/plan/{planId}/rasterbasis/{id}` |`DELETE` |Entfernen einer Rasterbasisdatei zu einem Plan
 |===
 
-Neben dem Datenformat JSON unterstützt die REST API auch andere Inhaltstypen, die das Datenformat JSON (Inhaltstyp `application/json`) genauer beschreiben. Im Rahmen der Inhaltsvereinbarung zwischen Client und Server über das HTTP-Header-Feld `Accept` können auch die Inhaltstypen (media types) `application/vnd.xplanbox.api+json`, `application/vnd.xplanbox.api.v1+json` und `application/vnd.xplanbox.api.v2+json` angefragt werden. Einzelne Ressourcen wie z.B. `POST /plan` unterstützen diese anwendungsspezifischen Datentypen.
+Neben dem Datenformat JSON unterstützt die REST-API auch andere Inhaltstypen, die das Datenformat JSON (Inhaltstyp `application/json`) genauer beschreiben. Im Rahmen der Inhaltsvereinbarung zwischen Client und Server über das HTTP-Header-Feld `Accept` können auch die Inhaltstypen (media types) `application/vnd.xplanbox.api+json`, `application/vnd.xplanbox.api.v1+json` und `application/vnd.xplanbox.api.v2+json` angefragt werden. Einzelne Ressourcen wie z.B. `POST /plan` unterstützen diese anwendungsspezifischen Datentypen.
 
-Eine vollständige Beschreibung der HTTP Status-Codes und der unterstützten Inhaltstypen (media types) und Formate (Encodings) für die jeweiligen Ressourcen sind in der OpenAPI Schnittstellenbeschreibung enthalten.
+Eine vollständige Beschreibung der HTTP Status-Codes und der unterstützten Inhaltstypen (media types) und Formate (Encodings) für die jeweiligen Ressourcen sind in der OpenAPI-Schnittstellenbeschreibung enthalten.
 
 NOTE: Die URL für die REST-API des XPlanManager setzt sich wie folgt zusammen: http://<host>:<port>/xplan-api-manager/xmanager/api/v1/. Die URL für die xPlanBox-Demo lautet https://xplanbox.lat-lon.de/xmanager/api/v1/.
 
@@ -52,15 +52,15 @@ IMPORTANT: Die alte REST-API mit den Ressourcen `/xplanmgrweb/rest/manager/plans
 API komplett ersetzt und in einer zukünftigen Version der xPlanBox entfernt!
 
 [[xplanmanager-api-schluessel]]
-==== Eindeutige Schlüssel für den Zugriff auf REST Ressourcen
+==== Eindeutige Schlüssel für den Zugriff auf REST-Ressourcen
 
-Um den Zugriff auf externe Dokumente zu ermöglichen, die über Referenzen in dem XPlanGML-Dokument definiert sind, wurden folgende Konventionen für die Bestimmung eines eindeutigen Schlüssels festgelegt. Diese Konventionen müssen von einem XPlanArchiv erfüllt werden, wenn dieses über die REST API bearbeitet werden soll.
-Im Folgenden sind die Konventionen am Beispiel der Planart "BPlan" und die jeweilige XPlanGML Version aufgeführt.
+Um den Zugriff auf externe Dokumente zu ermöglichen, die über Referenzen in dem XPlanGML-Dokument definiert sind, wurden folgende Konventionen für die Bestimmung eines eindeutigen Schlüssels festgelegt. Diese Konventionen müssen von einem XPlanArchiv erfüllt werden, wenn dieses über die REST-API bearbeitet werden soll.
+Im Folgenden sind die Konventionen am Beispiel der Planart "BPlan" und die jeweilige XPlanGML-Version aufgeführt.
 
 Ressource: `/plan/{planId}/text/{id}`
 [width="100%",cols="20%,60%,20%",options="header",]
 |===
-|XPlanGML Version |Element |ID
+|XPlanGML-Version |Element |ID
 |4.1 	|BP_Plan/texte => BP_TextAbschnitt (FeatureType) 	|GML ID
 |5.0 	|BP_Plan/texte => BP_TextAbschnitt (FeatureType) 	|GML ID
 |5.1 	|BP_Plan/texte => BP_TextAbschnitt (FeatureType) 	|GML ID

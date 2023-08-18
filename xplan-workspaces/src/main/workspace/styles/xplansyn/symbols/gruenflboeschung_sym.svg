@@ -3,7 +3,7 @@
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -21,36 +21,34 @@
   -->
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    version="1.0"
    width="100%"
    height="100%"
    viewBox="-5.5 -3.5 100 100"
-   id="svg2">
+   id="svg2"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs4">
     <style
        type="text/css"
        id="style6" />
-    <symbol
-       id="SymbolGolfplatz"
-       style="overflow:visible">
-      <text
-         x="0"
-         y="1.5"
-         id="text11"
-         style="font-size:4px;font-weight:100;text-anchor:middle;fill:#000000;stroke:none">Bö</text>
-    </symbol>
   </defs>
-  <use
-     transform="matrix(9.4827453,0,0,9.4827453,44.5,46.5)"
+  <g
      id="use13"
-     x="0"
-     y="0"
-     width="11"
-     height="7"
-     xlink:href="#SymbolGolfplatz" />
+     transform="matrix(9.4827453,0,0,9.4827453,44.5,46.5)">
+    <g
+       aria-label="Bö"
+       id="text10"
+       style="font-weight:100;font-size:4px;text-anchor:middle">
+      <path
+         d="m -1.8457031,0.046875 v 1.2949219 h 0.7324219 q 0.3710937,0 0.5507812,-0.1601563 0.1796875,-0.1582031 0.1796875,-0.48828123 0,-0.33203124 -0.1796875,-0.48828124 Q -0.7421875,0.046875 -1.1132812,0.046875 Z m 0,-1.3027344 v 1.14257815 h 0.6835937 q 0.33593752,0 0.50000003,-0.140625 0.16406249,-0.140625 0.16406249,-0.43359375 0,-0.28710938 -0.16406249,-0.4257812 -0.16406251,-0.1425782 -0.50000003,-0.1425782 z m -0.1953125,-0.1601562 h 0.9082031 q 0.40039063,0 0.6171875,0.1875 0.21679687,0.1875 0.21679687,0.5332031 0,0.28515625 -0.11132812,0.42578125 -0.12304687,0.15625 -0.296875,0.21289063 0.25195312,0.06640625 0.37890625,0.24414062 0.14257813,0.19921875 0.14257813,0.49609375 0,0.39062495 -0.23632813,0.60351565 Q -0.65820312,1.5 -1.09375,1.5 h -0.9472656 z"
+         id="path14" />
+      <path
+         d="M 1.8398437,-0.3125 Q 1.6464844,-0.58203125 1.3125,-0.58203125 q -0.33398437,0 -0.52734375,0.26757812 -0.1953125,0.26562501 -0.1953125,0.71875001 0,0.46484375 0.19335937,0.73046872 Q 0.9765625,1.4023437 1.3125,1.4023437 q 0.3339844,0 0.5273437,-0.2675781 0.1953126,-0.26953122 0.1953126,-0.73046872 0,-0.44726563 -0.1953126,-0.71679688 z M 1.3105469,-0.74023437 q 0.4179687,0 0.6601562,0.31249999 0.2441407,0.31445313 0.2441407,0.83398438 0,0.53710938 -0.2441407,0.8476562 -0.2421875,0.3125 -0.6601562,0.3125 -0.42187502,0 -0.66601565,-0.3105468 -0.2421875,-0.3105469 -0.2421875,-0.8496094 0,-0.52539062 0.24414062,-0.8359375 Q 0.890625,-0.74023437 1.3105469,-0.74023437 Z M 1.4941406,-1.53125 h 0.1835938 v 0.234375 H 1.4941406 Z m -0.54687497,0 H 1.1269531 v 0.234375 H 0.94726563 Z"
+         id="path16" />
+    </g>
+  </g>
 </svg>

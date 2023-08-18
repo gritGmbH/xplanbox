@@ -1,10 +1,12 @@
-# SoapUI TestSuites
+# SoapUI Projekte
 
-Dieses Dokument beinhaltet Hinweise zur Benutzung der einzelnen SoapUI TestSuites.
+Dieses Dokument beinhaltet Hinweise zur Benutzung der einzelnen SoapUI Projekte.
 
-## xplan-api-manager TestSuite
+## xplan-api-manager Projekt
 
-Diese TestSuite testet die Komponente XPlanManagerAPI.
+Dieses SoapUI Projekt testet die Komponente XPlanManagerAPI.
+
+### Ausführung
 
 Die zu testenden Endpunkte können folgendermaßen geändert werden:
 
@@ -15,44 +17,63 @@ Die zu testenden Endpunkte können folgendermaßen geändert werden:
 5. `Assign` auswählen.
 6. `All Requests and TestRequests` in der Drop-Down-Liste auswählen.
 7. Auswahl mit `OK` bestätigen.
-8. Nun kann die `XPlanManagerAPI TestSuite` über die üblichen Wege ausgeführt werden.
+8. Nun können die TestSuites über die üblichen Wege ausgeführt werden.
 
-**Hinweise zur Nutzung der TestSuite:**
+***Hinweise***
 
-- Die TestCases dieser TestSuite bauen teilweise aufeinander auf. Dies bedeutet, dass die TestSuite immer komplett ausgeführt werden sollte.
-- Die TestSuite kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich diese zum Verifizieren einer Neuinstallation.
+- Die TestCases der einzelnen TestSuites bauen teilweise aufeinander auf. Dies bedeutet, dass eine TestSuite immer komplett ausgeführt werden sollte.
+- Das SoapUI Projekt kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich diese zum Verifizieren einer Neuinstallation.
+
+### TestSuite "Codelists TestSuite"
+
+Diese TestSuite prüft ob externe Codelisten beim Import über die XPlanManagerAPI übersetzt werden. Es werden per default folgende Übersetzungen angenommen:
+* BP_SonstPlanArt, Code 11002 => TeilbebauungsPlan
+* BP_Status, Code 19999 => 19999
+
+Um diesen Zustand zu erreichen ist eine entsprechende Konfiguration der externen Codeliste **BP_SonstPlanArt** für die XPlanGML Version 5.2 in der Installation der XPlanManagerAPI notwendig. Für die Codeliste **BP_Status** wird angenommen, dass **keine** externe Codeliste konfiguriert ist.
+
+Die default Werte können durch Auswahl der TestSuite und Öffnen des Reiters `Custom Properties` (unten links) angepasst werden. Es handelt sich um folgende Properties:
+* codelistValue_BP_SonstPlanArt_11002
+* codelistValue_BP_Status_19999
+
+Für die Ausführung ist auch die Konfiguration der XPlanDienste URL erforderlich. Dies erfolgt ebenfalls unter  durch Auswahl der TestSuite und Öffnen des Reiters `Custom Properties` (unten links). Dort sind folgende Properties anzupassen:
+* servicesBaseUrl
+* username (optional)
+* password (optional)
 
 ---
 
-## xplan-api-validator TestSuite
+## xplan-api-validator Projekt
 
-Diese TestSuite testet die Komponente XPlanValidatorAPI.
+Dieses SoapUI Projekt testet die Komponente XPlanValidatorAPI.
 
-Die TestSuite teilt alle dokumentierten Eigenschaften der [xplan-api-manager TestSuite](#xplan-api-manager-testsuite).
+Die Ausführung des SoapUI Projekt erfolgt, wie in der [xplan-api-manager Projekt](#xplan-api-manager-projekt) beschrieben. Es gelten auch die dort beschriebenen Hinweise.
 
-### xplan-webservices TestSuite
+## xplan-webservices Projekt
 
-Diese TestSuite testet die Komponente XPlanDienste.
+Dieses SoapUI Projekt testet die Komponente XPlanDienste.
+
+### Ausführung
 
 Die zu testenden Endpunkte können folgendermaßen geändert werden:
 
 1. Projekt in SoapUI laden.
-2. Project auswählen.
+2. Projekt auswählen.
 3. Reiter `Custom Properties` öffnen (unten links).
 4. Dort aufgelistete Parameterwerte auf die zu testende Umgebung anpassen.
    * Weitere Hinweise zu den einzelnen Parametern gibt es, wenn das Projekt geöffnet wird, `Overview` und anschließend `Description` (ganz unten) ausgewählt werden.
 5. Anschließend können die verschiedenen TestSuites über die üblichen Wege ausgeführt werden.
 
-**Hinweise zur Nutzung der TestSuite:**
+***Hinweise***
 
 - Die TestCases aller TestSuites können individuell genutzt werden und es gibt keine Abhängigkeiten zwischen diesen. Nur die einzelnen TestSteps bauen teilweise aufeinander auf.
-- Die TestSuite kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich diese zum Verifizieren einer Neuinstallation.
+- Das SoapUI Projekt kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich diese zum Verifizieren einer Neuinstallation.
 
-## xplan-manager-web TestSuite
+## xplan-manager-web Projekt
 
-Diese TestSuite testet Teile der REST API des XPlanManagerWeb.
+Dieses SoapUI Projekt testet Teile der REST API des XPlanManagerWeb.
 
-Die Ausführung der TestSuite erfolgt, wie in der [xplan-api-manager TestSuite](#xplan-api-manager-testsuite) beschrieben.
+Die Ausführung des SoapUI Projekt erfolgt, wie in der [xplan-api-manager projekt](#xplan-api-manager-projekt) beschrieben.
 
 
 # Generelle Hinweise
@@ -68,11 +89,11 @@ Um diese zu beheben, muss in der Datei _<SoapUI>\bin\SoapUI-<Version>.vmoptions_
 
 ### Verwendung von HTTP BASIC Authentication
 
-Sind für den Zugriff auf den Server Credentials erforderlich, so müssen diese je TestSuite angegeben werden.
+Sind für den Zugriff auf den Server Credentials erforderlich, so müssen diese je Projekt angegeben werden.
 
-Für die TestSuites [xplan-api-manager](#xplan-api-manager-testsuite) und [xplan-api-validator](#xplan-api-validator-testsuite) in SoapUI die Ansicht "Show Service Viewer > Service Endpoints" öffnen. Dort müssen Username und Password für den Endpoint eingetragen und dann mit `All Requests and TestRequests` aus der Drop-Down-Liste auf alle Test angewendet werden. 
+Für die Projekte [xplan-api-manager](#xplan-api-manager-projekt) und [xplan-api-validator](#xplan-api-validator-projekt) in SoapUI die Ansicht "Show Service Viewer > Service Endpoints" öffnen. Dort müssen Username und Password für den Endpoint eingetragen und dann mit `All Requests and TestRequests` aus der Drop-Down-Liste auf alle Test angewendet werden. 
 
-Für die TestSuite [xplan-webservices](#xplan-webservices-testsuite) in SoapUI das Projekt auswählen und den Reiter `Custom Properties` auswählen. Dort die Properties `username` und `password` setzen.
+Für das Projekt [xplan-webservices](#xplan-webservices-projekt) in SoapUI das Projekt auswählen und den Reiter `Custom Properties` auswählen. Dort die Properties `username` und `password` setzen.
 
 ---
 
@@ -142,6 +163,7 @@ Abkürzung | Parametername
 **pf** | profiles
 **pN** | planName
 **pI** | planId
+**iI** | internalId
 > **"XX"** ist ein Platzhalter bei nichtvorhandensein eines dieser Werte
 
 ### ADDITIONALINFORTAMTION

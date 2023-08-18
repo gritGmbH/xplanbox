@@ -11,6 +11,7 @@
 
 # VS Code
 *.factorypath
+.vscode/
 
 # Netbeans
 nbactions.xml

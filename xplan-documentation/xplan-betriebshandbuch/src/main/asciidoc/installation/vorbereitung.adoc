@@ -3,8 +3,11 @@
 
 Die folgende Installationsanleitung setzt voraus, dass die im Abschnitt <<systemueberblick>> beschriebenen Komponenten, soweit erforderlich, installiert sind.
 
-==== deegree Workspace
+==== Verzeichnisse für die Konfigurationsdateien
 
-Weiterhin ist vorbereitend das Anlegen eines Verzeichnisses mit dem Namen _.deegree_ im Home-Verzeichnis erforderlich, damit dort die Konfigurationsdateien abgelegt werden können. Falls ein anderes Verzeichnis verwendet werden soll, muss die Umgebungsvariable `DEEGREE_WORKSPACE_ROOT` mit Angabe des Pfades auf dieses Verzeichnis gesetzt werden (s. Abschnitt <<anwendungs-tomcat>>).
+Weiterhin ist vorbereitend das Anlegen von Verzeichnissen erforderlich, in dem die Konfigurationsdateien abgelegt werden können:
 
-NOTE: Dem Betriebssystembenutzer, mit dem der Tomcat gestartet wird, müssen Lese- und Schreibrechte für dieses Verzeichnis eingeräumt werden.
+- `DEEGREE_WORKSPACE_ROOT`: Der Pfad zu diesem Verzeichnis muss über die Umgebungsvariable `DEEGREE_WORKSPACE_ROOT` (Vorgabewert ist das Verzeichnis _.deegree/_ im Home-Verzeichnis des Nutzers, z. B. unter Linux _/home/user/.deegree_) gesetzt werden. In diesem Verzeichnis werden die Konfigurationsdateien für die XPlanDienste abgelegt. Beispiel: `DEEGREE_WORKSPACE_ROOT=/opt/deegree`.
+- `XPLANBOX_CONFIG`: Der Pfad zu diesem Verzeichnis muss über die Umgebungsvariable `XPLANBOX_CONFIG` (Vorgabewert ist das Verzeichnis _xplanbox/_ im Home-Verzeichnis des Nutzers, z. B. unter Linux _/home/user/xplanbox/_) gesetzt werden. In diesem Verzeichnis werden die Konfigurationsdateien für die XPlanManager und XPlanValidator abgelegt. Beispiel: `XPLANBOX_CONFIG=/opt/xplanbox/xplan-manager-config/`.
+
+IMPORTANT: Dem Betriebssystembenutzer, mit dem der Tomcat-Server gestartet wird, müssen Lese- und Schreibrechte für das Verzeichnis `DEEGREE_WORKSPACE_ROOT` eingeräumt werden.

@@ -1,25 +1,29 @@
 [[automatischer-workspace-reload]]
 === Automatischer Workspace-Reload
 
-Der XPlanManager kann nach jedem Import, jeder Aktualisierung und jedem
-Löschvorgang automatisch einen Workspace-Reload des XPlanWMS/XPlanWerkWMS
-anstoßen. Dadurch werden neu importierte, editierte und gelöschte
-Rasterpläne sofort im WMS aktualisiert.
+Der XPlanManager kann nach jedem Import, jeder Änderung oder jedem
+Löschvorgang eines Planwerks automatisch einen Workspace-Reload des XPlanWMS/XPlanWerkWMS
+auslösen. Dadurch werden Änderungen an Rasterplänen sofort im WMS sichtbar.
 
 In der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ müssen folgende Felder gefüllt
 werden:
 
+.Konfigurationselemente in der managerConfiguration.properties Datei:
+[source,properties]
 ----
-workspaceReloadUrls=<XPLANWMS-URLS>
-workspaceReloadUser=<TOMCAT-NUTZERNAME>
-workspaceReloadPassword=<TOMCAT-PASSWORT>
+workspaceReloadUrls=<XPLANWMS-URLS> <1>
+workspaceReloadApiKey=<API-KEY> <2>
+workspaceReloadAction=[ALL,RELOAD,PLANWERKWMS] <3>
+----
+<1> ein oder mehrere URLs (kommasepariert), wenn mehrere Instanzen des XPlanWMS/XPlanWerkWMS hinter einem Load-Balancer betrieben werden
+<2> API-Key für die Authentifizierung
+<3> definiert wie die Dienste aktualisiert werden, mit `ALL` (Vorgabewert) werden die Workspace-Konfigurationen aller Dienste neu geladen (`RELOAD`) und der XPlanWerkWMS aktualisiert (`PLANWERKWMS`), so dass einzelne XPlanWerkWMS Endpunkte entfernt werden können. Mit `RELOAD` und `PLANWERKWMS` können diese Aktualisierungen auch getrennt aufgerufen werden.
+
+.Beispiel für mehrere URLs für das Element `workspaceReloadUrls`:
+[source,properties]
+----
+workspaceReloadUrls=http://server1/xplan-wms/,http://server2:8081/xplan-wms/
 ----
 
-Es können mehrere URLs kommasepariert eingetragen werden, für den Fall das der XPlanWMS/XPlanWerkWMS dupliziert wurde. In dem Fall
-wird für alle eingetragenen Dienste ein Reload durchgeführt.
+CAUTION: *Wichtig*! Alle Dienste müssen über den gleichen API-Key aufgerufen werden können.
 
-----
-workspaceReloadUrls=http://server1/xplan-wms/,http://server2/xplan-wms/
-----
-
-CAUTION: *Wichtig*! Alle Dienste müssen über die gleiche Nutzer/Passwort-Kombination angesprochen werden können.

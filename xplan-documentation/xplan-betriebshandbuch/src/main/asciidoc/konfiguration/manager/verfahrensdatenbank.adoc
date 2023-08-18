@@ -1,16 +1,18 @@
 [[verfahrensdatenbank]]
 === Schnittstelle zur Verfahrensdatenbank (optional)
 
-Die Schnittstelle zu einer bereits vorhandenen Verfahrensdatenbank kann in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ aktiviert oder deaktiviert werden mit:
+Um beim Import eines Plans die Verfahrens-Id aus einer bereits vorhandenen Verfahrensdatenbank abzurufen, muss die Datenbankverbindung zur Verfahrensdatenbank konfiguriert und aktiviert werden.
 
+Der Dialog im XPlanManagerWeb kann in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ aktiviert oder deaktiviert werden mit:
+
+[source,properties]
 ----
 activateInternalIdDialog=[true|false]
 ----
 
-Die Datenbankverbindung zu einer Verfahrensdatenbank und die SQL-Abfragen zur Abfrage der Verfahrens-Id erfolgt in der Datei
-__managerConfiguration.properties__:
+Die Datenbankverbindung zu einer Verfahrensdatenbank und die SQL-Abfragen zur Abfrage der Verfahrens-Id erfolgt in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_:
 
-.Beispiel für managerConfiguration.properties mit SQL-Abfragen:
+.Beispiel für _managerConfiguration.properties_ mit SQL-Abfragen:
 [source,properties]
 ----
 workspaceName=xplan-manager-workspace <1>
@@ -31,13 +33,29 @@ selektiert werden.
 Die Datenbankverbindung kann in der Datei _vfdb.xml_ im XPlanManagerWorkspace konfiguriert werden (der Name des workspaces und die ID der
 Konfigurationsdatei können wie zuvor beschrieben geändert werden):
 
+.Beispiel für _vfdb.xml_ mit SQL-Abfragen:
 [source,xml]
 ----
-<Property name="driverClassName" value="org.postgresql.Driver"/>
-<Property name="url" value="jdbc:postgresql://<host>:<port>/<dbname>"/>
-<Property name="username" value="postgres"/>
-<Property name="password" value="postgres"/>
-<Property name="maxTotal" value="10"/>
+<DataSourceConnectionProvider xmlns="http://www.deegree.org/connectionprovider/datasource"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:schemaLocation="http://www.deegree.org/connectionprovider/datasource https://schemas.deegree.org/core/3.5/connectionprovider/datasource/datasource.xsd">
+
+  <DataSource javaClass="org.apache.commons.dbcp2.BasicDataSource" destroyMethod="close"/>
+
+  <!-- Configuration of DataSource properties -->
+  <Property name="driverClassName" value="org.postgresql.Driver"/>
+  <Property name="url" value="jdbc:postgresql://<host>:<port>/<dbname>"/>
+  <Property name="username" value="<USERNAME>"/>
+  <Property name="password" value="<PASSWORD>"/>
+  <Property name="initialSize" value="1"/>
+  <Property name="maxTotal" value="10"/>
+  <Property name="maxIdle" value="1"/>
+  <Property name="maxWaitMillis" value="5000"/>
+  <Property name="testOnReturn" value="true"/>
+  <Property name="testOnBorrow" value="true"/>
+  <Property name="validationQuery" value="select 1"/>
+
+</DataSourceConnectionProvider>
 ----
 
 IMPORTANT: Die Schnittstelle zur Verfahrensdatenbank ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt.

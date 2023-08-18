@@ -1,0 +1,10 @@
+[[konfiguration-xplanwms-mapserver]]
+=== Konfiguration des XPlanWMS mit MapServer
+
+Der MapServer kann für die Bereitstellung von Rasterdaten alternativ zum XPlanWMS auf Basis eines deegreeWMS verwendet werden. Um den MapServer als RemoteWMS im XPlanWMS zu konfigurieren, müssen folgenden Anpassungen vorgenommen werden:
+
+* Im Workspace Verzeichnis _xplansyn-wms-workspace_ müssen in den Unterverzeichnissen _layers/_ und _datasources/remoteows/_ die Dateien _mapserver.ignore_ auf _mapserver.xml_ umbenannt werden.
+* In der Datei _datasources/remoteows/mapserver.xml_ muss die URL des MapServer eingetragen werden.
+* Zusätzlich müssen im Verzeichnis _themes/_ in allen _*raster.xml_ Dateien der LayerStore auf _mapserver_ geändert werden.
+
+Damit Rasterdaten über den MapServer angezeigt werden, muss zusätzlich die <<konfiguration-manager-mapserver, Konfiguration auch für den XPlanManager>> erfolgen.

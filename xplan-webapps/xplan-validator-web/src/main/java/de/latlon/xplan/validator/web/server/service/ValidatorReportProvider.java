@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-web - Modul zur Gruppierung aller Webapps
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,19 +20,18 @@
  */
 package de.latlon.xplan.validator.web.server.service;
 
-import static org.apache.commons.io.IOUtils.copy;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.web.shared.ArtifactType;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+
+import static org.apache.commons.io.IOUtils.copy;
 
 /**
  * Provides reports after validation.
@@ -51,9 +50,9 @@ public class ValidatorReportProvider implements ReportProvider {
 	@Override
 	public void writeHtmlReport(HttpServletResponse response, String planUuid, String validationName)
 			throws IOException {
-		File planDirectory = planArchiveManager.createReportDirectory(planUuid);
-		File htmlReport = reportWriter.retrieveHtmlReport(validationName, planDirectory);
-		try (FileInputStream fileInputStream = new FileInputStream(htmlReport)) {
+		Path planDirectory = planArchiveManager.createReportDirectory(planUuid);
+		Path htmlReport = reportWriter.retrieveHtmlReport(validationName, planDirectory);
+		try (InputStream fileInputStream = Files.newInputStream(htmlReport)) {
 			copy(fileInputStream, response.getOutputStream());
 		}
 	}
@@ -61,7 +60,7 @@ public class ValidatorReportProvider implements ReportProvider {
 	@Override
 	public void writeZipReport(HttpServletResponse response, String planUuid, String validationName,
 			List<ArtifactType> artifacts) throws IOException {
-		File planDirectory = planArchiveManager.createReportDirectory(planUuid);
+		Path planDirectory = planArchiveManager.createReportDirectory(planUuid);
 		reportWriter.writeZipWithArtifacts(response.getOutputStream(), validationName, artifacts, planDirectory);
 	}
 

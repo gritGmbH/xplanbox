@@ -1,32 +1,32 @@
-package de.latlon.xplanbox.api.manager.handler;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.handler;
 
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
-import de.latlon.xplanbox.api.manager.exception.InvalidPlanIdSyntax;
+import de.latlon.xplanbox.api.commons.exception.InvalidPlanId;
+import de.latlon.xplanbox.api.commons.exception.InvalidPlanIdSyntax;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanToEdit;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.slf4j.Logger;
@@ -39,6 +39,7 @@ import java.nio.file.Files;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.LP_Plan;
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypeOfFileOfXPlanArchive;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
@@ -70,12 +71,14 @@ public abstract class EditHandler {
 	 * @return the file, <code>null</code> if content is <code>null</code>
 	 * @throws IOException
 	 */
-	public File storeAsFile(InputStream content, FormDataContentDisposition fileMetadata) throws IOException {
+	public File storeAsFile(InputStream content, FormDataContentDisposition fileMetadata)
+			throws IOException, UnsupportedContentTypeException {
 		if (content == null)
 			return null;
 		java.nio.file.Path tmpDir = Files.createTempDirectory("postDokument");
 		java.nio.file.Path targetFile = tmpDir.resolve(fileMetadata.getFileName());
 		Files.copy(content, targetFile);
+		checkContentTypeOfFileOfXPlanArchive(targetFile);
 		content.close();
 		return targetFile.toFile();
 	}

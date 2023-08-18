@@ -2,18 +2,18 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.web.server.service.rest;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.web.server.service.ManagerPlanArchiveManager;
@@ -33,6 +34,7 @@ import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import de.latlon.xplan.validator.web.shared.InvalidParameterException;
 import org.deegree.commons.utils.Pair;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
@@ -55,10 +57,10 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import javax.ws.rs.core.Context;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -67,7 +69,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
+import static de.latlon.xplan.commons.util.TextPatternConstants.INTERNALID_PATTERN;
 import static java.lang.Double.doubleToLongBits;
 import static java.lang.Long.toHexString;
 import static java.lang.Math.random;
@@ -92,7 +98,7 @@ public class ManagerController {
 	private static final Logger LOG = LoggerFactory.getLogger(ManagerController.class);
 
 	private static final ResourceBundle BUNDLE = ResourceBundle
-			.getBundle("de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages");
+		.getBundle("de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages");
 
 	private final ManagerPlanArchiveManager archiveManager = new ManagerPlanArchiveManager();
 
@@ -112,7 +118,7 @@ public class ManagerController {
 		LOG.info("Retrieve all plans.");
 		List<XPlan> xPlanList;
 		try {
-			xPlanList = manager.list(false);
+			xPlanList = manager.list();
 		}
 		catch (Exception e) {
 			LOG.error(BUNDLE.getString("getPlansFailed") + ": " + e.getMessage());
@@ -188,7 +194,7 @@ public class ManagerController {
 	@ResponseBody
 	// @formatter:off
     public void editPlan( @PathVariable int planId,
-                          @RequestBody XPlanToEdit xPlanToEdit,
+						  @RequestBody @Valid XPlanToEdit xPlanToEdit,
                           @RequestParam(value = "updateRasterConfig", required = false) boolean updateRasterConfig,
                           @Context HttpServletRequest request, @Context HttpServletResponse response )
                                           throws Exception {
@@ -297,7 +303,7 @@ public class ManagerController {
 	@ResponseBody
 	// @formatter:off
     public void uploadPlan( @RequestParam("planZipFile" ) MultipartFile file, HttpServletRequest request,
-                            HttpServletResponse response) {
+                            HttpServletResponse response) throws IOException, UnsupportedContentTypeException {
         // @formatter:on
 		LOG.info("Try to upload plan.");
 		try {
@@ -306,14 +312,16 @@ public class ManagerController {
 				String contentType = file.getContentType();
 				long size = file.getSize();
 				HttpSession session = request.getSession(true);
-				XPlan plan = createAndSavePlan(session, contentType, fileName);
+				XPlan plan = new XPlan(fileName, toHexString(doubleToLongBits(random())), contentType);
 				uploadZipFile(file, plan);
+				archiveManager.savePlanInSession(session, plan);
 				populateResponse(response, size, fileName);
 			}
 		}
 		catch (Exception e) {
 			String message = BUNDLE.getString("loadFailed") + ": " + e.getMessage();
 			LOG.info(message);
+			throw e;
 		}
 	}
 
@@ -330,6 +338,7 @@ public class ManagerController {
                                @Context HttpServletRequest request, @Context HttpServletResponse response)
                                                throws Exception {
         // @formatter:on
+		checkInternalId(internalId);
 		response.addHeader("Expires", "-1");
 		LOG.info("Try to import plan with id {}", planId);
 		HttpSession session = request.getSession();
@@ -338,7 +347,7 @@ public class ManagerController {
 			LOG.info("Found local plan to import.");
 			archiveManager.savePlanInSession(session, plan);
 			try {
-				String fileToBeImported = archiveManager.getUploadFolder() + "/" + planId + ".zip";
+				String fileToBeImported = retrieveFileToBeImported(plan);
 				XPlanArchive archive = manager.analyzeArchive(fileToBeImported);
 				ICRS crs = null;
 				if (defaultCrs != null)
@@ -360,13 +369,16 @@ public class ManagerController {
 	@ResponseBody
 	// @formatter:off
     public Map<String, String> retrieveMatchingInternalIds( @PathVariable String id,
-                                                            @Context HttpServletResponse response )
+															@Context HttpServletRequest request,
+															@Context HttpServletResponse response )
                                                                             throws Exception {
         // @formatter:on
 		response.addHeader("Expires", "-1");
 		LOG.info("Retrieve internal id of plan with id {}.", id);
+		HttpSession session = request.getSession();
+		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
-			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			String planName = manager.retrievePlanName(fileToBeImported);
 			Map<String, String> matchingInternalIds = internalIdRetriever.getMatchingInternalIds(planName);
 			if (!matchingInternalIds.isEmpty())
@@ -385,13 +397,15 @@ public class ManagerController {
 	@RequestMapping(value = "/crs/{id}", method = GET)
 	@ResponseBody
 	// @formatter:off
-    public boolean isCrsSet( @PathVariable String id, @Context HttpServletResponse response )
+    public boolean isCrsSet( @PathVariable String id,@Context HttpServletRequest request,  @Context HttpServletResponse response )
                     throws Exception {
         // @formatter:on
 		response.addHeader("Expires", "-1");
 		LOG.info("Retrieve crs of plan with id {}.", id);
+		HttpSession session = request.getSession();
+		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
-			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			return manager.isCrsSet(fileToBeImported);
 		}
 		catch (Exception e) {
@@ -404,13 +418,15 @@ public class ManagerController {
 	@RequestMapping(value = "/raster/{id}", method = GET)
 	@ResponseBody
 	// @formatter:off
-    public List<RasterEvaluationResult> evaluateRaster( @PathVariable String id, @Context HttpServletResponse response )
+    public List<RasterEvaluationResult> evaluateRaster( @PathVariable String id, @Context HttpServletRequest request, @Context HttpServletResponse response )
                     throws Exception {
         // @formatter:on
 		response.addHeader("Expires", "-1");
 		LOG.info("Evaluate raster of with id {}.", id);
+		HttpSession session = request.getSession();
+		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
-			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			return manager.evaluateRasterdata(fileToBeImported);
 		}
 		catch (Exception e) {
@@ -423,13 +439,16 @@ public class ManagerController {
 	@RequestMapping(value = "/plannamestatus/{id}/{status}", method = GET)
 	@ResponseBody
 	public List<PlanNameWithStatusResult> evaluatePlanNameAndStatus(@PathVariable String id,
-			@PathVariable String status, @Context HttpServletResponse response) throws Exception {
+			@PathVariable String status, @Context HttpServletRequest request, @Context HttpServletResponse response)
+			throws Exception {
 		response.addHeader("Expires", "-1");
 		LOG.info("Evaluate name of plan with id {}.", id);
+		HttpSession session = request.getSession();
+		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
 			if ("null".equals(status))
 				status = null;
-			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			return manager.evaluatePlanNameAndStatus(fileToBeImported, status);
 		}
 		catch (Exception e) {
@@ -443,13 +462,15 @@ public class ManagerController {
 	@ResponseBody
 	// @formatter:off
     public RechtsstandAndPlanStatus determineLegislationStatus( @PathVariable String id,
-																@Context HttpServletResponse response )
+																@Context HttpServletRequest request, @Context HttpServletResponse response )
                                                                          throws Exception {
         // @formatter:on
 		response.addHeader("Expires", "-1");
 		LOG.info("Evaluate legislation status of plan with id {}.", id);
+		HttpSession session = request.getSession();
+		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
-			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			Pair<Rechtsstand, PlanStatus> rechtsstandPlanStatusPair = manager.determineRechtsstand(fileToBeImported);
 			return new RechtsstandAndPlanStatus(rechtsstandPlanStatusPair.first, rechtsstandPlanStatusPair.second);
 		}
@@ -501,6 +522,13 @@ public class ManagerController {
 		return e.getMessage();
 	}
 
+	@ExceptionHandler(UnsupportedContentTypeException.class)
+	@ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE)
+	@ResponseBody
+	public String handleUnsupportedContentTypeExceptions(UnsupportedContentTypeException e) {
+		return e.getMessage();
+	}
+
 	private void exportPlan(String id, ByteArrayOutputStream exportOutputStream) {
 		try {
 			manager.export(id, exportOutputStream);
@@ -512,7 +540,7 @@ public class ManagerController {
 	}
 
 	private void uploadArtefact(MultipartFile artefact, HttpServletRequest request, HttpServletResponse response)
-			throws FileNotFoundException, IOException {
+			throws IOException, UnsupportedContentTypeException {
 		if (artefact != null && !artefact.isEmpty()) {
 			String fileName = artefact.getOriginalFilename();
 			LOG.info("Add artefact {}.", fileName);
@@ -520,6 +548,11 @@ public class ManagerController {
 			archiveManager.saveArtefactInFilesystem(session, fileName, artefact.getBytes());
 			populateArtefactUploadResponse(response, fileName);
 		}
+	}
+
+	private String retrieveFileToBeImported(XPlan xPlan) {
+		String fileName = archiveManager.determineFileNameAndFolder(xPlan);
+		return archiveManager.getUploadFolder() + "/" + fileName;
 	}
 
 	private void populateResponseAndWriteOutput(HttpServletResponse response, XPlan requestedPlan,
@@ -573,10 +606,24 @@ public class ManagerController {
 		response.flushBuffer();
 	}
 
-	private void uploadZipFile(MultipartFile file, XPlan plan) throws IOException {
+	private void uploadZipFile(MultipartFile file, XPlan plan) throws IOException, UnsupportedContentTypeException {
 		File localFile = archiveManager.readArchiveFromFilesystem(plan);
+		localFile.getParentFile().mkdir();
+		localFile.createNewFile();
 		try (FileOutputStream localOutput = new FileOutputStream(localFile)) {
 			write(file.getBytes(), localOutput);
+		}
+		checkContentTypesOfXPlanArchiveOrGml(localFile.toPath());
+	}
+
+	private void checkInternalId(String internalIdToCheck) throws InvalidParameterException {
+		if (internalIdToCheck == null)
+			return;
+		Pattern pattern = Pattern.compile(INTERNALID_PATTERN);
+		Matcher matcher = pattern.matcher(internalIdToCheck);
+		if (!matcher.matches()) {
+			throw new InvalidParameterException("InternalId does not match expected patter " + INTERNALID_PATTERN
+					+ " but was " + internalIdToCheck);
 		}
 	}
 

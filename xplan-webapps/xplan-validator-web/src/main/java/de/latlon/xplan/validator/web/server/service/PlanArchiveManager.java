@@ -2,18 +2,18 @@
  * #%L
  * xplan-validator-web - Modul zur Gruppierung aller Webapps
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -34,6 +34,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
+
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
 
 /**
  * Access to plan archive from session and filesystem.
@@ -76,8 +78,11 @@ public class PlanArchiveManager {
 
 	File retrieveXPlanArchiveFromFileSystem(XPlan plan) throws IOException {
 		String planId = plan.getId();
-		Iterator<Path> paths = Files.find(UPLOAD_FOLDER, 1, (path, basicFileAttributes) -> Files.isRegularFile(path)
-				&& path.getFileName().toString().startsWith(planId)).iterator();
+		Iterator<Path> paths = Files
+			.find(UPLOAD_FOLDER, 1,
+					(path, basicFileAttributes) -> Files.isRegularFile(path)
+							&& path.getFileName().toString().startsWith(planId))
+			.iterator();
 		if (paths.hasNext())
 			return paths.next().toFile();
 		throw new IllegalArgumentException("Could not find plan for id " + planId);
@@ -90,13 +95,14 @@ public class PlanArchiveManager {
 			Files.copy(uploadedFileItemInputStream, uploadedFile);
 			LOG.debug("File was written to {}", uploadedFile);
 		}
+		checkContentTypesOfXPlanArchiveOrGml(uploadedFile);
 	}
 
-	File createReportDirectory(String planUuid) throws IOException {
+	Path createReportDirectory(String planUuid) throws IOException {
 		Path reportDirectory = UPLOAD_FOLDER.resolve(planUuid);
 		if (!Files.exists(reportDirectory))
 			Files.createDirectory(reportDirectory);
-		return reportDirectory.toFile();
+		return reportDirectory;
 	}
 
 	private String parseSuffix(FileItem uploadedFileItem) {

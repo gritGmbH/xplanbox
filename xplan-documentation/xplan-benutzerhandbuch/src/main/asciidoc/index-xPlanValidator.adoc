@@ -1,9 +1,16 @@
 :doctype: book
 :encoding: utf-8
 :docinfo: shared,private-head
+:toc: macro
 :toc-title: Inhaltsverzeichnis
+:chapter-label:
+:numbered:
+:appendix-caption: Anhang
+:table-caption: Tabelle
+:icons: font
 :imagesdir: images
 :title-logo-image: images/logo_latlon.png
+:figure-caption: Abbildung
 
 = Benutzerhandbuch für den XPlanValidator
 
@@ -13,6 +20,31 @@ include::XPlanValidator-Einleitung.adoc[]
 include::XPlanValidator_Web.adoc[leveloffset=-2]
 
 == Änderungshistorie
+=== XPlanValidator Version 7.0
+
+Mit der Version 7.0 wurden folgende Änderungen an den Prüfungen im XPlanValidator vorgenommen:
+
+- Verbesserung der Geltungsbereichsprüfung
+- Prüfung der externen Referenzen bei Validierung eines Plans und Ausgabe des Ergebnisses im Validierungsbericht
+- Fehler im Encoding der Attributtabelle von Shapefiles aus dem Validierungsreport des XPlanValidators behoben
+
+=== XPlanValidator Version 6.0.3
+
+- Aktualisierung der Validierungsregeln auf v1.1.4 mit Korrektur der Regel 5.3.1.2 für Flächennutzungspläne in der Version XPlanGML 5.1
+
+=== XPlanValidator Version 6.0.2
+
+- Aktualisierung der Validierungsregeln auf v1.1.3 mit Korrekturen der Regeln 4.5.1.3 und 5.3.1.2
+- Fehlerkorrektur in der Geltungsbereichsprüfung
+
+=== XPlanValidator Version 6.0
+
+Mit der Version 6.0 wurden folgende Änderungen an den Prüfungen im XPlanValidator vorgenommen:
+
+- Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.1
+- Aktualisierung der Validierungsregeln auf v0.12.2 für XPlanGML-Version 6.0.1
+- Validierung eines XPlanGML mit `xsi:type` ermöglicht
+
 === XPlanValidator Version 5.0
 
 In der Version 5.0 sind umfangreiche Änderungen an den semantischen und geometrischen Prüfungen im XPlanValidator vorgenommen worden. Die folgende Liste stellt diese Änderungen zusammen:
@@ -32,9 +64,11 @@ In der Version 5.0 sind umfangreiche Änderungen an den semantischen und geometr
 * Geometrischen Fehler "Die XLink-Integrität konnte nicht sichergestellt werden" werden als Warnung anstelle eines Fehlers im Validierungsbericht ausgegeben
 * Verstöße gegen Konformitätsbedingung 3.2.6.2 (Relation verbundenerPlan darf nur auf Instanzen von XP_Plan verweisen) werden als Warnung anstelle eines Fehlers im Validierungsbericht ausgeben
 
-Die Dokumentation des Algorithmus zur geometrischen Prüfung ist im https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/main-v5.0.2/xplan-core/xplan-validator-core/src/main/java/de/latlon/xplan/validator/geometric/inspector/flaechenschluss/OptimisedFlaechenschlussInspector.java[JavaDoc der Klasse OptimisedFlaechenschlussInspector] zu finden.
+Die Dokumentation des Algorithmus zur geometrischen Prüfung ist im https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/main/xplan-core/xplan-validator-core/src/main/java/de/latlon/xplan/validator/geometric/inspector/flaechenschluss/OptimisedFlaechenschlussInspector.java[JavaDoc der Klasse OptimisedFlaechenschlussInspector] zu finden.
 
 Eine vollständige Änderungshistorie der xPlanBox ist im <<Aenderungshistorie,Anhang>> zu finden.
+
+include::bekannteProbleme.adoc[]
 
 == Kontakt und Lizenz
 
@@ -48,7 +82,7 @@ Informationen zur xPlanBox erhalten Sie bei https://www.lat-lon.de[lat/lon GmbH,
 Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Sebastian Goerke, Lyn Elisa Goltz,
 Lena Rippolz, Sabine Schmitz, Dirk Stenger, Carmen Tawalika, Jeronimo Wanhoff.
 
-Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
+Copyright (C) 2010 - 2023, lat/lon GmbH, Bonn.
 
 === Lizenzen und Anerkennung der Rechte Dritter
 
@@ -78,7 +112,7 @@ Zum Lieferumfang der xPlanBox gehören Bibliotheken und andere Softwareprogramme
 - Mozilla Public License, Version 2.0
 
 Die Komponenten der xPlanBox sind urheberrechtlich geschützt und werden unter der https://www.gnu.org/licenses/agpl-3.0.en.html[GNU Affero General Public License, Version 3 oder jeder späteren Version] veröffentlicht. +
-Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
+Copyright (C) 2010 - 2023, lat/lon GmbH, Bonn.
 
 [[nutzungsbedingungen]]
 ==== Nutzungsbedingungen

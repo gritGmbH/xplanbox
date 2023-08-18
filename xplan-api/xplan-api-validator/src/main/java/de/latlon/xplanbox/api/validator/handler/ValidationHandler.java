@@ -2,18 +2,18 @@
  * #%L
  * xplan-api-validator - Modul zur Gruppierung der REST-API
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -23,7 +23,7 @@ package de.latlon.xplanbox.api.validator.handler;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
@@ -32,7 +32,6 @@ import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ArtifactType;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
-import de.latlon.xplan.validator.wms.MapPreviewCreationException;
 import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import org.apache.http.client.utils.URIBuilder;
@@ -86,9 +85,6 @@ public class ValidationHandler {
 	@Autowired
 	private GeometricValidator geometricValidator;
 
-	@Autowired
-	public XPlanGmlParser xPlanGmlParser;
-
 	private XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 
 	public ValidatorReport validate(XPlanArchive archive, String xFileName, ValidationSettings validationSettings)
@@ -102,29 +98,32 @@ public class ValidationHandler {
 		String validationName = validatorReport.getValidationName();
 		LOG.debug("Create zip report in directory {} with validationName {}", workDir, validationName);
 
-		reportWriter.writeArtefacts(validatorReport, workDir.toFile());
+		reportWriter.writeArtefacts(validatorReport, workDir);
 		List<ArtifactType> artifacts = Arrays.asList(PDF, SHP);
 
 		Path zipArchive = workDir.resolve(validationName + ".zip");
 		try (OutputStream zipOutput = Files.newOutputStream(zipArchive)) {
-			reportWriter.writeZipWithArtifacts(zipOutput, validationName, artifacts, workDir.toFile());
+			reportWriter.writeZipWithArtifacts(zipOutput, validationName, artifacts, workDir);
 		}
 		return zipArchive;
 	}
 
-	public File writePdfReport(ValidatorReport validatorReport) throws IOException {
+	public Path writePdfReport(ValidatorReport validatorReport) throws IOException {
 		Path workDir = createWorkDir();
 		String validationName = validatorReport.getValidationName();
 		LOG.debug("Create pdf report in directory {} with validationName {}", workDir, validationName);
 
-		reportWriter.writeArtefacts(validatorReport, workDir.toFile());
-		return reportWriter.retrieveArtifactFile(workDir.toFile(), validationName, PDF);
+		reportWriter.writeArtefacts(validatorReport, workDir);
+		return reportWriter.retrieveArtifactFile(workDir, validationName, PDF);
 	}
 
 	public URI addToWms(XPlanArchive archive) {
 		try {
 			if (validatorWmsManager != null) {
-				XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
+				XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder()
+					.withSkipResolveReferences(true)
+					.build()
+					.parseXPlanFeatureCollection(archive);
 				int id = validatorWmsManager.insert(xPlanFeatureCollection);
 				return createWmsUrl(id);
 			}
@@ -132,7 +131,7 @@ public class ValidationHandler {
 		catch (XMLStreamException | UnknownCRSException e) {
 			LOG.error("Plan could not be parsed. Reason {}", e.getMessage(), e);
 		}
-		catch (MapPreviewCreationException | URISyntaxException e) {
+		catch (Exception e) {
 			LOG.error("Plan could not be added to the XPlanValidatorWMS. Reason {}", e.getMessage(), e);
 		}
 		return null;

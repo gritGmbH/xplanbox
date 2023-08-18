@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-web-commons - Modul zur Gruppierung aller Webapps
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -22,8 +22,8 @@ package de.latlon.xplan.validator.web.client.service;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-
 import de.latlon.xplan.validator.ValidatorException;
+import de.latlon.xplan.validator.web.shared.InvalidParameterException;
 import de.latlon.xplan.validator.web.shared.ValidationException;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationSummary;
@@ -42,7 +42,7 @@ public interface ValidationService extends RemoteService {
 	 * @throws ValidatorException if an exception occurred during validation
 	 */
 	ValidationSummary validate(ValidationSettings validationSettings)
-			throws ValidationException, IllegalArgumentException;
+			throws ValidationException, IllegalArgumentException, InvalidParameterException;
 
 	boolean poll();
 

@@ -2,18 +2,18 @@
  * #%L
  * xplan-tests-resources - Ressourcen fuer JUnit- und Integrationstests
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -21,24 +21,16 @@
 package de.latlon.xplan.validator;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.GeometryFactory;
-import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLStreamReader;
-import org.deegree.gml.GMLVersion;
 import org.deegree.gml.feature.FeatureInspector;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 
 /**
  * Convenient access to resources in this module
@@ -59,9 +51,10 @@ public class FeatureParserUtils {
 	 */
 	public static FeatureCollection readFeatures(XPlanArchive archive, FeatureInspector... inspectors)
 			throws XMLStreamException, UnknownCRSException {
-		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
-		XPlanVersion version = archive.getVersion();
-		return readFeatures(xmlStream, version, inspectors);
+		return XPlanGmlParserBuilder.newBuilder()
+			.withFeatureInspector(inspectors)
+			.build()
+			.parseFeatureCollection(archive);
 	}
 
 	/**
@@ -130,21 +123,6 @@ public class FeatureParserUtils {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive xPlanArchive = archiveCreator.createXPlanArchiveFromGml(name, inputStream);
 		return readFeatures(xPlanArchive, inspectors);
-	}
-
-	private static FeatureCollection readFeatures(XMLStreamReaderWrapper xmlStream, XPlanVersion version,
-			FeatureInspector... inspectors) throws XMLStreamException, UnknownCRSException {
-		GMLVersion gmlVersion = version.getGmlVersion();
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
-
-		GeometryFactory geomFac = new GeometryFactory();
-		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(gmlVersion, xmlStream);
-		gmlStream.setGeometryFactory(geomFac);
-		gmlStream.setApplicationSchema(schema);
-		gmlStream.setSkipBrokenGeometries(true);
-		Arrays.stream(inspectors).forEach(inspector -> gmlStream.addInspector(inspector));
-
-		return gmlStream.readFeatureCollection();
 	}
 
 }

@@ -1,10 +1,8 @@
-package de.latlon.xplan.db;
-
 /*-
  * #%L
  * xplan-evaluation-schema-synchronize-cli - Datenbankschema für die Auswertung der XPlanGML-Daten
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +18,7 @@ package de.latlon.xplan.db;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.db;
 
 import de.latlon.xplan.commons.cli.Operation;
 import de.latlon.xplan.commons.cli.SynchronizationException;
@@ -147,14 +146,16 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 			selectGmlGeom.append("SELECT g.gml_id, array_to_string( ");
 			selectGmlGeom.append("xpath( '").append(xPath).append("', ");
 			selectGmlGeom.append("XMLPARSE(CONTENT encode(binary_object, 'escape')), ARRAY[ARRAY['xplan', '")
-					.append(namespace).append("']]),',') ");
+				.append(namespace)
+				.append("']]),',') ");
 			selectGmlGeom.append("as geom ");
 			selectGmlGeom.append("FROM ").append(blobSchema).append(".gml_objects g ");
 			selectGmlGeom.append("INNER JOIN ").append(synTableWithSchema).append(" t ");
 			selectGmlGeom.append("ON t.xplan_gmlid = g.gml_id ");
 			selectGmlGeom.append("WHERE xpath_exists('").append(xPath).append("', ");
 			selectGmlGeom.append("XMLPARSE(CONTENT encode(binary_object, 'escape')), ARRAY[ARRAY['xplan', '")
-					.append(namespace).append("']]) ");
+				.append(namespace)
+				.append("']]) ");
 			selectGmlGeom.append("AND t.xplan_mgr_planid = ?");
 			ps = conn.prepareStatement(selectGmlGeom.toString());
 			ps.setInt(1, xPlanManagerId);
@@ -186,8 +187,9 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 			if (geom != null) {
 				StringBuffer updateGeomColumn = new StringBuffer();
 				updateGeomColumn.append("UPDATE xplanevaluation").append(synTableWithSchema);
-				updateGeomColumn.append(" SET ").append(geomColumn)
-						.append(" = ST_GeomFromWKB( ? ) WHERE xplan_gmlid = ?");
+				updateGeomColumn.append(" SET ")
+					.append(geomColumn)
+					.append(" = ST_GeomFromWKB( ? ) WHERE xplan_gmlid = ?");
 				ps = conn.prepareStatement(updateGeomColumn.toString());
 				byte[] geomBytes = geom.ExportToWkb();
 				ps.setBytes(1, geomBytes);
@@ -228,8 +230,10 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 		PreparedStatement ps = null;
 		try {
 			StringBuffer insertInEvaluationSyn = new StringBuffer();
-			insertInEvaluationSyn.append("DELETE FROM xplanevaluation").append(synSchema).append(".")
-					.append(synTableName);
+			insertInEvaluationSyn.append("DELETE FROM xplanevaluation")
+				.append(synSchema)
+				.append(".")
+				.append(synTableName);
 			insertInEvaluationSyn.append(" WHERE xplan_mgr_planid = ?");
 			ps = conn.prepareStatement(insertInEvaluationSyn.toString());
 			ps.setInt(1, xPlanManagerId);

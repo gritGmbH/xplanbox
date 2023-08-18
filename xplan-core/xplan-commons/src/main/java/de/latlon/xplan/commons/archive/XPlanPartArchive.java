@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,17 +20,21 @@
  */
 package de.latlon.xplan.commons.archive;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static de.latlon.xplan.commons.util.MimeTypeDetector.getArtefactMimeType;
 
 /**
  * Encapsulates an archive from a directory.
@@ -91,6 +95,22 @@ public class XPlanPartArchive implements XPlanArchiveContentAccess {
 		@Override
 		public String getName() {
 			return file.getName();
+		}
+
+		@Override
+		public long getContentLength() {
+			try {
+				return Files.size(file.toPath());
+			}
+			catch (IOException e) {
+				LOG.warn("Could not detect file size of file {}", file);
+				return -1;
+			}
+		}
+
+		@Override
+		public String getContentType() {
+			return getArtefactMimeType(getName());
 		}
 
 	}

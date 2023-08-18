@@ -1,0 +1,2805 @@
+###
+# #%L
+# xplan-database-scripts - Liquibase Changelogs zum Aufsetzen/Aktualisieren der Datenhaltung.
+# %%
+# Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+# %%
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# #L%
+###
+databaseChangeLog:
+- changeSet:
+    id: 1679305315645-1
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1679305315645-2
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1679305315645-3
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1679305315645-4
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1679305315645-5
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1679305315645-6
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1679305315645-7
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1679305315645-8
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1679305315645-9
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1679305315645-10
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1679305315645-11
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1679305315645-12
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1679305315645-13
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1679305315645-14
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1679305315645-15
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1679305315645-16
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1679305315645-17
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1679305315645-18
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1679305315645-19
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1679305315645-20
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1679305315645-21
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1679305315645-22
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1679305315645-23
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1679305315645-24
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1679305315645-25
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1679305315645-26
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1679305315645-27
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1679305315645-28
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1679305315645-29
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1679305315645-30
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1679305315645-31
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1679305315645-32
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1679305315645-33
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1679305315645-34
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1679305315645-35
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1679305315645-36
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1679305315645-37
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1679305315645-38
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1679305315645-39
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1679305315645-40
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1679305315645-41
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1679305315645-42
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1679305315645-43
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1679305315645-44
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1679305315645-45
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1679305315645-46
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1679305315645-47
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1679305315645-48
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1679305315645-49
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1679305315645-50
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1679305315645-51
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1679305315645-52
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1679305315645-53
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1679305315645-54
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1679305315645-55
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1679305315645-56
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1679305315645-57
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1679305315645-58
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1679305315645-59
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1679305315645-60
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1679305315645-61
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1679305315645-62
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1679305315645-63
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1679305315645-64
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1679305315645-65
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1679305315645-66
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1679305315645-67
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1679305315645-68
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1679305315645-69
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1679305315645-70
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1679305315645-71
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1679305315645-72
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1679305315645-73
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1679305315645-74
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1679305315645-75
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1679305315645-76
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1679305315645-77
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1679305315645-78
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1679305315645-79
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1679305315645-80
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1679305315645-81
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1679305315645-82
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1679305315645-83
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1679305315645-84
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1679305315645-85
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1679305315645-86
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1679305315645-87
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1679305315645-88
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1679305315645-89
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1679305315645-90
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1679305315645-91
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1679305315645-92
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1679305315645-93
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1679305315645-94
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1679305315645-95
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1679305315645-96
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1679305315645-97
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1679305315645-98
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1679305315645-99
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_flaechenschluss
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_lp_generischesobjekt
+- changeSet:
+    id: 1679305315645-100
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1679305315645-101
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1679305315645-102
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1679305315645-103
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1679305315645-104
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_vongenehmigungausgenommen
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1679305315645-105
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1679305315645-106
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1679305315645-107
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1679305315645-108
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1679305315645-109
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1679305315645-110
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1679305315645-111
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1679305315645-112
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1679305315645-113
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1679305315645-114
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1679305315645-115
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1679305315645-116
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1679305315645-117
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1679305315645-118
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1679305315645-119
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1679305315645-120
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1679305315645-121
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1679305315645-122
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1679305315645-123
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1679305315645-124
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1679305315645-125
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1679305315645-126
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1679305315645-127
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1679305315645-128
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1679305315645-129
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1679305315645-130
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1679305315645-131
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1679305315645-132
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1679305315645-133
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1679305315645-134
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1679305315645-135
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1679305315645-136
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1679305315645-137
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1679305315645-138
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1679305315645-139
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1679305315645-140
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1679305315645-141
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1679305315645-142
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1679305315645-143
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1679305315645-144
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1679305315645-145
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1679305315645-146
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1679305315645-147
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1679305315645-148
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1679305315645-149
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1679305315645-150
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1679305315645-151
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1679305315645-152
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1679305315645-153
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1679305315645-154
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1679305315645-155
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1679305315645-156
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchfpspe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1679305315645-157
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1679305315645-158
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1679305315645-159
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1679305315645-160
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1679305315645-161
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1679305315645-162
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1679305315645-163
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1679305315645-164
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1679305315645-165
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1679305315645-166
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1679305315645-167
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1679305315645-168
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1679305315645-169
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1679305315645-170
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1679305315645-171
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1679305315645-172
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1679305315645-173
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1679305315645-174
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1679305315645-175
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1679305315645-176
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1679305315645-177
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1679305315645-178
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1679305315645-179
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1679305315645-180
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpabe
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1679305315645-181
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1679305315645-182
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1679305315645-183
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1679305315645-184
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1679305315645-185
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1679305315645-186
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1679305315645-187
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1679305315645-188
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1679305315645-189
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1679305315645-190
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1679305315645-191
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1679305315645-192
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1679305315645-193
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1679305315645-194
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1679305315645-195
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_flaechenschluss
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_lp_biotopverbundbiotopvernetzung
+- changeSet:
+    id: 1679305315645-196
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_flaechenschluss
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_lp_eingriffsregelung
+- changeSet:
+    id: 1679305315645-197
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_flaechenschluss
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_lp_schutzbestimmterteilevonnaturundlandschaft
+- changeSet:
+    id: 1679305315645-198
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_flaechenschluss
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_lp_textabschnittobjekt
+- changeSet:
+    id: 1679305315645-199
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_flaechenschluss
+            type: bool
+        schemaName: xplansynarchive
+        tableName: xplan_lp_zieleerfordernissemassnahmen
+- changeSet:
+    id: 1679305315645-200
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1679305315645-201
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1679305315645-202
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1679305315645-203
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1679305315645-204
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1679305315645-205
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1679305315645-206
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1679305315645-207
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1679305315645-208
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1679305315645-209
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1679305315645-210
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1679305315645-211
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1679305315645-212
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1679305315645-213
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1679305315645-214
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1679305315645-215
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1679305315645-216
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1679305315645-217
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1679305315645-218
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspemassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1679305315645-219
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1679305315645-220
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1679305315645-221
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1679305315645-222
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1679305315645-223
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpspeflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1679305315645-224
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1679305315645-225
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1679305315645-226
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1679305315645-227
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1679305315645-228
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_wirdausgeglichendurchbpmassnahme
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1679305315645-229
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1679305315645-230
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1679305315645-231
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1679305315645-232
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1679305315645-233
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1679305315645-234
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1679305315645-235
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1679305315645-236
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1679305315645-237
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1679305315645-238
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_laermkontingentgebiet
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1679305315645-239
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1679305315645-240
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1679305315645-241
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1679305315645-242
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1679305315645-243
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingent
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1679305315645-244
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1679305315645-245
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1679305315645-246
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1679305315645-247
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1679305315645-248
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_zusatzkontingentflaeche
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1679305315645-249
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1679305315645-250
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1679305315645-251
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1679305315645-252
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1679305315645-253
+    author: lyn (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: xplan_richtungssektorgrenze
+            type: text
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+

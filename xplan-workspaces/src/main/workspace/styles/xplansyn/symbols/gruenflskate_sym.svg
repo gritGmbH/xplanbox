@@ -3,7 +3,7 @@
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -21,54 +21,39 @@
   -->
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    version="1.0"
    width="100%"
    height="100%"
    viewBox="-5.5 -3.5 100 100"
-   id="svg2">
+   id="svg2"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs4">
     <style
        type="text/css"
        id="style6" />
-    <symbol
-       id="SymbolBolzplatz"
-       style="overflow:visible">
-      <rect
-         width="10"
-         height="6"
-         x="-5"
-         y="-3"
-         id="rect9"
-         style="fill:none;stroke:#000000;stroke-width:0.5" />
-      <path
-         d="M -3.5,-0.2 L -3,0 L 3,0 L 3.8,-0.8"
-         id="path11"
-         style="fill:none;stroke:#000000;stroke-width:0.5" />
-      <circle
-         cx="-1.5"
-         cy="0.60000002"
-         r="0.30000001"
-         id="circle13"
-         style="fill:none;stroke:#000000;stroke-width:0.30000001" />
-      <circle
-         cx="1.5"
-         cy="0.60000002"
-         r="0.30000001"
-         id="circle15"
-         style="fill:none;stroke:#000000;stroke-width:0.30000001" />
-    </symbol>
   </defs>
-  <use
-     transform="matrix(9.4827453,0,0,9.4827453,44.5,46.5)"
+  <g
      id="use17"
-     x="0"
-     y="0"
-     width="11"
-     height="7"
-     xlink:href="#SymbolBolzplatz" />
+     transform="matrix(9.4827453,0,0,9.4827453,44.5,46.5)">
+    <path
+       id="rect13"
+       style="fill:none;stroke:#000000;stroke-width:0.5"
+       d="M -5,-3 H 5 V 3 H -5 Z" />
+    <path
+       d="M -3.5,-0.2 -3,0 h 6 l 0.8,-0.8"
+       id="path15"
+       style="fill:none;stroke:#000000;stroke-width:0.5" />
+    <path
+       id="circle17"
+       style="fill:none;stroke:#000000;stroke-width:0.3"
+       d="M -1.2,0.60000002 A 0.30000001,0.30000001 0 0 1 -1.5,0.90000004 0.30000001,0.30000001 0 0 1 -1.8,0.60000002 0.30000001,0.30000001 0 0 1 -1.5,0.30000001 0.30000001,0.30000001 0 0 1 -1.2,0.60000002 Z" />
+    <path
+       id="circle19"
+       style="fill:none;stroke:#000000;stroke-width:0.3"
+       d="M 1.8,0.60000002 A 0.30000001,0.30000001 0 0 1 1.5,0.90000004 0.30000001,0.30000001 0 0 1 1.2,0.60000002 0.30000001,0.30000001 0 0 1 1.5,0.30000001 0.30000001,0.30000001 0 0 1 1.8,0.60000002 Z" />
+  </g>
 </svg>

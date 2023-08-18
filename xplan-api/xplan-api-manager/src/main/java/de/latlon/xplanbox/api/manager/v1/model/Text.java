@@ -1,25 +1,24 @@
-package de.latlon.xplanbox.api.manager.v1.model;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
@@ -29,10 +28,19 @@ import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
+
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_GESETZ_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_KEY_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.XL_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.XS_LENGTH;
 
 /**
  * Datatype for Text.
@@ -47,10 +55,16 @@ public class Text {
 
 	private String id;
 
+	@Size(max = XS_LENGTH)
+	@Pattern(regexp = TEXT_KEY_PATTERN)
 	private @Valid String schluessel;
 
+	@Size(max = S_LENGTH)
+	@Pattern(regexp = TEXT_GESETZ_PATTERN)
 	private @Valid String gesetzlicheGrundlage;
 
+	@Size(max = XL_LENGTH)
+	@Pattern(regexp = TEXT_PATTERN)
 	private @Valid String text;
 
 	private @Valid Referenz refText;
@@ -65,16 +79,20 @@ public class Text {
 
 	public static Text fromText(String textId, de.latlon.xplan.manager.web.shared.edit.Text oldText) {
 		Referenz referenz = new Referenz().art(oldText.getArt() != null ? oldText.getArt().getCode() : null)
-				.beschreibung(oldText.getBeschreibung()).datum(oldText.getDatum())
-				.georefMimeType(oldText.getGeorefMimeType() != null ? oldText.getGeorefMimeType().getCode() : null)
-				.georefURL(oldText.getGeoReference()).informationssystemURL(oldText.getInformationssystemURL())
-				.referenzMimeType(
-						oldText.getReferenzMimeType() != null ? oldText.getReferenzMimeType().getCode() : null)
-				.referenzURL(oldText.getReference()).referenzName(oldText.getReferenzName());
-		Text text = new Text().id(textId).schluessel(oldText.getKey()).gesetzlicheGrundlage(oldText.getBasis())
-				.text(oldText.getText())
-				.rechtscharakter(oldText.getRechtscharakter() != null ? oldText.getRechtscharakter().getCode() : -1)
-				.refText(referenz);
+			.beschreibung(oldText.getBeschreibung())
+			.datum(oldText.getDatum())
+			.georefMimeType(oldText.getGeorefMimeType() != null ? oldText.getGeorefMimeType().getCode() : null)
+			.georefURL(oldText.getGeoReference())
+			.informationssystemURL(oldText.getInformationssystemURL())
+			.referenzMimeType(oldText.getReferenzMimeType() != null ? oldText.getReferenzMimeType().getCode() : null)
+			.referenzURL(oldText.getReference())
+			.referenzName(oldText.getReferenzName());
+		Text text = new Text().id(textId)
+			.schluessel(oldText.getKey())
+			.gesetzlicheGrundlage(oldText.getBasis())
+			.text(oldText.getText())
+			.rechtscharakter(oldText.getRechtscharakter() != null ? oldText.getRechtscharakter().getCode() : -1)
+			.refText(referenz);
 		return text;
 	}
 

@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,15 +20,15 @@
  */
 package de.latlon.xplan.manager.workspace;
 
-import static org.deegree.commons.config.DeegreeWorkspace.getInstance;
-import static org.deegree.commons.config.DeegreeWorkspace.isWorkspace;
+import org.deegree.commons.config.DeegreeWorkspace;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 
-import org.deegree.commons.config.DeegreeWorkspace;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.deegree.commons.config.DeegreeWorkspace.getInstance;
+import static org.deegree.commons.config.DeegreeWorkspace.isWorkspace;
 
 /**
  * Contains convenience methods to instantiate deegree workspaces.
@@ -56,8 +56,7 @@ public class WorkspaceUtils {
 	 * @throws Exception - an exception occurred during instantiation or a workspace with
 	 * the given name does not exist
 	 */
-	public static DeegreeWorkspace instantiateWorkspace(String workspaceName, File workspaceDir)
-			throws WorkspaceException {
+	static DeegreeWorkspace instantiateWorkspace(String workspaceName, File workspaceDir) throws WorkspaceException {
 		if (workspaceDir != null && workspaceName != null)
 			return instantiateWorkspaceByNameAndDir(workspaceDir, workspaceName);
 		else if (workspaceDir != null)
@@ -74,7 +73,7 @@ public class WorkspaceUtils {
 	 * @throws Exception - an exception occurred during instantiation or a workspace with
 	 * the given name does not exist
 	 */
-	public static DeegreeWorkspace instantiateWorkspace(File workspaceDir) throws WorkspaceException {
+	static DeegreeWorkspace instantiateWorkspace(File workspaceDir) throws WorkspaceException {
 		return instantiateWorkspaceByNameAndDir(workspaceDir, null);
 	}
 
@@ -116,18 +115,6 @@ public class WorkspaceUtils {
 			return findWorkspaceDirectoryByDir(workspaceDir);
 		else
 			return findWorkspaceDirectoryByName(DEFAULT_XPLANSYN_WMS_WORKSPACE);
-	}
-
-	public static DeegreeWorkspace instantiateManagerWorkspace(File workspaceDir) throws Exception {
-		if (workspaceDir != null)
-			return instantiateWorkspace(workspaceDir);
-		return instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE);
-	}
-
-	public static DeegreeWorkspace instantiateWmsWorkspace(File workspaceDir) throws Exception {
-		if (workspaceDir != null)
-			return instantiateWorkspace(workspaceDir);
-		return instantiateWorkspace(DEFAULT_XPLANSYN_WMS_WORKSPACE);
 	}
 
 	private static DeegreeWorkspace instantiateWorkspaceByNameAndDir(File workspaceDir, String workspaceName)

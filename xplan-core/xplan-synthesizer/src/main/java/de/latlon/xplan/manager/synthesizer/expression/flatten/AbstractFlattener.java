@@ -2,18 +2,18 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -22,7 +22,9 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.synthesizer.Features;
-import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
+import de.latlon.xplan.manager.dictionary.XPlanCodelists;
+import de.latlon.xplan.manager.dictionary.XPlanDictionaries;
+import de.latlon.xplan.manager.dictionary.XPlanEnumerationFactory;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
@@ -39,6 +41,16 @@ import java.util.List;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public abstract class AbstractFlattener implements Flattener {
+
+	private final XPlanCodelists xPlanCodelists;
+
+	public AbstractFlattener() {
+		this(null);
+	}
+
+	public AbstractFlattener(XPlanCodelists xPlanCodelists) {
+		this.xPlanCodelists = xPlanCodelists;
+	}
 
 	/**
 	 * Checks if the node is an accepted ElementNode or Feature
@@ -147,7 +159,7 @@ public abstract class AbstractFlattener implements Flattener {
 			List<Pair<String, String>> properties) {
 		String propertyValue = asString(feature, propertyName);
 		if (propertyValue != null) {
-			properties.add(new Pair(label, propertyValue));
+			properties.add(new Pair<>(label, propertyValue));
 		}
 	}
 
@@ -156,22 +168,50 @@ public abstract class AbstractFlattener implements Flattener {
 		String propertyValue = asString(feature, propertyName);
 		if (propertyValue != null) {
 			String value = Boolean.parseBoolean(propertyValue) ? "ja" : "nein";
-			properties.add(new Pair(label, value));
+			properties.add(new Pair<>(label, value));
 		}
 	}
 
-	public void appendCode(String label, TypedObjectNode feature, String propertyName, XPlanVersion version,
-			String codeListName, boolean keepCodes, List<Pair<String, String>> properties) {
+	public void appendEnum(String label, TypedObjectNode feature, String propertyName, XPlanVersion version,
+			String enumName, boolean keepCodes, List<Pair<String, String>> properties) {
 		if (keepCodes) {
 			append(label, feature, propertyName, properties);
 		}
 		else {
 			String propertyValue = asString(feature, propertyName);
 			if (propertyValue != null) {
-				String translatedValue = XPlanCodeListsFactory.get(version).getTranslation(codeListName, propertyValue);
-				properties.add(new Pair(label, translatedValue));
+				String translatedValue = XPlanEnumerationFactory.get(version).getTranslation(enumName, propertyValue);
+				properties.add(new Pair<>(label, translatedValue));
 			}
 		}
+	}
+
+	public void appendCode(String label, TypedObjectNode feature, String propertyName, XPlanVersion version,
+			String codeListName, boolean keepCodes, List<Pair<String, String>> properties) {
+		XPlanDictionaries codelists = getxPlanDictionaries(version);
+		if (keepCodes || codelists == null) {
+			append(label, feature, propertyName, properties);
+		}
+		else {
+			String propertyValue = asString(feature, propertyName);
+			if (propertyValue != null) {
+				if (codelists != null) {
+					try {
+						String translatedValue = codelists.getTranslation(codeListName, propertyValue);
+						properties.add(new Pair<>(label, translatedValue));
+					}
+					catch (IllegalArgumentException e) {
+						properties.add(new Pair<>(label, propertyValue));
+					}
+				}
+			}
+		}
+	}
+
+	private XPlanDictionaries getxPlanDictionaries(XPlanVersion version) {
+		if (xPlanCodelists != null)
+			return xPlanCodelists.getCodelists(version);
+		return null;
 	}
 
 	public String asString(TypedObjectNode node, String ags) {

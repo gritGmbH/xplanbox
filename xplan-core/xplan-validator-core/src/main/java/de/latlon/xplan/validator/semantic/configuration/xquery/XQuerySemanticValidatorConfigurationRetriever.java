@@ -2,18 +2,18 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -35,14 +35,6 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Path;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.NONE;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
@@ -167,16 +159,12 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 	}
 
 	private static DirectoryStream<Path> retrieveDirectoriesAndRules(Path filesPath) throws IOException {
-		return newDirectoryStream(filesPath, new DirectoryStream.Filter<Path>() {
-			@Override
-			public boolean accept(Path entry) throws IOException {
-				return isDirectory(entry) || valueOf(entry.getFileName()).endsWith(".xq");
-			}
-		});
+		return newDirectoryStream(filesPath,
+				entry -> isDirectory(entry) || valueOf(entry.getFileName()).endsWith(".xq"));
 	}
 
 	private String getNameWithoutExtension(Path path) {
-		String name = path.getFileName().toFile().getName();
+		String name = path.getFileName().toString();
 		int indexOfExtensionBegin = name.lastIndexOf(".");
 		if (indexOfExtensionBegin > 0) {
 			return name.substring(0, indexOfExtensionBegin);
@@ -193,35 +181,19 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 	}
 
 	private SemanticValidationOptions parseSemanticValidationOption(Path path) {
-		String dirName = extractDirectoryName(path);
+		String dirName = path.getFileName().toString();
 		return SemanticValidationOptions.getByDirectoryName(dirName);
 	}
 
 	private XPlanVersion parseXPlanVersion(Path path) {
-		String dirName = extractDirectoryName(path);
-		if ("xplangml60".equals(dirName))
-			return XPLAN_60;
-		if ("xplangml54".equals(dirName))
-			return XPLAN_54;
-		if ("xplangml53".equals(dirName))
-			return XPLAN_53;
-		if ("xplangml52".equals(dirName))
-			return XPLAN_52;
-		if ("xplangml51".equals(dirName))
-			return XPLAN_51;
-		if ("xplangml50".equals(dirName))
-			return XPLAN_50;
-		if ("xplangml41".equals(dirName))
-			return XPLAN_41;
-		if ("xplangml40".equals(dirName))
-			return XPLAN_40;
-		LOG.info("{} is not a known XPlanVersion", dirName);
-		return UNKNOWN_VERSION;
-	}
-
-	private String extractDirectoryName(Path path) {
-		Path name = path.getFileName();
-		return name.toFile().getName();
+		String dirName = path.getFileName().toString();
+		try {
+			return XPlanVersion.valueOfVersionDir(dirName);
+		}
+		catch (IllegalArgumentException e) {
+			LOG.info("{} cannnot be assigned to a known XPlanVersion", dirName);
+			return UNKNOWN_VERSION;
+		}
 	}
 
 }

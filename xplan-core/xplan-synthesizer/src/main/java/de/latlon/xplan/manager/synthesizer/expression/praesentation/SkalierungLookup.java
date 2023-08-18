@@ -2,7 +2,7 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributeProperty;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -67,9 +68,9 @@ public class SkalierungLookup extends PraesentationsobjektLookup {
 	}
 
 	@Override
-	protected TypedObjectNode evaluate(Feature feature, FeatureCollection features, Feature referencedFeature,
-			List<AttributeProperty> attributeProperty) {
-		TypedObjectNode originalSkalierung = skalierung.evaluate(feature, features);
+	protected TypedObjectNode evaluate(Feature feature, FeatureCollection features, PlanContext planContext,
+			Feature referencedFeature, List<AttributeProperty> attributeProperty) {
+		TypedObjectNode originalSkalierung = skalierung.evaluate(feature, features, planContext);
 		if (originalSkalierung != null)
 			return originalSkalierung;
 		if (referencedFeature != null && attributeProperty != null) {
@@ -85,7 +86,7 @@ public class SkalierungLookup extends PraesentationsobjektLookup {
 		Feature planFeature = detectPlanFeature(features);
 		if (planFeature != null) {
 			List<Property> erstellungsMassstabProps = planFeature
-					.getProperties(new QName(planFeature.getName().getNamespaceURI(), "erstellungsMassstab"));
+				.getProperties(new QName(planFeature.getName().getNamespaceURI(), "erstellungsMassstab"));
 			if (!erstellungsMassstabProps.isEmpty()) {
 				PrimitiveValue erstellungsMassstabProp = castToPrimitive(erstellungsMassstabProps.get(0));
 				return ((BigInteger) erstellungsMassstabProp.getValue()).intValue();
@@ -110,8 +111,8 @@ public class SkalierungLookup extends PraesentationsobjektLookup {
 
 	private Feature detectPlanFeature(FeatureCollection features) {
 		List<Feature> planFeatures = features.stream()
-				.filter(feature -> feature.getName().getLocalPart().matches("(BP|FP|LP|RP|SO)_Plan"))
-				.collect(Collectors.toList());
+			.filter(feature -> feature.getName().getLocalPart().matches("(BP|FP|LP|RP|SO)_Plan"))
+			.collect(Collectors.toList());
 		if (!planFeatures.isEmpty())
 			return planFeatures.get(0);
 		LOG.warn("Could not find Plan feature.");

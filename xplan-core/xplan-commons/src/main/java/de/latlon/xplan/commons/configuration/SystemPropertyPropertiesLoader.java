@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -40,7 +40,7 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
 
 	public static final String CONFIG_SYSTEM_PROPERTY = "XPLANBOX_CONFIG";
 
-	private static final String OLD_CONFIG_SYSTEM_PROPERTY = "MANAGER_WEB";
+	protected static final String DEFAULT_SUB_DIIRECTOY = "xplanbox";
 
 	private final Path configurationDirectory;
 
@@ -58,6 +58,16 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
 			this.defaultBaseClass = defaultBaseClass;
 		else
 			this.defaultBaseClass = this.getClass();
+	}
+
+	/**
+	 * Instantiates a {@link SystemPropertyPropertiesLoader} loading properties from files
+	 * specified with by a system property.
+	 * @param configFilePath path to the configFile, never <code>null</code>
+	 */
+	public SystemPropertyPropertiesLoader(String configFilePath) {
+		this.configurationDirectory = findConfigDirectory(configFilePath);
+		this.defaultBaseClass = this.getClass();
 	}
 
 	/**
@@ -97,10 +107,11 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
 		String configFilePath = System.getProperty(CONFIG_SYSTEM_PROPERTY);
 		if (configFilePath != null)
 			return findConfigDirectory(configFilePath);
-		LOG.info("Fallback: Try to receive configuration set with system property {}", OLD_CONFIG_SYSTEM_PROPERTY);
-		String oldConfigFilePath = System.getProperty(OLD_CONFIG_SYSTEM_PROPERTY);
-		if (oldConfigFilePath != null)
-			return findConfigDirectory(oldConfigFilePath);
+		LOG.info("Try to receive configuration from default directory ${user.home}/xplanbox");
+		Path defaultConfigFilePath = Paths.get(System.getProperty("user.home"), DEFAULT_SUB_DIIRECTOY);
+		if (Files.isDirectory(defaultConfigFilePath) && Files.exists(defaultConfigFilePath))
+			return defaultConfigFilePath;
+		LOG.info("Configuration directory {} does not exist or is not a directory.", defaultConfigFilePath);
 		return null;
 	}
 

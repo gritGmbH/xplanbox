@@ -1,0 +1,29 @@
+[[konfiguration-externe-refrenzen]]
+=== Bereitstellung von Rasterdaten und Begleitdokumenten über API aktivieren
+
+Um im XPlanManager den Austausch der relativen URLs in absolute URLs für den direkten Abruf der Rasterdaten und/oder Begleitdokumenten eines XPlanArchivs zu aktivieren, muss die Basis-URL der Schnittstelle über die Umgebungsvariable `XPLAN_DOCUMENT_URL_PUBLIC` gesetzt werden. Diese Erweiterung kann nur verwendet werden, wenn keine Daten in der XPlanDB vorhanden sind.
+
+.Beispiel für die Verwendung der XPlanDokumentenAPI
+[source,properties]
+----
+XPLAN_DOCUMENT_URL_PUBLIC=http://<host>:<port>/xplan-api-dokumente/xdokumente/api/v1/dokument/{planId}/{fileName}
+----
+
+.Beispiel für die Verwendung der S3-API
+[source,properties]
+----
+XPLAN_DOCUMENT_URL_PUBLIC=https://<bucket>.<region>.amazonaws.com/{planId}_{fileName}
+----
+
+Die beiden Platzhalter `{planId}` und `{fileName}` werden beim Austausch der URL durch die ID des Planes und Name der Datei ersetzt. Als Basis-URL kann die <<xplandokumenten-api>> oder bei Nutzung eines <<s3-storage>> auch die öffentliche URL des S3-Objektspeichers konfiguriert werden.
+
+Beim Import eines XPlanArchivs mit Rasterdaten und/oder Begleitdokumenten werden die relativen URL-Adressen im XPlanGML-Dokument durch vollqualifizierte URL-Adresse ersetzt, wenn die `XPLAN_DOCUMENT_URL_PUBLIC` gesetzt ist. Dann wird die URL in folgenden Komponenten der xPlanBox ausgegeben:
+
+ * XPlanWMS: GetFeatureInfo-Anfrage in allen unterstützen Formaten (GML, HTML, TEXT)
+ * XPlanWFS: GetFeature-Anfrage (insbs. GML-Format)
+ * XPlanSynWFS: GetFeature-Anfrage (insbs. GML-Format)
+ * XPlanManagerWeb/XPlanManagerAPI: Abruf des XPlanGML
+
+CAUTION: Wenn bereits Pläne in die XPlanDB importiert wurden, dann ist eine nachträgliche Umstellung auf Verwendung der XPlanDokumentenAPI nicht möglich, da der Datenbestand in der XPlanDB nicht automatisch angepasst werden kann.
+
+NOTE: Wenn die `XPLAN_DOCUMENT_URL_PUBLIC` nicht gesetzt ist, dann werden die im XPlanGML referenzierten Begleitdokumente unverändert in die Datenhaltung der XPlanDB übernommen und können über die <<konfiguration-xplanwms-gfi,GetAttachment-Operation des XPlanWMS>> abgerufen werden.

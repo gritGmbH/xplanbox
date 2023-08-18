@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-validator - Modul zur Gruppierung der REST-API
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -26,6 +26,8 @@ import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import de.latlon.xplanbox.api.validator.config.ApplicationContext;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -39,6 +41,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -57,6 +60,15 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { ApplicationContext.class })
 public class ValidationHandlerTest {
+
+	@ClassRule
+	public final static TemporaryFolder tempFolder = new TemporaryFolder();
+
+	@BeforeClass
+	public static void setupFakedWorkspace() throws IOException {
+		File workspace = tempFolder.newFolder("xplan-validator-wms-memory-workspace");
+		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParentFile().toString());
+	}
 
 	@Autowired
 	private ValidationHandler validationHandler;
@@ -115,8 +127,8 @@ public class ValidationHandlerTest {
 	public void verifyThat_WritePdfReport_CreatesFile() throws IOException {
 		final ValidatorReport report = Mockito.mock(ValidatorReport.class);
 
-		File file = validationHandler.writePdfReport(report);
-		assertTrue(file.exists());
+		Path file = validationHandler.writePdfReport(report);
+		assertTrue(Files.exists(file));
 	}
 
 	@Test

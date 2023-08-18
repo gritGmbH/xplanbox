@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-cli - Kommandozeilentool des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -45,7 +45,7 @@ public class XPlanManagerCLI {
 		else {
 			SpringApplication app = new SpringApplication(XPlanManagerApplicationRunner.class);
 			app.setBannerMode(Banner.Mode.OFF);
-			app.run(args);
+			app.run(args).close();
 		}
 	}
 
@@ -53,35 +53,31 @@ public class XPlanManagerCLI {
 		System.out.println("Usage: XPlanManager <options>");
 		System.out.println();
 		System.out.println(" --help");
-		System.out.println(" --list [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
-		System.out.println(
-				" --import <xplanarchiv> [<xplanarchiv>..] [--force] [--crs=<CRS>] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
+		System.out.println(" --list");
+		System.out.println(" --import <xplanarchiv> [<xplanarchiv>..] [--force] [--crs=<CRS>]");
 		System.out.println(
 				"     <xplanarchiv> Die absolute oder relative Referenz auf den Plan, der importiert werden soll (verpflichtend). Mehrere Plaene koennen durch ein Leerzeichen getrennt angegeben werden.");
 		System.out.println(
 				"     --force Erzwingen des Imports eines Plans mit Geomtriefehlern oder Validierungsfehlern (optional). EMPFOHLEN ist die Behebung der Fehler!");
 		System.out.println("     --crs Angabe des Koordinatenreferenzsystems in dem die Daten vorliegen (optional).");
-		System.out.println(
-				" --export <planid> [<planid>..] [--target=<verzeichnis>] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
+		System.out.println(" --export <planid> [<planid>..] [--target=<verzeichnis>]");
 		System.out.println(
 				"     <planid> Die ID des Plans der exportiert werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.");
 		System.out.println(
 				"     --target Angabe des Verzeichnis in dem die exportierten XPlanArchive abgelegt werden sollen (optional).");
+		System.out.println(" --delete <planid> [<planid>..]");
 		System.out.println(
-				" --delete <planid> [<planid>..] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
-		System.out.println(
-				"     <planid> Die ID des Plans der gelöscht werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.");
-		System.out.println(
-				" --createMetadata <planid> [<planid>..] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
+				"     <planid> Die ID des Plans der geloescht werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.");
+		System.out.println(" --createMetadata <planid> [<planid>..]");
 		System.out.println(
 				"     <planid> Die ID des Plans zu dem der Service-Metadatensatz generiert werden soll (optional). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden. Wenn keine ID angegeben ist, werden für alle Plaene Metadatensaetze erstellt.");
 		System.out.println();
 		System.out.println("Allgemeine Parameter:");
-		System.out.println(
-				"     --managerconfiguration Verzeichnis, in dem sich die Konfiguration des XPlanManagers befindet. Wenn die Option nicht angegeben wird, wird die Konfiguration aus dem Verzeichnis 'etc' des XPLanManagerCLIs verwendet.");
 		System.out.println("     --v Ausgabe der Systemeigenschaften");
 		System.out.println();
 		System.out.println("Allgemeine Hinweise:");
+		System.out.println(
+				"      Das Verzeichnis in dem die Konfigurationsdatei managerConfiguration.properties liegt, muss durch Angabe des Verzeichnis in der Datei etc/application.properties oder durch Setzen der Umgebungsvariablen _XPLANBOX_CONFIG_ erfolgen. Andernfalls wird die Konfiguration aus etc/managerConfiguration.properties verwendet.");
 		System.out.println(
 				"     Der Workspace `xplan-manager-workspace` muss im Verzeichnis _.deegree/_ des Home-Verzeichnis des Nutzers liegen, der das XPlanManagerCLI aufruft. Alternativ kann das Verzeichnis, in dem der Workspace liegt, durch Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ gesetzt werden.");
 		System.out.println();

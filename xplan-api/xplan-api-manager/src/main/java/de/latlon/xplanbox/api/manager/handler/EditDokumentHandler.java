@@ -1,40 +1,40 @@
-package de.latlon.xplanbox.api.manager.handler;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.handler;
 
+import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplanbox.api.manager.exception.DuplicateDokument;
 import de.latlon.xplanbox.api.manager.exception.InvalidDokumentId;
 import de.latlon.xplanbox.api.manager.v1.model.Dokument;
-import de.latlon.xplanbox.api.manager.v1.model.Referenz;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -45,6 +45,9 @@ import java.util.stream.Collectors;
 @Component
 @Singleton
 public class EditDokumentHandler extends EditHandler {
+
+	@Autowired
+	private Optional<AttachmentUrlHandler> attachmentUrlHandler;
 
 	/**
 	 * @param planId the ID of the plan, never <code>null</code>
@@ -57,7 +60,7 @@ public class EditDokumentHandler extends EditHandler {
 		List<Reference> references = xPlanToEdit.getReferences();
 
 		return references.stream().map(reference -> {
-			String dokumentId = createDokumentId(reference);
+			String dokumentId = createDokumentId(planId, reference);
 			return Dokument.fromReference(dokumentId, reference);
 		}).collect(Collectors.toList());
 	}
@@ -84,14 +87,14 @@ public class EditDokumentHandler extends EditHandler {
 		XPlan plan = findPlanById(planId);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
 		Reference referenceToAdd = Dokument.toReference(dokumentModel);
-		String newDokumentId = createDokumentId(referenceToAdd);
+		String newDokumentId = createDokumentId(planId, referenceToAdd);
 		checkDokumentId(planId, dokumentModel, newDokumentId);
 
 		List<Reference> references = xPlanToEdit.getReferences();
 		references.add(referenceToAdd);
 		List<File> uploadedArtefacts = file != null ? Collections.singletonList(file) : Collections.emptyList();
-		manager.editPlan(plan, xPlanToEdit, false, uploadedArtefacts);
-		return dokumentModel.id(newDokumentId);
+		manager.editPlan(plan, xPlanToEdit, true, uploadedArtefacts);
+		return retrieveInsertedDokument(planId, newDokumentId);
 	}
 
 	/**
@@ -109,14 +112,14 @@ public class EditDokumentHandler extends EditHandler {
 		List<Reference> references = xPlanToEdit.getReferences();
 		Reference referenceToReplace = getReferenceById(planId, dokumentId, references);
 		Reference referenceToAdd = Dokument.toReference(dokumentModel);
-		String newDokumentId = createDokumentId(referenceToAdd);
+		String newDokumentId = createDokumentId(planId, referenceToAdd);
 		checkDokumentId(planId, dokumentId, dokumentModel, newDokumentId);
 
 		references.remove(referenceToReplace);
 		references.add(referenceToAdd);
 		List<File> uploadedArtefacts = file != null ? Collections.singletonList(file) : Collections.emptyList();
-		manager.editPlan(plan, xPlanToEdit, false, uploadedArtefacts);
-		return dokumentModel.id(newDokumentId);
+		manager.editPlan(plan, xPlanToEdit, true, uploadedArtefacts);
+		return retrieveInsertedDokument(planId, newDokumentId);
 	}
 
 	/**
@@ -131,14 +134,15 @@ public class EditDokumentHandler extends EditHandler {
 		List<Reference> references = xPlanToEdit.getReferences();
 		Reference reference = getReferenceById(planId, dokumentId, references);
 		references.remove(reference);
-		manager.editPlan(plan, xPlanToEdit, false, Collections.emptyList());
+		manager.editPlan(plan, xPlanToEdit, true, Collections.emptyList());
 		return Dokument.fromReference(dokumentId, reference);
 	}
 
 	private Reference getReferenceById(String planId, String dokumentId, List<Reference> references)
 			throws InvalidDokumentId {
 		List<Reference> referencesById = references.stream()
-				.filter(reference -> dokumentId.equals(createDokumentId(reference))).collect(Collectors.toList());
+			.filter(reference -> dokumentId.equals(createDokumentId(planId, reference)))
+			.collect(Collectors.toList());
 		if (referencesById.size() != 1) {
 			throw new InvalidDokumentId(planId, dokumentId);
 		}
@@ -147,29 +151,44 @@ public class EditDokumentHandler extends EditHandler {
 
 	private Dokument getDokumentById(String planId, String dokumentId, List<Dokument> dokumente)
 			throws InvalidDokumentId {
-		List<Dokument> dokumenteWithId = dokumente.stream().filter(dokument -> dokumentId.equals(dokument.getId()))
-				.collect(Collectors.toList());
+		List<Dokument> dokumenteWithId = dokumente.stream()
+			.filter(dokument -> dokumentId.equals(dokument.getId()))
+			.collect(Collectors.toList());
 		if (dokumenteWithId.size() != 1) {
 			throw new InvalidDokumentId(planId, dokumentId);
 		}
 		return dokumenteWithId.get(0);
 	}
 
-	private static String createDokumentId(Reference reference) {
+	private Dokument retrieveInsertedDokument(String planId, String newDokumentId) throws Exception {
+		List<Reference> references = manager.getXPlanToEdit(findPlanById(planId)).getReferences();
+		Reference insertedReference = getReferenceById(planId, newDokumentId, references);
+		return Dokument.fromReference(newDokumentId, insertedReference);
+	}
+
+	private String createDokumentId(String planId, Reference reference) {
 		StringBuilder id = new StringBuilder();
 		if (reference.getReferenzName() != null)
 			id.append(reference.getReferenzName());
 		id.append('-');
-		if (reference.getReference() != null)
-			id.append(reference.getReference());
+		if (reference.getReference() != null) {
+			if (attachmentUrlHandler.isPresent()) {
+				String replacedReference = attachmentUrlHandler.get()
+					.replaceRelativeUrl(planId, reference.getReference());
+				id.append(replacedReference);
+			}
+			else {
+				id.append(reference.getReference());
+			}
+		}
 		return id.toString().replaceAll("[^a-zA-Z0-9\\-_]", "");
 	}
 
 	private void checkDokumentId(String planId, Dokument dokumentModel, String newDokumentId) throws Exception {
 		List<Dokument> dokumente = retrieveDokumente(planId);
-		long noOfDokumenteWithNewId = dokumente.stream().filter(dokument -> newDokumentId.equals(dokument.getId()))
-				.count();
-		if (noOfDokumenteWithNewId > 0) {
+		boolean dokumentWithSameReferenceUrlExists = dokumente.stream()
+			.anyMatch(dokument -> newDokumentId.equals(dokument.getId()));
+		if (dokumentWithSameReferenceUrlExists) {
 			throw new DuplicateDokument(planId, newDokumentId, dokumentModel.getReferenzName(),
 					dokumentModel.getReferenzURL());
 		}

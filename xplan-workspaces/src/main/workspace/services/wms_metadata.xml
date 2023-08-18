@@ -3,7 +3,7 @@
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -23,7 +23,7 @@
 <deegreeServicesMetadata xmlns="http://www.deegree.org/services/metadata"
                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                          xmlns:inspire_vs="http://inspire.europa.eu/networkservice/view/1.0"
-                         xsi:schemaLocation="http://www.deegree.org/services/metadata https://schemas.deegree.org/3.5/services/metadata/metadata.xsd">
+                         xsi:schemaLocation="http://www.deegree.org/services/metadata https://schemas.deegree.org/core/3.5/services/metadata/metadata.xsd">
   <ServiceIdentification>
     <Title>XPlanWMS</Title>
     <Abstract>Dieser WMS Dienst stellt auf dem Standard XPlanung basierende WMS Ebenen bereit. Dargestellt werden jeweils nur Objekte im Planstatus "Festgestellt". Die umfangreiche Attributierung kann mittels GetFeatureInfo abgefragt werden. Objekte mit Referenzen auf weitere Dateien können über GetFeatureInfo abgefragt werden.</Abstract>

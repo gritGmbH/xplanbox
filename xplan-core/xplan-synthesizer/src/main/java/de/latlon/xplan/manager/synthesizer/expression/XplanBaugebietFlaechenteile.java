@@ -2,7 +2,7 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -29,6 +29,7 @@ import java.util.List;
 
 import javax.xml.namespace.QName;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
@@ -65,7 +66,7 @@ public class XplanBaugebietFlaechenteile implements Expression {
 	private final int MAX_NUM_POINTS = 500;
 
 	@Override
-	public Geometry evaluate(Feature feature, FeatureCollection features) {
+	public Geometry evaluate(Feature feature, FeatureCollection features, PlanContext planContext) {
 		List<Surface> members = new ArrayList<Surface>();
 		String ns = feature.getName().getNamespaceURI();
 		List<Property> props = feature.getProperties(new QName(ns, "flaechenteil"));

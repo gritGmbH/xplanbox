@@ -2,18 +2,18 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -27,6 +27,7 @@ import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
+import de.latlon.xplan.validator.report.reference.ExternalReferenceStatus;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
@@ -96,8 +97,9 @@ class ReportBuilder {
 		checkReportParam(report);
 		try {
 			return report().setTemplate(createTemplate())
-					.title(Templates.createTitleComponent(LABEL_TITLE), createMetadataSection(report))
-					.summary(createValidationResults(report)).pageFooter(createFooter());
+				.title(Templates.createTitleComponent(LABEL_TITLE), createMetadataSection(report))
+				.summary(createValidationResults(report))
+				.pageFooter(createFooter());
 		}
 		catch (JRException e) {
 			throw new ReportGenerationException(e);
@@ -183,7 +185,7 @@ class ReportBuilder {
 	private VerticalListBuilder addExternalReferenceReport(VerticalListBuilder verticalList,
 			ExternalReferenceReport externalReferenceReport) {
 		ComponentBuilder<?, ?> rulesHead = cmp.text(getMessage("report_pdf_externalReferences"))
-				.setStyle(bold14LeftStyle);
+			.setStyle(bold14LeftStyle);
 		HorizontalListBuilder header = cmp.horizontalList().add(rulesHead);
 		verticalList = verticalList.add(header);
 
@@ -193,14 +195,15 @@ class ReportBuilder {
 			TextFieldBuilder<String> skipCodeField = cmp.text(skipCode.getMessage()).setStyle(style);
 			verticalList = verticalList.add(skipCodeField);
 		}
-		List<String> references = externalReferenceReport.getReferences();
+		Map<String, ExternalReferenceStatus> references = externalReferenceReport.getReferencesAndStatus();
 		if (references != null && !references.isEmpty()) {
 			MultiPageListBuilder rules = cmp.multiPageList();
-			for (String reference : references) {
+			references.forEach((name, status) -> {
 				StyleBuilder style = stl.style(simpleStyle).setLeftIndent(10);
-				TextFieldBuilder<String> referenceField = cmp.text(reference).setStyle(style);
+				String nameAndStatus = String.format("%s (%s)", name, status.getLabel());
+				TextFieldBuilder<String> referenceField = cmp.text(nameAndStatus).setStyle(style);
 				rules.add(cmp.horizontalList().add(referenceField));
-			}
+			});
 			verticalList = verticalList.add(rules);
 		}
 		return verticalList;
@@ -276,7 +279,7 @@ class ReportBuilder {
 	private ComponentBuilder<?, ?> appendHeaderAndResult(ValidatorResult result) {
 		ComponentBuilder<?, ?> rulesHead = cmp.text(result.getType()).setStyle(bold14LeftStyle);
 		TextFieldBuilder<String> validString = cmp.text(getResultMessage(result))
-				.setStyle(bold14LeftStyle.setBottomBorder(stl.pen1Point()));
+			.setStyle(bold14LeftStyle.setBottomBorder(stl.pen1Point()));
 		return cmp.horizontalList().add(rulesHead).add(validString);
 	}
 
@@ -284,15 +287,17 @@ class ReportBuilder {
 		String text = "Profil " + result.getRulesMetadata().getName();
 		ComponentBuilder<?, ?> rulesHead = cmp.text(text).setStyle(bold14LeftStyle);
 		TextFieldBuilder<String> validString = cmp.text(getResultMessage(result))
-				.setStyle(bold14LeftStyle.setBottomBorder(stl.pen1Point()));
+			.setStyle(bold14LeftStyle.setBottomBorder(stl.pen1Point()));
 		return cmp.horizontalList().add(rulesHead).add(validString);
 	}
 
 	private VerticalListBuilder appendDetailsHint(VerticalListBuilder verticalList, ValidatorResult validatorResult) {
 		if (validatorResult != null && validatorResult.getValidatorDetail() != null) {
 			ValidatorDetail detailsHint = validatorResult.getValidatorDetail();
-			StyleBuilder detailsHintStyle = stl.style(simpleStyle).setLeftIndent(10).setTopPadding(5)
-					.setBottomPadding(5);
+			StyleBuilder detailsHintStyle = stl.style(simpleStyle)
+				.setLeftIndent(10)
+				.setTopPadding(5)
+				.setBottomPadding(5);
 			TextFieldBuilder<String> detailsString = cmp.text(detailsHint.toString()).setStyle(detailsHintStyle);
 			verticalList = verticalList.add(detailsString);
 		}
@@ -341,8 +346,9 @@ class ReportBuilder {
 		InputStream is = PdfReportGenerator.class.getResourceAsStream("/jrxml/metadata.jrxml");
 		JasperReport jasperTitleSubreport = JasperCompileManager.compileReport(is);
 		Map<String, Object> parameters = createParams(report);
-		return cmp.verticalList().add(cmp.subreport(jasperTitleSubreport).setParameters(parameters))
-				.add(cmp.verticalGap(VERTICAL_GAP));
+		return cmp.verticalList()
+			.add(cmp.subreport(jasperTitleSubreport).setParameters(parameters))
+			.add(cmp.verticalGap(VERTICAL_GAP));
 	}
 
 	private String getResultMessage(ValidatorResult result) {

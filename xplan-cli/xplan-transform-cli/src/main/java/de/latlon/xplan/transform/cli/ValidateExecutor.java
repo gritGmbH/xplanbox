@@ -2,7 +2,7 @@
  * #%L
  * xplan-transform-cli - Kommandozeilentool fuer die Transformation zwischen XPlanGML Versionen
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -53,7 +53,7 @@ public class ValidateExecutor {
 	 */
 	public void validateAll(Path outDir) throws Exception {
 		try (TransformationResultWriter transformationResultWriter = new CsvTransformationResultWriter(outDir)) {
-			List<XPlan> plans = xPlanDao.getXPlanList(false);
+			List<XPlan> plans = xPlanDao.getXPlanList();
 			for (XPlan plan : plans) {
 				XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
 				if (XPLAN_41.equals(version)) {

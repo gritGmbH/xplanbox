@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -22,6 +22,8 @@ package de.latlon.xplan.commons.archive;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+
+import static de.latlon.xplan.commons.util.MimeTypeDetector.getArtefactMimeType;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -50,6 +52,21 @@ public class MainZipEntry implements ZipEntryWithContent {
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public boolean isXPlanGml() {
+		return true;
+	}
+
+	@Override
+	public long getContentLength() {
+		return content.length;
+	}
+
+	@Override
+	public String getContentType() {
+		return getArtefactMimeType(getName());
 	}
 
 }

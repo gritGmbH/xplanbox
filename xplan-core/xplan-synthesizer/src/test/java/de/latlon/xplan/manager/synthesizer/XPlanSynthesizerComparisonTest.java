@@ -2,7 +2,7 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.synthesizer;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.apache.commons.io.IOUtils;
@@ -33,6 +34,7 @@ import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.GMLStreamWriter;
 import org.deegree.gml.XPlanGmlWriter;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.w3c.dom.Attr;
@@ -59,12 +61,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @RunWith(JUnitParamsRunner.class)
 public class XPlanSynthesizerComparisonTest {
 
+	private XPlanSynthesizer xPlanSynthesizer;
+
+	@Before
+	public void setup() {
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
+		this.xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
+	}
+
 	@Parameters({ "xplan41/BP2070", "xplan41/BP2135", "xplan41/LA22", "xplan41/LA67", "xplan50/BP2070",
 			"xplan50/BP2135", "xplan50/LA22", "xplan50/LA67", "xplan51/BP2070", "xplan51/BP2135", "xplan51/LA22",
 			"xplan51/LA67", "xplan52/BP2070", "xplan52/BP2135", "xplan52/LA22", "xplan52/LA67" })
 	@Test
 	public void test(String archiveName) throws Exception {
-		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
 		XPlanFeatureCollection xplanFc = TestFeaturesUtils.getTestFeatureCollection(archiveName + ".zip");
 		FeatureCollection synthesizedFeatureCollection = xPlanSynthesizer.synthesize(xplanFc.getVersion(), xplanFc);
 		String synthesizedFeatures = writeFeatures(xplanFc.getVersion(), synthesizedFeatureCollection);
@@ -72,15 +81,18 @@ public class XPlanSynthesizerComparisonTest {
 		String expectedFeatureCollection = IOUtils.toString(
 				XPlanSynthesizerComparisonTest.class.getResourceAsStream("plans/" + archiveName + ".xml"),
 				StandardCharsets.UTF_8);
-		assertThat(synthesizedFeatures, CompareMatcher.isSimilarTo(expectedFeatureCollection).ignoreWhitespace()
-				.ignoreComments().ignoreElementContentWhitespace()
-				.withDifferenceEvaluator(
-						(comparison, comparisonResult) -> ignoreGmlIdsAndXpPlanName(comparison, comparisonResult))
-				.withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byName)));
+		assertThat(synthesizedFeatures, CompareMatcher.isSimilarTo(expectedFeatureCollection)
+			.ignoreWhitespace()
+			.ignoreComments()
+			.ignoreElementContentWhitespace()
+			.withDifferenceEvaluator(
+					(comparison, comparisonResult) -> ignoreGmlIdsAndXpPlanNameAndPrefix(comparison, comparisonResult))
+			.withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byName)));
 
 	}
 
-	private ComparisonResult ignoreGmlIdsAndXpPlanName(Comparison comparison, ComparisonResult comparisonResult) {
+	private ComparisonResult ignoreGmlIdsAndXpPlanNameAndPrefix(Comparison comparison,
+			ComparisonResult comparisonResult) {
 		if (comparisonResult == ComparisonResult.EQUAL)
 			return comparisonResult;
 		Node controlNode = comparison.getControlDetails().getTarget();
@@ -99,6 +111,9 @@ public class XPlanSynthesizerComparisonTest {
 		if (comparison.getType() == ComparisonType.CHILD_NODELIST_SEQUENCE) {
 			return ComparisonResult.SIMILAR;
 		}
+		if (comparisonResult == ComparisonResult.DIFFERENT && comparison.getType() == ComparisonType.NAMESPACE_PREFIX) {
+			return ComparisonResult.SIMILAR;
+		}
 		return comparisonResult;
 	}
 
@@ -110,6 +125,7 @@ public class XPlanSynthesizerComparisonTest {
 		try {
 			xmlStream = XMLOutputFactory.newFactory().createXMLStreamWriter(os);
 			gmlStreamWriter = new XPlanGmlWriter(version, new IndentingXMLStreamWriter(xmlStream));
+			gmlStreamWriter.getNamespaceBindings().put("xplansyn", XPlanVersion.XPLAN_SYN.getNamespace());
 			gmlStreamWriter.write(synthesizedFeatures);
 		}
 		finally {

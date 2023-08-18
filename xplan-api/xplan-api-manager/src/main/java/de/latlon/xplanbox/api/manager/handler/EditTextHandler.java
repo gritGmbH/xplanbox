@@ -1,25 +1,24 @@
-package de.latlon.xplanbox.api.manager.handler;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.handler;
 
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
@@ -81,16 +80,21 @@ public class EditTextHandler extends EditHandler {
 		XPlan plan = findPlanById(planId);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
 		List<de.latlon.xplan.manager.web.shared.edit.Text> texts = xPlanToEdit.getTexts();
-		List<String> textIdsBeforeInsert = texts.stream().filter(t -> t.getFeatureId() != null)
-				.map(t -> t.getFeatureId()).collect(Collectors.toList());
+		List<String> textIdsBeforeInsert = texts.stream()
+			.filter(t -> t.getFeatureId() != null)
+			.map(t -> t.getFeatureId())
+			.collect(Collectors.toList());
 		de.latlon.xplan.manager.web.shared.edit.Text textToAdd = textModel.toText(plan.getVersion(), plan.getType());
 		texts.add(textToAdd);
 
 		List<File> uploadedArtefacts = file != null ? Collections.singletonList(file) : Collections.emptyList();
-		manager.editPlan(plan, xPlanToEdit, false, uploadedArtefacts);
+		manager.editPlan(plan, xPlanToEdit, true, uploadedArtefacts);
 		Optional<de.latlon.xplan.manager.web.shared.edit.Text> insertedText = manager
-				.getXPlanToEdit(findPlanById(planId)).getTexts().stream()
-				.filter(t -> !textIdsBeforeInsert.contains(t.getFeatureId())).findFirst();
+			.getXPlanToEdit(findPlanById(planId))
+			.getTexts()
+			.stream()
+			.filter(t -> !textIdsBeforeInsert.contains(t.getFeatureId()))
+			.findFirst();
 		return Text.fromText(insertedText.get());
 	}
 
@@ -112,14 +116,21 @@ public class EditTextHandler extends EditHandler {
 		textToAdd.setFeatureId(textId);
 		texts.add(textToAdd);
 		List<File> uploadedArtefacts = file != null ? Collections.singletonList(file) : Collections.emptyList();
-		manager.editPlan(plan, xPlanToEdit, false, uploadedArtefacts);
-		return textModel.id(textToReplace.getFeatureId());
+		manager.editPlan(plan, xPlanToEdit, true, uploadedArtefacts);
+		Optional<de.latlon.xplan.manager.web.shared.edit.Text> insertedText = manager
+			.getXPlanToEdit(findPlanById(planId))
+			.getTexts()
+			.stream()
+			.filter(t -> textId.equals(t.getFeatureId()))
+			.findFirst();
+		return Text.fromText(insertedText.get());
 	}
 
 	private de.latlon.xplan.manager.web.shared.edit.Text getOldTextById(String planId, String textId,
 			List<de.latlon.xplan.manager.web.shared.edit.Text> texts) throws InvalidTextId {
 		List<de.latlon.xplan.manager.web.shared.edit.Text> textsById = texts.stream()
-				.filter(text -> textId.equals(createTextId(text))).collect(Collectors.toList());
+			.filter(text -> textId.equals(createTextId(text)))
+			.collect(Collectors.toList());
 		if (textsById.size() != 1) {
 			throw new InvalidTextId(planId, textId);
 		}
@@ -127,8 +138,9 @@ public class EditTextHandler extends EditHandler {
 	}
 
 	private Text getTextById(String planId, String textId, List<Text> texte) throws InvalidTextId {
-		List<Text> texteWithId = texte.stream().filter(text -> textId.equals(text.getId()))
-				.collect(Collectors.toList());
+		List<Text> texteWithId = texte.stream()
+			.filter(text -> textId.equals(text.getId()))
+			.collect(Collectors.toList());
 		if (texteWithId.size() != 1) {
 			throw new InvalidTextId(planId, textId);
 		}

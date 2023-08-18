@@ -3,7 +3,7 @@
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -38,11 +38,11 @@
                  xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0"
                  xmlns:swe="http://www.opengis.net/swe/2.0"
                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                 xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql https://schemas.deegree.org/3.5/datasource/feature/sql/sql.xsd">
+                 xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql https://schemas.deegree.org/core/3.5/datasource/feature/sql/sql.xsd">
   <JDBCConnId>inspireplu</JDBCConnId>
-  <StorageCRS srid="-1" dim="2D">EPSG:25832</StorageCRS>
+  <StorageCRS srid="25832" dim="2D">EPSG:25832</StorageCRS>
   <GMLSchema>../../appschemas/inspireplu/PlannedLandUse.xsd</GMLSchema>
-  <FeatureTypeMapping name="ad:Address" table="ad_address">
+  <FeatureTypeMapping name="ad:Address" table="inspireplu.ad_address">
     <FIDMapping prefix="AD_ADDRESS_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -68,7 +68,7 @@
       <Primitive path="@xsi:nil" mapping="ad_alternativeidentifier_attr_xsi_nil"/>
     </Complex>
     <Complex path="ad:position">
-      <Join table="ad_address_ad_position" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_address_ad_position" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Complex path="ad:GeographicPosition">
         <Complex path="ad:geometry">
           <Primitive path="@nilReason" mapping="ad_geographicposition_ad_geometry_attr_nilreason"/>
@@ -110,10 +110,10 @@
       </Feature>
     </Complex>
     <Complex path="ad:locator">
-      <Join table="ad_address_ad_locator" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_address_ad_locator" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Complex path="ad:AddressLocator">
         <Complex path="ad:designator">
-          <Join table="ad_address_ad_locator_ad_addresslocator_ad_designator" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.ad_address_ad_locator_ad_addresslocator_ad_designator" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="ad:LocatorDesignator">
             <Primitive path="ad:designator" mapping="ad_addresslocator_ad_locatordesignator_ad_designator"/>
             <Complex path="ad:type">
@@ -128,10 +128,10 @@
           </Complex>
         </Complex>
         <Complex path="ad:name">
-          <Join table="ad_address_ad_locator_ad_addresslocator_ad_name" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.ad_address_ad_locator_ad_addresslocator_ad_name" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="ad:LocatorName">
             <Complex path="ad:name">
-              <Join table="ad_address_ad_locator_ad_addresslocator_ad_name_ad_address_3232" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+              <Join table="inspireplu.ad_address_ad_locator_ad_addresslocator_ad_name_ad_address_3232" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
               <Complex path="gn:GeographicalName">
                 <Complex path="gn:language">
                   <Primitive path="text()" mapping="ad_addresslocator_ad_locatorname_gn_geographicalname_gn_la_3233"/>
@@ -180,7 +180,7 @@
                   </Complex>
                 </Complex>
                 <Complex path="gn:spelling">
-                  <Join table="ad_address_ad_locator_ad_addresslocator_ad_name_ad_address_3263" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+                  <Join table="inspireplu.ad_address_ad_locator_ad_addresslocator_ad_name_ad_address_3263" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
                   <Complex path="gn:SpellingOfName">
                     <Primitive path="gn:text" mapping="ad_addresslocator_ad_locatorname_gn_geographicalname_gn_sp_3265"/>
                     <Complex path="gn:script">
@@ -270,7 +270,7 @@
       <Primitive path="@xsi:nil" mapping="ad_endlifespanversion_attr_xsi_nil"/>
     </Complex>
     <Complex path="ad:parcel">
-      <Join table="ad_address_ad_parcel" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_address_ad_parcel" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -291,7 +291,7 @@
       </Feature>
     </Complex>
     <Complex path="ad:building">
-      <Join table="ad_address_ad_building" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_address_ad_building" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -302,7 +302,7 @@
       </Feature>
     </Complex>
     <Complex path="ad:component">
-      <Join table="ad_address_ad_component" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_address_ad_component" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
       <Primitive path="@owns" mapping="attr_owns"/>
@@ -312,7 +312,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="ad:AddressAreaName" table="ad_addressareaname">
+  <FeatureTypeMapping name="ad:AddressAreaName" table="inspireplu.ad_addressareaname">
     <FIDMapping prefix="AD_ADDRESSAREANAME_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -368,7 +368,7 @@
       <Primitive path="@xsi:nil" mapping="ad_validto_attr_xsi_nil"/>
     </Complex>
     <Complex path="ad:situatedWithin">
-      <Join table="ad_addressareaname_ad_situatedwithin" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_addressareaname_ad_situatedwithin" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -379,7 +379,7 @@
       </Feature>
     </Complex>
     <Complex path="ad:name">
-      <Join table="ad_addressareaname_ad_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_addressareaname_ad_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Complex path="gn:GeographicalName">
         <Complex path="gn:language">
           <Primitive path="text()" mapping="gn_geographicalname_gn_language"/>
@@ -428,7 +428,7 @@
           </Complex>
         </Complex>
         <Complex path="gn:spelling">
-          <Join table="ad_addressareaname_ad_name_gn_geographicalname_gn_spelling" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.ad_addressareaname_ad_name_gn_geographicalname_gn_spelling" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="gn:SpellingOfName">
             <Primitive path="gn:text" mapping="gn_geographicalname_gn_spellingofname_gn_text"/>
             <Complex path="gn:script">
@@ -476,7 +476,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="ad:AdminUnitName" table="ad_adminunitname">
+  <FeatureTypeMapping name="ad:AdminUnitName" table="inspireplu.ad_adminunitname">
     <FIDMapping prefix="AD_ADMINUNITNAME_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -532,7 +532,7 @@
       <Primitive path="@xsi:nil" mapping="ad_validto_attr_xsi_nil"/>
     </Complex>
     <Complex path="ad:situatedWithin">
-      <Join table="ad_adminunitname_ad_situatedwithin" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_adminunitname_ad_situatedwithin" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -543,7 +543,7 @@
       </Feature>
     </Complex>
     <Complex path="ad:name">
-      <Join table="ad_adminunitname_ad_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_adminunitname_ad_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Complex path="gn:GeographicalName">
         <Complex path="gn:language">
           <Primitive path="text()" mapping="gn_geographicalname_gn_language"/>
@@ -592,7 +592,7 @@
           </Complex>
         </Complex>
         <Complex path="gn:spelling">
-          <Join table="ad_adminunitname_ad_name_gn_geographicalname_gn_spelling" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.ad_adminunitname_ad_name_gn_geographicalname_gn_spelling" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="gn:SpellingOfName">
             <Primitive path="gn:text" mapping="gn_geographicalname_gn_spellingofname_gn_text"/>
             <Complex path="gn:script">
@@ -649,7 +649,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="ad:PostalDescriptor" table="ad_postaldescriptor">
+  <FeatureTypeMapping name="ad:PostalDescriptor" table="inspireplu.ad_postaldescriptor">
     <FIDMapping prefix="AD_POSTALDESCRIPTOR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -705,7 +705,7 @@
       <Primitive path="@xsi:nil" mapping="ad_validto_attr_xsi_nil"/>
     </Complex>
     <Complex path="ad:situatedWithin">
-      <Join table="ad_postaldescriptor_ad_situatedwithin" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_postaldescriptor_ad_situatedwithin" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -716,7 +716,7 @@
       </Feature>
     </Complex>
     <Complex path="ad:postName">
-      <Join table="ad_postaldescriptor_ad_postname" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_postaldescriptor_ad_postname" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Complex path="gn:GeographicalName">
         <Complex path="gn:language">
           <Primitive path="text()" mapping="gn_geographicalname_gn_language"/>
@@ -765,7 +765,7 @@
           </Complex>
         </Complex>
         <Complex path="gn:spelling">
-          <Join table="ad_postaldescriptor_ad_postname_gn_geographicalname_gn_spe_6397" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.ad_postaldescriptor_ad_postname_gn_geographicalname_gn_spe_6397" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="gn:SpellingOfName">
             <Primitive path="gn:text" mapping="gn_geographicalname_gn_spellingofname_gn_text"/>
             <Complex path="gn:script">
@@ -804,7 +804,7 @@
     </Complex>
     <Primitive path="ad:postCode" mapping="ad_postcode"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="ad:ThoroughfareName" table="ad_thoroughfarename">
+  <FeatureTypeMapping name="ad:ThoroughfareName" table="inspireplu.ad_thoroughfarename">
     <FIDMapping prefix="AD_THOROUGHFARENAME_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -860,7 +860,7 @@
       <Primitive path="@xsi:nil" mapping="ad_validto_attr_xsi_nil"/>
     </Complex>
     <Complex path="ad:situatedWithin">
-      <Join table="ad_thoroughfarename_ad_situatedwithin" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_thoroughfarename_ad_situatedwithin" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -871,7 +871,7 @@
       </Feature>
     </Complex>
     <Complex path="ad:name">
-      <Join table="ad_thoroughfarename_ad_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_thoroughfarename_ad_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Complex path="ad:ThoroughfareNameValue">
         <Complex path="ad:name">
           <Complex path="gn:GeographicalName">
@@ -922,7 +922,7 @@
               </Complex>
             </Complex>
             <Complex path="gn:spelling">
-              <Join table="ad_thoroughfarename_ad_name_ad_thoroughfarenamevalue_ad_name_30" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+              <Join table="inspireplu.ad_thoroughfarename_ad_name_ad_thoroughfarenamevalue_ad_name_30" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
               <Complex path="gn:SpellingOfName">
                 <Primitive path="gn:text" mapping="ad_thoroughfarenamevalue_ad_name_gn_geographicalname_gn_spel_32"/>
                 <Complex path="gn:script">
@@ -960,7 +960,7 @@
           </Complex>
         </Complex>
         <Complex path="ad:nameParts">
-          <Join table="ad_thoroughfarename_ad_name_ad_thoroughfarenamevalue_ad_name_53" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.ad_thoroughfarename_ad_name_ad_thoroughfarenamevalue_ad_name_53" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@nilReason" mapping="ad_thoroughfarenamevalue_attr_nilreason"/>
           <Primitive path="@xsi:nil" mapping="ad_thoroughfarenamevalue_attr_xsi_nil"/>
           <Complex path="ad:PartOfName">
@@ -979,7 +979,7 @@
       </Complex>
     </Complex>
     <Complex path="ad:transportLink">
-      <Join table="ad_thoroughfarename_ad_transportlink" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.ad_thoroughfarename_ad_transportlink" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -990,7 +990,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="au:AdministrativeBoundary" table="au_administrativeboundary">
+  <FeatureTypeMapping name="au:AdministrativeBoundary" table="inspireplu.au_administrativeboundary">
     <FIDMapping prefix="AU_ADMINISTRATIVEBOUNDARY_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1026,7 +1026,7 @@
       </Complex>
     </Complex>
     <Complex path="au:nationalLevel">
-      <Join table="au_administrativeboundary_au_nationallevel" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.au_administrativeboundary_au_nationallevel" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -1056,7 +1056,7 @@
       <Primitive path="@xsi:nil" mapping="au_endlifespanversion_attr_xsi_nil"/>
     </Complex>
     <Complex path="au:admUnit">
-      <Join table="au_administrativeboundary_au_admunit" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.au_administrativeboundary_au_admunit" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -1067,7 +1067,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="au:AdministrativeUnit" table="au_administrativeunit">
+  <FeatureTypeMapping name="au:AdministrativeUnit" table="inspireplu.au_administrativeunit">
     <FIDMapping prefix="AU_ADMINISTRATIVEUNIT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1104,7 +1104,7 @@
       </Feature>
     </Complex>
     <Complex path="au:nationalLevelName">
-      <Join table="au_administrativeunit_au_nationallevelname" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.au_administrativeunit_au_nationallevelname" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@xlink:type" mapping="attr_xlink_type"/>
       <Primitive path="@xlink:href" mapping="attr_xlink_href"/>
       <Primitive path="@xlink:role" mapping="attr_xlink_role"/>
@@ -1131,7 +1131,7 @@
       </Complex>
     </Complex>
     <Complex path="au:name">
-      <Join table="au_administrativeunit_au_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.au_administrativeunit_au_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Complex path="gn:GeographicalName">
         <Complex path="gn:language">
           <Primitive path="text()" mapping="gn_geographicalname_gn_language"/>
@@ -1180,7 +1180,7 @@
           </Complex>
         </Complex>
         <Complex path="gn:spelling">
-          <Join table="au_administrativeunit_au_name_gn_geographicalname_gn_spelling" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.au_administrativeunit_au_name_gn_geographicalname_gn_spelling" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="gn:SpellingOfName">
             <Primitive path="gn:text" mapping="gn_geographicalname_gn_spellingofname_gn_text"/>
             <Complex path="gn:script">
@@ -1218,7 +1218,7 @@
       </Complex>
     </Complex>
     <Complex path="au:residenceOfAuthority">
-      <Join table="au_administrativeunit_au_residenceofauthority" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.au_administrativeunit_au_residenceofauthority" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="au:ResidenceOfAuthority">
@@ -1271,7 +1271,7 @@
               </Complex>
             </Complex>
             <Complex path="gn:spelling">
-              <Join table="au_administrativeunit_au_residenceofauthority_au_residenc_22580" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+              <Join table="inspireplu.au_administrativeunit_au_residenceofauthority_au_residenc_22580" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
               <Complex path="gn:SpellingOfName">
                 <Primitive path="gn:text" mapping="au_residenceofauthority_au_name_gn_geographicalname_gn_sp_22582"/>
                 <Complex path="gn:script">
@@ -1328,7 +1328,7 @@
       <Primitive path="@xsi:nil" mapping="au_endlifespanversion_attr_xsi_nil"/>
     </Complex>
     <Complex path="au:condominium">
-      <Join table="au_administrativeunit_au_condominium" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.au_administrativeunit_au_condominium" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -1339,7 +1339,7 @@
       </Feature>
     </Complex>
     <Complex path="au:lowerLevelUnit">
-      <Join table="au_administrativeunit_au_lowerlevelunit" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.au_administrativeunit_au_lowerlevelunit" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
       <Primitive path="@owns" mapping="attr_owns"/>
@@ -1360,7 +1360,7 @@
       </Feature>
     </Complex>
     <Complex path="au:administeredBy">
-      <Join table="au_administrativeunit_au_administeredby" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.au_administrativeunit_au_administeredby" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -1371,7 +1371,7 @@
       </Feature>
     </Complex>
     <Complex path="au:coAdminister">
-      <Join table="au_administrativeunit_au_coadminister" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.au_administrativeunit_au_coadminister" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -1382,7 +1382,7 @@
       </Feature>
     </Complex>
     <Complex path="au:boundary">
-      <Join table="au_administrativeunit_au_boundary" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.au_administrativeunit_au_boundary" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -1393,7 +1393,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="au:Condominium" table="au_condominium">
+  <FeatureTypeMapping name="au:Condominium" table="inspireplu.au_condominium">
     <FIDMapping prefix="AU_CONDOMINIUM_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1414,7 +1414,7 @@
       </Complex>
     </Complex>
     <Complex path="au:name">
-      <Join table="au_condominium_au_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.au_condominium_au_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="gn:GeographicalName">
@@ -1465,7 +1465,7 @@
           </Complex>
         </Complex>
         <Complex path="gn:spelling">
-          <Join table="au_condominium_au_name_gn_geographicalname_gn_spelling" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.au_condominium_au_name_gn_geographicalname_gn_spelling" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="gn:SpellingOfName">
             <Primitive path="gn:text" mapping="gn_geographicalname_gn_spellingofname_gn_text"/>
             <Complex path="gn:script">
@@ -1519,7 +1519,7 @@
       <Primitive path="@xsi:nil" mapping="au_endlifespanversion_attr_xsi_nil"/>
     </Complex>
     <Complex path="au:admUnit">
-      <Join table="au_condominium_au_admunit" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.au_condominium_au_admunit" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -1530,7 +1530,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="cp:BasicPropertyUnit" table="cp_basicpropertyunit">
+  <FeatureTypeMapping name="cp:BasicPropertyUnit" table="inspireplu.cp_basicpropertyunit">
     <FIDMapping prefix="CP_BASICPROPERTYUNIT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1588,7 +1588,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="cp:CadastralBoundary" table="cp_cadastralboundary">
+  <FeatureTypeMapping name="cp:CadastralBoundary" table="inspireplu.cp_cadastralboundary">
     <FIDMapping prefix="CP_CADASTRALBOUNDARY_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1641,7 +1641,7 @@
       <Primitive path="@xsi:nil" mapping="cp_validto_attr_xsi_nil"/>
     </Complex>
     <Complex path="cp:parcel">
-      <Join table="cp_cadastralboundary_cp_parcel" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.cp_cadastralboundary_cp_parcel" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -1652,7 +1652,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="cp:CadastralParcel" table="cp_cadastralparcel">
+  <FeatureTypeMapping name="cp:CadastralParcel" table="inspireplu.cp_cadastralparcel">
     <FIDMapping prefix="CP_CADASTRALPARCEL_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1714,7 +1714,7 @@
       <Primitive path="@xsi:nil" mapping="cp_validto_attr_xsi_nil"/>
     </Complex>
     <Complex path="cp:basicPropertyUnit">
-      <Join table="cp_cadastralparcel_cp_basicpropertyunit" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.cp_cadastralparcel_cp_basicpropertyunit" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -1745,7 +1745,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="cp:CadastralZoning" table="cp_cadastralzoning">
+  <FeatureTypeMapping name="cp:CadastralZoning" table="inspireplu.cp_cadastralzoning">
     <FIDMapping prefix="CP_CADASTRALZONING_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1799,7 +1799,7 @@
       </Feature>
     </Complex>
     <Complex path="cp:levelName">
-      <Join table="cp_cadastralzoning_cp_levelname" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.cp_cadastralzoning_cp_levelname" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@xlink:type" mapping="attr_xlink_type"/>
       <Primitive path="@xlink:href" mapping="attr_xlink_href"/>
       <Primitive path="@xlink:role" mapping="attr_xlink_role"/>
@@ -1817,7 +1817,7 @@
       </Complex>
     </Complex>
     <Complex path="cp:name">
-      <Join table="cp_cadastralzoning_cp_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.cp_cadastralzoning_cp_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="gn:GeographicalName">
@@ -1868,7 +1868,7 @@
           </Complex>
         </Complex>
         <Complex path="gn:spelling">
-          <Join table="cp_cadastralzoning_cp_name_gn_geographicalname_gn_spelling" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.cp_cadastralzoning_cp_name_gn_geographicalname_gn_spelling" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="gn:SpellingOfName">
             <Primitive path="gn:text" mapping="gn_geographicalname_gn_spellingofname_gn_text"/>
             <Complex path="gn:script">
@@ -1939,7 +1939,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="gn:NamedPlace" table="gn_namedplace">
+  <FeatureTypeMapping name="gn:NamedPlace" table="inspireplu.gn_namedplace">
     <FIDMapping prefix="GN_NAMEDPLACE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2009,7 +2009,7 @@
       </Complex>
     </Complex>
     <Complex path="gn:localType">
-      <Join table="gn_namedplace_gn_localtype" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.gn_namedplace_gn_localtype" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@xlink:type" mapping="attr_xlink_type"/>
       <Primitive path="@xlink:href" mapping="attr_xlink_href"/>
       <Primitive path="@xlink:role" mapping="attr_xlink_role"/>
@@ -2060,7 +2060,7 @@
       </Complex>
     </Complex>
     <Complex path="gn:name">
-      <Join table="gn_namedplace_gn_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.gn_namedplace_gn_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Complex path="gn:GeographicalName">
         <Complex path="gn:language">
           <Primitive path="text()" mapping="gn_geographicalname_gn_language"/>
@@ -2109,7 +2109,7 @@
           </Complex>
         </Complex>
         <Complex path="gn:spelling">
-          <Join table="gn_namedplace_gn_name_gn_geographicalname_gn_spelling" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.gn_namedplace_gn_name_gn_geographicalname_gn_spelling" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="gn:SpellingOfName">
             <Primitive path="gn:text" mapping="gn_geographicalname_gn_spellingofname_gn_text"/>
             <Complex path="gn:script">
@@ -2147,7 +2147,7 @@
       </Complex>
     </Complex>
     <Complex path="gn:relatedSpatialObject">
-      <Join table="gn_namedplace_gn_relatedspatialobject" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.gn_namedplace_gn_relatedspatialobject" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="base:Identifier">
@@ -2161,7 +2161,7 @@
       </Complex>
     </Complex>
     <Complex path="gn:type">
-      <Join table="gn_namedplace_gn_type" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.gn_namedplace_gn_type" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -2172,7 +2172,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="net:CrossReference" table="net_crossreference">
+  <FeatureTypeMapping name="net:CrossReference" table="inspireplu.net_crossreference">
     <FIDMapping prefix="NET_CROSSREFERENCE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2182,7 +2182,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="net:element">
-      <Join table="net_crossreference_net_element" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.net_crossreference_net_element" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -2192,7 +2192,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="net:GradeSeparatedCrossing" table="net_gradeseparatedcrossing">
+  <FeatureTypeMapping name="net:GradeSeparatedCrossing" table="inspireplu.net_gradeseparatedcrossing">
     <FIDMapping prefix="NET_GRADESEPARATEDCROSSING_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2223,7 +2223,7 @@
       <Primitive path="@xsi:nil" mapping="net_endlifespanversion_attr_xsi_nil"/>
     </Complex>
     <Complex path="net:inNetwork">
-      <Join table="net_gradeseparatedcrossing_net_innetwork" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.net_gradeseparatedcrossing_net_innetwork" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -2234,7 +2234,7 @@
       </Feature>
     </Complex>
     <Complex path="net:element">
-      <Join table="net_gradeseparatedcrossing_net_element" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.net_gradeseparatedcrossing_net_element" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -2244,7 +2244,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="net:Network" table="net_network">
+  <FeatureTypeMapping name="net:Network" table="inspireplu.net_network">
     <FIDMapping prefix="NET_NETWORK_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2254,7 +2254,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="net:geographicalName">
-      <Join table="net_network_net_geographicalname" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.net_network_net_geographicalname" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="gn:GeographicalName">
@@ -2305,7 +2305,7 @@
           </Complex>
         </Complex>
         <Complex path="gn:spelling">
-          <Join table="net_network_net_geographicalname_gn_geographicalname_gn_sp_9678" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.net_network_net_geographicalname_gn_geographicalname_gn_sp_9678" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="gn:SpellingOfName">
             <Primitive path="gn:text" mapping="gn_geographicalname_gn_spellingofname_gn_text"/>
             <Complex path="gn:script">
@@ -2343,7 +2343,7 @@
       </Complex>
     </Complex>
     <Complex path="net:elements">
-      <Join table="net_network_net_elements" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.net_network_net_elements" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -2353,7 +2353,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="net:NetworkConnection" table="net_networkconnection">
+  <FeatureTypeMapping name="net:NetworkConnection" table="inspireplu.net_networkconnection">
     <FIDMapping prefix="NET_NETWORKCONNECTION_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2384,7 +2384,7 @@
       <Primitive path="@xsi:nil" mapping="net_endlifespanversion_attr_xsi_nil"/>
     </Complex>
     <Complex path="net:inNetwork">
-      <Join table="net_networkconnection_net_innetwork" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.net_networkconnection_net_innetwork" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -2405,7 +2405,7 @@
       </Feature>
     </Complex>
     <Complex path="net:element">
-      <Join table="net_networkconnection_net_element" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.net_networkconnection_net_element" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -2415,7 +2415,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="plu:OfficialDocumentation" table="plu_officialdocumentation">
+  <FeatureTypeMapping name="plu:OfficialDocumentation" table="inspireplu.plu_officialdocumentation">
     <FIDMapping prefix="PLU_OFFICIALDOCUMENTATION_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2450,7 +2450,7 @@
       <Complex path="base2:LegislationCitation">
         <Primitive path="@gml:id" mapping="plu_legislationcitation_base2_legislationcitation_attr_gml_id"/>
         <Complex path="gml:metaDataProperty">
-          <Join table="plu_officialdocumentation_plu_legislationcitation_base2_l_13018" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_officialdocumentation_plu_legislationcitation_base2_l_13018" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@xlink:type" mapping="plu_legislationcitation_base2_legislationcitation_attr_xl_13019"/>
           <Primitive path="@xlink:href" mapping="plu_legislationcitation_base2_legislationcitation_attr_xl_13020"/>
           <Primitive path="@xlink:role" mapping="plu_legislationcitation_base2_legislationcitation_attr_xl_13021"/>
@@ -2492,7 +2492,7 @@
           <Primitive path="@codeSpace" mapping="plu_legislationcitation_base2_legislationcitation_gml_ide_13047"/>
         </Complex>
         <Complex path="gml:name">
-          <Join table="plu_officialdocumentation_plu_legislationcitation_base2_l_13048" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_officialdocumentation_plu_legislationcitation_base2_l_13048" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="text()" mapping="plu_legislationcitation_base2_legislationcitation"/>
           <Primitive path="@codeSpace" mapping="plu_legislationcitation_base2_legislationcitation_attr_co_13049"/>
         </Complex>
@@ -2526,13 +2526,13 @@
           </Complex>
         </Complex>
         <Complex path="base2:link">
-          <Join table="plu_officialdocumentation_plu_legislationcitation_base2_l_13069" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_officialdocumentation_plu_legislationcitation_base2_l_13069" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="text()" mapping="plu_legislationcitation_base2_legislationcitation"/>
           <Primitive path="@nilReason" mapping="plu_legislationcitation_base2_legislationcitation_attr_ni_13070"/>
           <Primitive path="@xsi:nil" mapping="plu_legislationcitation_base2_legislationcitation_attr_xsi_nil"/>
         </Complex>
         <Complex path="base2:specificReference">
-          <Join table="plu_officialdocumentation_plu_legislationcitation_base2_l_13071" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_officialdocumentation_plu_legislationcitation_base2_l_13071" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="text()" mapping="plu_legislationcitation_base2_legislationcitation"/>
           <Primitive path="@nilReason" mapping="plu_legislationcitation_base2_legislationcitation_attr_ni_13072"/>
           <Primitive path="@xsi:nil" mapping="plu_legislationcitation_base2_legislationcitation_attr_xsi_nil"/>
@@ -2590,7 +2590,7 @@
       <Complex path="base2:DocumentCitation">
         <Primitive path="@gml:id" mapping="plu_plandocument_base2_documentcitation_attr_gml_id"/>
         <Complex path="gml:metaDataProperty">
-          <Join table="plu_officialdocumentation_plu_plandocument_base2_document_13094" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_officialdocumentation_plu_plandocument_base2_document_13094" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@xlink:type" mapping="plu_plandocument_base2_documentcitation_attr_xlink_type"/>
           <Primitive path="@xlink:href" mapping="plu_plandocument_base2_documentcitation_attr_xlink_href"/>
           <Primitive path="@xlink:role" mapping="plu_plandocument_base2_documentcitation_attr_xlink_role"/>
@@ -2632,7 +2632,7 @@
           <Primitive path="@codeSpace" mapping="plu_plandocument_base2_documentcitation_gml_identifier_at_13111"/>
         </Complex>
         <Complex path="gml:name">
-          <Join table="plu_officialdocumentation_plu_plandocument_base2_document_13112" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_officialdocumentation_plu_plandocument_base2_document_13112" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="text()" mapping="plu_plandocument_base2_documentcitation"/>
           <Primitive path="@codeSpace" mapping="plu_plandocument_base2_documentcitation_attr_codespace"/>
         </Complex>
@@ -2666,13 +2666,13 @@
           </Complex>
         </Complex>
         <Complex path="base2:link">
-          <Join table="plu_officialdocumentation_plu_plandocument_base2_document_13129" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_officialdocumentation_plu_plandocument_base2_document_13129" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="text()" mapping="plu_plandocument_base2_documentcitation"/>
           <Primitive path="@nilReason" mapping="plu_plandocument_base2_documentcitation_attr_nilreason"/>
           <Primitive path="@xsi:nil" mapping="plu_plandocument_base2_documentcitation_attr_xsi_nil"/>
         </Complex>
         <Complex path="base2:specificReference">
-          <Join table="plu_officialdocumentation_plu_plandocument_base2_document_13130" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_officialdocumentation_plu_plandocument_base2_document_13130" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="text()" mapping="plu_plandocument_base2_documentcitation"/>
           <Primitive path="@nilReason" mapping="plu_plandocument_base2_documentcitation_attr_nilreason"/>
           <Primitive path="@xsi:nil" mapping="plu_plandocument_base2_documentcitation_attr_xsi_nil"/>
@@ -2681,7 +2681,7 @@
       <Complex path="base2:LegislationCitation">
         <Primitive path="@gml:id" mapping="plu_plandocument_base2_legislationcitation_attr_gml_id"/>
         <Complex path="gml:metaDataProperty">
-          <Join table="plu_officialdocumentation_plu_plandocument_base2_legislat_13131" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_officialdocumentation_plu_plandocument_base2_legislat_13131" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@xlink:type" mapping="plu_plandocument_base2_legislationcitation_attr_xlink_type"/>
           <Primitive path="@xlink:href" mapping="plu_plandocument_base2_legislationcitation_attr_xlink_href"/>
           <Primitive path="@xlink:role" mapping="plu_plandocument_base2_legislationcitation_attr_xlink_role"/>
@@ -2723,7 +2723,7 @@
           <Primitive path="@codeSpace" mapping="plu_plandocument_base2_legislationcitation_gml_identifier_13149"/>
         </Complex>
         <Complex path="gml:name">
-          <Join table="plu_officialdocumentation_plu_plandocument_base2_legislat_13150" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_officialdocumentation_plu_plandocument_base2_legislat_13150" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="text()" mapping="plu_plandocument_base2_legislationcitation"/>
           <Primitive path="@codeSpace" mapping="plu_plandocument_base2_legislationcitation_attr_codespace"/>
         </Complex>
@@ -2757,13 +2757,13 @@
           </Complex>
         </Complex>
         <Complex path="base2:link">
-          <Join table="plu_officialdocumentation_plu_plandocument_base2_legislat_13169" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_officialdocumentation_plu_plandocument_base2_legislat_13169" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="text()" mapping="plu_plandocument_base2_legislationcitation"/>
           <Primitive path="@nilReason" mapping="plu_plandocument_base2_legislationcitation_attr_nilreason"/>
           <Primitive path="@xsi:nil" mapping="plu_plandocument_base2_legislationcitation_attr_xsi_nil"/>
         </Complex>
         <Complex path="base2:specificReference">
-          <Join table="plu_officialdocumentation_plu_plandocument_base2_legislat_13170" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_officialdocumentation_plu_plandocument_base2_legislat_13170" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="text()" mapping="plu_plandocument_base2_legislationcitation"/>
           <Primitive path="@nilReason" mapping="plu_plandocument_base2_legislationcitation_attr_nilreason"/>
           <Primitive path="@xsi:nil" mapping="plu_plandocument_base2_legislationcitation_attr_xsi_nil"/>
@@ -2802,7 +2802,7 @@
       </Complex>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="plu:SpatialPlan" table="plu_spatialplan">
+  <FeatureTypeMapping name="plu:SpatialPlan" table="inspireplu.plu_spatialplan">
     <FIDMapping prefix="PLU_SPATIALPLAN_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2896,7 +2896,7 @@
       </Complex>
     </Complex>
     <Complex path="plu:ordinance">
-      <Join table="plu_spatialplan_plu_ordinance" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.plu_spatialplan_plu_ordinance" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="plu:OrdinanceValue">
@@ -2905,7 +2905,7 @@
       </Complex>
     </Complex>
     <Complex path="plu:officialDocument">
-      <Join table="plu_spatialplan_plu_officialdocument" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.plu_spatialplan_plu_officialdocument" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -2916,7 +2916,7 @@
       </Feature>
     </Complex>
     <Complex path="plu:member">
-      <Join table="plu_spatialplan_plu_member" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.plu_spatialplan_plu_member" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -2926,7 +2926,7 @@
       </Feature>
     </Complex>
     <Complex path="plu:restriction">
-      <Join table="plu_spatialplan_plu_restriction" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.plu_spatialplan_plu_restriction" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -2936,7 +2936,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="plu:SupplementaryRegulation" table="plu_supplementaryregulation">
+  <FeatureTypeMapping name="plu:SupplementaryRegulation" table="inspireplu.plu_supplementaryregulation">
     <FIDMapping prefix="PLU_SUPPLEMENTARYREGULATION_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2956,7 +2956,7 @@
       <Primitive path="@xsi:nil" mapping="plu_validto_attr_xsi_nil"/>
     </Complex>
     <Complex path="plu:specificSupplementaryRegulation">
-      <Join table="plu_supplementaryregulation_plu_specificsupplementaryregula_113" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.plu_supplementaryregulation_plu_specificsupplementaryregula_113" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -2995,7 +2995,7 @@
       <Primitive path="@xsi:nil" mapping="plu_beginlifespanversion_attr_xsi_nil"/>
     </Complex>
     <Complex path="plu:dimensioningIndication">
-      <Join table="plu_supplementaryregulation_plu_dimensioningindication" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.plu_supplementaryregulation_plu_dimensioningindication" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="plu:DimensioningIndicationCharacterValue">
@@ -3054,7 +3054,7 @@
       <Primitive path="@xsi:nil" mapping="plu_specificregulationnature_attr_xsi_nil"/>
     </Complex>
     <Complex path="plu:name">
-      <Join table="plu_supplementaryregulation_plu_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.plu_supplementaryregulation_plu_name" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="text()" mapping="value"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
@@ -3069,14 +3069,14 @@
       </Feature>
     </Complex>
     <Complex path="plu:supplementaryRegulation">
-      <Join table="plu_supplementaryregulation_plu_supplementaryregulation" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.plu_supplementaryregulation_plu_supplementaryregulation" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
       <Primitive path="@xlink:href" mapping="href"/>
     </Complex>
     <Complex path="plu:officialDocument">
-      <Join table="plu_supplementaryregulation_plu_officialdocument" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.plu_supplementaryregulation_plu_officialdocument" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -3096,7 +3096,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="plu:ZoningElement" table="plu_zoningelement">
+  <FeatureTypeMapping name="plu:ZoningElement" table="inspireplu.plu_zoningelement">
     <FIDMapping prefix="PLU_ZONINGELEMENT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3133,7 +3133,7 @@
       <Primitive path="@xsi:nil" mapping="plu_validto_attr_xsi_nil"/>
     </Complex>
     <Complex path="plu:hilucsLandUse">
-      <Join table="plu_zoningelement_plu_hilucslanduse" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.plu_zoningelement_plu_hilucslanduse" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -3158,7 +3158,7 @@
           </Feature>
         </Complex>
         <Complex path="lunom:percentageList">
-          <Join table="plu_zoningelement_plu_hilucspresence_lunom_hilucspresence_13192" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_zoningelement_plu_hilucspresence_lunom_hilucspresence_13192" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="lunom:HILUCSPercentage">
             <Complex path="lunom:hilucsValue">
               <Primitive path="@owns" mapping="plu_hilucspresence_lunom_hilucspresence_lunom_hilucsperce_13194"/>
@@ -3175,7 +3175,7 @@
       </Complex>
     </Complex>
     <Complex path="plu:specificLandUse">
-      <Join table="plu_zoningelement_plu_specificlanduse" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.plu_zoningelement_plu_specificlanduse" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -3199,7 +3199,7 @@
           </Feature>
         </Complex>
         <Complex path="lunom:percentageList">
-          <Join table="plu_zoningelement_plu_specificpresence_lunom_specificpres_13205" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.plu_zoningelement_plu_specificpresence_lunom_specificpres_13205" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="lunom:SpecificPercentage">
             <Complex path="lunom:specificValue">
               <Primitive path="@owns" mapping="plu_specificpresence_lunom_specificpresence_lunom_specifi_13208"/>
@@ -3253,7 +3253,7 @@
       </Complex>
     </Complex>
     <Complex path="plu:dimensioningIndication">
-      <Join table="plu_zoningelement_plu_dimensioningindication" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.plu_zoningelement_plu_dimensioningindication" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="plu:DimensioningIndicationCharacterValue">
@@ -3280,7 +3280,7 @@
       </Complex>
     </Complex>
     <Complex path="plu:officialDocument">
-      <Join table="plu_zoningelement_plu_officialdocument" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.plu_zoningelement_plu_officialdocument" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -3300,7 +3300,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="tn:AccessRestriction" table="tn_accessrestriction">
+  <FeatureTypeMapping name="tn:AccessRestriction" table="inspireplu.tn_accessrestriction">
     <FIDMapping prefix="TN_ACCESSRESTRICTION_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3310,7 +3310,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="net:networkRef">
-      <Join table="tn_accessrestriction_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.tn_accessrestriction_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="net:SimpleLinearReference">
@@ -3453,7 +3453,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="tn:ConditionOfFacility" table="tn_conditionoffacility">
+  <FeatureTypeMapping name="tn:ConditionOfFacility" table="inspireplu.tn_conditionoffacility">
     <FIDMapping prefix="TN_CONDITIONOFFACILITY_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3463,7 +3463,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="net:networkRef">
-      <Join table="tn_conditionoffacility_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.tn_conditionoffacility_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="net:SimpleLinearReference">
@@ -3606,7 +3606,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="tn:MaintenanceAuthority" table="tn_maintenanceauthority">
+  <FeatureTypeMapping name="tn:MaintenanceAuthority" table="inspireplu.tn_maintenanceauthority">
     <FIDMapping prefix="TN_MAINTENANCEAUTHORITY_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3616,7 +3616,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="net:networkRef">
-      <Join table="tn_maintenanceauthority_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.tn_maintenanceauthority_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="net:SimpleLinearReference">
@@ -3759,12 +3759,12 @@
           <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gmd_title_gco_characterstring"/>
         </Complex>
         <Complex path="gmd:alternateTitle">
-          <Join table="tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_a_9510" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_a_9510" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@gco:nilReason" mapping="tn_authority_gmd_ci_citation_attr_gco_nilreason"/>
           <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gco_characterstring"/>
         </Complex>
         <Complex path="gmd:date">
-          <Join table="tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_date" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_date" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@xlink:type" mapping="tn_authority_gmd_ci_citation_attr_xlink_type"/>
           <Primitive path="@xlink:href" mapping="tn_authority_gmd_ci_citation_attr_xlink_href"/>
           <Primitive path="@xlink:role" mapping="tn_authority_gmd_ci_citation_attr_xlink_role"/>
@@ -3803,7 +3803,7 @@
           <Primitive path="gco:DateTime" mapping="tn_authority_gmd_ci_citation_gmd_editiondate_gco_datetime"/>
         </Complex>
         <Complex path="gmd:identifier">
-          <Join table="tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_i_9518" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_i_9518" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@xlink:type" mapping="tn_authority_gmd_ci_citation_attr_xlink_type"/>
           <Primitive path="@xlink:href" mapping="tn_authority_gmd_ci_citation_attr_xlink_href"/>
           <Primitive path="@xlink:role" mapping="tn_authority_gmd_ci_citation_attr_xlink_role"/>
@@ -3834,7 +3834,7 @@
           </Complex>
         </Complex>
         <Complex path="gmd:citedResponsibleParty">
-          <Join table="tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_c_9530" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_c_9530" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@xlink:type" mapping="tn_authority_gmd_ci_citation_attr_xlink_type"/>
           <Primitive path="@xlink:href" mapping="tn_authority_gmd_ci_citation_attr_xlink_href"/>
           <Primitive path="@xlink:role" mapping="tn_authority_gmd_ci_citation_attr_xlink_role"/>
@@ -3886,12 +3886,12 @@
                     <Primitive path="@id" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9564"/>
                     <Primitive path="@uuid" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9565"/>
                     <Complex path="gmd:voice">
-                      <Join table="tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_c_9566" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+                      <Join table="inspireplu.tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_c_9566" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
                       <Primitive path="@gco:nilReason" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9567"/>
                       <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9568"/>
                     </Complex>
                     <Complex path="gmd:facsimile">
-                      <Join table="tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_c_9569" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+                      <Join table="inspireplu.tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_c_9569" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
                       <Primitive path="@gco:nilReason" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9570"/>
                       <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9571"/>
                     </Complex>
@@ -3911,7 +3911,7 @@
                     <Primitive path="@id" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9583"/>
                     <Primitive path="@uuid" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9584"/>
                     <Complex path="gmd:deliveryPoint">
-                      <Join table="tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_c_9585" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+                      <Join table="inspireplu.tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_c_9585" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
                       <Primitive path="@gco:nilReason" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9586"/>
                       <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9587"/>
                     </Complex>
@@ -3932,7 +3932,7 @@
                       <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9599"/>
                     </Complex>
                     <Complex path="gmd:electronicMailAddress">
-                      <Join table="tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_c_9600" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+                      <Join table="inspireplu.tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_c_9600" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
                       <Primitive path="@gco:nilReason" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9601"/>
                       <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9602"/>
                     </Complex>
@@ -4004,7 +4004,7 @@
           </Complex>
         </Complex>
         <Complex path="gmd:presentationForm">
-          <Join table="tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_p_9648" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.tn_maintenanceauthority_tn_authority_gmd_ci_citation_gmd_p_9648" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@gco:nilReason" mapping="tn_authority_gmd_ci_citation_attr_gco_nilreason"/>
           <Complex path="gmd:CI_PresentationFormCode">
             <Primitive path="text()" mapping="tn_authority_gmd_ci_citation_gmd_ci_presentationformcode"/>
@@ -4059,7 +4059,7 @@
       </Complex>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="tn:MarkerPost" table="tn_markerpost">
+  <FeatureTypeMapping name="tn:MarkerPost" table="inspireplu.tn_markerpost">
     <FIDMapping prefix="TN_MARKERPOST_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4090,7 +4090,7 @@
       <Primitive path="@xsi:nil" mapping="net_endlifespanversion_attr_xsi_nil"/>
     </Complex>
     <Complex path="net:inNetwork">
-      <Join table="tn_markerpost_net_innetwork" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.tn_markerpost_net_innetwork" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -4151,7 +4151,7 @@
           </Complex>
         </Complex>
         <Complex path="gn:spelling">
-          <Join table="tn_markerpost_tn_geographicalname_gn_geographicalname_gn_spe_84" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.tn_markerpost_tn_geographicalname_gn_geographicalname_gn_spe_84" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="gn:SpellingOfName">
             <Primitive path="gn:text" mapping="tn_geographicalname_gn_geographicalname_gn_spellingofname_gn_85"/>
             <Complex path="gn:script">
@@ -4219,7 +4219,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="tn:OwnerAuthority" table="tn_ownerauthority">
+  <FeatureTypeMapping name="tn:OwnerAuthority" table="inspireplu.tn_ownerauthority">
     <FIDMapping prefix="TN_OWNERAUTHORITY_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4229,7 +4229,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="net:networkRef">
-      <Join table="tn_ownerauthority_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.tn_ownerauthority_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="net:SimpleLinearReference">
@@ -4372,12 +4372,12 @@
           <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gmd_title_gco_characterstring"/>
         </Complex>
         <Complex path="gmd:alternateTitle">
-          <Join table="tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_alterna_9686" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_alterna_9686" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@gco:nilReason" mapping="tn_authority_gmd_ci_citation_attr_gco_nilreason"/>
           <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gco_characterstring"/>
         </Complex>
         <Complex path="gmd:date">
-          <Join table="tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_date" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_date" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@xlink:type" mapping="tn_authority_gmd_ci_citation_attr_xlink_type"/>
           <Primitive path="@xlink:href" mapping="tn_authority_gmd_ci_citation_attr_xlink_href"/>
           <Primitive path="@xlink:role" mapping="tn_authority_gmd_ci_citation_attr_xlink_role"/>
@@ -4416,7 +4416,7 @@
           <Primitive path="gco:DateTime" mapping="tn_authority_gmd_ci_citation_gmd_editiondate_gco_datetime"/>
         </Complex>
         <Complex path="gmd:identifier">
-          <Join table="tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_identifier" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_identifier" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@xlink:type" mapping="tn_authority_gmd_ci_citation_attr_xlink_type"/>
           <Primitive path="@xlink:href" mapping="tn_authority_gmd_ci_citation_attr_xlink_href"/>
           <Primitive path="@xlink:role" mapping="tn_authority_gmd_ci_citation_attr_xlink_role"/>
@@ -4447,7 +4447,7 @@
           </Complex>
         </Complex>
         <Complex path="gmd:citedResponsibleParty">
-          <Join table="tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_citedre_9705" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_citedre_9705" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@xlink:type" mapping="tn_authority_gmd_ci_citation_attr_xlink_type"/>
           <Primitive path="@xlink:href" mapping="tn_authority_gmd_ci_citation_attr_xlink_href"/>
           <Primitive path="@xlink:role" mapping="tn_authority_gmd_ci_citation_attr_xlink_role"/>
@@ -4499,12 +4499,12 @@
                     <Primitive path="@id" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9739"/>
                     <Primitive path="@uuid" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9740"/>
                     <Complex path="gmd:voice">
-                      <Join table="tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_citedre_9741" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+                      <Join table="inspireplu.tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_citedre_9741" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
                       <Primitive path="@gco:nilReason" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9742"/>
                       <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9743"/>
                     </Complex>
                     <Complex path="gmd:facsimile">
-                      <Join table="tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_citedre_9744" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+                      <Join table="inspireplu.tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_citedre_9744" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
                       <Primitive path="@gco:nilReason" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9745"/>
                       <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9746"/>
                     </Complex>
@@ -4524,7 +4524,7 @@
                     <Primitive path="@id" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9758"/>
                     <Primitive path="@uuid" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9759"/>
                     <Complex path="gmd:deliveryPoint">
-                      <Join table="tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_citedre_9760" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+                      <Join table="inspireplu.tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_citedre_9760" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
                       <Primitive path="@gco:nilReason" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9761"/>
                       <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9762"/>
                     </Complex>
@@ -4545,7 +4545,7 @@
                       <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9774"/>
                     </Complex>
                     <Complex path="gmd:electronicMailAddress">
-                      <Join table="tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_citedre_9775" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+                      <Join table="inspireplu.tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_citedre_9775" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
                       <Primitive path="@gco:nilReason" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9776"/>
                       <Primitive path="gco:CharacterString" mapping="tn_authority_gmd_ci_citation_gmd_ci_responsibleparty_gmd_c_9777"/>
                     </Complex>
@@ -4617,7 +4617,7 @@
           </Complex>
         </Complex>
         <Complex path="gmd:presentationForm">
-          <Join table="tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_present_9823" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.tn_ownerauthority_tn_authority_gmd_ci_citation_gmd_present_9823" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Primitive path="@gco:nilReason" mapping="tn_authority_gmd_ci_citation_attr_gco_nilreason"/>
           <Complex path="gmd:CI_PresentationFormCode">
             <Primitive path="text()" mapping="tn_authority_gmd_ci_citation_gmd_ci_presentationformcode"/>
@@ -4672,7 +4672,7 @@
       </Complex>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="tn:RestrictionForVehicles" table="tn_restrictionforvehicles">
+  <FeatureTypeMapping name="tn:RestrictionForVehicles" table="inspireplu.tn_restrictionforvehicles">
     <FIDMapping prefix="TN_RESTRICTIONFORVEHICLES_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4682,7 +4682,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="net:networkRef">
-      <Join table="tn_restrictionforvehicles_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.tn_restrictionforvehicles_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="net:SimpleLinearReference">
@@ -4829,7 +4829,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="tn:TrafficFlowDirection" table="tn_trafficflowdirection">
+  <FeatureTypeMapping name="tn:TrafficFlowDirection" table="inspireplu.tn_trafficflowdirection">
     <FIDMapping prefix="TN_TRAFFICFLOWDIRECTION_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4839,7 +4839,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="net:networkRef">
-      <Join table="tn_trafficflowdirection_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.tn_trafficflowdirection_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="net:SimpleLinearReference">
@@ -4982,7 +4982,7 @@
       </Feature>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="tn:TransportNetwork" table="tn_transportnetwork">
+  <FeatureTypeMapping name="tn:TransportNetwork" table="inspireplu.tn_transportnetwork">
     <FIDMapping prefix="TN_TRANSPORTNETWORK_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4992,7 +4992,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="net:geographicalName">
-      <Join table="tn_transportnetwork_net_geographicalname" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.tn_transportnetwork_net_geographicalname" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="gn:GeographicalName">
@@ -5043,7 +5043,7 @@
           </Complex>
         </Complex>
         <Complex path="gn:spelling">
-          <Join table="tn_transportnetwork_net_geographicalname_gn_geographicalnam_110" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+          <Join table="inspireplu.tn_transportnetwork_net_geographicalname_gn_geographicalnam_110" fromColumns="id" toColumns="parentfk" orderColumns="num" numbered="true"/>
           <Complex path="gn:SpellingOfName">
             <Primitive path="gn:text" mapping="gn_geographicalname_gn_spellingofname_gn_text"/>
             <Complex path="gn:script">
@@ -5081,7 +5081,7 @@
       </Complex>
     </Complex>
     <Complex path="net:elements">
-      <Join table="tn_transportnetwork_net_elements" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.tn_transportnetwork_net_elements" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@owns" mapping="attr_owns"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@gml:remoteSchema" mapping="attr_gml_remoteschema"/>
@@ -5103,7 +5103,7 @@
     </Complex>
     <Primitive path="tn:typeOfTransport" mapping="tn_typeoftransport"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="tn:VerticalPosition" table="tn_verticalposition">
+  <FeatureTypeMapping name="tn:VerticalPosition" table="inspireplu.tn_verticalposition">
     <FIDMapping prefix="TN_VERTICALPOSITION_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5113,7 +5113,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="net:networkRef">
-      <Join table="tn_verticalposition_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.tn_verticalposition_net_networkref" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@nilReason" mapping="attr_nilreason"/>
       <Primitive path="@xsi:nil" mapping="attr_xsi_nil"/>
       <Complex path="net:SimpleLinearReference">
@@ -5248,7 +5248,7 @@
     </Complex>
     <Primitive path="tn:verticalPosition" mapping="tn_verticalposition"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="gmlcov:GridCoverage" table="gmlcov_gridcoverage">
+  <FeatureTypeMapping name="gmlcov:GridCoverage" table="inspireplu.gmlcov_gridcoverage">
     <FIDMapping prefix="GMLCOV_GRIDCOVERAGE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5258,7 +5258,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="gmlcov:metadata">
-      <Join table="gmlcov_gridcoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.gmlcov_gridcoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@xlink:type" mapping="attr_xlink_type"/>
       <Primitive path="@xlink:href" mapping="attr_xlink_href"/>
       <Primitive path="@xlink:role" mapping="attr_xlink_role"/>
@@ -5272,7 +5272,7 @@
       <Complex path="gmlcov:Extension"/>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="gmlcov:MultiCurveCoverage" table="gmlcov_multicurvecoverage">
+  <FeatureTypeMapping name="gmlcov:MultiCurveCoverage" table="inspireplu.gmlcov_multicurvecoverage">
     <FIDMapping prefix="GMLCOV_MULTICURVECOVERAGE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5282,7 +5282,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="gmlcov:metadata">
-      <Join table="gmlcov_multicurvecoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.gmlcov_multicurvecoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@xlink:type" mapping="attr_xlink_type"/>
       <Primitive path="@xlink:href" mapping="attr_xlink_href"/>
       <Primitive path="@xlink:role" mapping="attr_xlink_role"/>
@@ -5296,7 +5296,7 @@
       <Complex path="gmlcov:Extension"/>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="gmlcov:MultiPointCoverage" table="gmlcov_multipointcoverage">
+  <FeatureTypeMapping name="gmlcov:MultiPointCoverage" table="inspireplu.gmlcov_multipointcoverage">
     <FIDMapping prefix="GMLCOV_MULTIPOINTCOVERAGE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5306,7 +5306,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="gmlcov:metadata">
-      <Join table="gmlcov_multipointcoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.gmlcov_multipointcoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@xlink:type" mapping="attr_xlink_type"/>
       <Primitive path="@xlink:href" mapping="attr_xlink_href"/>
       <Primitive path="@xlink:role" mapping="attr_xlink_role"/>
@@ -5320,7 +5320,7 @@
       <Complex path="gmlcov:Extension"/>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="gmlcov:MultiSolidCoverage" table="gmlcov_multisolidcoverage">
+  <FeatureTypeMapping name="gmlcov:MultiSolidCoverage" table="inspireplu.gmlcov_multisolidcoverage">
     <FIDMapping prefix="GMLCOV_MULTISOLIDCOVERAGE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5330,7 +5330,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="gmlcov:metadata">
-      <Join table="gmlcov_multisolidcoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.gmlcov_multisolidcoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@xlink:type" mapping="attr_xlink_type"/>
       <Primitive path="@xlink:href" mapping="attr_xlink_href"/>
       <Primitive path="@xlink:role" mapping="attr_xlink_role"/>
@@ -5344,7 +5344,7 @@
       <Complex path="gmlcov:Extension"/>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="gmlcov:MultiSurfaceCoverage" table="gmlcov_multisurfacecoverage">
+  <FeatureTypeMapping name="gmlcov:MultiSurfaceCoverage" table="inspireplu.gmlcov_multisurfacecoverage">
     <FIDMapping prefix="GMLCOV_MULTISURFACECOVERAGE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5354,7 +5354,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="gmlcov:metadata">
-      <Join table="gmlcov_multisurfacecoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.gmlcov_multisurfacecoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@xlink:type" mapping="attr_xlink_type"/>
       <Primitive path="@xlink:href" mapping="attr_xlink_href"/>
       <Primitive path="@xlink:role" mapping="attr_xlink_role"/>
@@ -5368,7 +5368,7 @@
       <Complex path="gmlcov:Extension"/>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="gmlcov:RectifiedGridCoverage" table="gmlcov_rectifiedgridcoverage">
+  <FeatureTypeMapping name="gmlcov:RectifiedGridCoverage" table="inspireplu.gmlcov_rectifiedgridcoverage">
     <FIDMapping prefix="GMLCOV_RECTIFIEDGRIDCOVERAGE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5378,7 +5378,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="gmlcov:metadata">
-      <Join table="gmlcov_rectifiedgridcoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.gmlcov_rectifiedgridcoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@xlink:type" mapping="attr_xlink_type"/>
       <Primitive path="@xlink:href" mapping="attr_xlink_href"/>
       <Primitive path="@xlink:role" mapping="attr_xlink_role"/>
@@ -5392,7 +5392,7 @@
       <Complex path="gmlcov:Extension"/>
     </Complex>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="gmlcov:ReferenceableGridCoverage" table="gmlcov_referenceablegridcoverage">
+  <FeatureTypeMapping name="gmlcov:ReferenceableGridCoverage" table="inspireplu.gmlcov_referenceablegridcoverage">
     <FIDMapping prefix="GMLCOV_REFERENCEABLEGRIDCOVERAGE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5402,7 +5402,7 @@
       <Primitive path="@codeSpace" mapping="gml_identifier_attr_codespace"/>
     </Complex>
     <Complex path="gmlcov:metadata">
-      <Join table="gmlcov_referenceablegridcoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
+      <Join table="inspireplu.gmlcov_referenceablegridcoverage_gmlcov_metadata" fromColumns="attr_gml_id" toColumns="parentfk" orderColumns="num" numbered="true"/>
       <Primitive path="@xlink:type" mapping="attr_xlink_type"/>
       <Primitive path="@xlink:href" mapping="attr_xlink_href"/>
       <Primitive path="@xlink:role" mapping="attr_xlink_role"/>

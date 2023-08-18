@@ -2,18 +2,18 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.metadata;
 
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.metadata.csw.CswClient;
 import de.latlon.xplan.manager.metadata.csw.PlanRecordMetadata;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
@@ -29,6 +30,7 @@ import org.deegree.geometry.Envelope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.transaction.Transactional;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -78,12 +80,12 @@ public class MetadataCouplingHandler {
 	 * @param config never <code>null</code>
 	 * @throws DataServiceCouplingException
 	 */
-	public MetadataCouplingHandler(XPlanDao xPlanDao, CoupledResourceConfiguration config)
+	public MetadataCouplingHandler(XPlanManagerDao xPlanDao, CoupledResourceConfiguration config)
 			throws DataServiceCouplingException {
 		this(xPlanDao, config, new CswClient(config.getCswUrlProvidingDatasetMetadata()));
 	}
 
-	MetadataCouplingHandler(XPlanDao xPlanDao, CoupledResourceConfiguration config, CswClient cswClient)
+	MetadataCouplingHandler(XPlanManagerDao xPlanDao, CoupledResourceConfiguration config, CswClient cswClient)
 			throws DataServiceCouplingException {
 		this.xPlanDao = xPlanDao;
 		this.cswClient = cswClient;
@@ -122,6 +124,7 @@ public class MetadataCouplingHandler {
 
 	}
 
+	@Transactional(rollbackOn = Exception.class)
 	private void writePlanwerkCapabilitiesInfo(int planId, String serviceRecordId,
 			PlanwerkServiceMetadata planwerkServiceMetadata, PlanRecordMetadata planRecordMetadata)
 			throws DataServiceCouplingException {

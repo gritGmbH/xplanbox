@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -109,7 +109,7 @@ public class ReportArchiveGenerator {
 	private void addShapeDirectoryEntry(ValidatorReport report, String validationName, Path directoryToCreateShapes,
 			ZipOutputStream zipOutStream) throws IOException, ReportGenerationException {
 		if (shapefileGenerator.hasBadGeometry(report)) {
-			shapefileGenerator.generateReport(report, validationName, directoryToCreateShapes.toFile());
+			shapefileGenerator.generateReport(report, validationName, directoryToCreateShapes);
 			ReportUtils.writeShapefilesToZipOS(directoryToCreateShapes.toFile(), zipOutStream);
 			ReportUtils.deleteShapefiles(directoryToCreateShapes.toFile());
 		}

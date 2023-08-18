@@ -1,0 +1,13 @@
+[[konfiguration-manager-mapserver]]
+=== MapServer
+
+Damit beim Import von Rasterdaten eine Konfiguration für den MapServer erzeugt wird,
+muss in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ die folgende Option aktiviert sein:
+
+[source,properties]
+----
+# must be gdal, geotiff or mapserver, default is gdal
+rasterConfigurationType=mapserver
+----
+
+Die Konfiguration des XPlanWMS mit MapServer ist im Kapitel <<konfiguration-xplanwms-mapserver>> beschrieben. Wenn der MapServer zusammen mit einem S3-Objektspeicher verwendet werden soll, dann ist zusätzlich noch die Konfiguration aus Kapitel <<s3-storage>> erforderlich.

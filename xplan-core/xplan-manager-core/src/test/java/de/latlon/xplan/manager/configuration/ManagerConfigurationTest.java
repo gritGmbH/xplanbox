@@ -2,18 +2,18 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -45,7 +45,7 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -108,7 +108,7 @@ public class ManagerConfigurationTest {
 		ManagerConfiguration managerConfiguration = new ManagerConfiguration(mockPropertiesLoader());
 
 		SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = managerConfiguration
-				.getSemanticConformityLinkConfiguration();
+			.getSemanticConformityLinkConfiguration();
 		assertThat(semanticConformityLinkConfiguration.retrieveLink(XPLAN_50), is("http://link.de/to.pdf"));
 		assertThat(semanticConformityLinkConfiguration.retrieveLink(XPLAN_51), nullValue());
 	}
@@ -118,7 +118,7 @@ public class ManagerConfigurationTest {
 		ManagerConfiguration managerConfiguration = new ManagerConfiguration(mockPropertiesLoader());
 
 		WorkspaceReloaderConfiguration workspaceReloaderConfiguration = managerConfiguration
-				.getWorkspaceReloaderConfiguration();
+			.getWorkspaceReloaderConfiguration();
 
 		assertThat(workspaceReloaderConfiguration.getUrls().size(), is(2));
 		assertThat(workspaceReloaderConfiguration.getUrls().get(0), is("url1"));

@@ -1,4 +1,4 @@
 [[anwendung-starten]]
 === Anwendung starten
 
-Zum Start der Web-Anwendungen müssen alle Instanzen des Applikationsservers gestartet werden. Dazu sei auf die jeweilige Dokumentation des verwendeten Applikationsserver verwiesen.
+Zum Start der Web-Anwendungen müssen alle Instanzen des Tomcat-Servers gestartet werden. Dazu sei auf die https://tomcat.apache.org/[Dokumentation des Apache Tomcat] verwiesen.

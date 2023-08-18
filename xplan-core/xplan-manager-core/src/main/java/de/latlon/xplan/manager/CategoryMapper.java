@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,22 +20,22 @@
  */
 package de.latlon.xplan.manager;
 
+import de.latlon.xplan.commons.archive.LocalCenterToDistrictMapper;
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.latlon.xplan.commons.archive.LocalCenterToDistrictMapper;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-
 /**
  * Maps a part to the category.
  *
+ * @deprecated This class be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @version $Revision: $, $Date: $
  */
+@Deprecated
 public class CategoryMapper implements LocalCenterToDistrictMapper {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CategoryMapper.class);

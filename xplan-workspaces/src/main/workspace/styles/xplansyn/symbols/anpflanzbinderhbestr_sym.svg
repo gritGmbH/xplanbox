@@ -3,7 +3,7 @@
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -21,20 +21,16 @@
   -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.0"
    width="100%"
    height="100%"
    viewBox="-15 -10 100 100"
    id="svg2"
-   sodipodi:docname="anpflanzbinderhbestr_sym.svg"
-   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)">
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata
      id="metadata11">
     <rdf:RDF>
@@ -43,50 +39,15 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     id="namedview9"
-     showgrid="false"
-     inkscape:zoom="8"
-     inkscape:cx="50"
-     inkscape:cy="50"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg2"
-     inkscape:document-rotation="0" />
   <defs
      id="defs4">
     <style
        type="text/css"
        id="style6" />
-    <symbol
-       id="Erhaltung_Straeucher"
-       style="overflow:visible">
-      <path
-         d="M -4.242,-4.242 C -1.8990009,-6.5842916 1.8990009,-6.5842916 4.242,-4.242 C 6.3372472,-5.5493209 9.0731205,-5.1310621 10.682068,-3.2574461 C 12.291015,-1.3838301 12.291015,1.3838301 10.682068,3.2574461 C 9.0731205,5.1310621 6.3372472,5.5493209 4.242,4.242 C 1.8990009,6.5842916 -1.8990009,6.5842916 -4.242,4.242 C -6.3372472,5.5493209 -9.0731205,5.1310621 -10.682068,3.2574461 C -12.291015,1.3838301 -12.291015,-1.3838301 -10.682068,-3.2574461 C -9.0731205,-5.1310621 -6.3372472,-5.5493209 -4.242,-4.242"
-         id="path9"
-         style="font-size:4px;fill:#008000;stroke:#000000;stroke-width:0.5" />
-      <circle
-         cx="0"
-         cy="0"
-         r="0.80000001"
-         id="circle11"
-         style="font-size:4px;fill:#000000;stroke:#000000;stroke-width:0.5" />
-    </symbol>
   </defs>
   <path
      d="m 17.600247,22.600247 c 9.610467,-9.607565 25.189035,-9.607565 34.799502,0 8.594243,-5.362343 19.816194,-3.646737 26.415743,4.038423 6.599547,7.685161 6.599547,19.037495 0,26.722656 -6.599549,7.68516 -17.8215,9.400766 -26.415743,4.038423 -9.610467,9.607565 -25.189035,9.607565 -34.799502,0 -8.5942435,5.362343 -19.8161941,3.646737 -26.4157429,-4.038423 -6.5995471,-7.685161 -6.5995471,-19.037495 0,-26.722656 6.5995488,-7.68516 17.8214994,-9.400766 26.4157429,-4.038423"

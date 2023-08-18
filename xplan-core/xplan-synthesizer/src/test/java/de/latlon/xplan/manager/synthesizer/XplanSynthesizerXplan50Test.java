@@ -2,34 +2,33 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.synthesizer;
 
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
@@ -45,7 +44,9 @@ public class XplanSynthesizerXplan50Test extends AbstractXplanSynthesizerTest {
 	@Test
 	public void testCreateSynFeatures(String archiveName) throws Exception {
 		XPlanArchive archive = getTestArchive(archiveName);
-		XPlanFeatureCollection originalFeatureCollection = readFeatures(archive);
+		XPlanFeatureCollection originalFeatureCollection = XPlanGmlParserBuilder.newBuilder()
+			.build()
+			.parseXPlanFeatureCollection(archive);
 		FeatureCollection synFeatureCollection = createSynFeatures(archive.getVersion(), originalFeatureCollection);
 
 		int numberOfOriginalFeatures = originalFeatureCollection.getFeatures().size();
@@ -56,11 +57,6 @@ public class XplanSynthesizerXplan50Test extends AbstractXplanSynthesizerTest {
 
 		assertThat(synGml,
 				hasXPath("count(//xplansyn:rechtscharakter[text() = ''])", is("0")).withNamespaceContext(nsContext()));
-	}
-
-	@Override
-	XPlanVersion getXPlanVersion() {
-		return XPLAN_50;
 	}
 
 }

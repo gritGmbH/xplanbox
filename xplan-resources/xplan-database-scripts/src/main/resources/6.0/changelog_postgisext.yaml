@@ -1,7 +1,0 @@
-databaseChangeLog:
-  - changeSet:
-      id: dbext-postgis
-      author: tfr42
-      changes:
-        - sql:
-            sql: CREATE EXTENSION IF NOT EXISTS postgis;

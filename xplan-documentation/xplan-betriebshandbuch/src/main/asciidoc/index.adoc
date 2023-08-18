@@ -1,9 +1,10 @@
 :doctype: book
 :encoding: utf-8
+:docinfo: shared,private-head
 :toc: macro
+:toc-title: Inhaltsverzeichnis
 :chapter-label:
 :numbered:
-:toc-title: Inhaltsverzeichnis
 :appendix-caption: Anhang
 :table-caption: Tabelle
 :icons: font
@@ -33,12 +34,16 @@ include::konfiguration/dienste/main.adoc[]
 
 include::xplandb.adoc[]
 
-include::logging.adoc[]
+include::ressourcen.adoc[]
 
-include::bekannteProbleme.adoc[]
+include::s3storage.adoc[]
+
+include::logging.adoc[]
 
 include::aktualisierung.adoc[]
 
 include::migration.adoc[]
+
+include::bekannteProbleme.adoc[]
 
 include::anhang.adoc[]

@@ -2,7 +2,7 @@
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -20,8 +20,9 @@
   -->
 <Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description"
         xmlns:s="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.deegree.org/themes/standard https://schemas.deegree.org/3.5/themes/themes.xsd">
+        xsi:schemaLocation="http://www.deegree.org/themes/standard https://schemas.deegree.org/core/3.5/themes/themes.xsd">
   <!--<LayerStoreId>dummyrasterlayer</LayerStoreId>-->
+  <!--<LayerStoreId>mapserver</LayerStoreId>-->
   <Theme>
     <Identifier>SO_Planraster</Identifier>
     <d:Title>SOPlan Raster</d:Title>
@@ -31,6 +32,7 @@
       <Identifier>soplanraster_sortiert</Identifier>
       <d:Title>SOPlan Raster Theme</d:Title>
       <!--<Layer layerStore="dummyrasterlayer">dummyraster</Layer>-->
+      <!--<Layer layerStore="mapserver">soplanrasterarchive</Layer>-->
     </Theme>
   </Theme>
 </Themes>

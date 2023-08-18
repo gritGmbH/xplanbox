@@ -1,10 +1,8 @@
-package de.latlon.xplan.commons.jts;
-
 /*-
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +18,7 @@ package de.latlon.xplan.commons.jts;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.commons.jts;
 
 import org.deegree.geometry.GeometryFactory;
 import org.deegree.geometry.linearization.CurveLinearizer;
@@ -53,7 +52,7 @@ public class JtsParser {
 
 	public JtsParser() {
 		this.jtsFactory = new org.locationtech.jts.geom.GeometryFactory();
-		this.crit = new MaxErrorCriterion(1.0, 500);
+		this.crit = new MaxErrorCriterion(0.1, 500);
 		this.linearizer = new CurveLinearizer(new GeometryFactory());
 	}
 

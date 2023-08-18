@@ -2,7 +2,7 @@
  * #%L
  * xplan-transform-cli - Kommandozeilentool fuer die Transformation zwischen XPlanGML Versionen
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -27,7 +27,7 @@ import de.latlon.xplan.commons.cli.Operation;
 import de.latlon.xplan.commons.cli.SynchronizationException;
 import de.latlon.xplan.commons.cli.Synchronizer;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.transformation.TransformationResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -39,6 +39,7 @@ import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.file.Path;
@@ -49,10 +50,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static de.latlon.xplan.transform.cli.TransformTool.LOG_TABLE_NAME;
+import static de.latlon.xplan.transform.cli.TransformApplicationRunner.LOG_TABLE_NAME;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -60,8 +62,6 @@ import static de.latlon.xplan.transform.cli.TransformTool.LOG_TABLE_NAME;
 public class TransformationSynchronizer implements Synchronizer {
 
 	private static final Logger LOG = LoggerFactory.getLogger(TransformationSynchronizer.class);
-
-	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	private final XPlanDao xPlanDao;
 
@@ -76,6 +76,7 @@ public class TransformationSynchronizer implements Synchronizer {
 	}
 
 	@Override
+	@Transactional(rollbackOn = Exception.class)
 	public void synchronize(Connection conn, int oldid, int newid, int xPlanManagerId, String planVersion,
 			String oldPlanStatus, String newPlanStatus, Operation operation) throws SynchronizationException {
 		if (!XPLAN_41.equals(XPlanVersion.valueOf(planVersion))) {
@@ -136,7 +137,7 @@ public class TransformationSynchronizer implements Synchronizer {
 	private void delete(Connection conn, int logTableId, int xPlanManagerId, String oldPlanStatus)
 			throws SynchronizationException {
 		try {
-			List<String> fids = selectIds(conn, logTableId);
+			Set<String> fids = selectIds(conn, logTableId);
 			PlanStatus planStatus = PlanStatus.findByMessage(oldPlanStatus);
 			xPlanDao.deleteXPlanFeatureCollection(xPlanManagerId, XPlanVersion.XPLAN_51, planStatus, fids);
 		}
@@ -145,7 +146,7 @@ public class TransformationSynchronizer implements Synchronizer {
 		}
 	}
 
-	private List<String> selectIds(Connection conn, int logTableId) throws SynchronizationException {
+	private Set<String> selectIds(Connection conn, int logTableId) throws SynchronizationException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
@@ -159,7 +160,7 @@ public class TransformationSynchronizer implements Synchronizer {
 			if (rs.next()) {
 				Array array = rs.getArray(1);
 				String[] fids = (String[]) array.getArray();
-				return Arrays.asList(fids);
+				return new HashSet<>(Arrays.asList(fids));
 			}
 		}
 		catch (SQLException e) {
@@ -168,7 +169,7 @@ public class TransformationSynchronizer implements Synchronizer {
 		finally {
 			DatabaseUtils.closeQuietly(ps, rs);
 		}
-		return Collections.emptyList();
+		return Collections.emptySet();
 	}
 
 	private XPlanFeatureCollection createXPlanFeatureCollection(TransformationResult transformationResult,
@@ -176,7 +177,9 @@ public class TransformationSynchronizer implements Synchronizer {
 		byte[] resultAsBytes = transformationResult.getTransformationResult();
 		XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
 		try (InputStream inputStream = new ByteArrayInputStream(resultAsBytes)) {
-			return xPlanGmlParser.parseXPlanFeatureCollection(inputStream, resultVersion, type);
+			return XPlanGmlParserBuilder.newBuilder()
+				.build()
+				.parseXPlanFeatureCollection(inputStream, resultVersion, type);
 		}
 	}
 

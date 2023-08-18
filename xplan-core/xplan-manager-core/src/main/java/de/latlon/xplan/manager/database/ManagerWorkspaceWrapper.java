@@ -2,18 +2,18 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -21,16 +21,21 @@
 package de.latlon.xplan.manager.database;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.core.manager.db.DatasourceWrapper;
+import de.latlon.xplan.core.manager.deegree.jpa.JpaConnectionProvider;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.db.ConnectionProvider;
 import org.deegree.db.ConnectionProviderProvider;
+import org.deegree.db.datasource.DataSourceConnectionProvider;
 import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.FeatureStoreProvider;
+import org.deegree.feature.persistence.sql.SQLFeatureStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.orm.jpa.JpaTransactionManager;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 
 import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
@@ -39,11 +44,15 @@ import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class ManagerWorkspaceWrapper {
+public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ManagerWorkspaceWrapper.class);
 
-	private static final String JDBC_POOL_ID = "xplan";
+	private static final String JPA_JDBC_ID_XPLAN = "xplan";
+
+	private static final String JDBC_ID_XPLAN = "xplancp";
+
+	private static final String JPA_JDBC_ID_INSPIREPLU = "inspireplu";
 
 	private static final String INSPIREPLU_FS_ID = "inspireplu";
 
@@ -53,11 +62,27 @@ public class ManagerWorkspaceWrapper {
 
 	private DeegreeWorkspace managerWorkspace;
 
-	private ManagerConfiguration managerConfiguration;
-
-	public ManagerWorkspaceWrapper(DeegreeWorkspace managerWorkspace, ManagerConfiguration managerConfiguration) {
+	public ManagerWorkspaceWrapper(DeegreeWorkspace managerWorkspace) {
 		this.managerWorkspace = managerWorkspace;
-		this.managerConfiguration = managerConfiguration;
+	}
+
+	@Override
+	public DataSource retrieveDataSource() {
+		ensureWorkspaceInitialized();
+		ConnectionProvider resource = managerWorkspace.getNewWorkspace()
+			.getResource(ConnectionProviderProvider.class, JDBC_ID_XPLAN);
+		if (!(resource instanceof DataSourceConnectionProvider))
+			throw new IllegalArgumentException(
+					"Datasource configuration is not supported, must be an deegree DataSourceConnection");
+		DataSourceConnectionProvider dataSourceConnectionProvider = (DataSourceConnectionProvider) resource;
+		return dataSourceConnectionProvider.getDataSource();
+	}
+
+	@Override
+	public void setJpaTransactionManager(JpaTransactionManager jpaTransactionManager) {
+		ensureWorkspaceInitialized();
+		setJpaTransactionManager(jpaTransactionManager, JPA_JDBC_ID_XPLAN);
+		setJpaTransactionManager(jpaTransactionManager, JPA_JDBC_ID_INSPIREPLU);
 	}
 
 	/**
@@ -65,7 +90,7 @@ public class ManagerWorkspaceWrapper {
 	 */
 	public void ensureWorkspaceInitialized() {
 		try {
-			managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class, JDBC_POOL_ID);
+			managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class, JDBC_ID_XPLAN);
 		}
 		catch (Exception e) {
 			long begin = System.currentTimeMillis();
@@ -82,8 +107,8 @@ public class ManagerWorkspaceWrapper {
 	 */
 	public Connection openConnection() {
 		ensureWorkspaceInitialized();
-		ConnectionProvider resource = managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class,
-				JDBC_POOL_ID);
+		ConnectionProvider resource = managerWorkspace.getNewWorkspace()
+			.getResource(ConnectionProviderProvider.class, JDBC_ID_XPLAN);
 		return resource.getConnection();
 	}
 
@@ -117,15 +142,20 @@ public class ManagerWorkspaceWrapper {
 			LOG.debug("Feature Store '" + id + "' is not available");
 			throw new IllegalArgumentException("Wrong FeatureStore Id " + id);
 		}
+		if (sfs instanceof SQLFeatureStore)
+			((SQLFeatureStore) sfs).releaseConnectionFromExternal(true);
 		return sfs;
+	}
+
+	private void setJpaTransactionManager(JpaTransactionManager jpaTransactionManager, String jpaJdbcId) {
+		ConnectionProvider resource = managerWorkspace.getNewWorkspace()
+			.getResource(ConnectionProviderProvider.class, jpaJdbcId);
+		if (resource instanceof JpaConnectionProvider)
+			((JpaConnectionProvider) resource).setJpaTransactionManager(jpaTransactionManager);
 	}
 
 	public DeegreeWorkspace getWorkspace() {
 		return this.managerWorkspace;
-	}
-
-	public ManagerConfiguration getConfiguration() {
-		return this.managerConfiguration;
 	}
 
 }

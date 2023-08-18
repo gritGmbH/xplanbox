@@ -3,7 +3,7 @@
   #%L
   xplan-validator-core - XPlan Validator Core Komponente
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -131,7 +131,20 @@
               <ul>
                 <xsl:for-each select="ExternalReference">
                   <li>
-                    <xsl:value-of select="."/>
+                    <xsl:choose>
+                      <xsl:when test="@status='available'">
+                        <xsl:value-of select="."/> (<font color="#00C000">vorhanden</font>)
+                      </xsl:when>
+                      <xsl:when test="@status='missing'">
+                        <xsl:value-of select="."/> (<font color="#FF0000">fehlt</font>)
+                      </xsl:when>
+                      <xsl:when test="@status='unchecked'">
+                        <xsl:value-of select="."/> (<font color="#CCCC33">nicht geprüft</font>)
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="."/>
+                      </xsl:otherwise>
+                    </xsl:choose>
                   </li>
                 </xsl:for-each>
               </ul>
@@ -173,7 +186,7 @@
 
     <xsl:template match="ValidationReport/Validation/Profile">
       <p>
-        Ergebnis der Validierung gegen das Profil <xsl:value-of select="RulesMetadata/name"/>:
+        Ergebnis der Validierung gegen das Profil "<xsl:value-of select="RulesMetadata/name"/>":
         <i>
           <xsl:value-of select="result"/>
         </i>

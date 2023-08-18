@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.edit;
 
+import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.XPlan;
@@ -82,39 +83,55 @@ public class XPlanToEditFactory {
 
 	/**
 	 * Parses an {@link XPlanToEdit} from the passed {@link FeatureCollection}.
-	 * @param xPlan used to extract some metadata, may be <code>null</code>
+	 * @param version of the plan, never <code>null</code>
+	 * @param type of the plan, never <code>null</code>
+	 * @param featureCollection to parse the editable values from, never <code>null</code>
+	 * @return the xPlanToEdit, never <code>null</code>
+	 */
+	public XPlanToEdit createXPlanToEdit(XPlanVersion version, XPlanType type, FeatureCollection featureCollection)
+			throws EditException {
+		return createXPlanToEdit(version.name(), type.name(), null, featureCollection);
+	}
+
+	/**
+	 * Parses an {@link XPlanToEdit} from the passed {@link FeatureCollection}.
+	 * @param xPlan used to extract some metadata, never <code>null</code>
 	 * @param featureCollection to parse the editable values from, never <code>null</code>
 	 * @return the xPlanToEdit, never <code>null</code>
 	 */
 	public XPlanToEdit createXPlanToEdit(XPlan xPlan, FeatureCollection featureCollection) throws EditException {
+		return createXPlanToEdit(xPlan.getVersion(), xPlan.getType(), xPlan.getXplanMetadata(), featureCollection);
+	}
+
+	private XPlanToEdit createXPlanToEdit(String version, String type, AdditionalPlanData additionalPlanData,
+			FeatureCollection featureCollection) throws EditException {
 		Iterator<Feature> iterator = featureCollection.iterator();
 		XPlanToEdit xPlanToEdit = new XPlanToEdit();
 		while (iterator.hasNext()) {
 			Feature feature = iterator.next();
 			String nameOfFeature = feature.getName().getLocalPart();
 			if (nameOfFeature.matches("(BP|FP|LP|RP|SO)_Plan")) {
-				parsePlan(xPlan, feature, xPlanToEdit);
+				parsePlan(version, type, feature, xPlanToEdit);
 			}
 			else if (nameOfFeature.matches("(BP|FP|LP|RP|SO)_Bereich")) {
 				xPlanToEdit.setHasBereich(true);
-				parseBereich(feature, xPlanToEdit, xPlan.getVersion());
+				parseBereich(feature, xPlanToEdit, version);
 			}
 		}
-		setValidityPeriod(xPlan, xPlanToEdit);
+		setValidityPeriod(additionalPlanData, xPlanToEdit);
 		return xPlanToEdit;
 	}
 
-	private void setValidityPeriod(XPlan xPlan, XPlanToEdit xPlanToEdit) {
-		if (xPlan != null && xPlan.getXplanMetadata() != null) {
-			AdditionalPlanData xplanMetadata = xPlan.getXplanMetadata();
-			xplanMetadata.getStartDateTime();
+	private void setValidityPeriod(AdditionalPlanData additionalPlanData, XPlanToEdit xPlanToEdit) {
+		if (additionalPlanData != null) {
+			additionalPlanData.getStartDateTime();
 			ValidityPeriod validityPeriod = xPlanToEdit.getValidityPeriod();
-			validityPeriod.setStart(xplanMetadata.getStartDateTime());
-			validityPeriod.setEnd(xplanMetadata.getEndDateTime());
+			validityPeriod.setStart(additionalPlanData.getStartDateTime());
+			validityPeriod.setEnd(additionalPlanData.getEndDateTime());
 		}
 	}
 
-	private void parsePlan(XPlan xPlan, Feature feature, XPlanToEdit xPlanToEdit) throws EditException {
+	private void parsePlan(String version, String type, Feature feature, XPlanToEdit xPlanToEdit) throws EditException {
 		LOG.debug("Parse properties from Plan");
 		BaseData baseData = xPlanToEdit.getBaseData();
 		for (Property property : feature.getProperties()) {
@@ -166,7 +183,7 @@ public class XPlanToEditFactory {
 				parseExterneReference(property, xPlanToEdit);
 			}
 			else if ("texte".equals(propertyName)) {
-				parseTextReference(xPlan, property, xPlanToEdit);
+				parseTextReference(version, type, property, xPlanToEdit);
 			}
 		}
 	}
@@ -247,8 +264,10 @@ public class XPlanToEditFactory {
 	}
 
 	private RasterBasis createOrGetRasterBasis(XPlanToEdit xPlanToEdit, String bereichNummer, String featureId) {
-		Optional<RasterBasis> rasterBasisWithBereichId = xPlanToEdit.getRasterBasis().stream()
-				.filter(rasterbasis -> bereichNummer.equals(rasterbasis.getBereichNummer())).findFirst();
+		Optional<RasterBasis> rasterBasisWithBereichId = xPlanToEdit.getRasterBasis()
+			.stream()
+			.filter(rasterbasis -> bereichNummer.equals(rasterbasis.getBereichNummer()))
+			.findFirst();
 		if (rasterBasisWithBereichId.isPresent())
 			return rasterBasisWithBereichId.get();
 		RasterBasis rasterBasis = new RasterBasis(featureId);
@@ -328,7 +347,8 @@ public class XPlanToEditFactory {
 		}
 	}
 
-	private void parseTextReference(XPlan xPlan, Property property, XPlanToEdit xPlanToEdit) throws EditException {
+	private void parseTextReference(String version, String type, Property property, XPlanToEdit xPlanToEdit)
+			throws EditException {
 		TypedObjectNode propertyValue = property.getValue();
 		if (propertyValue instanceof FeatureReference) {
 			Feature referencedObject = ((FeatureReference) propertyValue).getReferencedObject();
@@ -350,8 +370,7 @@ public class XPlanToEditFactory {
 					parseReference(prop.getChildren(), text);
 				}
 				else if ("rechtscharakter".equals(propName)) {
-					text.setRechtscharakter(TextRechtscharacterType.fromCode(asInteger(propValue), xPlan.getVersion(),
-							xPlan.getType()));
+					text.setRechtscharakter(TextRechtscharacterType.fromCode(asInteger(propValue), version, type));
 				}
 			}
 			xPlanToEdit.addText(text);

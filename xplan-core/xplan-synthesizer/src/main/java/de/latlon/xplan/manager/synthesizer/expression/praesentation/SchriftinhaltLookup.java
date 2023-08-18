@@ -2,18 +2,18 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -21,8 +21,10 @@
 package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.manager.codelists.XPlanCodeLists;
-import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
+import de.latlon.xplan.commons.util.XPlanVersionUtils;
+import de.latlon.xplan.manager.dictionary.XPlanDictionaries;
+import de.latlon.xplan.manager.dictionary.XPlanEnumerationFactory;
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributeProperty;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -53,10 +55,10 @@ public class SchriftinhaltLookup extends PraesentationsobjektLookup {
 	}
 
 	@Override
-	protected TypedObjectNode evaluate(Feature feature, FeatureCollection features, Feature referencedFeature,
-			List<AttributeProperty> attributeProperty) {
-		XPlanVersion xPlanVersion = XPlanVersion.valueOfNamespace(feature.getName().getNamespaceURI());
-		TypedObjectNode originalSchriftinhalt = schriftinhalt.evaluate(feature, features);
+	protected TypedObjectNode evaluate(Feature feature, FeatureCollection features, PlanContext planContext,
+			Feature referencedFeature, List<AttributeProperty> attributeProperty) {
+		XPlanVersion xPlanVersion = XPlanVersionUtils.determineBaseVersion(feature.getName());
+		TypedObjectNode originalSchriftinhalt = schriftinhalt.evaluate(feature, features, planContext);
 		if (originalSchriftinhalt != null)
 			return originalSchriftinhalt;
 		if (referencedFeature != null && attributeProperty != null) {
@@ -69,7 +71,7 @@ public class SchriftinhaltLookup extends PraesentationsobjektLookup {
 	private String createSchriftinhalt(List<AttributeProperty> attributeProperties, XPlanVersion xPlanVersion) {
 		return attributeProperties.stream().map(attributeProperty -> {
 			if (ENUM.equals(attributeProperty.getAttributePropertyType())) {
-				XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(xPlanVersion);
+				XPlanDictionaries xPlanCodeLists = XPlanEnumerationFactory.get(xPlanVersion);
 				String codeListId = attributeProperty.getCodeListId();
 				if (XPlanVersion.XPLAN_40.equals(xPlanVersion) && codeListId.endsWith("Type"))
 					codeListId = codeListId.substring(0, codeListId.length() - 4);

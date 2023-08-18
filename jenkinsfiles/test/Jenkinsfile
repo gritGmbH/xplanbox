@@ -1,0 +1,89 @@
+pipeline {
+   agent any
+   tools {
+      maven 'maven-3.8'
+      jdk 'openjdk11'
+   }
+   parameters {
+      string(name: 'BRANCH', defaultValue: "main", description: 'Set branch')
+      string(name: 'CREDENTIALS_ID', defaultValue: "xplanbox.lat-lon.de", description: 'Set id of Jenkins credentials to login to environment (BASIC AUTH)')
+      string(name: 'SERVICES_API_KEY', defaultValue: "xplanbox", description: 'Set ApiKey to acces /config of XPlanDienste')
+      string(name: 'ENDPOINT_VALIDATOR_API', defaultValue: "https://xplanbox.lat-lon.de/xvalidator/api/v1", description: 'Set endpoint of XPlanValidatorAPI')
+      string(name: 'ENDPOINT_MANAGER_WEB', defaultValue: "https://xplanbox.lat-lon.de/xplan-manager-web", description: 'Set endpoint of XPlanManagerWeb')
+      string(name: 'BASE_URL_DIENSTE', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDienste')
+      string(name: 'BASE_URL_INSPIRE_PLU', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of INSPIRE PLU')
+      string(name: 'BASE_URL_MANAGER_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanManagerAPI')
+      string(name: 'BASE_URL_DOKUMENTEN_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDokumentenAPI')
+      string(name: 'BASE_URL_MAPSERVER', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of MapServer')
+      string(name: 'SLACK_CHANNEL', defaultValue: "#testumgebung", description: 'Set slack channel')
+      string(name: 'SLACK_TESTED_ENVIRONMENT', defaultValue: "https://xplanbox.lat-lon.de/", description: 'Set name of test environment which shall be printed in slack messages')
+      string(name: 'SLACK_TEAM_DOMAIN', defaultValue: "xplanbox", description: 'Set slack team domain')
+      string(name: 'SLACK_TOKEN_CREDENTIAL_ID', defaultValue: "slack-integration-id", description: 'Set slack token credential id')
+   }
+   stages {
+      stage('Test XPlanManagerAPI') {
+         steps {
+            withCredentials([
+               usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
+            ]) {
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlServices=${BASE_URL_DIENSTE} -Dusername=$Username -Dpassword=$Password'
+            }
+         }
+      }
+      stage('Test XPlanValidatorAPI') {
+         steps {
+            withCredentials([
+               usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
+            ]) {
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=${ENDPOINT_VALIDATOR_API} -Dusername=$Username -Dpassword=$Password'
+            }
+         }
+      }
+      stage('Test XPlanDokumentenAPI') {
+         steps {
+            withCredentials([
+               usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
+            ]) {
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-api-dokumente-soapui-project.xml -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlDokumentenApi=${BASE_URL_DOKUMENTEN_API} -Dusername=$Username -Dpassword=$Password'
+            }
+         }
+      }
+      stage('Test XPlanManagerWeb') {
+         steps {
+            withCredentials([
+               usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
+            ]) {
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=${ENDPOINT_MANAGER_WEB} -Dusername=$Username -Dpassword=$Password'
+            }
+         }
+      }
+      stage('Test XPlanDienste') {
+         steps {
+            withCredentials([
+               usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
+            ]) {
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=${BASE_URL_DIENSTE} -DbaseUrlInspirePlu=${BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlMapServer=${BASE_URL_MAPSERVER} -Dusername=$Username -Dpassword=$Password -DapiKey=${SERVICES_API_KEY}'
+            }
+         }
+      }
+      stage('Results') {
+         steps{
+            junit '**/**/target/soapui/TEST-*.xml'
+         }
+      }
+   }
+   post {
+      success {
+         slackSend channel: "${SLACK_CHANNEL}", message: "Die SoapUI Tests (Branch: ${BRANCH}) wurden ohne Fehler gegen die Testumgebung ${SLACK_TESTED_ENVIRONMENT} ausgefuehrt.", teamDomain: "${SLACK_TEAM_DOMAIN}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
+      }
+      failure {
+         slackSend channel: "${SLACK_CHANNEL}", message: "ACHTUNG: Bei der Ausfuehrung der SoapUI Tests (Branch: ${BRANCH}) gegen die Testumgebung ${SLACK_TESTED_ENVIRONMENT} traten Fehler auf.", teamDomain: "${SLACK_TEAM_DOMAIN}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
+      }
+      unstable {
+         slackSend channel: "${SLACK_CHANNEL}", message: "ACHTUNG: Bei der Ausfuehrung der SoapUI Tests (Branch: ${BRANCH}) gegen die Testumgebung ${SLACK_TESTED_ENVIRONMENT} traten Fehler auf.", teamDomain: "${SLACK_TEAM_DOMAIN}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
+      }
+      always {
+          cleanWs notFailBuild: true
+      }
+   }
+}

@@ -2,18 +2,18 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -103,12 +103,12 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataV4_1_ID_103_41() throws IOException {
-		XPlanArchive archive = getTestArchive("xplan41/V4_1_ID_103.zip");
+	public void testMetadataBPlan001_41() throws IOException {
+		XPlanArchive archive = getTestArchive("xplan41/BPlan001_4-1.zip");
 
 		assertEquals(XPLAN_41, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
-		assertEquals("EPSG:25833", archive.getCrs().getName());
+		assertEquals("EPSG:25832", archive.getCrs().getName());
 	}
 
 	@Test
@@ -128,11 +128,11 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataV4_1_ID_66_40() throws IOException {
-		XPlanArchive archive = getTestArchive("xplan40/V4_1_ID_66.zip");
+	public void testMetadataBPlan004_40() throws IOException {
+		XPlanArchive archive = getTestArchive("xplan40/BPlan004_4-0.zip");
 		assertEquals(XPLAN_40, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
-		assertEquals("EPSG:25833", archive.getCrs().getName());
+		assertEquals("EPSG:25832", archive.getCrs().getName());
 	}
 
 	@Test
@@ -152,8 +152,8 @@ public class XPlanArchiveCreatorTest {
 	@Test
 	public void testCreateXPlanArchive_51_GmlFile() throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
-		InputStream gmlAsStream = ResourceAccessor.readResourceStream("xplan51/V4_1_ID_103.gml");
-		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103.gml", gmlAsStream);
+		InputStream gmlAsStream = ResourceAccessor.readResourceStream("xplan51/BPlan001_5-1.gml");
+		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("BPlan001_5-1.gml", gmlAsStream);
 		assertEquals(XPLAN_51, archive.getVersion());
 		assertEquals(null, archive.getDistricts().get(0));
 		assertEquals(BP_Plan, archive.getType());
@@ -163,11 +163,38 @@ public class XPlanArchiveCreatorTest {
 	public void testCreateXPlanArchive_withVerbundenerPlan() throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
 		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
-				.getResourceAsStream("../feature/xplan-multipleInstances-withVerbundenerPlan.gml");
-		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103.gml", gmlAsStream);
+			.getResourceAsStream("../feature/xplan-multipleInstances-withVerbundenerPlan.gml");
+		XPlanArchive archive = archiveCreator
+			.createXPlanArchiveFromGml("xplan-multipleInstances-withVerbundenerPlan.gml", gmlAsStream);
 		assertEquals(XPLAN_52, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
 		assertTrue(archive.hasVerbundenerPlanBereich());
+	}
+
+	@Test
+	public void testCreateXPlanArchive_WfsCollection() throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
+			.getResourceAsStream("V4_1_ID_103-asWfsFeatureCollection.gml");
+		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103-asWfsFeatureCollection.gml",
+				gmlAsStream);
+		assertEquals(XPLAN_51, archive.getVersion());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreateXPlanArchive_NoXPlanGml() throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
+			.getResourceAsStream("V4_1_ID_103-noXPlanGmlCollection.gml");
+		archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103-noXPlanGmlCollection.gml", gmlAsStream);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreateXPlanArchive_withEntity() throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		InputStream zipAsStream = XPlanArchiveCreatorTest.class
+			.getResourceAsStream("Blankenese29_Test_60_withEntity.zip");
+		archiveCreator.createXPlanArchiveFromZip("Blankenese29_Test_60_withEntity.zip", zipAsStream);
 	}
 
 	private XPlanArchive getTestArchive(String name) throws IOException {

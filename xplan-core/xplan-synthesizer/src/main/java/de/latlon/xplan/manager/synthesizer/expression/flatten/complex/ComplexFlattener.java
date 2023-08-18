@@ -2,7 +2,7 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.util.XPlanVersionUtils;
+import de.latlon.xplan.manager.dictionary.XPlanCodelists;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.AbstractFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.model.DataTypeFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.model.FlattenerProperty;
@@ -54,10 +55,11 @@ public class ComplexFlattener extends AbstractFlattener {
 
 	private final Map<String, DataTypeFlattener> complexFlattener;
 
-	public ComplexFlattener() {
+	public ComplexFlattener(XPlanCodelists xPlanCodelists) {
+		super(xPlanCodelists);
 		List<DataTypeFlattener> dataTypeFlatteners = loadDataTypeFlattener();
 		this.complexFlattener = dataTypeFlatteners.stream()
-				.collect(Collectors.toMap(DataTypeFlattener::getAcceptedClass, Function.identity()));
+			.collect(Collectors.toMap(DataTypeFlattener::getAcceptedClass, Function.identity()));
 	}
 
 	@Override
@@ -76,7 +78,11 @@ public class ComplexFlattener extends AbstractFlattener {
 			flattenerProperties.forEach(flattenerProperty -> {
 				String label = flattenerProperty.getLabel();
 				String propertyName = flattenerProperty.getPropertyName();
-				if (flattenerProperty.getCodeListName() != null) {
+				if (flattenerProperty.getEnumerationName() != null) {
+					appendEnum(label, element, propertyName, version, flattenerProperty.getEnumerationName(), keepCodes,
+							properties);
+				}
+				else if (flattenerProperty.getCodeListName() != null) {
 					appendCode(label, element, propertyName, version, flattenerProperty.getCodeListName(), keepCodes,
 							properties);
 				}

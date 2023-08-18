@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -38,46 +38,46 @@ public enum XPlanVersion {
 	 * XPlan 4.0
 	 */
 	XPLAN_40("http://www.xplanung.de/xplangml/4/0", "/appschemas/XPlanGML_4_0/XPlanung-Operationen.xsd", "xplan40.syn",
-			GML_32),
+			"xplangml40", GML_32),
 	/**
 	 * XPlan 4.1
 	 */
 	XPLAN_41("http://www.xplanung.de/xplangml/4/1", "/appschemas/XPlanGML_4_1/XPlanung-Operationen.xsd", "xplan41.syn",
-			GML_32),
+			"xplangml41", GML_32),
 	/**
 	 * XPlan 5.0
 	 */
 	XPLAN_50("http://www.xplanung.de/xplangml/5/0", "/appschemas/XPlanGML_5_0/XPlanung-Operationen.xsd", "xplan50.syn",
-			GML_32),
+			"xplangml50", GML_32),
 	/**
 	 * XPlan 5.1
 	 */
 	XPLAN_51("http://www.xplanung.de/xplangml/5/1", "/appschemas/XPlanGML_5_1/XPlanung-Operationen.xsd", "xplan51.syn",
-			GML_32),
+			"xplangml51", GML_32),
 	/**
 	 * XPlan 5.2
 	 */
 	XPLAN_52("http://www.xplanung.de/xplangml/5/2", "/appschemas/XPlanGML_5_2/XPlanung-Operationen.xsd", "xplan52.syn",
-			GML_32),
+			"xplangml52", GML_32),
 	/**
 	 * XPlan 5.3
 	 */
 	XPLAN_53("http://www.xplanung.de/xplangml/5/3", "/appschemas/XPlanGML_5_3/XPlanung-Operationen.xsd", "xplan53.syn",
-			GML_32),
+			"xplangml53", GML_32),
 	/**
 	 * XPlan 5.4
 	 */
 	XPLAN_54("http://www.xplanung.de/xplangml/5/4", "/appschemas/XPlanGML_5_4/XPlanung-Operationen.xsd", "xplan54.syn",
-			GML_32),
+			"xplangml54", GML_32),
 	/**
 	 * XPlan 6.0
 	 */
 	XPLAN_60("http://www.xplanung.de/xplangml/6/0", "/appschemas/XPlanGML_6_0/XPlanung-Operationen.xsd", "xplan60.syn",
-			GML_32),
+			"xplangml60", GML_32),
 	/**
 	 * XPlan Syn
 	 */
-	XPLAN_SYN("http://www.deegree.org/xplanung/1/0", "/appschemas/XPlanGML_Syn/XPlanSyn.xsd", null, GML_32);
+	XPLAN_SYN("http://www.deegree.org/xplanung/1/0", "/appschemas/XPlanGML_Syn/XPlanSyn.xsd", null, null, GML_32);
 
 	private final String namespace;
 
@@ -85,12 +85,16 @@ public enum XPlanVersion {
 
 	private final String synRulesFileName;
 
+	private final String versionDir;
+
 	private final GMLVersion gmlVersion;
 
-	XPlanVersion(String namespace, String schemaResourcePath, String synRulesFileName, GMLVersion gmlVersion) {
+	XPlanVersion(String namespace, String schemaResourcePath, String synRulesFileName, String versionDir,
+			GMLVersion gmlVersion) {
 		this.namespace = namespace;
 		this.schemaUrl = this.getClass().getResource(schemaResourcePath);
 		this.synRulesFileName = synRulesFileName;
+		this.versionDir = versionDir;
 		this.gmlVersion = gmlVersion;
 	}
 
@@ -119,6 +123,15 @@ public enum XPlanVersion {
 	}
 
 	/**
+	 * Returns the name of the directory containing specific configurations for this
+	 * version
+	 * @return name of the syn rules, <code>null</code> if no syn rules exists (XPLAN_SYN)
+	 */
+	public String getVersionDir() {
+		return versionDir;
+	}
+
+	/**
 	 * Returns the GML version that the schema is based upon.
 	 * @return GML version, never <code>null</code>
 	 */
@@ -142,6 +155,24 @@ public enum XPlanVersion {
 			}
 		}
 		throw new IllegalArgumentException(ns + " is not a known XPlanGML namespace.");
+	}
+
+	/**
+	 * Determines the version for the given version directory.
+	 * @param versionDir the name of the version directory, never <code>null</code>
+	 * @return corresponding version, never <code>null</code>
+	 * @throws IllegalArgumentException in case the versionDir cannot be assigned to a
+	 * XPlanGML version
+	 */
+	public static XPlanVersion valueOfVersionDir(String versionDir) {
+		if (versionDir != null) {
+			for (XPlanVersion version : XPlanVersion.values()) {
+				if (version.getVersionDir() != null && version.getVersionDir().equals(versionDir)) {
+					return version;
+				}
+			}
+		}
+		throw new IllegalArgumentException(versionDir + " is not a known XPlanGML version directory.");
 	}
 
 }

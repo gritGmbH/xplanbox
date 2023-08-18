@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -75,17 +75,27 @@ public class PlanInfoBuilder {
 	}
 
 	public PlanInfo build() {
-		return new PlanInfo().id(Integer.parseInt(xPlan.getId())).importDate(xPlan.getImportDate())
-				.inspirePublished(xPlan.isInspirePublished()).raster(xPlan.isRaster()).version(version())
-				.planStatus(planStatus()).bbox(bbox()).links(links()).type(xPlan.getType())
-				.xplanModelData(xPlanModelData());
+		return new PlanInfo().id(Integer.parseInt(xPlan.getId()))
+			.importDate(xPlan.getImportDate())
+			.inspirePublished(xPlan.isInspirePublished())
+			.raster(xPlan.isRaster())
+			.version(version())
+			.planStatus(planStatus())
+			.bbox(bbox())
+			.links(links())
+			.type(xPlan.getType())
+			.xplanModelData(xPlanModelData());
 	}
 
 	private PlanInfoXplanModelData xPlanModelData() {
-		return new PlanInfoXplanModelData().name(xPlan.getName()).nummer(xPlan.getNumber())
-				.internalId(xPlan.getInternalId()).inkrafttretensDatum(xPlan.getReleaseDate())
-				.rechtsstand(xPlan.getLegislationStatus()).ags(xPlan.getGkz()).gemeindeName(xPlan.getDistrict())
-				.bereiche(bereiche());
+		return new PlanInfoXplanModelData().name(xPlan.getName())
+			.nummer(xPlan.getNumber())
+			.internalId(xPlan.getInternalId())
+			.inkrafttretensDatum(xPlan.getReleaseDate())
+			.rechtsstand(xPlan.getLegislationStatus())
+			.ags(xPlan.getGkz())
+			.gemeindeName(xPlan.getDistrict())
+			.bereiche(bereiche());
 	}
 
 	private PlanStatusEnum planStatus() {
@@ -97,8 +107,10 @@ public class PlanInfoBuilder {
 	}
 
 	private List<Bereich> bereiche() {
-		return xPlan.getBereiche().stream().map(b -> new Bereich().name(b.getName()).nummer(b.getNummer()))
-				.collect(Collectors.toList());
+		return xPlan.getBereiche()
+			.stream()
+			.map(b -> new Bereich().name(b.getName()).nummer(b.getNummer()))
+			.collect(Collectors.toList());
 	}
 
 	private VersionEnum version() {
@@ -137,7 +149,8 @@ public class PlanInfoBuilder {
 		pathSegments.add("plan");
 		pathSegments.add(xPlan.getId());
 		uriBuilder.setPathSegments(pathSegments.stream()
-				.filter(pathSegment -> pathSegment != null && !pathSegment.isEmpty()).collect(Collectors.toList()));
+			.filter(pathSegment -> pathSegment != null && !pathSegment.isEmpty())
+			.collect(Collectors.toList()));
 		try {
 			return uriBuilder.build();
 		}
@@ -170,8 +183,11 @@ public class PlanInfoBuilder {
 	private PlanInfoBbox bbox() {
 		XPlanEnvelope bbox = xPlan.getBbox();
 		if (bbox != null)
-			return new PlanInfoBbox().crs(bbox.getCrs()).minX(bbox.getMinX()).minY(bbox.getMinY()).maxX(bbox.getMaxX())
-					.maxY(bbox.getMaxY());
+			return new PlanInfoBbox().crs(bbox.getCrs())
+				.minX(bbox.getMinX())
+				.minY(bbox.getMinY())
+				.maxX(bbox.getMaxX())
+				.maxY(bbox.getMaxY());
 		return null;
 	}
 
