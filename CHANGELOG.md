@@ -2,7 +2,7 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
-## Version 7.0 (2023-08-TT)
+## Version 7.0 (2023-08-16)
 
 ### Erweiterungen
 - Unterstützung für MapServer 8.0 zur Bereitstellung von Rasterdaten für XPlanWMS hergestellt
