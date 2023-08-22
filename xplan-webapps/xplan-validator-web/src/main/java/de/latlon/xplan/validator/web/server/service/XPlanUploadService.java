@@ -20,17 +20,9 @@
  */
 package de.latlon.xplan.validator.web.server.service;
 
-import static java.lang.String.format;
-import static java.util.UUID.randomUUID;
-import static org.apache.commons.fileupload.FileUploadBase.isMultipartContent;
-
-import java.io.IOException;
-import java.util.ResourceBundle;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
+import de.latlon.xplan.manager.web.shared.XPlan;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -39,8 +31,15 @@ import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import de.latlon.xplan.manager.web.shared.XPlan;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ResourceBundle;
+
+import static java.lang.String.format;
+import static java.util.UUID.randomUUID;
+import static org.apache.commons.fileupload.FileUploadBase.isMultipartContent;
 
 /**
  * Stores an uploaded zip file into a tmp directory.
@@ -93,6 +92,9 @@ public class XPlanUploadService extends RemoteServiceServlet {
 		}
 		catch (IOException e) {
 			throw e;
+		}
+		catch (UnsupportedContentTypeException e) {
+			throw new IOException(e.getMessage());
 		}
 		catch (Exception e) {
 			LOG.error("An error occurred during uploading a plan!", e);
