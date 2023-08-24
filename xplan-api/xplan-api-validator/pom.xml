@@ -205,7 +205,7 @@
       <groupId>org.slf4j</groupId>
       <artifactId>jul-to-slf4j</artifactId>
     </dependency>
-      <dependency>
+    <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
     </dependency>
@@ -282,6 +282,11 @@
           <artifactId>xplan-docker-tomcat</artifactId>
           <version>${project.version}</version>
           <type>pom</type>
+        </dependency>
+        <!-- Profiles -->
+        <dependency>
+          <groupId>de.xleitstelle.xplanung</groupId>
+          <artifactId>regeln-berlin</artifactId>
         </dependency>
       </dependencies>
     </profile>

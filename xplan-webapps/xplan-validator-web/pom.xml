@@ -112,7 +112,7 @@
           <artifactId>validation-api</artifactId>
         </exclusion>
         <exclusion>
-	      <!-- already contained in xml-apis:xml-apis-ext:1.3.04 -->
+          <!-- already contained in xml-apis:xml-apis-ext:1.3.04 -->
           <groupId>org.w3c.css</groupId>
           <artifactId>sac</artifactId>
         </exclusion>
@@ -261,14 +261,19 @@
       <properties>
         <docker-image.skip>false</docker-image.skip>
       </properties>
-	  <dependencies>
-	    <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
-	      <groupId>de.latlon.product.xplanbox</groupId>
-	      <artifactId>xplan-docker-tomcat</artifactId>
-	      <version>${project.version}</version>
-	      <type>pom</type>
-	    </dependency>
-	  </dependencies>
+      <dependencies>
+        <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
+          <groupId>de.latlon.product.xplanbox</groupId>
+          <artifactId>xplan-docker-tomcat</artifactId>
+          <version>${project.version}</version>
+          <type>pom</type>
+        </dependency>
+        <!-- Profiles -->
+        <dependency>
+          <groupId>de.xleitstelle.xplanung</groupId>
+          <artifactId>regeln-berlin</artifactId>
+        </dependency>
+      </dependencies>
     </profile>
   </profiles>
 
