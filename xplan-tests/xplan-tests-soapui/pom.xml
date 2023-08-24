@@ -58,6 +58,7 @@
         <username />
         <password />
         <apiKey />
+        <jdbcUrl />
         <endpoint />
       </properties>
       <build>
@@ -97,6 +98,7 @@
                     <value>username=${username}</value>
                     <value>password=${password}</value>
                     <value>apiKey=${apiKey}</value>
+                    <value>jdbcUrl=${jdbcUrl}</value>
                   </projectProperties>
                 </configuration>
               </execution>
