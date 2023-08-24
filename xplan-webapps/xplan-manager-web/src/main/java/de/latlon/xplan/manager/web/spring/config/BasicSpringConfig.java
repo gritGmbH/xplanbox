@@ -87,6 +87,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import java.io.IOException;
@@ -138,6 +139,9 @@ public class BasicSpringConfig {
 	@Autowired
 	private ApplicationEventPublisher applicationEventPublisher;
 
+	@Autowired
+	private ResourceLoader resourceLoader;
+
 	@Bean
 	public SemanticValidator semanticValidator(ManagerConfiguration managerConfiguration,
 			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever)
@@ -158,7 +162,7 @@ public class BasicSpringConfig {
 	public SemanticProfiles semanticProfiles(ValidatorConfiguration validatorConfiguration,
 			PropertiesLoader validatorPropertiesLoader) throws ConfigurationException {
 		SemanticProfilesCreator semanticProfilesCreator = new SemanticProfilesCreator(validatorConfiguration,
-				validatorPropertiesLoader);
+				validatorPropertiesLoader, resourceLoader);
 		return semanticProfilesCreator.createSemanticProfiles();
 	}
 

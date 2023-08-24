@@ -95,6 +95,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.core.io.ResourceLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -155,6 +156,9 @@ public class ApplicationContext {
 	@Autowired
 	private ApplicationEventPublisher applicationEventPublisher;
 
+	@Autowired
+	private ResourceLoader resourceLoader;
+
 	@Bean
 	public SemanticValidator semanticValidator(ManagerConfiguration managerConfiguration,
 			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever)
@@ -175,7 +179,7 @@ public class ApplicationContext {
 	public SemanticProfiles semanticProfiles(ValidatorConfiguration validatorConfiguration,
 			PropertiesLoader validatorPropertiesLoader) throws ConfigurationException {
 		SemanticProfilesCreator semanticProfilesCreator = new SemanticProfilesCreator(validatorConfiguration,
-				validatorPropertiesLoader);
+				validatorPropertiesLoader, resourceLoader);
 		return semanticProfilesCreator.createSemanticProfiles();
 	}
 

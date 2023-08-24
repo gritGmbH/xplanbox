@@ -42,10 +42,12 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.wms.config.ValidatorWmsContext;
 import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.io.ResourceLoader;
 
 import java.io.IOException;
 import java.net.URI;
@@ -67,6 +69,9 @@ import static java.nio.file.Paths.get;
 public class ApplicationContext {
 
 	private static final String RULES_DIRECTORY = "/rules";
+
+	@Autowired
+	private ResourceLoader resourceLoader;
 
 	@Bean
 	public SystemConfigHandler systemConfigHandler(XQuerySemanticValidatorConfigurationRetriever configurationRetriever,
@@ -107,7 +112,7 @@ public class ApplicationContext {
 	public SemanticProfiles semanticProfiles(ValidatorConfiguration validatorConfiguration,
 			PropertiesLoader validatorPropertiesLoader) throws ConfigurationException {
 		SemanticProfilesCreator semanticProfilesCreator = new SemanticProfilesCreator(validatorConfiguration,
-				validatorPropertiesLoader);
+				validatorPropertiesLoader, resourceLoader);
 		return semanticProfilesCreator.createSemanticProfiles();
 	}
 

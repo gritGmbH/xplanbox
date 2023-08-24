@@ -48,9 +48,11 @@ import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import de.latlon.xplan.validator.wms.config.ValidatorWmsContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.io.ResourceLoader;
 
 import java.io.IOException;
 import java.net.URI;
@@ -83,6 +85,9 @@ public class XPlanValidatorWebSpringConfig {
 		return new GeometricValidatorImpl();
 	}
 
+	@Autowired
+	private ResourceLoader resourceLoader;
+
 	@Bean
 	public SemanticValidator semanticValidator(XQuerySemanticValidatorConfigurationRetriever configurationRetriever)
 			throws ConfigurationException {
@@ -101,7 +106,7 @@ public class XPlanValidatorWebSpringConfig {
 	public SemanticProfiles semanticProfiles(ValidatorConfiguration validatorConfiguration,
 			PropertiesLoader validatorPropertiesLoader) throws ConfigurationException {
 		SemanticProfilesCreator semanticProfilesCreator = new SemanticProfilesCreator(validatorConfiguration,
-				validatorPropertiesLoader);
+				validatorPropertiesLoader, resourceLoader);
 		return semanticProfilesCreator.createSemanticProfiles();
 	}
 
