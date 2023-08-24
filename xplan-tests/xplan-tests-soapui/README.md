@@ -8,7 +8,7 @@
 
 ### xplan-api-manager-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlServices=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
+> mvn clean test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlServices=https://xplanbox.lat-lon.de -DjdbcUrl= -Dusername=xplanbox -Dpassword='PWD'
 
 ### xplan-api-dokumente-soapui-project
 
