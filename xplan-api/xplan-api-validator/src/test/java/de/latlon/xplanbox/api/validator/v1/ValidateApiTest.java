@@ -215,4 +215,5 @@ public class ValidateApiTest extends JerseyTest {
 
 		assertThat(response.getStatus()).isEqualTo(Response.Status.BAD_REQUEST.getStatusCode());
 	}
+
 }
