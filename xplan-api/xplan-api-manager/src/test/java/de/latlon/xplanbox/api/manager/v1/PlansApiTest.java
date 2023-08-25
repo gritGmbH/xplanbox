@@ -20,28 +20,27 @@
  */
 package de.latlon.xplanbox.api.manager.v1;
 
-import de.latlon.xplan.core.manager.db.config.JpaContext;
-import de.latlon.xplanbox.api.manager.config.ApplicationContext;
-import de.latlon.xplanbox.api.manager.config.HsqlJpaContext;
-import de.latlon.xplanbox.api.manager.config.TestContext;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.test.JerseyTest;
-import org.glassfish.jersey.test.TestProperties;
-import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
+import org.glassfish.jersey.test.TestProperties;
+import org.junit.jupiter.api.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import de.latlon.xplan.core.manager.db.config.JpaContext;
+import de.latlon.xplanbox.api.manager.config.ApplicationContext;
+import de.latlon.xplanbox.api.manager.config.HsqlJpaContext;
+import de.latlon.xplanbox.api.manager.config.TestContext;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
-public class PlansApiTest extends JerseyTest {
+class PlansApiTest extends JerseyTest {
 
 	@Override
 	protected Application configure() {
@@ -54,27 +53,27 @@ public class PlansApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_GetPlansByName_ReturnCorrectStatus() {
+	void verifyThat_GetPlansByName_ReturnCorrectStatus() {
 		Response response = target("/plans").queryParam("planName", "bplan_41")
 			.request()
 			.accept(APPLICATION_JSON)
 			.get();
-		assertThat(response.getStatus(), is(200));
-		assertThat(response.readEntity(String.class),
-				containsString("{\"id\":123,\"type\":\"BP_Plan\",\"version\":\"XPLAN_41\","));
+		assertThat(response.getStatus()).isEqualTo(200);
+		assertThat(response.readEntity(String.class))
+			.contains("{\"id\":123,\"type\":\"BP_Plan\",\"version\":\"XPLAN_41\",");
 	}
 
 	@Test
-	public void verifyThat_GetPlansById_ReturnCorrectStatus() {
+	void verifyThat_GetPlansById_ReturnCorrectStatus() {
 		Response response = target("/plans").queryParam("planId", 123)
 			.queryParam("planId", 2)
 			.request()
 			.accept(APPLICATION_JSON)
 			.get();
-		assertThat(response.getStatus(), is(200));
+		assertThat(response.getStatus()).isEqualTo(200);
 		String responseEntity = response.readEntity(String.class);
-		assertThat(responseEntity, containsString("{\"id\":123,\"type\":\"BP_Plan\",\"version\":\"XPLAN_41\","));
-		assertThat(responseEntity, containsString("{\"id\":2,\"type\":\"BP_Plan\",\"version\":\"XPLAN_51\","));
+		assertThat(responseEntity).contains("{\"id\":123,\"type\":\"BP_Plan\",\"version\":\"XPLAN_41\",");
+		assertThat(responseEntity).contains("{\"id\":2,\"type\":\"BP_Plan\",\"version\":\"XPLAN_51\",");
 	}
 
 }

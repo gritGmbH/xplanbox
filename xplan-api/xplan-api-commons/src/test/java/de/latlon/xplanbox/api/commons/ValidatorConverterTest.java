@@ -20,67 +20,70 @@
  */
 package de.latlon.xplanbox.api.commons;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationType;
 import de.latlon.xplanbox.api.commons.exception.UnsupportedHeaderValue;
 import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
-import org.junit.Test;
-
-import java.util.Collections;
-
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
-public class ValidatorConverterTest {
+class ValidatorConverterTest {
 
 	@Test
-	public void verifyThat_UuidIsReturnedForNull() throws UnsupportedParameterValue, UnsupportedHeaderValue {
+	void verifyThat_UuidIsReturnedForNull() throws UnsupportedParameterValue, UnsupportedHeaderValue {
 		assertTrue(ValidatorConverter.detectOrCreateValidationName(null)
 			.matches("^[0-9a-f]{8}-[0-9a-f]{4}-[4][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"));
 	}
 
 	@Test
-	public void verifyThat_FilenameIsReturned() throws UnsupportedParameterValue, UnsupportedHeaderValue {
-		assertThat(ValidatorConverter.detectOrCreateValidationName("xplan.gml"), containsString("xplan"));
+	void verifyThat_FilenameIsReturned() throws UnsupportedParameterValue, UnsupportedHeaderValue {
+		assertThat(ValidatorConverter.detectOrCreateValidationName("xplan.gml")).contains("xplan");
 	}
 
 	@Test
-	public void verifyThat_FilenameWithoutSuffixIsReturned() throws UnsupportedParameterValue, UnsupportedHeaderValue {
-		assertThat(ValidatorConverter.detectOrCreateValidationName("xplan.file.name.gml"),
-				containsString("xplan.file.name"));
+	void verifyThat_FilenameWithoutSuffixIsReturned() throws UnsupportedParameterValue, UnsupportedHeaderValue {
+		assertThat(ValidatorConverter.detectOrCreateValidationName("xplan.file.name.gml")).contains("xplan.file.name");
 	}
 
 	@Test
-	public void verifyThat_NameIsReturned() throws UnsupportedParameterValue, UnsupportedHeaderValue {
-		assertThat(ValidatorConverter.detectOrCreateValidationName("xplan.gml", "XPlanArchive"),
-				containsString("XPlanArchive"));
+	void verifyThat_NameIsReturned() throws UnsupportedParameterValue, UnsupportedHeaderValue {
+		assertThat(ValidatorConverter.detectOrCreateValidationName("xplan.gml", "XPlanArchive"))
+			.contains("XPlanArchive");
 	}
 
 	@Test
-	public void verifyThat_CreateValidationSettings_ReturnsCompleteSettings() {
+	void verifyThat_CreateValidationSettings_ReturnsCompleteSettings() {
 		ValidationSettings validationSettings = ValidatorConverter.createValidationSettings("foo", false, true, true,
 				false, true, Collections.singletonList("10"));
-		assertThat(validationSettings.getValidationName(), containsString("foo"));
-		assertThat(validationSettings.getValidationTypes(), hasItem(ValidationType.GEOMETRIC));
-		assertThat(validationSettings.getExtendedOptions(), hasItem(GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS));
-		assertThat(validationSettings.getExtendedOptions(), hasItem(GeometricValidatorImpl.SKIP_LAUFRICHTUNG));
-		assertThat(validationSettings.getProfiles(), hasItem("10"));
+		assertThat(validationSettings.getValidationName()).contains("foo");
+		assertThat(validationSettings.getValidationTypes()).contains(ValidationType.GEOMETRIC);
+		assertThat(validationSettings.getExtendedOptions()).contains(GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS);
+		assertThat(validationSettings.getExtendedOptions()).contains(GeometricValidatorImpl.SKIP_LAUFRICHTUNG);
+		assertThat(validationSettings.getProfiles()).contains("10");
 	}
 
-	@Test(expected = UnsupportedParameterValue.class)
-	public void verifyThat_NameIsInvalid() throws UnsupportedParameterValue, UnsupportedHeaderValue {
-		ValidatorConverter.detectOrCreateValidationName("xplan.gml", "XPlan Archive");
+	@Test
+	void verifyThat_NameIsInvalid() throws UnsupportedParameterValue, UnsupportedHeaderValue {
+		assertThrows(UnsupportedParameterValue.class, () -> {
+			ValidatorConverter.detectOrCreateValidationName("xplan.gml", "XPlan Archive");
+		});
 	}
 
-	@Test(expected = UnsupportedHeaderValue.class)
-	public void verifyThat_XFilenameIsInvalid() throws UnsupportedParameterValue, UnsupportedHeaderValue {
-		ValidatorConverter.detectOrCreateValidationName("xplan 2.gml");
+	@Test
+	void verifyThat_XFilenameIsInvalid() throws UnsupportedParameterValue, UnsupportedHeaderValue {
+		assertThrows(UnsupportedHeaderValue.class, () -> {
+			ValidatorConverter.detectOrCreateValidationName("xplan 2.gml");
+		});
 	}
 
 }

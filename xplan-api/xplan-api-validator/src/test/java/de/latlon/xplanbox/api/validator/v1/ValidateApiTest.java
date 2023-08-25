@@ -20,30 +20,6 @@
  */
 package de.latlon.xplanbox.api.validator.v1;
 
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplanbox.api.validator.config.ApplicationContext;
-import de.latlon.xplanbox.api.validator.config.TestContext;
-import org.apache.http.HttpHeaders;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.test.JerseyTest;
-import org.glassfish.jersey.test.TestProperties;
-import org.junit.BeforeClass;
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.Response;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
-
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP_COMPRESSED;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
@@ -51,22 +27,46 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Response;
+
+import org.apache.http.HttpHeaders;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
+import org.glassfish.jersey.test.TestProperties;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplanbox.api.validator.config.ApplicationContext;
+import de.latlon.xplanbox.api.validator.config.TestContext;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 public class ValidateApiTest extends JerseyTest {
 
-	@ClassRule
-	public final static TemporaryFolder tempFolder = new TemporaryFolder();
+	@TempDir
+	public static Path tempFolder;
 
-	@BeforeClass
-	public static void setupFakedWorkspace() throws IOException {
-		File workspace = tempFolder.newFolder("xplan-validator-wms-memory-workspace");
-		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParentFile().toString());
+	@BeforeAll
+	static void setupFakedWorkspace() throws IOException {
+		Path workspace = tempFolder.resolve("xplan-validator-wms-memory-workspace");
+		Files.createDirectories(workspace);
+		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParent().toString());
 	}
 
 	@Autowired
@@ -86,68 +86,67 @@ public class ValidateApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() throws IOException, URISyntaxException {
+	void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() throws IOException, URISyntaxException {
 		final String data = new String(
 				Files.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/xplan.gml").toURI())));
 		final Response response = target("/validate").request()
 			.accept(APPLICATION_JSON)
 			.post(Entity.entity(data, TEXT_XML));
 
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 	}
 
 	@Test
-	public void verifyThat_validationOctetStream_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
+	void verifyThat_validationOctetStream_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
 		final Response response = target("/validate").request()
 			.accept(APPLICATION_XML)
 			.post(Entity.entity(data, APPLICATION_OCTET_STREAM));
 
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_XML));
-		assertThat(response.readEntity(String.class), containsString("valid"));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_XML);
+		assertThat(response.readEntity(String.class)).contains("valid");
 	}
 
 	@Test
-	public void verifyThat_validationZip_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
+	void verifyThat_validationZip_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
 		final Response response = target("/validate").request()
 			.accept(APPLICATION_XML)
 			.post(Entity.entity(data, APPLICATION_ZIP));
 
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_XML));
-		assertThat(response.readEntity(String.class), containsString("valid"));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_XML);
+		assertThat(response.readEntity(String.class)).contains("valid");
 	}
 
 	@Test
-	public void verifyThat_validationXZip_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
+	void verifyThat_validationXZip_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
 		final Response response = target("/validate").request()
 			.accept(APPLICATION_XML)
 			.post(Entity.entity(data, APPLICATION_X_ZIP));
 
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_XML));
-		assertThat(response.readEntity(String.class), containsString("valid"));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_XML);
+		assertThat(response.readEntity(String.class)).contains("valid");
 	}
 
 	@Test
-	public void verifyThat_validationXZipCompressed_Response_ContainsXmlEncoding()
-			throws URISyntaxException, IOException {
+	void verifyThat_validationXZipCompressed_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
 		final Response response = target("/validate").request()
 			.accept(APPLICATION_XML)
 			.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
 
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_XML));
-		assertThat(response.readEntity(String.class), containsString("valid"));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_XML);
+		assertThat(response.readEntity(String.class)).contains("valid");
 	}
 
 	@Test
-	public void verifyThat_validationXZipCompressedWithProfile_Response_ContainsJsonEncoding()
+	void verifyThat_validationXZipCompressedWithProfile_Response_ContainsJsonEncoding()
 			throws URISyntaxException, IOException {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
@@ -156,13 +155,13 @@ public class ValidateApiTest extends JerseyTest {
 			.accept(APPLICATION_JSON)
 			.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
 
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 		String actual = response.readEntity(String.class);
-		assertThat(actual, containsString("profil"));
+		assertThat(actual).contains("profil");
 	}
 
 	@Test
-	public void verifyThat_validationXZipCompressedWithProfiles_Response_ContainsJsonEncoding()
+	void verifyThat_validationXZipCompressedWithProfiles_Response_ContainsJsonEncoding()
 			throws URISyntaxException, IOException {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
@@ -172,13 +171,13 @@ public class ValidateApiTest extends JerseyTest {
 			.accept(APPLICATION_JSON)
 			.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
 
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 		String actual = response.readEntity(String.class);
-		assertThat(actual, containsString("profil"));
+		assertThat(actual).contains("profil");
 	}
 
 	@Test
-	public void verifyThat_validationXZipCompressedWithProfilesCommaseparated_Response_ContainsJsonEncoding()
+	void verifyThat_validationXZipCompressedWithProfilesCommaseparated_Response_ContainsJsonEncoding()
 			throws URISyntaxException, IOException {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
@@ -188,14 +187,13 @@ public class ValidateApiTest extends JerseyTest {
 			.accept(APPLICATION_JSON)
 			.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
 
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 		String actual = response.readEntity(String.class);
-		assertThat(actual, containsString("profil"));
+		assertThat(actual).contains("profil");
 	}
 
 	@Test
-	public void verifyThat_validationWithInvalidXFileName_Response_IsStatusCode400()
-			throws URISyntaxException, IOException {
+	void verifyThat_validationWithInvalidXFileName_Response_IsStatusCode400() throws URISyntaxException, IOException {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
 		final Response response = target("/validate").request()
@@ -203,11 +201,11 @@ public class ValidateApiTest extends JerseyTest {
 			.accept(APPLICATION_JSON)
 			.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
 
-		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.BAD_REQUEST.getStatusCode());
 	}
 
 	@Test
-	public void verifyThat_validationWithInvalidName_Response_IsStatusCode400() throws URISyntaxException, IOException {
+	void verifyThat_validationWithInvalidName_Response_IsStatusCode400() throws URISyntaxException, IOException {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
 		final Response response = target("/validate").queryParam("name", "invalid.name with blanks")
@@ -215,7 +213,7 @@ public class ValidateApiTest extends JerseyTest {
 			.accept(APPLICATION_JSON)
 			.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
 
-		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.BAD_REQUEST.getStatusCode());
 	}
 
 }
