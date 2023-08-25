@@ -24,8 +24,9 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
@@ -48,12 +49,13 @@ import de.latlon.xplanbox.api.validator.config.TestContext;
 public class InfoApiTest extends JerseyTest {
 
 	@TempDir
-	public static File tempFolder;
+	public static Path tempFolder;
 
 	@BeforeAll
 	static void setupFakedWorkspace() throws IOException {
-		File workspace = newFolder(tempFolder, "xplan-validator-wms-memory-workspace");
-		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParentFile().toString());
+		Path workspace = tempFolder.resolve("xplan-validator-wms-memory-workspace");
+		Files.createDirectories(workspace);
+		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParent().toString());
 	}
 
 	@Override
@@ -80,15 +82,6 @@ public class InfoApiTest extends JerseyTest {
 
 		assertThat(response).contains("supportedXPlanGmlVersions");
 		assertThat(response).contains("profiles");
-	}
-
-	private static File newFolder(File root, String... subDirs) throws IOException {
-		String subFolder = String.join("/", subDirs);
-		File result = new File(root, subFolder);
-		if (!result.mkdirs()) {
-			throw new IOException("Couldn't create folders " + root);
-		}
-		return result;
 	}
 
 }

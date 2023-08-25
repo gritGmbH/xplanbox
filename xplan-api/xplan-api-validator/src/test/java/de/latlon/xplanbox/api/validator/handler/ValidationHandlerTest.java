@@ -61,12 +61,13 @@ import de.latlon.xplanbox.api.validator.config.ApplicationContext;
 public class ValidationHandlerTest {
 
 	@TempDir
-	public static File tempFolder;
+	public static Path tempFolder;
 
 	@BeforeAll
 	static void setupFakedWorkspace() throws IOException {
-		File workspace = newFolder(tempFolder, "xplan-validator-wms-memory-workspace");
-		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParentFile().toString());
+		Path workspace = tempFolder.resolve("xplan-validator-wms-memory-workspace");
+		Files.createDirectories(workspace);
+		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParent().toString());
 	}
 
 	@Autowired
@@ -142,15 +143,6 @@ public class ValidationHandlerTest {
 		XPlanArchive archive = validationHandler.createArchiveFromGml(file, "xplan");
 		URI wmsUrl = validationHandler.addToWms(archive);
 		assertNull(wmsUrl);
-	}
-
-	private static File newFolder(File root, String... subDirs) throws IOException {
-		String subFolder = String.join("/", subDirs);
-		File result = new File(root, subFolder);
-		if (!result.mkdirs()) {
-			throw new IOException("Couldn't create folders " + root);
-		}
-		return result;
 	}
 
 }

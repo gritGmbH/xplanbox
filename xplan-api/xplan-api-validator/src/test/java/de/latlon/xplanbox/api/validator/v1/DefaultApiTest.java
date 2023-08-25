@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -23,8 +23,9 @@ package de.latlon.xplanbox.api.validator.v1;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
@@ -47,12 +48,13 @@ import de.latlon.xplanbox.api.validator.config.TestContext;
 public class DefaultApiTest extends JerseyTest {
 
 	@TempDir
-	public static File tempFolder;
+	public static Path tempFolder;
 
 	@BeforeAll
 	static void setupFakedWorkspace() throws IOException {
-		File workspace = newFolder(tempFolder, "xplan-validator-wms-memory-workspace");
-		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParentFile().toString());
+		Path workspace = tempFolder.resolve("xplan-validator-wms-memory-workspace");
+		Files.createDirectories(workspace);
+		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParent().toString());
 	}
 
 	@Override
@@ -78,15 +80,6 @@ public class DefaultApiTest extends JerseyTest {
 		final String response = target("/").request(APPLICATION_JSON).get(String.class);
 
 		assertThat(response).contains("\"openapi\":\"3.0.1\"");
-	}
-
-	private static File newFolder(File root, String... subDirs) throws IOException {
-		String subFolder = String.join("/", subDirs);
-		File result = new File(root, subFolder);
-		if (!result.mkdirs()) {
-			throw new IOException("Couldn't create folders " + root);
-		}
-		return result;
 	}
 
 }
