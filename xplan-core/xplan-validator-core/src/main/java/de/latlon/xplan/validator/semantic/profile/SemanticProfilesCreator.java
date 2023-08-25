@@ -46,6 +46,7 @@ import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.List;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -69,18 +70,21 @@ public class SemanticProfilesCreator {
 	}
 
 	/**
+	 * @param activatedProfiles list of activated profiles, may be <code>empty</code>, but
+	 * never <code>null</code>
 	 * @return the SemanticProfiles containing metadata and validators, never
 	 * <code>null</code>
 	 * @throws ValidatorException
 	 */
-	public SemanticProfiles createSemanticProfiles() throws ConfigurationException {
+	public SemanticProfiles createSemanticProfiles(List<String> activatedProfiles) throws ConfigurationException {
 		SemanticProfiles semanticProfiles = new SemanticProfiles();
 		addSemanticProfilesFromConfigDirectory(semanticProfiles);
-		addSemanticProfilesFromClasspath(semanticProfiles);
+		addSemanticProfilesFromClasspath(semanticProfiles, activatedProfiles);
 		return semanticProfiles;
 	}
 
-	private void addSemanticProfilesFromClasspath(SemanticProfiles semanticProfiles) throws ConfigurationException {
+	private void addSemanticProfilesFromClasspath(SemanticProfiles semanticProfiles, List<String> activatedProfiles)
+			throws ConfigurationException {
 		try {
 			Resource[] resources = ResourcePatternUtils.getResourcePatternResolver(resourceLoader)
 				.getResources("classpath*:/profil-*.y*ml");
@@ -88,27 +92,37 @@ public class SemanticProfilesCreator {
 				Resource resource = resources[i];
 				LOG.info("Found profile resource: {}", resource);
 				ValidatorProfile validatorProfile = parseProfile(resource);
-				URL uri = resource.getURL();
-				if (resource.isFile()) {
-					Path path = Path.of(resource.getFile().getPath()).getParent();
-					Path profileRulesDirectory = path.resolve(validatorProfile.getId());
-					addSemanticProfile(semanticProfiles, validatorProfile, profileRulesDirectory);
-				}
-				else if ("jar".equals(uri.getProtocol())) {
-					String jarPath = uri.getFile().replaceFirst("file:(.*)!.*", "$1");
-					if (jarPath != null) {
-						FileSystem zipfs = FileSystems.newFileSystem(Path.of(jarPath), getClass().getClassLoader());
-						Path profileRulesDirectory = zipfs.getPath(validatorProfile.getId());
-						addSemanticProfile(semanticProfiles, validatorProfile, profileRulesDirectory);
-					}
+				if (activatedProfiles.contains(validatorProfile.getId())) {
+					addSemanticProfilesFromResource(semanticProfiles, resource, validatorProfile);
 				}
 				else {
-					LOG.warn("Cannot handle profile with id {} from {}", validatorProfile.getId(), uri);
+					LOG.info("Profile with id {} is available but not activated.", validatorProfile.getId());
 				}
 			}
 		}
 		catch (IOException e) {
 			throw new ConfigurationException(e);
+		}
+	}
+
+	private void addSemanticProfilesFromResource(SemanticProfiles semanticProfiles, Resource resource,
+			ValidatorProfile validatorProfile) throws IOException, ConfigurationException {
+		URL uri = resource.getURL();
+		if (resource.isFile()) {
+			Path path = Path.of(resource.getFile().getPath()).getParent();
+			Path profileRulesDirectory = path.resolve(validatorProfile.getId());
+			addSemanticProfile(semanticProfiles, validatorProfile, profileRulesDirectory);
+		}
+		else if ("jar".equals(uri.getProtocol())) {
+			String jarPath = uri.getFile().replaceFirst("file:(.*)!.*", "$1");
+			if (jarPath != null) {
+				FileSystem zipfs = FileSystems.newFileSystem(Path.of(jarPath), getClass().getClassLoader());
+				Path profileRulesDirectory = zipfs.getPath(validatorProfile.getId());
+				addSemanticProfile(semanticProfiles, validatorProfile, profileRulesDirectory);
+			}
+		}
+		else {
+			LOG.warn("Cannot handle profile with id {} from {}", validatorProfile.getId(), uri);
 		}
 	}
 

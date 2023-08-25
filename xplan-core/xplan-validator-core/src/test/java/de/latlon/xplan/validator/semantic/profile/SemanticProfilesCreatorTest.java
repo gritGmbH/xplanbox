@@ -31,6 +31,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -47,20 +48,36 @@ public class SemanticProfilesCreatorTest {
 	private ResourceLoader resourceLoader;
 
 	@Test
-	public void testSemanticProfilesCreator_ProfilesInDependency() throws ConfigurationException {
+	public void testSemanticProfilesCreator_ProfilesInDependency_allProfileActivated() throws ConfigurationException {
 		ValidatorConfiguration validatorConfiguration = mock(ValidatorConfiguration.class);
 		PropertiesLoader validatorPropertiesLoader = mock(PropertiesLoader.class);
 
 		SemanticProfilesCreator semanticProfilesCreator = new SemanticProfilesCreator(validatorConfiguration,
 				validatorPropertiesLoader, resourceLoader);
 
-		SemanticProfiles semanticProfiles = semanticProfilesCreator.createSemanticProfiles();
+		SemanticProfiles semanticProfiles = semanticProfilesCreator
+			.createSemanticProfiles(Arrays.asList("test1", "test2"));
 		List<RulesMetadata> profileMetadata = semanticProfiles.getProfileMetadata();
 		List<SemanticProfileValidator> profileValidators = semanticProfiles.getProfileValidators();
 
 		assertEquals(2, profileMetadata.size());
 		assertEquals(2, profileValidators.size());
+	}
 
+	@Test
+	public void testSemanticProfilesCreator_ProfilesInDependency_oneProfileActivated() throws ConfigurationException {
+		ValidatorConfiguration validatorConfiguration = mock(ValidatorConfiguration.class);
+		PropertiesLoader validatorPropertiesLoader = mock(PropertiesLoader.class);
+
+		SemanticProfilesCreator semanticProfilesCreator = new SemanticProfilesCreator(validatorConfiguration,
+				validatorPropertiesLoader, resourceLoader);
+
+		SemanticProfiles semanticProfiles = semanticProfilesCreator.createSemanticProfiles(Arrays.asList("test1"));
+		List<RulesMetadata> profileMetadata = semanticProfiles.getProfileMetadata();
+		List<SemanticProfileValidator> profileValidators = semanticProfiles.getProfileValidators();
+
+		assertEquals(1, profileMetadata.size());
+		assertEquals(1, profileValidators.size());
 	}
 
 }

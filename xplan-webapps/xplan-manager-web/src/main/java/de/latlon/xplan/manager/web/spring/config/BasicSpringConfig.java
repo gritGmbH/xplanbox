@@ -97,7 +97,9 @@ import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -160,10 +162,13 @@ public class BasicSpringConfig {
 
 	@Bean
 	public SemanticProfiles semanticProfiles(ValidatorConfiguration validatorConfiguration,
-			PropertiesLoader validatorPropertiesLoader) throws ConfigurationException {
+			PropertiesLoader validatorPropertiesLoader,
+			@Value("#{environment.XPLAN_VALIDATOR_PROFILES}") String activatedProfiles) throws ConfigurationException {
+		List<String> activatedProfilesList = activatedProfiles != null ? Arrays.asList(activatedProfiles.split(","))
+				: Collections.emptyList();
 		SemanticProfilesCreator semanticProfilesCreator = new SemanticProfilesCreator(validatorConfiguration,
 				validatorPropertiesLoader, resourceLoader);
-		return semanticProfilesCreator.createSemanticProfiles();
+		return semanticProfilesCreator.createSemanticProfiles(activatedProfilesList);
 	}
 
 	@Bean

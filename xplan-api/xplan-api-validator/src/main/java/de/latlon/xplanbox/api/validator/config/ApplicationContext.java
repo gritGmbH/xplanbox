@@ -43,6 +43,7 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.wms.config.ValidatorWmsContext;
 import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -56,6 +57,9 @@ import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static java.nio.file.Files.createTempDirectory;
 import static java.nio.file.Paths.get;
@@ -110,10 +114,13 @@ public class ApplicationContext {
 
 	@Bean
 	public SemanticProfiles semanticProfiles(ValidatorConfiguration validatorConfiguration,
-			PropertiesLoader validatorPropertiesLoader) throws ConfigurationException {
+			PropertiesLoader validatorPropertiesLoader,
+			@Value("#{environment.XPLAN_VALIDATOR_PROFILES}") String activatedProfiles) throws ConfigurationException {
+		List<String> activatedProfilesList = activatedProfiles != null ? Arrays.asList(activatedProfiles.split(","))
+				: Collections.emptyList();
 		SemanticProfilesCreator semanticProfilesCreator = new SemanticProfilesCreator(validatorConfiguration,
 				validatorPropertiesLoader, resourceLoader);
-		return semanticProfilesCreator.createSemanticProfiles();
+		return semanticProfilesCreator.createSemanticProfiles(activatedProfilesList);
 	}
 
 	@Bean
