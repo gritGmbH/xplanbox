@@ -17,42 +17,21 @@
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>io.fabric8</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-        <configuration>
-          <images>
-            <image>
-              <build>
-                <assembly>
-                  <inline>
-                    <dependencySets>
-                      <dependencySet>
-                        <includes>
-                          <include>${project.groupId}:xplan-manager-cli:zip</include>
-                        </includes>
-                        <unpack>true</unpack>
-                      </dependencySet>
-                      <dependencySet>
-                        <includes>
-                          <include>${project.groupId}:xplan-transform-cli:zip</include>
-                        </includes>
-                        <unpack>true</unpack>
-                      </dependencySet>
-                      <dependencySet>
-                        <includes>
-                          <include>${project.groupId}:xplan-update-data-cli:zip</include>
-                        </includes>
-                        <unpack>true</unpack>
-                      </dependencySet>
-                    </dependencySets>
-                  </inline>
-                </assembly>
-              </build>
-            </image>
-          </images>
-        </configuration>
-      </plugin>
+		<plugin>
+			<artifactId>maven-dependency-plugin</artifactId>
+			<executions>
+				<execution>
+					<goals>
+						<goal>unpack-dependencies</goal>
+					</goals>
+					<configuration>
+						<excludeTransitive>true</excludeTransitive>
+						<excludeTypes>pom</excludeTypes>
+						<outputDirectory>${project.build.directory}/unpacked-deps</outputDirectory>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
     </plugins>
   </build>
 
@@ -84,3 +63,4 @@
     </dependency>
   </dependencies>
 </project>
+

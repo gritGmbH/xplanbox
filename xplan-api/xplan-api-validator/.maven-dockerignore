@@ -1,0 +1,18 @@
+# 2023-02-07: excludes allow to reduce tar size from 217M to 98M 
+.classpath
+.dockerignore
+.project
+.settings/**
+
+pom.xml
+src/**
+target/classes/**
+target/dependency-maven-plugin-markers/**
+target/docker
+target/generated-sources/**
+target/generated-test-sources/**
+target/m2e-wtp/**
+target/maven-*/**
+target/surefire-reports/**
+target/test-classes/**
+target/xplan-api-validator-*/*/**
