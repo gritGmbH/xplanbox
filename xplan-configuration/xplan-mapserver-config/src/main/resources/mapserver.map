@@ -30,11 +30,6 @@ MAP
     #SHAPEPATH "c:\apache24\data"
 	IMAGECOLOR 255 255 255
 	IMAGETYPE png
-    # CONFIG "AWS_ACCESS_KEY_ID" "XXX"
-    # CONFIG "AWS_SECRET_ACCESS_KEY" "XXX"
-    # CONFIG "AWS_REGION" "eu-central-1"
-    # CONFIG "AWS_S3_ENDPOINT" "s3.amazonaws.com"
-    # SHAPEPATH "/vsis3/bucket_name/"
     SHAPEPATH "/etc/mapserver/data/"
 
 	OUTPUTFORMAT
