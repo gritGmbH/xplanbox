@@ -75,7 +75,7 @@ MAP
 	  NAME "bplanrastertindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -119,7 +119,7 @@ MAP
 	  NAME "bplanrasterpretindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -164,7 +164,7 @@ MAP
 	  NAME "bplanrasterarchivetindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -209,7 +209,7 @@ MAP
 	  NAME "fplanrastertindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -253,7 +253,7 @@ MAP
 	  NAME "fplanrasterpretindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -298,7 +298,7 @@ MAP
 	  NAME "fplanrasterarchivetindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -343,7 +343,7 @@ MAP
 	  NAME "lplanrastertindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -387,7 +387,7 @@ MAP
 	  NAME "lplanrasterpretindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -432,7 +432,7 @@ MAP
 	  NAME "lplanrasterarchivetindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -477,7 +477,7 @@ MAP
 	  NAME "rplanrastertindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -521,7 +521,7 @@ MAP
 	  NAME "rplanrasterpretindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -566,7 +566,7 @@ MAP
 	  NAME "rplanrasterarchivetindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -611,7 +611,7 @@ MAP
 	  NAME "soplanrastertindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -655,7 +655,7 @@ MAP
 	  NAME "soplanrasterpretindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
@@ -700,7 +700,7 @@ MAP
 	  NAME "soplanrasterarchivetindex"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS OFF
-	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTION ""
 	  CONNECTIONTYPE POSTGIS
 	  PROCESSING "CLOSE_CONNECTION=DEFER"
 	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM

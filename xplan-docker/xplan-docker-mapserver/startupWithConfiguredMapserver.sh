@@ -17,12 +17,6 @@ echo "[$(date -Iseconds)] Initializing mapserver config ..."
 
 cp /xplan-docker-mapserver/xplan-mapserver-config/mapserver.map $MS_MAPFILE
 
-XPLAN_DB_HOSTNAME="${XPLAN_DB_HOSTNAME:-xplan-db}"
-XPLAN_DB_PORT="${XPLAN_DB_PORT:-5432}"
-XPLAN_DB_NAME="${XPLAN_DB_NAME:-xplanbox}"
-XPLAN_DB_USER="${XPLAN_DB_USER:-postgres}"
-XPLAN_DB_PASSWORD="${XPLAN_DB_PASSWORD:-postgres}"
-
 XPLAN_S3_ACCESS_KEY="${XPLAN_S3_ACCESS_KEY:-tobedefined}"
 XPLAN_S3_SECRET_ACCESS_KEY="${XPLAN_S3_SECRET_ACCESS_KEY:-tobedefined}"
 XPLAN_S3_REGION="${XPLAN_S3_REGION:-eu-central-1}"
@@ -34,8 +28,6 @@ XPLAN_S3_ENDPOINT=$(sed -E 's/^(https|http):\/\///' <<< $XPLAN_S3_ENDPOINT)
 ######################################
 # Update content of mapserver config #
 ######################################
-
-sed -i 's|CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"|CONNECTION "user='$XPLAN_DB_USER' password='$XPLAN_DB_PASSWORD' dbname='$XPLAN_DB_NAME' host='$XPLAN_DB_HOSTNAME' port='$XPLAN_DB_PORT'"|g' $MS_MAPFILE
 
 if [[ -z "${spring_profiles_active##*s3img*}" ]]
 then
