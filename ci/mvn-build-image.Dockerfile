@@ -1,6 +1,6 @@
 # image used for builds: pre-fill dependencies to speed up maven builds
 
-FROM maven:3.8.6-jdk-11
+FROM maven:3.9.3-eclipse-temurin-11
 
 RUN mkdir /tmp/ozgxplanung
 ADD . /tmp/ozgxplanung
