@@ -42,8 +42,8 @@ then
 	S3_PATH_REPORT_PATH_TAR="s3://$XPLAN_S3_BUCKET_NAME/$XPLAN_S3_REPORT_PATH/report-$XPLAN_S3_REPORT_ID.tar.gz"
 	S3_PATH_PDF="s3://$XPLAN_S3_BUCKET_NAME/$XPLAN_S3_REPORT_PATH/report-$XPLAN_S3_REPORT_ID.pdf"
 	echo "Uploading report to $S3_PATH..."
-	aws --endpoint-url $XPLAN_S3_ENDPOINT s3 cp $REPORT_PATH_TAR $S3_PATH_REPORT_PATH_TAR
-	aws --endpoint-url $XPLAN_S3_ENDPOINT s3 cp $REPORT_PATH_PDF $S3_PATH_PDF
+	aws --endpoint-url $XPLAN_S3_ENDPOINT_URL s3 cp $REPORT_PATH_TAR $S3_PATH_REPORT_PATH_TAR
+	aws --endpoint-url $XPLAN_S3_ENDPOINT_URL s3 cp $REPORT_PATH_PDF $S3_PATH_PDF
 else
 	echo "No upload to S3 configured"
 fi

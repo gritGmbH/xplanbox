@@ -57,7 +57,7 @@ docker run --env ... xplanbox/xplan-tests-soapui
 Der Report im PDF Format kann zu einem S3 Bucket hochgeladen werden, dafür müssen folgende Umgebungsvariable gesetzt werden:
 
 - `XPLAN_UPLOAD_TEST_REPORT`: muss auf `true` gesetzt werden
-- `XPLAN_S3_ENDPOINT`: die S3 Url
+- `XPLAN_S3_ENDPOINT_URL`: die S3 Url, z.B. https://the.s3.url
 - `XPLAN_S3_REPORT_ID` (optional): ein Id, dass im S3-Objektname verwendet werden soll
 - `XPLAN_S3_REPORT_PATH`(optional): der Pfad im S3 Bucket (default: `test-reports`)
 - `XPLAN_S3_ACCESS_KEY`: der S3-Zugangschlüssel
