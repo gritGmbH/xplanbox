@@ -6,6 +6,9 @@
     entrypoint: [""]
   script:
   - /kaniko/executor --context=tar://${CI_PROJECT_DIR}/$tarGzFile --destination=$destination:$dockerTag
+    --build-arg="BUILD_DATE='$(date --utc +'%Y-%m-%d %H:%M:%SZ')'"
+    --build-arg="DOCKER_IMAGE_NAME=$dockerImageName
+    --build-arg="GIT_REVISION=${CI_COMMIT_SHA}"
     --build-arg="XPLANBOX_IMAGE_NAME_PREFIX=${CI_REGISTRY_IMAGE}/xplanbox"
     --build-arg="XPLANBOX_VERSION=${dockerTag}"
   rules:
