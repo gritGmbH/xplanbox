@@ -21,13 +21,11 @@
 MAP
     NAME "raster"
     STATUS ON
-    #SIZE 600 400
 	EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
     UNITS meters
 	RESOLUTION 96
 	DEFRESOLUTION 96
 	MAXSIZE 5000
-    #SHAPEPATH "c:\apache24\data"
 	IMAGECOLOR 255 255 255
 	IMAGETYPE png
     SHAPEPATH "/etc/mapserver/data/"
@@ -54,10 +52,8 @@ MAP
    WEB
       IMAGEPATH "/ms4w/tmp/ms_tmp/"
       IMAGEURL "/ms_tmp/"
-	  #QUERYFORMAT "image/png"
 	  METADATA
 	  	 "wms_title" "xPlanBox Rasterdaten"
-	  	 #"wms_onlineresource" "http://gv-srv-w00173:8080/cgi-bin/mapserv.exe?map=c:\apache24\data\tileindex.map" #must change mapfile path
 	  	 "wms_srs" "EPSG:25832"
 	  	 "wms_enable_request" "*"
 	  END
