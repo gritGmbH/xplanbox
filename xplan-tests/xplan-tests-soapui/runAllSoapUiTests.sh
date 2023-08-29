@@ -14,7 +14,7 @@ fi
 
 mvn test -Psystem-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=$XPLAN_MANAGER_WEB_ENDPOINT -Dusername=$XPLAN_MANAGER_WEB_USERNAME -Dpassword=$XPLAN_MANAGER_WEB_PASSWORD
 
-mvn test -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=${XPLAN_BASE_URL_DIENSTE} -DbaseUrlInspirePlu=${XPLAN_BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${XPLAN_BASE_URL_API_MANAGER} -DbaseUrlMapServer=${XPLAN_BASE_URL_MAPSERVER} -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD -DapiKey=$XPLAN_SERVICES_API_KEY
+mvn test -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=${XPLAN_BASE_URL_DIENSTE} -DbaseUrlInspirePlu=${XPLAN_BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${XPLAN_API_MANAGER_BASE_URL} -DbaseUrlMapServer=${XPLAN_BASE_URL_MAPSERVER} -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD -DapiKey=$XPLAN_SERVICES_API_KEY
 
 echo -e "\n"
 find target/soapui/ -name 'TEST-*TestSuite.xml' | xargs cat | grep "<testsuite" | sed 's/>.*/>/'

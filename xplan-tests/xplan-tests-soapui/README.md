@@ -48,7 +48,6 @@ docker run --env ... xplanbox/xplan-tests-soapui
 
 - `XPLAN_BASE_URL_DIENSTE`
 - `XPLAN_BASE_URL_INSPIRE_PLU`
-- `XPLAN_BASE_URL_API_MANAGER`
 - `XPLAN_BASE_URL_MAPSERVER`
 
 - `XPLAN_SERVICES_API_KEY`
