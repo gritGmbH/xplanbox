@@ -19,7 +19,7 @@
           <gml:upperCorner>565072.441 5940522.630</gml:upperCorner>
         </gml:Envelope>
       </gml:boundedBy>
-      <xplan:name>BPlan002_6-0</xplan:name>
+      <xplan:name>BPlan002_6-0_SoapUI-XPlanManagerAPI</xplan:name>
       <xplan:beschreibung>Testdaten</xplan:beschreibung>
       <xplan:technHerstellDatum>2021-07-01</xplan:technHerstellDatum>
       <xplan:erstellungsMassstab>1000</xplan:erstellungsMassstab>

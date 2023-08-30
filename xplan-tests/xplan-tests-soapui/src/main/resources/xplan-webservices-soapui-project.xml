@@ -3340,7 +3340,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:configuration>
               <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
 
-//xplanung:xpPlanName="Bergedorf110(1Aend) soapui-webservices"</path>
+//xplanung:xpPlanName="Bergedorf110(1Aend)_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -3469,7 +3469,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:sourceStep>GetFeatureInfo-xml</con:sourceStep>
             <con:sourcePath>declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//xplan:BP_Plan[xplan:xpPlanName="Bergedorf110(1Aend) soapui-webservices"]/xplan:gmlId</con:sourcePath>
+//xplan:BP_Plan[xplan:xpPlanName="Bergedorf110(1Aend)_SoapUI-XPlanDienste"]/xplan:gmlId</con:sourcePath>
             <con:targetType>gmlId</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>XPATH</con:type>
@@ -6027,7 +6027,7 @@ exists(//wfs:DescribeStoredQueriesResponse)</path>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Eidelstedt4_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -6096,7 +6096,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Eidelstedt4_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -6108,7 +6108,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Bereich/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+//wfs:member/xplan:BP_Bereich/xplan:xpPlanName="Eidelstedt4_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -6120,7 +6120,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_GewaesserFlaeche/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+//wfs:member/xplan:BP_GewaesserFlaeche/xplan:xpPlanName="Eidelstedt4_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -6132,7 +6132,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:XP_PPO/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+//wfs:member/xplan:XP_PPO/xplan:xpPlanName="Eidelstedt4_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -6144,7 +6144,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:XP_PTO/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+//wfs:member/xplan:XP_PTO/xplan:xpPlanName="Eidelstedt4_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -6200,7 +6200,7 @@ count(//wfs:member)</path>
             </con:parameter>
             <con:parameter>
               <con:name>planName</con:name>
-              <con:value>Eidelstedt 4 soapui-webservices</con:value>
+              <con:value>Eidelstedt4_SoapUI-XPlanDienste</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
           </con:parameters>
@@ -6224,7 +6224,7 @@ count(//wfs:member)</path>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Bereich/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+//wfs:member/xplan:BP_Bereich/xplan:xpPlanName="Eidelstedt4_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -6305,7 +6305,7 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
             </con:parameter>
             <con:parameter>
               <con:name>planName</con:name>
-              <con:value>Eidelstedt 4 soapui-webservices</con:value>
+              <con:value>Eidelstedt4_SoapUI-XPlanDienste</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
             <con:parameter>
@@ -7308,7 +7308,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Testplan Textsortierung Reine Nummerierung und Hinweise nur mit Buchstaben"</path>
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Testplan Textsortierung Reine Nummerierung und Hinweise nur mit Buchstaben_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -7438,7 +7438,7 @@ Zum Schutz des Grundwassers darf bei der Gründung des Bauvorhabens eine Untersc
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Testplan Textsortierung Mischform mit Priorität auf Buchstaben"</path>
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Testplan Textsortierung Mischform mit Priorität auf Buchstaben_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -7611,7 +7611,7 @@ Die zum Erhalt festgesetzten Bestandsbäume und alle Bäume im näheren Umfeld d
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Testplan Textsortierung Mischform mit Prioriaet auf Zahlen"</path>
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Testplan Textsortierung Mischform mit Prioriaet auf Zahlen_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -7802,7 +7802,7 @@ Alle nicht in der vorstehenden Aufstellung enthaltenen Sortimente sind "nicht ze
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Testplan Textsortierung mit Prioriaet auf Paragraphenzeichen"</path>
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Testplan Textsortierung mit Prioriaet auf Paragraphenzeichen_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -10116,7 +10116,7 @@ count(//wfs:member)</path>
             </con:parameter>
             <con:parameter>
               <con:name>planName</con:name>
-              <con:value>Eidelstedt 4 soapui-webservices</con:value>
+              <con:value>Eidelstedt4_SoapUI-XPlanDienste</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
             <con:parameter>
