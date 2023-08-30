@@ -9251,13 +9251,14 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="groovy" name="checkAndProcessSkip" id="38eb4441-0bf9-4b19-b963-14a1e8486455">
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing" id="38eb4441-0bf9-4b19-b963-14a1e8486455">
         <con:settings/>
         <con:config>
           <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
-def stepToGo = "POST BP 5.2 pI modifyStatusWithoutBereichExpectError"
 
 if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
 	testRunner.gotoStepByName(stepToGo);
 }</script>
         </con:config>
