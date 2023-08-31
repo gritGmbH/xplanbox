@@ -5885,7 +5885,7 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="name">
               <con:configuration>
                 <path>$.name</path>
                 <content>Eidelstedt4_SoapUI-XPlanManagerAPI</content>
@@ -5970,7 +5970,7 @@ assert expectedHeader == actualHeader</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
             <con:request>{
-   "name": "XPlanManagerAPI-Test - war Eidelstedt 4 geaendert",
+   "name": "Eidelstedt4_putBasisdatenBPlan_SoapUI-XPlanManagerAPI",
    "beschreibung": null,
    "planArt": 1000,
    "sonstPlanArt": "test-sonstPlanArt",
@@ -5986,10 +5986,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="5756af59-4456-4881-af7d-da50b504899a" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="5756af59-4456-4881-af7d-da50b504899a" name="name">
               <con:configuration>
                 <path>$.name</path>
-                <content>XPlanManagerAPI-Test - war Eidelstedt 4 geaendert</content>
+                <content>Eidelstedt4_putBasisdatenBPlan_SoapUI-XPlanManagerAPI</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -6031,10 +6031,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="name">
               <con:configuration>
                 <path>$.name</path>
-                <content>XPlanManagerAPI-Test - war Eidelstedt 4 geaendert</content>
+                <content>Eidelstedt4_putBasisdatenBPlan_SoapUI-XPlanManagerAPI</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -6076,7 +6076,7 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="name">
               <con:configuration>
                 <path>$.name</path>
                 <content>Flächennutzungsplan Freie und Hansestadt Hamburg_SoapUI-XPlanManagerAPI</content>
@@ -6115,7 +6115,7 @@ assert expectedHeader == actualHeader</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
             <con:request>{
-   "name": "XPlanManagerAPI-Test - putBasisdatenFNP50",
+   "name": "Flächennutzungsplan Freie und Hansestadt Hamburg_putBasisdatenFPlan_SoapUI-XPlanManagerAPI",
    "beschreibung": null,
    "planArt": 1000,
    "sonstPlanArt": "test-sonstPlanArt",
@@ -6131,10 +6131,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="5756af59-4456-4881-af7d-da50b504899a" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="5756af59-4456-4881-af7d-da50b504899a" name="name">
               <con:configuration>
                 <path>$.name</path>
-                <content>XPlanManagerAPI-Test - putBasisdatenFNP50</content>
+                <content>Flächennutzungsplan Freie und Hansestadt Hamburg_putBasisdatenFPlan_SoapUI-XPlanManagerAPI</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -6176,10 +6176,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="name">
               <con:configuration>
                 <path>$.name</path>
-                <content>XPlanManagerAPI-Test - putBasisdatenFNP50</content>
+                <content>Flächennutzungsplan Freie und Hansestadt Hamburg_putBasisdatenFPlan_SoapUI-XPlanManagerAPI</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -6221,7 +6221,7 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="name">
               <con:configuration>
                 <path>$.name</path>
                 <content>LP-Test 60_SoapUI-XPlanManagerAPI</content>
@@ -6260,7 +6260,7 @@ assert expectedHeader == actualHeader</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
             <con:request>{
-   "name": "XPlanManagerAPI-Test - putBasisdatenLPlan",
+   "name": "LP-Test 60_putBasisdatenLPlan_SoapUI-XPlanManagerAPI",
    "beschreibung": null,
    "planArt": 3000,
    "sonstPlanArt": "test-sonstPlanArt",
@@ -6276,10 +6276,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="5756af59-4456-4881-af7d-da50b504899a" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="5756af59-4456-4881-af7d-da50b504899a" name="name">
               <con:configuration>
                 <path>$.name</path>
-                <content>XPlanManagerAPI-Test - putBasisdatenLPlan</content>
+                <content>LP-Test 60_putBasisdatenLPlan_SoapUI-XPlanManagerAPI</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -6321,10 +6321,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="name">
               <con:configuration>
                 <path>$.name</path>
-                <content>XPlanManagerAPI-Test - putBasisdatenLPlan</content>
+                <content>LP-Test 60_putBasisdatenLPlan_SoapUI-XPlanManagerAPI</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -6366,7 +6366,7 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="name">
               <con:configuration>
                 <path>$.name</path>
                 <content>Regionales Raumordnungsprogramm Landkreis Test 2019_SoapUI-XPlanManagerAPI</content>
@@ -6405,7 +6405,7 @@ assert expectedHeader == actualHeader</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
             <con:request>{
-   "name": "XPlanManagerAPI-Test - putBasisdatenRPlan",
+   "name": "Regionales Raumordnungsprogramm Landkreis Test 2019_putBasisdatenRPlan_SoapUI-XPlanManagerAPI",
    "beschreibung": null,
    "planArt": 1000,
    "sonstPlanArt": "test-sonstPlanArt",
@@ -6421,10 +6421,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="5756af59-4456-4881-af7d-da50b504899a" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="5756af59-4456-4881-af7d-da50b504899a" name="name">
               <con:configuration>
                 <path>$.name</path>
-                <content>XPlanManagerAPI-Test - putBasisdatenRPlan</content>
+                <content>Regionales Raumordnungsprogramm Landkreis Test 2019_putBasisdatenRPlan_SoapUI-XPlanManagerAPI</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -6466,10 +6466,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="name">
               <con:configuration>
                 <path>$.name</path>
-                <content>XPlanManagerAPI-Test - putBasisdatenRPlan</content>
+                <content>Regionales Raumordnungsprogramm Landkreis Test 2019_putBasisdatenRPlan_SoapUI-XPlanManagerAPI</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -6511,7 +6511,7 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="name">
               <con:configuration>
                 <path>$.name</path>
                 <content>StErhVO_Eppendorf_Hoheluft-Ost_SoapUI-XPlanManagerAPI</content>
@@ -6550,7 +6550,7 @@ assert expectedHeader == actualHeader</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
             <con:request>{
-   "name": "XPlanManagerAPI-Test - putBasisdatenSOPlan",
+   "name": "StErhVO_Eppendorf_Hoheluft-Ost_putBasisdatenSOPlan_SoapUI-XPlanManagerAPI",
    "beschreibung": "siehe Lageplan",
    "planArt": 10000,
    "sonstPlanArt": "test-sonstPlanArt",
@@ -6566,10 +6566,10 @@ assert expectedHeader == actualHeader</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="5756af59-4456-4881-af7d-da50b504899a" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="5756af59-4456-4881-af7d-da50b504899a" name="name">
               <con:configuration>
                 <path>$.name</path>
-                <content>XPlanManagerAPI-Test - putBasisdatenSOPlan</content>
+                <content>StErhVO_Eppendorf_Hoheluft-Ost_putBasisdatenSOPlan_SoapUI-XPlanManagerAPI</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -6614,7 +6614,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:assertion type="JsonPath Match" id="b21f6eea-f563-40bf-a4de-5874bcf35549" name="name">
               <con:configuration>
                 <path>$.name</path>
-                <content>XPlanManagerAPI-Test - putBasisdatenSOPlan</content>
+                <content>StErhVO_Eppendorf_Hoheluft-Ost_putBasisdatenSOPlan_SoapUI-XPlanManagerAPI</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
