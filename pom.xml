@@ -41,6 +41,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <tests.jvm.xmx>1000m</tests.jvm.xmx>
     <build.key /> <!-- can be set by build job -->
+    <build-date-utc>${maven.build.timestamp}Z</build-date-utc>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
   </properties>
 
   <modules>
@@ -234,9 +236,12 @@
                     <build>
                       <dockerFileDir>${project.basedir}</dockerFileDir>
                       <args>
+                        <BUILD_DATE>'${build-date-utc}'</BUILD_DATE>
+                        <DOCKER_IMAGE_NAME>${docker-image.name}</DOCKER_IMAGE_NAME>
+                        <GIT_REVISION>${git.commit.id}</GIT_REVISION>
+                        <WEB_CONTEXT>${project.artifactId}</WEB_CONTEXT>
                         <XPLANBOX_VERSION>${project.version}</XPLANBOX_VERSION>
                         <XPLANBOX_IMAGE_NAME_PREFIX>${docker-image.namePrefix}</XPLANBOX_IMAGE_NAME_PREFIX>
-                        <WEB_CONTEXT>${project.artifactId}</WEB_CONTEXT>
                       </args>
                       <tags>
                         <tag>${project.version}</tag>
