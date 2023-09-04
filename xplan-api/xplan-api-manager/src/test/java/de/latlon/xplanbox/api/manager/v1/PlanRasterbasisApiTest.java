@@ -20,11 +20,19 @@
  */
 package de.latlon.xplanbox.api.manager.v1;
 
-import de.latlon.xplan.core.manager.db.config.JpaContext;
-import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
-import de.latlon.xplanbox.api.manager.config.ApplicationContext;
-import de.latlon.xplanbox.api.manager.config.HsqlJpaContext;
-import de.latlon.xplanbox.api.manager.config.TestContext;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
+import static javax.ws.rs.core.MediaType.TEXT_PLAIN_TYPE;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.File;
+import java.net.URISyntaxException;
+
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
@@ -33,26 +41,19 @@ import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.io.File;
-import java.net.URISyntaxException;
-
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
-import static javax.ws.rs.core.MediaType.TEXT_PLAIN_TYPE;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import de.latlon.xplan.core.manager.db.config.JpaContext;
+import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
+import de.latlon.xplanbox.api.manager.config.ApplicationContext;
+import de.latlon.xplanbox.api.manager.config.HsqlJpaContext;
+import de.latlon.xplanbox.api.manager.config.TestContext;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class PlanRasterbasisApiTest extends JerseyTest {
+class PlanRasterbasisApiTest extends JerseyTest {
 
 	@Override
 	protected Application configure() {
@@ -73,15 +74,15 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_getRasterbasise_returnsCorrectStatusCodeForValidMediaType() {
+	void verifyThat_getRasterbasise_returnsCorrectStatusCodeForValidMediaType() {
 		Response response = target("/plan/2/rasterbasis").request(APPLICATION_JSON).get();
 
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 	}
 
 	@Test
-	public void verifyThat_addRasterbasis_returnsCorrectStatusCodeForValidMediaType() throws URISyntaxException {
+	void verifyThat_addRasterbasis_returnsCorrectStatusCodeForValidMediaType() throws URISyntaxException {
 		FileDataBodyPart rasterbasismodel = createFileDataBodyPart("rasterbasismodel", "rasterbasismodel.json",
 				APPLICATION_JSON_TYPE);
 		FileDataBodyPart rasterFilePart = createFileDataBodyPart("rasterdatei", "datei.pdf", null);
@@ -93,25 +94,24 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 
 		Response response = target("/plan/2/rasterbasis").request()
 			.post(Entity.entity(multipart, multipart.getMediaType()));
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 
 	}
 
 	@Test
-	public void verifyThat_getRasterbasisById_returnsCorrectStatusCodeForValidMediaType() {
+	void verifyThat_getRasterbasisById_returnsCorrectStatusCodeForValidMediaType() {
 		Response response = target(
 				"/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif")
 			.request(APPLICATION_JSON)
 			.get();
 
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 	}
 
 	@Test
-	public void verifyThat_replaceRasterbasisById_returnsCorrectStatusCodeForValidMediaType()
-			throws URISyntaxException {
+	void verifyThat_replaceRasterbasisById_returnsCorrectStatusCodeForValidMediaType() throws URISyntaxException {
 		FileDataBodyPart rasterbasismodel = createFileDataBodyPart("rasterbasismodel", "rasterbasismodel.json",
 				APPLICATION_JSON_TYPE);
 		FileDataBodyPart rasterFilePart = createFileDataBodyPart("rasterdatei", "datei.pdf", null);
@@ -125,23 +125,23 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 				"/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif")
 			.request()
 			.put(Entity.entity(multipart, multipart.getMediaType()));
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 	}
 
 	@Test
-	public void verifyThat_deleteRasterbasisById_returnsCorrectStatusCodeForValidMediaType() {
+	void verifyThat_deleteRasterbasisById_returnsCorrectStatusCodeForValidMediaType() {
 		Response response = target(
 				"/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif")
 			.request(APPLICATION_JSON)
 			.delete();
 
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 	}
 
 	@Test
-	public void verifyThat_addRasterbasis_returnsMissingBereichNummer() throws URISyntaxException {
+	void verifyThat_addRasterbasis_returnsMissingBereichNummer() throws URISyntaxException {
 		FileDataBodyPart rasterbasismodel = createFileDataBodyPart("rasterbasismodel",
 				"rasterbasismodel_missingbereichnummer.json", APPLICATION_JSON_TYPE);
 		FileDataBodyPart rasterFilePart = createFileDataBodyPart("rasterdatei", "datei.pdf", null);
@@ -153,11 +153,11 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 
 		Response response = target("/plan/2/rasterbasis").request()
 			.post(Entity.entity(multipart, multipart.getMediaType()));
-		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.BAD_REQUEST.getStatusCode());
 	}
 
 	@Test
-	public void verifyThat_replaceRasterbasisById_returnsMissingBereichNummer() throws URISyntaxException {
+	void verifyThat_replaceRasterbasisById_returnsMissingBereichNummer() throws URISyntaxException {
 		FileDataBodyPart rasterbasismodel = createFileDataBodyPart("rasterbasismodel",
 				"rasterbasismodel_missingbereichnummer.json", APPLICATION_JSON_TYPE);
 		FileDataBodyPart rasterFilePart = createFileDataBodyPart("rasterdatei", "datei.pdf", null);
@@ -171,11 +171,11 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 				"/plan/2/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif")
 			.request()
 			.put(Entity.entity(multipart, multipart.getMediaType()));
-		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.BAD_REQUEST.getStatusCode());
 	}
 
 	@Test
-	public void verifyThat_addRasterbasis_PlanOhneBereich_returnInvalidPlanToEdit() throws URISyntaxException {
+	void verifyThat_addRasterbasis_PlanOhneBereich_returnInvalidPlanToEdit() throws URISyntaxException {
 		FileDataBodyPart rasterbasismodel = createFileDataBodyPart("rasterbasismodel", "rasterbasismodel.json",
 				APPLICATION_JSON_TYPE);
 		FileDataBodyPart rasterFilePart = createFileDataBodyPart("rasterdatei", "datei.pdf", null);
@@ -187,11 +187,11 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 
 		Response response = target("/plan/7/rasterbasis").request()
 			.post(Entity.entity(multipart, multipart.getMediaType()));
-		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.BAD_REQUEST.getStatusCode());
 	}
 
 	@Test
-	public void verifyThat_replaceRasterbasis_PlanOhneBereich_returnInvalidPlanToEdit() throws URISyntaxException {
+	void verifyThat_replaceRasterbasis_PlanOhneBereich_returnInvalidPlanToEdit() throws URISyntaxException {
 		FileDataBodyPart rasterbasismodel = createFileDataBodyPart("rasterbasismodel", "rasterbasismodel.json",
 				APPLICATION_JSON_TYPE);
 		FileDataBodyPart rasterFilePart = createFileDataBodyPart("rasterdatei", "datei.pdf", null);
@@ -205,7 +205,7 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 				"/plan/7/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif")
 			.request()
 			.put(Entity.entity(multipart, multipart.getMediaType()));
-		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.BAD_REQUEST.getStatusCode());
 	}
 
 	private FileDataBodyPart createFileDataBodyPart(String name, String resource, MediaType mediaType)

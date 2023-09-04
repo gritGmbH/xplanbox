@@ -39,6 +39,10 @@
               <id>create-overlay</id>
               <groupId>de.latlon</groupId>
               <artifactId>deegree-webservices</artifactId>
+              <excludes>
+                <exclude>META-INF/MANIFEST.MF</exclude>
+                <exclude>WEB-INF/classes/log4j2.properties</exclude>
+              </excludes>
             </overlay>
           </overlays>
           <webResources>

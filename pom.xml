@@ -41,6 +41,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <tests.jvm.xmx>1000m</tests.jvm.xmx>
     <build.key /> <!-- can be set by build job -->
+    <build-date-utc>${maven.build.timestamp}Z</build-date-utc>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
   </properties>
 
   <modules>
@@ -234,9 +236,12 @@
                     <build>
                       <dockerFileDir>${project.basedir}</dockerFileDir>
                       <args>
+                        <BUILD_DATE>'${build-date-utc}'</BUILD_DATE>
+                        <DOCKER_IMAGE_NAME>${docker-image.name}</DOCKER_IMAGE_NAME>
+                        <GIT_REVISION>${git.commit.id}</GIT_REVISION>
+                        <WEB_CONTEXT>${project.artifactId}</WEB_CONTEXT>
                         <XPLANBOX_VERSION>${project.version}</XPLANBOX_VERSION>
                         <XPLANBOX_IMAGE_NAME_PREFIX>${docker-image.namePrefix}</XPLANBOX_IMAGE_NAME_PREFIX>
-                        <WEB_CONTEXT>${project.artifactId}</WEB_CONTEXT>
                       </args>
                       <tags>
                         <tag>${project.version}</tag>
@@ -841,6 +846,11 @@
         <artifactId>log4j-web</artifactId>
         <version>${log4j.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-layout-template-json</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
       <!-- commons -->
       <dependency>
         <groupId>commons-fileupload</groupId>
@@ -1144,6 +1154,18 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.13.2</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>5.10.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>3.24.2</version>
         <scope>test</scope>
       </dependency>
       <dependency>

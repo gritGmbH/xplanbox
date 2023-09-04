@@ -20,29 +20,28 @@
  */
 package de.latlon.xplanbox.api.manager.v1;
 
-import de.latlon.xplan.core.manager.db.config.JpaContext;
-import de.latlon.xplanbox.api.manager.config.ApplicationContext;
-import de.latlon.xplanbox.api.manager.config.HsqlJpaContext;
-import de.latlon.xplanbox.api.manager.config.TestContext;
-import org.apache.http.HttpHeaders;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.test.JerseyTest;
-import org.glassfish.jersey.test.TestProperties;
-import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.apache.http.HttpHeaders;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
+import org.glassfish.jersey.test.TestProperties;
+import org.junit.jupiter.api.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import de.latlon.xplan.core.manager.db.config.JpaContext;
+import de.latlon.xplanbox.api.manager.config.ApplicationContext;
+import de.latlon.xplanbox.api.manager.config.HsqlJpaContext;
+import de.latlon.xplanbox.api.manager.config.TestContext;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
-public class DefaultApiTest extends JerseyTest {
+class DefaultApiTest extends JerseyTest {
 
 	@Override
 	protected Application configure() {
@@ -55,18 +54,18 @@ public class DefaultApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
+	void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
 		final Response response = target("/").request(APPLICATION_JSON).get();
 
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE)).isEqualTo(APPLICATION_JSON);
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsOpenApiDocument() {
+	void verifyThat_Response_ContainsOpenApiDocument() {
 		final String response = target("/").request(APPLICATION_JSON).get(String.class);
 
-		assertThat(response, containsString("\"openapi\":\"3.0.1\""));
+		assertThat(response).contains("\"openapi\":\"3.0.1\"");
 	}
 
 }

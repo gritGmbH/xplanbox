@@ -182,6 +182,10 @@
       <artifactId>log4j-slf4j-impl</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-layout-template-json</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-core</artifactId>
     </dependency>
@@ -195,10 +199,6 @@
     </dependency>
     <!-- test -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
     </dependency>
@@ -208,23 +208,58 @@
     </dependency>
     <dependency>
       <groupId>org.xmlunit</groupId>
-      <artifactId>xmlunit-matchers</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.jayway.jsonpath</groupId>
-      <artifactId>json-path-assert</artifactId>
+      <artifactId>xmlunit-assertj</artifactId>
+      <version>2.9.1</version>
       <scope>test</scope>
     </dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-test</artifactId>
+    <version>2.7.14</version>
+    <scope>test</scope>
+      <exclusions>
+      	<exclusion>
+      		<groupId>*</groupId>
+      		<artifactId>*</artifactId>
+      	</exclusion>
+      </exclusions>
+</dependency>
     <dependency>
       <groupId>org.glassfish.jersey.test-framework</groupId>
       <artifactId>jersey-test-framework-core</artifactId>
       <version>${jersey.version}</version>
       <scope>test</scope>
+      <exclusions>
+      	<exclusion>
+      		<groupId>org.hamcrest</groupId>
+      		<artifactId>hamcrest-core</artifactId>
+      	</exclusion>
+      	<exclusion>
+      		<groupId>junit</groupId>
+      		<artifactId>junit</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.test-framework.providers</groupId>
       <artifactId>jersey-test-framework-provider-inmemory</artifactId>
       <version>${jersey.version}</version>
+      <scope>test</scope>
+      <exclusions>
+      	<exclusion>
+      		<groupId>junit</groupId>
+      		<artifactId>junit</artifactId>
+      	</exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

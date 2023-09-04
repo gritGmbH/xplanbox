@@ -5576,7 +5576,7 @@
           <gml:upperCorner>418523.944 5716033.278</gml:upperCorner>
         </gml:Envelope>
       </gml:boundedBy>
-      <xplan:name>"Heideweg"</xplan:name>
+      <xplan:name>Heideweg_SoapUI-XPlanManagerAPI</xplan:name>
       <xplan:nummer>Nr.1</xplan:nummer>
       <xplan:technHerstellDatum>2001-08-27</xplan:technHerstellDatum>
       <xplan:erstellungsMassstab>1000</xplan:erstellungsMassstab>

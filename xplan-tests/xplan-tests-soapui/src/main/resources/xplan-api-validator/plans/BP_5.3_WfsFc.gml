@@ -8,7 +8,7 @@
           <gml:upperCorner>567736.461 5929784.241</gml:upperCorner>
         </gml:Envelope>
       </gml:boundedBy>
-      <xplan:name>BPlan003_5-3</xplan:name>
+      <xplan:name>BPlan003_5-3_SoapUI-XPlanValidatorAPI</xplan:name>
       <xplan:beschreibung>Der Bebauungsplan BPlan003_5-3 für den Geltungsbereich
 südlich Rahmwerder Straße einschließlich einer Teilfläche
 des bestehenden Schulgeländes nördlich Rahmwerder

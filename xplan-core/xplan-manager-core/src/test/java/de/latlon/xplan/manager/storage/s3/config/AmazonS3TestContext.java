@@ -20,20 +20,23 @@
  */
 package de.latlon.xplan.manager.storage.s3.config;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.AnonymousAWSCredentials;
-import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import io.findify.s3mock.S3Mock;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.test.util.TestSocketUtils;
 
-import javax.annotation.PreDestroy;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.AnonymousAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+
+import io.findify.s3mock.S3Mock;
 
 /**
  * Spring Configuration to enable usage of mock objects for integration tests.
@@ -50,9 +53,11 @@ public class AmazonS3TestContext {
 	@Autowired
 	private AmazonS3 s3TestClient;
 
+	private final int port = TestSocketUtils.findAvailableTcpPort();
+
 	@Bean
 	@Profile("mock")
-	public S3Mock s3Mock(@Value("${s3.endpoint.port}") int port) {
+	public S3Mock s3Mock() {
 		S3Mock s3Mock = new S3Mock.Builder().withPort(port).withInMemoryBackend().build();
 		s3Mock.start();
 		return s3Mock;
@@ -62,8 +67,7 @@ public class AmazonS3TestContext {
 	@Primary
 	@Profile("mock")
 	public AmazonS3 s3TestClient(@Value("${s3.region}") String signingRegion,
-			@Value("${s3.bucketName}") String bucketName, @Value("${s3.endpoint.url}") String url,
-			@Value("${s3.endpoint.port}") String port) {
+			@Value("${s3.bucketName}") String bucketName, @Value("${s3.endpoint.url}") String url) {
 		AwsClientBuilder.EndpointConfiguration endpoint = new AwsClientBuilder.EndpointConfiguration(url + ":" + port,
 				signingRegion);
 		AmazonS3 client = AmazonS3ClientBuilder.standard()
