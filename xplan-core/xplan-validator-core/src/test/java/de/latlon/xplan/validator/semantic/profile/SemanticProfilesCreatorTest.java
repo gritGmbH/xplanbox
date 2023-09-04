@@ -56,12 +56,12 @@ public class SemanticProfilesCreatorTest {
 				validatorPropertiesLoader, resourceLoader);
 
 		SemanticProfiles semanticProfiles = semanticProfilesCreator
-			.createSemanticProfiles(Arrays.asList("test1", "test2"));
+			.createSemanticProfiles(Arrays.asList("test1", "test2", "test3"));
 		List<RulesMetadata> profileMetadata = semanticProfiles.getProfileMetadata();
 		List<SemanticProfileValidator> profileValidators = semanticProfiles.getProfileValidators();
 
-		assertEquals(2, profileMetadata.size());
-		assertEquals(2, profileValidators.size());
+		assertEquals(3, profileMetadata.size());
+		assertEquals(3, profileValidators.size());
 	}
 
 	@Test

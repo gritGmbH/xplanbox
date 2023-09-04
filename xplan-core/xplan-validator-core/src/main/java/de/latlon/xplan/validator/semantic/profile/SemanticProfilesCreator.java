@@ -20,8 +20,8 @@
  */
 package de.latlon.xplan.validator.semantic.profile;
 
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
@@ -87,17 +87,12 @@ public class SemanticProfilesCreator {
 			throws ConfigurationException {
 		try {
 			Resource[] resources = ResourcePatternUtils.getResourcePatternResolver(resourceLoader)
-				.getResources("classpath*:/profil-*.y*ml");
+				.getResources("classpath*:/profiles-*.y*ml");
 			for (int i = 0; i < resources.length; i++) {
 				Resource resource = resources[i];
 				LOG.info("Found profile resource: {}", resource);
-				ValidatorProfile validatorProfile = parseProfile(resource);
-				if (activatedProfiles.contains(validatorProfile.getId())) {
-					addSemanticProfilesFromResource(semanticProfiles, resource, validatorProfile);
-				}
-				else {
-					LOG.info("Profile with id {} is available but not activated.", validatorProfile.getId());
-				}
+				List<ValidatorProfile> validatorProfiles = parseProfiles(resource);
+				addSemanticProfileFromResource(semanticProfiles, activatedProfiles, validatorProfiles, resource);
 			}
 		}
 		catch (IOException e) {
@@ -105,7 +100,19 @@ public class SemanticProfilesCreator {
 		}
 	}
 
-	private void addSemanticProfilesFromResource(SemanticProfiles semanticProfiles, Resource resource,
+	private void addSemanticProfileFromResource(SemanticProfiles semanticProfiles, List<String> activatedProfiles,
+			List<ValidatorProfile> validatorProfiles, Resource resource) throws IOException, ConfigurationException {
+		for (ValidatorProfile validatorProfile : validatorProfiles) {
+			if (activatedProfiles.contains(validatorProfile.getId())) {
+				addSemanticProfileFromResource(semanticProfiles, resource, validatorProfile);
+			}
+			else {
+				LOG.info("Profile with id {} is available but not activated.", validatorProfile.getId());
+			}
+		}
+	}
+
+	private void addSemanticProfileFromResource(SemanticProfiles semanticProfiles, Resource resource,
 			ValidatorProfile validatorProfile) throws IOException, ConfigurationException {
 		URL uri = resource.getURL();
 		if (resource.isFile()) {
@@ -126,10 +133,10 @@ public class SemanticProfilesCreator {
 		}
 	}
 
-	private ValidatorProfile parseProfile(Resource resource) throws IOException {
+	private List<ValidatorProfile> parseProfiles(Resource resource) throws IOException {
 		try (InputStream configFile = resource.getInputStream()) {
 			ObjectMapper om = new ObjectMapper(new YAMLFactory());
-			JavaType javaType = om.getTypeFactory().constructType(ValidatorProfile.class);
+			CollectionType javaType = om.getTypeFactory().constructCollectionType(List.class, ValidatorProfile.class);
 			return om.readValue(configFile, javaType);
 		}
 	}
