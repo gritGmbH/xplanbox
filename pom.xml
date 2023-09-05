@@ -227,7 +227,7 @@
             <plugin>
               <groupId>io.fabric8</groupId>
               <artifactId>docker-maven-plugin</artifactId>
-              <version>0.43.0</version>
+              <version>0.43.4</version>
               <configuration>
                 <skip>${docker-image.skip}</skip>
                 <images>
@@ -254,6 +254,7 @@
                 <execution>
                   <goals>
                     <goal>build</goal>
+                    <goal>push</goal>
                     <goal>source</goal>
                   </goals>
                 </execution>
