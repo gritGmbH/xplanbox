@@ -68,7 +68,7 @@
             <Size>3</Size>
             <Rotation>0</Rotation>
           </Graphic>
-          <sed:PositionPercentage>0</sed:PositionPercentage>
+          <SvgParameter name="deegree-graphicstroke-position-percentage">0</SvgParameter>
         </sed:GraphicStroke>
       </Stroke>
     </LineSymbolizer>
@@ -95,7 +95,7 @@
             <Size>3</Size>
             <Rotation>180</Rotation>
           </Graphic>
-          <sed:PositionPercentage>99.9</sed:PositionPercentage>
+          <SvgParameter name="deegree-graphicstroke-position-percentage">99.9</SvgParameter>
         </sed:GraphicStroke>
       </Stroke>
     </LineSymbolizer>
