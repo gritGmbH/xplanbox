@@ -26,8 +26,7 @@ XPLAN_S3_BUCKET_NAME="${XPLAN_S3_BUCKET_NAME:-tobedefined}"
 if [[ -z "${spring_profiles_active##*s3img*}" ]]
 then
   echo "[$(date -Iseconds)] MapServer storage type is S3"
-  sed -i 's|# SHAPEPATH "/vsis3/bucket_name/"|SHAPEPATH "/vsis3/'$XPLAN_S3_BUCKET_NAME'/"|g' $MS_MAPFILE
-  sed -i 's|SHAPEPATH "/etc/mapserver/data/"|# SHAPEPATH "/etc/mapserver/data/"|g' $MS_MAPFILE
+  sed -i 's|SHAPEPATH "/etc/mapserver/data/"|SHAPEPATH "/vsis3/'$XPLAN_S3_BUCKET_NAME'/"|g' $MS_MAPFILE
 fi
 
 echo "[$(date -Iseconds)] Start mapserver..."
