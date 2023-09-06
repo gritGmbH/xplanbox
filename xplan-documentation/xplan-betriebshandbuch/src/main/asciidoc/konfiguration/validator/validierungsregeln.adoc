@@ -89,6 +89,8 @@ Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Validierungsreg
   description: Vorgaben aus Musterpflichtenheft zur Erstellung XPlanung-konformer Bebauungspläne in NRW
 ----
 
+NOTE: Alternativ zur Konfiguration von Profilen im Dateisystem unter _<XPLANBOX_CONFIG>/profiles_ können Profile auch im Classpath der Anwendung bzw. der API abgelegt werden. Dabei gelten die zuvor genannten Anforderungen. Weiterhin muss die Konfigurationsdatei im YAML-Dateiformat dem Namen _profiles-<bez>.yaml_ oder _profiles-<bez>.yml_ entsprechen. Als <bez> sollte zur eindeutigen Zuordnung ein eindeutiger Bezeichner verwendet werden. Z.B. _profiles-nds.yaml_.
+
 Die XQuery-Regeln für ein Profil müssen in dem Verzeichnis _<XPLANBOX_CONFIG>/profiles/id_ mit der id aus der Profil-Konfiguration [1] liegen. Die Verzeichnisstruktur unterhalb dieses Verzeichnisses muss folgende Vorgaben erfüllen:
 ** Die Dateien mit den XQuery-Regeln müssen je XPlanGML-Version in getrennten Verzeichnissen abgelegt werden. Der Verzeichnisname setzt sich zusammen aus _xplangml<XPLANGML-VERSION>_, z. B. _xplangml54_, _xplangml60_.
 ** Es dürfen nur Unterverzeichnisse mit Validierungsregeln vorkommen, deren XPlanGML-Version von der xPlanBox unterstützt wird.
@@ -127,7 +129,3 @@ nrw
 <2> Datei mit den Informationen zur Quelle und Version der Regeln, siehe <<semantische-validierungsregeln-beispiel-versionproperties>>
 <3> Verzeichnis mit Validierungsregeln für die XPlanGML-Version 5.4
 <4> Verzeichnis mit Validierungsregeln für die XPlanGML-Version 6.0
-
-==== Alternative Konfiguration von Validierungsprofilen
-
-Alternativ zur Konfiguration von Profilen im Dateisystem unter _<XPLANBOX_CONFIG>/profiles_ können Profile auch im Classpath der Anwendung bzw. der API abgelegt werden. Dabei gelten die zuvor genannten Anforderungen. Weiterhin muss die Konfigurationsdatei im YAML-Dateiformat dem Namen _profiles-<bez>.yaml_ oder _profiles-<bez>.yml_ entsprechen. Als <bez> sollte zur eindeutigen Zuordnung ein eindeutiger Bezeichner verwendet werden. Z.B. _profiles-nds.yaml_.
