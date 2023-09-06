@@ -18,6 +18,7 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 
 RUN mkdir -p /xplan-docker-mapserver
 RUN chown 1001 /etc/mapserver
+
 ADD target/xplan-docker-mapserver-*.tgz /
 ADD startupWithConfiguredMapserver.sh /xplan-docker-mapserver/
 
