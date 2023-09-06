@@ -213,24 +213,6 @@ fi
 
 sed -i 's|validatorWmsEndpoint=|validatorWmsEndpoint='$XPLAN_VALIDATORWMS_URL_PUBLIC'\/xplan-validator-wms\/services\/wms|g' xplan-validator-config/validatorConfiguration.properties
 
-XPLAN_INIT_BERLINERPROFIL="${XPLAN_INIT_BERLINERPROFIL:-disabled}"
-if [ $XPLAN_INIT_BERLINERPROFIL = "enabled" ]
-then
-  XPLAN_INIT_BERLINERPROFIL_VERSION="${XPLAN_INIT_BERLINERPROFIL_VERSION:-0.3}"
-  BERLINERPROFIL_URL=https://gitlab.opencode.de/api/v4/projects/397/packages/maven/de/xleitstelle/xplanung/regeln-berlin/$XPLAN_INIT_BERLINERPROFIL_VERSION/regeln-berlin-$XPLAN_INIT_BERLINERPROFIL_VERSION.jar
-  echo "[$(date -Iseconds)] Add Berliner Profile: $BERLINERPROFIL_URL"
-  # Copy berliner profile
-  curl $BERLINERPROFIL_URL -s -o /tmp/regeln-berlin.jar
-  # XPlanValidator
-  mkdir $XPLANBOX_VOLUMES/xplan-validator-config/profiles
-  unzip -q /tmp/regeln-berlin.jar -x "META-INF/*" -d $XPLANBOX_VOLUMES/xplan-validator-config/profiles
-  # XPlanManager
-  mkdir $XPLANBOX_VOLUMES/xplan-manager-config/profiles
-  unzip -q /tmp/regeln-berlin.jar -x "META-INF/*" -d $XPLANBOX_VOLUMES/xplan-manager-config/profiles
-  # cleanup
-  rm /tmp/regeln-berlin.jar
-fi
-
 # memory or sql
 if [[ -z "${spring_profiles_active##*validatorwmssql*}" ]]
 then

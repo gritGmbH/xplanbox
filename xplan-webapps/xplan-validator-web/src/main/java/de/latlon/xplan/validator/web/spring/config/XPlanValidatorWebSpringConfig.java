@@ -23,23 +23,20 @@ package de.latlon.xplan.validator.web.spring.config;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
-import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
 import de.latlon.xplan.validator.configuration.ValidatorConfigurationParser;
-import de.latlon.xplan.validator.configuration.ValidatorProfile;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
-import de.latlon.xplan.validator.semantic.configuration.message.FileRulesMessagesAccessor;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
-import de.latlon.xplan.validator.semantic.profile.DelegatingSemanticProfileValidator;
-import de.latlon.xplan.validator.semantic.profile.SemanticProfileValidator;
+import de.latlon.xplan.validator.semantic.profile.SemanticProfiles;
+import de.latlon.xplan.validator.semantic.profile.SemanticProfilesCreator;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
@@ -51,20 +48,21 @@ import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import de.latlon.xplan.validator.wms.config.ValidatorWmsContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.io.ResourceLoader;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static java.nio.file.Paths.get;
 
@@ -91,55 +89,17 @@ public class XPlanValidatorWebSpringConfig {
 		return new GeometricValidatorImpl();
 	}
 
+	@Autowired
+	private ResourceLoader resourceLoader;
+
 	@Bean
 	public SemanticValidator semanticValidator(XQuerySemanticValidatorConfigurationRetriever configurationRetriever)
-			throws ValidatorException {
+			throws ConfigurationException {
 		return new XQuerySemanticValidator(configurationRetriever);
 	}
 
 	@Bean
-	public Map<ValidatorProfile, RulesMetadata> profilesAndMetadata(ValidatorConfiguration validatorConfiguration,
-			PropertiesLoader validatorPropertiesLoader) throws ValidatorException {
-		Map<ValidatorProfile, RulesMetadata> profilesAndMetadata = new HashMap<>();
-		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
-			String profileId = validatorProfile.getId();
-			Path rulesDirectory = validatorPropertiesLoader.resolveDirectory("profiles").resolve(profileId);
-			RulesVersionParser rulesVersionParser = new RulesVersionParser();
-			RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesDirectory);
-			RulesMetadata newRulesMetadata = new RulesMetadata(profileId, validatorProfile.getName(),
-					validatorProfile.getDescription(), rulesVersion.getVersion(), rulesVersion.getSource());
-			profilesAndMetadata.put(validatorProfile, newRulesMetadata);
-		}
-		return profilesAndMetadata;
-	}
-
-	@Bean
-	public List<RulesMetadata> profileMetadata(Map<ValidatorProfile, RulesMetadata> profilesAndMetadata) {
-		return profilesAndMetadata.values().stream().collect(Collectors.toList());
-	}
-
-	@Bean
-	public List<SemanticProfileValidator> profileValidators(Map<ValidatorProfile, RulesMetadata> profilesAndMetadata,
-			PropertiesLoader validatorPropertiesLoader) throws ValidatorException {
-		List<SemanticProfileValidator> semanticValidators = new ArrayList<>();
-		for (Map.Entry<ValidatorProfile, RulesMetadata> profileAndMetadata : profilesAndMetadata.entrySet()) {
-			RulesMetadata rulesMetadata = profileAndMetadata.getValue();
-			ValidatorProfile validatorProfile = profileAndMetadata.getKey();
-			String profileId = validatorProfile.getId();
-			Path rulesDirectory = validatorPropertiesLoader.resolveDirectory("profiles").resolve(profileId);
-			FileRulesMessagesAccessor messagesAccessor = new FileRulesMessagesAccessor(rulesDirectory);
-			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
-					rulesDirectory, rulesMetadata, messagesAccessor);
-			XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
-					xQuerySemanticValidatorConfigurationRetriever);
-			semanticValidators
-				.add(new DelegatingSemanticProfileValidator(rulesMetadata.getId(), xQuerySemanticValidator));
-		}
-		return semanticValidators;
-	}
-
-	@Bean
-	public XQuerySemanticValidatorConfigurationRetriever configurationRetriever(Path rulesPath) {
+	public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(Path rulesPath) {
 		RulesVersionParser rulesVersionParser = new RulesVersionParser();
 		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
 		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
@@ -147,11 +107,14 @@ public class XPlanValidatorWebSpringConfig {
 	}
 
 	@Bean
-	public XPlanValidator xplanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
-			SemanticValidator semanticValidator, List<SemanticProfileValidator> profileValidators,
-			ReportArchiveGenerator reportArchiveGenerator) {
-		return new XPlanValidator(geometricValidator, syntacticValidator, semanticValidator, profileValidators,
-				reportArchiveGenerator);
+	public SemanticProfiles semanticProfiles(ValidatorConfiguration validatorConfiguration,
+			PropertiesLoader validatorPropertiesLoader,
+			@Value("#{environment.XPLAN_VALIDATOR_PROFILES}") String activatedProfiles) throws ConfigurationException {
+		List<String> activatedProfilesList = activatedProfiles != null ? Arrays.asList(activatedProfiles.split(","))
+				: Collections.emptyList();
+		SemanticProfilesCreator semanticProfilesCreator = new SemanticProfilesCreator(validatorConfiguration,
+				validatorPropertiesLoader, resourceLoader);
+		return semanticProfilesCreator.createSemanticProfiles(activatedProfilesList);
 	}
 
 	@Bean
@@ -174,6 +137,14 @@ public class XPlanValidatorWebSpringConfig {
 			throws IOException, ConfigurationException {
 		ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
 		return validatorConfigurationParser.parse(validatorPropertiesLoader);
+	}
+
+	@Bean
+	public XPlanValidator xplanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
+			SemanticValidator semanticValidator, SemanticProfiles semanticProfiles,
+			ReportArchiveGenerator reportArchiveGenerator) {
+		return new XPlanValidator(geometricValidator, syntacticValidator, semanticValidator,
+				semanticProfiles.getProfileValidators(), reportArchiveGenerator);
 	}
 
 	@Bean

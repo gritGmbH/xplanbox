@@ -23,6 +23,7 @@ package de.latlon.xplan.validator.semantic.xquery;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
 import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration;
+import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorResult;
@@ -62,7 +63,8 @@ public class XQuerySemanticValidator implements SemanticValidator {
 	 * @param retriever retrieves the configuration for this validator
 	 * @throws ValidatorException
 	 */
-	public XQuerySemanticValidator(XQuerySemanticValidatorConfigurationRetriever retriever) throws ValidatorException {
+	public XQuerySemanticValidator(XQuerySemanticValidatorConfigurationRetriever retriever)
+			throws ConfigurationException {
 		this(retriever, null);
 	}
 
@@ -74,14 +76,14 @@ public class XQuerySemanticValidator implements SemanticValidator {
 	 * @throws ValidatorException
 	 */
 	public XQuerySemanticValidator(XQuerySemanticValidatorConfigurationRetriever retriever,
-			SemanticConformityLinkConfiguration semanticConformityLinkConfiguration) throws ValidatorException {
+			SemanticConformityLinkConfiguration semanticConformityLinkConfiguration) throws ConfigurationException {
 		this.semanticConformityLinkConfiguration = semanticConformityLinkConfiguration;
 		try {
 			semanticValidatorConfiguration = retriever.retrieveConfiguration();
 		}
 		catch (IOException e) {
 			LOG.error("Could not instantiate semantic validator. Reason: {}", e.getMessage());
-			throw new ValidatorException("Could not create validator.", e);
+			throw new ConfigurationException("Could not create validator.", e);
 		}
 	}
 

@@ -8,28 +8,24 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.validator.semantic.profile;
 
-import de.latlon.xplan.validator.semantic.SemanticValidator;
+import org.springframework.context.annotation.Configuration;
 
 /**
- * Validates <link>XPlanArchives</link> semantically
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public interface SemanticProfileValidator extends SemanticValidator {
-
-	/**
-	 * @return the unique id of the validator, never <code>null</code>
-	 */
-	String getId();
+@Configuration
+public class TestContext {
 
 }

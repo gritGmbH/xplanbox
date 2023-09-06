@@ -64,7 +64,7 @@ public class XPlanValidatorCliSpringConfig {
 	@Bean
 	@Lazy
 	@Scope("prototype")
-	public SemanticValidator semanticValidator(Path rulesPath) throws ValidatorException {
+	public SemanticValidator semanticValidator(Path rulesPath) throws ConfigurationException {
 		RulesVersionParser rulesVersionParser = new RulesVersionParser();
 		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
 		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);

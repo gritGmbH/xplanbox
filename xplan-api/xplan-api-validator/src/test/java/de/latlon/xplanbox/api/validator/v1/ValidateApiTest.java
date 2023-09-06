@@ -20,26 +20,9 @@
  */
 package de.latlon.xplanbox.api.validator.v1;
 
-import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP;
-import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP_COMPRESSED;
-import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM;
-import static javax.ws.rs.core.MediaType.APPLICATION_XML;
-import static javax.ws.rs.core.MediaType.TEXT_XML;
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.Response;
-
+import de.latlon.xplan.validator.semantic.profile.SemanticProfiles;
+import de.latlon.xplanbox.api.validator.config.ApplicationContext;
+import de.latlon.xplanbox.api.validator.config.TestContext;
 import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
@@ -50,9 +33,23 @@ import org.junit.jupiter.api.io.TempDir;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplanbox.api.validator.config.ApplicationContext;
-import de.latlon.xplanbox.api.validator.config.TestContext;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Response;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP;
+import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP_COMPRESSED;
+import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM;
+import static javax.ws.rs.core.MediaType.APPLICATION_XML;
+import static javax.ws.rs.core.MediaType.TEXT_XML;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
@@ -70,7 +67,7 @@ public class ValidateApiTest extends JerseyTest {
 	}
 
 	@Autowired
-	private List<RulesMetadata> profileMetadata;
+	private SemanticProfiles semanticProfiles;
 
 	@Override
 	protected Application configure() {
@@ -150,7 +147,8 @@ public class ValidateApiTest extends JerseyTest {
 			throws URISyntaxException, IOException {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
-		final Response response = target("/validate").queryParam("profiles", profileMetadata.get(0).getId())
+		final Response response = target("/validate")
+			.queryParam("profiles", semanticProfiles.getProfileValidators().get(0).getId())
 			.request()
 			.accept(APPLICATION_JSON)
 			.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
@@ -165,8 +163,9 @@ public class ValidateApiTest extends JerseyTest {
 			throws URISyntaxException, IOException {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
-		final Response response = target("/validate").queryParam("profiles", profileMetadata.get(0).getId())
-			.queryParam("profiles", profileMetadata.get(1).getId())
+		final Response response = target("/validate")
+			.queryParam("profiles", semanticProfiles.getProfileValidators().get(0).getId())
+			.queryParam("profiles", semanticProfiles.getProfileValidators().get(1).getId())
 			.request()
 			.accept(APPLICATION_JSON)
 			.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
@@ -182,7 +181,9 @@ public class ValidateApiTest extends JerseyTest {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
 		final Response response = target("/validate")
-			.queryParam("profiles", profileMetadata.get(0).getId() + "," + profileMetadata.get(1).getId())
+			.queryParam("profiles",
+					semanticProfiles.getProfileValidators().get(0).getId() + ","
+							+ semanticProfiles.getProfileValidators().get(1).getId())
 			.request()
 			.accept(APPLICATION_JSON)
 			.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));

@@ -75,7 +75,7 @@ oder
 Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Validierungsregeln können ergänzende Prüfungen als XQuery-Abfragen definiert und über ein Profil in den XPlanValidator eingebunden werden. Dazu sind folgende Schritte erforderlich:
 
 * Anlegen einer Konfigurationsdatei im YAML-Dateiformat im Verzeichnis _<XPLANBOX_CONFIG>/profiles_ (verpflichtend)
-* Die YAML-Datei kann die Konfiguration für ein oder mehrere Profile beinhalten, der Dateiname ist frei wählbar, die Dateiendung muss _.yaml_ sein. (verpflichtend)
+* Die YAML-Datei kann die Konfiguration für ein oder mehrere Profile beinhalten, der Dateiname ist frei wählbar, die Dateiendung muss _.yaml_ oder _.yml_ sein. (verpflichtend)
 * Ein Profil wird durch folgende Eigenschaften beschrieben:
 ** *id*: Ein eindeutiger Bezeichner für das Profil. (verpflichtend)
 ** *name*: Der Name des Profils, dieser wird im XPlanValidatorWeb und XPlanManagerWeb angezeigt. (verpflichtend)
@@ -88,6 +88,8 @@ Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Validierungsreg
   name: Pflichtenheft NRW
   description: Vorgaben aus Musterpflichtenheft zur Erstellung XPlanung-konformer Bebauungspläne in NRW
 ----
+
+NOTE: Alternativ zur Konfiguration von Profilen im Dateisystem unter _<XPLANBOX_CONFIG>/profiles_ können Profile auch im Classpath der Anwendung bzw. der API abgelegt werden. Dabei gelten die zuvor genannten Anforderungen. Weiterhin muss die Konfigurationsdatei im YAML-Dateiformat dem Namen _profiles-<bez>.yaml_ oder _profiles-<bez>.yml_ entsprechen. Als <bez> sollte zur eindeutigen Zuordnung ein eindeutiger Bezeichner verwendet werden. Z.B. _profiles-nds.yaml_.
 
 Die XQuery-Regeln für ein Profil müssen in dem Verzeichnis _<XPLANBOX_CONFIG>/profiles/id_ mit der id aus der Profil-Konfiguration [1] liegen. Die Verzeichnisstruktur unterhalb dieses Verzeichnisses muss folgende Vorgaben erfüllen:
 ** Die Dateien mit den XQuery-Regeln müssen je XPlanGML-Version in getrennten Verzeichnissen abgelegt werden. Der Verzeichnisname setzt sich zusammen aus _xplangml<XPLANGML-VERSION>_, z. B. _xplangml54_, _xplangml60_.

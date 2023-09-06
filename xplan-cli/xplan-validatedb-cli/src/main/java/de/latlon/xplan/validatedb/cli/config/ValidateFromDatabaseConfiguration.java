@@ -20,9 +20,9 @@
  */
 package de.latlon.xplan.validatedb.cli.config;
 
+import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.validatedb.cli.domain.ValidationResultSummary;
 import de.latlon.xplan.validatedb.cli.domain.XPlanWithFeatureCollection;
-import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
@@ -100,7 +100,7 @@ public class ValidateFromDatabaseConfiguration {
 	@Bean
 	@StepScope
 	public SemanticValidator semanticValidator(@Value("#{jobParameters[rulesDirectory]}") String rulesDirectory)
-			throws ValidatorException, URISyntaxException {
+			throws ConfigurationException, URISyntaxException {
 		try {
 			LOG.info("Rules are read from: {}", rulesDirectory);
 			Path rulesPath = get(rulesDirectory);

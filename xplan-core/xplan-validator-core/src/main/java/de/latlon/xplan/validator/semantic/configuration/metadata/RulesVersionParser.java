@@ -50,7 +50,7 @@ public class RulesVersionParser {
 	 */
 	public RulesVersion parserRulesVersion(Path rulesPath) {
 		if (rulesPath == null) {
-			LOG.info("No rulesPath {} available, metadata are unknown", rulesPath);
+			LOG.info("No rulesPath available, metadata are unknown");
 			return new RulesVersion();
 		}
 		Path metadataFile = rulesPath.resolve(RELATIVE_PATH_TO_FILE);

@@ -1537,6 +1537,12 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <!-- Profiles -->
+      <dependency>
+        <groupId>de.xleitstelle.xplanung</groupId>
+        <artifactId>regeln-berlin</artifactId>
+        <version>0.4-SNAPSHOT</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
