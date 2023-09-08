@@ -21,6 +21,7 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 
 # set environment variables
 ENV TOMCAT_ADDITIONAL_ARG_APP="-DXPLANBOX_CONFIG=/xplanbox/xplan-dokumenten-config -Dlog4j2.configurationFile=classpath:/log4j2.yaml -Duser.timezone=Europe/Berlin"
+ENV TOMCAT_ADDITIONAL_ARG_JAVA17_EXPORTS="--add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED"
 ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree
 
 USER root
