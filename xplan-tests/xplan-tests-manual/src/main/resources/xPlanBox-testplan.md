@@ -11,10 +11,7 @@ Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschieden
 * [7. XPlanTransformCLI](#7-xplantransformcli)
 * [8. XPlanAuswerteschemaCLI](#8-xplanauswerteschemacli)
 * [9. XPlanWMS](#9-xplanwms)
-* [10. XPlanWFS/XPlanSynWFS](#10-xplanwfsxplansynwfs)
-* [11. XPlanRessourcen](#11-xplanressourcen-landingpage)
-* [12. DB-Aktualisierung](#12-db-aktualisierung)
-* [13. Automatisierte SoapUI-Tests](#13-automatisierte-soapui-tests)
+* [10. DB-Aktualisierung](#11-db-aktualisierung)
 * [Anhang](#anhang)
 
 # 1. XPlanManagerCLI 
@@ -31,7 +28,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **Hinweis**
 
 * [1] `~/xplan-manager-cli-$VERSION/bin`
-* [2] `./XPlanManager -help `
+* [2] `./XPlanManager --help `
 
 ---
 
@@ -45,78 +42,16 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **02** | Der Benutzer ruft mit dem Befehl [2] eine Auflistung der im XPlanManager vorliegenden Pläne auf und überprüft somit, ob der in Schritt 01 importierte Plan vorhanden ist. |  Die vorliegenden Pläne werden aufgelistet und der in Schritt 01 importierte Plan wird angezeigt.
 **03** | Der Benutzer exportiert einen Plan mit Hilfe des Befehls in [3] aus dem XPlanManager. | Der exportierte Plan wird im ausgewählten Verzeichnis angezeigt.
 **04** | Der Benutzer löscht mit dem Befehl [4] einen Plan aus dem XPlanManager. | Der Plan wird aus dem XPlanManager gelöscht, geprüft werden kann dies mit erneuter Ausführung des Befehls [2].
+**05** | Der Benutzer erstellt mit dem Befehl [5] einen Service-Metadatensatz zu einem Plan aus dem XPlanManager. | Es wird ein Service-Metadatensätze für den Plan erstellt und zusätzliche Informationen gespeichert, welche in die XPlanWerkWMS Capabilities geschrieben werden.
 
 **Hinweis**
 
 * Korrekte Reihenfolge der Parameter beachten!
-* [1] `./XPlanManager -import [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]`
-* [2] `./XPlanManager -list`
-* [3] `./XPlanManager -export   <planid> [<verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]`
-* [4] `./XPlanManager -delete   <planid>`
- 
----
-
-### Prüffall-03: Aktualisierung des Sortierfeldes für die Visualisierung im XPlanwerkWMS
-
-#### Vorbedingungen
-
- * Das zur Sortierung genutzte Datumsfeld wurde in der Datei <XPLANBOX_CONFIG>/managerConfiguration.properties erfolgreich konfiguriert.
-
-#### Testschritte
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer führt mit dem Befehl [1] eine Aktualisierung des WMS-Sortierfeldes durch. | Die Sortierung der Pläne im XPlanwerkWMS ändert sich.
-**02** | Der Benutzer wecheselt in den deegree XPlanwerkWMS Workspace und überprüft das Ergebnis in den Themes, siehe [2]. | Die Sortierung der Pläne im XPlanwerkWMS hat sich mit der gewählten Konfiguration geändert.
-
-**Hinweis**
-
-* [1]  ` ./sortDateUpdate [--configurationDirectory <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]`
-* [2]  ` .deegree/xplansyn-wms-workspace/themes/bplanraster.xml`
-  * Der Pfad kann variieren.
-
----
-
-### Prüffall-04: Bearbeitung von Ebenenbäumen
-
-#### Testschritte
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer fügt mit dem Befehl [1] eine Ebene in den Ebenenbaum ein. | Die neue Ebene wird eingefügt, beim weglassen des Parameters <categoryname> wird die Ebene direkt unter der Wurzelebene eingefügt.
-**02** | Der Benutzer entfernt mit dem Befehl [2] eine Ebene aus dem Ebenenbaum. | Die Ebene wird aus der Ebenenkonfiguration entfernt.
-**03** | Der Benutzer fügt mit dem Befehl [3] eine Katergorieebene in den Ebenenbaum ein. | Die neue Kategorieebene wird eingefügt. Beim angeben des Parameters <uppercategory> wird die neue Kategorieebene direkt unter die angegebene Kategorieebene eingefügt. Das Verhalten ist rekursiv, d.h. die Verschachtelung der Kategorieebenen kann beliebig tief erfolgen.
-**04** | Der Benutzer entfernt mit dem Befehl [4] eine Kategorieebene aus dem Ebenenbaum. | Die Kategorieebene wird aus der Ebenenkonfiguration entfernt. Enthält die gewählte Kategorieebene untergeordneten Kategorien, werden diese ebenfalls gelöscht.
-**05** | Der Benutzer bewegt mit dem Befehl [5] eine Ebene in eine andere Kategorieebene des Ebenenbaums. | Die Ebene wird in die andere Kategoriebene bewegt.
-
-**Hinweis**
-
-* [1]  ` ./XPlanManager -addlayer <bplan|rplan|fplan|lplan> <rasterplanid> <tiffid> <layername> <layertitle> [<categoryname>]` 
-* [2]  ` ./XPlanManager -removelayer <bplan|rplan|fplan|lplan> <layername>`
-* [3]  ` ./XPlanManager -addcategory <bplan|rplan|fplan|lplan> [<uppercategory>] <categoryname> <categorytitle>`  
-* [4]  ` ./XPlanManager -removecategory <bplan|rplan|fplan|lplan> <categoryname>`
-* [5]  ` ./XPlanManager -movelayer <bplan|rplan|fplan|lplan> <layername> <categoryname>`
-
----
-
-### Prüffall-05: Visualisierung von importierten XPlanGML-Rasterdaten
-
-Beispielhaft werden anhand der Testdaten XPlanGML-Pläne (Rasterdaten) mit verschiedenen Versionen über den XPlanManager in die Datenbasis geladen und mittels GetMap-Request über den XPlanWMS wieder abgerufen.
- 
-#### Testschritte
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer importiert mit dem Befehl in [1] einen Plan mit Rasterdaten in den XPlanManager. | Der Plan wird in den XPlanManager importiert.
-**02** | Der Benutzer lässt sich den importierten Plan mit dem Befehl in [2] auflisten. | Der importierte Plan wird aufgelistet.
-**03** | Der Benutzer führt eine GetMap-Anfrage wie in [3] durch. | Der importierte Rasterplan wird dargestellt. 
-
-**Hinweis**
-
-* [1]  ` ./XPlanManager -import [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]` 
-* [2]  ` ./XPlanManager -list `
-* [3] <http://<host:port>/xplan-wms/services/wms?REQUEST=GetMap&SERVICE=WMS&VERSION=1.1.1&WIDTH=1081&HEIGHT=725&LAYERS=bplanraster_sortiert&TRANSPARENT=TRUE&FORMAT=image%2Fpng&BBOX=417326.9138990595,5715257.490169556,418938.9357000923,5716338.633375614&SRS=EPSG:25833&STYLES=default>
-
+* [1] `./XPlanManager --import <xplanarchiv> [<xplanarchiv>..] [--force] [--crs=<CRS>]`
+* [2] `./XPlanManager --list`
+* [3] `./XPlanManager --export <planid> [<planid>..] [--target=<verzeichnis>]`
+* [4] `./XPlanManager --delete <planid> [<planid>..]`
+* [5] `./XPlanManager --createMetadata <planid> [<planid>..]`
 
 # 2. XPlanManagerWeb
 
@@ -185,13 +120,13 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **02.2** | Der Benutzer wählt einen _Rechtsstand_ aus oder klickt ohne Änderung den Button **Weiter**. | Es öffnet sich ein weiteres Fenster für die Analyse der Rasterdaten.
 **02.3** | Der Benutzer klickt den Button **Weiter mit Rasterdaten**, klickt den Button **Weiter ohne Rasterdaten** oder bricht den Import ab mit dem Button **Abbrechen**. | Beim klicken von den Button **Weiter mit/ohne Rasterdaten** wird Plan importiert, es öffnet sich ein Fenster mit der Meldung, dass der Import abgeschlossen ist.
 **02.4** | Der Benutzer wählt klickt den Button **Ok**. | Der Plan wird in der Plan-Liste angezeigt.
-**03** | Der Benutzer überprüft mit dem XPlanManagerCLI (Parameter: `-list`), ob ein Plan importiert wurde. | Der zuvor ausgewählte Plan wurde importiert.
 
 ---
 
 ### Prüffall-04: Plan-Liste
 
 #### Vorbedingungen 
+ * Die xPlanBox wurde mit der INSPIRE PLU Konfuguration aufgesetzt.
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  
 #### Testschritte 
@@ -240,6 +175,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-06: Plan-Funktion: Plan publizieren (Transformation nach INSPIRE PLU)
 
 #### Vorbedingungen 
+ * Die xPlanBox wurde mit der INSPIRE PLU Konfuguration aufgesetzt.
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
@@ -352,6 +288,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Benutzer klickt neben einen Plan auf den Button **Entfernen**. | Es öffnet sich ein neues Fenster zur Bestätigung des Vorgangs. 
 **02** | Der Benutzer bestätigt mit **OK**. | Es öffnet sich ein Dialog mit dem Inhalt `Plan wird entfernt...`. 
 **03** | Der Benutzer wartet während der Löschvorgang durchgeführt wird. | Das Dialog-Fenster schließt sich. Der Plan wird aus der Datenbasis gelöscht und nicht mehr in der Plan-Liste dargestellt. 
+**03** | Der Benutzer wartet während der Löschvorgang durchgeführt wird. | Das Dialog-Fenster schließt sich. Der Plan wird aus der Datenbasis gelöscht und nicht mehr in der Plan-Liste dargestellt. 
+**04** | Der Benutzer überprüft mit dem XPlanManager CLI (Parameter: `-list`), ob der zuvor ausgewählte Plan gelöscht wurde. | Der zuvor ausgewählte Plan wurde gelöscht. 
+**03** | Der Benutzer wartet während der Löschvorgang durchgeführt wird. | Das Dialog-Fenster schließt sich. Der Plan wird aus der Datenbasis gelöscht und nicht mehr in der Plan-Liste dargestellt.
 **04** | Der Benutzer überprüft mit dem XPlanManager CLI (Parameter: `-list`), ob der zuvor ausgewählte Plan gelöscht wurde. | Der zuvor ausgewählte Plan wurde gelöscht. 
 
 ---
@@ -382,219 +321,25 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **02** | Der Benutzer wählt **Name** und gibt einen _Namen(steil)_ eines in der Planliste angezeigten Plans an. | Die zuvor angezeigte Liste ist auf die Pläne eingeschränkt, deren Namen mit der Nutzereingabe übereinstimmen.
 **03** | Der Benutzer wählt **Alle Pläne anzeigen** | Die zuvor gesetzten Auswahlkriterien werden zurückgesetzt, und es werden alle Pläne angezeigt.
 
----
+# 3. XPlanValidatorCLI
 
-### Prüffall-11: Active Directory mit Gruppenhierarchien anbinden
-
-### Vorbedingungen
- * Optional, wenn Active Directory konfiguriert ist. 
- * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
- * Es existiert ein Nutzer „A", dieser ist Mitglied der Gruppe „B-Plan“. Gruppe „B-Plan“ ist Mitglied der Gruppe „C“. Gruppe C ist berechtigt ausschließlich Pläne aus der Gemeinde XY zu importieren.
-
-#### Testschritte
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer öffnet die Web-basierte Benutzeroberfläche des XPlanManagers. | Es wird ein Anmeldefenster angezeigt. 
-**02** | Der Benutzer meldet sich als Nutzer „A" an. | Es öffnet sich die Web-basierte Benutzeroberfläche des XPlanManagers, bereits importierte Pläne werden aufgelistet. 
-**03** | Der Benutzer importiert einen Plan aus der Gemeinde „XY". | Der Plan wird der Liste hinzugefügt. 
-**04** | Der Benutzer importiert einen Plan aus einer anderen Gemeinde (z.B. „YZ"). | Der Plan kann nicht importiert werden. 
-
----
-
-### Prüffall-12: Kopplung der Editierfunktion an das Active Directory
-
-#### Vorbedingungen 
-
- * Optional, wenn Active Directory konfiguriert ist.
- * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar. 
- * Es existiert ein Nutzer „A“, dieser ist Mitglied der Gruppe „Editor“ (oder ähnliches). Die Gruppe „Editor“ (oder ähnliches) ist berechtigt Pläne des Bezirkes „XY“ zu editieren.
- * Es existiert ein Nutzer „B“, dieser ist Mitglied der Gruppe „B“. Die Gruppe „B“ ist nicht berechtigt zu editieren.
-
-#### Testschritte 1 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer öffnet die Web-basierte Benutzeroberfläche des XPlanManagers.| Es wird ein Anmeldefenster angezeigt.
-**02** | Der Benutzer meldet sich als Nutzer „A“ an.|Es öffnet sich die Web-basierte Benutzeroberfläche des XPlanManagers, bereits importierte Pläne werden aufgelistet.
-**03** | Der Benutzer überprüft die Schaltfläche „editieren“ der  Gemeinde „XY“ zugehörigen Pläne.| Die Schaltfläche ist farblich gefüllt und beim klicken auf die Schaltfläche öffnet sich ein neues Fenster mit einem Formular.
-**04** | Der Benutzer überprüft die Schaltfläche „editieren“ von Plänen einer anderen Gemeinde.| Die Schaltfläche ist ausgegraut und beim Klick auf die Schaltfläche passiert nichts.
-
-#### Testschritte 2 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer öffnet die Web-basierte Benutzeroberfläche des XPlanManagers. | Es wird ein Anmeldefenster angezeigt.
-**02** | Der Benutzer meldet sich als Nutzer „B“ an.| Es öffnet sich die Web-basierte Benutzeroberfläche des XPlanManagers, bereits importierte Pläne werden aufgelistet.
-**03** | Der Benutzer überprüft die Möglichkeit der Editierbarkeit.| Hinter den Plänen wird je eine ausgegraute Schaltfläche „editieren“  angezeigt.
-
-#### Testschritte 3 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer öffnet die Server-Schnittstelle des XPlanManagers.| Es öffnet sich ein Anmeldefenster.
-
----
-
-### Prüffall-13: Design der XPlanManager UI für unterschiedliche Bildschirmgrößen optimieren
-
-#### Vorbedingungen 
- * Optional, wenn Active Directory konfiguriert ist.
- * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-
-#### Testschritte 
- 
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**-** | - | Die vertikalen Abstände zwischen den Dialogboxen und den Tabellen sowie zwischen dem Header und dem Bereich **Plan hinzufügen** sind reduziert. 
-**01** | Die Größe des Fensters wird auf die Breite von 1080 Pixeln verändert. | Es wird kein horizontaler Rollbalken angezeigt. 
-**02** | Das Fenster wird beliebig in der Breite vergrößert. | Es wird ein horizontaler Rollbalken angezeigt. 
-
----
-
-### Prüffall-14: Optimierte Anbindung der Verfahrensdatenbank
-
-#### Vorbedingungen 
-
- * Optional, wenn Active Directory konfiguriert ist.
- * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar. 
- * Es existiert ein Nutzer „A“, dieser ist Mitglied der Gruppe „Super-Administrator“. Die Gruppe „Super-Administrator“ ist berechtigt zu importieren und beim Import das Planverfahren manuell zu bestimmen, wenn keine automatische Zuordnung statt findet.
- * Es existiert ein Nutzer „B“, dieser ist Mitglied der Gruppe „B“. Die Gruppe „B“ ist berechtigt zu importieren jedoch können diese, beim Import, das Planverfahren nicht manuell bestimmen, wenn keine automatische Zuordnung statt findet.
-
-#### Testschritte 1
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer öffnet die Web-basierte Benutzeroberfläche des XPlanManagers.| Es wird ein Anmeldefenster angezeigt.
-**02** | Der Benutzer meldet sich als Nutzer „A“ an.|Es öffnet sich die Web-basierte Benutzeroberfläche des XPlanManagers, bereits importierte Pläne werden aufgelistet.
-**03** | Der Benutzer importiert einen Plan mit automatischer Zuordnung des Planverfahrens.| Es muss nicht manuell eingegriffen werden und der Plan wird importiert.
-**04** | Der Benutzer importiert einen Plan ohne automatische Zuordnung des Planverfahrens.| Es öffnet sich ein neues Fenster mit Auswahlmöglichkeiten des Planverfahrens.
-
-#### Testschritte 2 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer öffnet die Web-basierte Benutzeroberfläche des XPlanManagers.| Es wird ein Anmeldefenster angezeigt.
-**02** | Der Benutzer meldet sich als Nutzer „B“ an.| Es öffnet sich die Web-basierte Benutzeroberfläche des XPlanManagers, bereits importierte Pläne werden aufgelistet.
-**03** | Der Benutzer importiert einen Plan mit automatischer Zuordnung des Planverfahrens.| Der Plan wird importiert.
-**04** | Der Benutzer importiert einen Plan ohne automatische Zuordnung des Planverfahrens.| Der Importvorgang wird abgebrochen. Es wird eine entsprechende Fehlermeldung angezeigt.
-
-#### Testschritte 3 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer führt die Schritte 01 und 02 von Prüffall 2 aus.| Es öffnet sich die Web-basierte Benutzeroberfläche des XPlanManagers, bereits importierte Pläne werden aufgelistet.
-**02** | Der Benutzer importiert einen Plan.| Es öffnet sich ein neues Fenster.
-**03** | Der Benutzer überprüft die Schaltflächen der Fenster.| In jedem Fenster ist eine Schaltfläche „Abbruch“ zu finden.
-
----
-
-### Prüffall-15: Gültigkeitszeitraum für Rasterdaten in XPlanWMS unterstützen
-
-#### Vorbedingungen 
-
- * Optional, wenn Active Directory konfiguriert ist.
- * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
- * Der Benutzer ist am XPlanManager-Web angemeldet und hat die Berechtigung zum Import von Planarchiven. 
+### Prüffall-01: Hilfe aufrufen
 
 #### Testschritte 
 
-Schritt |Beschreibung |Erwartetes Ergebnis
+Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer importiert einen Rasterplan mit unbegrenztem Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". | Der Plan wird importiert. Der Gültigkeitszeitraum ist grün.  
-**02** | Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) | Der Workspace wird neu geladen. 
-**03** | Der Benutzer öffnet die Kartenvorschau | Der Rasterplan wird abgebildet. 
-**04** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wurde gelöscht. 
-**05** | Der Benutzer importiert den gleichen Rasterplan erneut mit einem in der Vergangenheit liegenden Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". | Der Plan wird importiert. Der Gültigkeitszeitraum ist rot.
-**06** | Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) | Der Workspace wird neu geladen. 
-**07** | Der Benutzer öffnet die Kartenvorschau | Es wird lediglich der Umring des Vektorplans abgebildet. 
-**08** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wurde gelöscht. 
-**09** | Der Benutzer importiert den gleichen Plan erneut mit einem in der Zukunft liegenden Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". | Der Plan wird importiert. Der Gültigkeitszeitraum ist rot. 
-**10** | Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) | Der Workspace wird neu geladen. 
-**11** | Der Benutzer öffnet die Kartenvorschau. | Es wird lediglich der Umring des Vektorplans abgebildet. 
-**12** | Der Benutzer klickt auf den Button **Editieren**. | Es öffnet sich ein neues Fenster mit dem editier Formular. 
-**13** | Der Benutzer verändert den Gültigkeitszeitraum auf einen unbegrenzten Zeitraum und drückt auf speichern. | Der Gültigkeitszeitraum wird grün dargestellt.
-**14** | Der Benutzer öffnet die Kartenvorschau. | Der Rasterplan wird abgebildet. 
-
-**Hinweis:**
-
-* Dieser Test wird sowohl für GeoTiff-Rasterplänen als auch für PNG- Rasterplänen durchgeführt.
-* [1] `http://<host>:<port>/xplan-wms`
-
----
-
-### Prüffall-16: Unterstützung von externen Codelisten in der XPlanBox
-
-#### Vorbedingungen
-
- * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
- * Der Benutzer hat die Berechtigung zum Import von Planarchiven. 
-
-#### Testschritte
-
-Schritt |Beschreibung |Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer importiert einen Plan. | Der Plan wird erfolgreich importiert. 
-**02** | Der Benutzer bindet den WMS in QGIS ein. | Der importierte Plan wird angezeigt. 
-**03** | Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (GetFeatureInfo Operation). | Die Objektinformationen werden angezeigt. Der Wert für die im nächsten Schritt zu übersetzende Codeliste ist leer oder enthält den nicht übersetzten Code. 
-**04** | Der Benutzer navigiert in den Ordner [1] und legt dort die Dateien `xplan[VERSION].syn` und `xplan_[CODELIST_NAME].xml` ab. 
-**05** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wird gelöscht. 
-**06** | Der Benutzer importiert den Plan erneut. | Der Plan wird erfolgreich importiert. 
-**07** | Der Benutzer bewegt das Kartenbild in QGIS. | Der WMS wird neu geladen. 
-**08** | Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (GetFeatureInfo Operation). | Es werden die Objektinformationen der neuen Codeliste im entsprechenden Feld angezeigt. Dieser Wert stellt die Übersetzung des Codes dar. 
-**09** | Der Benutzer navigiert in den Ordner [1] und editiert dort in `xplan_[CODELIST_NAME].xml` den übersetzten Wert (gml:description) des in Schritt 8 überprüften Codes in einen beliebigen anderen Wert.
-**10** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wird gelöscht. 
-**11** | Der Benutzer importiert den Plan erneut. |Der Plan wird erfolgreich importiert. 
-**12** | Der Benutzer bewegt das Kartenbild in QGIS. | Der WMS wird neu geladen. 
-**13** | Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (GetFeatureInfo Operation). | Es werden die Objektinformationen der editierten Codeliste im entsprechenden Feld angezeigt. Dieser Wert stellt die in Schritt 09 geänderte Übersetzung des Codes dar. 
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanValidatorCLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-validator-cli-$VERSION/bin`.
+**01** | Der Benutzer ruft die Hilfe mit dem Befehl in [2] auf. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanValidatorCLI. 
 
 **Hinweis**
 
-* [1] <XPLANBOX_CONFIG>/synthesizer 
-* Gibt es diesen Ordner noch nicht muss dieser noch angelegt werden.
+* [1] `~/xplan-validator-cli-$VERSION/bin`
+* [2] `./XPlanValidator --help `
 
-**Beispiel einer xplan41.syn-Datei:**
+---
 
-`
-BP_Baugebiet/detaillierteArtDerBaulNutzung=xplanExternalCodeLookup(xpath('xplan:detaillierteArtDerBaulNutzung'), 'xplan_BP_DetailArtDerBaulNutzung.xml')
-BP_BaugebietsTeilFlaeche/detaillierteArtDerBaulNutzung=xplanExternalCodeLookup(xpath('xplan:detaillierteArtDerBaulNutzung'), 'xplan_BP_DetailArtDerBaulNutzung.xml')
-`
-
-**Beispiel einer xplan_BP_DetailArtDerBaulNutzung.xml-Datei:**
-```
-<?xml version="1.0" encoding="utf-8"?>
-<gml:Dictionary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" gml:id="xplan_BP_DetailArtDerBaulNutzung" xmlns:gml="http://www.opengis.net/gml">
-  <gml:name>xplan:BP_DetailArtDerBaulNutzung</gml:name>
-  <gml:dictionaryEntry>
-    <gml:Definition gml:id="id_11000">
-      <gml:description>Wohngebiet</gml:description>
-      <gml:name codeSpace="www.mysynergis.com/XPlanungR/4.1/0">11000</gml:name>
-    </gml:Definition>
-  </gml:dictionaryEntry>
-  <gml:dictionaryEntry>
-    <gml:Definition gml:id="id_13000">
-      <gml:description>BesondersGeschütztesWohngebiet</gml:description>
-      <gml:name codeSpace="www.mysynergis.com/XPlanungR/4.1/0">13000</gml:name>
-    </gml:Definition>
-  </gml:dictionaryEntry>
-  <gml:dictionaryEntry>
-    <gml:Definition gml:id="id_17000">
-      <gml:description>Geschäftsgebiet</gml:description>
-      <gml:name codeSpace="www.mysynergis.com/XPlanungR/4.1/0">17000</gml:name>
-    </gml:Definition>
-  </gml:dictionaryEntry>
-  <gml:dictionaryEntry>
-    <gml:Definition gml:id="id_17100">
-      <gml:description>Ladengebiet</gml:description>
-      <gml:name codeSpace="www.mysynergis.com/XPlanungR/4.1/0">17100</gml:name>
-    </gml:Definition>
-  </gml:dictionaryEntry>
-</gml:Dictionary>
-```
-
-# 3. XPlanValidatorCLI
-
-### Prüffall-01: Validierungsart
+### Prüffall-02: Validierungsart
 
 #### Vorbedingungen 
  * Valide und invalide XPlanArchive sind verfügbar.
@@ -604,14 +349,14 @@ BP_BaugebietsTeilFlaeche/detaillierteArtDerBaulNutzung=xplanExternalCodeLookup(x
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer wechselt in das Verzeichnis des XPlanValidators mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-validator-cli-$VERSION/bin`.
-**02** | Der Benutzer führt den Befehl [2] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
-**03** | Der Benutzer führt den Befehl [2] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
-**04** | Der Benutzer führt den Befehl [3] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
-**05** | Der Benutzer führt den Befehl [3] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
-**06** | Der Benutzer führt den Befehl [4] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
-**07** | Der Benutzer führt den Befehl [4] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
-**08** | Der Benutzer führt den Befehl [5] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
-**09** | Der Benutzer führt den Befehl [5] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
+**02** | Der Benutzer führt den Befehl [2] mit einem validen Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
+**03** | Der Benutzer führt den Befehl [2] mit einem invaliden Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
+**04** | Der Benutzer führt den Befehl [3] mit einem validen Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
+**05** | Der Benutzer führt den Befehl [3] mit einem invaliden Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
+**06** | Der Benutzer führt den Befehl [4] mit einem validen Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
+**07** | Der Benutzer führt den Befehl [4] mit einem invaliden Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
+**08** | Der Benutzer führt den Befehl [5] mit einem validen Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
+**09** | Der Benutzer führt den Befehl [5] mit einem invaliden Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
 
 **Hinweis**
 
@@ -628,10 +373,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
  
-### Prüffall-02: Validierungsoptionen
+### Prüffall-03: Validierungsoptionen
 
 #### Vorbedingungen 
- * Der Prüffall-01 wurde erfolgreich ausgeführt.
+ * Der Prüffall-02 wurde erfolgreich ausgeführt.
  * XPlanArchive sind verfügbar.
 
 #### Testschritte 
@@ -640,20 +385,23 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer führt den Befehl [1] aus. | Der Benutzer erhält eine Validationsausgabe. Die geometrische Überprüfung der Flächenschlussbedingung wird übersprungen.
 **02** | Der Benutzer führt den Befehl [2] aus. | Der Benutzer erhält eine Validationsausgabe. Die geometrische Überprüfung des Geltungsbereich wird übersprungen.
+**03** | Der Benutzer führt den Befehl [3] aus. | Der Benutzer erhält eine Validationsausgabe. Die geometrische Überprüfung der Laufrichtung wird übersprungen.
 
 **Hinweis**
 
-* [1] `./XPlanValidator -validate Plan.zip [-name Name] -vo skip-flaechenschluss`
+* [1] `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vo skip-flaechenschluss=true`
     * `Plan.zip` muss ggf. ersetzt werden.
-* [2] `./XPlanValidator -validate Plan.zip [-name Name] -vo skip-geltungsbereich`
+* [2] `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vo skip-geltungsbereich=true`
+    * `Plan.zip` muss ggf. ersetzt werden.
+* [3] `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vo  skip-laufrichtung=true`
     * `Plan.zip` muss ggf. ersetzt werden.
   
 ---
 
-### Prüffall-03: Speichern der Validierungsergebnisse
+### Prüffall-04: Speichern der Validierungsergebnisse
 
 #### Vorbedingungen 
- * Der Prüffall-01 wurde erfolgreich ausgeführt.
+ * Der Prüffall-02 wurde erfolgreich ausgeführt.
  
 #### Testschritte 
 
@@ -691,8 +439,8 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-02: Planarchiv auswählen
 
 #### Vorbedingungen
- * Der Prüffall-01 wurde erfolgreich ausgeführt. 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
+ * Es liegt ein Planarchiv im Format `*.zip` sowie ein Plan im Format `*.gml` vor.
  
 #### Testschritte 
 
@@ -700,7 +448,8 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators. | Die Eingabesicht hat eine Möglichkeit, ein Planarchiv auszuwählen.  
 **02** | Der Benutzer klickt auf **Datei auswählen**. | Ein neues Fenster öffnet sich. 
-**03** | Der Benutzer wählt ein Planarchiv (`*.zip`) aus und klickt auf **OK**. | Das Fenster schließt sich. Der Planname wird in der Web-basierten Benutzeroberfläche des XPlanValidators angezeigt. |
+**03** | Der Benutzer wählt ein Planarchiv (`*.zip`) aus und klickt auf **OK**. | Das Fenster schließt sich. Der Planname wird in der Web-basierten Benutzeroberfläche des XPlanValidators angezeigt. 
+**04** | Der Benutzer wiederholt Schritt 01-04 mit einem Plan im Format `*.gml`. | Der Planname wird in der Web-basierten Benutzeroberfläche des XPlanValidators angezeigt.
 
 ---
 
@@ -849,8 +598,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01**| Der Benutzer fügt ein neues Planarchiv hinzu.| Es öffnet sich eine neue Benutzeroberfläche.
 **02**| Der Benutzer wählt den Validierungstyp „Semantische Validierung“ und bestätigt die Angabe durch die Schaltfläche „Validierung starten“.| Es öffnet sich ein neues Fenster mit dem Ergebnis der semantischen-, geometrischen- und syntaktischen Validierung. 	
 **03**| Der Benutzer überprüft die Ausgabe der Syntaxfehler.| Syntaxfehler enthalten Zeilenangaben und den Hinweis, dass das Instanzobjekt nicht zum XPlanGML Schema passt und überprüft werden sollte.
-**04**| Der Benutzer überprüft die Ausgabe der geometrischen Fehler.| Geometriewarnungen werden im Validatorreport nicht ausgegeben.
-**05**| Der Benutzer überprüft die Ausgabe der semantischen Fehler.| Semantische Fehler enthalten aussagekräftige Texte.
 
 **Hinweis** 
 
@@ -875,7 +622,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
  * [1] ` cd ~/xplan-validatedb-cli-$VERSION/bin` 
     * Der Pfad kann variieren.
- * [2] `./XPlanValidateDB -h [oder -help und --help]`
+ * [2] `./XPlanValidateDB --help [oder -help und -h]`
 
 ---
 
@@ -903,19 +650,21 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer wechselt in das Verzeichnis des XPlanUpdateDatabase-CLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-update-database-cli-$VERSION/bin`.
-**02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe für den databaseUpdate aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des databaseUpdate.
-**03** | Der Benutzer führt mit dem Befehl in [3] die Hilfe für den districtUpdate aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des districtUpdate.
-**04** | Der Benutzer führt mit dem Befehl in [3] die Hilfe für den reSynthesizer aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des reSynthesizer.
-**05** | Der Benutzer führt mit dem Befehl in [3] die Hilfe für den serviceMetadataRecordCreator aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des serviceMetadataRecordCreator.
+**02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe für das artefactsTableUpdate Tool aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des artefactsTableUpdate Tools.
+**03** | Der Benutzer führt mit dem Befehl in [3] die Hilfe für das bereichUpdate Tool aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des bereichUpdate Tools.
+**04** | Der Benutzer führt mit dem Befehl in [4] die Hilfe für das districtUpdate Tool aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des districtUpdate Tools.
+**05** | Der Benutzer führt mit dem Befehl in [5] die Hilfe für das reSynthesizer Tool aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des reSynthesizer Tools.
+**06** | Der Benutzer führt mit dem Befehl in [6] die Hilfe für das sortDateUpdate Tool aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des sortDateUpdate Tools.
 
 **Hinweis**
 
  * [1] ` cd ~/xplan-update-data-cli-$VERSION/bin` 
    * Der Pfad kann variieren.
- * [2] `./databaseUpdate -? [oder --help]`
- * [3] `./districtUpdate -? [oder --help]`
- * [4] `./reSynthesizer -? [oder --help]`
- * [5] `./serviceMetadataRecordCreator -? [oder --help]`
+ * [2] `./artefactsTableUpdate --help`
+ * [3] `./bereichUpdate --help`
+ * [4] `./districtUpdate --help`
+ * [5] `./reSynthesizer --help`
+ * [6] `./sortDateUpdate --help`
 
 ---
 
@@ -928,24 +677,45 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer führt den Befehl [1] aus. | Aktualisiert die Datenbank.
-**02** | Der Benutzer führt den Befehl [2] aus. | Aktualisieren die Spalte 'district' der Tabelle 'xplanmgr.plans'.
-**03** | Der Benutzer führt den Befehl [3] aus. | Liest die XPlanGML und speichert die re-synthetisierten Pläne im Schema xplansyn.
-**04** | Der Benutzer führt den Befehl [4] aus. | Erstellt Service-Metadatensätze für alle oder einen einzelnen Plan und speichert zusätzliche Informationen, welche in die XPlanWerkWMS Capabilities geschrieben werden.
+**01** | Der Benutzer führt den Befehl [1] aus. | Aktualisiert die Spalten 'artefacttype' und 'length' der Tabelle 'xplanmgr.artefacts'.
+**02** | Der Benutzer führt den Befehl [2] aus. | Aktualisiert die Bereiche der in der Datenhaltung enthaltenen Pläne.
+**03** | Der Benutzer führt den Befehl [3] aus. | Aktualisiert die Spalte 'district' der Tabelle 'xplanmgr.plans'.
+**04** | Der Benutzer führt den Befehl [4] aus. | Liest die XPlanGML und speichert die re-synthetisierten Pläne im Schema 'xplansyn'.
+**05** | Der Benutzer führt den Befehl [5] aus. | Aktualisiert die Spalte 'sortDateUpdate' der Tabelle 'xplanmgr.plans'.
 
 **Hinweis**
 
- * [1] `./databaseUpdate [-c <arg>] [-u <arg>] [-v] [-w <arg>]`
- * [2] `./districtUpdate [-c <arg>] [-v] [-w <arg>]`
- * [3] `./reSynthesizer -c <arg> [-i <arg>] [-v] [-w <arg>]`
- * [4] `./serviceMetadataRecordCreator -c <arg> [-i <arg>] [-v] [-w <arg>]`
+ * [1] `./artefactsTableUpdate`
+ * [2] `./bereichUpdate`
+ * [3] `./districtUpdate`
+ * [3] `./reSynthesizer`
+ * [4] `./sortDateUpdate`
+
+ ### Prüffall-03: Aktualisierung des Sortierfeldes für die Visualisierung im XPlanWerkWMS
+
+#### Vorbedingungen
+
+ * Das zur Sortierung genutzte Datumsfeld wurde in der Datei <XPLANBOX_CONFIG>/managerConfiguration.properties erfolgreich konfiguriert.
+
+#### Testschritte
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer führt mit dem Befehl [1] eine Aktualisierung des WMS-Sortierfeldes durch. | Die Sortierung der Pläne im XPlanWerkWMS ändert sich.
+**02** | Der Benutzer wecheselt in den deegree XPlanWerkWMS Workspace und überprüft das Ergebnis in den Themes, siehe [2]. | Die Sortierung der Pläne im XPlanWerkWMS hat sich mit der gewählten Konfiguration geändert.
+
+**Hinweis**
+
+* [1]  `./sortDateUpdate`
+* [2]  `.deegree/xplansyn-wms-workspace/themes/bplanraster.xml`
+  * Der Pfad kann variieren.
 
 # 7. XPlanTransformCLI  
 
 ### Prüffall-01: Hilfe aufrufen
 
 #### Vorbedingungen 
- * Die Installation von HALE wurde erfolgreich abgeschlossen.
+ * Die Installation von HaleCLI (Dockerfile xplan-manager-web-hale) wurde erfolgreich abgeschlossen.
  * Die im Verzeichnis `~/xplan-transform-cli-$VERSION/scripts` (Pfad kann variieren) liegenden SQL-Skripte wurden erfolgreich und in richtiger Reihenfolge ausgeführt.
  
 #### Testschritte 
@@ -959,7 +729,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
  * [1] ` cd ~/xplan-transform-cli-$VERSION/bin` 
    * Der Pfad kann variieren.
- * [2] `./XPlanTransformCLI -? [oder --help]`
+ * [2] `./XPlanTransformCLI --help`
 
 ---
 
@@ -976,17 +746,14 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **02** | Der Benutzer führt den Befehl [2] aus.| Alle in der Datenbasis enthaltenen Pläne werden transformiert und in die Datenbasis übertragen.
 **03** | Der Benutzer führt den Befehl [3] aus. | Alle in der Tabelle "xplanmgr.transformToolPlanTableLog" enthaltenen Pläne werden transformiert, die validen Pläne werden draufhin in die Datenbasis übertragen. 
 **04** | Der Benutzer führt den Befehl [4] aus. | Ergebnis aus Schritt 01; der Output wird in das aufgeführte Verzeichnis ausgegeben. 
-**05** | Der Benutzer führt den Befehl [5] aus. | Ergebnis aus Schritt 01; das Logging für mögliche Fehler wird ausführlicher angezeigt.
-**06** | Der Benutzer führt den Befehl [6] aus. | Ergebnis aus Schritt 01; der aufgeführte Workspace wird verwendet.
 
 **Hinweis**
 
- * [1] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] VALIDATE`
- * [2] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] ALL`
- * [3] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] SYNC`
- * [4] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -f [oder --output] <PFAD/ZU/OUTPUTVERZEICHNIS>`
- * [5] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -v [oder --verbose]`
- * [6] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -w [oder --workspaceName] <PFAD/ZU/VERZEICHNIS/DES/WORKSPACE>`
+ * [1] `./XPlanTransformCLI --type VALIDATE`
+ * [2] `./XPlanTransformCLI --type ALL`
+ * [3] `./XPlanTransformCLI --type SYNC`
+ * [4] `./XPlanTransformCLI --output <PFAD/ZU/OUTPUTVERZEICHNIS>`
+
 
 # 8. XPlanAuswerteschemaCLI
 
@@ -1006,7 +773,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
  * [1] ` cd ~/xplan-evaluation-schema-synchronize-cli-$VERSION/bin` 
    * Der Pfad kann variieren.
- * [2] `./EvaluationSchemaSynchronizer -? [oder --help]`
+ * [2] `./EvaluationSchemaSynchronizer --help`
 
 ---
 
@@ -1033,7 +800,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-01: Transparente Zeichenvorschriften im XPlanWMS ermöglichen
 
 #### Vorbedingungen 
- * Eine geeignete !GetMap-Anfrage steht zur Verfügung.
+ * Eine geeignete GetMap-Anfrage steht zur Verfügung.
  * Im WMSpre und im WMSarchive ist als default Style eine transparente Darstellung eingestellt.
  * Im WMS-Endpoint ist als default Style die vollflächige Darstellung eingestellt.
 
@@ -1041,13 +808,13 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer führt im Browser die !GetMap-Anfrage aus.|Die Kartengraphik wird angezeigt.|
+**01** | Der Benutzer führt im Browser die GetMap-Anfrage aus.|Die Kartengraphik wird angezeigt.|
 **02** | Der Benutzer tauscht in der URL den WMS-Endpoint von WMS in WMSpre aus. Der Style ist default.| Die angezeigte Kartengraphik enthält eine transparente Darstellung.|
 **03** | Der Benutzer tauscht in der URL den WMS-Endpoint von WMS in WMSpre aus. Der Style ist vollflaechig.| Die angezeigte Kartengraphik enthält eine vollflächige Darstellung.|
 **04** | Der Benutzer tauscht in der URL den WMS-Endpoint von WMSpre in WMS aus. Der Style ist default.| Die angezeigte Kartengraphik enthält eine vollflächige Darstellung.|
 **05** | Der Benutzer tauscht in der URL den WMS-Endpoint von WMSpre in WMS aus. Der Style ist transparent.| Die angezeigte Kartengraphik enthält eine transparente Darstellung.|
 
-#### Beispiel Prüffall 2: 
+#### Beispiel Testschritt 2: 
 
 * GetMap-Anfrage mit `Service = WMSpre` und `Style = / Style = default / Style = transparent`
 * **Hinweis:** Alle drei Styles entsprechen dem default des wmspre-Endpoint
@@ -1064,7 +831,7 @@ http://<host>:<Port>/xplan-wms/services/wmspre?FORMAT=image%2Fpng&TRANSPARENT=tr
 
 **Antwort**: Eine transparente Kartendartsellung. Es erfolgt nur eine Darstellung der Geltungsbereiche der jeweiligen Planwerke.
 
-#### Beispiel Prüffall 3 
+#### Beispiel Testschritt 3 
 
 Der Benutzer tauscht lediglich den Style aus.
 
@@ -1074,7 +841,7 @@ http://<host>:<Port>/xplan-wms/services/wmspre?FORMAT=image%2Fpng&TRANSPARENT=tr
 
 **Antwort**: Eine vollflächige Kartendartsellung
 
-#### Beispiel Prüffall 4: 
+#### Beispiel Testschritt 4: 
 
 * GetMap-Anfrage mit `Service = WMS` und `Style = / Style = default / Style = vollflaechig`
 
@@ -1092,7 +859,7 @@ http://<host>:<Port>/xplan-wms/services/wms?FORMAT=image%2Fpng&TRANSPARENT=true&
 
 **Antwort**: Eine vollflächige Kartendartsellung
 
-#### Beispiel Prüffall 5: 
+#### Beispiel Testschritt 5: 
 
 Der Benutzer tauscht lediglich den Style aus.
 
@@ -1216,38 +983,58 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-# 10. XPlanWFS/XPlanSynWFS
+### Prüffall-08: Visualisierung von importierten XPlanGML-Rasterdaten
 
-### Prüffall-01: Unterstützung der Spezifikation WFS 2.0.0
-
-#### Vorbedingungen 
- * Es liegen XPlanArchive mit dem Planstatus "Festgestellt" in der Datenhaltung vor.
-
+Beispielhaft werden anhand der Testdaten XPlanGML-Pläne (Rasterdaten) mit verschiedenen Versionen über den XPlanManager in die Datenbasis geladen und mittels GetMap-Request über den XPlanWMS wieder abgerufen.
+ 
 #### Testschritte
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer ruft [1] bzw. [2] auf. | Es öffnet sich ein neues Fenster, mit dem die GetFeature-Anfrage gespeichert bzw. geöffnet werden kann.
-**02** | Der Benutzer prüft, ob die in der GetFeature-Anfrage angezeigten Daten mit der Datenhaltung übereinstimmen. | Die Daten stimmen überein.
+**01** | Der Benutzer importiert mit dem Befehl in [1] einen Plan mit Rasterdaten in den XPlanManager. | Der Plan wird in den XPlanManager importiert.
+**02** | Der Benutzer lässt sich den importierten Plan mit dem Befehl in [2] auflisten. | Der importierte Plan wird aufgelistet.
+**03** | Der Benutzer führt eine GetMap-Anfrage wie in [3] durch. | Der importierte Rasterplan wird dargestellt. 
 
-**Hinweis:**
+**Hinweis**
 
-* [1] http://<host:port>/xplan-wfs/services/wfs<XPlanGMLVersion>pre?service=WFS&version=2.0.0&REQUEST=getFeature&TypeName=BP_Plan
-* [2] http://<host:port>/xplansyn-wfs/services/xplansynwfspre?service=WFS&version=2.0.0&REQUEST=getFeature&TypeName=BP_Plan
+* [1]  `./XPlanManager --import [--force] <xplanarchiv> [--crs <CRS>]` 
+* [2]  `./XPlanManager --list `
+* [3] <http://<host:port>/xplan-wms/services/wms?REQUEST=GetMap&SERVICE=WMS&VERSION=1.1.1&WIDTH=1081&HEIGHT=725&LAYERS=bplanraster_sortiert&TRANSPARENT=TRUE&FORMAT=image%2Fpng&BBOX=417326.9138990595,5715257.490169556,418938.9357000923,5716338.633375614&SRS=EPSG:25833&STYLES=default>
 
 ---
 
-# 11. XPlanRessourcen (Landingpage)
+### Prüffall-09: Gültigkeitszeitraum für Rasterdaten in XPlanWMS unterstützen
 
-### Prüffall-01: Links aufrufen
+#### Vorbedingungen 
+
+ * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
+ * Der Benutzer ist am XPlanManager-Web angemeldet und hat die Berechtigung zum Import von Planarchiven. 
 
 #### Testschritte 
-Schritt | Beschreibung | Erwartetes Ergebnis 
------------ |------------------|-------------------------
-**01** | Der Benutzer überprüft die Ordnung sowie Rechtsschreibung der Linkvorschau auf der gesamten Landingpage | Alle Links sind richtig geordnet und weisen keine Rechtsschreibfehler auf. 
-**02** | Der Benutzer klickt auf jeden Link der Oberpunkte "XPlanManager und XPlanValidator", "XPlanDienste", "XPlanInspirePluDienste", "XPlanDokumentation" sowie "Weiterführende Informationen" und überprüft die Funktionalität. | Alle Links funktionieren. 
 
-# 12. DB-Aktualisierung
+Schritt |Beschreibung |Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer importiert einen Rasterplan mit unbegrenztem Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". | Der Plan wird importiert. Der Gültigkeitszeitraum ist grün.  
+**02** | Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) | Der Workspace wird neu geladen. 
+**03** | Der Benutzer öffnet die Kartenvorschau | Der Rasterplan wird abgebildet. 
+**04** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wurde gelöscht. 
+**05** | Der Benutzer importiert den gleichen Rasterplan erneut mit einem in der Vergangenheit liegenden Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". | Der Plan wird importiert. Der Gültigkeitszeitraum ist rot.
+**06** | Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) | Der Workspace wird neu geladen. 
+**07** | Der Benutzer öffnet die Kartenvorschau | Es wird lediglich der Umring des Vektorplans abgebildet. 
+**08** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wurde gelöscht. 
+**09** | Der Benutzer importiert den gleichen Plan erneut mit einem in der Zukunft liegenden Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". | Der Plan wird importiert. Der Gültigkeitszeitraum ist rot. 
+**10** | Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) | Der Workspace wird neu geladen. 
+**11** | Der Benutzer öffnet die Kartenvorschau. | Es wird lediglich der Umring des Vektorplans abgebildet. 
+**12** | Der Benutzer klickt auf den Button **Editieren**. | Es öffnet sich ein neues Fenster mit dem editier Formular. 
+**13** | Der Benutzer verändert den Gültigkeitszeitraum auf einen unbegrenzten Zeitraum und drückt auf speichern. | Der Gültigkeitszeitraum wird grün dargestellt.
+**14** | Der Benutzer öffnet die Kartenvorschau. | Der Rasterplan wird abgebildet. 
+
+**Hinweis:**
+
+* Dieser Test wird sowohl für GeoTiff-Rasterplänen als auch für PNG- Rasterplänen durchgeführt.
+* [1] `http://<host>:<port>/xplan-wms` 
+
+# 10. DB-Aktualisierung
 
 ### Prüffall-01: Ausführung der SQL-Skripte zur Aktualisierung des Datenbankschemas
 
@@ -1288,24 +1075,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **02** | Der Benutzer legt die Datenbankschemas mit Hilfe der SQL-Skipte im EvaluationSchemaSynchronizer an. | Es treten keine Fehlermeldungen auf, die Datenbankschemas existieren.
 **03** | Der Benutzer führt den EvaluationSchemaSynchronizer mit der Option `-t ALL` aus (siehe 8. XPlanAuswerteschemaCLI). | Es treten keine Fehlermeldungen auf. 
 **04** | Der Benutzer kontrolliert die in der Datenhaltung vorliegenden Daten darauf, dass die im jeweiligen XPlanSyn-Schema gespeicherten Daten auch dem neu erstellten Auswerteschema gleichen. | Die im XPlanSyn-Schema vorliegenden Daten gleichen dem jeweiligen Auswerteschema.
-
-# 13. Automatisierte SoapUI-Tests
-
-### Prüffall-01: Ausführung der automatisierten SoapUI-Tests
-
-#### Vorbedingungen 
- * Die Software SoapUI ist in der Version 5.7.0 installiert.
- * Die SoapUI-Projekte `xplan-api-managersoapui-project.xml`, `xplan-api-validatorsoapui-project.xml` und `xplan-webservices-soapui-project.xml` sind vorhanden und in SoapUI ausführbar.
-
-#### Testschritte 
-Schritt | Beschreibung | Erwartetes Ergebnis 
------------ |------------------|-------------------------
-**01** | Der Benutzer führt das SoapUI-Projekt `xplan-api-managersoapui-project.xml` in SoapUI aus. | Alle Tests werden erfolgreich bestanden. 
-**02** | Der Benutzer führt das SoapUI-Projekt `xplan-api-validatorsoapui-project.xml` in SoapUI aus. | Alle Tests werden erfolgreich bestanden. 
-**03** | Der Benutzer führt das SoapUI-Projekt `xplan-webservices-soapui-project.xml` in SoapUI aus.  | Alle Tests werden erfolgreich bestanden 
-
-Die SoapUI-Projekte befinden sich im folgenden Verzeichnis: 
->/xplan-tests/xplan-tests-soapui/src/main/resources/
 
 # Anhang
 
