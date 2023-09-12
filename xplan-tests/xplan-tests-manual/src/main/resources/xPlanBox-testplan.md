@@ -11,7 +11,8 @@ Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschieden
 * [7. XPlanTransformCLI](#7-xplantransformcli)
 * [8. XPlanAuswerteschemaCLI](#8-xplanauswerteschemacli)
 * [9. XPlanWMS](#9-xplanwms)
-* [10. DB-Aktualisierung](#11-db-aktualisierung)
+* [10. DB-Aktualisierung](#10-db-aktualisierung)
+* [11. Automatisierte SoapUI-Tests](#11-automatisierte-soapui-tests)
 * [Anhang](#anhang)
 
 # 1. XPlanManagerCLI 
@@ -65,11 +66,11 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 Schritt | Beschreibung | Erwartetes Ergebnis 
 ----------- |------------------|-------------------------
 **01** | Der Benutzer klickt auf den Button **Datei auswählen**. | Es öffnet sich ein neues Fenster zur Auswahl eines Planarchivs. 
-**02** | Der Benutzer wählt eine beliebige Datei (außer ein Plan im `Zip`-Format) aus klickt auf **Öffnen**. | Das Fenster schließt sich. Die beliebige Datei wird zwischengelagert in der Weboberfläche angezeigt.
+**02** | Der Benutzer wählt eine beliebige Datei (außer ein Planarchiv im `*.zip`- oder ein Plan im `*.gml`-Format) aus klickt auf **Öffnen**. | Das Fenster schließt sich. Die beliebige Datei wird zwischengelagert in der Weboberfläche angezeigt.
 **02.1** | Der Benutzer klickt auf den Button **Hinzufügen**. | Es wird ein Fenster geöffnet. Die Datei wird abgelehnt und nicht hoch geladen. 
 **02.2** | Der Benutzer klickt auf den Button **Schließen**. | Das Fenster wird geschlossen.
 **03** | Der Benutzer klickt auf den Button **Datei auswählen**. | Es öffnet sich ein neues Fenster zur Auswahl eines Planarchivs. 
-**03.01** | Der Benutzer wählt einen Plan im `Zip`-Format aus. |  Das Fenster schließt sich. Der Planname wird zwischengelagert in der Weboberfläche angezeigt.
+**03.01** | Der Benutzer wählt ein Planarchiv im `*.zip`-Format aus. |  Das Fenster schließt sich. Der Planname wird zwischengelagert in der Weboberfläche angezeigt.
 **03.2** | Der Benutzer klickt auf den Button **Hinzufügen**. | Der Plan wird hoch geladen. Nach Ende des Uploads wird ein neues Fenster geöffnet, mit der Meldung, dass der Upload abgeschlossen ist. 
 **03.3** | Der Benutzer klickt auf **Ok**. | Das Fenster wird geschlossen. Der Plan wird angezeigt. 
 **03.4** | Der Benutzer klickt auf **Entfernen**. | Es wird ein neues Fenster geöffnet, mit der Meldung, ob der Plan wirklich entfernt werden soll.
@@ -118,8 +119,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **02** | Der Benutzer klickt neben einen validen Plan mit Rasterdaten auf den Button **Import**. | Es öffnet sich ein Fenster zur Angabe des Gültigkeitszeitraums.
 **02.1** | Der Benutzer wählt einen _Gültigkeitszeitraum_ aus oder klickt ohne Angaben den Button **Weiter**. | Es öffnet sich ein weiteres Fenster um den Rechtsstand auszuwählen.
 **02.2** | Der Benutzer wählt einen _Rechtsstand_ aus oder klickt ohne Änderung den Button **Weiter**. | Es öffnet sich ein weiteres Fenster für die Analyse der Rasterdaten.
-**02.3** | Der Benutzer klickt den Button **Weiter mit Rasterdaten**, klickt den Button **Weiter ohne Rasterdaten** oder bricht den Import ab mit dem Button **Abbrechen**. | Beim klicken von den Button **Weiter mit/ohne Rasterdaten** wird Plan importiert, es öffnet sich ein Fenster mit der Meldung, dass der Import abgeschlossen ist.
+**02.3** | Der Benutzer klickt den Button **Weiter mit Rasterdaten**, klickt den Button **Weiter ohne Rasterdaten** oder bricht den Import ab mit dem Button **Abbrechen**. | Beim klicken von des Button **Weiter mit/ohne Rasterdaten** wird der Plan importiert; es öffnet sich ein Fenster mit der Meldung, dass der Import abgeschlossen ist.
 **02.4** | Der Benutzer wählt klickt den Button **Ok**. | Der Plan wird in der Plan-Liste angezeigt.
+**03** | Der Benutzer klickt neben einen validen Plan (im Format `*.gml`) auf **Import**. | Es öffnet sich ein Fenster zur Angabe des Gültigkeitszeitraums.
+**03.1** | Der Benutzer wählt einen _Gültigkeitszeitraum_ aus oder klickt ohne Angaben den Button **Weiter**. | Es öffnet sich ein weiteres Fenster um den Rechtsstand auszuwählen.
+**03.2** | Der Benutzer wählt einen _Rechtsstand_ aus oder klickt ohne Änderung den Button **Weiter**. | Beim klicken von des Button **Weiter** wird der Plan importiert; es öffnet sich ein Fenster mit der Meldung, dass der Import abgeschlossen ist.
+**03.3** | Der Benutzer wählt klickt den Button **Ok**. | Der Plan wird in der Plan-Liste angezeigt.
 
 ---
 
@@ -585,18 +590,19 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-10: Optimierte Validatorreports
+### Prüffall-10: Richtige Ausgabe der Syntaxfehler
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar.
- * Ein Planarchiv mit Syntaxfehlern, geometrischen und semantischen Fehlern in xplan.gml ist verfügbar.
+ * Ein Planarchiv mit Syntaxfehlern im xplan.gml ist verfügbar.
 
 #### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01**| Der Benutzer fügt ein neues Planarchiv hinzu.| Es öffnet sich eine neue Benutzeroberfläche.
-**02**| Der Benutzer wählt den Validierungstyp „Semantische Validierung“ und bestätigt die Angabe durch die Schaltfläche „Validierung starten“.| Es öffnet sich ein neues Fenster mit dem Ergebnis der semantischen-, geometrischen- und syntaktischen Validierung. 	
+**01** | Der Benutzer klickt auf **Datei auswählen**. | Ein neues Fenster öffnet sich. 
+**02** | Der Benutzer wählt ein ein Planarchiv mit Syntaxfehlern im xplan.gml aus und klickt auf **OK**. | Das Fenster schließt sich. Der Planname wird in der Web-basierten Benutzeroberfläche des XPlanValidators angezeigt.
+**02**| Der Benutzer wählt nur den Validierungstyp „syntaktisch“ aus und bestätigt die Angabe durch die Schaltfläche „Validierung starten“.| Es öffnet sich ein neues Fenster mit dem Ergebnis der syntaktischen Validierung. 	
 **03**| Der Benutzer überprüft die Ausgabe der Syntaxfehler.| Syntaxfehler enthalten Zeilenangaben und den Hinweis, dass das Instanzobjekt nicht zum XPlanGML Schema passt und überprüft werden sollte.
 
 **Hinweis** 
@@ -649,7 +655,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanUpdateDatabase-CLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-update-database-cli-$VERSION/bin`.
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanUpdateDatabase-CLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-update-data-cli-$VERSION/bin`.
 **02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe für das artefactsTableUpdate Tool aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des artefactsTableUpdate Tools.
 **03** | Der Benutzer führt mit dem Befehl in [3] die Hilfe für das bereichUpdate Tool aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des bereichUpdate Tools.
 **04** | Der Benutzer führt mit dem Befehl in [4] die Hilfe für das districtUpdate Tool aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des districtUpdate Tools.
@@ -1036,19 +1042,19 @@ Schritt |Beschreibung |Erwartetes Ergebnis
 
 # 10. DB-Aktualisierung
 
+Die xPlanBox ist in einer alten Version (Version 'alt') installiert und die dazugehörige XPlanDB wird auf eine neue Version (Version 'neu') aktualisiert. 
+
 ### Prüffall-01: Ausführung der SQL-Skripte zur Aktualisierung des Datenbankschemas
 
 #### Vorbedingungen 
- * Die xPlanBox ist in der Version 5.0.3 installiert und Daten sind in der XPlanDB vorhanden.
+ * Die xPlanBox ist in der Version 'alt' installiert und Daten sind in der XPlanDB vorhanden.
 
 #### Testschritte 
 Schritt | Beschreibung | Erwartetes Ergebnis 
 ----------- |------------------|-------------------------
-**01** | Der Benutzer führt den SQL-Befehl SELECT tag FROM databasechangelog WHERE versionid=5.0.3* | Die SQL-Abfrage liefert kein Ergebnis, da es die Tabelle databasechangelog in der Version 5.0.3 noch nicht gibt. 
-**02** | Der Benutzer führt die DB-Skripte zur Aktualisierung des Datenbankschemas zur XPlanBox Version 6.0 aus. | Es treten keine Fehlermeldungen auf. 
-**03** | Der Benutzer führt den SQL-Befehl SELECT tag FROM databasechangelog WHERE versionid=6.0*  | Die Version des Datenbankschemas ist 6.0. 
-
-> Die SQL-Abfrage muss noch angepasst werden.
+**01** | Der Benutzer führt den SQL-Befehl SELECT tag FROM databasechangelog WHERE versionid='neu' | Die SQL-Abfrage liefert kein Ergebnis, da es die Tabelle databasechangelog in der Version 'neu' noch nicht gibt. 
+**02** | Der Benutzer führt die DB-Skripte zur Aktualisierung des Datenbankschemas zur XPlanBox Version 'neu' aus. | Es treten keine Fehlermeldungen auf. 
+**03** | Der Benutzer führt den SQL-Befehl SELECT tag FROM databasechangelog WHERE versionid='neu'  | Die Version des Datenbankschemas ist 'neu'. 
 
 ### Prüffall-02: (Optional) Ausführen des Kommandozeilenwerkzeug reSynthesizer
 
@@ -1071,10 +1077,29 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Testschritte 
 Schritt | Beschreibung | Erwartetes Ergebnis 
 ----------- |------------------|-------------------------
-**01** | Der Benutzer muss die Datenbankschemas xplanevaluationxplansynpre, xplanevaluationxplansyn und xplanevaluationxplansynarchive löschen. | Die Datenbankschemas können erfolgreich gelöscht werden.
+**01** | Falls vorhanden, muss der Benutzer die Datenbankschemas 'xplanevaluationxplansynpre', 'xplanevaluationxplansyn' und 'xplanevaluationxplansynarchive' löschen. | Die Datenbankschemas können erfolgreich gelöscht werden.
 **02** | Der Benutzer legt die Datenbankschemas mit Hilfe der SQL-Skipte im EvaluationSchemaSynchronizer an. | Es treten keine Fehlermeldungen auf, die Datenbankschemas existieren.
-**03** | Der Benutzer führt den EvaluationSchemaSynchronizer mit der Option `-t ALL` aus (siehe 8. XPlanAuswerteschemaCLI). | Es treten keine Fehlermeldungen auf. 
+**03** | Der Benutzer führt den EvaluationSchemaSynchronizer mit der Option `--type ALL` aus (siehe 8. XPlanAuswerteschemaCLI). | Es treten keine Fehlermeldungen auf. 
 **04** | Der Benutzer kontrolliert die in der Datenhaltung vorliegenden Daten darauf, dass die im jeweiligen XPlanSyn-Schema gespeicherten Daten auch dem neu erstellten Auswerteschema gleichen. | Die im XPlanSyn-Schema vorliegenden Daten gleichen dem jeweiligen Auswerteschema.
+
+# 11. Automatisierte SoapUI-Tests
+
+### Prüffall-01: Ausführung der automatisierten SoapUI-Tests
+
+#### Vorbedingungen 
+ * Die Software SoapUI ist in der Version 5.7.1 installiert.
+ * Die SoapUI-Projekte `xplan-api-managersoapui-project.xml`, `xplan-api-validatorsoapui-project.xml`, `xplan-api-dokumente-soapui-project.xml` und `xplan-webservices-soapui-project.xml` sind vorhanden und in SoapUI ausführbar.
+
+#### Testschritte 
+Schritt | Beschreibung | Erwartetes Ergebnis 
+----------- |------------------|-------------------------
+*01* | Der Benutzer führt das SoapUI-Projekt `xplan-api-managersoapui-project.xml` in SoapUI aus. | Alle Tests werden erfolgreich bestanden. 
+*02* | Der Benutzer führt das SoapUI-Projekt `xplan-api-validatorsoapui-project.xml` in SoapUI aus. | Alle Tests werden erfolgreich bestanden. 
+*03* | Der Benutzer führt das SoapUI-Projekt `xplan-api-dokumente-soapui-project.xml` in SoapUI aus.  | Alle Tests werden erfolgreich bestanden.
+*04* | Der Benutzer führt das SoapUI-Projekt `xplan-webservices-soapui-project.xml` in SoapUI aus.  | Alle Tests werden erfolgreich bestanden.
+
+Die SoapUI-Projekte befinden sich im folgenden Verzeichnis: 
+>/xplan-tests/xplan-tests-soapui/src/main/resources/
 
 # Anhang
 
