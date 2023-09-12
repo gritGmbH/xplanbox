@@ -6810,7 +6810,7 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0"</path>
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -6947,7 +6947,7 @@ if (documentUrl != null){
               <path>declare namespace gml='http://www.opengis.net/gml';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//gml:featureMember/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0"</path>
+//gml:featureMember/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
