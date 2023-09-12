@@ -6810,7 +6810,7 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0"</path>
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -6947,7 +6947,7 @@ if (documentUrl != null){
               <path>declare namespace gml='http://www.opengis.net/gml';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//gml:featureMember/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0"</path>
+//gml:featureMember/xplan:BP_Plan/xplan:xpPlanName="BPlan004_6-0_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -7084,7 +7084,7 @@ if (documentUrl != null){
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_GruenFlaeche/xplan:xpPlanName="Osdorf48_Testplan_60"</path>
+//wfs:member/xplan:BP_GruenFlaeche/xplan:xpPlanName="Osdorf48_Testplan_60_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -7196,7 +7196,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Osdorf48_Testplan_60"</path>
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Osdorf48_Testplan_60_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -10464,7 +10464,7 @@ count(//wfs:member)</path>
             </con:parameter>
             <con:parameter>
               <con:name>planName</con:name>
-              <con:value>Osdorf48_Testplan_60</con:value>
+              <con:value>Osdorf48_Testplan_60_SoapUI-XPlanDienste</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
             <con:parameter>
@@ -10663,7 +10663,7 @@ count(//wfs:member)</path>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.xplanung.de/xplangml/6/0';
 
-//wfs:member/xplan:BP_Plan/xplan:name="BPlan004_6-0"</path>
+//wfs:member/xplan:BP_Plan/xplan:name="BPlan004_6-0_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -10776,7 +10776,7 @@ if (documentUrl != null){
               <path>declare namespace gml='http://www.opengis.net/gml';
 declare namespace xplan='http://www.xplanung.de/xplangml/6/0';
 
-//gml:featureMember/xplan:BP_Plan/xplan:name="BPlan004_6-0"</path>
+//gml:featureMember/xplan:BP_Plan/xplan:name="BPlan004_6-0_SoapUI-XPlanDienste"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
