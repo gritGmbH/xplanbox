@@ -72,6 +72,7 @@ import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
+import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
@@ -93,11 +94,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ResourceLoader;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
@@ -108,7 +104,6 @@ import java.util.Optional;
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLAN_MANAGER_WORKSPACE;
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
-import static java.nio.file.Paths.get;
 
 /**
  * Spring Application Context for initialising XPlanManagerAPI components.
@@ -164,11 +159,12 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(Path rulesPath) {
-		RulesVersionParser rulesVersionParser = new RulesVersionParser();
-		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
+	public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(
+			SemanticRulesConfiguration semanticRulesConfiguration) {
+		RulesVersionParser rulesVersionParser = new RulesVersionParser(semanticRulesConfiguration);
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion();
 		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
-		return new XQuerySemanticValidatorConfigurationRetriever(rulesPath, rulesMetadata);
+		return new XQuerySemanticValidatorConfigurationRetriever(semanticRulesConfiguration, rulesMetadata);
 	}
 
 	@Bean
@@ -370,23 +366,11 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public Path rulesPath(ValidatorConfiguration validatorConfiguration) throws URISyntaxException, IOException {
+	public SemanticRulesConfiguration semanticRulesConfiguration(ValidatorConfiguration validatorConfiguration) {
 		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
 		if (validationRulesDirectory != null)
-			return validationRulesDirectory;
-
-		String aResourceInRulesJar = RULES_DIRECTORY + "/xplangml60/2.1.5.xq";
-		URL uri = getClass().getResource(aResourceInRulesJar);
-		if ("jar".equals(uri.getProtocol())) {
-			String jarPath = uri.getFile().replaceFirst("file:(.*)!.*", "$1");
-			if (jarPath != null) {
-				FileSystem zipfs = FileSystems.newFileSystem(Path.of(jarPath), getClass().getClassLoader());
-				return zipfs.getPath(RULES_DIRECTORY);
-			}
-		}
-
-		URI rulesPath = getClass().getResource(RULES_DIRECTORY).toURI();
-		return get(rulesPath);
+			return new SemanticRulesConfiguration(validationRulesDirectory);
+		return new SemanticRulesConfiguration();
 	}
 
 	@Bean

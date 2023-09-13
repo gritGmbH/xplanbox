@@ -31,6 +31,7 @@ import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
+import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
@@ -68,7 +69,9 @@ public class XPlanValidatorCliSpringConfig {
 		RulesVersionParser rulesVersionParser = new RulesVersionParser();
 		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
 		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
-		return new XQuerySemanticValidator(new XQuerySemanticValidatorConfigurationRetriever(rulesPath, rulesMetadata));
+		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(rulesPath);
+		return new XQuerySemanticValidator(
+				new XQuerySemanticValidatorConfigurationRetriever(semanticRulesConfiguration, rulesMetadata));
 	}
 
 	@Bean

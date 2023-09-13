@@ -31,6 +31,7 @@ import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
+import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
@@ -56,15 +57,11 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ResourceLoader;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
-import static java.nio.file.Paths.get;
 
 /**
  * XPlanValidatorWeb Application Configuration.
@@ -99,11 +96,12 @@ public class XPlanValidatorWebSpringConfig {
 	}
 
 	@Bean
-	public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(Path rulesPath) {
-		RulesVersionParser rulesVersionParser = new RulesVersionParser();
-		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
+	public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(
+			SemanticRulesConfiguration semanticRulesConfiguration) {
+		RulesVersionParser rulesVersionParser = new RulesVersionParser(semanticRulesConfiguration);
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion();
 		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
-		return new XQuerySemanticValidatorConfigurationRetriever(rulesPath, rulesMetadata);
+		return new XQuerySemanticValidatorConfigurationRetriever(semanticRulesConfiguration, rulesMetadata);
 	}
 
 	@Bean
@@ -175,12 +173,11 @@ public class XPlanValidatorWebSpringConfig {
 	}
 
 	@Bean
-	public Path rulesPath(ValidatorConfiguration validatorConfiguration) throws URISyntaxException {
+	public SemanticRulesConfiguration semanticRulesConfiguration(ValidatorConfiguration validatorConfiguration) {
 		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
 		if (validationRulesDirectory != null)
-			return validationRulesDirectory;
-		URI rulesPath = XPlanValidatorWebSpringConfig.class.getResource(RULES_DIRECTORY).toURI();
-		return get(rulesPath);
+			return new SemanticRulesConfiguration(validationRulesDirectory);
+		return new SemanticRulesConfiguration();
 	}
 
 }
