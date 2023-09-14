@@ -25,9 +25,6 @@ import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfigurati
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfigurationRetriever;
-import de.latlon.xplan.validator.semantic.configuration.message.DefaultRulesMessagesAccessor;
-import de.latlon.xplan.validator.semantic.configuration.message.RulesMessagesAccessor;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
 import net.sf.saxon.trans.XPathException;
 import org.slf4j.Logger;
@@ -64,43 +61,25 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 
 	private static final String FILE_SUFFIX = ".xq";
 
-	private Path rulesPath;
-
 	private SemanticRulesConfiguration semanticRulesConfiguration;
 
-	private final RulesMetadata rulesMetadata;
-
-	private final RulesMessagesAccessor rulesMessagesAccessor;
-
-	public XQuerySemanticValidatorConfigurationRetriever(SemanticRulesConfiguration semanticRulesConfiguration,
-			RulesMetadata rulesMetadata) {
+	/**
+	 * @param semanticRulesConfiguration never <code>null</code>
+	 */
+	public XQuerySemanticValidatorConfigurationRetriever(SemanticRulesConfiguration semanticRulesConfiguration) {
 		this.semanticRulesConfiguration = semanticRulesConfiguration;
-		this.rulesMetadata = rulesMetadata;
-		this.rulesMessagesAccessor = new DefaultRulesMessagesAccessor();
-	}
-
-	public XQuerySemanticValidatorConfigurationRetriever(Path rulesPath, RulesMetadata rulesMetadata,
-			RulesMessagesAccessor rulesMessagesAccessor) {
-		this.rulesPath = rulesPath;
-		this.rulesMetadata = rulesMetadata;
-		this.rulesMessagesAccessor = rulesMessagesAccessor;
 	}
 
 	@Override
 	public SemanticValidatorConfiguration retrieveConfiguration() throws IOException {
 		SemanticValidatorConfiguration config = new SemanticValidatorConfiguration();
-		config.setRulesMetadata(rulesMetadata);
-		if (rulesPath != null && isDirectory(rulesPath)) {
-			parseRulesFromPath(rulesPath, config);
+		config.setRulesMetadata(semanticRulesConfiguration.getRulesMetadata());
+		Optional<Path> rulesPathFromConfig = semanticRulesConfiguration.getRulesPath();
+		if (rulesPathFromConfig.isPresent() && isDirectory(rulesPathFromConfig.get())) {
+			parseRulesFromPath(rulesPathFromConfig.get(), config);
 		}
-		else if (semanticRulesConfiguration != null) {
-			Optional<Path> rulesPathFromConfig = semanticRulesConfiguration.getRulesPath();
-			if (rulesPathFromConfig.isPresent() && isDirectory(rulesPathFromConfig.get())) {
-				parseRulesFromPath(rulesPathFromConfig.get(), config);
-			}
-			else {
-				parseInternalRules(config);
-			}
+		else {
+			parseInternalRules(config);
 		}
 		return config;
 	}
@@ -208,7 +187,7 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 	private String createAndAddRule(SemanticValidatorConfiguration config, String fileName, XPlanVersion version,
 			SemanticValidationOptions option, InputStream statementStream) throws IOException, XPathException {
 		String name = getNameWithoutExtension(fileName);
-		String message = rulesMessagesAccessor.retrieveMessageForRule(name, version);
+		String message = semanticRulesConfiguration.getRulesMessageAccessor().retrieveMessageForRule(name, version);
 		XQuerySemanticValidatorRule rule = new XQuerySemanticValidatorRule(statementStream, name, version, option,
 				message);
 		config.addRule(rule);

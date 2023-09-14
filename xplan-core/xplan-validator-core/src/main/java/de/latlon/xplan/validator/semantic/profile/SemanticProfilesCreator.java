@@ -28,6 +28,7 @@ import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
 import de.latlon.xplan.validator.configuration.ValidatorProfile;
+import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.message.FileRulesMessagesAccessor;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
@@ -169,8 +170,10 @@ public class SemanticProfilesCreator {
 	private DelegatingSemanticProfileValidator createDelegatingSemanticProfileValidator(Path rulesDirectory,
 			RulesMetadata rulesMetadata) throws ConfigurationException {
 		FileRulesMessagesAccessor messagesAccessor = new FileRulesMessagesAccessor(rulesDirectory);
+		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(rulesDirectory,
+				rulesMetadata, messagesAccessor);
 		XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
-				rulesDirectory, rulesMetadata, messagesAccessor);
+				semanticRulesConfiguration);
 		XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
 				xQuerySemanticValidatorConfigurationRetriever);
 		return new DelegatingSemanticProfileValidator(rulesMetadata.getId(), xQuerySemanticValidator);

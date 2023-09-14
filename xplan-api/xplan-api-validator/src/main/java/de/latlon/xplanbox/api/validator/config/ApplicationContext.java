@@ -32,9 +32,6 @@ import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.profile.SemanticProfiles;
 import de.latlon.xplan.validator.semantic.profile.SemanticProfilesCreator;
@@ -66,8 +63,6 @@ import static java.nio.file.Files.createTempDirectory;
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.validator.handler", "de.latlon.xplanbox.api.validator.v1" })
 @Import(ValidatorWmsContext.class)
 public class ApplicationContext {
-
-	private static final String RULES_DIRECTORY = "/rules";
 
 	@Autowired
 	private ResourceLoader resourceLoader;
@@ -102,10 +97,13 @@ public class ApplicationContext {
 	@Bean
 	public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(
 			SemanticRulesConfiguration semanticRulesConfiguration) {
-		RulesVersionParser rulesVersionParser = new RulesVersionParser(semanticRulesConfiguration);
-		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion();
-		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
-		return new XQuerySemanticValidatorConfigurationRetriever(semanticRulesConfiguration, rulesMetadata);
+		return new XQuerySemanticValidatorConfigurationRetriever(semanticRulesConfiguration);
+	}
+
+	@Bean
+	public SemanticRulesConfiguration semanticRulesConfiguration(ValidatorConfiguration validatorConfiguration) {
+		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
+		return new SemanticRulesConfiguration(validationRulesDirectory);
 	}
 
 	@Bean
@@ -153,14 +151,6 @@ public class ApplicationContext {
 	@Bean
 	public ReportWriter reportWriter() {
 		return new ReportWriter();
-	}
-
-	@Bean
-	public SemanticRulesConfiguration semanticRulesConfiguration(ValidatorConfiguration validatorConfiguration) {
-		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
-		if (validationRulesDirectory != null)
-			return new SemanticRulesConfiguration(validationRulesDirectory);
-		return new SemanticRulesConfiguration();
 	}
 
 }

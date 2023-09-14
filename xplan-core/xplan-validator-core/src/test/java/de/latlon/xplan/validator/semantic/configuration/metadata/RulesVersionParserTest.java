@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.semantic.configuration.metadata;
 
+import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
 import org.junit.Test;
 
 import java.net.URISyntaxException;
@@ -28,6 +29,7 @@ import java.nio.file.Path;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
@@ -35,12 +37,24 @@ import static org.hamcrest.Matchers.is;
 public class RulesVersionParserTest {
 
 	@Test
-	public void verifyThatParseVersionReturnsValue() throws URISyntaxException {
-		RulesVersionParser rulesVersionParser = new RulesVersionParser();
-		RulesVersion rulesVersion = rulesVersionParser
-			.parserRulesVersion(Path.of(RulesVersionParserTest.class.getResource("/rules").toURI()));
+	public void verifyThatParseVersionFromRulesDirectoryReturnsValue() throws URISyntaxException {
+		Path rulesPath = Path
+			.of(RulesVersionParserTest.class.getResource("/de/latlon/xplan/validator/configuration/rules").toURI());
+		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(rulesPath);
+		RulesVersionParser rulesVersionParser = new RulesVersionParser(semanticRulesConfiguration);
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion();
 		assertThat(rulesVersion.getVersion(), is("0.0.1"));
 		assertThat(rulesVersion.getSource(), containsString("xplan-validator-core"));
+	}
+
+	@Test
+	public void verifyThatParseVersionFromInternalRulesReturnsValue() {
+		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration();
+		RulesVersionParser rulesVersionParser = new RulesVersionParser(semanticRulesConfiguration);
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion();
+		assertThat(rulesVersion.getVersion(), notNullValue());
+		assertThat(rulesVersion.getSource(),
+				containsString("https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard"));
 	}
 
 }

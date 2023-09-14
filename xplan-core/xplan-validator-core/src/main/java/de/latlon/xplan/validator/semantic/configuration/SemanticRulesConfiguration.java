@@ -20,6 +20,12 @@
  */
 package de.latlon.xplan.validator.semantic.configuration;
 
+import de.latlon.xplan.validator.semantic.configuration.message.DefaultRulesMessagesAccessor;
+import de.latlon.xplan.validator.semantic.configuration.message.FileRulesMessagesAccessor;
+import de.latlon.xplan.validator.semantic.configuration.message.RulesMessagesAccessor;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +49,10 @@ public class SemanticRulesConfiguration {
 
 	private final Path rulesPath;
 
+	private final RulesMetadata rulesMetadata;
+
+	private final RulesMessagesAccessor messagesAccessor;
+
 	private List<String> resources;
 
 	public SemanticRulesConfiguration() {
@@ -51,6 +61,23 @@ public class SemanticRulesConfiguration {
 
 	public SemanticRulesConfiguration(Path rulesPath) {
 		this.rulesPath = rulesPath;
+		this.rulesMetadata = createRulesMetadata();
+		this.messagesAccessor = new DefaultRulesMessagesAccessor();
+	}
+
+	public SemanticRulesConfiguration(Path rulesPath, RulesMetadata rulesMetadata,
+			FileRulesMessagesAccessor messagesAccessor) {
+		this.rulesPath = rulesPath;
+		this.rulesMetadata = rulesMetadata;
+		this.messagesAccessor = messagesAccessor;
+	}
+
+	public RulesMetadata getRulesMetadata() {
+		return rulesMetadata;
+	}
+
+	public RulesMessagesAccessor getRulesMessageAccessor() {
+		return messagesAccessor;
 	}
 
 	public Optional<Path> getRulesPath() {
@@ -80,6 +107,13 @@ public class SemanticRulesConfiguration {
 			}
 		}
 		return resources;
+	}
+
+	private RulesMetadata createRulesMetadata() {
+		RulesVersionParser rulesVersionParser = new RulesVersionParser(this);
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion();
+		return new RulesMetadata(rulesVersion);
+
 	}
 
 }

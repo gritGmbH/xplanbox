@@ -72,9 +72,6 @@ import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.profile.SemanticProfiles;
 import de.latlon.xplan.validator.semantic.profile.SemanticProfilesCreator;
@@ -150,10 +147,13 @@ public class BasicSpringConfig {
 	@Bean
 	public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(
 			SemanticRulesConfiguration semanticRulesConfiguration) {
-		RulesVersionParser rulesVersionParser = new RulesVersionParser(semanticRulesConfiguration);
-		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion();
-		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
-		return new XQuerySemanticValidatorConfigurationRetriever(semanticRulesConfiguration, rulesMetadata);
+		return new XQuerySemanticValidatorConfigurationRetriever(semanticRulesConfiguration);
+	}
+
+	@Bean
+	public SemanticRulesConfiguration semanticRulesConfiguration(ValidatorConfiguration validatorConfiguration) {
+		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
+		return new SemanticRulesConfiguration(validationRulesDirectory);
 	}
 
 	@Bean
@@ -373,14 +373,6 @@ public class BasicSpringConfig {
 	@Bean
 	public PropertiesLoader validatorPropertiesLoader() {
 		return new SystemPropertyPropertiesLoader(ValidatorConfiguration.class);
-	}
-
-	@Bean
-	public SemanticRulesConfiguration semanticRulesConfiguration(ValidatorConfiguration validatorConfiguration) {
-		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
-		if (validationRulesDirectory != null)
-			return new SemanticRulesConfiguration(validationRulesDirectory);
-		return new SemanticRulesConfiguration();
 	}
 
 	@Bean

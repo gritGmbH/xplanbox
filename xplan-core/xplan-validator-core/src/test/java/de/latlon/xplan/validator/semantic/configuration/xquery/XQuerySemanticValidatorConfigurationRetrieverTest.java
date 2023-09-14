@@ -23,9 +23,6 @@ package de.latlon.xplan.validator.semantic.configuration.xquery;
 import de.latlon.xplan.validator.semantic.SemanticValidatorRule;
 import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import org.junit.Test;
 
 import java.nio.file.Path;
@@ -54,7 +51,7 @@ public class XQuerySemanticValidatorConfigurationRetrieverTest {
 		Path rulesPath = get(XQuerySemanticValidatorConfigurationRetriever.class.getResource("rules").toURI());
 		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(rulesPath);
 		XQuerySemanticValidatorConfigurationRetriever configurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
-				semanticRulesConfiguration, rulesMatadata(rulesPath));
+				semanticRulesConfiguration);
 		SemanticValidatorConfiguration configuration = configurationRetriever.retrieveConfiguration();
 		List<SemanticValidatorRule> rules = configuration.getAllRules();
 
@@ -66,7 +63,7 @@ public class XQuerySemanticValidatorConfigurationRetrieverTest {
 		Path rulesPath = get(XQuerySemanticValidatorConfigurationRetriever.class.getResource("rules").toURI());
 		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(rulesPath);
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				semanticRulesConfiguration, rulesMatadata(rulesPath));
+				semanticRulesConfiguration);
 		SemanticValidatorConfiguration configuration = retriever.retrieveConfiguration();
 
 		assertThat(configuration.getRules(singletonList(IGNORE_XP)).size(), is(9));
@@ -78,7 +75,7 @@ public class XQuerySemanticValidatorConfigurationRetrieverTest {
 	public void testRetrieveConfigurationFromJar() throws Exception {
 		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration();
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				semanticRulesConfiguration, new RulesMetadata(new RulesVersion()));
+				semanticRulesConfiguration);
 		SemanticValidatorConfiguration configuration = retriever.retrieveConfiguration();
 
 		assertThat(configuration.getRules(XPLAN_40, singletonList(NONE)).size(), is(not(0)));
@@ -89,17 +86,10 @@ public class XQuerySemanticValidatorConfigurationRetrieverTest {
 		Path rulesPath = get("/does/not/exist");
 		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(rulesPath);
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				semanticRulesConfiguration, rulesMatadata(rulesPath));
+				semanticRulesConfiguration);
 		SemanticValidatorConfiguration configuration = retriever.retrieveConfiguration();
 
 		assertThat(configuration.getAllRules().size(), is(not(0)));
-	}
-
-	private RulesMetadata rulesMatadata(Path rulesPath) {
-		RulesVersionParser rulesVersionParser = new RulesVersionParser();
-		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
-		return new RulesMetadata(rulesVersion);
-
 	}
 
 }

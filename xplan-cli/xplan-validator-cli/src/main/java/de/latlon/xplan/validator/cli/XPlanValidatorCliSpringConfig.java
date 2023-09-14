@@ -32,9 +32,6 @@ import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.profile.SemanticProfileValidator;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
@@ -66,12 +63,10 @@ public class XPlanValidatorCliSpringConfig {
 	@Lazy
 	@Scope("prototype")
 	public SemanticValidator semanticValidator(Path rulesPath) throws ConfigurationException {
-		RulesVersionParser rulesVersionParser = new RulesVersionParser();
-		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
-		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
 		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(rulesPath);
-		return new XQuerySemanticValidator(
-				new XQuerySemanticValidatorConfigurationRetriever(semanticRulesConfiguration, rulesMetadata));
+		XQuerySemanticValidatorConfigurationRetriever semanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
+				semanticRulesConfiguration);
+		return new XQuerySemanticValidator(semanticValidatorConfigurationRetriever);
 	}
 
 	@Bean

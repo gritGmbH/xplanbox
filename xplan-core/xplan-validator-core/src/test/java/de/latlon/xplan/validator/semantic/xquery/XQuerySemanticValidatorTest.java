@@ -27,9 +27,6 @@ import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import junitparams.JUnitParamsRunner;
@@ -64,7 +61,7 @@ public class XQuerySemanticValidatorTest {
 		Path xqueryFilePath = pathToSampleRules();
 		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(xqueryFilePath);
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				semanticRulesConfiguration, rulesMatadata(xqueryFilePath));
+				semanticRulesConfiguration);
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever);
 		ValidatorResult result = xQuerySemanticValidator.validateSemantic(getTestArchive(testResource),
 				Collections.emptyList());
@@ -78,7 +75,7 @@ public class XQuerySemanticValidatorTest {
 		Path xqueryFilePath = pathToSampleRules();
 		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(xqueryFilePath);
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				semanticRulesConfiguration, rulesMatadata(xqueryFilePath));
+				semanticRulesConfiguration);
 		SemanticConformityLinkConfiguration linkConfig = new SemanticConformityLinkConfiguration();
 		linkConfig.addLink(XPLAN_41, "link");
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever, linkConfig);
@@ -95,7 +92,7 @@ public class XQuerySemanticValidatorTest {
 		Path xqueryFilePath = pathToSampleRules();
 		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(xqueryFilePath);
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				semanticRulesConfiguration, rulesMatadata(xqueryFilePath));
+				semanticRulesConfiguration);
 		SemanticConformityLinkConfiguration linkConfig = new SemanticConformityLinkConfiguration();
 		linkConfig.addLink(XPLAN_40, "link");
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever, linkConfig);
@@ -111,7 +108,7 @@ public class XQuerySemanticValidatorTest {
 		Path xqueryFilePath = pathToSampleRules();
 		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(xqueryFilePath);
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				semanticRulesConfiguration, rulesMatadata(xqueryFilePath));
+				semanticRulesConfiguration);
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever);
 		ValidatorResult result = xQuerySemanticValidator.validateSemantic(getTestArchive("xplan41/BP2070.zip"),
 				Collections.emptyList());
@@ -125,7 +122,7 @@ public class XQuerySemanticValidatorTest {
 		Path xqueryFilePath = pathToSampleRules();
 		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(xqueryFilePath);
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				semanticRulesConfiguration, rulesMatadata(xqueryFilePath));
+				semanticRulesConfiguration);
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever);
 		xQuerySemanticValidator.validateSemantic(null, Collections.emptyList());
 	}
@@ -135,15 +132,9 @@ public class XQuerySemanticValidatorTest {
 		Path xqueryFilePath = pathToSampleRules();
 		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(xqueryFilePath);
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				semanticRulesConfiguration, rulesMatadata(xqueryFilePath));
+				semanticRulesConfiguration);
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever);
 		xQuerySemanticValidator.validateSemantic(getTestArchive("xplan41/BP2070.zip"), null);
-	}
-
-	private RulesMetadata rulesMatadata(Path rulesPath) {
-		RulesVersionParser rulesVersionParser = new RulesVersionParser();
-		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
-		return new RulesMetadata(rulesVersion);
 	}
 
 	private XPlanArchive getTestArchive(String name) throws Exception {
