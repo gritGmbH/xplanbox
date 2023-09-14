@@ -144,7 +144,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **Hinweis**
 
 * [1] Zur Unterstützung des Arbeitsablaufs bietet die Oberfläche dem Nutzer:
-    * eine tabellarische Anzeige aller XPlanGML-Dokumente.
+    * eine tabellarische Anzeige aller in der Datenbasis enthaltenen XPlanGML-Dokumente.
 
 * [2] Die Liste enthält die folgenden Eigenschaften:  
     * Name [sortierfähig]
