@@ -2,6 +2,22 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+## Version 7.0.1 (2023-09-TT)
+
+### Erweiterungen
+- Das Validierungsprofil Berlin ist in den Komponenten XPlanValidator und XPlanManager enthalten und kann aktiviert werden
+- Verbesserung der Konfigurierbarkeit des MapServer-Container-Images
+- OCI-Labels für alle Container-Images hinzugefügt
+- Aktualisierung der Validierungsregeln auf v1.1.5
+
+### Fehlerbehebungen
+- Fehler bei der Ausführung des XPlanValidator unter Windows behoben
+- Fehler bei der Ausführung in Container-Images auf Basis von Bitnami/Tomcat behoben
+- Korrekturen in den Zeichenvorschriften für den XPlanWMS vorgenommen
+- Fehlermeldung im XPlanValidator bei der Validierung von XPlanArchiven (ZIP-Datei) verbessert
+- Korrekturen im Betriebshandbuch für die Kommandozeilenprogramme (CLI) vorgenommen
+
+
 ## Version 7.0 (2023-08-16)
 
 ### Erweiterungen
@@ -56,7 +72,7 @@ Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version 
 
 ### Fehlerbehebungen
 - Aktualisierung der Validierungsregeln auf v1.1.3 mit Korrekturen der Regeln 4.5.1.3 und 5.3.1.2
-- Fehlerkorrektur in der Geltungsgbereichsprüfung
+- Fehlerkorrektur in der Geltungsbereichsprüfung
 
 ## Version 6.0.1 (2023-03-30)
 
