@@ -59,7 +59,7 @@ Usage: XPlanManager <options>
  --delete <planid> [<planid>..]
      <planid> Die ID des Plans der geloescht werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.
  --createMetadata <planid> [<planid>..]
-     <planid> Die ID des Plans zu dem der Service-Metadatensatz generiert werden soll (optional). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden. Wenn keine ID angegeben ist, werden f?r alle Plaene Metadatensaetze erstellt.
+     <planid> Die ID des Plans zu dem der Service-Metadatensatz generiert werden soll (optional). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden. Wenn keine ID angegeben ist, werden fuer alle Plaene Metadatensaetze erstellt.
 
 Allgemeine Parameter:
      --v Ausgabe der Systemeigenschaften
@@ -194,7 +194,7 @@ Import des Plans /BPlan002_5-2.zip
 ...
 - Rasterdatei mit Namen BP_4_020_Bleiche_Hirzberg_u_Schwarzwaldstrasse.tif gefunden.
 - Koordinatensystem des Rasters: PROJCS[...["EPSG","25832"]]
-- Evaluationsergebnis der referenzierten Rasterdaten: 
+- Evaluationsergebnis der referenzierten Rasterdaten:
   - Name: BP_4_020_Bleiche_Hirzberg_u_Schwarzwaldstrasse.tif Unterstuetztes CRS: Ja Unterstuetztes Bildformat: Ja
 Die Rasterdaten des Plans sind valide
 ...
