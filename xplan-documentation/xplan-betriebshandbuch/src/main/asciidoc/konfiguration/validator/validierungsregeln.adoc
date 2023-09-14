@@ -89,7 +89,17 @@ Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Validierungsreg
   description: Vorgaben aus Musterpflichtenheft zur Erstellung XPlanung-konformer Bebauungspläne in NRW
 ----
 
-NOTE: Alternativ zur Konfiguration von Profilen im Dateisystem unter _<XPLANBOX_CONFIG>/profiles_ können Profile auch im Classpath der Anwendung bzw. der API abgelegt werden. Dabei gelten die zuvor genannten Anforderungen. Weiterhin muss die Konfigurationsdatei im YAML-Dateiformat dem Namen _profiles-<bez>.yaml_ oder _profiles-<bez>.yml_ entsprechen. Als <bez> sollte zur eindeutigen Zuordnung ein eindeutiger Bezeichner verwendet werden. Z.B. _profiles-nds.yaml_.
+NOTE: Alternativ zur Konfiguration von Profilen im Dateisystem unter _<XPLANBOX_CONFIG>/profiles_ können Profile auch im Classpath der Anwendung bzw. der API abgelegt werden. Dabei gelten die zuvor genannten Anforderungen. Weiterhin muss die Konfigurationsdatei im YAML-Dateiformat dem Namen _profiles-<bez>.yaml_ oder _profiles-<bez>.yml_ entsprechen. Als <bez> sollte zur eindeutigen Zuordnung ein eindeutiger Bezeichner verwendet werden. Z.B. _profiles-nds.yaml_. Weiterhin muss eine Datei mit dem Namen _xqueryregeln-<id>>.txt_ auf der obersten Ebene abgelegt werden. Diese Datei muss alle XQuery Regeln als Pfade auflisten, außerdem die version.properties und rules.properties.
+
+.Beispiel für _xqueryregeln-<id>>.txt_
+----
+/nrw/rules.properties
+/nrw/version.properties
+/nrw/xplangml54/bp/01_gemeinde.xq
+/nrw/xplangml54/bp/02_plangeber.xq
+/nrw/xplangml60/bp/01_gemeinde.xq
+/nrw/xplangml60/bp/02_plangeber.xq
+----
 
 Die XQuery-Regeln für ein Profil müssen in dem Verzeichnis _<XPLANBOX_CONFIG>/profiles/id_ mit der id aus der Profil-Konfiguration [1] liegen. Die Verzeichnisstruktur unterhalb dieses Verzeichnisses muss folgende Vorgaben erfüllen:
 ** Die Dateien mit den XQuery-Regeln müssen je XPlanGML-Version in getrennten Verzeichnissen abgelegt werden. Der Verzeichnisname setzt sich zusammen aus _xplangml<XPLANGML-VERSION>_, z. B. _xplangml54_, _xplangml60_.
