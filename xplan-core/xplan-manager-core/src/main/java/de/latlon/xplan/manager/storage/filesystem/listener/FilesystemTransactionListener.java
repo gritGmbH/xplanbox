@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.listener;
+package de.latlon.xplan.manager.storage.filesystem.listener;
 
 import de.latlon.xplan.manager.storage.StorageEvent;
 import org.slf4j.Logger;
