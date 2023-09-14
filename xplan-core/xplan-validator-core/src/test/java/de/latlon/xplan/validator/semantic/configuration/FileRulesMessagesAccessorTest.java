@@ -92,4 +92,13 @@ public class FileRulesMessagesAccessorTest {
 		assertThat(message, notNullValue());
 	}
 
+	@Test
+	public void testRetrieveMessageForRule_FromClasspath_KnownRuleWithVersion() {
+		InputStream properties = FileRulesMessagesAccessorTest.class
+			.getResourceAsStream("/de/latlon/xplan/validator/configuration/rules/rules.properties");
+		FileRulesMessagesAccessor fileRulesMessagesAccessor = new FileRulesMessagesAccessor(properties);
+		String message = fileRulesMessagesAccessor.retrieveMessageForRule("3.1.3.1", XPLAN_41);
+		assertThat(message, is("Regel 3.1.3.1 (XPLAN_41) muss erf\u00FCllt sein"));
+	}
+
 }

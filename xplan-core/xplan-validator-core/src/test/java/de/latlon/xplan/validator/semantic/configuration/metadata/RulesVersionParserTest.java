@@ -21,6 +21,7 @@
 package de.latlon.xplan.validator.semantic.configuration.metadata;
 
 import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
+import de.latlon.xplan.validator.semantic.configuration.SemanticRulesMainConfiguration;
 import org.junit.Test;
 
 import java.net.URISyntaxException;
@@ -40,7 +41,7 @@ public class RulesVersionParserTest {
 	public void verifyThatParseVersionFromRulesDirectoryReturnsValue() throws URISyntaxException {
 		Path rulesPath = Path
 			.of(RulesVersionParserTest.class.getResource("/de/latlon/xplan/validator/configuration/rules").toURI());
-		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(rulesPath);
+		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesMainConfiguration(rulesPath);
 		RulesVersionParser rulesVersionParser = new RulesVersionParser(semanticRulesConfiguration);
 		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion();
 		assertThat(rulesVersion.getVersion(), is("0.0.1"));
@@ -49,7 +50,7 @@ public class RulesVersionParserTest {
 
 	@Test
 	public void verifyThatParseVersionFromInternalRulesReturnsValue() {
-		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration();
+		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesMainConfiguration();
 		RulesVersionParser rulesVersionParser = new RulesVersionParser(semanticRulesConfiguration);
 		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion();
 		assertThat(rulesVersion.getVersion(), notNullValue());

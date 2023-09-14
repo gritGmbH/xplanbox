@@ -32,6 +32,7 @@ import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
+import de.latlon.xplan.validator.semantic.configuration.SemanticRulesMainConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.profile.SemanticProfiles;
 import de.latlon.xplan.validator.semantic.profile.SemanticProfilesCreator;
@@ -101,7 +102,7 @@ public class XPlanValidatorWebSpringConfig {
 	@Bean
 	public SemanticRulesConfiguration semanticRulesConfiguration(ValidatorConfiguration validatorConfiguration) {
 		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
-		return new SemanticRulesConfiguration(validationRulesDirectory);
+		return new SemanticRulesMainConfiguration(validationRulesDirectory);
 	}
 
 	@Bean

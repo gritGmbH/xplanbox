@@ -46,41 +46,8 @@ public class RulesVersionParser {
 
 	private final SemanticRulesConfiguration semanticRulesConfiguration;
 
-	public RulesVersionParser() {
-		this.semanticRulesConfiguration = null;
-	}
-
 	public RulesVersionParser(SemanticRulesConfiguration semanticRulesConfiguration) {
 		this.semanticRulesConfiguration = semanticRulesConfiguration;
-	}
-
-	/**
-	 * Parses the rule metadata from the VERSION.txt file in the rulesPath if available
-	 * @param rulesPath Path to rules, may be <code>null</code>
-	 * @return never <code>null</code>, if the rulesPath is null or does not exist or the
-	 * version.properties file could not be parsed an empty RulesVersion is returned
-	 */
-	public RulesVersion parserRulesVersion(Path rulesPath) {
-		if (rulesPath == null) {
-			LOG.info("No rulesPath available, metadata are unknown");
-			return new RulesVersion();
-		}
-		Path metadataFile = rulesPath.resolve(VERSION_PROPERTIES);
-		if (!Files.exists(metadataFile)) {
-			LOG.info("No file {} in {} available, metadata are unknown", VERSION_PROPERTIES, rulesPath);
-			return new RulesVersion();
-		}
-		Properties properties = new Properties();
-		try (InputStream props = Files.newInputStream(metadataFile)) {
-			properties.load(props);
-			String version = properties.getProperty(VERSION);
-			String source = properties.getProperty(SOURCE);
-			return new RulesVersion(version, source);
-		}
-		catch (IOException e) {
-			LOG.warn("{} in {} could not be read: {}", VERSION_PROPERTIES, rulesPath, e.getMessage());
-			return new RulesVersion();
-		}
 	}
 
 	/**

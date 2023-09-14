@@ -21,7 +21,6 @@
 package de.latlon.xplan.validator.semantic.configuration;
 
 import de.latlon.xplan.validator.semantic.configuration.message.DefaultRulesMessagesAccessor;
-import de.latlon.xplan.validator.semantic.configuration.message.FileRulesMessagesAccessor;
 import de.latlon.xplan.validator.semantic.configuration.message.RulesMessagesAccessor;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
@@ -43,60 +42,107 @@ import java.util.stream.Collectors;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 7.0.1
  */
-public class SemanticRulesConfiguration {
+public abstract class SemanticRulesConfiguration {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SemanticRulesConfiguration.class);
 
 	private final Path rulesPath;
 
-	private final RulesMetadata rulesMetadata;
+	private RulesMetadata rulesMetadata;
 
-	private final RulesMessagesAccessor messagesAccessor;
+	private RulesMessagesAccessor messagesAccessor;
 
 	private List<String> resources;
 
+	/**
+	 * Rules will be parsed from a textfile containing a list of resources.
+	 */
 	public SemanticRulesConfiguration() {
 		this(null);
 	}
 
+	/**
+	 * Rules will be parsed from passed directory.
+	 * @param rulesPath the directory containing the rules, never <code>null</code>
+	 */
 	public SemanticRulesConfiguration(Path rulesPath) {
 		this.rulesPath = rulesPath;
-		this.rulesMetadata = createRulesMetadata();
-		this.messagesAccessor = new DefaultRulesMessagesAccessor();
 	}
 
-	public SemanticRulesConfiguration(Path rulesPath, RulesMetadata rulesMetadata,
-			FileRulesMessagesAccessor messagesAccessor) {
-		this.rulesPath = rulesPath;
-		this.rulesMetadata = rulesMetadata;
-		this.messagesAccessor = messagesAccessor;
-	}
-
+	/**
+	 * @return the rulesMetadata of the rules, never <code>null</code>
+	 */
 	public RulesMetadata getRulesMetadata() {
+		if (rulesMetadata == null) {
+			rulesMetadata = createRulesMetadata();
+		}
 		return rulesMetadata;
 	}
 
+	/**
+	 * @return the {@link RulesMessagesAccessor}, never <code>null</code>
+	 */
 	public RulesMessagesAccessor getRulesMessageAccessor() {
+		if (messagesAccessor == null) {
+			messagesAccessor = createMessagesAccessor();
+		}
 		return messagesAccessor;
 	}
 
+	/**
+	 * @return the directory containing the rules, if rules are configured in filesystem
+	 */
 	public Optional<Path> getRulesPath() {
 		return Optional.ofNullable(rulesPath);
 	}
 
+	/**
+	 * @param resourceName name of the resource to return
+	 * @return the resource with the passed name, if exists
+	 */
 	public Optional<String> getResource(String resourceName) {
 		List<String> rulesList = getResources();
 		return rulesList.stream().filter(resource -> resource.endsWith(resourceName)).findFirst();
 	}
 
+	/**
+	 * @param fileSuffix
+	 * @return all resources with the passed suffix, may be <code>empty</code>, but never
+	 * <code>null</code>
+	 */
 	public List<String> getResources(String fileSuffix) {
 		List<String> resources = getResources();
 		return resources.stream().filter(resource -> resource.endsWith(fileSuffix)).collect(Collectors.toList());
 	}
 
+	/**
+	 * creates the {@link RulesMessagesAccessor}, defaults to
+	 * {@link DefaultRulesMessagesAccessor}
+	 * @return never <code>null</code>
+	 */
+	protected RulesMessagesAccessor createMessagesAccessor() {
+		return new DefaultRulesMessagesAccessor();
+	}
+
+	/**
+	 * creates the {@link RulesMetadata}, per default only the RulesVersion are set
+	 * @return never <code>null</code>
+	 */
+	protected RulesMetadata createRulesMetadata() {
+		RulesVersionParser rulesVersionParser = new RulesVersionParser(this);
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion();
+		return new RulesMetadata(rulesVersion);
+	}
+
+	/**
+	 * @return the resources file as stream containing the list of resources, never
+	 * <code>null</code>
+	 */
+	protected abstract InputStream getResourcesFile();
+
 	private List<String> getResources() {
 		if (resources == null) {
-			try (InputStream xqueryregeln = getClass().getResourceAsStream("/xqueryregeln.txt")) {
+			try (InputStream xqueryregeln = getResourcesFile()) {
 				if (xqueryregeln != null)
 					resources = IOUtils.readLines(xqueryregeln, StandardCharsets.UTF_8);
 				else
@@ -107,13 +153,6 @@ public class SemanticRulesConfiguration {
 			}
 		}
 		return resources;
-	}
-
-	private RulesMetadata createRulesMetadata() {
-		RulesVersionParser rulesVersionParser = new RulesVersionParser(this);
-		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion();
-		return new RulesMetadata(rulesVersion);
-
 	}
 
 }

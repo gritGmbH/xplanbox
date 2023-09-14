@@ -29,10 +29,7 @@ import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
 import de.latlon.xplan.validator.configuration.ValidatorProfile;
 import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
-import de.latlon.xplan.validator.semantic.configuration.message.FileRulesMessagesAccessor;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
+import de.latlon.xplan.validator.semantic.configuration.SemanticRulesProfileConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import org.slf4j.Logger;
@@ -43,9 +40,6 @@ import org.springframework.core.io.support.ResourcePatternUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -93,7 +87,7 @@ public class SemanticProfilesCreator {
 				Resource resource = resources[i];
 				LOG.info("Found profile resource: {}", resource);
 				List<ValidatorProfile> validatorProfiles = parseProfiles(resource);
-				addSemanticProfileFromResource(semanticProfiles, activatedProfiles, validatorProfiles, resource);
+				addSemanticProfileFromResource(semanticProfiles, activatedProfiles, validatorProfiles);
 			}
 		}
 		catch (IOException e) {
@@ -102,10 +96,11 @@ public class SemanticProfilesCreator {
 	}
 
 	private void addSemanticProfileFromResource(SemanticProfiles semanticProfiles, List<String> activatedProfiles,
-			List<ValidatorProfile> validatorProfiles, Resource resource) throws IOException, ConfigurationException {
+			List<ValidatorProfile> validatorProfiles) throws ConfigurationException {
 		for (ValidatorProfile validatorProfile : validatorProfiles) {
-			if (activatedProfiles.contains(validatorProfile.getId())) {
-				addSemanticProfileFromResource(semanticProfiles, resource, validatorProfile);
+			String profileId = validatorProfile.getId();
+			if (activatedProfiles.contains(profileId)) {
+				addSemanticProfileFromResource(validatorProfile, semanticProfiles);
 			}
 			else {
 				LOG.info("Profile with id {} is available but not activated.", validatorProfile.getId());
@@ -113,25 +108,14 @@ public class SemanticProfilesCreator {
 		}
 	}
 
-	private void addSemanticProfileFromResource(SemanticProfiles semanticProfiles, Resource resource,
-			ValidatorProfile validatorProfile) throws IOException, ConfigurationException {
-		URL uri = resource.getURL();
-		if (resource.isFile()) {
-			Path path = Path.of(resource.getFile().getPath()).getParent();
-			Path profileRulesDirectory = path.resolve(validatorProfile.getId());
-			addSemanticProfile(semanticProfiles, validatorProfile, profileRulesDirectory);
-		}
-		else if ("jar".equals(uri.getProtocol())) {
-			String jarPath = uri.getFile().replaceFirst("file:(.*)!.*", "$1");
-			if (jarPath != null) {
-				FileSystem zipfs = FileSystems.newFileSystem(Path.of(jarPath), getClass().getClassLoader());
-				Path profileRulesDirectory = zipfs.getPath(validatorProfile.getId());
-				addSemanticProfile(semanticProfiles, validatorProfile, profileRulesDirectory);
-			}
-		}
-		else {
-			LOG.warn("Cannot handle profile with id {} from {}", validatorProfile.getId(), uri);
-		}
+	private void addSemanticProfileFromResource(ValidatorProfile validatorProfile, SemanticProfiles semanticProfiles)
+			throws ConfigurationException {
+		String profileId = validatorProfile.getId();
+		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesProfileConfiguration(validatorProfile);
+		DelegatingSemanticProfileValidator semanticProfileValidator = createDelegatingSemanticProfileValidator(
+				profileId, semanticRulesConfiguration);
+		LOG.info("Add profile with id {}.", profileId);
+		semanticProfiles.add(semanticRulesConfiguration.getRulesMetadata(), semanticProfileValidator);
 	}
 
 	private List<ValidatorProfile> parseProfiles(Resource resource) throws IOException {
@@ -145,38 +129,24 @@ public class SemanticProfilesCreator {
 	private void addSemanticProfilesFromConfigDirectory(SemanticProfiles semanticProfiles)
 			throws ConfigurationException {
 		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
-			Path rulesDirectory = validatorPropertiesLoader.resolveDirectory("profiles")
-				.resolve(validatorProfile.getId());
-			addSemanticProfile(semanticProfiles, validatorProfile, rulesDirectory);
+			String profileId = validatorProfile.getId();
+			Path rulesDirectory = validatorPropertiesLoader.resolveDirectory("profiles").resolve(profileId);
+			SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesProfileConfiguration(
+					validatorProfile, rulesDirectory);
+			DelegatingSemanticProfileValidator semanticProfileValidator = createDelegatingSemanticProfileValidator(
+					profileId, semanticRulesConfiguration);
+			LOG.info("Add profile with id {} and rules from {}.", profileId, rulesDirectory);
+			semanticProfiles.add(semanticRulesConfiguration.getRulesMetadata(), semanticProfileValidator);
 		}
 	}
 
-	private void addSemanticProfile(SemanticProfiles semanticProfiles, ValidatorProfile validatorProfile,
-			Path rulesDirectory) throws ConfigurationException {
-		RulesMetadata rulesMetadata = createRulesMetadata(validatorProfile, rulesDirectory);
-		DelegatingSemanticProfileValidator semanticProfileValidator = createDelegatingSemanticProfileValidator(
-				rulesDirectory, rulesMetadata);
-		LOG.info("Add profile with id {} and rules from {}.", rulesMetadata.getId(), rulesDirectory);
-		semanticProfiles.add(rulesMetadata, semanticProfileValidator);
-	}
-
-	private RulesMetadata createRulesMetadata(ValidatorProfile validatorProfile, Path rulesDirectory) {
-		RulesVersionParser rulesVersionParser = new RulesVersionParser();
-		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesDirectory);
-		return new RulesMetadata(validatorProfile.getId(), validatorProfile.getName(),
-				validatorProfile.getDescription(), rulesVersion.getVersion(), rulesVersion.getSource());
-	}
-
-	private DelegatingSemanticProfileValidator createDelegatingSemanticProfileValidator(Path rulesDirectory,
-			RulesMetadata rulesMetadata) throws ConfigurationException {
-		FileRulesMessagesAccessor messagesAccessor = new FileRulesMessagesAccessor(rulesDirectory);
-		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesConfiguration(rulesDirectory,
-				rulesMetadata, messagesAccessor);
+	private DelegatingSemanticProfileValidator createDelegatingSemanticProfileValidator(String profileId,
+			SemanticRulesConfiguration semanticRulesConfiguration) throws ConfigurationException {
 		XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
 				semanticRulesConfiguration);
 		XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
 				xQuerySemanticValidatorConfigurationRetriever);
-		return new DelegatingSemanticProfileValidator(rulesMetadata.getId(), xQuerySemanticValidator);
+		return new DelegatingSemanticProfileValidator(profileId, xQuerySemanticValidator);
 	}
 
 }
