@@ -602,8 +602,8 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer klickt auf **Datei auswählen**. | Ein neues Fenster öffnet sich. 
 **02** | Der Benutzer wählt ein ein Planarchiv mit Syntaxfehlern im xplan.gml aus und klickt auf **OK**. | Das Fenster schließt sich. Der Planname wird in der Web-basierten Benutzeroberfläche des XPlanValidators angezeigt.
-**02**| Der Benutzer wählt nur den Validierungstyp „syntaktisch“ aus und bestätigt die Angabe durch die Schaltfläche „Validierung starten“.| Es öffnet sich ein neues Fenster mit dem Ergebnis der syntaktischen Validierung. 	
-**03**| Der Benutzer überprüft die Ausgabe der Syntaxfehler.| Syntaxfehler enthalten Zeilenangaben und den Hinweis, dass das Instanzobjekt nicht zum XPlanGML Schema passt und überprüft werden sollte.
+**02**| Der Benutzer startet die Validerung durch das Drücken des Buttons **Validierung starten**.| Es öffnet sich ein neues Fenster mit dem Ergebnis der Validierung. 	
+**03**| Der Benutzer überprüft die Ausgabe der Syntaxfehler.| Die Syntaxfehler enthalten Zeilenangaben und den Hinweis, dass das Instanzobjekt nicht zum XPlanGML Schema passt und überprüft werden sollte.
 
 **Hinweis** 
 
