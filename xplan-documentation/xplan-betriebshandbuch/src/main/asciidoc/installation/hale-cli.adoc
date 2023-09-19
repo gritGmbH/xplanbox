@@ -5,7 +5,7 @@ Für die Transformation von Plänen aus dem XPlanGML-Datenformat in das INSPIRE 
 
 Für die Installation muss zunächst das HALE CLI 3.4.0 (ZIP-Datei) von der Projektseite auf GitHub https://github.com/halestudio/hale-cli/releases/tag/v3.4.0[https://github.com/halestudio/hale-cli] heruntergeladen werden. Anschließend muss die Datei auf dem Server, auf dem XPlanManagerWeb, XPlanManagerAPI oder das XPlanTransform_CLI installiert wird, entpackt werden.
 
-IMPORTANT: Die Version 3.4.0 des HALE CLI erfordert ein JDK 8 und kann nicht mit JDK 11 ausgeführt werden. Zusätzlich zu dem JDK 11, das für alle xPlanBox-Komponenten erforderlich ist (siehe Kapitel <<jdk>>) muss ein JDK 8 installiert werden (Download von https://adoptium.net/?variant=openjdk8&jvmVariant=hotspot[AdoptOpenJDK 1.8]).
+IMPORTANT: Die Version 3.4.0 des HALE CLI erfordert ein JDK 8 und kann *nicht* mit JDK 11 ausgeführt werden. Zusätzlich zu dem JDK 11, das für alle xPlanBox-Komponenten erforderlich ist (siehe Kapitel <<jdk>>) muss ein JDK 8 installiert werden (Download von https://adoptium.net/?variant=openjdk8&jvmVariant=hotspot[AdoptOpenJDK 1.8]).
 
 Tragen Sie den Pfad zum Installationsverzeichnis des JDK unter Linux in die Datei _hale_ unterhalb des Kommentarblocks wie folgt ein:
 [source,bash]
