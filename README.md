@@ -65,7 +65,7 @@ Weitere Informationen zur Konfiguration von Maven finden Sie in der [Referenzdok
 
 #### deegree erstellen
 
-Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.com/lat-lon/deegree3/tree/xplanbox-deegree3.5) kompiliert werden. Dazu muss die passende Version von deegree ausgewählt werden. Für Version 6.0 der Anwendung muss deegree **Version 3.5.0.2** verwendet werden:
+Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.com/lat-lon/deegree3/tree/xplanbox-deegree3.5) kompiliert werden. Dazu muss die passende Version von deegree ausgewählt werden. Für Version 7.0+ der Anwendung muss deegree **Version 3.5.0.2** verwendet werden:
 
 ```shell
 git clone https://github.com/lat-lon/deegree3.git
