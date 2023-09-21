@@ -1,4 +1,4 @@
-[[semantische-validierungsregeln-validiator]]
+[[semantische-validierungsregeln-validator]]
 === Semantische Validierungsregeln
 
 Die als XQuery-Dateien vorliegenden semantischen Validierungsregeln können in einem externen Verzeichnis abgelegt und durch entsprechende Konfiguration im XPlanManager und XPlanValidator verwendet werden, wenn z. B. die semantischen Validierungsregeln angepasst, erweitert oder durch eine aktuellere Version ersetzt werden sollen.
@@ -124,7 +124,7 @@ Die XQuery-Regeln für ein Profil müssen in dem Verzeichnis _<XPLANBOX_CONFIG>/
 02_plangeber_XPLAN_60=Das Attribut plangeber darf nicht unbelegt sein.
 ----
 
-.Beispiel für die Verzeichnisstruktur des Profils mit der id 'nrw':
+.Beispiel für die Verzeichnisstruktur des Profils mit der Id 'nrw':
 ----
 nrw
 ├── rules.properties        # <1>

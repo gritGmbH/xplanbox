@@ -103,7 +103,7 @@ public class SemanticProfilesCreator {
 				addSemanticProfileFromResource(validatorProfile, semanticProfiles);
 			}
 			else {
-				LOG.info("Profile with id {} is available but not activated.", validatorProfile.getId());
+				LOG.info("Profile with id '{}' is available but not activated.", validatorProfile.getId());
 			}
 		}
 	}
@@ -114,7 +114,7 @@ public class SemanticProfilesCreator {
 		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesProfileConfiguration(validatorProfile);
 		DelegatingSemanticProfileValidator semanticProfileValidator = createDelegatingSemanticProfileValidator(
 				profileId, semanticRulesConfiguration);
-		LOG.info("Add profile with id {}.", profileId);
+		LOG.info("Activated profile with id '{}'.", profileId);
 		semanticProfiles.add(semanticRulesConfiguration.getRulesMetadata(), semanticProfileValidator);
 	}
 
@@ -135,7 +135,7 @@ public class SemanticProfilesCreator {
 					validatorProfile, rulesDirectory);
 			DelegatingSemanticProfileValidator semanticProfileValidator = createDelegatingSemanticProfileValidator(
 					profileId, semanticRulesConfiguration);
-			LOG.info("Add profile with id {} and rules from {}.", profileId, rulesDirectory);
+			LOG.info("Add profile with id '{}' and rules from '{}'.", profileId, rulesDirectory);
 			semanticProfiles.add(semanticRulesConfiguration.getRulesMetadata(), semanticProfileValidator);
 		}
 	}
