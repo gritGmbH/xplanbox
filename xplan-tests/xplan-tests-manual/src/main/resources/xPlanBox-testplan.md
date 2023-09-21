@@ -24,7 +24,7 @@ Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschieden
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer wechselt in das Verzeichnis des XPlanManagerCLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-manager-cli-$VERSION/bin`.
-**01** | Der Benutzer ruft die Hilfe mit dem Befehl in [2] auf. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanManagerCLI. 
+**02** | Der Benutzer ruft die Hilfe mit dem Befehl in [2] auf. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanManagerCLI. 
 
 **Hinweis**
 
