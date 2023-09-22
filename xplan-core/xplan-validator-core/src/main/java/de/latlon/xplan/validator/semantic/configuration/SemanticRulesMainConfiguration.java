@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
+ * xplan-validator-core - XPlan Validator Core Komponente
  * %%
  * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
@@ -8,40 +8,45 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.web.shared;
+package de.latlon.xplan.validator.semantic.configuration;
+
+import java.io.InputStream;
+import java.nio.file.Path;
 
 /**
- * Indicates that a configuration exception occurred.
- *
- * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @since 7.0.1
  */
-public class ConfigurationException extends Exception {
+public class SemanticRulesMainConfiguration extends SemanticRulesConfiguration {
 
-	private static final long serialVersionUID = 3735020561258189807L;
-
-	public ConfigurationException() {
+	/**
+	 * Default rules will be parsed from /xqueryregeln.txt.
+	 */
+	public SemanticRulesMainConfiguration() {
+		super();
 	}
 
-	public ConfigurationException(String message) {
-		super(message);
+	/**
+	 * Default rules will be parsed from passed directory.
+	 * @param rulesPath the directory containing the rules, never <code>null</code>
+	 */
+	public SemanticRulesMainConfiguration(Path rulesPath) {
+		super(rulesPath);
 	}
 
-	public ConfigurationException(Exception e) {
-		super(e);
-	}
-
-	public ConfigurationException(String message, Exception e) {
-		super(message, e);
+	@Override
+	protected InputStream getResourcesFile() {
+		return getClass().getResourceAsStream("/xqueryregeln.txt");
 	}
 
 }
