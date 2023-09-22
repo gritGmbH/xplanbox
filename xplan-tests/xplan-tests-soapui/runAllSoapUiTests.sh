@@ -52,9 +52,8 @@ fi
 if [ -n "$XPLAN_NOTIFY_SLACK_CHANNEL" ] &&  [ -n "$XPLAN_NOTIFY_SLACK_TOKEN" ]; then
 	echo "Sending slack notification to $XPLAN_NOTIFY_SLACK_CHANNEL"
 	message="Finished SoapUI tests for $XPLAN_API_MANAGER_BASE_URL and Co."
-	if [ -n "$S3_PATH" ]; then
-		echo "s3"
-		message="$message%0A%0ATest Report available at $S3_PATH"
+	if [ -n "$S3_PATH_PDF" ]; then
+		message="$message%0A%0ATest Report available at $S3_PATH_PDF"
 	fi
 	curl -d "text=$message" -d "channel=$XPLAN_NOTIFY_SLACK_CHANNEL" -H "Authorization: Bearer $XPLAN_NOTIFY_SLACK_TOKEN" -X POST https://slack.com/api/chat.postMessage
 fi
