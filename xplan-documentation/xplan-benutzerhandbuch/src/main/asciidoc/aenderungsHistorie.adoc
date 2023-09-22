@@ -2,6 +2,22 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
+[[Aenderungshistorie-7.0.1]]
+=== Version 7.0.1
+
+==== Erweiterungen
+- Das Validierungsprofil Berlin ist in den Komponenten XPlanValidator und XPlanManager enthalten und kann aktiviert werden
+- Verbesserung der Konfigurierbarkeit des MapServer-Container-Images
+- OCI-Labels für alle Container-Images hinzugefügt
+- Aktualisierung der Validierungsregeln auf v1.1.5
+
+==== Fehlerbehebungen
+- Fehler bei der Ausführung des XPlanValidator unter Windows behoben
+- Fehler bei der Ausführung in Container-Images auf Basis von Bitnami/Tomcat behoben
+- Korrekturen in den Zeichenvorschriften für den XPlanWMS vorgenommen
+- Fehlermeldung im XPlanValidator bei der Validierung von XPlanArchiven (ZIP-Datei) verbessert
+- Korrekturen im Betriebshandbuch für die Kommandozeilenprogramme (CLI) vorgenommen
+
 [[Aenderungshistorie-7.0]]
 === Version 7.0
 Neben der Aktualisierung auf die aktuelle deegree webservices Version 3.5.0 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 7.0 der xPlanBox kann der XPlanWMS als MapServer-Instanz konfiguriert und ein AWS S3-kompatibler Objektspeicher genutzt werden. Mit der Version 7.0 wurde die Ausgabe von Log-Meldungen in separate Log-Dateien je xPlanBox-Komponente aus den mitgelieferten Logging-Konfiguration entfernt. Bitte beachten Sie dazu die Hinweise im Betriebshandbuch, Kapitel Logging.

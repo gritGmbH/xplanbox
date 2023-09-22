@@ -4,11 +4,11 @@ Dieses Dokument beinhaltet Hinweise zur automatisierten Ableitung von Testpläne
 
 ## XMLSTARLET Skript
 
-Beispeilkonfiguration für das XPlanManagerAPI-SoapUI-Projekt:
+Beispielkonfiguration für das XPlanManagerAPI-SoapUI-Projekt:
 
 >```xmlstarlet sel -N con="http://eviware.com/soapui/config" -t -m '//con:testSuite' -o '# ' -v '@name' -n -m 'con:testCase' -o '## ' -v '@name' -n -m 'con:testStep' -o '* ' -v '@name' -n xplan-api-manager-soapui-project.xml > xplan-api-manager-soapui-project-testplan.md```
 
-Die Ausführung des Skript muss im Verzeichnes der SoapUI-Projekte vorgenommen werden, dieses ist standardmäßig: 
+Die Ausführung des Skripts muss im Verzeichnis der SoapUI-Projekte vorgenommen werden, dieses ist standardmäßig: 
 
 > ```xplanbox/xplan-tests/xplan-tests-soapui/src/main/resources```
 

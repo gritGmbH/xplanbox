@@ -47,7 +47,7 @@ Mit Einführung einer neuen Major-Version wird ein neuer Ressourcenpfad mit z. B
 - Ändern einer "operationId"
 
 
-## Änderungen in einer Minor-Version
+### Änderungen in einer Minor-Version
 
 Hierunter fallen abwärts-/rückwärtskompatible Änderungen und Ergänzungen an der API:
 
@@ -62,7 +62,7 @@ Hierunter fallen abwärts-/rückwärtskompatible Änderungen und Ergänzungen an
 - Hinzufügen weiterer Status-Codes zu einer Antwort
 - Hinzufügen von weiteren Informationen
 
-## Änderungen in einer Bugfix-Version
+### Änderungen in einer Bugfix-Version
 
 Hierunter fallen abwärts-/rückwärtskompatible Änderungen an der API:
 
