@@ -478,7 +478,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoptionen einstellen**. | Es öffnet sich ein Fenster mit _Plan hochladen_ und dem _Namen_ des ausgewählten Planarchivs.
 **02** | Der Benutzer klickt auf **Zur Validierung**. | Es öffnet sich ein neues Fenster mit den Validierungsoptionen.
 **03** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators. | Die Eingabesicht hat ein Eingabefeld **Bezeichnung für den Report** 
-**04** | Der Benutzer gibt eine _Bezeichnung_ in das Eingabefeld ein. | Das Eingabefeld enthält die Bezeichnung. 
+**04** | Der Benutzer gibt eine _Bezeichnung_ in das Eingabefeld ein. | Im Validierungsbericht, sowie in den Reports, steht unter "Name" die eingegebene Bezeichnung. 
 
 ---
 
