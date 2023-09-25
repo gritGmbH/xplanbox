@@ -2,8 +2,7 @@
 === Semantische Validierungsregeln
 
 Die als XQuery-Dateien vorliegenden semantischen Validierungsregeln können in einem externen Verzeichnis abgelegt und durch entsprechende Konfiguration im XPlanManager und XPlanValidator verwendet werden, wenn z. B. die semantischen Validierungsregeln angepasst, erweitert oder durch eine aktuellere Version ersetzt werden sollen.
-Um statt der mit dem xPlanBox ausgelieferten Regeln externen Regeln zu verwenden, muss dieses Verzeichnis konfiguriert werden.
-Der Pfad zu den semantischen Regeln muss in der Datei _<XPLANBOX_CONFIG>/validatorConfiguration.properties_ wie folgt konfiguriert werden:
+Um statt der mit dem xPlanBox ausgelieferten Regeln externen Regeln zu verwenden, muss der Pfad zu den semantischen Regeln in der Datei _<XPLANBOX_CONFIG>/validatorConfiguration.properties_ wie folgt konfiguriert werden:
 
 ----
 validationRulesDirectory=/home/xplanbox/semantischeRegeln/1.0/
@@ -13,12 +12,12 @@ NOTE: Diese Konfiguration wirkt sich auf die Komponenten XPlanManagerAPI, XPlanM
 
 NOTE: Ist der Pfad nicht konfiguriert, werden die internen Validierungsregeln für die genannten Komponenten verwendet.
 
-IMPORTANT: Das Basisverzeichnis _rules/_ darf nur Unterverzeichnisse enthalten, die der Namenskonvention _xplangml<VERSION>_ entsprechen, wobei der Bezeichner _<VERSION>_ eine Versionsnummer ohne Trennzeichen enthält z. B. _54_ für XPlanGML-Version 5.4. Des Weiteren dürfen nur Unterverzeichnisse mit Validierungsregeln vorkommen, deren XPlanGML-Version von der xPlanBox unterstützt wird.
+IMPORTANT: Das Basisverzeichnis _rules/_ darf nur Unterverzeichnisse enthalten, die der Namenskonvention _xplangml<VERSION>_ entsprechen, wobei der Bezeichner _<VERSION>_ eine Versionsnummer ohne Trennzeichen enthält z. B. _54_ für XPlanGML-Version 5.4. Des Weiteren dürfen nur Unterverzeichnisse mit Validierungsregeln vorkommen, deren XPlanGML-Version von der xPlanBox unterstützt wird!
 
 Wenn innerhalb des Validierungsberichts die Version und die Quelle der semantischen Validierungsregeln angezeigt werden sollen, dann muss im Verzeichnis aus _validationRulesDirectory_ eine Textdatei mit dem Dateinamen _version.properties_ und folgendem Inhalt angelegt werden:
 
 [[semantische-validierungsregeln-beispiel-versionproperties]]
-.Beispiel für version.properties:
+.Beispiel für _version.properties_ (optional):
 [source,properties]
 ----
 version=1.1.5 <1>
@@ -74,10 +73,11 @@ oder
 Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Standardvalidierungsregeln können ergänzende Prüfungen als XQuery-Abfragen definiert und über ein Profil in den XPlanValidator eingebunden werden. Dazu sind folgende Schritte erforderlich:
 
 * Anlegen einer Konfigurationsdatei im YAML-Dateiformat im Verzeichnis _<XPLANBOX_CONFIG>/profiles_ (verpflichtend)
-* Die YAML-Datei kann die Konfiguration für ein oder mehrere Profile beinhalten, der Dateiname muss mit _profile-_ beginnen und die Dateiendung muss _.yaml_ oder _.yml_ haben. (verpflichtend)
+* Die YAML-Datei kann die Konfiguration für ein oder mehrere Profile beinhalten, der Dateiname muss mit _profiles-_ beginnen und die Dateiendung _.yaml_ oder _.yml_ haben, z. B.  _profiles-<id>.yaml_ oder _profiles-<id>.yml_. Als _<id>_ sollte zur eindeutigen Zuordnung ein eindeutiger Bezeichner verwendet werden, z. B. _profiles-nrw.yaml_. (verpflichtend)
 * Ein Profil wird durch folgende Eigenschaften beschrieben:
 
-.Beispiel für eine YAML-Datei mit einem Profil:
+[[semantische-validierungsregeln-beispiel-profileyaml]]
+.Beispiel für eine YAML-Datei mit einem Profil (verpflichtend):
 [source,yaml]
 ----
 - id: nrw <1>
@@ -88,9 +88,12 @@ Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Standardvalidie
 <2> *name*: Der Name des Profils, dieser wird im XPlanValidatorWeb und XPlanManagerWeb angezeigt. (verpflichtend)
 <3> *description*: Beschreibung des Profils, wird als Tooltip im XPlanValidatorWeb und XPlanManagerWeb angezeigt. (verpflichtend)
 
-NOTE: Alternativ zur Konfiguration von Profilen im Dateisystem unter _<XPLANBOX_CONFIG>/profiles_ können Profile auch im Java Klassenpfad abgelegt werden. Dabei gelten die zuvor genannten Anforderungen. Die Konfigurationsdatei muss im YAML-Dateiformat vorliegen und mit einem Dateinamen _profiles-<id>.yaml_ oder _profiles-<id>.yml_ entsprechen. Als _<id>_ sollte zur eindeutigen Zuordnung ein eindeutiger Bezeichner verwendet werden, z. B. _profiles-nrw.yaml_. Weiterhin muss eine Datei mit dem Namen _xqueryregeln-<id>.txt_ auf der obersten Ebene abgelegt werden. Diese Datei muss alle XQuery-Regeln mit relativen Pfaden auflisten. Zusätzlich müssen die Dateien _version.properties_ und _rules.properties_ vorhanden sein.
+NOTE: Alternativ zur Konfiguration von Profilen im Dateisystem unter _<XPLANBOX_CONFIG>/profiles_ können Profile auch im Java Klassenpfad abgelegt werden. Dabei gelten die zuvor genannten Anforderungen.
 
-.Beispiel für _xqueryregeln-<id>.txt_
+Zusätzlich muss eine Datei mit dem Namen _xqueryregeln-<id>.txt_ auf der obersten Ebene abgelegt werden. Diese Datei muss alle XQuery-Regeln mit relativen Pfaden auflisten. Zusätzlich können die Dateien _version.properties_ und _rules.properties_ angegeben werden.
+
+[[semantische-validierungsregeln-beispiel-xqueryregelntxt]]
+.Beispiel für _xqueryregeln-<id>.txt_ (verpflichtend):
 [source,text]
 ----
 /nrw/rules.properties
@@ -115,7 +118,7 @@ Die XQuery-Regeln für ein Profil müssen in dem Verzeichnis _<XPLANBOX_CONFIG>/
 *** `Beschreibung`: Beschreibung der Regel
 
 [[semantische-validierungsregeln-beispiel-rulesproperties]]
-.Beispiel für rules.properties:
+.Beispiel für _rules.properties_ (optional):
 [source,properties]
 ----
 01_gemeinde_XPLAN_54=Das Attribut gemeinde darf nicht unbelegt sein.
