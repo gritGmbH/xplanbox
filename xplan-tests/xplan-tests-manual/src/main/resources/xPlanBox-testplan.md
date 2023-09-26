@@ -1,6 +1,6 @@
-# Testfälle für die xPlanBox 
+# Testplan für die xPlanBox 
 
-Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschiedene Testfälle definiert wurden.
+Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die die folgenden Testfälle definiert wurden. Der Testplan wird bei Erstellung einer Release Version ausgeführt.
 
 * [1. XPlanManagerCLI](#1-xplanmanagercli)
 * [2. XPlanManagerWeb](#2-xplanmanagerweb)
@@ -28,7 +28,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] `~/xplan-manager-cli-$VERSION/bin`
+* [1] `cd ~/xplan-manager-cli-$VERSION/bin`
 * [2] `./XPlanManager --help `
 
 ---
