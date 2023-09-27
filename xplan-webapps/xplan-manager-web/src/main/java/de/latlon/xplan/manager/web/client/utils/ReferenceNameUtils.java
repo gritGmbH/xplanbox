@@ -20,8 +20,9 @@ public final class ReferenceNameUtils {
 	}
 
 	public static final String extractFilenameFromUrl(String url) {
-		if (url == null || url.isEmpty())
+		if (url == null || url.isEmpty()) {
 			return UNKNOWN;
+		}
 		RegExp pattern = RegExp.compile("[^/]*\\\\?([^/]+)$");
 		MatchResult result = pattern.exec(url.replaceAll("/$", ""));
 		if (result != null) {
@@ -29,14 +30,7 @@ public final class ReferenceNameUtils {
 			String[] parts = result.getGroup(0).split("\\.");
 			return parts[0].replaceAll("^\\?", "");
 		}
-		else {
-			try {
-				return new URL(url).getHost();
-			}
-			catch (MalformedURLException e) {
-				throw new RuntimeException(e);
-			}
-		}
+		return UNKNOWN;
 	}
 
 	public static String extractFilenameFromFile(String filename) {
