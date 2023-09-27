@@ -29,12 +29,12 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.datepicker.client.DateBox;
 
 /**
- * Creates specific {@link com.google.gwt.i18n.client.DateTimeFormat}s.
+ * Helper class to create specific {@link com.google.gwt.i18n.client.DateTimeFormat}s.
  *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version $Revision: $, $Date: $
  */
-public class DateTimeUtils {
+public final class DateTimeUtils {
 
 	private static final String RELEASE_DATE_FORMAT = "dd.MM.yyyy";
 

@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.web.client.gui.validation;
+package de.latlon.xplan.manager.web.client.gui.utils;
 
 import de.latlon.xplan.manager.web.client.gui.widget.Validable;
 

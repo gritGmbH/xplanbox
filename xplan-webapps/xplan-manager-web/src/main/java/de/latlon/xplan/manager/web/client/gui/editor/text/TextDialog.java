@@ -44,7 +44,7 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.XL_LENGTH;
 import static de.latlon.xplan.commons.util.TextPatternConstants.XS_LENGTH;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
-import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
+import static de.latlon.xplan.manager.web.client.gui.utils.ValidationUtils.areComponentsValid;
 
 /**
  * Dialog to edit an existing or create a new {@link Text}
@@ -101,7 +101,7 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 			editedText.setRechtscharakter(rechtscharakterType.getValueAsEnum());
 		}
 		if (XPLAN_60.equals(version) && (textToEdit == null || textToEdit.getReferenzName() == null)) {
-			String referenzName = parseReferenzNameFromRefrenzUrl();
+			String referenzName = parseReferenzNameFromReferenzUrl();
 			editedText.setReferenzName(referenzName);
 		}
 		return editedText;

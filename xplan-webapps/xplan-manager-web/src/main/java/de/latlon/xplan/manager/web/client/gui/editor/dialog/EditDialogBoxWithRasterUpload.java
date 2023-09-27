@@ -27,10 +27,11 @@ import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.widget.Validable;
+import de.latlon.xplan.manager.web.client.utils.ReferenceNameUtils;
 
 import java.util.List;
 
-import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
+import static de.latlon.xplan.manager.web.client.gui.utils.ValidationUtils.areComponentsValid;
 
 /**
  * Extends the {@link EditDialogBox} with a two {@link PreserveExistingFileUpload} gui
@@ -160,25 +161,11 @@ public abstract class EditDialogBoxWithRasterUpload extends EditDialogBox implem
 		return value == null || value.isEmpty();
 	}
 
-	protected String parseReferenzNameFromRefrenzUrl() {
+	protected String parseReferenzNameFromReferenzUrl() {
 		if (reference.isFileSelected()) {
-			String filename = reference.getFilename();
-			int indexOfSuffix = filename.lastIndexOf(".");
-			if (indexOfSuffix > 0) {
-				return filename.substring(0, indexOfSuffix);
-			}
-			return filename;
+			return ReferenceNameUtils.extractFilenameFromFile(reference.getFilename());
 		}
-		String referenzLinkValue = referenceLink.getValue();
-		int indexOfLastPath = referenzLinkValue.lastIndexOf("/");
-		int indexOfSuffix = referenzLinkValue.lastIndexOf(".");
-		if (indexOfLastPath > 0 && indexOfSuffix > 0 && indexOfLastPath < indexOfSuffix) {
-			return referenzLinkValue.substring(indexOfLastPath + 1, indexOfSuffix);
-		}
-		else if (indexOfLastPath > 0 && indexOfLastPath < referenzLinkValue.length() - 1) {
-			return referenzLinkValue.substring(indexOfLastPath + 1);
-		}
-		return referenzLinkValue;
+		return ReferenceNameUtils.extractFilenameFromUrl(referenceLink.getValue());
 	}
 
 	private boolean notTheSameName(String referenceName, String georeferenceFilename) {

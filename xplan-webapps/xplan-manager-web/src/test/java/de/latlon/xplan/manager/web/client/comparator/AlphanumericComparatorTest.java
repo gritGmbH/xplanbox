@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.web.client.gui.editor.text;
+package de.latlon.xplan.manager.web.client.comparator;
 
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
