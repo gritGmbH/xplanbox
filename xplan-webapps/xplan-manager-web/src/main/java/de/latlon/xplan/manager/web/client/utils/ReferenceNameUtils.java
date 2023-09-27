@@ -3,6 +3,9 @@ package de.latlon.xplan.manager.web.client.utils;
 import com.google.gwt.regexp.shared.MatchResult;
 import com.google.gwt.regexp.shared.RegExp;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
  * Helper class to extract file names from URLs using GWT RegEx API.
  *
@@ -11,19 +14,28 @@ import com.google.gwt.regexp.shared.RegExp;
  */
 public final class ReferenceNameUtils {
 
+	public static final String UNKNOWN = "UNBEKANNT";
+
 	private ReferenceNameUtils() {
 	}
 
 	public static final String extractFilenameFromUrl(String url) {
+		if (url == null || url.isEmpty())
+			return UNKNOWN;
 		RegExp pattern = RegExp.compile("[^/]*\\\\?([^/]+)$");
-		MatchResult result = pattern.exec(url);
+		MatchResult result = pattern.exec(url.replaceAll("/$", ""));
 		if (result != null) {
 			// Extract the filename at position 0
 			String[] parts = result.getGroup(0).split("\\.");
-			return parts[0];
+			return parts[0].replaceAll("^\\?", "");
 		}
 		else {
-			return url;
+			try {
+				return new URL(url).getHost();
+			}
+			catch (MalformedURLException e) {
+				throw new RuntimeException(e);
+			}
 		}
 	}
 
