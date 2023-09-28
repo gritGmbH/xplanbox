@@ -131,7 +131,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-04: Plan-Liste
 
 #### Vorbedingungen 
- * Die xPlanBox wurde mit der INSPIRE PLU Konfuguration aufgesetzt.
+ * Die xPlanBox wurde mit der INSPIRE PLU Konfiguration aufgesetzt.
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  
 #### Testschritte 
@@ -351,17 +351,17 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  
 #### Testschritte 
 
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
+Schritt | Beschreibung                                                                           | Erwartetes Ergebnis
+----------- |----------------------------------------------------------------------------------------|-------------------------
 **01** | Der Benutzer wechselt in das Verzeichnis des XPlanValidators mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-validator-cli-$VERSION/bin`.
-**02** | Der Benutzer führt den Befehl [2] mit einem validen Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
-**03** | Der Benutzer führt den Befehl [2] mit einem invaliden Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
-**04** | Der Benutzer führt den Befehl [3] mit einem validen Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
-**05** | Der Benutzer führt den Befehl [3] mit einem invaliden Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
-**06** | Der Benutzer führt den Befehl [4] mit einem validen Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
-**07** | Der Benutzer führt den Befehl [4] mit einem invaliden Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
-**08** | Der Benutzer führt den Befehl [5] mit einem validen Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
-**09** | Der Benutzer führt den Befehl [5] mit einem invaliden Planarchiv aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
+**02** | Der Benutzer führt den Befehl [2] mit einem validen Planarchiv aus.                    | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
+**03** | Der Benutzer führt den Befehl [2] mit einem invaliden Planarchiv aus.                  | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
+**04** | Der Benutzer führt den Befehl [3] mit einem validen Planarchiv aus.                    | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
+**05** | Der Benutzer führt den Befehl [3] mit einem syntaktisch invaliden Planarchiv aus.      | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
+**06** | Der Benutzer führt den Befehl [4] mit einem validen Planarchiv aus.                    | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
+**07** | Der Benutzer führt den Befehl [4] mit einem geometrisch invaliden Planarchiv aus.      | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
+**08** | Der Benutzer führt den Befehl [5] mit einem validen Planarchiv aus.                    | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
+**09** | Der Benutzer führt den Befehl [5] mit einem semantisch invaliden Planarchiv aus.       | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
 
 **Hinweis**
 
@@ -590,7 +590,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-10: Richtige Ausgabe der Syntaxfehler
+### Prüffall-10: Ausgabe von Syntaxfehlern
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar.
@@ -1054,7 +1054,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer führt den SQL-Befehl SELECT tag FROM databasechangelog WHERE versionid='neu' | Die SQL-Abfrage liefert kein Ergebnis, da es die Tabelle databasechangelog in der Version 'neu' noch nicht gibt. 
 **02** | Der Benutzer führt die DB-Skripte zur Aktualisierung des Datenbankschemas zur XPlanBox Version 'neu' aus. | Es treten keine Fehlermeldungen auf. 
-**03** | Der Benutzer führt den SQL-Befehl SELECT tag FROM databasechangelog WHERE versionid='neu'  | Die Version des Datenbankschemas ist 'neu'. 
+**03** | Der Benutzer führt den SQL-Befehl SELECT tag FROM databasechangelog WHERE versionid='neu'  | Die SQL-Abfrage liefert genau einen Treffer mit der Version 'neu'. 
 
 ### Prüffall-02: (Optional) Ausführen des Kommandozeilenwerkzeug reSynthesizer
 
