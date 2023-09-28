@@ -93,8 +93,8 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **02** | Der Benutzer vergibt eine _Bezeichnung_. | Die Bezeichnung wird im Feld dargestellt. 
 **03** | Der Benutzer wählt einen _Validierungstyp_ aus. | Der Validierungstyp wird im Feld dargestellt.
 **04** | Der Benutzer wählt ein _Profil_ aus. | Das Profil wird im Feld dargestellt. 
-**05** | Der Benutzer startet den XPlanValidator. | Das Validierungsergebnis wird dargestellt. 
-**06** | Der Benutzer kehrt zu dem XPlanManager zurück. | Die Web-Oberfläche des XPlanManagers wird angezeigt. 
+**05** | Der Benutzer startet die Validierung. | Das Validierungsergebnis wird dargestellt. 
+**06** | Der Benutzer kehrt zu der Seite mit dem importierten Plan zurück. | Die Web-Oberfläche des XPlanManagers wird angezeigt. 
 **07.1** | Die Schaltfläche **Validieren** je nach Ergebnis rot (Validierung fehlgeschlagen). | Bei erfolgreicher Validierung wird die Schaltfläche **Import** freigegeben. 
 **07.2** | Die Schaltfläche **Validieren** je nach Ergebnis grün (Validierung erfolgreich) eingefärbt. | Bei fehlgeschlagener Validierung wird die Schaltfläche **Import** nicht freigegeben. 
 
@@ -146,7 +146,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 * [1] Zur Unterstützung des Arbeitsablaufs bietet die Oberfläche dem Nutzer:
     * eine tabellarische Anzeige aller in der Datenbasis enthaltenen XPlanGML-Dokumente.
 
-* [2] Die Liste enthält die folgenden Eigenschaften:  
+* [2] Die Liste enthält die folgenden Eigenschaften (diese ist ggf. abhängig von der Konfiguration):  
     * Name [sortierfähig]
     * ID [sortierfähig]
     * Nummer [sortierfähig]
@@ -180,7 +180,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-06: Plan-Funktion: Plan publizieren (Transformation nach INSPIRE PLU)
 
 #### Vorbedingungen 
- * Die xPlanBox wurde mit der INSPIRE PLU Konfuguration aufgesetzt.
+ * Die xPlanBox wurde mit der INSPIRE PLU Konfiguration aufgesetzt.
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
@@ -276,7 +276,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer klickt neben einen Plan auf den Button **Herunterladen**. | Es öffnet sich ein neues Fenster zur Auswahl des Speicherplatzes. 
 **02** | Der Benutzer wählt ein Verzeichnis zum Speichern des Plans. | Das Verzeichnis wird im Fenster dargestellt. 
-**03** | Der Benutzer klickt auf den Button **Speichern**. | Das Fenster schließt sich. Der Plan wird von der Datenbasis lokal gespeichert. 
+**03** | Der Benutzer klickt auf den Button **Speichern**. | Das Fenster schließt sich. Der Plan wird lokal gespeichert. 
 
 ---
 
@@ -502,6 +502,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen
  * Der Prüffall-03 wurde erfolgreich ausgeführt. 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
+ * Es ist mindestens ein Profil konfiguriert. 
  
 #### Testschritte 
 
@@ -533,21 +534,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-07: Dynamische Titelzeile
-
-#### Vorbedingungen 
- * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Der Prüffall-06 wurde erfolgreich ausgeführt.
- 
-#### Testschritte 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer überprüft die Titelzeile. | Die Titelzeile enthält die Bezeichnung des Validierungsdurchlaufs. 
-
----
-
-### Prüffall-08: Download der Validierungsergebnisse
+### Prüffall-07: Download der Validierungsergebnisse
 
 #### Vorbedingungen 
  * Der Benutzer hat eine Validierung über die Web-basierte Benutzeroberfläche des XPlanValidators durchgeführt.
@@ -575,7 +562,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-09: Schaltfläche um einen weiteren Plan zu validieren
+### Prüffall-08: Schaltfläche um einen weiteren Plan zu validieren
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
@@ -590,7 +577,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-10: Ausgabe von Syntaxfehlern
+### Prüffall-09: Ausgabe von Syntaxfehlern
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar.
@@ -697,7 +684,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * [3] `./reSynthesizer`
  * [4] `./sortDateUpdate`
 
- ### Prüffall-03: Aktualisierung des Sortierfeldes für die Visualisierung im XPlanWerkWMS
+### Prüffall-03: Aktualisierung des Sortierfeldes für die Visualisierung im XPlanWerkWMS
 
 #### Vorbedingungen
 
