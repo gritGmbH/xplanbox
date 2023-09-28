@@ -22,6 +22,13 @@ public class ReferenceNameUtilsTest {
 	}
 
 	@Test
+	public void testThatParseFilenameFromUrlWithQueryParameterWithoutFile1() {
+		String url = "https://example.com/path/to?abc=1&xyz=abc";
+		String filename = ReferenceNameUtils.extractFilenameFromUrl(url);
+		assertThat(filename, is("abc=1&xyz=abc"));
+	}
+
+	@Test
 	public void testThatParseFilenameFromUrlWithQueryParameterWithTrailingSlash() {
 		String url = "https://example.com/path/to/?abc=1&xyz=abc.pdf";
 		String filename = ReferenceNameUtils.extractFilenameFromUrl(url);
@@ -82,7 +89,7 @@ public class ReferenceNameUtilsTest {
 	public void testThatParseFilenameFromUrlWithEmptyString() {
 		String url = "";
 		String filename = ReferenceNameUtils.extractFilenameFromUrl(url);
-		assertThat(filename, is("UNBEKANNT"));
+		assertThat(filename, is("Unbekannt"));
 	}
 
 	@Test
