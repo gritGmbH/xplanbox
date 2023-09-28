@@ -39,7 +39,7 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.XP_RechtscharakterPlanaenderung;
-import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
+import static de.latlon.xplan.manager.web.client.gui.utils.ValidationUtils.areComponentsValid;
 
 /**
  * Dialog to edit an existing or create a new {@link Change} of XPlan version 4.1 or 5.0.

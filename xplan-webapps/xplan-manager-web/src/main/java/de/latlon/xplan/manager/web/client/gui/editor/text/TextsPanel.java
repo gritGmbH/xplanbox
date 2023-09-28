@@ -31,6 +31,7 @@ import com.google.gwt.user.cellview.client.TextHeader;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import de.latlon.xplan.manager.web.client.comparator.AlphanumericComparator;
 import de.latlon.xplan.manager.web.client.gui.editor.AbstractEditorSubPanelWithTable;
 import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;

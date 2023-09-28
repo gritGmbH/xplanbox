@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.web.client.gui.editor.text;
+package de.latlon.xplan.manager.web.client.comparator;
 
 import com.google.gwt.regexp.shared.MatchResult;
 import com.google.gwt.regexp.shared.RegExp;
@@ -105,7 +105,6 @@ public class AlphanumericComparator implements Comparator<String> {
 		while (m != null) {
 			String sortCriteria = m.getGroup(0);
 
-			System.out.println("Index: " + 0 + " sortCrit: " + sortCriteria);
 			IntegerOrString integerOrString;
 			try {
 				integerOrString = new IntegerOrString(Integer.parseInt(sortCriteria));
