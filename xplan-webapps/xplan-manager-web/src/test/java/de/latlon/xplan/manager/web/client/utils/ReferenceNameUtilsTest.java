@@ -9,16 +9,37 @@ public class ReferenceNameUtilsTest {
 
 	@Test
 	public void testThatParseFilenameFromUrlWithQueryParameter() {
-		String url = "https://example.com/path/to/file.txt?abc=1&xyz=abc";
+		String url = "https://example.com/path/to/file.txt?abc=1&xyz=abc.pdf";
 		String filename = ReferenceNameUtils.extractFilenameFromUrl(url);
 		assertThat(filename, is("file"));
 	}
 
 	@Test
 	public void testThatParseFilenameFromUrlWithQueryParameterWithoutFile() {
-		String url = "https://example.com/path/to/?abc=1&xyz=abc";
+		String url = "https://example.com/path/to?abc=1&xyz=abc.pdf";
 		String filename = ReferenceNameUtils.extractFilenameFromUrl(url);
-		assertThat(filename, is("abc=1&xyz=abc"));
+		assertThat(filename, is("abc=1&xyz=abc.pdf"));
+	}
+
+	@Test
+	public void testThatParseFilenameFromUrlWithQueryParameterWithTrailingSlash() {
+		String url = "https://example.com/path/to/?abc=1&xyz=abc.pdf";
+		String filename = ReferenceNameUtils.extractFilenameFromUrl(url);
+		assertThat(filename, is("abc=1&xyz=abc.pdf"));
+	}
+
+	@Test
+	public void testThatParseFilenameFromUrlWithTrailingQuestionmark() {
+		String url = "https://example.com/path/to/file.txt?";
+		String filename = ReferenceNameUtils.extractFilenameFromUrl(url);
+		assertThat(filename, is("file"));
+	}
+
+	@Test
+	public void testThatParseFilenameFromUrlWithoutExtensionWithTrailingQuestionmark() {
+		String url = "https://example.com/path/to/file?";
+		String filename = ReferenceNameUtils.extractFilenameFromUrl(url);
+		assertThat(filename, is("file"));
 	}
 
 	@Test

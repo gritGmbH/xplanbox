@@ -3,9 +3,6 @@ package de.latlon.xplan.manager.web.client.utils;
 import com.google.gwt.regexp.shared.MatchResult;
 import com.google.gwt.regexp.shared.RegExp;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 /**
  * Helper class to extract file names from URLs using GWT RegEx API.
  *
@@ -14,23 +11,44 @@ import java.net.URL;
  */
 public final class ReferenceNameUtils {
 
-	public static final String UNKNOWN = "UNBEKANNT";
+	public static final String UNKNOWN = "Unbekannt";
 
 	private ReferenceNameUtils() {
 	}
 
-	public static final String extractFilenameFromUrl(String url) {
+	public static String extractFilenameFromUrl(String url) {
 		if (url == null || url.isEmpty()) {
 			return UNKNOWN;
 		}
-		RegExp pattern = RegExp.compile("[^/]*\\\\?([^/]+)$");
-		MatchResult result = pattern.exec(url.replaceAll("/$", ""));
-		if (result != null) {
-			// Extract the filename at position 0
-			String[] parts = result.getGroup(0).split("\\.");
-			return parts[0].replaceAll("^\\?", "");
+		url = removeTrailingQuestionmark(url);
+		if (url.contains("?")) {
+			String[] pathAndQueryString = url.split("\\?");
+			String lastPathSegment = extractLastPathSegment(pathAndQueryString[0]);
+			if (lastPathSegment != null && lastPathSegment.contains(".")) {
+				return extractFilenameFromFile(lastPathSegment);
+			}
+			else {
+				return pathAndQueryString[1];
+			}
+		}
+		String lastPathSegment = extractLastPathSegment(url);
+		if (lastPathSegment != null) {
+			return extractFilenameFromFile(lastPathSegment);
 		}
 		return UNKNOWN;
+	}
+
+	private static String removeTrailingQuestionmark(String url) {
+		return url.replaceAll("\\?$", "");
+	}
+
+	private static String extractLastPathSegment(String pathString) {
+		RegExp pattern = RegExp.compile("[^/]*\\\\?([^/]+)$");
+		MatchResult result = pattern.exec(pathString.replaceAll("/$", ""));
+		if (result != null) {
+			return result.getGroup(0);
+		}
+		return null;
 	}
 
 	public static String extractFilenameFromFile(String filename) {
