@@ -359,7 +359,7 @@ public class ApplicationContext {
 	@Bean
 	public PropertiesLoader managerPropertiesLoader(
 			@Value("${xplanbox.config:#{environment.XPLANBOX_CONFIG}}") String configFilePath) {
-		if (configFilePath != null) {
+		if (configFilePath != null && !configFilePath.isEmpty()) {
 			LOG.info("Using {}/managerConfiguration.properties", configFilePath);
 			return new SystemPropertyPropertiesLoader(configFilePath);
 		}
