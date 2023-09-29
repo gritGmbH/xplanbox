@@ -17,7 +17,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 - Fehler im Editiermodus des XPlanManagerWeb für XPlanGML 6.0 behoben
 - Korrekturen in den Zeichenvorschriften für den XPlanWMS vorgenommen
 - Fehlermeldung im XPlanValidator bei der Validierung von XPlanArchiven (ZIP-Datei) verbessert
-- Fehler im XPlanManagerCLI bei der Auswertung der Konfigurationsdatei _managerConfiguration.properties_ behoben
+- Fehler im XPlanManagerCLI, XPlanTransformCLI und XPlanUpdateDataCLI bei der Ermittlung des Konfigurationsverzeichnisses _etc/_ bei der Auswertung der Konfigurationsdatei _managerConfiguration.properties_ behoben
 - Korrekturen im Betriebshandbuch für die Kommandozeilenprogramme (CLI) vorgenommen
 
 
