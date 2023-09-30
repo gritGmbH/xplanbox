@@ -9263,7 +9263,7 @@ if (jdbcUrl == ""){
 }</script>
         </con:config>
       </con:testStep>
-      <con:testStep type="jdbc" name="JDBC Request" id="3b92ff13-83ad-4872-8ea2-96f72f3551b7">
+      <con:testStep type="jdbc" name="JDBC BP 5.3 XX checkRasterbasis" id="3b92ff13-83ad-4872-8ea2-96f72f3551b7">
         <con:settings/>
         <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:driver>org.postgresql.Driver</con:driver>
@@ -9271,14 +9271,16 @@ if (jdbcUrl == ""){
           <con:query>select * from xplanmgr.artefacts;</con:query>
           <con:assertion type="Simple Contains" id="46b376ec-1f01-40e7-a691-6e1a180dbebe" name="Contains postImg.png">
             <con:configuration>
-              <token>postImg.png</token>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdXPlanGML53}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>postImg.png&lt;/ARTEFACTS.FILENAME></token>
               <ignoreCase>false</ignoreCase>
               <useRegEx>false</useRegEx>
             </con:configuration>
           </con:assertion>
           <con:assertion type="Simple Contains" id="712a3d43-8c27-4f6a-97e4-90c844f2eb08" name="Contains postImg.pgw">
             <con:configuration>
-              <token>postImg.pgw</token>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdXPlanGML53}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>postImg.pgw&lt;/ARTEFACTS.FILENAME></token>
               <ignoreCase>false</ignoreCase>
               <useRegEx>false</useRegEx>
             </con:configuration>
@@ -10033,6 +10035,43 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 2" id="07e78993-0c92-41ee-a4b8-77a0a28c34e2">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC FP 5.0 XX checkRasterbasis" id="0188822c-b441-451e-acfb-a9189ece535d">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select * from xplanmgr.artefacts;</con:query>
+          <con:assertion type="Simple Contains" id="46b376ec-1f01-40e7-a691-6e1a180dbebe" name="Contains postImg.png">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdFPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>postImg.png&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="712a3d43-8c27-4f6a-97e4-90c844f2eb08" name="Contains postImg.pgw">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdFPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>postImg.pgw&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET FP 5.0 pI verifyStatus" id="4111aab6-a533-4c72-99d1-20a48baf7ca0">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis" methodName="getRasterBasis" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -10293,6 +10332,43 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 3" id="18810b69-3a0d-4fc8-9713-e4a221313be9">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC LP 6.0 XX checkRasterbasis" id="db03d3f8-20d7-4d6a-a243-1d9b161980ed">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select * from xplanmgr.artefacts;</con:query>
+          <con:assertion type="Simple Contains" id="46b376ec-1f01-40e7-a691-6e1a180dbebe" name="Contains postImg.png">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdLPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>postImg.png&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="712a3d43-8c27-4f6a-97e4-90c844f2eb08" name="Contains postImg.pgw">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdLPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>postImg.pgw&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET LP 6.0 pI verifyStatus" id="0331d096-a28c-4f72-b0f9-488aee10a778">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis" methodName="getRasterBasis" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -10491,6 +10567,43 @@ if (documentUrl != "null"){
               <con:entry>planId</con:entry>
             </con:parameterOrder>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 4" id="05836811-00ca-46b2-8334-bfe367d551d2">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC RP 5.1 XX checkRasterbasis" id="59959907-1b2f-4888-b4e8-65c370c52996">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select * from xplanmgr.artefacts;</con:query>
+          <con:assertion type="Simple Contains" id="46b376ec-1f01-40e7-a691-6e1a180dbebe" name="Contains postImg.png">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdRPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>postImg.png&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="712a3d43-8c27-4f6a-97e4-90c844f2eb08" name="Contains postImg.pgw">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdRPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>postImg.pgw&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET RP 5.1 pI verifyStatus" id="b95b01fb-dc5c-4dd2-bc1a-fa909b11e13d">
@@ -10693,6 +10806,43 @@ if (documentUrl != "null"){
               <con:entry>planId</con:entry>
             </con:parameterOrder>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 5" id="e4dff86a-93bc-4bfc-88a7-1689099ba04c">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC SO 5.3 XX checkRasterbasis" id="dfc26d39-9415-4a6d-ba96-cf21c5a025b0">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select * from xplanmgr.artefacts;</con:query>
+          <con:assertion type="Simple Contains" id="46b376ec-1f01-40e7-a691-6e1a180dbebe" name="Contains postImg.png">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdSOPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>postImg.png&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="712a3d43-8c27-4f6a-97e4-90c844f2eb08" name="Contains postImg.pgw">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdSOPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>postImg.pgw&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET SO 5.3 pI verifyStatus" id="c6cda071-1520-4844-848e-d8e4d702b631">
@@ -10987,6 +11137,43 @@ if (documentUrl != "null"){
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing" id="339d7570-2ef7-4490-bf1f-9dd385ac2c5c">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC BP 5.3 XX checkRasterbasis" id="f8d9f02d-7b56-4e73-93fb-6c5ec8ff7829">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select * from xplanmgr.artefacts;</con:query>
+          <con:assertion type="Simple Contains" id="46b376ec-1f01-40e7-a691-6e1a180dbebe" name="Contains putImg.png">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdXPlanGML53}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>putImg.png&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="712a3d43-8c27-4f6a-97e4-90c844f2eb08" name="Contains putImg.pgw">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdXPlanGML53}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>putImg.pgw&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="PUT BP 5.3 pI,id modifyStatusUnsupportedContentTypeExpectError" id="06ad277f-e481-40e8-8997-613e2f6934f2">
@@ -11756,6 +11943,43 @@ if (documentUrl != "null"){
           </con:transfers>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 2" id="0e7760e9-9095-4054-8217-1f35cf97ec5c">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC FP 5.0 XX checkRasterbasis" id="dac8b620-f3c5-437b-8952-bbb5f7f9961e">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select * from xplanmgr.artefacts;</con:query>
+          <con:assertion type="Simple Contains" id="46b376ec-1f01-40e7-a691-6e1a180dbebe" name="Contains putImg.png">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdFPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>putImg.png&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="712a3d43-8c27-4f6a-97e4-90c844f2eb08" name="Contains putImg.pgw">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdFPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>putImg.pgw&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET FP 5.0 pI,id currentStatus" id="77b68847-a3db-4465-b8d5-ed9c7eab6185">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis/{id}" methodName="getRasterbasisById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -11971,6 +12195,43 @@ if (documentUrl != "null"){
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 3" id="183e2903-6e45-4983-9bf4-d6d5945adaa9">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC LP 6.0 XX checkRasterbasis" id="9c6d7b1e-1e22-433e-9a11-e8a23a9f1bc7">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select * from xplanmgr.artefacts;</con:query>
+          <con:assertion type="Simple Contains" id="46b376ec-1f01-40e7-a691-6e1a180dbebe" name="Contains putImg.png">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdLPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>putImg.png&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="712a3d43-8c27-4f6a-97e4-90c844f2eb08" name="Contains putImg.pgw">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdLPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>putImg.pgw&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET LP 6.0 pI,id currentStatus" id="afa55a91-11f5-4cc8-93bb-e1a4581140f5">
@@ -12190,6 +12451,43 @@ if (documentUrl != "null"){
           </con:transfers>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 4" id="7c3d279a-ad84-43c7-9803-b195f8518b2e">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC RP 5.1 XX checkRasterbasis" id="77d9a25a-ecd6-45b0-a8f5-15dc8e13db1e">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select * from xplanmgr.artefacts;</con:query>
+          <con:assertion type="Simple Contains" id="46b376ec-1f01-40e7-a691-6e1a180dbebe" name="Contains putImg.png">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdRPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>putImg.png&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="712a3d43-8c27-4f6a-97e4-90c844f2eb08" name="Contains putImg.pgw">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdRPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>putImg.pgw&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET RP 5.1 pI,id currentStatus" id="e1db8560-afb6-47e4-b787-3cf5ebb46c7d">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis/{id}" methodName="getRasterbasisById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -12405,6 +12703,43 @@ if (documentUrl != "null"){
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 5" id="f4845713-2976-46b4-b357-24c330556796">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC SO 5.3 XX checkRasterbasis" id="325e0dd9-342f-4059-9534-9dc252568366">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select * from xplanmgr.artefacts;</con:query>
+          <con:assertion type="Simple Contains" id="46b376ec-1f01-40e7-a691-6e1a180dbebe" name="Contains putImg.png">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdSOPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>putImg.png&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="712a3d43-8c27-4f6a-97e4-90c844f2eb08" name="Contains putImg.pgw">
+            <con:configuration>
+              <token>&lt;ARTEFACTS.PLAN>${#TestSuite#currentPlanIdSOPlan}&lt;/ARTEFACTS.PLAN>
+            &lt;ARTEFACTS.FILENAME>putImg.pgw&lt;/ARTEFACTS.FILENAME></token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET SO 5.3 pI,id currentStatus" id="4e3cec0d-9592-4ce8-a6a9-db3634063c0a">
