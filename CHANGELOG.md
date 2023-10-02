@@ -2,7 +2,7 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
-## Version 7.0.1 (2023-09-29)
+## Version 7.0.1 (2023-10-02)
 
 ### Erweiterungen
 - Aktualisierung der Validierungsregeln auf v1.1.5
