@@ -18,6 +18,10 @@ echo "[$(date -Iseconds)] Initializing mapserver config ..."
 cp /xplan-docker-mapserver/xplan-mapserver-config/mapserver.map $MS_MAPFILE
 
 XPLAN_S3_BUCKET_NAME="${XPLAN_S3_BUCKET_NAME:-tobedefined}"
+AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:-tobedefined}"
+AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:-tobedefined}"
+AWS_REGION="${AWS_REGION:-eu-central-1}"
+AWS_S3_ENDPOINT="${AWS_S3_ENDPOINT}"
 
 ######################################
 # Update content of mapserver config #
@@ -26,6 +30,13 @@ XPLAN_S3_BUCKET_NAME="${XPLAN_S3_BUCKET_NAME:-tobedefined}"
 if [[ -z "${spring_profiles_active##*s3img*}" ]]
 then
   echo "[$(date -Iseconds)] MapServer storage type is S3"
+    sed -i 's|# CONFIG "AWS_ACCESS_KEY_ID" "XXX"|CONFIG "AWS_ACCESS_KEY_ID" "'$AWS_ACCESS_KEY_ID'"|g' $MS_MAPFILE
+    sed -i 's|# CONFIG "AWS_SECRET_ACCESS_KEY" "XXX"|CONFIG "AWS_SECRET_ACCESS_KEY" "'$AWS_SECRET_ACCESS_KEY'"|g' $MS_MAPFILE
+    sed -i 's|# CONFIG "AWS_REGION" "eu-central-1"|CONFIG "AWS_REGION" "'$AWS_REGION'"|g' $MS_MAPFILE
+    if [ ! $AWS_S3_ENDPOINT = "" ]
+      then
+      sed -i 's|# CONFIG "AWS_S3_ENDPOINT" "s3.amazonaws.com"|CONFIG "AWS_S3_ENDPOINT" "'$AWS_S3_ENDPOINT'"|g' $MS_MAPFILE
+    fi
   sed -i 's|SHAPEPATH "/etc/mapserver/data/"|SHAPEPATH "/vsis3/'$XPLAN_S3_BUCKET_NAME'/"|g' $MS_MAPFILE
 fi
 
