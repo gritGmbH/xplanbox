@@ -20,28 +20,6 @@
  */
 package de.latlon.xplanbox.api.validator.v1;
 
-import de.latlon.xplan.validator.semantic.profile.SemanticProfiles;
-import de.latlon.xplanbox.api.validator.config.ApplicationContext;
-import de.latlon.xplanbox.api.validator.config.TestContext;
-import org.apache.http.HttpHeaders;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.test.JerseyTest;
-import org.glassfish.jersey.test.TestProperties;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.Response;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP_COMPRESSED;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
@@ -51,9 +29,42 @@ import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import javax.servlet.ServletContext;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Response;
+
+import org.apache.http.HttpHeaders;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.io.TempDir;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import de.latlon.xplan.commons.configuration.DefaultPropertiesLoader;
+import de.latlon.xplan.validator.semantic.profile.SemanticProfiles;
+import de.latlon.xplanbox.api.validator.config.ApplicationContext;
+import de.latlon.xplanbox.api.validator.config.JerseyConfig;
+import de.latlon.xplanbox.api.validator.config.TestContext;
+import de.latlon.xplanbox.api.validator.config.ValidatorApiConfiguration;
+
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { TestContext.class })
 public class ValidateApiTest extends JerseyTest {
 
 	@TempDir
@@ -71,14 +82,21 @@ public class ValidateApiTest extends JerseyTest {
 
 	@Override
 	protected Application configure() {
-		enable(TestProperties.LOG_TRAFFIC);
-		final ResourceConfig resourceConfig = new ResourceConfig(ValidateApi.class);
+		ResourceConfig resourceConfig;
+		ServletContext mockServletContext = Mockito.mock(ServletContext.class);
+		Mockito.when(mockServletContext.getContextPath()).thenReturn("");
+
+		try {
+			ValidatorApiConfiguration validatorConfig = new ValidatorApiConfiguration(
+					new DefaultPropertiesLoader(getClass()));
+			resourceConfig = new JerseyConfig(mockServletContext, validatorConfig);
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class,
 				TestContext.class);
 		resourceConfig.property("contextConfig", context);
-		resourceConfig.register(this);
-		resourceConfig.packages("de.latlon.xplanbox.api.commons.converter");
-		resourceConfig.packages("de.latlon.xplanbox.api.commons.exception");
 		return resourceConfig;
 	}
 
