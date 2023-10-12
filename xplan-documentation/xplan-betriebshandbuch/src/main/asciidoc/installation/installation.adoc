@@ -35,7 +35,7 @@ Die folgenden WAR-Archive (s. <<installationskomponenten>>) müssen in das Verze
 * _xplan-wms.war_ (XPlanWMS und XPlanWerkWMS)
 * _xplan-wfs.war_ (XPlanWFS)
 * _xplansyn-wfs.war_ (XPlanSynWFS)
-* _xplan-inspireplu.war_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
+* _xplan-inspireplu.war_ (XPlanInspirePluWMS und XPlanInspirePluWFS) (optional)
 * _xplan-validator-wms.war_ (XPlanValidatorWMS)
 
 Die WAR-Archive der Anwendungskomponenten XPlanManagerWeb und XPlanValidatorWeb werden über eine

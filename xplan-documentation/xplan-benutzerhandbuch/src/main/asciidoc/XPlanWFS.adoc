@@ -3,6 +3,11 @@
 
 Der XPlanWFS ist ein auf der Open Source Software https://www.deegree.org[deegree] basierender Dienst zur Abfrage von Vektordaten und ist konform zum Standard Web Feature Service (Version 1.1.0 und 2.0.0) des Open Geospatial Consortium (OGC).
 
+[[xplanwfs-inhalte-des-datendienstes]]
+=== Inhalte des Datendienstes
+
+Der XPlanWFS dient zur Abfrage von Vektordaten und stellt Endpunkte für jede XPlanGML-Version bereit. Zu jeder unterstützten XPlanGML-Version stellt der XPlanWFS einen Endpoint bereit, über den das Original-XPlanGML abgerufen werden kann.
+
 [[xplanwfs-benutzung-des-xplanwfs]]
 === Benutzung des XPlanWFS
 
@@ -67,8 +72,6 @@ http://<host>:<port>/xplan-wfs/services/wfs54?
 http://<host>:<port>/xplan-wfs/services/wfs60?
 ----
 
-[[xplanwfs-inhalte-des-datendienstes]]
-=== Inhalte des Datendienstes
 
 [[xplanwfs-operationen]]
 === Operationen
