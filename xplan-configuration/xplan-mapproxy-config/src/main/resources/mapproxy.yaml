@@ -1,0 +1,147 @@
+parts:
+  wms_cfg: &wms_cfg
+    type: wms
+    wms_opts:
+      featureinfo: true
+      version: 1.3.0
+    supported_srs: ['EPSG:{{ .Values.global.xplanbox.crsSrid }}']
+    coverage:
+      bbox: [{{ .Values.global.xplanbox.bbox }}]
+      srs: 'EPSG:4326'
+  cache_cfg: &cache_cfg
+    format: image/png
+    grids: [gdi_de_25832]
+    disable_storage: {{ .Values.global.xplanbox.mapproxy.noCache | default "false" }}
+    cache:
+      type: s3
+      directory_layout: reverse_tms
+  md_cfg: &md_cfg
+    # To Do i.V.m. https://www.jira.geoportal-hamburg.de/browse/XPLANBOX-1924
+    online_resource:
+    contact:
+      person:
+      position:
+      organization:
+      address:
+      city:
+      postcode:
+      country:
+      phone:
+      email:
+    access_constraints: Insert license and copyright information for this service.
+    fees: 'None'
+    keyword_list:
+      - vocabulary: GEMET
+        keywords:   [land use, land use plan]
+      - keywords:   [Bodennutzung, XPlanung]
+services:
+  # für Probes?
+  demo:
+  wms:
+    srs: ['EPSG:3857','EPSG:4326','EPSG:25832','EPSG:25833']
+    bbox_srs: ["EPSG:4326"]
+    on_source_errors: raise
+    featureinfo_types: ["text", "html", "xml"]
+    md:
+      title: WMS Cache XPlanung
+      abstract: Gecachter WMS zur Visualisierung von XPlanungsdaten
+      <<: *md_cfg
+  wmts:
+    restful: true
+    restful_template: "/{Layer}/{TileMatrixSet}/{TileMatrix}/{TileCol}/{TileRow}.{Format}"
+    kvp: true
+    md:
+      title: WMTS XPlanung
+      abstract: WMTS zur Visualisierung von XPlanungsdaten
+      <<: *md_cfg
+layers:
+  - name: xplan_bplan
+    title: XPlanung Bebauungspläne
+    layers:
+      - name: bplan_raster
+        title: Rasterdarstellung der Bebauungspläne
+        sources: [bplan_raster_cache]
+        min_res: 1.4
+        max_res: 0.14
+      - name: bplan_vektor
+        title: Vektordarstellung der Bebauungspläne
+        sources: [bplan_vektor_cache]
+        min_res: 1.4
+        max_res: 0.14
+  - name: xplan_fplan
+    title: XPlanung Flächennutzungspläne
+    layers:
+      - name: fplan_raster
+        title: Rasterdarstellung der Bebauungspläne
+        sources: [fplan_raster_cache]
+        min_res: 7.0
+        max_res: 1.4
+      - name: fplan_vektor
+        title: Vektordarstellung der Bebauungspläne
+        sources: [fplan_vektor_cache]
+        min_res: 7.0
+        max_res: 1.4
+caches:
+  bplan_raster_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /bplan_raster/
+    sources: ['xplan-mapserver:bplanraster']
+  bplan_vektor_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /bplan_vektor/
+    sources: ['bplan-wms:BP_Plan']
+  fplan_raster_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /fplan_raster/
+    sources: ['xplan-mapserver:fplanraster']
+  fplan_vektor_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /fplan_vektor/
+    sources: ['fplan-wms:FP_Plan']
+sources:
+  xplan-mapserver:
+    <<: *wms_cfg
+    req:
+      url: http://xplan-mapserver:8080/mapserver?
+      transparent: true
+  bplan-wms:
+    <<: *wms_cfg
+    req:
+      url: http://xplan-services:8080/xplan-wms/services/bpwms?
+      transparent: true
+  fplan-wms:
+    <<: *wms_cfg
+    req:
+      url: http://xplan-services:8080/xplan-wms/services/fpwms?
+      transparent: true
+grids:
+  gdi_de_25832:
+    srs: 'EPSG:25832'
+    tile_size: [512, 512]
+    res: [2800.0,1400.0,700.0,280.0,140.0,70.0,28.0,14.0,7.0,2.8,1.4,0.7,0.28,0.14,0.07,0.028]
+    bbox: [{{ .Values.global.xplanbox.bbox }}]
+    bbox_srs: 'EPSG:4326'
+    origin: 'ul'
+globals:
+  cache:
+    lock_dir: "./cache_data/locks"
+    tile_lock_dir: "./cache_data/tile_locks"
+    s3:
+      endpoint_url: {{ .Values.global.xplanbox.mapproxy.s3.endpoint }}
+      bucket_name: {{ .Values.global.xplanbox.mapproxy.s3.bucketName }}
+      region_name: {{ .Values.global.xplanbox.mapproxy.s3.region }}
+  image:
+    paletted: true
+    resampling_method: bicubic
+    formats:
+      image/png:
+        encoding_options:
+          quantizer: fastoctree
+  http:
+    ssl_no_cert_checks: true
+    client_timeout: 300
+    method: GET

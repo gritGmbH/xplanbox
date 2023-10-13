@@ -1,0 +1,39 @@
+seeds:
+  bpreseed:
+    caches: [bplan_raster_cache,bplan_vektor_cache]
+    grids: [bp_25832]
+    coverages: [bpchanges]
+    refresh_before:
+      days: 0
+    levels:
+      from: 4
+      to: 6
+  fpreseed:
+    caches: [fplan_raster_cache,fplan_vektor_cache]
+    grids: [fp_25832]
+    coverages: [fpchanges]
+    refresh_before:
+      days: 0
+    levels:
+      from: 2
+      to: 4
+  # wird bei einem frischen Deployment vermutlich gar nicht benötigt?
+  fullseed:
+    caches: [bplan_raster_cache,bplan_vektor_cache,fplan_raster_cache,fplan_vektor_cache]
+    grids: [gdi_de_25832]
+    coverages: [full]
+    refresh_before:
+      days: 0
+coverages:
+  bpchanges:
+    # da die Connection mit PQconnectdb()/libpq gemacht wird, müssten alle Verbindungsparameter über ENVs gesetzt werden können: https://www.postgresql.org/docs/12/libpq-envars.html (ungetestet)
+    datasource: "PG:"
+    where: "select * from xplanmgr.planslog where xp_type='BP_Plan' and (planstatus_new='Festgestellt' or planstatus_old='Festgestellt') and last_update_date > localtimestamp - interval '1 day'"
+    srs: 'EPSG:4326'
+  fpchanges:
+    datasource: "PG:"
+    where: "select * from xplanmgr.planslog where xp_type='FP_Plan' and (planstatus_new='Festgestellt' or planstatus_old='Festgestellt') and last_update_date > localtimestamp - interval '1 day'"
+    srs: 'EPSG:4326'
+  full:
+    bbox: [{{ .Values.global.xplanbox.bbox }}]
+    srs: 'EPSG:4326'

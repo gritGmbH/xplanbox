@@ -16,6 +16,7 @@
     <module>xplan-validator-config</module>
     <module>xplan-dokumenten-config</module>
     <module>xplan-mapserver-config</module>
+    <module>xplan-mapproxy-config</module>
   </modules>
 
   <build>
