@@ -4,7 +4,7 @@ parts:
     wms_opts:
       featureinfo: true
       version: 1.3.0
-    supported_srs: ['EPSG:{{ .Values.global.xplanbox.crsSrid }}']
+    supported_srs: ['EPSG:${XPLAN_SERVICES_DEFAULT_CRS_SRID}']
     coverage:
       bbox: [{{ .Values.global.xplanbox.bbox }}]
       srs: 'EPSG:4326'
@@ -131,9 +131,9 @@ globals:
     lock_dir: "./cache_data/locks"
     tile_lock_dir: "./cache_data/tile_locks"
     s3:
-      endpoint_url: {{ .Values.global.xplanbox.mapproxy.s3.endpoint }}
+      endpoint_url: ${XPLAN_S3_ENDPOINT}
       bucket_name: {{ .Values.global.xplanbox.mapproxy.s3.bucketName }}
-      region_name: {{ .Values.global.xplanbox.mapproxy.s3.region }}
+      region_name: ${XPLAN_S3_REGION}
   image:
     paletted: true
     resampling_method: bicubic
