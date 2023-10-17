@@ -78,7 +78,7 @@ class InfoApiTest extends JerseyTest {
 
 		BasicJsonTester json = new BasicJsonTester(getClass());
 		assertThat(json.from(response.readEntity(String.class))).extractingJsonPathStringValue("$.rulesMetadata.source")
-				.startsWith("https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard/-/tree/");
+			.startsWith("https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard/-/tree/");
 
 	}
 
