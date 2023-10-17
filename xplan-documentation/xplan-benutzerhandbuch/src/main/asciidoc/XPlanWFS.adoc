@@ -6,7 +6,7 @@ Der XPlanWFS ist ein auf der Open Source Software https://www.deegree.org[deegre
 [[xplanwfs-inhalte-des-datendienstes]]
 === Inhalte des Datendienstes
 
-Der XPlanWFS dient zur Abfrage von Vektordaten und stellt Endpunkte für jede XPlanGML-Version bereit. Zu jeder unterstützten XPlanGML-Version stellt der XPlanWFS einen Endpoint bereit, über den das Original-XPlanGML abgerufen werden kann.
+Der XPlanWFS dient zur Abfrage von Vektordaten und stellt Endpunkte für jede XPlanGML-Version bereit. Zu jeder unterstützten XPlanGML-Version stellt der XPlanWFS einen Endpoint bereit, über den das zur jeweiligen Version konforme XPlanGML abgerufen werden kann.
 
 [[xplanwfs-benutzung-des-xplanwfs]]
 === Benutzung des XPlanWFS

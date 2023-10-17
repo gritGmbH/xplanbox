@@ -92,7 +92,7 @@ IMPORTANT: Je nach Kommandozeilenwerkzeug müssen über Umgebungsvariablen wie z
 [[install-xplanevaluationschemasynchronize-cli]]
 ===== XPlanAuswerteschemaCLI
 
-Das Kommandozeilenwerkzeug XPlanAuswerteschemaCLI erzeugt ein weiteres Datenbankschema für die Auswertung und kann die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas synchronisieren. Das Auswerteschema unterscheidet sich zum XPlanSyn-Schema dadurch, dass die GML-Geometrien (wie z.B. Kreisbögen) wie im Original-XPlanGML zusätzlich zu den https://www.ogc.org/standards/sfa[Simple Features Geometrien] abgelegt sind.
+Das Kommandozeilenwerkzeug XPlanAuswerteschemaCLI erzeugt ein weiteres Datenbankschema für die Auswertung und kann die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas synchronisieren. Das Auswerteschema unterscheidet sich zum XPlanSyn-Schema dadurch, dass die GML-Geometrien (wie z.B. Kreisbögen) aus dem XPlanGML zusätzlich zu den https://www.ogc.org/standards/sfa[Simple Features Geometrien] abgelegt sind.
 
 ====== Installation
 
