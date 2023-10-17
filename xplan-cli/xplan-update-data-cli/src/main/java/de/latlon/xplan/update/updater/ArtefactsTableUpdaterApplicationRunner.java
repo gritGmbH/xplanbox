@@ -32,7 +32,9 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Updates the data from version 6.0 to 7.0: Inserts data to
@@ -54,16 +56,31 @@ public class ArtefactsTableUpdaterApplicationRunner implements ApplicationRunner
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		int noOfSuccessfullyUpdatedPlanIds = 0;
+		Map<String, String> failedPlans = new HashMap<>();
+
 		List<XPlan> plans = xplanDao.getXPlanList();
 		for (XPlan plan : plans) {
+			String planId = plan.getId();
 			try {
 				artefactsTableUpdater.update(plan);
+				noOfSuccessfullyUpdatedPlanIds++;
 			}
 			catch (Exception e) {
-				LOG.error("Plan with id " + plan.getId() + " could not be updated!", e);
+				failedPlans.put(planId, e.getMessage());
+				LOG.error("Plan with id " + planId + " could not be updated!", e);
 			}
 		}
-		LOG.info("ArtefactsTableUpdateTool successfully executed!");
+		logResult(plans.size(), noOfSuccessfullyUpdatedPlanIds, failedPlans);
+	}
+
+	private void logResult(int noOfExecutedPlans, int noOfSuccessfullyUpdatedPlanIds, Map<String, String> failedPlans) {
+		LOG.info("ArtefactsTableUpdateTool completely executed!");
+		LOG.info("Updated {} of {} plans successfully.", noOfSuccessfullyUpdatedPlanIds, noOfExecutedPlans);
+		if (!failedPlans.isEmpty()) {
+			LOG.warn("{} of {} plans could not be updated:", failedPlans.size(), noOfExecutedPlans);
+			failedPlans.forEach((id, msg) -> LOG.warn("  - ID: {}, failure: {}", id, msg));
+		}
 	}
 
 }
