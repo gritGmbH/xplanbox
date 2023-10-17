@@ -23,7 +23,7 @@ package de.latlon.xplan.commons.archive;
 import de.latlon.xplan.ResourceAccessor;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
@@ -36,18 +36,19 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class XPlanArchiveCreatorTest {
+class XPlanArchiveCreatorTest {
 
 	@Test
-	public void testMetadataBP2070XPlan41() throws IOException {
+	void testMetadataBP2070XPlan41() throws IOException {
 		XPlanArchive archive = getTestArchive("xplan41/BP2070.zip");
 		assertEquals(XPLAN_41, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
@@ -55,7 +56,7 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataBP2135XPlan41() throws IOException {
+	void testMetadataBP2135XPlan41() throws IOException {
 		XPlanArchive archive = getTestArchive("xplan41/BP2135.zip");
 		assertEquals(XPLAN_41, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
@@ -63,7 +64,7 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataDemoXPlan41() throws IOException {
+	void testMetadataDemoXPlan41() throws IOException {
 		XPlanArchive archive = getTestArchive("xplan41/Demo.zip");
 		assertEquals(XPLAN_41, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
@@ -71,7 +72,7 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataEidelstedt_4_V4XPlan41() throws IOException {
+	void testMetadataEidelstedt_4_V4XPlan41() throws IOException {
 		XPlanArchive archive = getTestArchive("xplan41/Eidelstedt_4_V4.zip");
 		assertEquals(XPLAN_41, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
@@ -79,7 +80,7 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataFPlanXPlan41() throws IOException {
+	void testMetadataFPlanXPlan41() throws IOException {
 		XPlanArchive archive = getTestArchive("xplan41/FPlan.zip");
 		assertEquals(XPLAN_41, archive.getVersion());
 		assertEquals(FP_Plan, archive.getType());
@@ -87,7 +88,7 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataLA22XPlan41() throws IOException {
+	void testMetadataLA22XPlan41() throws IOException {
 		XPlanArchive archive = getTestArchive("xplan41/LA22.zip");
 		assertEquals(XPLAN_41, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
@@ -95,7 +96,7 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataLA67XPlan41() throws IOException {
+	void testMetadataLA67XPlan41() throws IOException {
 		XPlanArchive archive = getTestArchive("xplan41/LA67.zip");
 		assertEquals(XPLAN_41, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
@@ -103,7 +104,7 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataBPlan001_41() throws IOException {
+	void testMetadataBPlan001_41() throws IOException {
 		XPlanArchive archive = getTestArchive("xplan41/BPlan001_4-1.zip");
 
 		assertEquals(XPLAN_41, archive.getVersion());
@@ -112,7 +113,7 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataEidelstedt4V4EimsbuettelXPlan41() throws IOException {
+	void testMetadataEidelstedt4V4EimsbuettelXPlan41() throws IOException {
 		XPlanArchive archive = getTestArchive("xplan41/Eidelstedt_4_V4-Eimsbuettel.zip");
 
 		assertEquals(XPLAN_41, archive.getVersion());
@@ -120,7 +121,7 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataEidelstedt4V4EimsbuettelXPlan41WithMapper() throws IOException {
+	void testMetadataEidelstedt4V4EimsbuettelXPlan41WithMapper() throws IOException {
 		XPlanArchive archive = getTestArchiveWithMapper("xplan41/Eidelstedt_4_V4-Eimsbuettel.zip");
 
 		assertEquals(XPLAN_41, archive.getVersion());
@@ -128,7 +129,7 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataBPlan004_40() throws IOException {
+	void testMetadataBPlan004_40() throws IOException {
 		XPlanArchive archive = getTestArchive("xplan40/BPlan004_4-0.zip");
 		assertEquals(XPLAN_40, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
@@ -136,7 +137,7 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testCreateXPlanArchive_41_SOPlan() throws IOException, UnknownCRSException {
+	void testCreateXPlanArchive_41_SOPlan() throws IOException, UnknownCRSException {
 		XPlanArchive archive = getTestArchive("xplan41/Erhaltung.zip");
 		assertEquals(XPLAN_41, archive.getVersion());
 		assertEquals(0, archive.getDistricts().size());
@@ -144,13 +145,14 @@ public class XPlanArchiveCreatorTest {
 		assertEquals(CRSManager.lookup("EPSG:25832"), archive.getCrs());
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testPlanWithWrongGmlFileNameShouldThrowIllegalArgumentException() throws Exception {
-		getTestArchive("xplan41/Eidelstedt_4_V4-wrongGmlFileName.zip");
+	@Test
+	void testPlanWithWrongGmlFileNameShouldThrowIllegalArgumentException() throws Exception {
+		assertThrows(IllegalArgumentException.class,
+				() -> getTestArchive("xplan41/Eidelstedt_4_V4-wrongGmlFileName.zip"));
 	}
 
 	@Test
-	public void testCreateXPlanArchive_51_GmlFile() throws IOException {
+	void testCreateXPlanArchive_51_GmlFile() throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
 		InputStream gmlAsStream = ResourceAccessor.readResourceStream("xplan51/BPlan001_5-1.gml");
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("BPlan001_5-1.gml", gmlAsStream);
@@ -160,7 +162,7 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testCreateXPlanArchive_withVerbundenerPlan() throws IOException {
+	void testCreateXPlanArchive_withVerbundenerPlan() throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
 		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
 			.getResourceAsStream("../feature/xplan-multipleInstances-withVerbundenerPlan.gml");
@@ -172,7 +174,7 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testCreateXPlanArchive_WfsCollection() throws IOException {
+	void testCreateXPlanArchive_WfsCollection() throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
 		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
 			.getResourceAsStream("V4_1_ID_103-asWfsFeatureCollection.gml");
@@ -181,20 +183,22 @@ public class XPlanArchiveCreatorTest {
 		assertEquals(XPLAN_51, archive.getVersion());
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testCreateXPlanArchive_NoXPlanGml() throws IOException {
+	@Test
+	void testCreateXPlanArchive_NoXPlanGml() throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
 		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
 			.getResourceAsStream("V4_1_ID_103-noXPlanGmlCollection.gml");
-		archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103-noXPlanGmlCollection.gml", gmlAsStream);
+		assertThrows(IllegalArgumentException.class,
+				() -> archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103-noXPlanGmlCollection.gml", gmlAsStream));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testCreateXPlanArchive_withEntity() throws IOException {
+	@Test
+	void testCreateXPlanArchive_withEntity() throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
 		InputStream zipAsStream = XPlanArchiveCreatorTest.class
 			.getResourceAsStream("Blankenese29_Test_60_withEntity.zip");
-		archiveCreator.createXPlanArchiveFromZip("Blankenese29_Test_60_withEntity.zip", zipAsStream);
+		assertThrows(IllegalArgumentException.class,
+				() -> archiveCreator.createXPlanArchiveFromZip("Blankenese29_Test_60_withEntity.zip", zipAsStream));
 	}
 
 	private XPlanArchive getTestArchive(String name) throws IOException {

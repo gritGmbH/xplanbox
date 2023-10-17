@@ -20,49 +20,36 @@
  */
 package de.latlon.xplan.commons.reference;
 
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
-import org.deegree.feature.FeatureCollection;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import org.deegree.feature.FeatureCollection;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-@RunWith(Parameterized.class)
-public class ParameterizedExternalReferenceScannerTest {
+class ParameterizedExternalReferenceScannerTest {
 
-	private final String resourceUnderTest;
-
-	private final int noOfExternalRefs;
-
-	private final int noOfRasterPlanBaseScans;
-
-	@Parameterized.Parameters
-	public static List<Object[]> data() {
+	static List<Object[]> data() {
 		return Arrays.asList(new Object[][] { { "xplan40/BPlan004_4-0.zip", 2, 1 }, { "xplan41/BP2070.zip", 0, 0 },
 				{ "xplan41/Demo.zip", 2, 0 }, { "xplan41/BPlan001_4-1.zip", 1, 1 },
 				{ "xplan50/BPlan004_5-0.zip", 2, 1 }, { "xplan51/BPlan002_5-1.zip", 2, 2 },
 				{ "xplan51/BPlan002_5-1_rasterBasisAlsRefScan.zip", 1, 1 } });
 	}
 
-	public ParameterizedExternalReferenceScannerTest(String resourceUnderTest, int noOfExternalRefs,
-			int noOfRasterPlanBaseScans) {
-		this.resourceUnderTest = resourceUnderTest;
-		this.noOfExternalRefs = noOfExternalRefs;
-		this.noOfRasterPlanBaseScans = noOfRasterPlanBaseScans;
-	}
-
-	@Test
-	public void testValidationOfSingleRule() throws Exception {
+	@ParameterizedTest
+	@MethodSource("data")
+	void testValidationOfSingleRule(String resourceUnderTest, int noOfExternalRefs, int noOfRasterPlanBaseScans)
+			throws Exception {
 		FeatureCollection fc = getMainFileAsFeatureCollection(resourceUnderTest);
 		ExternalReferenceInfo referenceInfo = new ExternalReferenceScanner().scan(fc);
 		assertEquals(noOfExternalRefs, referenceInfo.getAllReferences().size());

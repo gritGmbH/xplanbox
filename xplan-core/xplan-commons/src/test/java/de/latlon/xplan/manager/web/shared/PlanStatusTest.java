@@ -20,33 +20,33 @@
  */
 package de.latlon.xplan.manager.web.shared;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class PlanStatusTest {
+class PlanStatusTest {
 
 	@Test
-	public void testFindByMessage() {
+	void testFindByMessage() {
 		PlanStatus planStatus = PlanStatus.FESTGESTELLT;
 		PlanStatus foundPlanStatus = PlanStatus.findByMessage(planStatus.getMessage());
 
-		assertThat(foundPlanStatus, is(planStatus));
+		assertThat(foundPlanStatus).isEqualTo(planStatus);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testFindByMessageUnknownMessage() {
-		PlanStatus.findByMessage("UNKNOWN_MESSAGE");
+	@Test
+	void testFindByMessageUnknownMessage() {
+		assertThrows(IllegalArgumentException.class, () -> PlanStatus.findByMessage("UNKNOWN_MESSAGE"));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testFindByMessageNullMessage() {
-		PlanStatus.findByMessage(null);
+	@Test
+	void testFindByMessageNullMessage() {
+		assertThrows(IllegalArgumentException.class, () -> PlanStatus.findByMessage(null));
 	}
 
 }
