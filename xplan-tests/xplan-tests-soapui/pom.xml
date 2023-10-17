@@ -102,6 +102,13 @@
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <groupId>io.github.git-commit-id</groupId>
+            <artifactId>git-commit-id-maven-plugin</artifactId>
+            <configuration> <!-- to run "isolated"" in docker container -->
+              <skipPoms>true</skipPoms>
+            </configuration>
+          </plugin>
         </plugins>
       </build>
     </profile>
