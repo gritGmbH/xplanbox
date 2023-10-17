@@ -445,6 +445,7 @@
           <includeOnlyProperties>
             <includeOnlyProperty>git.commit.id</includeOnlyProperty>
           </includeOnlyProperties>
+          <skipPoms>false</skipPoms>
           <verbose>true</verbose>
         </configuration>
       </plugin>
