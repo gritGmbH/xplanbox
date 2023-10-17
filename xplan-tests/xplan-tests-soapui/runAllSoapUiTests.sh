@@ -14,20 +14,18 @@ fi
 echo "Executing tests..."
 mvn test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_API_MANAGER_BASE_URL -DbaseUrlServices=$XPLAN_BASE_URL_DIENSTE  -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD
 
-#mvn test -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=$XPLAN_API_VALIDATOR_ENDPOINT -Dusername=$XPLAN_API_VALIDATOR_USERNAME -Dpassword=$XPLAN_API_VALIDATOR_PASSWORD
+mvn test -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=$XPLAN_API_VALIDATOR_ENDPOINT -Dusername=$XPLAN_API_VALIDATOR_USERNAME -Dpassword=$XPLAN_API_VALIDATOR_PASSWORD
 
 if [ -z ${XPLAN_API_DOKUMENTE_BASE_URL+x} ];
 then
 	echo "XPlanDokumentenAPI Tests are skipped!"
 else
-	echo "running XPlanDokumentenAPI Tests"
-#	mvn test -Psystem-tests -DtestFileName=xplan-api-dokumente-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_API_MANAGER_BASE_URL -DbaseUrlDokumentenApi=$XPLAN_API_DOKUMENTE_BASE_URL -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD
-
+	mvn test -Psystem-tests -DtestFileName=xplan-api-dokumente-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_API_MANAGER_BASE_URL -DbaseUrlDokumentenApi=$XPLAN_API_DOKUMENTE_BASE_URL -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD
 fi
 
 mvn test -Psystem-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=$XPLAN_MANAGER_WEB_ENDPOINT -Dusername=$XPLAN_MANAGER_WEB_USERNAME -Dpassword=$XPLAN_MANAGER_WEB_PASSWORD
 
-#mvn test -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=${XPLAN_BASE_URL_DIENSTE} -DbaseUrlInspirePlu=${XPLAN_BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${XPLAN_API_MANAGER_BASE_URL} -DbaseUrlMapServer=${XPLAN_BASE_URL_MAPSERVER} -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD -DapiKey=$XPLAN_SERVICES_API_KEY
+mvn test -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=${XPLAN_BASE_URL_DIENSTE} -DbaseUrlInspirePlu=${XPLAN_BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${XPLAN_API_MANAGER_BASE_URL} -DbaseUrlMapServer=${XPLAN_BASE_URL_MAPSERVER} -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD -DapiKey=$XPLAN_SERVICES_API_KEY
 
 echo -e "\n"
 echo "Results:"
