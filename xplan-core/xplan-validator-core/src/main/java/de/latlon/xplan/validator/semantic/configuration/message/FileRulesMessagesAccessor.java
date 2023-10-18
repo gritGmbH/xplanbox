@@ -38,13 +38,13 @@ public final class FileRulesMessagesAccessor extends RulesMessagesAccessor {
 
 	private static final Logger LOG = LoggerFactory.getLogger(FileRulesMessagesAccessor.class);
 
-	private static final String RULESMESSAGE_FILE_NAME = "rules.properties";
+	public static final String RULESMESSAGE_FILE_NAME = "rules.properties";
 
 	private final Properties properties = new Properties();
 
 	/**
 	 * @param rulesDirectory the directory containing the rules.properties, never
-	 * <code>null</code>. A file with this name may exists. If no file with this name
+	 * <code>null</code>. A file with this name may exist. If no file with this name
 	 * exists, a default message will be created.
 	 */
 	public FileRulesMessagesAccessor(Path rulesDirectory) {
@@ -58,6 +58,19 @@ public final class FileRulesMessagesAccessor extends RulesMessagesAccessor {
 		}
 		catch (IOException | NullPointerException e) {
 			LOG.error("Could not load properties file " + "" + rulesMessagesFile, e);
+		}
+	}
+
+	/**
+	 * @param propsStream the rules.properties as stream, never <code>null</code>. Stream
+	 * is not closed in this method.
+	 */
+	public FileRulesMessagesAccessor(InputStream propsStream) {
+		try {
+			properties.load(propsStream);
+		}
+		catch (IOException | NullPointerException e) {
+			LOG.error("Could not load properties file", e);
 		}
 	}
 

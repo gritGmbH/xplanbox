@@ -134,7 +134,7 @@ import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.XP
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class TypeCodelistProvider {
+public final class TypeCodelistProvider {
 
 	private static final CodelistMessages MESSAGES = GWT.create(CodelistMessages.class);
 

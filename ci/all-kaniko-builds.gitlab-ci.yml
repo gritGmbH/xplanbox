@@ -6,15 +6,19 @@
     entrypoint: [""]
   script:
   - /kaniko/executor --context=tar://${CI_PROJECT_DIR}/$tarGzFile --destination=$destination:$dockerTag
+    --build-arg="BUILD_DATE='$(date --utc +'%Y-%m-%d %H:%M:%SZ')'"
+    --build-arg="DOCKER_IMAGE_NAME=$dockerImageName"
+    --build-arg="GIT_REVISION=${CI_COMMIT_SHA}"
     --build-arg="XPLANBOX_IMAGE_NAME_PREFIX=${CI_REGISTRY_IMAGE}/xplanbox"
     --build-arg="XPLANBOX_VERSION=${dockerTag}"
   rules:
   - if: $CI_PIPELINE_SOURCE == 'schedule'
     when: never 
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+    when: never 
   - when: on_success 
   variables:
-    destination: ${CI_REGISTRY_IMAGE}/xplanbox/xplan-docker-tomcat-gdal
-    tarGzFile: xplan-docker/xplan-docker-tomcat-gdal/target/docker/xplanbox/xplan-docker-tomcat-gdal/tmp/docker-build.tar.gz
+    destination: ${CI_REGISTRY_IMAGE}/xplanbox/${dockerImageName}
 
 ## job per image to produce
 

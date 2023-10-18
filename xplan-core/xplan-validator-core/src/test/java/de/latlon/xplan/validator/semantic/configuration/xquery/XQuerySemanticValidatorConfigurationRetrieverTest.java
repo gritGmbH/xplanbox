@@ -21,10 +21,9 @@
 package de.latlon.xplan.validator.semantic.configuration.xquery;
 
 import de.latlon.xplan.validator.semantic.SemanticValidatorRule;
+import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
+import de.latlon.xplan.validator.semantic.configuration.SemanticRulesMainConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import org.junit.Test;
 
 import java.nio.file.Path;
@@ -37,6 +36,7 @@ import static de.latlon.xplan.validator.semantic.configuration.SemanticValidatio
 import static java.nio.file.Paths.get;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -50,8 +50,9 @@ public class XQuerySemanticValidatorConfigurationRetrieverTest {
 	@Test
 	public void testRetrieveConfigurationShouldReturnCorrectNumberOfRules() throws Exception {
 		Path rulesPath = get(XQuerySemanticValidatorConfigurationRetriever.class.getResource("rules").toURI());
+		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesMainConfiguration(rulesPath);
 		XQuerySemanticValidatorConfigurationRetriever configurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
-				rulesPath, rulesMatadata(rulesPath));
+				semanticRulesConfiguration);
 		SemanticValidatorConfiguration configuration = configurationRetriever.retrieveConfiguration();
 		List<SemanticValidatorRule> rules = configuration.getAllRules();
 
@@ -61,8 +62,9 @@ public class XQuerySemanticValidatorConfigurationRetrieverTest {
 	@Test
 	public void testRetrieveConfigurationShouldRetrieveAllFilesRecursively() throws Exception {
 		Path rulesPath = get(XQuerySemanticValidatorConfigurationRetriever.class.getResource("rules").toURI());
+		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesMainConfiguration(rulesPath);
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				rulesPath, rulesMatadata(rulesPath));
+				semanticRulesConfiguration);
 		SemanticValidatorConfiguration configuration = retriever.retrieveConfiguration();
 
 		assertThat(configuration.getRules(singletonList(IGNORE_XP)).size(), is(9));
@@ -71,20 +73,24 @@ public class XQuerySemanticValidatorConfigurationRetrieverTest {
 	}
 
 	@Test
-	public void testRetrieveConfigurationWithInvalidRulesPath() throws Exception {
-		Path rulesPath = get("/does/not/exist");
+	public void testRetrieveConfigurationFromJar() throws Exception {
+		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesMainConfiguration();
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				rulesPath, rulesMatadata(rulesPath));
+				semanticRulesConfiguration);
 		SemanticValidatorConfiguration configuration = retriever.retrieveConfiguration();
 
-		assertThat(configuration.getAllRules().size(), is(0));
+		assertThat(configuration.getRules(XPLAN_40, singletonList(NONE)).size(), is(not(0)));
 	}
 
-	private RulesMetadata rulesMatadata(Path rulesPath) {
-		RulesVersionParser rulesVersionParser = new RulesVersionParser();
-		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
-		return new RulesMetadata(rulesVersion);
+	@Test
+	public void testRetrieveConfigurationWithInvalidRulesPath() throws Exception {
+		Path rulesPath = get("/does/not/exist");
+		SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesMainConfiguration(rulesPath);
+		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
+				semanticRulesConfiguration);
+		SemanticValidatorConfiguration configuration = retriever.retrieveConfiguration();
 
+		assertThat(configuration.getAllRules().size(), is(not(0)));
 	}
 
 }

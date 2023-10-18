@@ -70,7 +70,7 @@ public class XPlanManagerCLI {
 				"     <planid> Die ID des Plans der geloescht werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.");
 		System.out.println(" --createMetadata <planid> [<planid>..]");
 		System.out.println(
-				"     <planid> Die ID des Plans zu dem der Service-Metadatensatz generiert werden soll (optional). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden. Wenn keine ID angegeben ist, werden für alle Plaene Metadatensaetze erstellt.");
+				"     <planid> Die ID des Plans zu dem der Service-Metadatensatz generiert werden soll (optional). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden. Wenn keine ID angegeben ist, werden fuer alle Plaene Metadatensaetze erstellt.");
 		System.out.println();
 		System.out.println("Allgemeine Parameter:");
 		System.out.println("     --v Ausgabe der Systemeigenschaften");

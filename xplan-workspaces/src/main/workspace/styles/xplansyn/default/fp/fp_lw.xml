@@ -32,12 +32,25 @@
       <Title>FP: Landwirtschaft</Title>
     </Description>
     <ogc:Filter>
-      <ogc:Not>
+      <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+          <ogc:Function name="IsSurface">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-      </ogc:Not>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
+      </ogc:And>
     </ogc:Filter>
     <PolygonSymbolizer uom="meter">
       <Geometry>

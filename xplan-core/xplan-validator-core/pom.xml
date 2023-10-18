@@ -231,6 +231,11 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
     </dependency>
+    <dependency>
+      <groupId>de.xleitstelle.xplanung</groupId>
+      <artifactId>regeln</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
 </project>

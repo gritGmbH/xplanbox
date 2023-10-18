@@ -34,8 +34,8 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
@@ -43,20 +43,28 @@ import javax.ws.rs.core.Response;
 import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
-import org.glassfish.jersey.test.TestProperties;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.commons.configuration.DefaultPropertiesLoader;
+import de.latlon.xplan.validator.semantic.profile.SemanticProfiles;
 import de.latlon.xplanbox.api.validator.config.ApplicationContext;
+import de.latlon.xplanbox.api.validator.config.JerseyConfig;
 import de.latlon.xplanbox.api.validator.config.TestContext;
+import de.latlon.xplanbox.api.validator.config.ValidatorApiConfiguration;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { TestContext.class })
 public class ValidateApiTest extends JerseyTest {
 
 	@TempDir
@@ -70,18 +78,25 @@ public class ValidateApiTest extends JerseyTest {
 	}
 
 	@Autowired
-	private List<RulesMetadata> profileMetadata;
+	private SemanticProfiles semanticProfiles;
 
 	@Override
 	protected Application configure() {
-		enable(TestProperties.LOG_TRAFFIC);
-		final ResourceConfig resourceConfig = new ResourceConfig(ValidateApi.class);
+		ResourceConfig resourceConfig;
+		ServletContext mockServletContext = Mockito.mock(ServletContext.class);
+		Mockito.when(mockServletContext.getContextPath()).thenReturn("");
+
+		try {
+			ValidatorApiConfiguration validatorConfig = new ValidatorApiConfiguration(
+					new DefaultPropertiesLoader(getClass()));
+			resourceConfig = new JerseyConfig(mockServletContext, validatorConfig);
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class,
 				TestContext.class);
 		resourceConfig.property("contextConfig", context);
-		resourceConfig.register(this);
-		resourceConfig.packages("de.latlon.xplanbox.api.commons.converter");
-		resourceConfig.packages("de.latlon.xplanbox.api.commons.exception");
 		return resourceConfig;
 	}
 
@@ -150,7 +165,8 @@ public class ValidateApiTest extends JerseyTest {
 			throws URISyntaxException, IOException {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
-		final Response response = target("/validate").queryParam("profiles", profileMetadata.get(0).getId())
+		final Response response = target("/validate")
+			.queryParam("profiles", semanticProfiles.getProfileValidators().get(0).getId())
 			.request()
 			.accept(APPLICATION_JSON)
 			.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
@@ -165,8 +181,9 @@ public class ValidateApiTest extends JerseyTest {
 			throws URISyntaxException, IOException {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
-		final Response response = target("/validate").queryParam("profiles", profileMetadata.get(0).getId())
-			.queryParam("profiles", profileMetadata.get(1).getId())
+		final Response response = target("/validate")
+			.queryParam("profiles", semanticProfiles.getProfileValidators().get(0).getId())
+			.queryParam("profiles", semanticProfiles.getProfileValidators().get(1).getId())
 			.request()
 			.accept(APPLICATION_JSON)
 			.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
@@ -182,7 +199,9 @@ public class ValidateApiTest extends JerseyTest {
 		final byte[] data = Files
 			.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
 		final Response response = target("/validate")
-			.queryParam("profiles", profileMetadata.get(0).getId() + "," + profileMetadata.get(1).getId())
+			.queryParam("profiles",
+					semanticProfiles.getProfileValidators().get(0).getId() + ","
+							+ semanticProfiles.getProfileValidators().get(1).getId())
 			.request()
 			.accept(APPLICATION_JSON)
 			.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));

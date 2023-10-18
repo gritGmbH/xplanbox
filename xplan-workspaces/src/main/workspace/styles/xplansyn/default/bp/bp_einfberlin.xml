@@ -21,7 +21,6 @@
   -->
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-                  xmlns:sed="http://www.deegree.org/se"
                   xmlns:xplan="http://www.deegree.org/xplanung/1/0"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se https://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
@@ -51,7 +50,7 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <sed:GraphicStroke>
+        <GraphicStroke>
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
@@ -68,17 +67,17 @@
             </Mark>
             <Size>2</Size>
           </Graphic>
-          <sed:PositionPercentage>0</sed:PositionPercentage>
-        </sed:GraphicStroke>
+        </GraphicStroke>
+        <SvgParameter name="deegree-graphicstroke-position-percentage">0</SvgParameter>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">0.9</sed:PerpendicularOffset>
+      <PerpendicularOffset type="Standard">0.9</PerpendicularOffset>
     </LineSymbolizer>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <sed:GraphicStroke>
+        <GraphicStroke>
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
@@ -95,10 +94,10 @@
             </Mark>
             <Size>2</Size>
           </Graphic>
-          <sed:PositionPercentage>99.9</sed:PositionPercentage>
-        </sed:GraphicStroke>
+        </GraphicStroke>
+        <SvgParameter name="deegree-graphicstroke-position-percentage">99.9</SvgParameter>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">0.9</sed:PerpendicularOffset>
+      <PerpendicularOffset type="Standard">0.9</PerpendicularOffset>
     </LineSymbolizer>
   </Rule>
 </FeatureTypeStyle>

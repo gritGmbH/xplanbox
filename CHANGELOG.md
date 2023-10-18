@@ -2,6 +2,25 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+## Version 7.0.1 (2023-10-05)
+
+### Erweiterungen
+- Aktualisierung der Validierungsregeln auf v1.1.5
+- Das Validierungsprofil Berlin ist in den Komponenten XPlanValidator und XPlanManager enthalten und kann aktiviert werden
+- Einführung der Datei _xqueryregeln.txt_ für Validierungsregeln und Profile
+- Verbesserung der Konfigurierbarkeit des MapServer-Container-Images
+- OCI-Labels für alle Container-Images hinzugefügt
+
+### Fehlerbehebungen
+- Fehler bei der Ausführung des XPlanValidator unter Windows behoben
+- Fehler bei der Ausführung in Container-Images auf Basis von Bitnami/Tomcat behoben
+- Fehler im Editiermodus des XPlanManagerWeb für XPlanGML 6.0 behoben
+- Korrekturen in den Zeichenvorschriften für den XPlanWMS vorgenommen
+- Fehlermeldung im XPlanValidator bei der Validierung von XPlanArchiven (ZIP-Datei) verbessert
+- Fehler im XPlanManagerCLI, XPlanTransformCLI und XPlanUpdateDataCLI bei der Ermittlung des Konfigurationsverzeichnisses _etc/_ bei der Auswertung der Konfigurationsdatei _managerConfiguration.properties_ behoben
+- Korrekturen im Betriebshandbuch für die Kommandozeilenprogramme (CLI) vorgenommen
+
+
 ## Version 7.0 (2023-08-16)
 
 ### Erweiterungen
@@ -34,7 +53,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 - Fehler in XPlanManagerAPI bei Aufruf von HTTP DELETE für einen Plan behoben
 - Fehler in XPlanValidatorAPI bei der Validierung syntaktisch invalider Pläne behoben
 - Fehler in XPlanWMS bei Aufruf mit GetMap-Anfrage mit WMS 1.1.1 und EPSG:4326 behoben
-- Fehler in XPlanWFS bei Aufruf mit Get-Feature-Anfrage mit WFS 1.1.0 behoben
+- Fehler in XPlanWFS bei Aufruf mit GetFeature-Anfrage mit WFS 1.1.0 behoben
 - Fehler im Encoding der Attributtabelle von Shapefiles aus dem Validierungsreport des XPlanValidators behoben
 - Fehler im XPlanWMS bei Aufruf mit GetMap-Anfrage mit WMS 1.1.1 und EPSG:4326 behoben
 - Fehlende Ausgabe der detaillierten Zweckbestimmung in komplexen Attributen im XPlanSynWFS ergänzt
@@ -56,7 +75,7 @@ Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version 
 
 ### Fehlerbehebungen
 - Aktualisierung der Validierungsregeln auf v1.1.3 mit Korrekturen der Regeln 4.5.1.3 und 5.3.1.2
-- Fehlerkorrektur in der Geltungsgbereichsprüfung
+- Fehlerkorrektur in der Geltungsbereichsprüfung
 
 ## Version 6.0.1 (2023-03-30)
 
@@ -83,7 +102,7 @@ Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version 
 - Versionierung des Datenbankschemas mit Liquibase
 - Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.1
 - Aktualisierung der Validierungsregeln auf v1.0 für XPlanGML Version 6.0.1
-- VERSION.txt durch version.properties-Datei für Standard-Validierungsregeln ersetzt
+- Datei _VERSION.txt_ durch _version.properties_ für Standard-Validierungsregeln ersetzt
 - Validierung eines XPlanGML mit `xsi:type` ermöglicht
 - Verbesserungen am XPlanSyn-Schema
 - Langfassung für Übersetzung von Enumerationswerten im XPlanSynWFS und XPlanWMS
@@ -94,8 +113,8 @@ Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version 
 - Verbesserung der Fehlermeldung beim Import eines XPlanArchiv mit mehreren Instanzdokumenten und Referenzierung über verbundenerPlan@xlink:href
 - Verbessern der Fehlermeldung beim Editieren eines Plans ohne Bereich
 - Unterstützung von XPlanGML 3.0 aus allen Komponenten entfernt
-- Konfigurationsparameter defaultBboxIn4326 entfernt
-- Hinzufügen einer Tabelle planslog in der XPlanDB
+- Konfigurationsparameter `defaultBboxIn4326` entfernt
+- Hinzufügen der Tabelle _planslog_ in der XPlanDB
 - Aktualisierung auf deegree 3.5
 - Aktualisierung auf JTS 1.19.0
 
