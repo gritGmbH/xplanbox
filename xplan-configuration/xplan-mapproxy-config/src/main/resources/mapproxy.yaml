@@ -4,30 +4,29 @@ parts:
     wms_opts:
       featureinfo: true
       version: 1.3.0
-    supported_srs: ['EPSG:${XPLAN_SERVICES_DEFAULT_CRS_SRID}']
+    supported_srs: ['${XPLAN_SERVICES_DEFAULT_CRS}']
     coverage:
-      bbox: [{{ .Values.global.xplanbox.bbox }}]
+      bbox: [${XPLAN_SERVICES_BBOX_4326}]
       srs: 'EPSG:4326'
   cache_cfg: &cache_cfg
     format: image/png
     grids: [gdi_de_25832]
-    disable_storage: {{ .Values.global.xplanbox.mapproxy.noCache | default "false" }}
+    disable_storage: ${XPLAN_MAPPROXY_CACHE_DISABLE}
     cache:
       type: s3
       directory_layout: reverse_tms
   md_cfg: &md_cfg
-    # To Do i.V.m. https://www.jira.geoportal-hamburg.de/browse/XPLANBOX-1924
-    online_resource:
+    online_resource: ${XPLAN_SERVICES_PROVIDER_ONLINERESOURCE}
     contact:
-      person:
-      position:
-      organization:
-      address:
-      city:
-      postcode:
-      country:
-      phone:
-      email:
+      person: ${XPLAN_SERVICES_PROVIDER_CONTACT_NAME}
+      position: ${XPLAN_SERVICES_PROVIDER_CONTACT_POSITIONNAME}
+      organization: ${XPLAN_SERVICES_PROVIDER_NAME}
+      address: ${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_DELIVERYPOINT}
+      city: ${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_CITY}
+      postcode: ${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_POSTALCODE}
+      country: ${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_COUNTRY}
+      phone: ${XPLAN_SERVICES_PROVIDER_CONTACT_PHONE}
+      email: ${XPLAN_SERVICES_PROVIDER_CONTACT_MAIL}
     access_constraints: Insert license and copyright information for this service.
     fees: 'None'
     keyword_list:
@@ -38,6 +37,7 @@ services:
   # für Probes?
   demo:
   wms:
+    # TODO XPLAN_SERVICES_QUERY_CRS but with , as delimiter
     srs: ['EPSG:3857','EPSG:4326','EPSG:25832','EPSG:25833']
     bbox_srs: ["EPSG:4326"]
     on_source_errors: raise
@@ -106,24 +106,24 @@ sources:
   xplan-mapserver:
     <<: *wms_cfg
     req:
-      url: http://xplan-mapserver:8080/mapserver?
+      url: ${XPLAN_MAPSERVER_URL_INTERNAL}/mapserver?
       transparent: true
   bplan-wms:
     <<: *wms_cfg
     req:
-      url: http://xplan-services:8080/xplan-wms/services/bpwms?
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/bpwms?
       transparent: true
   fplan-wms:
     <<: *wms_cfg
     req:
-      url: http://xplan-services:8080/xplan-wms/services/fpwms?
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/fpwms?
       transparent: true
 grids:
   gdi_de_25832:
     srs: 'EPSG:25832'
     tile_size: [512, 512]
     res: [2800.0,1400.0,700.0,280.0,140.0,70.0,28.0,14.0,7.0,2.8,1.4,0.7,0.28,0.14,0.07,0.028]
-    bbox: [{{ .Values.global.xplanbox.bbox }}]
+    bbox: [${XPLAN_SERVICES_BBOX_4326}]
     bbox_srs: 'EPSG:4326'
     origin: 'ul'
 globals:
