@@ -16,6 +16,7 @@ variables:
 stages:
 - build
 - build:jvm
+- build:java4docker
 - build:docker
 - deploy
 
@@ -33,6 +34,63 @@ maven-build:
   - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
     variables:
       MAVEN_GOAL: "deploy"
+
+.maven-prepare-docker-contexts:
+  stage: build:java4docker
+  image: registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest
+  script:
+  - 'mvn package -Dxplan-tests.maven.deploy.skip=true -Pdocker,skipping -pl $mvnProjects -am'
+  - find . -name docker-build.tar | xargs gzip
+  - set -o pipefail; find . -name docker-build.tar.gz | grep . | xargs du -h
+  rules:
+  - if: $CI_PIPELINE_SOURCE == 'schedule'
+    when: never 
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+    when: never
+  - when: on_success 
+  artifacts:
+    expire_in: 1 hour
+  variables:
+    UPSTREAM_REF: $CI_COMMIT_REF_NAME
+
+maven-prepare-docker-contexts-apis:
+  extends: .maven-prepare-docker-contexts
+  variables:
+    mvnProjects: ':xplan-api-validator,:xplan-api-manager,:xplan-api-dokumente'
+  artifacts:
+    paths:
+    - './xplan-api/**/target/docker/**/tmp/docker-build.tar.gz'
+
+maven-prepare-docker-contexts-cli:
+  extends: .maven-prepare-docker-contexts
+  variables:
+    mvnProjects: ':xplan-cli-docker'
+  artifacts:
+    paths:
+    - './xplan-cli/**/target/docker/**/tmp/docker-build.tar.gz'
+
+maven-prepare-docker-contexts-web-apps:
+  extends: .maven-prepare-docker-contexts
+  variables:
+    mvnProjects: ':xplan-manager-web,:xplan-validator-web'
+  artifacts:
+    paths:
+    - './xplan-webapps/xplan-manager-web/**/target/docker/**/tmp/docker-build.tar.gz'
+    - './xplan-webapps/xplan-validator-web/**/target/docker/**/tmp/docker-build.tar.gz'
+
+maven-prepare-docker-contexts-others:
+  extends: .maven-prepare-docker-contexts
+  variables:
+    mvnProjects: ':xplan-services-docker,:xplan-tests-soapui,:xplan-docker-tomcat,:xplan-docker-tomcat-gdal,:xplan-database-scripts,:xplan-docker-mapserver,:xplan-validator-wms'
+  artifacts:
+    paths:
+    - './xplan-docker/**/target/docker/**/tmp/docker-build.tar.gz'
+    - './xplan-resources/**/target/docker/**/tmp/docker-build.tar.gz'
+    - './xplan-tests/xplan-tests-soapui/target/docker/**/tmp/docker-build.tar.gz'
+    - './xplan-webservices/**/target/docker/**/tmp/docker-build.tar.gz'
+
+include: ci/all-kaniko-builds.gitlab-ci.yml
+
 
 maven-release:
 #  image: maven:3.8.6-jdk-11

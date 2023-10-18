@@ -36,6 +36,12 @@
                 <revnumber>${project.version}</revnumber>
                 <revdate>${maven.build.timestamp}</revdate>
               </attributes>
+              <logHandler>
+                <failIf>
+                  <severity>INFO</severity>
+                </failIf>
+              </logHandler>
+              <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
               <sourceDocumentName>index.adoc</sourceDocumentName>
               <outputDirectory>target/html</outputDirectory>
             </configuration>
@@ -52,6 +58,12 @@
                 <revnumber>${project.version}</revnumber>
                 <revdate>${maven.build.timestamp}</revdate>
               </attributes>
+              <logHandler>
+                <failIf>
+                  <severity>INFO</severity>
+                </failIf>
+              </logHandler>
+              <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
               <sourceDocumentName>index.adoc</sourceDocumentName>
               <outputDirectory>target/pdf</outputDirectory>
             </configuration>

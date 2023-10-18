@@ -59,7 +59,7 @@ import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_52
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_53;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_54;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
-import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
+import static de.latlon.xplan.manager.web.client.gui.utils.ValidationUtils.areComponentsValid;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
 

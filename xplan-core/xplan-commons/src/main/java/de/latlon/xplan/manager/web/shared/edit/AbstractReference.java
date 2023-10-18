@@ -33,10 +33,7 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 import static de.latlon.xplan.commons.util.TextPatternConstants.URL_PATTERN;
 
 /**
- * TODO add class documentation here
- *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @version $Revision: $, $Date: $
  */
 public abstract class AbstractReference {
 
@@ -65,7 +62,7 @@ public abstract class AbstractReference {
 	private MimeTypes referenzMimeType;
 
 	@Size(max = S_LENGTH)
-	@Pattern(regexp = NAME_PATTERN)
+	@Pattern(regexp = "(" + NAME_PATTERN + ")|(" + URL_PATTERN + ")")
 	@Valid
 	private String referenzName;
 

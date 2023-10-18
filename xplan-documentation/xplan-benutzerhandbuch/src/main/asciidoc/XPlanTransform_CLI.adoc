@@ -27,11 +27,28 @@ Weiterhin sind zusätzliche SQL-Skripte auszuführen, die sich im Verzeichnis _s
 [[xplantransform-cli-benutzungsanleitung]]
 === Benutzungshinweise
 
-Beim XPlanTransformCLI handelt es sich um ein Kommandozeilenwerkzeug, das parametrisiert aufgerufen wird. Weitere Informationen über die verschiedenen Parameter gibt das Kommandozeilenwerkzeug aus, wenn der Parameter `-?` angehängt wird:
+Beim XPlanTransformCLI handelt es sich um ein Kommandozeilenwerkzeug, das parametrisiert aufgerufen wird. Weitere Informationen über die verschiedenen Parameter gibt das Kommandozeilenwerkzeug aus, wenn der Parameter `--help` angehängt wird:
 
 -----
-./XPlanTransformCLI -?
+./XPlanTransformCLI --help
 -----
+
+Beispiel für eine Ausgabe:
+----
+Reads all Plans from XPlanWFS 4.1 datastore, transforms them to XPlanGML 5.1 and inserts them in XPlanWFS 5.1 datastore.
+
+Usage: XPlanTransformCLI <options>
+
+Options:
+     --type one of 'VALIDATE' (default if missing), 'ALL', 'SYNC':
+         * 'VALIDATE': validates all available XPlanGML 4.1 plans and writes the results
+         * 'ALL' transforms all available XPlanGML 4.1 plans and inserts the valid plans in XPlanWFS 5.1 datastore, plans already available in 5.1 will be removed first
+         * 'SYNC' transforms the XPlanGML 4.1 plans logged in the table xplanmgr.transformToolPlanTableLog and inserts the valid plans in XPlanWFS 5.1 datastore
+     --output directory to write the validation results into, directory will be created if it not exists (if missing a new tmp directory is created
+Allgemeine Hinweise:
+      Das Verzeichnis in dem die Konfigurationsdatei managerConfiguration.properties liegt, muss durch Angabe des Verzeichnis in der Datei etc/application.properties oder durch Setzen der Umgebungsvariablen _XPLANBOX_CONFIG_ erfolgen. Andernfalls wird die Konfiguration aus etc/managerConfiguration.properties verwendet.
+     Der Workspace `xplan-manager-workspace` muss im Verzeichnis _.deegree/_ des Home-Verzeichnis des Nutzers liegen, der das Tool aufruft. Alternativ kann das Verzeichnis, in dem der Workspace liegt, durch Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ gesetzt werden.
+----
 
 Das XPlanTransformCLI unterscheidet drei Modi:
 
@@ -45,7 +62,7 @@ Syntaktisch invalide Pläne werden nicht eingespielt.
 Beispiel für das initiale Einspielen der in XPlanGML 4.1 vorliegenden Pläne in die XPlan 5.1 Datenhaltung des XPlanWFS:
 
 -------
-./XPlanTransformCLI -c /path/to/xplan-manager-config -t ALL
+./XPlanTransformCLI --type ALL 
 -------
 
 Empfohlen ist zunächst einmalig die Ausführung der Option *ALL* und anschließend regelmäßig (z. B. nachts mit Hilfe eines Cron-Jobs) die Option *SYNC* um einen tagesaktuellen Stand der über den XPlanWFS 5.1 anfragbaren Pläne zu erreichen.

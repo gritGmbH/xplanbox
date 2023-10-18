@@ -74,7 +74,7 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
 		ref.setGeoReference(georeference.getFilename());
 		ref.setType(refType.getValueAsEnum());
 		if (XPLAN_60.equals(version)) {
-			String referenzName = parseReferenzNameFromRefrenzUrl();
+			String referenzName = parseReferenzNameFromReferenzUrl();
 			ref.setReferenzName(referenzName);
 		}
 		return ref;

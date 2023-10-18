@@ -8,53 +8,55 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplanbox.api.validator.v1;
 
-import de.latlon.xplanbox.api.validator.config.ApplicationContext;
-import de.latlon.xplanbox.api.validator.config.TestContext;
-import org.apache.http.HttpHeaders;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.test.JerseyTest;
-import org.glassfish.jersey.test.TestProperties;
-import org.junit.BeforeClass;
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertEquals;
+import org.apache.http.HttpHeaders;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
+import org.glassfish.jersey.test.TestProperties;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import org.springframework.boot.test.json.BasicJsonTester;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.io.File;
-import java.io.IOException;
+import de.latlon.xplanbox.api.validator.config.ApplicationContext;
+import de.latlon.xplanbox.api.validator.config.TestContext;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
-public class InfoApiTest extends JerseyTest {
+class InfoApiTest extends JerseyTest {
 
-	@ClassRule
-	public final static TemporaryFolder tempFolder = new TemporaryFolder();
+	@TempDir
+	public static Path tempFolder;
 
-	@BeforeClass
-	public static void setupFakedWorkspace() throws IOException {
-		File workspace = tempFolder.newFolder("xplan-validator-wms-memory-workspace");
-		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParentFile().toString());
+	@BeforeAll
+	static void setupFakedWorkspace() throws IOException {
+		Path workspace = tempFolder.resolve("xplan-validator-wms-memory-workspace");
+		Files.createDirectories(workspace);
+		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParent().toString());
 	}
 
 	@Override
@@ -68,19 +70,24 @@ public class InfoApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
+	void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
 		final Response response = target("/info").request(APPLICATION_JSON).get();
 
 		assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
 		assertEquals(APPLICATION_JSON, response.getHeaderString(HttpHeaders.CONTENT_TYPE));
+
+		BasicJsonTester json = new BasicJsonTester(getClass());
+		assertThat(json.from(response.readEntity(String.class))).extractingJsonPathStringValue("$.rulesMetadata.source")
+			.startsWith("https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard/-/tree/");
+
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsSupportedXplanGmlVersionsAndProfiles() {
+	void verifyThat_Response_ContainsSupportedXplanGmlVersionsAndProfiles() {
 		final String response = target("/info").request(APPLICATION_JSON).get(String.class);
 
-		assertThat(response, containsString("supportedXPlanGmlVersions"));
-		assertThat(response, containsString("profiles"));
+		assertThat(response).contains("supportedXPlanGmlVersions");
+		assertThat(response).contains("profiles");
 	}
 
 }

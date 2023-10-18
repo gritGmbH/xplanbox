@@ -46,11 +46,12 @@
                 <goals>
                   <goal>exploded</goal>
                 </goals>
-                </execution>
-              </executions>
-              <configuration>
-                <webappDirectory>${project.build.directory}/exploded-webapp</webappDirectory>
-              </configuration>
+                <phase>prepare-package</phase>
+              </execution>
+            </executions>
+            <configuration>
+              <webappDirectory>${project.build.directory}/exploded-webapp</webappDirectory>
+            </configuration>
           </plugin>
         </plugins>
       </build>

@@ -74,9 +74,10 @@ Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versione
 [cols="3*^", options="header,footer"]
 |===
 | xPlanBox Version | Änderungen an den Workspaces/ der Konfiguration? | Änderungen am Datenbankschema?
-| 6.0              | ja (<<aktualisierung-auf-xplanbox-version-6.0, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-6.0, Details>>)
-| 6.0.1              | ja (<<aktualisierung-auf-xplanbox-version-6.0.1, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-6.0.1, Details>>)
-| 7.0             | ja (<<aktualisierung-auf-xplanbox-version-7.0, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-7.0, Details>>)
+| 6.0              | ja (<<aktualisierung-version-6.0, Details>>)  | ja (<<aktualisierung-version-6.0, Details>>)
+| 6.0.1              | ja (<<aktualisierung-version-6.0.1, Details>>)  | ja (<<aktualisierung-version-6.0.1, Details>>)
+| 7.0             | ja (<<aktualisierung-version-7.0, Details>>)  | ja (<<aktualisierung-version-7.0, Details>>)
+| 7.0.1             | ja (<<aktualisierung-version-7.0.1, Details>>)  | nein
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |===
 
@@ -108,7 +109,7 @@ cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VE
 [[teilweise-aktualisierung]]
 ==== Teilweise Aktualisierung der Workspaces
 
-Es müssen die bereit gestellten Konfigurationsdateien mit Ausnahme des _xplansyn-wms-workspace_ in das Verzeichnis
+Es müssen die bereitgestellten Konfigurationsdateien mit Ausnahme des _xplansyn-wms-workspace_ in das Verzeichnis
 _<DEEGREE_WORKSPACE_ROOT>_ kopiert werden. Diese ersetzen die bereits vorhanden:
 
 ----
@@ -168,7 +169,7 @@ Zur Aktualisierung der Daten stehen Kommandozeilenwerkzeuge im Modul _xplan-upda
 Weitere Informationen zu den Tools stehen im Kapitel <<kommandozeilen-anwendungen>>.
 
 
-[[aktualisierung-auf-xplanbox-version-6.0]]
+[[aktualisierung-version-6.0]]
 === Aktualisierung auf die Version 6.0 der xPlanBox
 
 Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neben der Aktualisierung auf deegree webservices Version 3.5 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 6.0 ist mindestens PostgreSQL Version 12 mit der PostGIS-Erweiterung 3.1 erforderlich.
@@ -189,7 +190,7 @@ Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 ** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten ist erforderlich. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (optional)
 
-[[aktualisierung-auf-xplanbox-version-6.0.1]]
+[[aktualisierung-version-6.0.1]]
 === Aktualisierung auf die Version 6.0.1 der xPlanBox
 
 Mit der Version 6.0.1 der xPlanBox ist unter anderem die Umsetzung der Bugfix Version XPlanGML 6.0.2 erfolgt. Von den Änderungen betroffen sind alle Komponenten der xPlanBox.
@@ -201,7 +202,7 @@ Für die Aktualisierung auf die Version 6.0.1 sind folgende Schritte auszuführe
 ** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_6.0_to_6.0.1_ im Modul _xplan-manager-workspace_
 ** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten ist erforderlich. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
-[[aktualisierung-auf-die-version-6.0.2]]
+[[aktualisierung-version-6.0.2]]
 === Aktualisierung auf die Version 6.0.2
 
 Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
@@ -214,12 +215,12 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 
 TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
-[[aktualisierung-auf-die-version-6.0.3]]
+[[aktualisierung-version-6.0.3]]
 === Aktualisierung auf die Version 6.0.3
 
 Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
 
-* Austausch der Webapp:
+* Austausch der Webapps:
 ** _xplan-api-validator.war_
 ** _xplan-api-manager.war_
 ** _xplan-validator-web.war_
@@ -227,7 +228,7 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 
 TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
-[[aktualisierung-auf-xplanbox-version-7.0]]
+[[aktualisierung-version-7.0]]
 === Aktualisierung auf die Version 7.0 der xPlanBox
 
 Mit der Version 7.0 der xPlanBox erfolgte eine Anpassung der Werkseinstellungen für das Logging. Für die Anwendungen XPlanManagerWeb, XPlanManagerAPI, XPlanValidatorWeb und XPlanValidatorAPI sowie alle XPlanDienste werden keine Log-Dateien mehr geschrieben. Alle Log-Ausgaben werden nur noch in die Standardausgabe (stdout) geschrieben. Um das Logging so anzupassen, dass die Log-Ausgaben zusätzlich auch in Log-Dateien geschrieben werden, müssen Anpassungen an der Konfiguration vorgenommen werden. Beispiele dafür sind im Kapitel <<logging>> zu finden.
@@ -242,6 +243,21 @@ Für die Aktualisierung auf die Version 7.0 sind folgende Schritte auszuführen:
 * Ausführen der Kommandozeilenwerkzeuge __artefactsTableUpdate__ und __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der XPlanDB ist erforderlich. Der Aufruf der Tools mit `--help` liefert Hinweise zu deren Verwendung.
 
 IMPORTANT: Mit der Version 7.0 der xPlanBox ist die Kartenvorschau im XPlanValidator nicht mehr standardmäßig aktiviert. Hinweise zur Konfiguration der Kartenvorschau sind im Abschnitt <<kartenvorschau-validator>> beschrieben.
+
+[[aktualisierung-version-7.0.1]]
+=== Aktualisierung auf die Version 7.0.1
+
+Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
+
+* Austausch der Webapps:
+** _xplan-api-validator.war_
+** _xplan-api-manager.war_
+** _xplan-validator-web.war_
+** _xplan-manager-web.war_
+* Aktualisierung des Workspace und der Konfigurationen (s. <<teilweise-aktualisierung>>) für:
+** _xplansyn-wms-workspace_
+
+TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
 === Troubleshooting
 

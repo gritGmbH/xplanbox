@@ -47,31 +47,27 @@ Ausgabe:
 ----
 Usage: XPlanManager <options>
 
-Usage: XPlanManager <options>
-
  --help
- --list [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
- --import <xplanarchiv> [<xplanarchiv>..] [--force] [--crs=<CRS>] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
+ --list
+ --import <xplanarchiv> [<xplanarchiv>..] [--force] [--crs=<CRS>]
      <xplanarchiv> Die absolute oder relative Referenz auf den Plan, der importiert werden soll (verpflichtend). Mehrere Plaene koennen durch ein Leerzeichen getrennt angegeben werden.
-     --force Erzwingen des Imports eines Plans mit Geomtriefehlern oder Validierungsfehlern (optional).EMPFOHLEN ist die Behebung der Fehler!
+     --force Erzwingen des Imports eines Plans mit Geomtriefehlern oder Validierungsfehlern (optional). EMPFOHLEN ist die Behebung der Fehler!
      --crs Angabe des Koordinatenreferenzsystems in dem die Daten vorliegen (optional).
- --export <planid> [<planid>..] [--target=<verzeichnis>] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
+ --export <planid> [<planid>..] [--target=<verzeichnis>]
      <planid> Die ID des Plans der exportiert werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.
      --target Angabe des Verzeichnis in dem die exportierten XPlanArchive abgelegt werden sollen (optional).
  --delete <planid> [<planid>..]
-     <planid> Die ID des Plans der gelöscht werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.
- --createMetadata <planid> [<planid>..] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
-     <planid> Die ID des Plans zu dem der Service-Metadatensatz generiert werden soll (optional). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden. Wenn keine ID angegeben ist, werden für alle Plaene Metadatensaetze erstellt.
+     <planid> Die ID des Plans der geloescht werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.
+ --createMetadata <planid> [<planid>..]
+     <planid> Die ID des Plans zu dem der Service-Metadatensatz generiert werden soll (optional). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden. Wenn keine ID angegeben ist, werden fuer alle Plaene Metadatensaetze erstellt.
 
 Allgemeine Parameter:
-     --managerconfiguration Verzeichnis, in dem sich der Konfiguration des XPlanManagers befindet. Wenn die Option nicht angegeben wird, wird die Konfiguration aus dem Verzeichnis 'etc' des XPLanManagerCLIs verwendet.
      --v Ausgabe der Systemeigenschaften
 
 Allgemeine Hinweise:
-     Der Workspace `xplan-manager-workspace` muss im Verzeichnis _.deegree/_ des Home-Verzeichnis des Nutzers liegen, der das XPlanManagerCLI aufruft. Alternativ kann das Verzeichnis, in dem der Workspace liegt durch Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ gesetzt werden.
-
+      Das Verzeichnis in dem die Konfigurationsdatei managerConfiguration.properties liegt, muss durch Angabe des Verzeichnis in der Datei etc/application.properties oder durch Setzen der Umgebungsvariablen _XPLANBOX_CONFIG_ erfolgen. Andernfalls wird die Konfiguration aus etc/managerConfiguration.properties verwendet.
+     Der Workspace `xplan-manager-workspace` muss im Verzeichnis _.deegree/_ des Home-Verzeichnis des Nutzers liegen, der das XPlanManagerCLI aufruft. Alternativ kann das Verzeichnis, in dem der Workspace liegt, durch Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ gesetzt werden.
 ----
-
 
 [[xplanmanager-cli-auflistung]]
 ===== Auflistung
@@ -87,15 +83,16 @@ Aufruf:
 Beispiel Ausgabe:
 
 ----
-Id: 3, Version: XPLAN_54, Typ: FP_Plan, Name: Gesamtgeltungsbereich Flächennutzungsplan, Nummer: 12062024, GKZ: 12062024, Features: 2808, Importiert: 2022-02-18 17:57:11.669
-Id: 6, Version: XPLAN_54, Typ: BP_Plan, Name: Lokstedt, Nummer: 56, GKZ: 02000000, Features: 251, Importiert: 2022-02-18 17:58:57.2
-Id: 7, Version: XPLAN_53, Typ: BP_Plan, Name: Unbenannter Plan (3d099551-1f49-4b77-9008-68237a60426b), Nummer: -, GKZ: 4011000, Features: 351, Importiert: 2022-02-18 17:59:38.704
-Id: 8, Version: XPLAN_52, Typ: BP_Plan, Name: Bebauungsplan 2135, Nummer: 2135, GKZ: 4011000, Features: 241, Importiert: 2022-02-18 18:00:45.077
-Id: 9, Version: XPLAN_51, Typ: BP_Plan, Name: Bebauungsplan LA 22, Nummer: LA 22, GKZ: 1234567, Features: 146, Importiert: 2022-02-18 18:01:41.563
-Id: 10, Version: XPLAN_41, Typ: RP_Plan, Name: Regionalplanbeispiel Bereich Siedlungsstruktur, Nummer: Siedlungsstruktur 1, Features: 282, Importiert: 2022-02-18 18:02:25.616
-Id: 11, Version: XPLAN_40, Typ: LP_Plan, Name: Landschaftsplan 16 Gemeinde XYZ", Nummer: 16, Features: 1659, Importiert: 2022-02-18 18:03:22.091
-Id: 12, Version: XPLAN_53, Typ: BP_Plan, Name: Bebauungsplan LA 22, Nummer: LA 22, GKZ: 02000000, Features: 1350, Importiert: 2022-02-18 21:16:06.753
-Anzahl Pläne: 8
+Anzahl Plaene: 24
+- Id: 1, Version: XPLAN_40, Typ: BP_Plan, Name: Alsterdorf2_SoapUI-XPlanManagerAPI, Nummer: -, GKZ: 02000000, Raster: nein, Veroeffentlichungsdatum: null, Importiert: 2023-09-12 16:27:13.563
+- Id: 2, Version: XPLAN_41, Typ: BP_Plan, Name: Eidelstedt4_SoapUI-XPlanManagerAPI, Nummer: -, GKZ: 02000000, Raster: nein, Veroeffentlichungsdatum: 1973-10-16 00:00:00.0, Importiert: 2023-09-12 16:27:17.844
+- Id: 3, Version: XPLAN_41, Typ: BP_Plan, Name: Eidelstedt4_SoapUI-XPlanManagerAPI, Nummer: -, GKZ: 02000000, Raster: nein, Veroeffentlichungsdatum: 1973-10-16 00:00:00.0, Importiert: 2023-09-12 16:27:19.601
+- Id: 4, Version: XPLAN_50, Typ: BP_Plan, Name: Alsterdorf24_SoapUI-XPlanManagerAPI, Nummer: -, GKZ: 02000000, Raster: ja, Veroeffentlichungsdatum: null, Importiert: 2023-09-12 16:27:20.639
+- Id: 5, Version: XPLAN_50, Typ: BP_Plan, Name: DemoPlanAenderung_1_SoapUI-XPlanManagerAPI, Nummer: -, GKZ: 1234567, Raster: nein, Veroeffentlichungsdatum: 2007-04-01 00:00:00.0, Importiert: 2023-09-12 16:27:22.903
+- Id: 6, Version: XPLAN_50, Typ: BP_Plan, Name: BPlan Demo-Gemeinde_SoapUI-XPlanManagerAPI, Nummer: -, GKZ: 1234567, Raster: nein, Veroeffentlichungsdatum: 2006-09-01 00:00:00.0, Importiert: 2023-09-12 16:27:22.924
+- Id: 7, Version: XPLAN_52, Typ: BP_Plan, Name: Bahrenfeld74_SoapUI-XPlanManagerAPI, Nummer: -, GKZ: 02000000, Raster: nein, Veroeffentlichungsdatum: 2022-03-02 00:00:00.0, Importiert: 2023-09-12 16:27:27.488
+- Id: 8, Version: XPLAN_52, Typ: BP_Plan, Name: xplan52-Laufrichtungsfehler_SoapUI-XPlanManagerAPI, Nummer: -, GKZ: 02000000, Raster: nein, Veroeffentlichungsdatum: null, Importiert: 2023-09-12 16:27:29.51
+...
 ----
 
 [[xplanmanager-cli-import]]
@@ -123,7 +120,6 @@ Informationen anzugeben.
 ----
 --force
 --crs=EPSG:25832
---managerconfiguration=/PFAD/ZUR/MANAGER/KONFIGURATION
 ----
 
 _--force_
@@ -146,39 +142,35 @@ dieses mit dem Parameter `crs` übergeben werden.
 Beispiel Aufruf:
 
 ----
-./XPlanManager --import ../Input-Planverzeichnis/Infrastruktur.zip --crs=EPSG:31467
-----
-
-_-–managerconfiguration_
-
-Soll eine vorhandene Konfigurationen für den XPlanManager verwendet werden, so kann durch den
-Parameter `managerconfiguration` die entsprechende Konfiguration
-übergeben werden. Andernfalls wird die Konfiguration im Verzeichnis `etc` des XPlanManagerCLIs verwendet.
-
-----
-./XPlanManager --import ../Input-Planverzeichnis/Infrastruktur.zip --managerconfiguration=<XPLANBOX_CONFIG>
+./XPlanManager --import ../Input-Planverzeichnis/Infrastruktur.zip --crs=EPSG:25832
 ----
 
 Beispiel Ausgabe für erfolgreichen Import
 
 ----
-Analyse des XPlanArchivs
-('../../resources/testdata/XPlanGML_3_0/Infrastruktur.zip')...OK.
-- Analyse des Dokuments...OK [1167 ms]: XPLAN_53, RP_Plan, EPSG:31466
-- Schema-Validierung...OK [5135 ms]
-- Einlesen der Features (+ Geometrievalidierung)...OK [6486 ms]: 492 Features
+Import des Plans /BPlan002_5-2.zip
 ...
-- Überprüfung der XLink-Integrität...OK [3 ms]
-- Überprüfung der externen Referenzen...OK [1 ms]
-- Erzeugen der XPlan-Syn Features...Keine Beschreibung für externen Code 'RpTextDefaultSymbol' (CodeList XP_StylesheetListe) gefunden. Verwende Code als Beschreibung. Keine Beschreibung für externen Code 'RpTextDefaultSymbol' (CodeList XP_StylesheetListe) gefunden. Verwende Code als Beschreibung.
-...
-OK [6376 ms]
-- Einfügen der Features in den FeatureStore (XPLAN_53)...OK [9873 ms].
-- Einfügen der Features in den FeatureStore (XPLAN_SYN)...OK [9217 ms].
-- Einfügen in Manager-DB...OK [49 ms].
-- Einfügen von Plan-Artefakt 'xplan.gml'...OK.
-- Persistierung...OK [109 ms].
-Plan wurde eingefügt. Zugewiesene Id: 13
+- Analyse des XPlanArchivs ('/BPlan002_5-2.zip')... OK. [XPLAN_52, BP_Plan, EPSG:25832]
+- Importiere Plan [XPLAN_52, BP_Plan, EPSG:25832]
+- Ueberpruefung des raeumlichen Bezugssystems... OK, EPSG:25832
+- Schema-Validierung (Hauptdokument)... OK [88 ms].
+- Ueberpruefung der externen Referenzen... OK [0 ms]
+- Insert XPlan
+- Insert XPlan in XPlanDB
+- Erzeugen der XPlan-Syn Features...
+- Read rules from internal directory: /rules/xplan52.syn
+- Read additional/overwriting rules from directory: /xplanbox/xplan-manager-config/synthesizer/xplan52.syn
+- Configured codelist: codeList xplan_BP_SonstPlanArt.xml from directory /xplanbox/xplan-manager-config/synthesizer.
+OK [2417 ms]
+- Insert XPlan in XplanWFS/XPlanWMS
+- Einfuegen von 3 Feature(s) in den FeatureStore (XPLAN_52)...
+- Aktualisierung des Plans mit ID '25'
+- Aktualisierung der XPlan-Features von Plan mit ID '25'
+- Insert XPlan in XPlanSynWF
+- Einfuegen von 3 Feature(s) in den FeatureStore (XPLAN_SYN)...
+- Insert XPlan in XPlanDB
+OK [2934 ms].
+XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: 25
 ----
 
 [[xplanmanager-cli-rasterdatenanalyse]]
@@ -192,28 +184,25 @@ Die Prüfung beinhaltet das CRS des Rasterplans, sowie das Format.
 Beispiel Aufruf:
 
 ----
-./XPlanManager --import ~/test-data/BPlan002_5-2.zip --managerconfiguration=<XPLANBOX_CONFIG>
+./XPlanManager --import ~/test-data/BPlan002_5-2.zip
 ----
 
 Beispiel Ausgabe:
 
 ----
-Evaluationsergebniss von referenzierten Rasterdaten:
-  - Name: B-Plan_Klingmuehl_Heideweg_Karte.tif Unterstütztes CRS: Ja Unterstütztes Bildformat: Ja
-Es existieren keine invaliden Rasterdaten
-- Einlesen der Features (+ Geometrievalidierung)...OK [839 ms]: 500 Features
-- Überprüfung der XLink-Integrität...OK [2 ms]
-
-- Erzeugen/Einsortieren der Rasterkonfigurationen (Veröffentlichungsdatum: 01.02.2002)...Succeeding plan id: null
-73_B-Plan_Klingmuehl_Heideweg_Karte
-77_B-Plan_Klingmuehl_Heideweg_Karte
-79_B-Plan_Klingmuehl_Heideweg_Karte
-OK [1591 ms]
-
+Import des Plans /BPlan002_5-2.zip
+...
+- Rasterdatei mit Namen BP_4_020_Bleiche_Hirzberg_u_Schwarzwaldstrasse.tif gefunden.
+- Koordinatensystem des Rasters: PROJCS[...["EPSG","25832"]]
+- Evaluationsergebnis der referenzierten Rasterdaten:
+  - Name: BP_4_020_Bleiche_Hirzberg_u_Schwarzwaldstrasse.tif Unterstuetztes CRS: Ja Unterstuetztes Bildformat: Ja
+Die Rasterdaten des Plans sind valide
+...
+- XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: 25
+...
+- Erzeugen/Einsortieren der Rasterkonfigurationen (nach Datum: unbekannt )... OK [0 ms]
 Rasterscans:
- - B-Plan_Klingmuehl_Heideweg_Karte.tif
-WMS Konfiguration für Id 79 nach /home/user/.deegree/xplansyn-wms-workspace geschrieben.
-XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: 79
+- BP_4_020_Bleiche_Hirzberg_u_Schwarzwaldstrasse.tif
 ----
 
 Passt das CRS der Rasterdaten nicht mit dem CRS der Rasterdatenhaltung überein, so
@@ -222,7 +211,7 @@ Rasterkonfiguration zu importieren:
 
 ----
 Evaluationsergebniss von referenzierten Rasterdaten:
-  - Name: Abrundungssatzung_Gruhno_ergb.tif Unterstütztes CRS: Kein Unterstütztes Bildformat: Ja
+  - Name: Abrundungssatzung_Gruhno_ergb.tif Unterstuetztes CRS: Kein Unterstuetztes Bildformat: Ja
 Aufgrund invalider Rasterdaten wird der Import abgebrochen. Sie können den Import ohne die Erzeugung von Rasterkonfigurationen erzwingen, indem Sie die Option --force angeben.
 ----
 
@@ -255,17 +244,19 @@ Beim Löschen wird dem Parameter `delete` die PlanID (diese kann zuvor mit
 Beispiel Aufruf:
 
 ----
-./XPlanManager --delete 1
+./XPlanManager --delete 21
 ----
 
 Beispiel Ausgabe:
 
 ----
-- Entferne Plan 1 aus dem FeatureStore (XPLAN_53)...OK
-- Entferne Plan 1 aus dem FeatureStore (XPLAN_SYN)...OK
-- Entferne Plan 1 aus der Manager-DB...OK
-- Persistierung...OK
-Plan 1 wurde gelöscht.
+Delete XPlan 21
+- Entferne XPlan 21 aus dem FeatureStore (XPLAN_SYN)... OK
+- Entferne XPlan 21 aus dem FeatureStore (XPLAN_60)... OK
+- Workspace reloader configuration is valid.
+- Attempting to delete XPlanWerkWMS configuration with URL http://xplan-services:8080//xplan-wms/planwerkwmsapi/21
+- Delete completed successfully.
+XPlanArchiv mit Id 21 wurde gelöscht.
 ----
 
 [[xplanmanager-metadaten-erzeugen]]

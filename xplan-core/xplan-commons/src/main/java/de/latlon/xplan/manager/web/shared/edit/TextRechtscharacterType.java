@@ -159,7 +159,7 @@ public enum TextRechtscharacterType {
 
 	private String type;
 
-	private List<String> supportedXPlanVersions = new ArrayList<>();
+	private final List<String> supportedXPlanVersions = new ArrayList<>();
 
 	TextRechtscharacterType(int code, String supportedXPlanVersion) {
 		this.code = code;

@@ -1,6 +1,22 @@
 # image used for builds: pre-fill dependencies to speed up maven builds
 
-FROM maven:3.8.6-jdk-11
+FROM maven:3.9.3-eclipse-temurin-11
+ARG BUILD_DATE=?
+ARG DOCKER_IMAGE_NAME=?
+ARG GIT_REVISION=?
+ARG XPLANBOX_VERSION=latest
+
+# see https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
+LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
+	"org.opencontainers.image.description"="" \
+	"org.opencontainers.image.licenses"="GNU Affero General Public License" \
+	"org.opencontainers.image.ref.name"="$DOCKER_IMAGE_NAME" \
+	"org.opencontainers.image.revision"=$GIT_REVISION \
+	"org.opencontainers.image.title"="$DOCKER_IMAGE_NAME" \
+	"org.opencontainers.image.vendor"="" \
+	"org.opencontainers.image.version"=$XPLANBOX_VERSION
+
+
 
 RUN mkdir /tmp/ozgxplanung
 ADD . /tmp/ozgxplanung

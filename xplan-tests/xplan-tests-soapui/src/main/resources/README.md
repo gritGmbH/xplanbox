@@ -117,53 +117,56 @@ Die zu nutzenden Abkürzungen werden im folgenden Glossar definiert.
 
 ### HTTPMETHODE:
 
-Abkürzung | Beschreibung 
------------ |------------------
-**GET** | Methode um Daten vom Server anzufordern
-**POST** | Methode um Daten an den Server zu senden und Ressourcen zu erstellen oder zu modifizieren
-**PUT** | Methode um Daten an den Server zu senden und Ressourcen zu erstellen oder zu modifizieren, entgegen zu POST idempotent
-**DEL** | Methode um Daten vom Server zu löschen
+| Abkürzung | Beschreibung                                                                                                           |
+|-----------|------------------------------------------------------------------------------------------------------------------------|
+| **GET**   | Methode um Daten vom Server anzufordern                                                                                |
+| **POST**  | Methode um Daten an den Server zu senden und Ressourcen zu erstellen oder zu modifizieren                              |
+| **PUT**   | Methode um Daten an den Server zu senden und Ressourcen zu erstellen oder zu modifizieren, entgegen zu POST idempotent |
+| **DEL**   | Methode um Daten vom Server zu löschen                                                                                 |
 
 ### PLANART
 
-Abkürzung | Beschreibung 
------------ |------------------
-**BP** | Bebauungsplan
-**FP** | Flächennutzungsplan
-**LP** | Landschaftsplan 
-**RP** | Regionalplan
-**SO** | Sonstige Planwerke
+| Abkürzung | Beschreibung        |
+|-----------|---------------------|
+| **BP**    | Bebauungsplan       |
+| **FP**    | Flächennutzungsplan |
+| **LP**    | Landschaftsplan     |
+| **RP**    | Regionalplan        |
+| **SO**    | Sonstige Planwerke  |
+
 > **"XX"** ist ein Platzhalter bei nichtvorhandensein eines dieser Werte
 
 ### XPLANGMLVERSION
 
-Abkürzung | Beschreibung 
------------ |------------------
-**4.0** | XPlanGML Version 4.0
-**4.1** | XPlanGML Version 4.1
-**5.0** | XPlanGML Version 5.0 
-**5.1** | XPlanGML Version 5.1
-**5.2** | XPlanGML Version 5.2
-**5.3** | XPlanGML Version 5.3
-**5.4** | XPlanGML Version 5.4
-**6.0** | XPlanGML Version 6.0
+| Abkürzung | Beschreibung         |
+|-----------|----------------------|
+| **4.0**   | XPlanGML Version 4.0 |
+| **4.1**   | XPlanGML Version 4.1 |
+| **5.0**   | XPlanGML Version 5.0 |
+| **5.1**   | XPlanGML Version 5.1 |
+| **5.2**   | XPlanGML Version 5.2 |
+| **5.3**   | XPlanGML Version 5.3 |
+| **5.4**   | XPlanGML Version 5.4 |
+| **6.0**   | XPlanGML Version 6.0 |
+
 > **"X.X"** ist ein Platzhalter bei nichtvorhandensein eines dieser Werte
 
 ### QUERYPARAMETER
 
-Abkürzung | Parametername 
------------ |------------------
-**nV** | name (Validierung)
-**id** | id (Objekt)
-**sF** | skipFlaechenschluss
-**sG** | skipGeltungsbereich 
-**sGeo** | skipGeometrisch
-**sL** | skipLaufrichtung 
-**sS** | skipSemantisch
-**pf** | profiles
-**pN** | planName
-**pI** | planId
-**iI** | internalId
+| Abkürzung | Parametername       |
+|-----------|---------------------|
+| **nV**    | name (Validierung)  |
+| **id**    | id (Objekt)         |
+| **sF**    | skipFlaechenschluss |
+| **sG**    | skipGeltungsbereich |
+| **sGeo**  | skipGeometrisch     |
+| **sL**    | skipLaufrichtung    |
+| **sS**    | skipSemantisch      |
+| **pf**    | profiles            |
+| **pN**    | planName            |
+| **pI**    | planId              |
+| **iI**    | internalId          |
+
 > **"XX"** ist ein Platzhalter bei nichtvorhandensein eines dieser Werte
 
 ### ADDITIONALINFORTAMTION
