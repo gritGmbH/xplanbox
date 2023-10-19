@@ -11318,1470 +11318,6 @@ if (documentUrl != "null"){
       </con:testStep>
       <con:properties/>
     </con:testCase>
-    <con:testCase id="ba7af4cb-061c-4b69-b27d-900fd2e4c588" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId}/text/ TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
-      <con:description>TestCase generated for REST Resource [/plan/{planId}/text/] located at [/plan/{planId}/text/]</con:description>
-      <con:settings/>
-      <con:testStep type="restrequest" name="GET BP 5.3 pI currentStatus" id="45a36ab4-351a-433d-ae96-13b923d8234d">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET BP 5.3 pI currentStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluessel">
-              <con:configuration>
-                <path>$[?(@.id == 'GML_684fb51c-3d0f-4993-8ff0-dc3b62686b88')].schluessel</path>
-                <content>[§2 Nr.3]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdText}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 5.3 pI modifyStatus" id="cfc16a4e-df16-439c-9eff-22da133b21a8">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="addText" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 5.3 pI modifyStatus" id="c07da622-eb8f-4d61-96fe-3b612f437282" mediaType="multipart/form-data" postQueryString="false">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="d9b790fd-bfcf-4aac-af30-c62e4328f929" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
-              <con:configuration>
-                <path>$.schluessel</path>
-                <content>HN 9 geaendert</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="referenzName">
-              <con:configuration>
-                <path>$.refText.referenzName</path>
-                <content>test-name</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="9fd4ba32-cd3b-4871-9646-f8c6febe4a27" name="referenzURL">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-assert json.refText.referenzURL.contains('postText.pdf')</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="d41db82e-03b3-40ac-9693-5c5f946c6932" name="documentUrl">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-
-if (documentUrl != "null"){
-	def index = documentUrl.indexOf("{")
-	def documentUrlShort = documentUrl.substring(0,index)
-
-	def referenzUrl = json.refText.referenzURL
-	assert referenzUrl.contains(documentUrlShort)
-}</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:attachment>
-              <con:name>postText.pdf</con:name>
-              <con:contentType>application/pdf</con:contentType>
-              <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
-              <con:id>1fa73941-607a-46e9-b62f-83aebacda5ca</con:id>
-            </con:attachment>
-            <con:attachment>
-              <con:name>postText.json</con:name>
-              <con:contentType>application/json</con:contentType>
-              <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
-              <con:id>fb73faf4-ee9a-4117-89b0-428073d35570</con:id>
-            </con:attachment>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdText}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="GET BP 5.3 pI verifyStatus" id="fc8ead83-19a3-4719-ac00-a50e8f91da48">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET BP 5.3 pI verifyStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="rechtscharakter">
-              <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert')].rechtscharakter</path>
-                <content>[3000]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluessel, referenzURL and referenzName">
-              <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert' &amp;&amp; @.refText.referenzURL contains 'postText.pdf')].refText.referenzName</path>
-                <content>[test-name]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="ce6ff36c-a449-40f6-aeac-1105739b653c" name="documentUrl">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-
-if (documentUrl != "null"){
-	def index = documentUrl.indexOf("{")
-	def documentUrlShort = documentUrl.substring(0,index)
-
-	def passed = false
-
-	for(refText in json.refText){
-		def referenzUrl = refText.referenzURL
-		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
-			passed = true
-		}
-	}
-
-	assert passed
-}</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdText}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="GET BP 5.4 pI currentStatusMultiplePlaene" id="5e7f34d4-b0cc-4237-9785-506fc5a8cea3">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET BP 5.4 pI currentStatusMultiplePlaene" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="JsonPath Match GML ID 1">
-              <con:configuration>
-                <path>$[?(@.id == 'GML_3e7ae2f8-4b5d-4a31-aced-656804df7c3b')].schluessel</path>
-                <content>[§2 Nr.5]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="JsonPath Match GML ID 2">
-              <con:configuration>
-                <path>$[?(@.id == 'GML_f4e240c9-c8be-4a5a-a128-9b2c9b241df8')].schluessel</path>
-                <content>[§2 Nr.7]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdMultiplePlansHafenCity14}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="GET BP 6.0 pI currentStatus" id="ee74447c-76a0-4292-895e-94ee1d0f262e">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET BP 6.0 pI currentStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluessel">
-              <con:configuration>
-                <path>$[?(@.id == 'GML_684fb51c-3d0f-4993-8ff0-dc3b62686b88')].schluessel</path>
-                <content>[§2 Nr.3]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 6.0 pI modifyStatus" id="a2251c2e-a457-4815-ae62-93bd579ccd82">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="addText" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 6.0 pI modifyStatus" id="c07da622-eb8f-4d61-96fe-3b612f437282" mediaType="multipart/form-data" postQueryString="false">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="d9b790fd-bfcf-4aac-af30-c62e4328f929" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
-              <con:configuration>
-                <path>$.schluessel</path>
-                <content>HN 9 geaendert</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="12dfb1c9-61d8-4a08-ad07-cb8faaf5c03d" name="referenzURL">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-assert json.refText.referenzURL.contains('postText.pdf')</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="68596e7f-4975-4c2a-a412-4e724ae042d1" name="documentUrl">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-
-if (documentUrl != "null"){
-	def index = documentUrl.indexOf("{")
-	def documentUrlShort = documentUrl.substring(0,index)
-
-	def referenzUrl = json.refText.referenzURL
-	assert referenzUrl.contains(documentUrlShort)
-}</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:attachment>
-              <con:name>postText.pdf</con:name>
-              <con:contentType>application/pdf</con:contentType>
-              <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
-              <con:id>7354555a-e1d1-4fe8-a8ef-09c2c51d8aac</con:id>
-            </con:attachment>
-            <con:attachment>
-              <con:name>postText.json</con:name>
-              <con:contentType>application/json</con:contentType>
-              <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
-              <con:id>b4f207b3-87ac-45e8-82a7-20f22e2edef6</con:id>
-            </con:attachment>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing" id="6e5758e3-25bb-4d8b-872a-430692a5b5a0">
-        <con:settings/>
-        <con:config>
-          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
-
-if (jdbcUrl == ""){
-	def currentStepIndex = context.currentStepIndex;
-	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
-	testRunner.gotoStepByName(stepToGo);
-}</script>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="jdbc" name="JDBC BP 6.0 XX checkText" id="a05e6055-b88a-455b-af90-de347bad4f97">
-        <con:settings/>
-        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:driver>org.postgresql.Driver</con:driver>
-          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
-          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
-          <con:assertion type="XPath Match" id="0d23fb86-c692-4c51-8a38-73152973a42c" name="Exists postText.pdf">
-            <con:configuration>
-              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdXPlanGML60}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
-              <content>true</content>
-              <allowWildcards>false</allowWildcards>
-              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-              <ignoreComments>false</ignoreComments>
-            </con:configuration>
-          </con:assertion>
-          <con:properties/>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="GET BP 6.0 pI verifyStatus" id="8e88382d-1d09-451c-a17b-91582419ba7e">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET BP 6.0 pI verifyStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="rechtscharakter">
-              <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert')].rechtscharakter</path>
-                <content>[3000]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="06f57586-1519-42f3-902a-3fb31cb3b445" name="schluessel, referenzURL and referenzName">
-              <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert' &amp;&amp; @.refText.referenzURL contains 'postText.pdf')].refText.referenzName</path>
-                <content>[test-name]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="87e0ca01-ca95-4747-af02-62c3c1ee1a72" name="documentUrl">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-
-if (documentUrl != "null"){
-	def index = documentUrl.indexOf("{")
-	def documentUrlShort = documentUrl.substring(0,index)
-
-	def passed = false
-
-	for(refText in json.refText){
-		def referenzUrl = refText.referenzURL
-		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
-			passed = true
-		}
-	}
-
-	assert passed
-}</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="GET FP 5.0 pI currentStatus" id="d9e46321-d223-4c76-b7ad-61928f3650c2">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET FP 5.0 pI currentStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="Empty list">
-              <con:configuration>
-                <path>$</path>
-                <content>[]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdFPlan}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="POST FP 5.0 pI modifyStatus" id="59e30b3e-b4a8-4a9f-8cba-c9f71eb10590">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="addText" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST FP 5.0 pI modifyStatus" id="c07da622-eb8f-4d61-96fe-3b612f437282" mediaType="multipart/form-data" postQueryString="false">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="d9b790fd-bfcf-4aac-af30-c62e4328f929" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
-              <con:configuration>
-                <path>$.schluessel</path>
-                <content>HN 9 geaendert</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="82a3787c-4357-43c8-94d8-f45d5bfdd7a4" name="referenzURL">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-assert json.refText.referenzURL.contains('postText.pdf')</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="6c83b4b6-40e3-4c06-b205-0cddeecc95b2" name="documentUrl">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-
-if (documentUrl != "null"){
-	def index = documentUrl.indexOf("{")
-	def documentUrlShort = documentUrl.substring(0,index)
-
-	def referenzUrl = json.refText.referenzURL
-	assert referenzUrl.contains(documentUrlShort)
-}</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:attachment>
-              <con:name>postText.pdf</con:name>
-              <con:contentType>application/pdf</con:contentType>
-              <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
-              <con:id>7f495a4d-1a89-4d30-b7a8-5b0733763dfa</con:id>
-            </con:attachment>
-            <con:attachment>
-              <con:name>postText.json</con:name>
-              <con:contentType>application/json</con:contentType>
-              <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
-              <con:id>d4a49a3c-2872-497a-9d3b-30a2d1fe4520</con:id>
-            </con:attachment>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdFPlan}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 2" id="23b4c417-57ed-4101-a495-32434b5b62e1">
-        <con:settings/>
-        <con:config>
-          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
-
-if (jdbcUrl == ""){
-	def currentStepIndex = context.currentStepIndex;
-	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
-	testRunner.gotoStepByName(stepToGo);
-}</script>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="jdbc" name="JDBC FP 5.0 XX checkText" id="c9d834b7-689d-4509-a5cd-47e1843038b0">
-        <con:settings/>
-        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:driver>org.postgresql.Driver</con:driver>
-          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
-          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
-          <con:assertion type="XPath Match" id="afd7d46a-e867-4805-ba4c-8d779c9a7229" name="Exists postText.pdf">
-            <con:configuration>
-              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
-              <content>true</content>
-              <allowWildcards>false</allowWildcards>
-              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-              <ignoreComments>false</ignoreComments>
-            </con:configuration>
-          </con:assertion>
-          <con:properties/>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="GET FP 5.0 pI verifyStatus" id="d9c2e1d8-3cec-462b-a206-01df8b680f0f">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET FP 5.0 pI verifyStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="rechtscharakter">
-              <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert')].rechtscharakter</path>
-                <content>[3000]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="c55fcec6-caa7-4e43-9795-c6ac24ff53bd" name="schluessel, referenzURL and referenzName">
-              <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert' &amp;&amp; @.refText.referenzURL contains 'postText.pdf')].refText.referenzName</path>
-                <content>[test-name]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="7e236ba3-3f5c-40f0-ac21-8a42216ebf30" name="documentUrl">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-
-if (documentUrl != "null"){
-	def index = documentUrl.indexOf("{")
-	def documentUrlShort = documentUrl.substring(0,index)
-
-	def passed = false
-
-	for(refText in json.refText){
-		def referenzUrl = refText.referenzURL
-		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
-			passed = true
-		}
-	}
-
-	assert passed
-}</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdFPlan}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="GET LP 6.0 pI currentStatus" id="2d334bcb-7b80-4549-87a8-a93b887a9e05">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET LP 6.0 pI currentStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="rechtscharakter">
-              <con:configuration>
-                <path>$[?(@.id == 'Gml_1234')].rechtscharakter</path>
-                <content>[1000]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdLPlan}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="POST LP 6.0 pI modifyStatus" id="bc7a61a6-0738-4150-9c28-dad70d98af9b">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="addText" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST LP 6.0 pI modifyStatus" id="c07da622-eb8f-4d61-96fe-3b612f437282" mediaType="multipart/form-data" postQueryString="false">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="d9b790fd-bfcf-4aac-af30-c62e4328f929" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
-              <con:configuration>
-                <path>$.schluessel</path>
-                <content>HN 9 geaendert</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="76e5e7b4-2d0c-481e-b9fb-154ea760668d" name="referenzURL">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-assert json.refText.referenzURL.contains('postText.pdf')</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="953a1718-4374-4c02-8c43-320242d8fc9c" name="documentUrl">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-
-if (documentUrl != "null"){
-	def index = documentUrl.indexOf("{")
-	def documentUrlShort = documentUrl.substring(0,index)
-
-	def referenzUrl = json.refText.referenzURL
-	assert referenzUrl.contains(documentUrlShort)
-}</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:attachment>
-              <con:name>postText.pdf</con:name>
-              <con:contentType>application/pdf</con:contentType>
-              <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
-              <con:id>a5095491-b0f7-4548-b890-be1f248c3a84</con:id>
-            </con:attachment>
-            <con:attachment>
-              <con:name>postText.json</con:name>
-              <con:contentType>application/json</con:contentType>
-              <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
-              <con:id>653dff68-2818-4d69-bd6a-5e6c5cbb5893</con:id>
-            </con:attachment>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdLPlan}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 3" id="959eb733-4986-494c-b023-6a47257d6898">
-        <con:settings/>
-        <con:config>
-          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
-
-if (jdbcUrl == ""){
-	def currentStepIndex = context.currentStepIndex;
-	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
-	testRunner.gotoStepByName(stepToGo);
-}</script>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="jdbc" name="JDBC LP 6.0 XX checkText" id="b56f8484-0f51-47e0-b07a-8b8cd439600c">
-        <con:settings/>
-        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:driver>org.postgresql.Driver</con:driver>
-          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
-          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
-          <con:assertion type="XPath Match" id="6899c8cf-6dc2-4a19-b631-931fdd4d68fe" name="Exists postText.pdf">
-            <con:configuration>
-              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
-              <content>true</content>
-              <allowWildcards>false</allowWildcards>
-              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-              <ignoreComments>false</ignoreComments>
-            </con:configuration>
-          </con:assertion>
-          <con:properties/>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="GET LP 6.0 pI verifyStatus" id="73df5016-0280-45d6-9264-0b33a392ce91">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET LP 6.0 pI verifyStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="rechtscharakter">
-              <con:configuration>
-                <path>$[?(@.id == 'Gml_1234')].rechtscharakter</path>
-                <content>[1000]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="addedSchluessel">
-              <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert')].rechtscharakter</path>
-                <content>[3000]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="bc12224c-aa8a-40dc-a7e6-adf6a86a18e3" name="schluessel, referenzURL and referenzName">
-              <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert' &amp;&amp; @.refText.referenzURL contains 'postText.pdf')].refText.referenzName</path>
-                <content>[test-name]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="31409352-d226-4a28-b12d-a01f1eb7eaf5" name="documentUrl">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-
-if (documentUrl != "null"){
-	def index = documentUrl.indexOf("{")
-	def documentUrlShort = documentUrl.substring(0,index)
-
-	def passed = false
-
-	for(refText in json.refText){
-		def referenzUrl = refText.referenzURL
-		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
-			passed = true
-		}
-	}
-
-	assert passed
-}</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdLPlan}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="GET RP 5.1 pI currentStatus" id="2b1d7bd7-5c45-4691-9899-94caea2f0e20">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET RP 5.1 pI currentStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="Empty list">
-              <con:configuration>
-                <path>$</path>
-                <content>[]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdRPlan}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="POST RP 5.1 pI modifyStatus" id="29a01d53-0111-47b8-820c-def60b2c2e57">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="addText" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST RP 5.1 pI modifyStatus" id="c07da622-eb8f-4d61-96fe-3b612f437282" mediaType="multipart/form-data" postQueryString="false">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="d9b790fd-bfcf-4aac-af30-c62e4328f929" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
-              <con:configuration>
-                <path>$.schluessel</path>
-                <content>HN 9 geaendert</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="f8d30f50-cbc2-4a2a-8d1e-d19f42c7c297" name="referenzURL">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-assert json.refText.referenzURL.contains('postText.pdf')</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="86b5696b-2f85-4131-90e9-46d30eb06df7" name="documentUrl">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-
-if (documentUrl != "null"){
-	def index = documentUrl.indexOf("{")
-	def documentUrlShort = documentUrl.substring(0,index)
-
-	def referenzUrl = json.refText.referenzURL
-	assert referenzUrl.contains(documentUrlShort)
-}</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:attachment>
-              <con:name>postText.pdf</con:name>
-              <con:contentType>application/pdf</con:contentType>
-              <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
-              <con:id>9ac41251-b479-44e3-bbe0-3c03fbc3689b</con:id>
-            </con:attachment>
-            <con:attachment>
-              <con:name>postText.json</con:name>
-              <con:contentType>application/json</con:contentType>
-              <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
-              <con:id>9e9f218a-2bff-4a0a-ae8a-424352809c30</con:id>
-            </con:attachment>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdRPlan}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 4" id="81c9358f-ffdb-45dd-806e-72870347dc35">
-        <con:settings/>
-        <con:config>
-          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
-
-if (jdbcUrl == ""){
-	def currentStepIndex = context.currentStepIndex;
-	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
-	testRunner.gotoStepByName(stepToGo);
-}</script>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="jdbc" name="JDBC RP 5.1 XX checkText" id="195006ca-bef5-4605-8319-bfa6826f5971">
-        <con:settings/>
-        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:driver>org.postgresql.Driver</con:driver>
-          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
-          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
-          <con:assertion type="XPath Match" id="2d5b09a7-b3f9-4b47-9502-bd1ffb3b47eb" name="Exists postText,pdf">
-            <con:configuration>
-              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
-              <content>true</content>
-              <allowWildcards>false</allowWildcards>
-              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-              <ignoreComments>false</ignoreComments>
-            </con:configuration>
-          </con:assertion>
-          <con:properties/>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="GET RP 5.1 pI verifyStatus" id="38f8b3f5-eba7-4653-b3cc-c1bd92bdd549">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET RP 5.1 pI verifyStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="rechtscharakter">
-              <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert')].rechtscharakter</path>
-                <content>[3000]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="c1679393-9300-4e8d-9d02-a2f953492af6" name="schluessel, referenzURL and referenzName">
-              <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert' &amp;&amp; @.refText.referenzURL contains 'postText.pdf')].refText.referenzName</path>
-                <content>[test-name]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="9b5c83a3-53e8-42a8-ab24-f985882be062" name="documentUrl">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-
-if (documentUrl != "null"){
-	def index = documentUrl.indexOf("{")
-	def documentUrlShort = documentUrl.substring(0,index)
-
-	def passed = false
-
-	for(refText in json.refText){
-		def referenzUrl = refText.referenzURL
-		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
-			passed = true
-		}
-	}
-
-	assert passed
-}</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdRPlan}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="GET SO 5.3 pI currentStatus" id="0a91dd2c-7cba-4ba3-9058-cdbd74435344">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET SO 5.3 pI currentStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluesselFirst">
-              <con:configuration>
-                <path>$[?(@.id == 'Gml_C6C48876-DE3F-4D18-9803-451062E9FDD9')].schluessel</path>
-                <content>[3]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluesselSecond">
-              <con:configuration>
-                <path>$[?(@.id == 'Gml_093885BC-37A2-4A31-83DD-32C238F9FA6A')].schluessel</path>
-                <content>[2]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluesselThird">
-              <con:configuration>
-                <path>$[?(@.id == 'Gml_91BCBE4D-B995-4CA6-A655-84EA9DE4CE96')].schluessel</path>
-                <content>[1]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="POST SO 5.3 pI modifyStatus" id="a944ab88-63f9-4990-8043-8edbb696c691">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="addText" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST SO 5.3 pI modifyStatus" id="c07da622-eb8f-4d61-96fe-3b612f437282" mediaType="multipart/form-data" postQueryString="false">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="d9b790fd-bfcf-4aac-af30-c62e4328f929" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
-              <con:configuration>
-                <path>$.schluessel</path>
-                <content>HN 9 geaendert</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="8cc1baa6-9c16-4c7f-a740-92ca4636b412" name="referenzURL">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-assert json.refText.referenzURL.contains('postText.pdf')</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="5ed0e1cd-fbfd-408c-b35d-203c10c8d561" name="documentUrl">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-
-if (documentUrl != "null"){
-	def index = documentUrl.indexOf("{")
-	def documentUrlShort = documentUrl.substring(0,index)
-
-	def referenzUrl = json.refText.referenzURL
-	assert referenzUrl.contains(documentUrlShort)
-}</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:attachment>
-              <con:name>postText.pdf</con:name>
-              <con:contentType>application/pdf</con:contentType>
-              <con:contentId>datei</con:contentId>
-              <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
-              <con:id>30db1bff-b394-45d9-800a-045120ace225</con:id>
-            </con:attachment>
-            <con:attachment>
-              <con:name>postText.json</con:name>
-              <con:contentType>application/json</con:contentType>
-              <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
-              <con:id>d3f70c21-539a-4687-9148-beeac6bf0dbb</con:id>
-            </con:attachment>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 5" id="b8af7942-c1be-4815-9905-8ad73759793a">
-        <con:settings/>
-        <con:config>
-          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
-
-if (jdbcUrl == ""){
-	def currentStepIndex = context.currentStepIndex;
-	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
-	testRunner.gotoStepByName(stepToGo);
-}</script>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="jdbc" name="JDBC SO 5.3 XX checkText" id="6e282894-23f1-44eb-9367-cf6ae4b311d5">
-        <con:settings/>
-        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:driver>org.postgresql.Driver</con:driver>
-          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
-          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
-          <con:assertion type="XPath Match" id="162e3e58-2d66-4abb-adc2-70863dcb69d5" name="Exists postText.pdf">
-            <con:configuration>
-              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
-              <content>true</content>
-              <allowWildcards>false</allowWildcards>
-              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-              <ignoreComments>false</ignoreComments>
-            </con:configuration>
-          </con:assertion>
-          <con:properties/>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="GET SO 5.3 pI verifyStatus" id="6a089ec3-9bfb-49fd-a907-525f6e6f6f91">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET SO 5.3 pI verifyStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluesselFirst">
-              <con:configuration>
-                <path>$[?(@.id == 'Gml_C6C48876-DE3F-4D18-9803-451062E9FDD9')].schluessel</path>
-                <content>[3]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluesselSecond">
-              <con:configuration>
-                <path>$[?(@.id == 'Gml_093885BC-37A2-4A31-83DD-32C238F9FA6A')].schluessel</path>
-                <content>[2]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluesselThird">
-              <con:configuration>
-                <path>$[?(@.id == 'Gml_91BCBE4D-B995-4CA6-A655-84EA9DE4CE96')].schluessel</path>
-                <content>[1]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="addedSchluessel">
-              <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert')].rechtscharakter</path>
-                <content>[3000]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="4860d0e1-0658-40da-9a5d-e83460c8390f" name="schluessel, referenzURL and referenzName">
-              <con:configuration>
-                <path>$[?(@.schluessel == 'HN 9 geaendert' &amp;&amp; @.refText.referenzURL contains 'postText.pdf')].refText.referenzName</path>
-                <content>[test-name]</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="GroovyScriptAssertion" id="3abf1f6d-eec0-4c55-8f2c-b427318ce9dc" name="documentUrl">
-              <con:configuration>
-                <scriptText>import groovy.json.JsonSlurper
-
-json = new JsonSlurper().parseText(messageExchange.response.responseContent)
-assert !(json.isEmpty())
-
-def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
-
-if (documentUrl != "null"){
-	def index = documentUrl.indexOf("{")
-	def documentUrlShort = documentUrl.substring(0,index)
-
-	def passed = false
-
-	for(refText in json.refText){
-		def referenzUrl = refText.referenzURL
-		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
-			passed = true
-		}
-	}
-
-	assert passed
-}</scriptText>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username>${#Project#username}</con:username>
-              <con:password>${#Project#password}</con:password>
-              <con:domain xsi:nil="true"/>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="transfer" name="Property Transfer" id="e1cb0300-3253-4c7f-92ae-9f5202508b89">
-        <con:settings/>
-        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
-            <con:name>SOPlan</con:name>
-            <con:sourceType>Response</con:sourceType>
-            <con:sourceStep>POST SO 5.3 pI modifyStatus</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
-            <con:targetType>textIdSOPlan</con:targetType>
-            <con:targetStep>#TestSuite#</con:targetStep>
-            <con:type>JSONPATH</con:type>
-            <con:targetTransferType>JSONPATH</con:targetTransferType>
-            <con:upgraded>true</con:upgraded>
-          </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
-            <con:name>LPlan</con:name>
-            <con:sourceType>Response</con:sourceType>
-            <con:sourceStep>POST LP 6.0 pI modifyStatus</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
-            <con:targetType>textIdLPlan</con:targetType>
-            <con:targetStep>#TestSuite#</con:targetStep>
-            <con:targetPath xsi:nil="true"/>
-            <con:type>JSONPATH</con:type>
-            <con:targetTransferType>JSONPATH</con:targetTransferType>
-            <con:upgraded>true</con:upgraded>
-          </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
-            <con:name>FPlan</con:name>
-            <con:sourceType>Response</con:sourceType>
-            <con:sourceStep>POST FP 5.0 pI modifyStatus</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
-            <con:targetType>textIdFPlan</con:targetType>
-            <con:targetStep>#TestSuite#</con:targetStep>
-            <con:targetPath xsi:nil="true"/>
-            <con:type>JSONPATH</con:type>
-            <con:targetTransferType>JSONPATH</con:targetTransferType>
-            <con:upgraded>true</con:upgraded>
-          </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
-            <con:name>RPlan</con:name>
-            <con:sourceType>Response</con:sourceType>
-            <con:sourceStep>POST RP 5.1 pI modifyStatus</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
-            <con:targetType>textIdRPlan</con:targetType>
-            <con:targetStep>#TestSuite#</con:targetStep>
-            <con:targetPath xsi:nil="true"/>
-            <con:type>JSONPATH</con:type>
-            <con:targetTransferType>JSONPATH</con:targetTransferType>
-            <con:upgraded>true</con:upgraded>
-          </con:transfers>
-        </con:config>
-      </con:testStep>
-      <con:properties/>
-    </con:testCase>
     <con:testCase id="edac4391-364e-4b88-8915-79baeb9d98a4" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId}/rasterbasis/{id} TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/plan/{planId}/rasterbasis/{id}] located at [/plan/{planId}/rasterbasis/{id}]</con:description>
       <con:settings/>
@@ -14726,6 +13262,1470 @@ if (documentUrl != "null"){
           <con:value/>
         </con:property>
       </con:properties>
+    </con:testCase>
+    <con:testCase id="ba7af4cb-061c-4b69-b27d-900fd2e4c588" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId}/text/ TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
+      <con:description>TestCase generated for REST Resource [/plan/{planId}/text/] located at [/plan/{planId}/text/]</con:description>
+      <con:settings/>
+      <con:testStep type="restrequest" name="GET BP 5.3 pI currentStatus" id="45a36ab4-351a-433d-ae96-13b923d8234d">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET BP 5.3 pI currentStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluessel">
+              <con:configuration>
+                <path>$[?(@.id == 'GML_684fb51c-3d0f-4993-8ff0-dc3b62686b88')].schluessel</path>
+                <content>[§2 Nr.3]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdText}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 5.3 pI modifyStatus" id="cfc16a4e-df16-439c-9eff-22da133b21a8">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="addText" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.3 pI modifyStatus" id="c07da622-eb8f-4d61-96fe-3b612f437282" mediaType="multipart/form-data" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d9b790fd-bfcf-4aac-af30-c62e4328f929" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
+              <con:configuration>
+                <path>$.schluessel</path>
+                <content>HN 9 geaendert</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="referenzName">
+              <con:configuration>
+                <path>$.refText.referenzName</path>
+                <content>test-name</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="9fd4ba32-cd3b-4871-9646-f8c6febe4a27" name="referenzURL">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.refText.referenzURL.contains('postText.pdf')</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="d41db82e-03b3-40ac-9693-5c5f946c6932" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>postText.pdf</con:name>
+              <con:contentType>application/pdf</con:contentType>
+              <con:contentId>datei</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
+              <con:id>1fa73941-607a-46e9-b62f-83aebacda5ca</con:id>
+            </con:attachment>
+            <con:attachment>
+              <con:name>postText.json</con:name>
+              <con:contentType>application/json</con:contentType>
+              <con:contentId>textmodel</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
+              <con:id>fb73faf4-ee9a-4117-89b0-428073d35570</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdText}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET BP 5.3 pI verifyStatus" id="fc8ead83-19a3-4719-ac00-a50e8f91da48">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET BP 5.3 pI verifyStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="rechtscharakter">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].rechtscharakter</path>
+                <content>[3000]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluessel, referenzURL and referenzName">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert' &amp;&amp; @.refText.referenzURL contains 'postText.pdf')].refText.referenzName</path>
+                <content>[test-name]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="ce6ff36c-a449-40f6-aeac-1105739b653c" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(refText in json.refText){
+		def referenzUrl = refText.referenzURL
+		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdText}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET BP 5.4 pI currentStatusMultiplePlaene" id="5e7f34d4-b0cc-4237-9785-506fc5a8cea3">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET BP 5.4 pI currentStatusMultiplePlaene" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="JsonPath Match GML ID 1">
+              <con:configuration>
+                <path>$[?(@.id == 'GML_3e7ae2f8-4b5d-4a31-aced-656804df7c3b')].schluessel</path>
+                <content>[§2 Nr.5]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="JsonPath Match GML ID 2">
+              <con:configuration>
+                <path>$[?(@.id == 'GML_f4e240c9-c8be-4a5a-a128-9b2c9b241df8')].schluessel</path>
+                <content>[§2 Nr.7]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdMultiplePlansHafenCity14}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET BP 6.0 pI currentStatus" id="ee74447c-76a0-4292-895e-94ee1d0f262e">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET BP 6.0 pI currentStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluessel">
+              <con:configuration>
+                <path>$[?(@.id == 'GML_684fb51c-3d0f-4993-8ff0-dc3b62686b88')].schluessel</path>
+                <content>[§2 Nr.3]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0 pI modifyStatus" id="a2251c2e-a457-4815-ae62-93bd579ccd82">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="addText" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0 pI modifyStatus" id="c07da622-eb8f-4d61-96fe-3b612f437282" mediaType="multipart/form-data" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d9b790fd-bfcf-4aac-af30-c62e4328f929" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
+              <con:configuration>
+                <path>$.schluessel</path>
+                <content>HN 9 geaendert</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="12dfb1c9-61d8-4a08-ad07-cb8faaf5c03d" name="referenzURL">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.refText.referenzURL.contains('postText.pdf')</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="68596e7f-4975-4c2a-a412-4e724ae042d1" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>postText.pdf</con:name>
+              <con:contentType>application/pdf</con:contentType>
+              <con:contentId>datei</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
+              <con:id>7354555a-e1d1-4fe8-a8ef-09c2c51d8aac</con:id>
+            </con:attachment>
+            <con:attachment>
+              <con:name>postText.json</con:name>
+              <con:contentType>application/json</con:contentType>
+              <con:contentId>textmodel</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
+              <con:id>b4f207b3-87ac-45e8-82a7-20f22e2edef6</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing" id="6e5758e3-25bb-4d8b-872a-430692a5b5a0">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC BP 6.0 XX checkText" id="a05e6055-b88a-455b-af90-de347bad4f97">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="0d23fb86-c692-4c51-8a38-73152973a42c" name="Exists postText.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdXPlanGML60}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET BP 6.0 pI verifyStatus" id="8e88382d-1d09-451c-a17b-91582419ba7e">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET BP 6.0 pI verifyStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="rechtscharakter">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].rechtscharakter</path>
+                <content>[3000]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="06f57586-1519-42f3-902a-3fb31cb3b445" name="schluessel, referenzURL and referenzName">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert' &amp;&amp; @.refText.referenzURL contains 'postText.pdf')].refText.referenzName</path>
+                <content>[test-name]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="87e0ca01-ca95-4747-af02-62c3c1ee1a72" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(refText in json.refText){
+		def referenzUrl = refText.referenzURL
+		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET FP 5.0 pI currentStatus" id="d9e46321-d223-4c76-b7ad-61928f3650c2">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET FP 5.0 pI currentStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="Empty list">
+              <con:configuration>
+                <path>$</path>
+                <content>[]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdFPlan}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST FP 5.0 pI modifyStatus" id="59e30b3e-b4a8-4a9f-8cba-c9f71eb10590">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="addText" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST FP 5.0 pI modifyStatus" id="c07da622-eb8f-4d61-96fe-3b612f437282" mediaType="multipart/form-data" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d9b790fd-bfcf-4aac-af30-c62e4328f929" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
+              <con:configuration>
+                <path>$.schluessel</path>
+                <content>HN 9 geaendert</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="82a3787c-4357-43c8-94d8-f45d5bfdd7a4" name="referenzURL">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.refText.referenzURL.contains('postText.pdf')</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="6c83b4b6-40e3-4c06-b205-0cddeecc95b2" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>postText.pdf</con:name>
+              <con:contentType>application/pdf</con:contentType>
+              <con:contentId>datei</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
+              <con:id>7f495a4d-1a89-4d30-b7a8-5b0733763dfa</con:id>
+            </con:attachment>
+            <con:attachment>
+              <con:name>postText.json</con:name>
+              <con:contentType>application/json</con:contentType>
+              <con:contentId>textmodel</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
+              <con:id>d4a49a3c-2872-497a-9d3b-30a2d1fe4520</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdFPlan}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 2" id="23b4c417-57ed-4101-a495-32434b5b62e1">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC FP 5.0 XX checkText" id="c9d834b7-689d-4509-a5cd-47e1843038b0">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="afd7d46a-e867-4805-ba4c-8d779c9a7229" name="Exists postText.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET FP 5.0 pI verifyStatus" id="d9c2e1d8-3cec-462b-a206-01df8b680f0f">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET FP 5.0 pI verifyStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="rechtscharakter">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].rechtscharakter</path>
+                <content>[3000]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c55fcec6-caa7-4e43-9795-c6ac24ff53bd" name="schluessel, referenzURL and referenzName">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert' &amp;&amp; @.refText.referenzURL contains 'postText.pdf')].refText.referenzName</path>
+                <content>[test-name]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="7e236ba3-3f5c-40f0-ac21-8a42216ebf30" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(refText in json.refText){
+		def referenzUrl = refText.referenzURL
+		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdFPlan}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET LP 6.0 pI currentStatus" id="2d334bcb-7b80-4549-87a8-a93b887a9e05">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET LP 6.0 pI currentStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="rechtscharakter">
+              <con:configuration>
+                <path>$[?(@.id == 'Gml_1234')].rechtscharakter</path>
+                <content>[1000]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdLPlan}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST LP 6.0 pI modifyStatus" id="bc7a61a6-0738-4150-9c28-dad70d98af9b">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="addText" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST LP 6.0 pI modifyStatus" id="c07da622-eb8f-4d61-96fe-3b612f437282" mediaType="multipart/form-data" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d9b790fd-bfcf-4aac-af30-c62e4328f929" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
+              <con:configuration>
+                <path>$.schluessel</path>
+                <content>HN 9 geaendert</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="76e5e7b4-2d0c-481e-b9fb-154ea760668d" name="referenzURL">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.refText.referenzURL.contains('postText.pdf')</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="953a1718-4374-4c02-8c43-320242d8fc9c" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>postText.pdf</con:name>
+              <con:contentType>application/pdf</con:contentType>
+              <con:contentId>datei</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
+              <con:id>a5095491-b0f7-4548-b890-be1f248c3a84</con:id>
+            </con:attachment>
+            <con:attachment>
+              <con:name>postText.json</con:name>
+              <con:contentType>application/json</con:contentType>
+              <con:contentId>textmodel</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
+              <con:id>653dff68-2818-4d69-bd6a-5e6c5cbb5893</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdLPlan}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 3" id="959eb733-4986-494c-b023-6a47257d6898">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC LP 6.0 XX checkText" id="b56f8484-0f51-47e0-b07a-8b8cd439600c">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="6899c8cf-6dc2-4a19-b631-931fdd4d68fe" name="Exists postText.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET LP 6.0 pI verifyStatus" id="73df5016-0280-45d6-9264-0b33a392ce91">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET LP 6.0 pI verifyStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="rechtscharakter">
+              <con:configuration>
+                <path>$[?(@.id == 'Gml_1234')].rechtscharakter</path>
+                <content>[1000]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="addedSchluessel">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].rechtscharakter</path>
+                <content>[3000]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="bc12224c-aa8a-40dc-a7e6-adf6a86a18e3" name="schluessel, referenzURL and referenzName">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert' &amp;&amp; @.refText.referenzURL contains 'postText.pdf')].refText.referenzName</path>
+                <content>[test-name]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="31409352-d226-4a28-b12d-a01f1eb7eaf5" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(refText in json.refText){
+		def referenzUrl = refText.referenzURL
+		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdLPlan}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET RP 5.1 pI currentStatus" id="2b1d7bd7-5c45-4691-9899-94caea2f0e20">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET RP 5.1 pI currentStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="Empty list">
+              <con:configuration>
+                <path>$</path>
+                <content>[]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdRPlan}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST RP 5.1 pI modifyStatus" id="29a01d53-0111-47b8-820c-def60b2c2e57">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="addText" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST RP 5.1 pI modifyStatus" id="c07da622-eb8f-4d61-96fe-3b612f437282" mediaType="multipart/form-data" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d9b790fd-bfcf-4aac-af30-c62e4328f929" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
+              <con:configuration>
+                <path>$.schluessel</path>
+                <content>HN 9 geaendert</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="f8d30f50-cbc2-4a2a-8d1e-d19f42c7c297" name="referenzURL">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.refText.referenzURL.contains('postText.pdf')</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="86b5696b-2f85-4131-90e9-46d30eb06df7" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>postText.pdf</con:name>
+              <con:contentType>application/pdf</con:contentType>
+              <con:contentId>datei</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
+              <con:id>9ac41251-b479-44e3-bbe0-3c03fbc3689b</con:id>
+            </con:attachment>
+            <con:attachment>
+              <con:name>postText.json</con:name>
+              <con:contentType>application/json</con:contentType>
+              <con:contentId>textmodel</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
+              <con:id>9e9f218a-2bff-4a0a-ae8a-424352809c30</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdRPlan}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 4" id="81c9358f-ffdb-45dd-806e-72870347dc35">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC RP 5.1 XX checkText" id="195006ca-bef5-4605-8319-bfa6826f5971">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="2d5b09a7-b3f9-4b47-9502-bd1ffb3b47eb" name="Exists postText,pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET RP 5.1 pI verifyStatus" id="38f8b3f5-eba7-4653-b3cc-c1bd92bdd549">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET RP 5.1 pI verifyStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="rechtscharakter">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].rechtscharakter</path>
+                <content>[3000]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c1679393-9300-4e8d-9d02-a2f953492af6" name="schluessel, referenzURL and referenzName">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert' &amp;&amp; @.refText.referenzURL contains 'postText.pdf')].refText.referenzName</path>
+                <content>[test-name]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="9b5c83a3-53e8-42a8-ab24-f985882be062" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(refText in json.refText){
+		def referenzUrl = refText.referenzURL
+		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdRPlan}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET SO 5.3 pI currentStatus" id="0a91dd2c-7cba-4ba3-9058-cdbd74435344">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET SO 5.3 pI currentStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluesselFirst">
+              <con:configuration>
+                <path>$[?(@.id == 'Gml_C6C48876-DE3F-4D18-9803-451062E9FDD9')].schluessel</path>
+                <content>[3]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluesselSecond">
+              <con:configuration>
+                <path>$[?(@.id == 'Gml_093885BC-37A2-4A31-83DD-32C238F9FA6A')].schluessel</path>
+                <content>[2]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluesselThird">
+              <con:configuration>
+                <path>$[?(@.id == 'Gml_91BCBE4D-B995-4CA6-A655-84EA9DE4CE96')].schluessel</path>
+                <content>[1]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST SO 5.3 pI modifyStatus" id="a944ab88-63f9-4990-8043-8edbb696c691">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="addText" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST SO 5.3 pI modifyStatus" id="c07da622-eb8f-4d61-96fe-3b612f437282" mediaType="multipart/form-data" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="d9b790fd-bfcf-4aac-af30-c62e4328f929" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="ab02c35b-2bea-48ad-864c-259ff23845c4" name="schluessel">
+              <con:configuration>
+                <path>$.schluessel</path>
+                <content>HN 9 geaendert</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="8cc1baa6-9c16-4c7f-a740-92ca4636b412" name="referenzURL">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+assert json.refText.referenzURL.contains('postText.pdf')</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="5ed0e1cd-fbfd-408c-b35d-203c10c8d561" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def referenzUrl = json.refText.referenzURL
+	assert referenzUrl.contains(documentUrlShort)
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>postText.pdf</con:name>
+              <con:contentType>application/pdf</con:contentType>
+              <con:contentId>datei</con:contentId>
+              <con:part xsi:nil="true"/>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
+              <con:id>30db1bff-b394-45d9-800a-045120ace225</con:id>
+            </con:attachment>
+            <con:attachment>
+              <con:name>postText.json</con:name>
+              <con:contentType>application/json</con:contentType>
+              <con:contentId>textmodel</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
+              <con:id>d3f70c21-539a-4687-9148-beeac6bf0dbb</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 5" id="b8af7942-c1be-4815-9905-8ad73759793a">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC SO 5.3 XX checkText" id="6e282894-23f1-44eb-9367-cf6ae4b311d5">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="162e3e58-2d66-4abb-adc2-70863dcb69d5" name="Exists postText.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET SO 5.3 pI verifyStatus" id="6a089ec3-9bfb-49fd-a907-525f6e6f6f91">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET SO 5.3 pI verifyStatus" id="840792c9-7e65-4d3d-b08c-fc1d3ac4feb5" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="5f19b74f-e389-42c2-912a-e5ee4c1a1984" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluesselFirst">
+              <con:configuration>
+                <path>$[?(@.id == 'Gml_C6C48876-DE3F-4D18-9803-451062E9FDD9')].schluessel</path>
+                <content>[3]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluesselSecond">
+              <con:configuration>
+                <path>$[?(@.id == 'Gml_093885BC-37A2-4A31-83DD-32C238F9FA6A')].schluessel</path>
+                <content>[2]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="schluesselThird">
+              <con:configuration>
+                <path>$[?(@.id == 'Gml_91BCBE4D-B995-4CA6-A655-84EA9DE4CE96')].schluessel</path>
+                <content>[1]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="29efe6e8-03ac-4d01-9352-d00ba76e0208" name="addedSchluessel">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert')].rechtscharakter</path>
+                <content>[3000]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="4860d0e1-0658-40da-9a5d-e83460c8390f" name="schluessel, referenzURL and referenzName">
+              <con:configuration>
+                <path>$[?(@.schluessel == 'HN 9 geaendert' &amp;&amp; @.refText.referenzURL contains 'postText.pdf')].refText.referenzName</path>
+                <content>[test-name]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="3abf1f6d-eec0-4c55-8f2c-b427318ce9dc" name="documentUrl">
+              <con:configuration>
+                <scriptText>import groovy.json.JsonSlurper
+
+json = new JsonSlurper().parseText(messageExchange.response.responseContent)
+assert !(json.isEmpty())
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != "null"){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	def passed = false
+
+	for(refText in json.refText){
+		def referenzUrl = refText.referenzURL
+		if (referenzUrl != null &amp;&amp; referenzUrl.contains(documentUrlShort)){
+			passed = true
+		}
+	}
+
+	assert passed
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="e1cb0300-3253-4c7f-92ae-9f5202508b89">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>SOPlan</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>POST SO 5.3 pI modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>textIdSOPlan</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>LPlan</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>POST LP 6.0 pI modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>textIdLPlan</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>FPlan</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>POST FP 5.0 pI modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>textIdFPlan</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>RPlan</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>POST RP 5.1 pI modifyStatus</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>textIdRPlan</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
     </con:testCase>
     <con:testCase id="8e2cde5e-b939-4efe-be7f-4ab9a9d55d8e" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId}/text/{id} TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/plan/{planId}/text/{id}] located at [/plan/{planId}/text/{id}]</con:description>
