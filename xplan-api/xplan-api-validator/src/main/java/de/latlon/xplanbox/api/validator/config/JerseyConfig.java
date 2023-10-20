@@ -29,6 +29,7 @@ import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
 import de.latlon.xplanbox.api.commons.openapi.OpenApiFilter;
 import de.latlon.xplanbox.api.validator.v1.DefaultApi;
 import de.latlon.xplanbox.api.validator.v1.InfoApi;
+import de.latlon.xplanbox.api.validator.v1.Status;
 import de.latlon.xplanbox.api.validator.v1.ValidateApi;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.models.ExternalDocumentation;
@@ -77,6 +78,7 @@ public class JerseyConfig extends ResourceConfig {
 
 		register(InfoApi.class);
 		register(ValidateApi.class);
+		register(Status.class);
 		register(ConstraintViolationExceptionMapper.class);
 		register(ConstraintViolationExceptionMapper.class);
 		register(UnsupportedContentTypeExceptionMapper.class);
