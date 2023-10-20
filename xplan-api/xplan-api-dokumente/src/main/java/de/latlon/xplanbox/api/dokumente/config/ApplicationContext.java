@@ -65,12 +65,6 @@ public class ApplicationContext {
 	private ApplicationEventPublisher applicationEventPublisher;
 
 	@Bean
-	public ManagerWorkspaceWrapper managerWorkspaceWrapper() throws WorkspaceException {
-		DeegreeWorkspace managerWorkspace = instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE);
-		return new ManagerWorkspaceWrapper(managerWorkspace);
-	}
-
-	@Bean
 	public XPlanDbAdapter xPlanDbAdapter() {
 		return new XPlanDbAdapter(null, planRepository, planwerkWmsMetadataRepository, artefactRepository);
 	}
