@@ -86,21 +86,25 @@ caches:
     <<: *cache_cfg
     cache:
       directory: /bplan_raster/
+      type: s3
     sources: ['xplan-mapserver:bplanraster']
   bplan_vektor_cache:
     <<: *cache_cfg
     cache:
       directory: /bplan_vektor/
+      type: s3
     sources: ['bplan-wms:BP_Plan']
   fplan_raster_cache:
     <<: *cache_cfg
     cache:
       directory: /fplan_raster/
+      type: s3
     sources: ['xplan-mapserver:fplanraster']
   fplan_vektor_cache:
     <<: *cache_cfg
     cache:
       directory: /fplan_vektor/
+      type: s3
     sources: ['fplan-wms:FP_Plan']
 sources:
   xplan-mapserver:
