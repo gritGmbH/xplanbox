@@ -31,9 +31,11 @@ COPY --chown=1001:1001 ./uwsgi.ini /srv/mapproxy/uwsgi.ini
 COPY --chown=1001:1001 ./app.py /srv/mapproxy/app.py
 COPY --chown=1001:1001 ./log.ini /srv/mapproxy/log.ini
 
+ADD target/xplan-docker-mapproxy-*.tgz /
+
 WORKDIR /srv/mapproxy
 USER 1001
 
 EXPOSE 8080
 
-ENTRYPOINT [ "uwsgi", "--ini", "/srv/mapproxy/uwsgi.ini", "--plugin", "python311,cheaper_busyness" ]
+CMD ["docker-entrypoint.sh"]
