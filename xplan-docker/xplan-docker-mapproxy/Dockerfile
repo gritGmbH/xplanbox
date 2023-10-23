@@ -16,7 +16,8 @@ RUN apt update && apt -y install --no-install-recommends \
     uwsgi-plugin-python3 \
     python3-venv \
     libgdal-dev \
-    libgeos-dev && \
+    libgeos-dev \
+    gettext-base && \
     apt-get -y --purge autoremove && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
@@ -32,6 +33,7 @@ COPY --chown=1001:1001 ./app.py /srv/mapproxy/app.py
 COPY --chown=1001:1001 ./log.ini /srv/mapproxy/log.ini
 
 ADD target/xplan-docker-mapproxy-*.tgz /
+ADD docker-entrypoint.sh /docker-entrypoint.sh
 
 WORKDIR /srv/mapproxy
 USER 1001
