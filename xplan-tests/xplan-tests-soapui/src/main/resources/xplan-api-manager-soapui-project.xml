@@ -8934,7 +8934,7 @@ if (jdbcUrl == ""){
           <con:driver>org.postgresql.Driver</con:driver>
           <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
           <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
-          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="Exits putDok.pdf">
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="Exists putDok.pdf">
             <con:configuration>
               <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
               <content>true</content>
@@ -9102,6 +9102,60 @@ if (documentUrl != "null"){
               <con:entry key="id" value="${#TestCase#dokumentIdSO53}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC XX XX XX checkDokumentDelete" id="458e82f9-127d-4171-9e91-10ef2a09af8b">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putDok.pdf BP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdDokument}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putDok.pdf SO">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putDok.pdf FP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putDok.pdf LP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putDok.pdf RP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="transfer" name="Cleanup" id="23d0275a-0754-4617-a373-0a2547e961fa">
@@ -13189,6 +13243,105 @@ if (documentUrl != "null"){
               <con:entry key="id" value="${#TestCase#rasterbasisIdSO53}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC XX XX XX checkRasterbasisDelete" id="3985d7a3-9b30-46a4-b25b-48ab8bf6b75e">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.png BP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdXPlanGML53}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.png SO">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.png FP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.png LP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.png RP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.pgw BP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdXPlanGML53}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.pgw SO">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.pgw FP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.pgw LP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.pgw RP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="transfer" name="Cleanup" id="24df644f-cd0c-49f4-9604-4d81f35326ea">
