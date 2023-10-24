@@ -4,7 +4,7 @@ parts:
     wms_opts:
       featureinfo: true
       version: 1.3.0
-    supported_srs: ['${XPLAN_SERVICES_DEFAULT_CRS}']
+    supported_srs: ['${XPLAN_SERVICES_DEFAULT_CRS_SRID}']
     coverage:
       bbox: [${XPLAN_SERVICES_BBOX_4326}]
       srs: 'EPSG:4326'
@@ -72,12 +72,12 @@ layers:
     title: XPlanung Flächennutzungspläne
     layers:
       - name: fplan_raster
-        title: Rasterdarstellung der Bebauungspläne
+        title: Rasterdarstellung der Flächennutzungspläne
         sources: [fplan_raster_cache]
         min_res: 7.0
         max_res: 1.4
       - name: fplan_vektor
-        title: Vektordarstellung der Bebauungspläne
+        title: Vektordarstellung der Flächennutzungspläne
         sources: [fplan_vektor_cache]
         min_res: 7.0
         max_res: 1.4
