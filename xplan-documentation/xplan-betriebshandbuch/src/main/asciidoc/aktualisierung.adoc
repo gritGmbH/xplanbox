@@ -259,6 +259,20 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 
 TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
+[[aktualisierung-version-7.0.2]]
+=== Aktualisierung auf die Version 7.0.2
+
+Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
+
+* Austausch der Webapps:
+** _xplan-api-validator.war_
+** _xplan-api-manager.war_
+** _xplan-validator-web.war_
+** _xplan-manager-web.war_
+* Austausch und Ausführung des Kommandozeilenwerkzeugs __artefactsTableUpdate__ im Modul _xplan-update-data-cli_ zur Aktualisierung der XPlanDB, wenn dies beim der Installation der Version 7.0 oder 7.0.1 nicht erfolgreich ausgeführt werden konnte.
+
+TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
+
 === Troubleshooting
 
 Bei unerwartetem Verhalten der xPlanBox nach einer Aktualisierung können folgende Aktionen helfen:
