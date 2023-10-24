@@ -27,13 +27,14 @@ import de.latlon.xplan.core.manager.db.model.Artefact;
 import de.latlon.xplan.core.manager.db.model.ArtefactId;
 import de.latlon.xplan.core.manager.db.model.ArtefactType;
 import de.latlon.xplan.core.manager.db.model.Plan;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.transaction.TestTransaction;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,14 +50,15 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.RASTERBASIS;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.XPLANGML;
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ActiveProfiles("test-hsql")
 @ContextConfiguration(classes = { JpaContext.class, HsqlJpaContext.class, PostgisJpaContext.class })
 @Transactional
-public class ArtefactRepositoryTest {
+class ArtefactRepositoryTest {
 
 	@Autowired
 	private PlanRepository planRepository;
@@ -66,18 +68,18 @@ public class ArtefactRepositoryTest {
 
 	@Test
 	@Commit
-	public void verify_findByPlanIdAndFilename() {
+	void verify_findByPlanIdAndFilename() {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		Plan plan = createPlan();
 		planRepository.save(plan);
 
 		Optional<Artefact> artefact = artefactRepository.findByPlanAndFilename(plan.getId(), "image.png");
-		assertTrue(artefact.get().getArtefacttype() == RASTERBASIS);
+		assertEquals(RASTERBASIS, artefact.get().getArtefacttype());
 	}
 
 	@Test
 	@Commit
-	public void verify_findXPlanGmlByPlan() {
+	void verify_findXPlanGmlByPlan() {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		Plan plan = createPlan();
 		planRepository.save(plan);
@@ -88,7 +90,7 @@ public class ArtefactRepositoryTest {
 
 	@Test
 	@Commit
-	public void verify_findAllByPlanId() {
+	void verify_findAllByPlanId() {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		Plan plan = createPlan();
 		planRepository.save(plan);
@@ -99,7 +101,7 @@ public class ArtefactRepositoryTest {
 
 	@Test
 	@Commit
-	public void verify_findAllFileNamesByPlanId() {
+	void verify_findAllFileNamesByPlanId() {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		Plan plan = createPlan();
 		planRepository.save(plan);

@@ -35,7 +35,7 @@ import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.deegree.gml.GMLOutputFactory;
 import org.deegree.gml.GMLStreamWriter;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -57,7 +57,7 @@ public abstract class AbstractXplanSynthesizerTest {
 
 	private AppSchema synSchema;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();

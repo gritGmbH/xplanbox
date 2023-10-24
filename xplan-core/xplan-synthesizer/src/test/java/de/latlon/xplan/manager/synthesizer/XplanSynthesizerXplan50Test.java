@@ -23,26 +23,22 @@ package de.latlon.xplan.manager.synthesizer;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 import org.deegree.feature.FeatureCollection;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.xmlunit.assertj3.XmlAssert;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-@RunWith(JUnitParamsRunner.class)
-public class XplanSynthesizerXplan50Test extends AbstractXplanSynthesizerTest {
+class XplanSynthesizerXplan50Test extends AbstractXplanSynthesizerTest {
 
 	// Contains broken geometrieS: "xplan50/FPlan.zip",
-	@Parameters({ "xplan50/BP2070.zip", "xplan50/BP2135.zip", "xplan50/LA22.zip", "xplan50/LA67.zip" })
-	@Test
-	public void testCreateSynFeatures(String archiveName) throws Exception {
+	@ParameterizedTest(name = "{displayName}[{0}]")
+	@ValueSource(strings = { "xplan50/BP2070.zip", "xplan50/BP2135.zip", "xplan50/LA22.zip", "xplan50/LA67.zip" })
+	void testCreateSynFeatures(String archiveName) throws Exception {
 		XPlanArchive archive = getTestArchive(archiveName);
 		XPlanFeatureCollection originalFeatureCollection = XPlanGmlParserBuilder.newBuilder()
 			.build()
@@ -52,11 +48,13 @@ public class XplanSynthesizerXplan50Test extends AbstractXplanSynthesizerTest {
 		int numberOfOriginalFeatures = originalFeatureCollection.getFeatures().size();
 		int numberOfSynFeatures = synFeatureCollection.size();
 
-		assertThat(numberOfSynFeatures, is(numberOfOriginalFeatures));
+		assertEquals(numberOfOriginalFeatures, numberOfSynFeatures);
 		String synGml = writeSynFeatureCollection(synFeatureCollection);
 
-		assertThat(synGml,
-				hasXPath("count(//xplansyn:rechtscharakter[text() = ''])", is("0")).withNamespaceContext(nsContext()));
+		XmlAssert.assertThat(synGml)
+			.withNamespaceContext(nsContext())
+			.valueByXPath("count(//xplansyn:rechtscharakter[text() = ''])")
+			.isEqualTo(0);
 	}
 
 }

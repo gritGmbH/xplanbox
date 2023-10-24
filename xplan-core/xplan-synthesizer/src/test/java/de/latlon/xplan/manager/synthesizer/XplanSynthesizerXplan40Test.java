@@ -21,15 +21,15 @@
 
 package de.latlon.xplan.manager.synthesizer;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XplanSynthesizerXplan40Test extends AbstractXplanSynthesizerTest {
+class XplanSynthesizerXplan40Test extends AbstractXplanSynthesizerTest {
 
 	@Test
-	public void testBPlan004_40() throws Exception {
+	void testBPlan004_40() throws Exception {
 		createSynFeatures("xplan40/BPlan004_4-0.zip");
 	}
 

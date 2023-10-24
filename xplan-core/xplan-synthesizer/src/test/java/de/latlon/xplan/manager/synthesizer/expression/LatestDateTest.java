@@ -21,43 +21,44 @@
 package de.latlon.xplan.manager.synthesizer.expression;
 
 import de.latlon.xplan.manager.synthesizer.PlanContext;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.property.SimpleProperty;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class LatestDateTest {
+class LatestDateTest {
 
 	@Test
-	public void testEvaluate_Empty() throws Exception {
+	void testEvaluate_Empty() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_51, "Praesentationsobjekte.gml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
 		LatestDate latestDate = new LatestDate(new Xpath("xplan:auslegungsStartDatum"));
 		TypedObjectNode property = latestDate.evaluate(feature, features, planContext);
-		assertThat(property, is(nullValue()));
+		assertNull(property);
 	}
 
 	@Test
-	public void testEvaluate() throws Exception {
+	void testEvaluate() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_51, "MultipleDates.gml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
 		LatestDate latestDate = new LatestDate(new Xpath("xplan:auslegungsStartDatum"));
 		SimpleProperty property = (SimpleProperty) latestDate.evaluate(feature, features, planContext);
-		assertThat(property.getValue().getAsText(), is("1998-01-01"));
+		assertEquals("1998-01-01", property.getValue().getAsText());
 	}
 
 }

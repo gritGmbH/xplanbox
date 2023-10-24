@@ -25,25 +25,27 @@ import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.XplanFlattenProperty;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
-import static org.junit.Assert.assertEquals;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XpTextAbschnittFlattenerTest {
+class XpTextAbschnittFlattenerTest {
 
 	@Test
-	public void testFlattenTexte() throws Exception {
+	void testFlattenTexte() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_51, "flatten/XpTextAbschnittFlattener.xml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
@@ -53,7 +55,7 @@ public class XpTextAbschnittFlattenerTest {
 	}
 
 	@Test
-	public void testFlattenTexte_sorted() throws Exception {
+	void testFlattenTexte_sorted() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_51, "flatten/XpTextAbschnittFlattener.xml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
@@ -63,7 +65,7 @@ public class XpTextAbschnittFlattenerTest {
 	}
 
 	@Test
-	public void testFlattenTexte_refText() throws Exception {
+	void testFlattenTexte_refText() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_51, "flatten/XpTextAbschnittWithRefText.xml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
@@ -75,7 +77,7 @@ public class XpTextAbschnittFlattenerTest {
 	}
 
 	@Test
-	public void testEvaluate() throws Exception {
+	void testEvaluate() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");

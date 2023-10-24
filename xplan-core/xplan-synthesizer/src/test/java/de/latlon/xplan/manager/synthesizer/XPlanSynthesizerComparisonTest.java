@@ -24,8 +24,6 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 import org.apache.commons.io.IOUtils;
 import org.apache.xerces.dom.TextImpl;
 import org.deegree.commons.xml.stax.IndentingXMLStreamWriter;
@@ -34,17 +32,18 @@ import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.GMLStreamWriter;
 import org.deegree.gml.XPlanGmlWriter;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
+import org.xmlunit.assertj3.CompareAssert;
+import org.xmlunit.assertj3.XmlAssert;
 import org.xmlunit.diff.Comparison;
 import org.xmlunit.diff.ComparisonResult;
 import org.xmlunit.diff.ComparisonType;
 import org.xmlunit.diff.DefaultNodeMatcher;
 import org.xmlunit.diff.ElementSelectors;
-import org.xmlunit.matchers.CompareMatcher;
 
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -53,26 +52,23 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-@RunWith(JUnitParamsRunner.class)
-public class XPlanSynthesizerComparisonTest {
+class XPlanSynthesizerComparisonTest {
 
 	private XPlanSynthesizer xPlanSynthesizer;
 
-	@Before
-	public void setup() {
+	@BeforeEach
+	void setup() {
 		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
 		this.xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
 	}
 
-	@Parameters({ "xplan41/BP2070", "xplan41/BP2135", "xplan41/LA22", "xplan41/LA67", "xplan50/BP2070",
+	@ParameterizedTest
+	@ValueSource(strings = { "xplan41/BP2070", "xplan41/BP2135", "xplan41/LA22", "xplan41/LA67", "xplan50/BP2070",
 			"xplan50/BP2135", "xplan50/LA22", "xplan50/LA67", "xplan51/BP2070", "xplan51/BP2135", "xplan51/LA22",
 			"xplan51/LA67", "xplan52/BP2070", "xplan52/BP2135", "xplan52/LA22", "xplan52/LA67" })
-	@Test
 	public void test(String archiveName) throws Exception {
 		XPlanFeatureCollection xplanFc = TestFeaturesUtils.getTestFeatureCollection(archiveName + ".zip");
 		FeatureCollection synthesizedFeatureCollection = xPlanSynthesizer.synthesize(xplanFc.getVersion(), xplanFc);
@@ -81,14 +77,16 @@ public class XPlanSynthesizerComparisonTest {
 		String expectedFeatureCollection = IOUtils.toString(
 				XPlanSynthesizerComparisonTest.class.getResourceAsStream("plans/" + archiveName + ".xml"),
 				StandardCharsets.UTF_8);
-		assertThat(synthesizedFeatures, CompareMatcher.isSimilarTo(expectedFeatureCollection)
+
+		XmlAssert.assertThat(synthesizedFeatures)
+			.and(expectedFeatureCollection)
 			.ignoreWhitespace()
 			.ignoreComments()
 			.ignoreElementContentWhitespace()
 			.withDifferenceEvaluator(
 					(comparison, comparisonResult) -> ignoreGmlIdsAndXpPlanNameAndPrefix(comparison, comparisonResult))
-			.withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byName)));
-
+			.withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byName))
+			.areSimilar();
 	}
 
 	private ComparisonResult ignoreGmlIdsAndXpPlanNameAndPrefix(Comparison comparison,
