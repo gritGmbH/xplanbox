@@ -135,7 +135,7 @@ globals:
     lock_dir: "./cache_data/locks"
     tile_lock_dir: "./cache_data/tile_locks"
     s3:
-      endpoint_url: ${XPLAN_S3_ENDPOINT}
+      endpoint_url: https://${XPLAN_S3_ENDPOINT}
       bucket_name: ${XPLAN_S3_BUCKET_NAME_MAPPROXY_CACHE}
       region_name: ${XPLAN_S3_REGION}
   image:

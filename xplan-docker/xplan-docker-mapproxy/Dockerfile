@@ -1,6 +1,6 @@
 FROM python:3.11.6-slim
 
-ARG MAPPROXY_VERSION=1.16
+ARG MAPPROXY_VERSION=1.16.0
 
 ENV	TZ=Europe/Berlin \
     PATH=/srv/mapproxy/venv/bin:$PATH \
