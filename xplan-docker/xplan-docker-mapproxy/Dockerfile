@@ -1,6 +1,17 @@
-FROM python:3.11.6-slim
+FROM python:3.10-slim
 
 ARG MAPPROXY_VERSION=1.16.0
+
+LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
+	"org.opencontainers.image.description"="ozgxplanung xPlanBox component" \
+	"org.opencontainers.image.licenses"="GNU Affero General Public License & others" \
+	"org.opencontainers.image.ref.name"="$DOCKER_IMAGE_NAME" \
+	"org.opencontainers.image.revision"="$GIT_REVISION" \
+	"org.opencontainers.image.title"="ozgxplanung - $DOCKER_IMAGE_NAME" \
+	"org.opencontainers.image.url"="https://gitlab.opencode.de/diplanung/ozgxplanung" \
+	"org.opencontainers.image.vendor"="lat/lon GmbH" \
+	"org.opencontainers.image.version"="$XPLANBOX_VERSION" \
+	"maintainer"=""
 
 ENV	TZ=Europe/Berlin \
     PATH=/srv/mapproxy/venv/bin:$PATH \
@@ -12,8 +23,7 @@ ENV	TZ=Europe/Berlin \
     XPLAN_MAPPROXY_SOURCES_LOGLEVEL=INFO
 
 RUN apt update && apt -y install --no-install-recommends \
-    uwsgi \
-    uwsgi-plugin-python3 \
+    gcc \
     python3-venv \
     libgdal-dev \
     libgeos-dev \
@@ -22,7 +32,7 @@ RUN apt update && apt -y install --no-install-recommends \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     python -m venv --system-site-packages /srv/mapproxy/venv && \
-    pip install mapproxy==$MAPPROXY_VERSION pyproj pillow pyyaml boto3 shapely && \
+    pip install mapproxy==$MAPPROXY_VERSION uwsgi pyproj pillow pyyaml boto3 shapely && \
     pip cache purge && \
     addgroup --gid 1001 mapproxy && \
     adduser --uid 1001 --shell /bin/false --gid 1001 --no-create-home --disabled-login mapproxy && \
