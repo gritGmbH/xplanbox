@@ -9,7 +9,7 @@
 - Zugriff auf externe Schemas für die syntaktische Validierung nicht mehr erforderlich
 
 ==== Fehlerbehebungen
-- Fehler beim Aufruf des Kommandozeilentools __artefactsTableUpdate__ bei Aktualisierung eines größeren Datenbestands behoben (OutOfMemory-Error)
+- Fehler beim Aufruf des Kommandozeilentools XPlanUpdateDataCLI bei Aktualisierung eines größeren Datenbestands behoben (OutOfMemory-Error)
 - Fehlendes SQL-Statement für das initiale Aufsetzen der XPlanDB ergänzt
 - Korrekturen im Betriebshandbuch für die MapServer Installation vorgenommen
 
