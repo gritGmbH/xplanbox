@@ -2,16 +2,16 @@
 === Installation und Konfiguration von GDAL
 
 Die xPlanBox unterstützt die Darstellung von Rasterdaten über die GDAL-Bibliothek.
-Die GDAL Unterstützung ist optional, die Konfiguration im XPlanManagerWeb und XPlanManagerAPI ist im Abschnitt <<konfiguration-gdal>> beschrieben.
+Die GDAL-Unterstützung ist optional, die Konfiguration im XPlanManagerWeb und XPlanManagerAPI ist im Abschnitt <<konfiguration-gdal>> beschrieben.
+
+Es muss die GDAL-Bibliothek und die dazugehörige JNI-Schnittstelle installiert werden.
 
 IMPORTANT: Der Zugriff auf die GDAL-Bibliothek erfolgt über die Schnittstelle Java Native Interface (JNI). Je JVM kann die GDAL-Bibliothek nur einmal geladen werden. Deswegen muss jede Webapp der xPlanBox, die GDAL verwendet (`xplan-wms` und `xplan-manager-web`), in einer separaten Tomcat-Instanz installiert werden.
 
 [[installation-gdal-linux]]
 ==== Linux
 
-Es muss GDAL 3.0 plus die dazugehörige JNI-Schnittstelle installiert werden.
-
-Damit GDAL über die JNI-Schnittstelle angesprochen werden kann, muss die
+Damit GDAL über die JNI-Schnittstelle unter Linux angesprochen werden kann, muss die
 Umgebungsvariable zur GDAL-Bibliothek gesetzt werden, z. B.:
 
 ----
@@ -24,19 +24,17 @@ zeigen, in dem sich die Datei _libgdaljni.so_ befindet.
 [[installation-gdal-windows]]
 ==== Windows
 
-GDAL 3.0 für Windows kann bei https://www.gisinternals.com/[GISInternals]
-heruntergeladen werden. Die Version 3.0 befindet sich
-unter "Older Releases". Die Architektur der GDAL-Bibliothek (32bit
+Die GDAL-Bibliothek für Windows kann bei https://www.gisinternals.com/[GISInternals]
+heruntergeladen werden. Die Architektur der GDAL-Bibliothek (32bit
 oder 64bit) muss der Architektur von Java und dem Betriebssystem
 http://windows.microsoft.com/de-de/windows/32-bit-and-64-bit-windows[Windows]
-entsprechen. Bei den Downloads sollten die kompilierten Binaries in
-einem einzelnen ZIP-Archiv gewählt werden (oberster Link).
+entsprechen. Als Download-Format sollten die kompilierten Binaries in
+einem einzelnen ZIP-Archiv gewählt werden.
 
 NOTE: Die MSVC-Version mit der GDAL kompiliert wurde, setzt die jeweilige
 Version des Microsoft C/C++ Runtime Library (CRT) voraus. Ab der Version
 MSVC 11.0 (1700) werden Windows XP and Windows Server 2003 nicht mehr
-unterstützt. Die Version des Microsoft C/C++ Runtime Library (CRT) kann mit
-dem Befehl `cl` abgefragt oder über die Windows Systemsteuerung angezeigt werden.
+unterstützt. Die Version des Microsoft C/C++ Runtime Library (CRT) kann über die Windows Systemsteuerung angezeigt werden.
 
 Das ZIP-Archiv kann an einem beliebigen Ort entpackt werden.
 
