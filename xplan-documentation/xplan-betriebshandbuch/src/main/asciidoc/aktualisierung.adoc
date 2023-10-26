@@ -132,7 +132,6 @@ Folgende Verzeichnisse des neuen _xplansyn-wms-workspace_ müssen in die bestehe
 
 IMPORTANT: Im Verzeichnis _themes/_ nicht die Dateien, die auf _raster.xml_ enden, ersetzen!
 
-
 [[aktualisierung-der-schemas]]
 === Aktualisierung der Datenbank XPlanDB
 
@@ -159,16 +158,13 @@ NOTE: Manuelle Änderungen an den Datenbank-Schemata können die fehlerfreie Aus
 [[aktualisierung-der-daten]]
 === Aktualisierung der Daten
 
-IMPORTANT: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen. Wenn dies nicht notwendig ist, kann die Datenbank XPlanDB neu aufgesetzt werden (siehe Kapitel <<konfiguration-der-datenbank>>).
+IMPORTANT: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in die XPlanDB importierten Daten beibehalten werden sollen. Wenn dies nicht notwendig ist, kann die Datenbank XPlanDB neu aufgesetzt werden (siehe Kapitel <<konfiguration-der-datenbank>>).
 
-Zur Aktualisierung der Daten stehen Kommandozeilenwerkzeuge im XPlanUpdateDataCLI zur Verfügung. Diese müssen nacheinander ausgeführt werden:
-- _artefactsTableUpdate_
-- _bereichUpdate_
-- _destrictUpdate_
-- _reSynthesizer_
+Zur Aktualisierung der Daten stehen Kommandozeilenwerkzeuge im XPlanUpdateDataCLI zur Verfügung. Nach einer Aktualisierung der xPlanBox muss folgendes Tool ausgeführt werden:
+
+. _reSynthesizer_
 
 Weitere Informationen zu den Tools stehen im Kapitel <<kommandozeilen-anwendungen>>.
-
 
 [[aktualisierung-version-6.0]]
 === Aktualisierung auf die Version 6.0 der xPlanBox
