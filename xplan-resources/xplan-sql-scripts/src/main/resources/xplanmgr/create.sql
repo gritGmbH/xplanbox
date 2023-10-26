@@ -57,6 +57,8 @@ COMMENT ON TABLE features IS 'Feature ids for plans';
 
 CREATE TYPE artefacttype AS ENUM ('XPLANGML', 'RASTERBASIS');
 
+CREATE CAST (varchar AS xplanmgr.artefacttype) WITH INOUT AS IMPLICIT;
+
 CREATE TABLE artefacts (
     plan integer references plans ON DELETE CASCADE,
     filename text NOT NULL,

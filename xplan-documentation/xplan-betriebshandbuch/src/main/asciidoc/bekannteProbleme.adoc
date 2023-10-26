@@ -50,11 +50,12 @@ Tritt bei Aufruf des XPlanManagerCLI der Fehler `java.lang.UnsatisfiedLinkError:
 
 * Ist das Rasterdatenformat *GeoTIFF* für die Datenhaltung des XPlanWMS über den Eintrag `rasterConfigurationType=geotiff` konfiguriert, müssen folgenden Dateien aus dem _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/_ gelöscht werden:
 
-** datasources/tile/dummy.ignore
-** datasources/tile/tilematrixset/dummy.ignore
-** layers/dummyrasterlayer.ignore
+** _datasources/tile/dummy.ignore_
+** _datasources/tile/tilematrixset/dummy.ignore_
+** _layers/dummyrasterlayer.ignore_
+** _gdal.ignore_
 
-* Ist das Rasterdatenformat *GDAL* für die Datenhaltung des XPlanWMS über den Eintrag `rasterConfigurationType=gdal` konfiguriert, muss die Installation der GDAL-Bibliothek wie im Abschnitt <<installation-gdal>> beschrieben erfolgen.
+* Ist das Rasterdatenformat *GDAL* für die Datenhaltung des XPlanWMS über den Eintrag `rasterConfigurationType=gdal` konfiguriert, muss die Installation und Konfiguration der GDAL-Bibliothek wie im Abschnitt <<installation-gdal>> beschrieben erfolgen.
 
 [[troubleshooting-resources]]
 === Kapazitätsbezogene Einschränkungen
