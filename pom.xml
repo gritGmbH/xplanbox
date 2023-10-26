@@ -44,6 +44,11 @@
     <build.key /> <!-- can be set by build job -->
     <build-date-utc>${maven.build.timestamp}Z</build-date-utc>
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+    <dependency-check.skip>true</dependency-check.skip>
+    <distribution.repo.id>gitlab-maven</distribution.repo.id>
+    <distribution.repo.url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</distribution.repo.url>
+    <distribution.snapshotRepo.id>gitlab-maven</distribution.snapshotRepo.id>
+    <distribution.snapshotRepo.url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</distribution.snapshotRepo.url>
   </properties>
 
   <modules>
@@ -216,6 +221,7 @@
       <id>docker</id>
       <properties>
         <docker-image.skip>true</docker-image.skip>
+        <docker-image.skip-sources>${docker-image.skip}</docker-image.skip-sources>
         <docker-image.namePrefix>xplanbox</docker-image.namePrefix>
         <docker-image.name>${project.artifactId}</docker-image.name>
       </properties>
@@ -253,10 +259,19 @@
               </configuration>
               <executions>
                 <execution>
+                  <id>context-sources</id>
+                  <goals>
+                    <goal>source</goal>
+                  </goals>
+                  <configuration>
+                    <skip>${docker-image.skip-sources}</skip>
+                  </configuration>
+                </execution>
+                <execution>
+                  <id>default</id>
                   <goals>
                     <goal>build</goal>
                     <goal>push</goal>
-                    <goal>source</goal>
                   </goals>
                 </execution>
               </executions>
@@ -270,19 +285,6 @@
           </plugin>
         </plugins>
       </build>
-    </profile>
-    <profile>
-      <id>latlon</id>
-      <distributionManagement>
-        <repository>
-          <id>latlon-deploy</id>
-          <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
-        </repository>
-        <snapshotRepository>
-          <id>latlon-deploy</id>
-          <url>https://repo.lat-lon.de/repository/xplanbox-snapshots/</url>
-        </snapshotRepository>
-      </distributionManagement>
     </profile>
     <profile>
       <id>skipAll</id>
@@ -1642,14 +1644,15 @@
     </pluginRepository>
   </pluginRepositories>
 
+
   <distributionManagement>
     <repository>
-      <id>gitlab-maven</id>
-      <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+      <id>${distribution.repo.id}</id>
+      <url>${distribution.repo.url}</url>
     </repository>
     <snapshotRepository>
-      <id>gitlab-maven</id>
-      <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+      <id>${distribution.snapshotRepo.id}</id>
+      <url>${distribution.snapshotRepo.url}</url>
     </snapshotRepository>
   </distributionManagement>
 
