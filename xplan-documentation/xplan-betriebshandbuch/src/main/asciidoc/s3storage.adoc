@@ -10,7 +10,7 @@ Rasterdaten können im Objektspeicher von AWS S3 gespeichert und über den MapSe
 
 Dazu müssen in der Konfiguration für <<konfiguration-xplanwms-mapserver,MapServer>> und <<konfiguration-manager-mapserver,XPlanManager>> die Verbindungsdaten für das AWS S3-API angegeben werden. Für den MapServer steht in dem Distributionspaket _xplan-mapserver-config-<VERSION>.zip_ eine Konfigurationsdatei _mapserver.map_ bereit. In dieser Datei müssen die Angaben für `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_S3_ENDPOINT` (siehe https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html[AWS CLI Umgebungsvariablen]) angepasst werden.
 
-TIP: Weitere Informationen zur Konfiguration des https://aws.amazon.com/de/s3/[S3] Objekspeichers im MapServer https://mapserver.org/mapfile/map.html[Mapfile] und https://gdal.org/user/virtual_file_systems.html[GDAL Virtual File Systems].
+TIP: Weitere Informationen zur Konfiguration des https://aws.amazon.com/de/s3/[S3] Objektspeichers im MapServer https://mapserver.org/mapfile/map.html[Mapfile] und https://gdal.org/user/virtual_file_systems.html[GDAL Virtual File Systems].
 
 Für den XPlanManager müssen die Angaben für den S3-Objektspeicher über Umgebungsvariablen gesetzt werden:
 

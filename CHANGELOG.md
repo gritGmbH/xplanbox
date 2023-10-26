@@ -2,6 +2,16 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+## Version 7.0.2 (2023-10-26)
+
+### Erweiterungen
+- Zugriff auf externe Schemas für die syntaktische Validierung nicht mehr erforderlich
+
+### Fehlerbehebungen
+- Fehler beim Aufruf des Kommandozeilentools XPlanUpdateDataCLI bei Aktualisierung eines größeren Datenbestands behoben (OutOfMemory-Error)
+- Fehlendes SQL-Statement für das initiale Aufsetzen der XPlanDB ergänzt
+- Korrekturen im Betriebshandbuch für die MapServer Installation vorgenommen
+
 ## Version 7.0.1 (2023-10-05)
 
 ### Erweiterungen
@@ -19,7 +29,6 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 - Fehlermeldung im XPlanValidator bei der Validierung von XPlanArchiven (ZIP-Datei) verbessert
 - Fehler im XPlanManagerCLI, XPlanTransformCLI und XPlanUpdateDataCLI bei der Ermittlung des Konfigurationsverzeichnisses _etc/_ bei der Auswertung der Konfigurationsdatei _managerConfiguration.properties_ behoben
 - Korrekturen im Betriebshandbuch für die Kommandozeilenprogramme (CLI) vorgenommen
-
 
 ## Version 7.0 (2023-08-16)
 

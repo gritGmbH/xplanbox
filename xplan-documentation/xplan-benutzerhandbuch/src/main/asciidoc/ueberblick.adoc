@@ -17,7 +17,7 @@ folgenden Komponenten:
  * <<xplanvalidator,XPlanValidator>>: Komponente zur Validierung von Daten des Standards XPlanung
  * <<xplanmanager,XPlanManager>>: Komponente zur Verwaltung von Daten des Standards XPlanung
  * <<xplanwms,XPlanWMS>>: Standard-Kartendienst (WMS) für die Auskunft
- * <<xplanwfs,XPlanWFS>>: Standard-Datendienst (WFS) für die Auskunft (originale XPlanGML-Datenstruktur)
+ * <<xplanwfs,XPlanWFS>>: Standard-Datendienst (WFS) für die Auskunft (XPlanGML-konforme Datenstruktur)
  * <<xplansynwfs,XPlanSynWFS>>: Standard-Datendienst (WFS) für die Auskunft (vereinfachte Datenstruktur)
  * <<xplandokumenten-api, XPlanDokumentenAPI>>: Optionale Komponente für den Zugriff auf Dokumente aus einem <<xplanarchiv, XPlanArchiv>>
  * <<xplantransform-cli, XPlanTransformCLI>>: Kommandozeilenwerkzeug für die Transformation von Plänen
