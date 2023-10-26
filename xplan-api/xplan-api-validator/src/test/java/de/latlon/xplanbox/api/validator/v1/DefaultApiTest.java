@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import javax.servlet.ServletContext;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
@@ -37,18 +38,22 @@ import org.glassfish.jersey.test.TestProperties;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.mockito.Mockito;
+import org.springframework.boot.test.json.BasicJsonTester;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import de.latlon.xplan.commons.configuration.DefaultPropertiesLoader;
 import de.latlon.xplanbox.api.validator.config.ApplicationContext;
-import de.latlon.xplanbox.api.validator.config.TestContext;
+import de.latlon.xplanbox.api.validator.config.JerseyConfig;
+import de.latlon.xplanbox.api.validator.config.ValidatorApiConfiguration;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
-public class DefaultApiTest extends JerseyTest {
+class DefaultApiTest extends JerseyTest {
 
 	@TempDir
-	public static Path tempFolder;
+	static Path tempFolder;
 
 	@BeforeAll
 	static void setupFakedWorkspace() throws IOException {
@@ -60,9 +65,20 @@ public class DefaultApiTest extends JerseyTest {
 	@Override
 	protected Application configure() {
 		enable(TestProperties.LOG_TRAFFIC);
-		final ResourceConfig resourceConfig = new ResourceConfig(DefaultApi.class);
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class,
-				TestContext.class);
+
+		ResourceConfig resourceConfig;
+		ServletContext mockServletContext = Mockito.mock(ServletContext.class);
+		Mockito.when(mockServletContext.getContextPath()).thenReturn("");
+
+		try {
+			ValidatorApiConfiguration validatorConfig = new ValidatorApiConfiguration(
+					new DefaultPropertiesLoader(getClass()));
+			resourceConfig = new JerseyConfig(mockServletContext, validatorConfig);
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class);
 		resourceConfig.property("contextConfig", context);
 		return resourceConfig;
 	}
@@ -79,7 +95,43 @@ public class DefaultApiTest extends JerseyTest {
 	void verifyThat_Response_ContainsOpenApiDocument() {
 		final String response = target("/").request(APPLICATION_JSON).get(String.class);
 
-		assertThat(response).contains("\"openapi\":\"3.0.1\"");
+		BasicJsonTester json = new BasicJsonTester(getClass());
+		assertThat(json.from(response)).extractingJsonPathStringValue("$.openapi").isEqualTo("3.0.1");
+	}
+
+	@Test
+	void verifyThat_Response_ContainsLicence() {
+		final String response = target("/").request(APPLICATION_JSON).get(String.class);
+
+		BasicJsonTester json = new BasicJsonTester(getClass());
+		assertThat(json.from(response)).extractingJsonPathStringValue("$.info.license.name").isEqualTo("Apache 2.0");
+	}
+
+	@Test
+	void verifyThat_Response_Paths() {
+		final String response = target("/").request(APPLICATION_JSON).get(String.class);
+
+		BasicJsonTester json = new BasicJsonTester(getClass());
+		assertThat(json.from(response)).extractingJsonPathMapValue("$.paths")
+			.containsOnlyKeys("/", "/info", "/validate");
+	}
+
+	@Test
+	void verifyThat_Response_ContainsTermsOfService() {
+		final String response = target("/").request(APPLICATION_JSON).get(String.class);
+
+		BasicJsonTester json = new BasicJsonTester(getClass());
+		assertThat(json.from(response)).extractingJsonPathStringValue("$.info.termsOfService")
+			.isEqualTo("http://xplanbox/api-validator/terms");
+	}
+
+	@Test
+	void verifyThat_Response_ContainsServersUrl() {
+		final String response = target("/").request(APPLICATION_JSON).get(String.class);
+
+		BasicJsonTester json = new BasicJsonTester(getClass());
+		assertThat(json.from(response)).extractingJsonPathStringValue("$.servers[0].url")
+			.isEqualTo("http://xplanbox-api-validator/xvalidator/api/v1");
 	}
 
 }

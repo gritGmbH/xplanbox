@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -38,6 +38,7 @@ import org.glassfish.jersey.test.TestProperties;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.springframework.boot.test.json.BasicJsonTester;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import de.latlon.xplanbox.api.validator.config.ApplicationContext;
@@ -46,7 +47,7 @@ import de.latlon.xplanbox.api.validator.config.TestContext;
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
-public class InfoApiTest extends JerseyTest {
+class InfoApiTest extends JerseyTest {
 
 	@TempDir
 	public static Path tempFolder;
@@ -74,6 +75,11 @@ public class InfoApiTest extends JerseyTest {
 
 		assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
 		assertEquals(APPLICATION_JSON, response.getHeaderString(HttpHeaders.CONTENT_TYPE));
+
+		BasicJsonTester json = new BasicJsonTester(getClass());
+		assertThat(json.from(response.readEntity(String.class))).extractingJsonPathStringValue("$.rulesMetadata.source")
+			.startsWith("https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard/-/tree/");
+
 	}
 
 	@Test
