@@ -103,7 +103,7 @@ Die folgende Übersicht der Verzeichnisstruktur und der darin enthaltenen Dateie
 <2> Im Verzeichnis _data/_ werden die Rasterdaten (PNG oder GeoTIFF) aus dem XPlanArchiv abgelegt.
 <3> Im Verzeichnis _datasources/tile/_ werden zu jeder Konfigurationsdatei aus <4> durch den XPlanManager Konfigurationsdateien nach dem Muster __<planId>_<rasterdatei>.xml__ automatisch erzeugt.
 <4> Im Verzeichnis _datasources/tile/tilematrixset/_ werden zu jeder Rasterdatei aus <2> durch den <<xplanmanager-web, XPlanManager>> Konfigurationsdateien nach dem Muster __<planId>_<rasterdatei>.xml__ automatisch erzeugt.
-<5> Die Datei _gdal.ignore_ ist nur erforderlich, wenn kein <<konfiguration-gdal, GDAL>> verwendet wird. Wird GDAL verwendet, dann muss die Konfigurationsdatei _gdal.xml_ angelegt werden.
+<5> Die Datei _gdal.ignore_ kann gelöscht werden, wenn kein <<konfiguration-gdal, GDAL>> verwendet wird. Wird GDAL verwendet, dann muss die Konfigurationsdatei in _gdal.xml_ umbenannt werden.
 <6> Im Verzeichnis _jdbc/_ liegt die Konfigurationsdatei mit der Datenbankverbindung zur <<XPlanDB>>.
 <7> Im Verzeichnis _layers/_ werden zu jeder Rasterdatei durch den <<xplanmanager-web, XPlanManager>> eine Konfigurationsdatei passend zu <3> nach dem Muster __<planId>_<rasterdatei>.xml__ automatisch erzeugt.
 <8> Im Verzeichnis _legends/_ liegen die Legendensymbole.
