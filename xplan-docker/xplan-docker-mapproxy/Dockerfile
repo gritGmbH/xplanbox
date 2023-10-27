@@ -1,6 +1,10 @@
 FROM python:3.10-slim
 
 ARG MAPPROXY_VERSION=1.16.0
+ARG BUILD_DATE=?
+ARG DOCKER_IMAGE_NAME=?
+ARG GIT_REVISION=?
+ARG XPLANBOX_VERSION=latest
 
 LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.description"="ozgxplanung xPlanBox component" \
