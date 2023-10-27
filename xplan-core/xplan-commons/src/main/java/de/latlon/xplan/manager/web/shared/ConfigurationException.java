@@ -21,10 +21,9 @@
 package de.latlon.xplan.manager.web.shared;
 
 /**
- * Indicates, that an configuration exception occurred.
+ * Indicates that a configuration exception occurred.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @version $Revision: $, $Date: $
  */
 public class ConfigurationException extends Exception {
 

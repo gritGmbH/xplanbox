@@ -55,7 +55,7 @@ Die Dokumentation zur Anwendung liegt im Asciidoc-Format vor und sowohl das Benu
 
 ### Entwicklerdokumentation
 
-Für die Erstellung der ausführbaren Binärdateien ist ein [JDK 11](https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot) und das Werkzeug [Apache Maven 3.8](https://maven.apache.org/) erforderlich.
+Für die Erstellung der ausführbaren Binärdateien ist ein [JDK 11](https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot) und das Werkzeug [Apache Maven 3.9](https://maven.apache.org/) erforderlich.
 
 #### Installation und Konfiguration von Maven. 
 
@@ -65,15 +65,15 @@ Weitere Informationen zur Konfiguration von Maven finden Sie in der [Referenzdok
 
 #### deegree erstellen
 
-Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.com/lat-lon/deegree3/tree/xplanbox-deegree3.5) kompiliert werden. Dazu muss die passende Version von deegree ausgewählt werden. Für Version 6.0 der Anwendung muss deegree **Version 3.5-PRE1** verwendet werden:
+Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.com/lat-lon/deegree3/tree/xplanbox-deegree3.5) kompiliert werden. Dazu muss die passende Version von deegree ausgewählt werden. Für Version 7.0+ der Anwendung muss deegree **Version 3.5.0.2** verwendet werden:
 
 ```shell
 git clone https://github.com/lat-lon/deegree3.git
 cd deegree3
-git checkout tags/xplanbox-deegree-3.5-PRE1
+git checkout tags/xplanbox-deegree-3.5.0.2
 mvn clean install
 ```
-> **_Hinweis_**: Aktuell kann noch nicht eine offizielle Release-Version von deegree verwendet werden, da diese bisher nur unter Java 1.8 ausführbar sind. Der Quellcode für diese Anwendung erfordert aber Java 11! Sobald eine Version von deegree mit Unterstützung von Java 11 verfügbar ist, entfällt dieser Schritt.
+> **_Hinweis_**: Aktuell kann noch nicht eine offizielle Release-Version von deegree verwendet werden, da für das Fachdatenschema XPlanung noch spezifische Erweiterungen an deegree vorgenommen wurden. Sobald eine Version von deegree mit Unterstützung dieser Erweiterungen verfügbar ist, entfällt dieser Schritt.
 
 > **_Hinweis_**: Unter dem Betriebssystem Windows kann es bei der Ausführung von Unit-Test zu Fehlern kommen. Es kann dann erforderlich sein, die Tests zu überspringen. Dazu ist die Option `-DskipTests` beim Aufruf von Maven zu ergänzen.
 

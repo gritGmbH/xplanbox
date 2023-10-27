@@ -20,31 +20,29 @@
  */
 package de.latlon.xplanbox.api.manager.v1;
 
-import de.latlon.xplan.core.manager.db.config.JpaContext;
-import de.latlon.xplanbox.api.manager.config.ApplicationContext;
-import de.latlon.xplanbox.api.manager.config.HsqlJpaContext;
-import de.latlon.xplanbox.api.manager.config.TestContext;
-import org.apache.http.HttpHeaders;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.test.JerseyTest;
-import org.glassfish.jersey.test.TestProperties;
-import org.hamcrest.MatcherAssert;
-import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
+import org.apache.http.HttpHeaders;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
+import org.glassfish.jersey.test.TestProperties;
+import org.junit.jupiter.api.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import de.latlon.xplan.core.manager.db.config.JpaContext;
+import de.latlon.xplanbox.api.manager.config.ApplicationContext;
+import de.latlon.xplanbox.api.manager.config.HsqlJpaContext;
+import de.latlon.xplanbox.api.manager.config.TestContext;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
-public class InfoApiTest extends JerseyTest {
+class InfoApiTest extends JerseyTest {
 
 	@Override
 	protected Application configure() {
@@ -57,7 +55,7 @@ public class InfoApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
+	void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
 		final Response response = target("/info").request(APPLICATION_JSON).get();
 
 		assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
@@ -65,11 +63,11 @@ public class InfoApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsSupportedXplanGmlVersionsAndNotProfiles() {
+	void verifyThat_Response_ContainsSupportedXplanGmlVersionsAndNotProfiles() {
 		final String response = target("/info").request(APPLICATION_JSON).get(String.class);
 
-		assertThat(response, containsString("supportedXPlanGmlVersions"));
-		MatcherAssert.assertThat(response, not(containsString("profiles")));
+		assertThat(response).contains("supportedXPlanGmlVersions");
+		assertThat(response).doesNotContain("profiles");
 	}
 
 }

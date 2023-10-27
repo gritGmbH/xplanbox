@@ -1,6 +1,21 @@
 FROM ubuntu:focal
+ARG TOMCAT_VERSION="9.0.80"
+ARG BUILD_DATE=?
+ARG DOCKER_IMAGE_NAME=?
+ARG GIT_REVISION=?
+ARG XPLANBOX_VERSION=latest
 
-ARG TOMCAT_VERSION="9.0.78"
+# see https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
+LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
+	"org.opencontainers.image.description"="ozgxplanung xPlanBox component" \
+	"org.opencontainers.image.licenses"="GNU Affero General Public License & others" \
+	"org.opencontainers.image.ref.name"="$DOCKER_IMAGE_NAME" \
+	"org.opencontainers.image.revision"="$GIT_REVISION" \
+	"org.opencontainers.image.title"="ozgxplanung - $DOCKER_IMAGE_NAME" \
+	"org.opencontainers.image.url"="https://gitlab.opencode.de/diplanung/ozgxplanung" \
+	"org.opencontainers.image.vendor"="lat/lon GmbH" \
+	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
+
 # set environment variables
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 

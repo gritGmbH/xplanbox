@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-api</artifactId>
-    <version>7.1-SNAPSHOT</version>
+    <version>7.0.2</version>
   </parent>
 
   <build>
@@ -205,7 +205,7 @@
       <groupId>org.slf4j</groupId>
       <artifactId>jul-to-slf4j</artifactId>
     </dependency>
-      <dependency>
+    <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
     </dependency>
@@ -213,11 +213,11 @@
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-slf4j-impl</artifactId>
     </dependency>
-    <!-- test -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-layout-template-json</artifactId>
     </dependency>
+    <!-- test -->
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
@@ -227,11 +227,33 @@
       <artifactId>jersey-test-framework-core</artifactId>
       <version>${jersey.version}</version>
       <scope>test</scope>
+      <exclusions>
+      	<exclusion>
+      		<groupId>junit</groupId>
+      		<artifactId>junit</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.test-framework.providers</groupId>
       <artifactId>jersey-test-framework-provider-inmemory</artifactId>
       <version>${jersey.version}</version>
+      <scope>test</scope>
+      <exclusions>
+      	<exclusion>
+      		<groupId>junit</groupId>
+      		<artifactId>junit</artifactId>
+      	</exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -282,6 +304,11 @@
           <artifactId>xplan-docker-tomcat</artifactId>
           <version>${project.version}</version>
           <type>pom</type>
+        </dependency>
+        <!-- Profiles -->
+        <dependency>
+          <groupId>de.xleitstelle.xplanung</groupId>
+          <artifactId>regeln-berlin</artifactId>
         </dependency>
       </dependencies>
     </profile>

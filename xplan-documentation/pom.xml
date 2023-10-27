@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplanbox</artifactId>
-    <version>7.1-SNAPSHOT</version>
+    <version>7.0.2</version>
   </parent>
 
   <properties>
@@ -36,6 +36,12 @@
                 <revnumber>${project.version}</revnumber>
                 <revdate>${maven.build.timestamp}</revdate>
               </attributes>
+              <logHandler>
+                <failIf>
+                  <severity>INFO</severity>
+                </failIf>
+              </logHandler>
+              <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
               <sourceDocumentName>index.adoc</sourceDocumentName>
               <outputDirectory>target/html</outputDirectory>
             </configuration>
@@ -52,6 +58,12 @@
                 <revnumber>${project.version}</revnumber>
                 <revdate>${maven.build.timestamp}</revdate>
               </attributes>
+              <logHandler>
+                <failIf>
+                  <severity>INFO</severity>
+                </failIf>
+              </logHandler>
+              <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
               <sourceDocumentName>index.adoc</sourceDocumentName>
               <outputDirectory>target/pdf</outputDirectory>
             </configuration>

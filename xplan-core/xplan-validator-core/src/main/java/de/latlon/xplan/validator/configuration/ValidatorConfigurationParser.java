@@ -135,7 +135,7 @@ public class ValidatorConfigurationParser {
 		if (profileDirectory != null && Files.exists(profileDirectory)) {
 			List<Path> profileConfigs = Files.find(profileDirectory, 1, (path, basicFileAttributes) -> {
 				File file = path.toFile();
-				return file.isFile() && file.getName().endsWith("yaml");
+				return file.isFile() && (file.getName().endsWith("yaml") || file.getName().endsWith("yml"));
 			}).collect(Collectors.toList());
 			for (Path profileConfig : profileConfigs) {
 				List<ValidatorProfile> profiles = parseProfiles(profileConfig);

@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplanbox</artifactId>
-    <version>7.1-SNAPSHOT</version>
+    <version>7.0.2</version>
   </parent>
 
   <modules>
@@ -39,6 +39,10 @@
               <id>create-overlay</id>
               <groupId>de.latlon</groupId>
               <artifactId>deegree-webservices</artifactId>
+              <excludes>
+                <exclude>META-INF/MANIFEST.MF</exclude>
+                <exclude>WEB-INF/classes/log4j2.properties</exclude>
+              </excludes>
             </overlay>
           </overlays>
           <webResources>

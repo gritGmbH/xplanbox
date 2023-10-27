@@ -15,7 +15,7 @@
           <gml:upperCorner>563567.498 5929359.862</gml:upperCorner>
         </gml:Envelope>
       </gml:boundedBy>
-      <xplan:name>Original60_test(1Aend)</xplan:name>
+      <xplan:name>Original60_test(1Aend)_SoapUI-XPlanValidatorAPI</xplan:name>
       <xplan:beschreibung>test</xplan:beschreibung>      
       <xplan:erstellungsMassstab>1000</xplan:erstellungsMassstab>
       <xplan:raeumlicherGeltungsbereich>

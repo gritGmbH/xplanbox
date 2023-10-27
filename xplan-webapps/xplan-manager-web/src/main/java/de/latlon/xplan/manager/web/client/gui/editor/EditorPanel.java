@@ -54,7 +54,7 @@ import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.BP_Plan;
-import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
+import static de.latlon.xplan.manager.web.client.gui.utils.ValidationUtils.areComponentsValid;
 import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
 
 /**

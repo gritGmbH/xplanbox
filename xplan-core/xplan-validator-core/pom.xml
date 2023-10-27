@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-core</artifactId>
-    <version>7.1-SNAPSHOT</version>
+    <version>7.0.2</version>
   </parent>
 
   <build>
@@ -230,6 +230,11 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>de.xleitstelle.xplanung</groupId>
+      <artifactId>regeln</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 

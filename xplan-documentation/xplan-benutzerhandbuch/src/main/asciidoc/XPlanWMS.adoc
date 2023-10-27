@@ -3,6 +3,11 @@
 
 Der XPlanWMS, XPlanArtWMS und XPlanWerkWMS basieren auf der Open Source Software http://www.deegree.org[deegree] und sind zu dem Standard Web Map Service (Version 1.1.1 und 1.3.0) des Open Geospatial Consortium (OGC) konforme Kartendienste. Diese bieten die Möglichkeit Visualisierungen von Plandaten sowie Sachinformationsabfragen zu einzelnen Planinhalten abzufragen.
 
+[[xplanwms-inhalte-des-kartendienstes]]
+=== Inhalte des Kartendienstes
+
+Der XPlanWMS dient der Darstellung aller importierten XPlanArchive, während der XPlanWerkWMS einzelne Planwerke visualisiert. Die Datenquelle beider Dienste basiert auf den über den XPlanManager importierten Planwerken. Für jede Objektart aus den unterstützten XPlanGML-Applikationsschema, das Geometrie-Attribute enthält, existiert eine entsprechende Ebene im XPlanWMS und XPlanWerkWMS. Zusätzlich zu den aus dem XPlanGML abgeleiteten Ebenen stellen beide Dienste Ebenen zur Darstellung von gescannten Rasterplan-Dateien bereit.
+
 Während der XPlanWMS die Inhalte planübergreifend dargestellt, visualisiert der XPlanWerkWMS genau ein einzelnes Planwerk. Der XPlanWMS stellt genau einen Endpunkt mit allen Planwerken bereit, der XPlanWerkWMS je einen Endpunkt pro importiertem Plan. Der XPlanArtWMS stellt je einen Endpunkt für jede Planart wie z. B. BPlan oder FPlan zur Verfügung.
 
 [[xplanwms-benutzung-des-xplanwms]]
@@ -28,7 +33,7 @@ Die folgende Tabelle gibt einen Überblick über die zur Verfügung stehenden Op
 http://<host>:<port>/xplan-wms/services/wms?
 ----
 
-[[xplanwms-beispielanfragen]]
+[[xplanwms-adresse-xplanwerkwms]]
 ==== Adresse des XPlanWerkWMS
 
 Die Adresse des XPlanWerkWMS ist abhängig von dem Planwerk das angefragt werden soll. Der Name des Plans wird im XPlanManager (s. <<xplanmanager-web>>) in der Auflistung der Pläne angezeigt und in der URL für den Platzhalter <PLANNAME> angegeben. Der Planname wird aus dem XPlanGML-Element `xplan:name` abgeleitet. Dabei werden Sonderzeichen wie `/` entfernt und der Planname für die Erstellung der URL des XPlanWerkWMS kodiert (weitere Informationen zu URL Syntax und Zeichenkodierung in https://datatracker.ietf.org/doc/html/rfc3986[RFC 3986 – Uniform Resource Identifier (URI)]).
@@ -43,6 +48,7 @@ http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>
 
 TIP: Alternativ kann die URL auch ohne Sonderzeichen verwendet werden. Dafür müssen alle anderen Zeichen als `a-zA-Z0-9-_` aus <PLANNAME> entfernt werden. Die so erstellte URL liefert eine identische Response wie die dazugehörige, kodierte URL.
 
+[[xplanwms-adresse-xplanartwms]]
 ==== Adresse des XPlanArtWMS
 
 Die Adresse des XPlanWerkWMS ist abhängig von der Planart die angefragt werden soll.
@@ -52,7 +58,7 @@ Neben der Planart ist auch der Planstatus bei der Nutzung des XPlanArtWMS entsch
 http://<host>:<port>/xplan-wms/services/<PLANART>wms<PLANSTATUS>?
 ----
 
-Die folgende Tabelle liested die Endpunkte des XPlanArtWMS auf:
+Die folgende Tabelle listet die Endpunkte des XPlanArtWMS auf:
 
 [width="100%",cols="30%,10%,10%,50%",options="header"]
 |===
@@ -122,10 +128,6 @@ Die folgende Tabelle liested die Endpunkte des XPlanArtWMS auf:
 |http://<host>:<port>/xplan-wms/services/sowmsarchive?
 |===
 
-[[xplanwms-inhalte-des-kartendienstes]]
-=== Inhalte des Kartendienstes
-
-Der XPlanWMS dient der Darstellung aller importierten XPlanArchive, während der XPlanWerkWMS einzelne Planwerke visualisiert. Die Datenquelle beider Dienste basiert auf den über den XPlanManager importierten XPlanArchiven. Für jede Objektart aus den unterstützten XPlanGML-Applikationsschema, das Geometrie-Attribute enthält, existiert eine entsprechende Ebene im XPlanWMS und XPlanWerkWMS. Zusätzlich zu den aus dem XPlanGML abgeleiteten Ebenen stellen beide Dienste Ebenen zur Darstellung von gescannten Rasterplan-Dateien bereit.
 
 [[xplanwms-operationen]]
 === Operationen
