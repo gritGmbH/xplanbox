@@ -17,4 +17,6 @@ include::gdal.adoc[]
 
 include::hale-cli.adoc[]
 
+include::mapserver.adoc[]
+
 include::startApplikationsserver.adoc[]

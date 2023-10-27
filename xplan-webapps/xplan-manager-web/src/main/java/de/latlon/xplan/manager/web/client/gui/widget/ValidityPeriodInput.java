@@ -20,7 +20,7 @@
  */
 package de.latlon.xplan.manager.web.client.gui.widget;
 
-import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
+import static de.latlon.xplan.manager.web.client.gui.utils.ValidationUtils.areComponentsValid;
 import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.retrieveDateTime;
 
 import java.util.ArrayList;

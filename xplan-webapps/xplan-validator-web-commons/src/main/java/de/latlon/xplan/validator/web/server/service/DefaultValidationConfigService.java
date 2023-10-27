@@ -23,6 +23,7 @@ package de.latlon.xplan.validator.web.server.service;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.profile.SemanticProfiles;
 import de.latlon.xplan.validator.web.client.service.ValidationConfigService;
 import de.latlon.xplan.validator.web.shared.ValidationConfig;
 import de.latlon.xplan.validator.web.shared.ValidationProfile;
@@ -30,7 +31,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import java.util.List;
 
 import static org.springframework.web.context.support.SpringBeanAutowiringSupport.processInjectionBasedOnServletContext;
 
@@ -41,7 +41,7 @@ import static org.springframework.web.context.support.SpringBeanAutowiringSuppor
 public class DefaultValidationConfigService extends RemoteServiceServlet implements ValidationConfigService {
 
 	@Autowired
-	private List<RulesMetadata> profileMetadata;
+	private SemanticProfiles semanticProfiles;
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -55,8 +55,8 @@ public class DefaultValidationConfigService extends RemoteServiceServlet impleme
 	@Override
 	public ValidationConfig retrieveValidationConfig() {
 		ValidationConfig validationConfig = new ValidationConfig();
-		if (profileMetadata != null) {
-			for (RulesMetadata profile : profileMetadata) {
+		if (semanticProfiles.getProfileValidators() != null) {
+			for (RulesMetadata profile : semanticProfiles.getProfileMetadata()) {
 				ValidationProfile validationProfile = new ValidationProfile(profile.getId(), profile.getName(),
 						profile.getDescription());
 				validationConfig.addProfile(validationProfile);

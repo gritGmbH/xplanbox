@@ -4,7 +4,7 @@
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
   <packaging>pom</packaging>
-  <version>7.1-SNAPSHOT</version>
+  <version>7.0.2</version>
   <name>xPlanBox</name>
   <description>Software zur Verwaltung von XPlanGML Daten</description>
   <inceptionYear>2008</inceptionYear>
@@ -19,7 +19,8 @@
     <maven.version>3.8.1</maven.version>
     <!-- version properties -->
     <deegree3.version>3.5.0.2</deegree3.version>
-    <xplanung.regeln.version>1.1.4</xplanung.regeln.version>
+    <xplanung.regeln.version>1.1.5</xplanung.regeln.version>
+    <xplanung.regeln.berlin.version>0.4</xplanung.regeln.berlin.version>
     <gwt.version>2.10.0</gwt.version>
     <geotools.version>29.2</geotools.version>
     <jacoco.argLine />
@@ -36,11 +37,18 @@
     <jackson.version>2.14.3</jackson.version>
     <liquibase.version>4.23.0</liquibase.version>
     <postgresql.version>42.5.4</postgresql.version>
-    <owasp.version>8.3.1</owasp.version>
+    <owasp.version>8.4.0</owasp.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <tests.jvm.xmx>1000m</tests.jvm.xmx>
     <build.key /> <!-- can be set by build job -->
+    <build-date-utc>${maven.build.timestamp}Z</build-date-utc>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+    <dependency-check.skip>true</dependency-check.skip>
+    <distribution.repo.id>gitlab-maven</distribution.repo.id>
+    <distribution.repo.url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</distribution.repo.url>
+    <distribution.snapshotRepo.id>gitlab-maven</distribution.snapshotRepo.id>
+    <distribution.snapshotRepo.url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</distribution.snapshotRepo.url>
   </properties>
 
   <modules>
@@ -213,6 +221,7 @@
       <id>docker</id>
       <properties>
         <docker-image.skip>true</docker-image.skip>
+        <docker-image.skip-sources>${docker-image.skip}</docker-image.skip-sources>
         <docker-image.namePrefix>xplanbox</docker-image.namePrefix>
         <docker-image.name>${project.artifactId}</docker-image.name>
       </properties>
@@ -225,7 +234,7 @@
             <plugin>
               <groupId>io.fabric8</groupId>
               <artifactId>docker-maven-plugin</artifactId>
-              <version>0.43.0</version>
+              <version>0.43.4</version>
               <configuration>
                 <skip>${docker-image.skip}</skip>
                 <images>
@@ -234,9 +243,12 @@
                     <build>
                       <dockerFileDir>${project.basedir}</dockerFileDir>
                       <args>
+                        <BUILD_DATE>'${build-date-utc}'</BUILD_DATE>
+                        <DOCKER_IMAGE_NAME>${docker-image.name}</DOCKER_IMAGE_NAME>
+                        <GIT_REVISION>${git.commit.id}</GIT_REVISION>
+                        <WEB_CONTEXT>${project.artifactId}</WEB_CONTEXT>
                         <XPLANBOX_VERSION>${project.version}</XPLANBOX_VERSION>
                         <XPLANBOX_IMAGE_NAME_PREFIX>${docker-image.namePrefix}</XPLANBOX_IMAGE_NAME_PREFIX>
-                        <WEB_CONTEXT>${project.artifactId}</WEB_CONTEXT>
                       </args>
                       <tags>
                         <tag>${project.version}</tag>
@@ -247,9 +259,19 @@
               </configuration>
               <executions>
                 <execution>
+                  <id>context-sources</id>
+                  <goals>
+                    <goal>source</goal>
+                  </goals>
+                  <configuration>
+                    <skip>${docker-image.skip-sources}</skip>
+                  </configuration>
+                </execution>
+                <execution>
+                  <id>default</id>
                   <goals>
                     <goal>build</goal>
-                    <goal>source</goal>
+                    <goal>push</goal>
                   </goals>
                 </execution>
               </executions>
@@ -263,19 +285,6 @@
           </plugin>
         </plugins>
       </build>
-    </profile>
-    <profile>
-      <id>latlon</id>
-      <distributionManagement>
-        <repository>
-          <id>latlon-deploy</id>
-          <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
-        </repository>
-        <snapshotRepository>
-          <id>latlon-deploy</id>
-          <url>https://repo.lat-lon.de/repository/xplanbox-snapshots/</url>
-        </snapshotRepository>
-      </distributionManagement>
     </profile>
     <profile>
       <id>skipAll</id>
@@ -298,7 +307,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>3.6.0</version>
         <configuration>
           <doclint>none</doclint>
           <detectLinks>false</detectLinks>
@@ -350,7 +359,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.3.0</version>
+        <version>3.4.1</version>
         <executions>
           <execution>
             <id>enforce-versions</id>
@@ -588,7 +597,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.5.0</version>
+          <version>3.6.0</version>
           <configuration>
             <failOnError>false</failOnError>
           </configuration>
@@ -644,7 +653,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
-          <version>2.16.0</version>
+          <version>2.16.1</version>
         </plugin>
         <plugin>
           <groupId>org.jacoco</groupId>
@@ -839,6 +848,11 @@
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-web</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-layout-template-json</artifactId>
         <version>${log4j.version}</version>
       </dependency>
       <!-- commons -->
@@ -1144,6 +1158,18 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.13.2</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>5.10.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>3.24.2</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -1514,6 +1540,12 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <!-- Profiles -->
+      <dependency>
+        <groupId>de.xleitstelle.xplanung</groupId>
+        <artifactId>regeln-berlin</artifactId>
+        <version>${xplanung.regeln.berlin.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -1521,7 +1553,7 @@
     <connection>scm:git:git@bitbucket.org:latlon/xplanbox.git</connection>
     <developerConnection>scm:git:git@bitbucket.org:latlon/xplanbox.git</developerConnection>
     <url>https://bitbucket.org/latlon/xplanbox</url>
-    <tag>xplanbox-7.0</tag>
+    <tag>xplanbox-7.0.2</tag>
   </scm>
 
   <repositories>
@@ -1612,14 +1644,15 @@
     </pluginRepository>
   </pluginRepositories>
 
+
   <distributionManagement>
     <repository>
-      <id>gitlab-maven</id>
-      <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+      <id>${distribution.repo.id}</id>
+      <url>${distribution.repo.url}</url>
     </repository>
     <snapshotRepository>
-      <id>gitlab-maven</id>
-      <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+      <id>${distribution.snapshotRepo.id}</id>
+      <url>${distribution.snapshotRepo.url}</url>
     </snapshotRepository>
   </distributionManagement>
 

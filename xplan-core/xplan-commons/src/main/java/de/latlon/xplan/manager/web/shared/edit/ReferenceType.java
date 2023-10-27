@@ -90,7 +90,7 @@ public enum ReferenceType {
 
 	private int spezExterneRefType;
 
-	private List<String> supportedXPlanVersions = new ArrayList<String>();
+	private final List<String> supportedXPlanVersions = new ArrayList<String>();
 
 	ReferenceType(int spezExterneRefType, String... supportedXPlanVersions) {
 		this.spezExterneRefType = spezExterneRefType;

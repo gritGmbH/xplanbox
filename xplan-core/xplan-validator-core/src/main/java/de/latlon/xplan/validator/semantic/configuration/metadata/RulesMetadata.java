@@ -49,6 +49,18 @@ public class RulesMetadata {
 	}
 
 	/**
+	 * @param id id of the rules (the profile), may be <code>null</code>
+	 * @param name name of the rules (the profile), may be <code>null</code>
+	 * @param description description of the rules (e.g. the profile), may be
+	 * <code>null</code>
+	 * @param rulesVersion containing the version and source, never <code>null</code>
+	 */
+	public RulesMetadata(String id, String name, String description, RulesVersion rulesVersion) {
+		this(id, name, description, rulesVersion.getVersion(), rulesVersion.getSource());
+	}
+
+	/**
+	 * @param id id of the rules (the profile), may be <code>null</code>
 	 * @param name name of the rules (the profile), may be <code>null</code>
 	 * @param description description of the rules (e.g. the profile), may be
 	 * <code>null</code>

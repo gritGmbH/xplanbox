@@ -3,12 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-resources</artifactId>
   <packaging>pom</packaging>
-  <description>Modul zur Gruppierung aller Resourcen</description>
+  <description>Modul zur Gruppierung aller Ressourcen</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplanbox</artifactId>
-    <version>7.1-SNAPSHOT</version>
+    <version>7.0.2</version>
   </parent>
 
   <modules>

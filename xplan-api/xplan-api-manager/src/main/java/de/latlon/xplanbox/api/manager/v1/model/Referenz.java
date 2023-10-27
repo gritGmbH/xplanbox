@@ -21,7 +21,6 @@
 package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import net.sf.saxon.expr.Component;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;

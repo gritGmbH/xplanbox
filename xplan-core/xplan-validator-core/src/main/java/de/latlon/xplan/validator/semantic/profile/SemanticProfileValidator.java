@@ -24,9 +24,6 @@ import de.latlon.xplan.validator.semantic.SemanticValidator;
 
 /**
  * Validates <link>XPlanArchives</link> semantically
- *
- * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @version $Revision: $, $Date: $
  */
 public interface SemanticProfileValidator extends SemanticValidator {
 

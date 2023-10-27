@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-docker</artifactId>
-  	<version>7.1-SNAPSHOT</version>
+  	<version>7.0.2</version>
   </parent>
 
   <properties>
@@ -28,7 +28,7 @@
         </configuration>
         <executions>
           <execution>
-            <phase>package</phase>
+            <phase>prepare-package</phase>
             <goals>
               <goal>single</goal>
             </goals>

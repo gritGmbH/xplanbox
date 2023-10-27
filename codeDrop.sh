@@ -1,14 +1,51 @@
+#!/bin/bash
+
+set -e
+
 # e.g. 1840
 ticketIdNo=${1:-}
-echo "create code drop, ticketId is XPLANBOX-$ticketIdNo"
+srcBranchOrTag=${2:-main}
+commitMessage="XPLANBOX-$ticketIdNo code drop"
+
+echo "Creating code drop, ticketId is XPLANBOX-$ticketIdNo, source branch is $srcBranchOrTag"
 branchName=xplanbox-$ticketIdNo-$(date +'%m-%d')-code-drop
-git fetch remote-opencode
+
+xplanboxDir=$(dirname "$(readlink -f "$BASH_SOURCE")")
+
+tmpDir=`mktemp -d`
+
+pushd $tmpDir
+echo "Cloning from $xplanboxDir..."
+#git clone --single-branch -b $srcBranchOrTag git@bitbucket.org:latlon/xplanbox.git .
+# faster: clone directory where xplanbox is already cloned and then fetch from bitbucket
+git clone --single-branch -b $srcBranchOrTag $xplanboxDir .
+git remote rename origin local-xplanbox
+
+echo "Fetching from git@bitbucket.org:latlon/xplanbox.git..."
+git remote add origin git@bitbucket.org:latlon/xplanbox.git
+git fetch origin $srcBranchOrTag
+
+echo "Fetching from OpenCoDE..."
+git remote add remote-opencode git@gitlab.opencode.de:diplanung/ozgxplanung.git
+git fetch remote-opencode main
+
+echo "Preparing code drop"
+
 git checkout -b $branchName remote-opencode/main
-previousCommit=`git rev-parse HEAD`
-git fetch origin
-git merge --strategy-option theirs --allow-unrelated-histories origin/main
-git reset $previousCommit
+echo "Branch $branchName created"
+
+echo "Replacing content with $srcBranchOrTag..."
+rm -rf *
+git ls-files | grep '^\.' | xargs git rm
+git checkout $srcBranchOrTag -- .
 git add -A
-lastMainCommit=`git rev-parse origin/main`
-git commit -m "code drop 6.1-SNAPSHOT: $lastMainCommit"
+lastMainCommit=`git rev-parse $srcBranchOrTag`
+git commit -m "$commitMessage: $lastMainCommit"
+
+echo "Pushing branch $branchName to OpenCoDE..."
 git push remote-opencode $branchName
+
+popd
+
+echo "Done"
+rm -rf $tmpDir

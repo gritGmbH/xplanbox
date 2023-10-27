@@ -49,7 +49,7 @@ import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistTyp
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.Rechtsstand;
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.SonstPlanArt;
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.Verfahren;
-import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
+import static de.latlon.xplan.manager.web.client.gui.utils.ValidationUtils.areComponentsValid;
 
 /**
  * CaptionPanel with editor for the base data section.

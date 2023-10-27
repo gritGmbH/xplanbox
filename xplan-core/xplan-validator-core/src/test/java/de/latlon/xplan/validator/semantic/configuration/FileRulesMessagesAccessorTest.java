@@ -50,7 +50,8 @@ public class FileRulesMessagesAccessorTest {
 	public static void initFileRulesMessagesAccessor() throws IOException {
 		File file = tempFolder.newFile("rules.properties");
 		Files.delete(file.toPath());
-		InputStream properties = FileRulesMessagesAccessorTest.class.getResourceAsStream("/rules/rules.properties");
+		InputStream properties = FileRulesMessagesAccessorTest.class
+			.getResourceAsStream("/de/latlon/xplan/validator/configuration/rules/rules.properties");
 		Files.copy(properties, file.toPath());
 		rulesMessagesAccessor = new FileRulesMessagesAccessor(tempFolder.getRoot().toPath());
 	}
@@ -89,6 +90,15 @@ public class FileRulesMessagesAccessorTest {
 	public void testRetrieveMessageForRule_NullRule() {
 		String message = rulesMessagesAccessor.retrieveMessageForRule(null, null);
 		assertThat(message, notNullValue());
+	}
+
+	@Test
+	public void testRetrieveMessageForRule_FromClasspath_KnownRuleWithVersion() {
+		InputStream properties = FileRulesMessagesAccessorTest.class
+			.getResourceAsStream("/de/latlon/xplan/validator/configuration/rules/rules.properties");
+		FileRulesMessagesAccessor fileRulesMessagesAccessor = new FileRulesMessagesAccessor(properties);
+		String message = fileRulesMessagesAccessor.retrieveMessageForRule("3.1.3.1", XPLAN_41);
+		assertThat(message, is("Regel 3.1.3.1 (XPLAN_41) muss erf\u00FCllt sein"));
 	}
 
 }

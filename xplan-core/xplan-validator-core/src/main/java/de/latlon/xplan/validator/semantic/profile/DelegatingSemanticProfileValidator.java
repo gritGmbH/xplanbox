@@ -29,9 +29,6 @@ import java.util.List;
 
 /**
  * Validates <link>XPlanArchives</link> semantically
- *
- * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @version $Revision: $, $Date: $
  */
 public class DelegatingSemanticProfileValidator implements SemanticProfileValidator {
 

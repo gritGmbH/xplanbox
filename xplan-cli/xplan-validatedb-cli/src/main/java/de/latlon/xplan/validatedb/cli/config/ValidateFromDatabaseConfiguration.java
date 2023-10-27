@@ -20,13 +20,12 @@
  */
 package de.latlon.xplan.validatedb.cli.config;
 
+import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.validatedb.cli.domain.ValidationResultSummary;
 import de.latlon.xplan.validatedb.cli.domain.XPlanWithFeatureCollection;
-import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
+import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
+import de.latlon.xplan.validator.semantic.configuration.SemanticRulesMainConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -59,7 +58,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -100,15 +98,14 @@ public class ValidateFromDatabaseConfiguration {
 	@Bean
 	@StepScope
 	public SemanticValidator semanticValidator(@Value("#{jobParameters[rulesDirectory]}") String rulesDirectory)
-			throws ValidatorException, URISyntaxException {
+			throws ConfigurationException {
 		try {
 			LOG.info("Rules are read from: {}", rulesDirectory);
 			Path rulesPath = get(rulesDirectory);
-			RulesVersionParser rulesVersionParser = new RulesVersionParser();
-			RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
-			RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
-			return new XQuerySemanticValidator(
-					new XQuerySemanticValidatorConfigurationRetriever(rulesPath, rulesMetadata));
+			SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesMainConfiguration(rulesPath);
+			XQuerySemanticValidatorConfigurationRetriever semanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
+					semanticRulesConfiguration);
+			return new XQuerySemanticValidator(semanticValidatorConfigurationRetriever);
 		}
 		catch (Exception e) {
 			LOG.error("Rules could not be read", e);

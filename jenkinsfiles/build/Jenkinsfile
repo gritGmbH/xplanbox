@@ -4,7 +4,7 @@ pipeline {
       disableConcurrentBuilds()
   }
   tools {
-    maven 'maven-3.8'
+    maven 'maven-3.9'
     jdk 'openjdk11'
   }
   environment {

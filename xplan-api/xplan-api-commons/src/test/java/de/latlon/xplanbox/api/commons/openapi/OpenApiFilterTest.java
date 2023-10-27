@@ -20,67 +20,65 @@
  */
 package de.latlon.xplanbox.api.commons.openapi;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
+
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.Paths;
-import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class OpenApiFilterTest {
+class OpenApiFilterTest {
 
 	@Test
-	public void verifyFilterOpenAPI_ThatPathItemKeyIsCorrected_xmanager() {
+	void verifyFilterOpenAPI_ThatPathItemKeyIsCorrected_xmanager() {
 		OpenApiFilter openApiFilter = new OpenApiFilter();
 		OpenAPI openApi = new OpenAPI();
 		openApi.setPaths(new Paths());
 		openApi.getPaths().addPathItem("/xmanager/api/v1/plans", new PathItem());
 		openApiFilter.filterOpenAPI(openApi, null, null, null);
 
-		assertThat(openApi.getPaths().get("/plans"), is(notNullValue()));
-		assertThat(openApi.getPaths().get("/"), is(notNullValue()));
+		assertThat(openApi.getPaths().get("/plans")).isNotNull();
+		assertThat(openApi.getPaths().get("/")).isNotNull();
 	}
 
 	@Test
-	public void verifyFilterOpenAPI_ThatPathItemKeyIsCorrected_xvalidator() {
+	void verifyFilterOpenAPI_ThatPathItemKeyIsCorrected_xvalidator() {
 		OpenApiFilter openApiFilter = new OpenApiFilter();
 		OpenAPI openApi = new OpenAPI();
 		openApi.setPaths(new Paths());
 		openApi.getPaths().addPathItem("/xvalidator/api/v1.5-3_1/info/test", new PathItem());
 		openApiFilter.filterOpenAPI(openApi, null, null, null);
 
-		assertThat(openApi.getPaths().get("/info/test"), is(notNullValue()));
-		assertThat(openApi.getPaths().get("/"), is(notNullValue()));
+		assertThat(openApi.getPaths().get("/info/test")).isNotNull();
+		assertThat(openApi.getPaths().get("/")).isNotNull();
 	}
 
 	@Test
-	public void verifyFilterOpenAPI_ThatPathItemKeyIsCorrected_noPath() {
+	void verifyFilterOpenAPI_ThatPathItemKeyIsCorrected_noPath() {
 		OpenApiFilter openApiFilter = new OpenApiFilter();
 		OpenAPI openApi = new OpenAPI();
 		openApi.setPaths(new Paths());
 		openApi.getPaths().addPathItem("/xmanager/api/v1.5-3_1", new PathItem());
 		openApiFilter.filterOpenAPI(openApi, null, null, null);
 
-		assertThat(openApi.getPaths().get("/"), is(notNullValue()));
-		assertThat(openApi.getPaths().get(""), is(nullValue()));
+		assertThat(openApi.getPaths().get("/")).isNotNull();
+		assertThat(openApi.getPaths().get("")).isNull();
 	}
 
 	@Test
-	public void verifyFilterOpenAPI_ThatPathItemKeyIsNotCorrected() {
+	void verifyFilterOpenAPI_ThatPathItemKeyIsNotCorrected() {
 		OpenApiFilter openApiFilter = new OpenApiFilter();
 		OpenAPI openApi = new OpenAPI();
 		openApi.setPaths(new Paths());
 		openApi.getPaths().addPathItem("/info/test", new PathItem());
 		openApiFilter.filterOpenAPI(openApi, null, null, null);
 
-		assertThat(openApi.getPaths().get("/info/test"), is(notNullValue()));
-		assertThat(openApi.getPaths().get("/"), is(notNullValue()));
+		assertThat(openApi.getPaths().get("/info/test")).isNotNull();
+		assertThat(openApi.getPaths().get("/")).isNotNull();
 	}
 
 }

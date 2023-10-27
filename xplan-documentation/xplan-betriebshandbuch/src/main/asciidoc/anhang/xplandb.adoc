@@ -20,7 +20,7 @@ Die Tabellenstruktur aus diesem Schema unterscheidet sich nicht zu den anderen v
 === Datenbankschema für XPlanSyn
 
 Das XPlanSyn-Schema wird aus den von der xPlanBox unterstützten XPlanGML-Versionen abgeleitet. Dabei wird ein versionsübergreifendes Schema erzeugt.
-In der aktuellen Version der xPlanBox sind dies die XPlanGML-Versionen 4.0 bis 6.0 und das Datenbankschema `xplansyn` umfasst 324 Tabellen. XPlanGML-Dokumente werden im XPlanSyn-Schema unter Verwendung des relationalen Mappings von deegree (siehe https://download.deegree.org/documentation/current/html/#_mapping_gml_application_schemas[deegree webservices relational mapping]) gespeichert.
+In der aktuellen Version der xPlanBox sind dies die XPlanGML-Versionen 4.0 bis 6.0 und das Datenbankschema `xplansyn` umfasst 247 Tabellen. XPlanGML-Dokumente werden im XPlanSyn-Schema unter Verwendung des relationalen Mappings von deegree (siehe https://download.deegree.org/documentation/current/html/#_mapping_gml_application_schemas[deegree webservices relational mapping]) gespeichert.
 
 IMPORTANT: Wird eine ältere XPlanGML-Version abgekündigt oder eine neue XPlanGML-Version hinzugefügt, ändert sich das XPlanSyn-Schema!
 

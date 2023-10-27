@@ -20,39 +20,43 @@
  */
 package de.latlon.xplanbox.api.validator.config;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
+import de.latlon.xplan.validator.semantic.configuration.SemanticRulesConfiguration;
+import org.apache.commons.io.IOUtils;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import org.mockito.Mockito;
 
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
 
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-import org.mockito.Mockito;
-
-import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ApplicationContextTest {
 
-	@ClassRule
-	public final static TemporaryFolder tempFolder = new TemporaryFolder();
+	@TempDir
+	public static Path tempFolder;
 
 	@Test
-	public void rulesPathShouldGetPathFromJarIfNotConfigured() throws Exception {
+	void rulesPathShouldGetPathFromJarIfNotConfigured() throws Exception {
 		ValidatorConfiguration validatorConfig = Mockito.mock(ValidatorConfiguration.class);
-		Path rulesPath = new ApplicationContext().rulesPath(validatorConfig);
+		SemanticRulesConfiguration semanticRulesConfiguration = new ApplicationContext()
+			.semanticRulesConfiguration(validatorConfig);
+		Optional<String> resource = semanticRulesConfiguration.getResource("xplangml54/2.1.2.1.xq");
+		assertTrue(resource.isPresent());
 
-		Path path = rulesPath.resolve("xplangml54/2.1.2.1.xq");
-
-		String content = Files.readString(path, StandardCharsets.UTF_8);
+		InputStream resourceAsStream = getClass().getResourceAsStream(resource.get());
+		String content = IOUtils.toString(resourceAsStream, StandardCharsets.UTF_8);
 		assertTrue(content.contains("namespace 'http://www.xplanung.de/xplangml/5/4'"));
 	}
 
 	@Test
-	public void rulesPathShouldUseConfiguredPath() throws Exception {
-		Path tmpDir = tempFolder.newFolder().toPath();
+	void rulesPathShouldUseConfiguredPath() throws Exception {
+		Path tmpDir = tempFolder.resolve("junit");
 		Path p = tmpDir.resolve("xplangml54/2.1.2.1.xq");
 		Files.createDirectories(p.getParent());
 		Files.writeString(p, "hello world", StandardCharsets.UTF_8);
@@ -60,8 +64,10 @@ public class ApplicationContextTest {
 		ValidatorConfiguration validatorConfig = Mockito.mock(ValidatorConfiguration.class);
 		Mockito.when(validatorConfig.getValidationRulesDirectory()).thenReturn(tmpDir);
 
-		Path rulesPath = new ApplicationContext().rulesPath(validatorConfig);
-		Path path = rulesPath.resolve("xplangml54/2.1.2.1.xq");
+		Optional<Path> rulesPath = new ApplicationContext().semanticRulesConfiguration(validatorConfig).getRulesPath();
+		assertTrue(rulesPath.isPresent());
+
+		Path path = rulesPath.get().resolve("xplangml54/2.1.2.1.xq");
 
 		String content = Files.readString(path, StandardCharsets.UTF_8);
 		assertEquals("hello world", content);

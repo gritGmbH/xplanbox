@@ -85,7 +85,7 @@ NOTE: Diese Schritte sind nur erforderlich, wenn nur der der XPlanValidator inst
 
 * [ ] Konfiguration im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/_ aktualisiert:
   ** _<BACKUP_CONFIG>/xplansyn-wms-workspace/jdbc/_ kopiert
-  ** _<BACKUP_CONFIG>/xplansyn-wms-workspace/gdal.xml_ kopiert und die Datei _gdal.ignore_ entfernt, wenn GDAL genutzt wird (siehe <<installation-gdal>> und <<konfiguration-gdal>>)
+  ** _<BACKUP_CONFIG>/xplansyn-wms-workspace/gdal.xml_ kopiert, wenn GDAL genutzt wird (siehe <<installation-gdal>> und <<konfiguration-gdal>>)
   ** _<BACKUP_CONFIG>/xplansyn-wms-workspace/services/html.gfi_ kopiert
   ** _<BACKUP_CONFIG>/xplansyn-wms-workspace/data/_ zurückkopiert
   ** _<BACKUP_CONFIG>/xplansyn-wms-workspace/datasources/tile_ zurückkopiert
