@@ -9104,6 +9104,18 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 6" id="3680758b-0964-452d-84d2-8a6ef9f9bd87">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
       <con:testStep type="jdbc" name="JDBC XX XX XX checkDokumentDelete" id="458e82f9-127d-4171-9e91-10ef2a09af8b">
         <con:settings/>
         <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -13243,6 +13255,18 @@ if (documentUrl != "null"){
               <con:entry key="id" value="${#TestCase#rasterbasisIdSO53}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 6" id="1741ae27-39ba-4e12-add4-12cdd44a8fce">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
         </con:config>
       </con:testStep>
       <con:testStep type="jdbc" name="JDBC XX XX XX checkRasterbasisDelete" id="3985d7a3-9b30-46a4-b25b-48ab8bf6b75e">
