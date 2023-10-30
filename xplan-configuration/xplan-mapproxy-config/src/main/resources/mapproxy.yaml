@@ -81,6 +81,45 @@ layers:
         sources: [fplan_vektor_cache]
         min_res: 7.0
         max_res: 1.4
+  - name: xplan_lplan
+    title: XPlanung Landschaftspläne
+    layers:
+      - name: lplan_raster
+        title: Rasterdarstellung der Landschaftspläne
+        sources: [lplan_raster_cache]
+        min_res: 7.0
+        max_res: 1.4
+      - name: lplan_vektor
+        title: Vektordarstellung der Landschaftspläne
+        sources: [lplan_vektor_cache]
+        min_res: 7.0
+        max_res: 1.4
+  - name: xplan_rplan
+    title: XPlanung Regionalpläne
+    layers:
+      - name: rplan_raster
+        title: Rasterdarstellung der Regionalpläne
+        sources: [rplan_raster_cache]
+        min_res: 7.0
+        max_res: 1.4
+      - name: rplan_vektor
+        title: Vektordarstellung der Regionalpläne
+        sources: [rplan_vektor_cache]
+        min_res: 7.0
+        max_res: 1.4
+  - name: xplan_soplan
+    title: XPlanung sonstige raumbezogene Pläne
+    layers:
+      - name: soplan_raster
+        title: Rasterdarstellung der sonstigen raumbezogenen Pläne
+        sources: [soplan_raster_cache]
+        min_res: 1.4
+        max_res: 0.14
+      - name: soplan_vektor
+        title: Vektordarstellung der sonstigen raumbezogenen Pläne
+        sources: [soplan_vektor_cache]
+        min_res: 1.4
+        max_res: 0.14
 caches:
   bplan_raster_cache:
     <<: *cache_cfg
@@ -106,6 +145,42 @@ caches:
       directory: /fplan_vektor/
       type: s3
     sources: ['fplan-wms:FP_Planvektor']
+  lplan_raster_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /lplan_raster/
+      type: s3
+    sources: ['xplan-mapserver:lplanraster']
+  lplan_vektor_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /lplan_vektor/
+      type: s3
+    sources: ['lplan-wms:LP_Planvektor']
+  rplan_raster_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /rplan_raster/
+      type: s3
+    sources: ['xplan-mapserver:rplanraster']
+  rplan_vektor_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /rplan_vektor/
+      type: s3
+    sources: ['rplan-wms:RP_Planvektor']
+  soplan_raster_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /soplan_raster/
+      type: s3
+    sources: ['xplan-mapserver:soplanraster']
+  soplan_vektor_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /soplan_vektor/
+      type: s3
+    sources: ['bplan-wms:SO_Planvektor']
 sources:
   xplan-mapserver:
     <<: *wms_cfg
@@ -121,6 +196,21 @@ sources:
     <<: *wms_cfg
     req:
       url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/fpwms?
+      transparent: true
+  lplan-wms:
+    <<: *wms_cfg
+    req:
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/lpwms?
+      transparent: true
+  rplan-wms:
+    <<: *wms_cfg
+    req:
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/rpwms?
+      transparent: true
+  soplan-wms:
+    <<: *wms_cfg
+    req:
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/sowms?
       transparent: true
 grids:
   gdi_de_25832:
