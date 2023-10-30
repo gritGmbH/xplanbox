@@ -18,7 +18,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
 <con:soapui-project id="adcdfd3f-0f4e-4107-8d7e-086010676cb7" activeEnvironment="Default" name="xplan-api-manager" resourceRoot="" soapui-version="5.7.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
-  <con:description>For local execution use following property values: baseUrlManagerApi=http://localhost:8086/xplan-api-manager baseUrlServices=http://localhost:8083 jdbcUrl=jdbc:postgresql://localhost:5433/xplanbox?user=postgres&amp;password=postgres</con:description>
+  <con:description>For local execution use following property values: baseUrlManagerApi=http://localhost:8086/xplan-api-manager baseUrlServices=http://localhost:8083 jdbcUrl=jdbc:postgresql://localhost:5433/xplanbox?user=xplanbox&amp;password=xplanbox</con:description>
   <con:settings/>
   <con:interface xsi:type="con:RestService" id="4c3b4b1f-f0cd-4a9f-bbc4-433948e85871" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanManagerAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:description>XPlanManager REST API</con:description>
