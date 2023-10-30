@@ -3188,7 +3188,7 @@ assert actualHeader != null</scriptText>
             <con:assertion type="JsonPath Match" id="727c0fd3-5cab-490a-a799-0465207ecae1" name="name">
               <con:configuration>
                 <path>$.xplanModelData.name</path>
-                <content>HafenCity13-Test_SoapUI-XPlanManagerAPI</content>
+                <content>BPlan002_5-3</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9096,7 +9096,7 @@ if (documentUrl != "null"){
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="referenzURL, id and bereichNummer">
               <con:configuration>
-                <path>$[?(@.referenzURL contains 'HafenCity13.png' &amp;&amp; @.id contains 'HafenCity13png')].bereichNummer</path>
+                <path>$[?(@.referenzURL contains 'BPlan002_5-3.png' &amp;&amp; @.id contains 'BPlan002_5-3png')].bereichNummer</path>
                 <content>[0]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
