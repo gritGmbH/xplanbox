@@ -128,9 +128,9 @@ Wenn Änderungen an einem SoapUI Projekt vorgenommen werden, dann muss die Datei
 
 > **_ACHTUNG:_** Vor jedem Commit muss geprüft werden, dass keine Passwörter in den SoapUI Projekten gespeichert sind.
 
-Die Namenskonvention für die TestSteps der SoapUI Projekte xplan-api-manager und xplan-api-validator folgen diesem Pattern:
+Die Namenskonvention für die TestSteps der SoapUI Projekte xplan-api-manager und xplan-api-validator folgen diesem Muster:
 
-> `HTTPMETHODE PLANART XPLANGMLVERSION QUERYPARAMETER ADDITIONALINFORMATION`
+> `HTTPMETHODE|PROTOCOL PLANART XPLANGMLVERSION QUERYPARAMETER ADDITIONALINFORMATION`
 
 Beispiel für ein Pattern: `POST BP 5.3 sG importPlan`
 
@@ -148,6 +148,12 @@ Die zu nutzenden Abkürzungen werden im folgenden Glossar definiert.
 | **POST**  | Methode um Daten an den Server zu senden und Ressourcen zu erstellen oder zu modifizieren                              |
 | **PUT**   | Methode um Daten an den Server zu senden und Ressourcen zu erstellen oder zu modifizieren, entgegen zu POST idempotent |
 | **DEL**   | Methode um Daten vom Server zu löschen                                                                                 |
+
+### PROTOCOL
+
+| Abkürzung | Beschreibung                                 |
+|-----------|----------------------------------------------|
+| **JDBC**  | Anfragen über das jdbc:postgresql: Protokoll |
 
 ### PLANART
 
