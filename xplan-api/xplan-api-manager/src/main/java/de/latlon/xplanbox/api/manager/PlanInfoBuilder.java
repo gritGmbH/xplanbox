@@ -25,6 +25,7 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import de.latlon.xplanbox.api.commons.v1.model.PlanInfoBbox;
 import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
+import de.latlon.xplanbox.api.manager.config.JerseyConfig;
 import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.v1.model.Bereich;
 import de.latlon.xplanbox.api.manager.v1.model.Link;
@@ -145,7 +146,7 @@ public class PlanInfoBuilder {
 		List<String> pathSegments = new ArrayList<>();
 		if (apiUrl.getPath() != null && !apiUrl.getPath().isEmpty())
 			pathSegments.addAll(Arrays.asList(apiUrl.getPath().split("/")));
-		pathSegments.addAll(Arrays.asList(ApplicationPathConfig.APP_PATH.split("/")));
+		pathSegments.addAll(Arrays.asList(JerseyConfig.APP_PATH.split("/")));
 		pathSegments.add("plan");
 		pathSegments.add(xPlan.getId());
 		uriBuilder.setPathSegments(pathSegments.stream()

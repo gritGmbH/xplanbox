@@ -57,6 +57,8 @@ import de.latlon.xplanbox.api.manager.v1.DefaultApi;
 import de.latlon.xplanbox.api.manager.v1.InfoApi;
 import de.latlon.xplanbox.api.manager.v1.PlanApi;
 import de.latlon.xplanbox.api.manager.v1.PlansApi;
+import liquibase.integration.spring.SpringLiquibase;
+
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.persistence.FeatureStore;
@@ -64,6 +66,9 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
+import org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -108,6 +113,7 @@ import static org.slf4j.LoggerFactory.getLogger;
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
+@EnableAutoConfiguration(exclude = { QuartzAutoConfiguration.class, LiquibaseAutoConfiguration.class })
 public class TestContext {
 
 	private static final Logger LOG = getLogger(TestContext.class);
@@ -290,8 +296,8 @@ public class TestContext {
 
 	@Bean
 	@Primary
-	public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			ManagerConfiguration managerConfiguration) throws Exception {
+	public XPlanDao xPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, ManagerConfiguration managerConfiguration)
+			throws Exception {
 		XPlanDao xplanDao = mock(XPlanDao.class);
 		XPlan mockPlan_1 = new XPlan("bplan_41", "1", "BP_Plan", "XPLAN_41");
 		XPlan mockPlan_123 = new XPlan("bplan_41", "123", "BP_Plan", "XPLAN_41");
