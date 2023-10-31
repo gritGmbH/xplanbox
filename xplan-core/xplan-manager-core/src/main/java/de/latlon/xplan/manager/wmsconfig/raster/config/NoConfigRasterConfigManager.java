@@ -33,7 +33,7 @@ import java.util.Map;
 public class NoConfigRasterConfigManager implements RasterConfigManager {
 
 	@Override
-	public void insertRasterLayers(int planId, String moreRecentPlanId, XPlanType type, PlanStatus planStatus,
+	public void insertRasterLayers(int planId, int moreRecentPlanId, XPlanType type, PlanStatus planStatus,
 			PlanStatus newPlanStatus, List<String> rasterIds, Date sortDate) {
 	}
 
@@ -51,6 +51,10 @@ public class NoConfigRasterConfigManager implements RasterConfigManager {
 
 	@Override
 	public void reorderWmsLayers(Map<String, Date> planId2sortDate) {
+	}
+
+	@Override
+	public void reorderWmsLayers(int planId, int moreRecentPlan, PlanStatus planStatus, XPlanType xPlanType) {
 	}
 
 	@Override

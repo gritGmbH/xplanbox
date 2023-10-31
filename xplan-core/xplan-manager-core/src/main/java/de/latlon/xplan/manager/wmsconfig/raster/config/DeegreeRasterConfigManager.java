@@ -58,7 +58,7 @@ public class DeegreeRasterConfigManager implements RasterConfigManager {
 	}
 
 	@Override
-	public void insertRasterLayers(int planId, String moreRecentPlanId, XPlanType type, PlanStatus planStatus,
+	public void insertRasterLayers(int planId, int moreRecentPlanId, XPlanType type, PlanStatus planStatus,
 			PlanStatus newPlanStatus, List<String> rasterIds, Date sortDate)
 			throws JAXBException, IOException, ConfigurationException {
 		String statusType = detectType(type, planStatus);
@@ -138,6 +138,22 @@ public class DeegreeRasterConfigManager implements RasterConfigManager {
 	@Override
 	public void reorderWmsLayers(Map<String, Date> planId2sortDate) throws Exception {
 		rasterThemeManager.reorderWmsLayers(planId2sortDate, managerConfiguration.getRasterConfigurationCrs());
+	}
+
+	/**
+	 * Reorders the wms layer configuration of the raster configurations of plan with the
+	 * passed id planId.
+	 * @param planId of the plan to reorder
+	 * @param moreRecentPlan the id of the more recent plan
+	 * @param planStatus
+	 * @param xPlanType
+	 * @throws Exception
+	 */
+	@Override
+	public void reorderWmsLayers(int planId, int moreRecentPlan, PlanStatus planStatus, XPlanType xPlanType)
+			throws ConfigurationException, JAXBException, IOException {
+		String statusType = detectType(xPlanType, planStatus);
+		rasterThemeManager.reorderWmsLayers(planId, moreRecentPlan, statusType);
 	}
 
 	@Override

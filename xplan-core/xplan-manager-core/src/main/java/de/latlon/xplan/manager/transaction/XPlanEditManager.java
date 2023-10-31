@@ -150,6 +150,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			reassignFids(modifiedPlanFc);
 			FeatureCollection synFc = createSynFeatures(modifiedPlanFc, version);
 			String internalId = xplanDao.retrieveInternalId(planId);
+			Date oldSortDate = xplanDao.retrieveSortDate(planId);
 
 			// TODO: Validation required?
 			PlanStatus newPlanStatus = detectNewPlanStatus(type, xPlanToEdit, oldLegislationStatus, oldPlanStatus);
@@ -160,7 +161,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 					synFc, xPlanMetadata, sortDate, internalId);
 			startCreationIfPlanNameHasChanged(planId, type, modifiedPlanFc, oldPlanName, oldDescription);
 			updateRasterConfiguration(planId, makeRasterConfig, uploadedArtefacts, type, oldPlanStatus, editedArtefacts,
-					newPlanStatus, sortDate);
+					newPlanStatus, sortDate, oldSortDate);
 			LOG.info("XPlanGML wurde erfolgreich editiert. ID: {}", planId);
 		}
 	}
@@ -173,19 +174,33 @@ public class XPlanEditManager extends XPlanTransactionManager {
 
 	private void updateRasterConfiguration(int planId, boolean makeRasterConfig, List<File> uploadedArtefacts,
 			XPlanType type, PlanStatus oldPlanStatus, EditedArtefacts editedArtefacts, PlanStatus newPlanStatus,
-			Date sortDate) throws JAXBException, IOException, ConfigurationException {
+			Date sortDate, Date oldSortDate) throws JAXBException, IOException, ConfigurationException {
 		List<String> removedRefFileNames = editedArtefacts.getFileNames(REMOVED, RASTER, RASTER_GEOREFERENCE);
 		xPlanRasterManager.removeRasterLayers(planId, removedRefFileNames);
 		if (makeRasterConfig) {
 			XPlanArchiveContentAccess archive = new XPlanPartArchive(uploadedArtefacts);
 			List<String> addedRefFileNames = editedArtefacts.getFileNames(ADDED, RASTER);
 			createRasterConfiguration(archive, addedRefFileNames, planId, type, oldPlanStatus, newPlanStatus, sortDate);
+			if (sortDateHasChanged(sortDate, oldSortDate)) {
+				int moreRecentPlanId = xplanDao.getPlanIdOfMoreRecentRasterPlan(sortDate);
+				xPlanRasterManager.updateSortOrderOfRasterLayers(planId, moreRecentPlanId, oldPlanStatus, newPlanStatus,
+						type);
+			}
 			reloadWorkspace(planId);
 		}
 		else {
 			xPlanRasterManager.updateRasterLayers(planId, type, oldPlanStatus, newPlanStatus);
 		}
 		LOG.info("Rasterkonfiguration für den Plan mit der ID {} wurde ausgetauscht (falls vorhanden).", planId);
+	}
+
+	private boolean sortDateHasChanged(Date sortDate, Date oldSortDate) {
+		if (oldSortDate == null && sortDate == null)
+			return false;
+		if (oldSortDate != null && sortDate != null) {
+			return !sortDate.equals(oldSortDate);
+		}
+		return true;
 	}
 
 	private PlanStatus detectNewPlanStatus(XPlanType type, XPlanToEdit xPlanToEdit, String oldLegislationStatus,
