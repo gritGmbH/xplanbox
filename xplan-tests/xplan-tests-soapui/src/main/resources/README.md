@@ -2,58 +2,15 @@
 
 Dieses Dokument beinhaltet Hinweise zur Benutzung der einzelnen SoapUI Projekte.
 
-## xplan-api-manager Projekt
+## Beschreibung der Projekte
+
+Im Folgenden werden die einzelnen Projekte beschrieben.
+
+### xplan-api-manager Projekt
 
 Dieses SoapUI Projekt testet die Komponente XPlanManagerAPI.
 
-### Ausführung
-
-Die zu testenden Endpunkte können folgendermaßen geändert werden:
-
-1. Projekt in SoapUI laden.
-2. Service-Komponente (wird mit zwei gegensätzlichen Pfeilen dargestellt) öffnen.
-3. Reiter `Service Endpoints` öffnen.
-4. Entweder einen der vorkonfigurierten Endpoints auswählen oder einen neuen hinzufügen.
-5. `Assign` auswählen.
-6. `All Requests and TestRequests` in der Drop-Down-Liste auswählen.
-7. Auswahl mit `OK` bestätigen.
-8. Nun können die TestSuites über die üblichen Wege ausgeführt werden.
-
-***Hinweise***
-
-- Die TestCases der einzelnen TestSuites bauen teilweise aufeinander auf. Dies bedeutet, dass eine TestSuite immer komplett ausgeführt werden sollte.
-- Das SoapUI Projekt kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich diese zum Verifizieren einer Neuinstallation.
-
-### TestSuite "Codelists TestSuite"
-
-Diese TestSuite prüft ob externe Codelisten beim Import über die XPlanManagerAPI übersetzt werden. Es werden per default folgende Übersetzungen angenommen:
-* BP_SonstPlanArt, Code 11002 => TeilbebauungsPlan
-* BP_Status, Code 19999 => 19999
-
-Um diesen Zustand zu erreichen ist eine entsprechende Konfiguration der externen Codeliste **BP_SonstPlanArt** für die XPlanGML Version 5.2 in der Installation der XPlanManagerAPI notwendig. Für die Codeliste **BP_Status** wird angenommen, dass **keine** externe Codeliste konfiguriert ist.
-
-Die default Werte können durch Auswahl der TestSuite und Öffnen des Reiters `Custom Properties` (unten links) angepasst werden. Es handelt sich um folgende Properties:
-* codelistValue_BP_SonstPlanArt_11002
-* codelistValue_BP_Status_19999
-
-Für die Ausführung ist auch die Konfiguration der XPlanDienste URL erforderlich. Dies erfolgt ebenfalls unter  durch Auswahl der TestSuite und Öffnen des Reiters `Custom Properties` (unten links). Dort sind folgende Properties anzupassen:
-* servicesBaseUrl
-* username (optional)
-* password (optional)
-
----
-
-## xplan-api-validator Projekt
-
-Dieses SoapUI Projekt testet die Komponente XPlanValidatorAPI.
-
-Die Ausführung des SoapUI Projekt erfolgt, wie in der [xplan-api-manager Projekt](#xplan-api-manager-projekt) beschrieben. Es gelten auch die dort beschriebenen Hinweise.
-
-## xplan-webservices Projekt
-
-Dieses SoapUI Projekt testet die Komponente XPlanDienste.
-
-### Ausführung
+#### Ausführung
 
 Die zu testenden Endpunkte können folgendermaßen geändert werden:
 
@@ -66,17 +23,67 @@ Die zu testenden Endpunkte können folgendermaßen geändert werden:
 
 ***Hinweise***
 
+- Die TestCases der einzelnen TestSuites bauen teilweise aufeinander auf. Dies bedeutet, dass eine TestSuite immer komplett ausgeführt werden sollte.
+- Das SoapUI Projekt kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich dieses zum Verifizieren einer Neuinstallation.
+
+#### TestSuite "Codelists TestSuite"
+
+Diese TestSuite prüft, ob externe Codelisten beim Import über die XPlanManagerAPI übersetzt werden. Es werden per default folgende Übersetzungen angenommen:
+* BP_SonstPlanArt, Code 11002 => TeilbebauungsPlan
+* BP_Status, Code 19999 => 19999
+
+Um diesen Zustand zu erreichen, ist eine entsprechende Konfiguration der externen Codeliste **BP_SonstPlanArt** für die XPlanGML Version 5.2 in der Installation der XPlanManagerAPI notwendig. Für die Codeliste **BP_Status** wird angenommen, dass **keine** externe Codeliste konfiguriert ist.
+
+Die default Werte können durch Auswahl der TestSuite und Öffnen des Reiters `Custom Properties` (unten links) angepasst werden. Es handelt sich um folgende Properties:
+* codelistValue_BP_SonstPlanArt_11002
+* codelistValue_BP_Status_19999
+
+Für die Ausführung ist auch die Konfiguration der XPlanDienste URL erforderlich. Dies erfolgt ebenfalls unter  durch Auswahl der TestSuite und Öffnen des Reiters `Custom Properties` (unten links). Dort sind folgende Properties anzupassen:
+* servicesBaseUrl
+* username (optional)
+* password (optional)
+
+### xplan-api-validator Projekt
+
+Dieses SoapUI Projekt testet die Komponente XPlanValidatorAPI.
+
+Die Ausführung des SoapUI Projekt erfolgt, wie in dem [xplan-api-manager Projekt](#xplan-api-manager-projekt) beschrieben. Es gelten auch die dort beschriebenen Hinweise.
+
+### xplan-api-dokumente Projekt
+
+Dieses SoapUI Projekt testet die Komponente XPlanDokumentenAPI.
+
+Die Ausführung des SoapUI Projekt erfolgt, wie in dem [xplan-api-manager Projekt](#xplan-api-manager-projekt) beschrieben. Es gelten auch die dort beschriebenen Hinweise.
+
+### xplan-webservices Projekt
+
+Dieses SoapUI Projekt testet die Komponente XPlanDienste.
+
+Die Ausführung des SoapUI Projekt erfolgt, wie in dem [xplan-api-manager Projekt](#xplan-api-manager-projekt) beschrieben. Es gelten auch die dort beschriebenen Hinweise.
+
+***Hinweise***
+
 - Die TestCases aller TestSuites können individuell genutzt werden und es gibt keine Abhängigkeiten zwischen diesen. Nur die einzelnen TestSteps bauen teilweise aufeinander auf.
 - Das SoapUI Projekt kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich diese zum Verifizieren einer Neuinstallation.
 
-## xplan-manager-web Projekt
+### xplan-manager-web Projekt
 
 Dieses SoapUI Projekt testet Teile der REST API des XPlanManagerWeb.
 
-Die Ausführung des SoapUI Projekt erfolgt, wie in der [xplan-api-manager projekt](#xplan-api-manager-projekt) beschrieben.
+#### Ausführung
 
+Die zu testenden Endpunkte können folgendermaßen geändert werden:
 
-# Generelle Hinweise
+1. Projekt in SoapUI laden.
+2. Service-Komponente (wird mit zwei gegensätzlichen Pfeilen dargestellt) öffnen.
+3. Reiter `Service Endpoints` öffnen.
+4. Entweder einen der vorkonfigurierten Endpoints auswählen oder einen neuen hinzufügen.
+5. `Assign` auswählen.
+6. `All Requests and TestRequests` in der Drop-Down-Liste auswählen.
+7. Auswahl mit `OK` bestätigen.
+8. Nun können die TestSuites über die üblichen Wege ausgeführt werden.
+
+## Generelle Hinweise
 
 ### Nutzung von SoapUI mit Windows
 
@@ -85,17 +92,13 @@ Um diese zu beheben, muss in der Datei _<SoapUI>\bin\SoapUI-<Version>.vmoptions_
 
 > -Dfile.encoding=utf-8
 
----
-
 ### Verwendung von HTTP BASIC Authentication
 
 Sind für den Zugriff auf den Server Credentials erforderlich, so müssen diese je Projekt angegeben werden.
 
-Für die Projekte [xplan-api-manager](#xplan-api-manager-projekt) und [xplan-api-validator](#xplan-api-validator-projekt) in SoapUI die Ansicht "Show Service Viewer > Service Endpoints" öffnen. Dort müssen Username und Password für den Endpoint eingetragen und dann mit `All Requests and TestRequests` aus der Drop-Down-Liste auf alle Test angewendet werden. 
+Für das Projekt [xplan-manager-web](#xplan-manager-web-projekt) in SoapUI die Ansicht "Show Service Viewer > Service Endpoints" öffnen. Dort müssen Username und Password für den Endpoint eingetragen und dann mit `All Requests and TestRequests` aus der Drop-Down-Liste auf alle Test angewendet werden.
 
-Für das Projekt [xplan-webservices](#xplan-webservices-projekt) in SoapUI das Projekt auswählen und den Reiter `Custom Properties` auswählen. Dort die Properties `username` und `password` setzen.
-
----
+Für die Projekte [xplan-api-manager](#xplan-api-manager-projekt), [xplan-api-validator](#xplan-api-validator-projekt), [xplan-api-dokumente](#xplan-api-dokumente-projekt) und [xplan-webservices](#xplan-webservices-projekt) in SoapUI das Projekt auswählen und den Reiter `Custom Properties` auswählen. Dort die Properties `username` und `password` setzen.
 
 ### Anpassungen an den SoapUI Projekten durchführen (für Entwickler)
 
@@ -172,4 +175,3 @@ Die zu nutzenden Abkürzungen werden im folgenden Glossar definiert.
 ### ADDITIONALINFORTAMTION
 
 - Derzeit keine genaue Festlegung
-

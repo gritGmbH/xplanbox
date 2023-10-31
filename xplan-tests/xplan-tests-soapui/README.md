@@ -53,6 +53,7 @@ docker run --env ... xplanbox/xplan-tests-soapui
 - `XPLAN_SERVICES_API_KEY`
 
 Optional, wenn die Tests der XPlanDB bei Ausführung der XPlanManagerAPI-SopaUI-Tests ausgeführt werden sollen:
+
 - `XPLAN_DB_HOSTNAME`
 - `XPLAN_DB_PORT`
 - `XPLAN_DB_NAME`
