@@ -81,7 +81,6 @@ import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
-import org.deegree.commons.config.DeegreeWorkspace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
@@ -100,8 +99,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLAN_MANAGER_WORKSPACE;
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
 
 /**
  * Spring Application Context for initialising XPlanManagerAPI components.
@@ -110,12 +107,10 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorksp
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
-@ComponentScan(basePackages = { "de.latlon.xplanbox.api.manager" })
+@ComponentScan(basePackages = { "de.latlon.xplanbox.api.manager.handler" })
 @Import({ JpaContext.class, RasterStorageContext.class, AmazonS3RasterStorageContext.class,
 		DocumentStorageContext.class, StorageCleanUpContext.class })
 public class ApplicationContext {
-
-	private static final String RULES_DIRECTORY = "/rules";
 
 	@Autowired
 	private PlanRepository planRepository;
@@ -190,12 +185,6 @@ public class ApplicationContext {
 			Optional<AttachmentUrlHandler> attachmentUrlHandler) {
 		return new XPlanManagerDao(managerWorkspaceWrapper, xPlanDbAdapter, xPlanSynthesizer,
 				attachmentUrlHandler.orElse(null), xPlanExporter, applicationEventPublisher);
-	}
-
-	@Bean
-	public ManagerWorkspaceWrapper managerWorkspaceWrapper() throws WorkspaceException {
-		DeegreeWorkspace managerWorkspace = instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE);
-		return new ManagerWorkspaceWrapper(managerWorkspace);
 	}
 
 	@Bean
