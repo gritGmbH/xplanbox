@@ -26,9 +26,21 @@ Die zu testenden Endpunkte können folgendermaßen geändert werden:
 - Die TestCases der einzelnen TestSuites bauen teilweise aufeinander auf. Dies bedeutet, dass eine TestSuite immer komplett ausgeführt werden sollte.
 - Das SoapUI Projekt kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich dieses zum Verifizieren einer Neuinstallation.
 
+#### TestSuite "XPlanManagerAPI TestSuite"
+
+Diese Testsuite beinhaltet Datenbanktests, die nur verwendet werden können, wenn auf die Datenbank über eine JDBC URL zugegriffen werden kann.
+
+> **_ACHTUNG:_** Wenn die Datenbanktests verwendet werden sollen, muss der PostgreSQL JDBC-Treiber der SoapUI-Installation, wie unter [Datenbanktests](#Datenbanktests) beschrieben, hinzugefügt werden.
+
+Die JDBC URL zu der von der xPlanBox verwendeten Datenbank muss durch Auswahl des Projekts und Öffnen des Reiters `Custom Properties` (unten links) über das Property `jdbcUrl` gesetzt werden.
+
+Beispiel für eine JDBC URL: `jdbc:postgresql://localhost:5433/xplanbox?user=postgres&password=postgres`
+
+Wenn keine JDBC URL konfiguriert ist, werden die Datenbanktests übersprungen.
+
 #### TestSuite "Codelists TestSuite"
 
-Diese TestSuite prüft, ob externe Codelisten beim Import über die XPlanManagerAPI übersetzt werden. Es werden per default folgende Übersetzungen angenommen:
+Diese TestSuite prüft, ob externe Codelisten beim Import über die XPlanManagerAPI übersetzt werden. Es werden per Default folgende Übersetzungen angenommen:
 * BP_SonstPlanArt, Code 11002 => TeilbebauungsPlan
 * BP_Status, Code 19999 => 19999
 
@@ -38,7 +50,7 @@ Die default Werte können durch Auswahl der TestSuite und Öffnen des Reiters `C
 * codelistValue_BP_SonstPlanArt_11002
 * codelistValue_BP_Status_19999
 
-Für die Ausführung ist auch die Konfiguration der XPlanDienste URL erforderlich. Dies erfolgt ebenfalls unter  durch Auswahl der TestSuite und Öffnen des Reiters `Custom Properties` (unten links). Dort sind folgende Properties anzupassen:
+Für die Ausführung ist auch die Konfiguration der XPlanDienste URL erforderlich. Dies erfolgt durch Auswahl des Projekts und Öffnen des Reiters `Custom Properties` (unten links). Dort sind folgende Properties anzupassen:
 * servicesBaseUrl
 * username (optional)
 * password (optional)
@@ -99,6 +111,16 @@ Sind für den Zugriff auf den Server Credentials erforderlich, so müssen diese 
 Für das Projekt [xplan-manager-web](#xplan-manager-web-projekt) in SoapUI die Ansicht "Show Service Viewer > Service Endpoints" öffnen. Dort müssen Username und Password für den Endpoint eingetragen und dann mit `All Requests and TestRequests` aus der Drop-Down-Liste auf alle Test angewendet werden.
 
 Für die Projekte [xplan-api-manager](#xplan-api-manager-projekt), [xplan-api-validator](#xplan-api-validator-projekt), [xplan-api-dokumente](#xplan-api-dokumente-projekt) und [xplan-webservices](#xplan-webservices-projekt) in SoapUI das Projekt auswählen und den Reiter `Custom Properties` auswählen. Dort die Properties `username` und `password` setzen.
+
+### Datenbanktests
+
+Damit Datenbanktests gegen PostgreSQL ausgeführt werden können, muss der SoapUI-Installation der JDBC-Treiber von PostgreSQL hinzugefügt werden.
+
+Dieser kann auf folgender Seite heruntergeladen werden: https://jdbc.postgresql.org/download/
+
+Die JAR-Datei muss anschließend in das lib-Verzeichnis von der SoapUI-Installation kopiert werden (`<SOAPUI_INSTALLATION>/lib/`).
+
+Nach einem Neustart von SoapUI ist der neu hinzugefügte Datenbanktreiber nutzbar.
 
 ### Anpassungen an den SoapUI Projekten durchführen (für Entwickler)
 
