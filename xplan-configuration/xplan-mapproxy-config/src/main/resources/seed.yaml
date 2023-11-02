@@ -74,5 +74,5 @@ coverages:
     where: "select * from xplanmgr.planslog where xp_type='SO_Plan' and (planstatus_new='Festgestellt' or planstatus_old='Festgestellt') and last_update_date > localtimestamp - interval '1 day'"
     srs: 'EPSG:4326'
   full:
-    bbox: [{{ .Values.global.xplanbox.bbox }}]
+    bbox: [${XPLAN_SERVICES_BBOX_4326}]
     srs: 'EPSG:4326'
