@@ -17,9 +17,36 @@ seeds:
     levels:
       from: 2
       to: 4
+  lpreseed:
+    caches: [lplan_raster_cache,lplan_vektor_cache]
+    grids: [lp_25832]
+    coverages: [lpchanges]
+    refresh_before:
+      days: 0
+    levels:
+      from: 2
+      to: 4
+  rpreseed:
+    caches: [rplan_raster_cache,rplan_vektor_cache]
+    grids: [rp_25832]
+    coverages: [rpchanges]
+    refresh_before:
+      days: 0
+    levels:
+      from: 2
+      to: 4
+  soreseed:
+    caches: [soplan_raster_cache,soplan_vektor_cache]
+    grids: [so_25832]
+    coverages: [sochanges]
+    refresh_before:
+      days: 0
+    levels:
+      from: 4
+      to: 6
   # wird bei einem frischen Deployment vermutlich gar nicht benötigt?
   fullseed:
-    caches: [bplan_raster_cache,bplan_vektor_cache,fplan_raster_cache,fplan_vektor_cache]
+    caches: [bplan_raster_cache,bplan_vektor_cache,fplan_raster_cache,fplan_vektor_cache,lplan_raster_cache,lplan_vektor_cache,rplan_raster_cache,rplan_vektor_cache,soplan_raster_cache,soplan_vektor_cache]
     grids: [gdi_de_25832]
     coverages: [full]
     refresh_before:
@@ -33,6 +60,18 @@ coverages:
   fpchanges:
     datasource: "PG:"
     where: "select * from xplanmgr.planslog where xp_type='FP_Plan' and (planstatus_new='Festgestellt' or planstatus_old='Festgestellt') and last_update_date > localtimestamp - interval '1 day'"
+    srs: 'EPSG:4326'
+  lpchanges:
+    datasource: "PG:"
+    where: "select * from xplanmgr.planslog where xp_type='LP_Plan' and (planstatus_new='Festgestellt' or planstatus_old='Festgestellt') and last_update_date > localtimestamp - interval '1 day'"
+    srs: 'EPSG:4326'
+  rpchanges:
+    datasource: "PG:"
+    where: "select * from xplanmgr.planslog where xp_type='RP_Plan' and (planstatus_new='Festgestellt' or planstatus_old='Festgestellt') and last_update_date > localtimestamp - interval '1 day'"
+    srs: 'EPSG:4326'
+  sochanges:
+    datasource: "PG:"
+    where: "select * from xplanmgr.planslog where xp_type='SO_Plan' and (planstatus_new='Festgestellt' or planstatus_old='Festgestellt') and last_update_date > localtimestamp - interval '1 day'"
     srs: 'EPSG:4326'
   full:
     bbox: [{{ .Values.global.xplanbox.bbox }}]
