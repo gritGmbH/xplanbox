@@ -18,6 +18,11 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
 <con:soapui-project id="adcdfd3f-0f4e-4107-8d7e-086010676cb7" activeEnvironment="Default" name="xplan-api-manager" resourceRoot="" soapui-version="5.7.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+  <con:description>For local execution use following property values:
+
+baseUrlManagerApi=http://localhost:8086/xplan-api-manager
+baseUrlServices=http://localhost:8083
+jdbcUrl=jdbc:postgresql://localhost:5433/xplanbox?user=xplanbox&amp;password=xplanbox</con:description>
   <con:settings/>
   <con:interface xsi:type="con:RestService" id="4c3b4b1f-f0cd-4a9f-bbc4-433948e85871" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanManagerAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:description>XPlanManager REST API</con:description>
@@ -6773,6 +6778,36 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing" id="db238d44-b072-46ec-8202-37ad1b2ca84b">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC BP 5.0 XX checkDokument" id="117d190d-9422-42d7-b410-7bb44698f785">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="98d0cb2d-a0db-49d1-972b-84429fbdbcd1" name="Exists postDok.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdDokument}' and ARTEFACTS.FILENAME = 'postDok.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET BP 5.0 pI verifyStatus" id="8db5e539-a6c1-4052-bb83-45c18942ab5c">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument" methodName="getDokumente" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -6988,6 +7023,36 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 2" id="8c171648-051a-4ee9-8168-da900714d641">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC FP 5.0 XX checkDokument" id="8ac0ffbe-0e5b-4cb6-bde7-378d1c5aa0b6">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="441bf229-7310-47fa-8d8e-5f27c2264cf3" name="Exists postDok.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'postDok.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET FP 5.0 pI verifyStatus" id="b3dc53fd-8db1-44bf-a1d0-d65d59c6e94d">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument" methodName="getDokumente" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -7158,6 +7223,36 @@ if (documentUrl != "null"){
               <entry key="planId" value="${#TestSuite#currentPlanIdLPlan}" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 3" id="ff5e0113-44c4-41d8-a0e2-c369b335616a">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC LP 6.0 XX checkDokument" id="1246a265-f847-472e-9e9f-eaf6b501f7e2">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="b1c4834c-e946-4835-9616-832ddaa36485" name="Exists postDok.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'postDok.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET LP 6.0 pI verifyStatus" id="4b0c6044-d58b-4738-a9b7-22d7b17db8f4">
@@ -7332,6 +7427,36 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 4" id="74115bfd-1998-43e8-ab2b-0d0462a81cb2">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC RP 5.1 XX checkDokument" id="d36823a5-7328-4102-aa88-00248fff31a0">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="cfe80694-b126-4701-8507-19fc449ace58" name="Exists postDok.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'postDok.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET RP 5.1 pI verifyStatus" id="913b49a1-b4c8-4c97-ae57-b04519d7f59d">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/dokument" methodName="getDokumente" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -7501,6 +7626,36 @@ if (documentUrl != "null"){
               <entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 5" id="4e6cf4c6-1598-4f25-a512-4391c7f400a5">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC SO 5.3 XX checkDokument" id="b4a95a3b-7e2c-4b53-8a8b-76c4db662f65">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="ebe75739-97b6-43bf-9e62-c21814fb89ec" name="Exists postDok.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'postDok.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET SO 5.3 pI verifyStatus" id="b24cda6d-61ce-4bd6-b2ce-ae8f9d2dbb79">
@@ -7780,6 +7935,36 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing" id="d6596f26-4b2b-4552-8e7f-3257e99817f3">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC BP 5.0 XX checkDokument" id="0cc03699-da29-4361-95e1-040fbe5a481c">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="c4bfdfb2-e437-4923-998d-7c975e292d77" name="Exists putDok.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdDokument}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="transfer" name="Property Transfer BP 5.0" id="43d347ca-b625-401c-adc4-0f0a60d811a3">
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -7985,6 +8170,36 @@ if (documentUrl != "null"){
               <con:entry key="id" value="${#TestSuite#dokumentId}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 2" id="854c8adc-acc7-4e6d-860a-3ffb8ea4decd">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC FP 5.0 XX checkDokument" id="0790fc1e-d557-498a-ae4b-d73f5705f083">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="2af97643-5bfb-4362-8fb4-299e131928ed" name="Exists putDok.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="transfer" name="Property Transfer FP 5.0" id="0eaf1e74-ff0c-4eae-8b09-2b329c35d3f7">
@@ -8204,6 +8419,36 @@ if (documentUrl != "null"){
               <con:entry key="id" value="${#TestSuite#dokumentIdLP60}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 3" id="93befa11-baa5-43fc-a55d-b60cb5fa53e1">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC LP 6.0 XX checkDokument" id="55f82061-745d-41fa-b50d-30b32986c943">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="01ec9c4c-fceb-480d-bde4-419fcd5e4f2a" name="Exists putDok.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="transfer" name="Property Transfer LP 6.0" id="196bddc7-ab6a-44a5-8e1e-3d9041251dbd">
@@ -8426,6 +8671,36 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 4" id="da1b1606-2e98-419d-af8b-ba35d38acd82">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC RP 5.1 XX checkDokument" id="1e09342a-f8cd-4d63-8369-b331ab962934">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="c448352e-0d9a-48a8-81a7-bf46e61c2fc0" name="Exists putDok.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="transfer" name="Property Transfer RP 5.1" id="b43eb4fa-427b-4b68-86b1-303fc2113d81">
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -8645,6 +8920,36 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 5" id="384c3652-a961-4f2d-9648-d78d24206f47">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC SO 5.3 XX checkDokument" id="d2a026f7-282a-4322-b35b-882a6f9cd469">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="Exists putDok.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="transfer" name="Property Transfer SO 5.3" id="385d5409-fd1a-456f-8f18-3f5344e329ba">
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -8801,6 +9106,72 @@ if (documentUrl != "null"){
               <con:entry key="id" value="${#TestCase#dokumentIdSO53}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 6" id="3680758b-0964-452d-84d2-8a6ef9f9bd87">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC XX XX XX checkDokumentDelete" id="458e82f9-127d-4171-9e91-10ef2a09af8b">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putDok.pdf BP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdDokument}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putDok.pdf SO">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putDok.pdf FP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putDok.pdf LP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putDok.pdf RP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'putDok.pdf'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="transfer" name="Cleanup" id="23d0275a-0754-4617-a373-0a2547e961fa">
@@ -9244,6 +9615,45 @@ if (documentUrl != "null"){
               <con:entry>planId</con:entry>
             </con:parameterOrder>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing" id="38eb4441-0bf9-4b19-b963-14a1e8486455">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC BP 5.3 XX checkRasterbasis" id="3b92ff13-83ad-4872-8ea2-96f72f3551b7">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="c626c665-ca92-4af6-8419-b36cb3dd893c" name="Exists postImg.png">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdXPlanGML53}' and ARTEFACTS.FILENAME = 'postImg.png'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="5710fe1e-6f12-4181-8694-e6c0b83b5cf2" name="Exists postImg.pgw">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdXPlanGML53}' and ARTEFACTS.FILENAME = 'postImg.pgw'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="POST BP 5.2 pI modifyStatusWithoutBereichExpectError" id="bfb952fb-ed75-42cf-8df8-0ce90f697dcf">
@@ -9993,6 +10403,45 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 2" id="07e78993-0c92-41ee-a4b8-77a0a28c34e2">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC FP 5.0 XX checkRasterbasis" id="0188822c-b441-451e-acfb-a9189ece535d">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="518f9564-7d7c-43a7-9bab-8af3c6ab860e" name="Exists postImg.png">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'postImg.png'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="518f9564-7d7c-43a7-9bab-8af3c6ab860e" name="Exists postImg.pgw">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'postImg.pgw'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET FP 5.0 pI verifyStatus" id="4111aab6-a533-4c72-99d1-20a48baf7ca0">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis" methodName="getRasterBasis" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -10253,6 +10702,45 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 3" id="18810b69-3a0d-4fc8-9713-e4a221313be9">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC LP 6.0 XX checkRasterbasis" id="db03d3f8-20d7-4d6a-a243-1d9b161980ed">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="b2bba16f-ae74-46ba-a523-30bc7163b8b2" name="Exists postImg.png">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'postImg.png'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="b2bba16f-ae74-46ba-a523-30bc7163b8b2" name="Exists postImg.pgw">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'postImg.pgw'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET LP 6.0 pI verifyStatus" id="0331d096-a28c-4f72-b0f9-488aee10a778">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis" methodName="getRasterBasis" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -10451,6 +10939,45 @@ if (documentUrl != "null"){
               <con:entry>planId</con:entry>
             </con:parameterOrder>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 4" id="05836811-00ca-46b2-8334-bfe367d551d2">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC RP 5.1 XX checkRasterbasis" id="59959907-1b2f-4888-b4e8-65c370c52996">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="4e5d61b2-3df0-4601-a9c3-f73bf2304533" name="Exists postImg.png">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'postImg.png'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="4e5d61b2-3df0-4601-a9c3-f73bf2304533" name="Exists postImg.pgw">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'postImg.pgw'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET RP 5.1 pI verifyStatus" id="b95b01fb-dc5c-4dd2-bc1a-fa909b11e13d">
@@ -10653,6 +11180,45 @@ if (documentUrl != "null"){
               <con:entry>planId</con:entry>
             </con:parameterOrder>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 5" id="e4dff86a-93bc-4bfc-88a7-1689099ba04c">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC SO 5.3 XX checkRasterbasis" id="dfc26d39-9415-4a6d-ba96-cf21c5a025b0">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="403a72b4-1988-4e96-8c5f-5e89d77c0954" name="Exists postImg.png">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'postImg.png'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="403a72b4-1988-4e96-8c5f-5e89d77c0954" name="Exists postImg.pgw">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'postImg.pgw'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET SO 5.3 pI verifyStatus" id="c6cda071-1520-4844-848e-d8e4d702b631">
@@ -10947,6 +11513,45 @@ if (documentUrl != "null"){
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing" id="339d7570-2ef7-4490-bf1f-9dd385ac2c5c">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC BP 5.3 XX checkRasterbasis" id="f8d9f02d-7b56-4e73-93fb-6c5ec8ff7829">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="754f7477-aae0-4c92-b56e-1036ba3316aa" name="Exists putImg.png">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdXPlanGML53}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="754f7477-aae0-4c92-b56e-1036ba3316aa" name="Exists putImg.pgw">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdXPlanGML53}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="PUT BP 5.3 pI,id modifyStatusUnsupportedContentTypeExpectError" id="06ad277f-e481-40e8-8997-613e2f6934f2">
@@ -11716,6 +12321,45 @@ if (documentUrl != "null"){
           </con:transfers>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 2" id="0e7760e9-9095-4054-8217-1f35cf97ec5c">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC FP 5.0 XX checkRasterbasis" id="dac8b620-f3c5-437b-8952-bbb5f7f9961e">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="4cf3837a-caf0-41de-b613-bb8739649972" name="Exists putImg.png">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="4cf3837a-caf0-41de-b613-bb8739649972" name="Exists putImg.pgw">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET FP 5.0 pI,id currentStatus" id="77b68847-a3db-4465-b8d5-ed9c7eab6185">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis/{id}" methodName="getRasterbasisById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -11931,6 +12575,45 @@ if (documentUrl != "null"){
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 3" id="183e2903-6e45-4983-9bf4-d6d5945adaa9">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC LP 6.0 XX checkRasterbasis" id="9c6d7b1e-1e22-433e-9a11-e8a23a9f1bc7">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="de22dc85-4185-4b18-a749-9c0dff0b4dbc" name="Exits putImg.png">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="de22dc85-4185-4b18-a749-9c0dff0b4dbc" name="Exits putImg.pgw">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET LP 6.0 pI,id currentStatus" id="afa55a91-11f5-4cc8-93bb-e1a4581140f5">
@@ -12150,6 +12833,45 @@ if (documentUrl != "null"){
           </con:transfers>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 4" id="7c3d279a-ad84-43c7-9803-b195f8518b2e">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC RP 5.1 XX checkRasterbasis" id="77d9a25a-ecd6-45b0-a8f5-15dc8e13db1e">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="941a4cb0-3f22-444a-a2ed-96301eee6b43" name="Exists putImg,png">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="941a4cb0-3f22-444a-a2ed-96301eee6b43" name="Exists putImg,pgw">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET RP 5.1 pI,id currentStatus" id="e1db8560-afb6-47e4-b787-3cf5ebb46c7d">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis/{id}" methodName="getRasterbasisById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -12367,6 +13089,45 @@ if (documentUrl != "null"){
           </con:transfers>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 5" id="f4845713-2976-46b4-b357-24c330556796">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC SO 5.3 XX checkRasterbasis" id="325e0dd9-342f-4059-9534-9dc252568366">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="d096b504-060c-4dd0-9a83-73bf35f534df" name="Exists putImg.png">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d096b504-060c-4dd0-9a83-73bf35f534df" name="Exists putImg.pgw">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET SO 5.3 pI,id currentStatus" id="4e3cec0d-9592-4ce8-a6a9-db3634063c0a">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis/{id}" methodName="getRasterbasisById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -12498,6 +13259,117 @@ if (documentUrl != "null"){
               <con:entry key="id" value="${#TestCase#rasterbasisIdSO53}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 6" id="1741ae27-39ba-4e12-add4-12cdd44a8fce">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC XX XX XX checkRasterbasisDelete" id="3985d7a3-9b30-46a4-b25b-48ab8bf6b75e">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.png BP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdXPlanGML53}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.png SO">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.png FP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.png LP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.png RP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'putImg.png'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.pgw BP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdXPlanGML53}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.pgw SO">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.pgw FP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.pgw LP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="d2a6d419-13f7-480d-b2e0-6314f08fe20a" name="NotExists putImg.pgw RP">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'putImg.pgw'])</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="transfer" name="Cleanup" id="24df644f-cd0c-49f4-9604-4d81f35326ea">
@@ -12940,6 +13812,36 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing" id="6e5758e3-25bb-4d8b-872a-430692a5b5a0">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC BP 6.0 XX checkText" id="a05e6055-b88a-455b-af90-de347bad4f97">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="0d23fb86-c692-4c51-8a38-73152973a42c" name="Exists postText.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdXPlanGML60}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET BP 6.0 pI verifyStatus" id="8e88382d-1d09-451c-a17b-91582419ba7e">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -13131,6 +14033,36 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 2" id="23b4c417-57ed-4101-a495-32434b5b62e1">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC FP 5.0 XX checkText" id="c9d834b7-689d-4509-a5cd-47e1843038b0">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="afd7d46a-e867-4805-ba4c-8d779c9a7229" name="Exists postText.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET FP 5.0 pI verifyStatus" id="d9c2e1d8-3cec-462b-a206-01df8b680f0f">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text" methodName="getTexte" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -13320,6 +14252,36 @@ if (documentUrl != "null"){
               <entry key="planId" value="${#TestSuite#currentPlanIdLPlan}" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 3" id="959eb733-4986-494c-b023-6a47257d6898">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC LP 6.0 XX checkText" id="b56f8484-0f51-47e0-b07a-8b8cd439600c">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="6899c8cf-6dc2-4a19-b631-931fdd4d68fe" name="Exists postText.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET LP 6.0 pI verifyStatus" id="73df5016-0280-45d6-9264-0b33a392ce91">
@@ -13520,6 +14482,36 @@ if (documentUrl != "null"){
               <entry key="planId" value="${#TestSuite#currentPlanIdRPlan}" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 4" id="81c9358f-ffdb-45dd-806e-72870347dc35">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC RP 5.1 XX checkText" id="195006ca-bef5-4605-8319-bfa6826f5971">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="2d5b09a7-b3f9-4b47-9502-bd1ffb3b47eb" name="Exists postText,pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET RP 5.1 pI verifyStatus" id="38f8b3f5-eba7-4653-b3cc-c1bd92bdd549">
@@ -13730,6 +14722,36 @@ if (documentUrl != "null"){
               <entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 5" id="b8af7942-c1be-4815-9905-8ad73759793a">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC SO 5.3 XX checkText" id="6e282894-23f1-44eb-9367-cf6ae4b311d5">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="162e3e58-2d66-4abb-adc2-70863dcb69d5" name="Exists postText.pdf">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'postText.pdf'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET SO 5.3 pI verifyStatus" id="6a089ec3-9bfb-49fd-a907-525f6e6f6f91">
@@ -14067,6 +15089,36 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing" id="788ee9e8-3f6a-4c48-ae39-0181bf286682">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC BP 5.3 XX checkText" id="98b8b497-1eb1-4b6a-9b48-86f91d23c934">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="845302f4-76d2-4a78-9325-9a9b99185a98" name="Exists putText.txt">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdText}' and ARTEFACTS.FILENAME = 'putText.txt'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="POST BP 5.3 pI,id modifyStatusUnsupportedContentTypeExpectError" id="77616f7c-0228-40fa-bebc-a5af9addb62a">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text/{id}" methodName="replaceTextById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -14289,6 +15341,36 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 2" id="f5e8be0f-3c53-409c-8e37-67aa5a21e90e">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC FP 5.0 XX checkText" id="97373340-0a11-481e-ae96-41feebf7b6c1">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="5a009682-2847-4785-80df-2e7906635f8f" name="Exists putText.txt">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdFPlan}' and ARTEFACTS.FILENAME = 'putText.txt'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET FP 5.0 pI,id currentStatus" id="5d54a967-d99a-4b6f-8227-0a26c30d04a4">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text/{id}" methodName="getTextById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -14435,6 +15517,36 @@ if (documentUrl != "null"){
               <con:entry key="id" value="${#TestSuite#textIdLPlan}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 3" id="966e4726-aa51-46c8-9d00-92c3c9b30a4a">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC LP 6.0 XX checkText" id="a64228d0-6079-4071-91ee-5a5d1363d67d">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="2f54d3c3-76e6-46e9-a494-43d3207037b4" name="Exists putText.txt">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdLPlan}' and ARTEFACTS.FILENAME = 'putText.txt'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET LP 6.0 pI,id currentStatus" id="927d3902-cd69-492b-867b-83e3cb7b22cb">
@@ -14585,6 +15697,36 @@ if (documentUrl != "null"){
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 4" id="2f1a48e5-4e98-4fdb-bdea-465632ec4a1a">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC RP 5.1 XX checkText" id="b6e50961-ccf8-4b71-8ea6-548cd5e7bbbc">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="d0eabfd5-9da0-4863-983f-208afbdcce95" name="Exists putText.txt">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdRPlan}' and ARTEFACTS.FILENAME = 'putText.txt'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET RP 5.1 pI,id currentStatus" id="2081edcc-f8e6-42c8-b9f2-b1932feed37b">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text/{id}" methodName="getTextById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -14731,6 +15873,36 @@ if (documentUrl != "null"){
               <con:entry key="id" value="${#TestSuite#textIdSOPlan}"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="skipNextStepIfJdbcUrlMissing 5" id="13c702d1-4b31-4019-b9d9-6ef12826baa8">
+        <con:settings/>
+        <con:config>
+          <script>def jdbcUrl = context.testCase.testSuite.project.getPropertyValue("jdbcUrl");
+
+if (jdbcUrl == ""){
+	def currentStepIndex = context.currentStepIndex;
+	def stepToGo = testRunner.testCase.getTestStepAt(currentStepIndex + 2).getName();
+	testRunner.gotoStepByName(stepToGo);
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="jdbc" name="JDBC SO 5.3 XX checkText" id="eff5e3e1-0ac2-4b17-9435-ed8e8d05b483">
+        <con:settings/>
+        <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:driver>org.postgresql.Driver</con:driver>
+          <con:connectionString>${#Project#jdbcUrl}</con:connectionString>
+          <con:query>select plan,filename from xplanmgr.artefacts;</con:query>
+          <con:assertion type="XPath Match" id="8ae18008-3585-4173-830b-0fe1f7455a93" name="Exists putText.txt">
+            <con:configuration>
+              <path>exists(/Results/ResultSet/Row[ARTEFACTS.PLAN = '${#TestSuite#currentPlanIdSOPlan}' and ARTEFACTS.FILENAME = 'putText.txt'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:properties/>
         </con:config>
       </con:testStep>
       <con:testStep type="restrequest" name="GET SO 5.3 pI,id currentStatus" id="4a8fcfae-6c11-4484-bbbd-e4b51b0980fa">
@@ -17162,7 +18334,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
     </con:property>
     <con:property>
       <con:name>baseUrlServices</con:name>
-      <con:value>http://localhost:8083/</con:value>
+      <con:value>http://localhost:8083</con:value>
     </con:property>
     <con:property>
       <con:name>username</con:name>
@@ -17170,6 +18342,10 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
     </con:property>
     <con:property>
       <con:name>password</con:name>
+      <con:value/>
+    </con:property>
+    <con:property>
+      <con:name>jdbcUrl</con:name>
       <con:value/>
     </con:property>
   </con:properties>

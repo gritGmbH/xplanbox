@@ -8,7 +8,7 @@
 
 ### xplan-api-manager-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlServices=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
+> mvn clean test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlServices=https://xplanbox.lat-lon.de -DjdbcUrl=jdbc:postgresql://localhost:5433/xplanbox?user=xplanbox&password=xplanbox -Dusername=xplanbox -Dpassword='PWD'
 
 ### xplan-api-dokumente-soapui-project
 
@@ -51,6 +51,14 @@ docker run --env ... xplanbox/xplan-tests-soapui
 - `XPLAN_BASE_URL_MAPSERVER`
 
 - `XPLAN_SERVICES_API_KEY`
+
+Optional, wenn die Tests der XPlanDB bei Ausführung der XPlanManagerAPI-SopaUI-Tests ausgeführt werden sollen:
+
+- `XPLAN_DB_HOSTNAME`
+- `XPLAN_DB_PORT`
+- `XPLAN_DB_NAME`
+- `XPLAN_DB_USER`
+- `XPLAN_DB_PASSWORD`
 
 
 Der Report im PDF Format kann zu einem S3 Bucket hochgeladen werden, dafür müssen folgende Umgebungsvariable gesetzt werden:
