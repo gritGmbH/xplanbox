@@ -34,7 +34,7 @@ Diese Testsuite beinhaltet Datenbanktests, die nur verwendet werden können, wen
 
 Die JDBC URL zu der von der xPlanBox verwendeten Datenbank muss durch Auswahl des Projekts und Öffnen des Reiters `Custom Properties` (unten links) über das Property `jdbcUrl` gesetzt werden.
 
-Beispiel für eine JDBC URL: `jdbc:postgresql://localhost:5433/xplanbox?user=postgres&password=postgres`
+Beispiel für eine JDBC URL: `jdbc:postgresql://localhost:5433/xplanbox?user=xplanbox&password=xplanbox`
 
 Wenn keine JDBC URL konfiguriert ist, werden die Datenbanktests übersprungen.
 
