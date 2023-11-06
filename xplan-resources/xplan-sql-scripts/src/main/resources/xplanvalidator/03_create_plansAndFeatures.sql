@@ -22,7 +22,7 @@ SET search_path TO xplanvalidator,public;
 
 CREATE TABLE plans (
     id serial PRIMARY KEY,
-    insertDate timestamp NOT NULL
+    import_date timestamp NOT NULL
 );
 COMMENT ON TABLE plans IS 'Validated plans';
 
