@@ -130,7 +130,7 @@ Wenn Änderungen an einem SoapUI Projekt vorgenommen werden, dann muss die Datei
 
 Die Namenskonvention für die TestSteps der SoapUI Projekte xplan-api-manager und xplan-api-validator folgen diesem Muster:
 
-> `HTTPMETHODE|PROTOCOL PLANART XPLANGMLVERSION QUERYPARAMETER ADDITIONALINFORMATION`
+> `HTTPMETHODE|PROTOKOLL PLANART XPLANGMLVERSION QUERYPARAMETER ADDITIONALINFORMATION`
 
 Beispiel für ein Pattern: `POST BP 5.3 sG importPlan`
 
@@ -149,7 +149,7 @@ Die zu nutzenden Abkürzungen werden im folgenden Glossar definiert.
 | **PUT**   | Methode um Daten an den Server zu senden und Ressourcen zu erstellen oder zu modifizieren, entgegen zu POST idempotent |
 | **DEL**   | Methode um Daten vom Server zu löschen                                                                                 |
 
-### PROTOCOL
+### PROTOKOLL
 
 | Abkürzung | Beschreibung                                 |
 |-----------|----------------------------------------------|
