@@ -22,9 +22,10 @@ ENV	TZ=Europe/Berlin \
     XPLAN_MAPPROXY_PATH=xplan-mapproxy \
     XPLAN_MAPPROXY_MINPROC=2 \
     XPLAN_MAPPROXY_MAXPROC=4 \
-    XPLAN_MAPPROXY_THREADS=10 \
+    XPLAN_MAPPROXY_RESEED_CONCURRENCY=4 \
     XPLAN_MAPPROXY_ROOT_LOGLEVEL=ERROR \
-    XPLAN_MAPPROXY_SOURCES_LOGLEVEL=INFO
+    XPLAN_MAPPROXY_SOURCES_LOGLEVEL=INFO \
+    XPLAN_MAPPROXY_THREADS=10 
 
 RUN apt update && apt -y install --no-install-recommends \
     gcc \
@@ -54,4 +55,5 @@ USER 1001
 
 EXPOSE 8080
 
-CMD ["/docker-entrypoint.sh"]
+ENTRYPOINT [ "/docker-entrypoint.sh"]
+CMD ["webserver"]
