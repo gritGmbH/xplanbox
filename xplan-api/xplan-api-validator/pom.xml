@@ -15,7 +15,7 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>2.7.3</version>
+        <version>${spring-boot.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -71,7 +71,6 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>2.7.3</version>
             <executions>
                 <execution>
                     <goals>
@@ -112,7 +111,6 @@
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
       <artifactId>xplan-api-commons</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <!-- XPlanung -->
     <dependency>
@@ -123,13 +121,11 @@
     <dependency>
       <groupId>jakarta.ws.rs</groupId>
       <artifactId>jakarta.ws.rs-api</artifactId>
-      <version>${jakarta.ws.rs-api.version}</version>
     </dependency>
     <!-- Jersey -->
     <dependency>
       <groupId>org.glassfish.jersey.connectors</groupId>
       <artifactId>jersey-apache-connector</artifactId>
-      <version>${jersey.version}</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
@@ -140,32 +136,26 @@
     <dependency>
       <groupId>org.glassfish.jersey.core</groupId>
       <artifactId>jersey-server</artifactId>
-      <version>${jersey.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.containers</groupId>
       <artifactId>jersey-container-servlet</artifactId>
-      <version>${jersey.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.media</groupId>
       <artifactId>jersey-media-multipart</artifactId>
-      <version>${jersey.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.media</groupId>
       <artifactId>jersey-media-json-jackson</artifactId>
-      <version>${jersey.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.ext</groupId>
       <artifactId>jersey-spring4</artifactId>
-      <version>${jersey.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.media</groupId>
       <artifactId>jersey-media-jaxb</artifactId>
-      <version>${jersey.version}</version>
     </dependency>
     <!-- Swagger 3 -->
     <dependency>
@@ -193,22 +183,18 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
-      <version>${jackson.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>${jackson.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-joda</artifactId>
-      <version>${jackson.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.jaxrs</groupId>
       <artifactId>jackson-jaxrs-json-provider</artifactId>
-      <version>${jackson.version}</version>
     </dependency>
     <!-- Bean Validation API support -->
     <dependency>
@@ -250,7 +236,6 @@
     <dependency>
       <groupId>org.glassfish.jersey.test-framework</groupId>
       <artifactId>jersey-test-framework-core</artifactId>
-      <version>${jersey.version}</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -262,7 +247,6 @@
     <dependency>
       <groupId>org.glassfish.jersey.test-framework.providers</groupId>
       <artifactId>jersey-test-framework-provider-inmemory</artifactId>
-      <version>${jersey.version}</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
