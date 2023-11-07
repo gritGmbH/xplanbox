@@ -11428,7 +11428,7 @@ exists(//wms:Layer[wms:Name='soplanrasterarchive'])</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrlMapProxy}/service</con:endpoint>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="c5c89b24-24e9-475d-9dc7-d10fbc260ca6" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -11595,7 +11595,7 @@ exists(//wms:Layer[wms:Name='soplan_vektor'])</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrlMapProxy}/service</con:endpoint>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -11712,7 +11712,7 @@ exists(//wms:Layer[wms:Name='soplan_vektor'])</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrlMapProxy}/service</con:endpoint>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -11838,7 +11838,7 @@ exists(//wms:Layer[wms:Name='soplan_vektor'])</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrlMapProxy}/service</con:endpoint>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="c5c89b24-24e9-475d-9dc7-d10fbc260ca6" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -12015,7 +12015,7 @@ exists(//wmts:Layer[ows:Identifier='soplan_vektor'])</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrlMapProxy}/service</con:endpoint>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="6f5f2a6d-d21d-476b-84d8-69b271ab5021" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -12128,7 +12128,7 @@ exists(//wmts:Layer[ows:Identifier='soplan_vektor'])</path>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrlMapProxy}/service</con:endpoint>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wms</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="6f5f2a6d-d21d-476b-84d8-69b271ab5021" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -12233,6 +12233,70 @@ exists(//wmts:Layer[ows:Identifier='soplan_vektor'])</path>
               <con:description xsi:nil="true"/>
             </con:parameter>
           </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="REST GetTile - bplan_raster" id="f0ebbf6d-8143-430b-aa7f-bf7831e55115">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="REST GetTile - bplan_raster" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wmts/bplan_raster/gdi_de_25832/14/8202/4592.png</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="6f5f2a6d-d21d-476b-84d8-69b271ab5021" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="0ba4a08c-fb12-45de-8583-78dd90f56b16" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters></con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="REST GetTile - bplan_vektor" id="16fa6248-6d25-4906-92ca-12b79fa8e63c">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="REST GetTile - bplan_vektor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wmts/bplan_vektor/gdi_de_25832/14/8202/4592.png</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="6f5f2a6d-d21d-476b-84d8-69b271ab5021" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="0ba4a08c-fb12-45de-8583-78dd90f56b16" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters></con:parameters>
         </con:config>
       </con:testStep>
       <con:properties/>
