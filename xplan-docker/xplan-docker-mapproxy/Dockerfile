@@ -37,7 +37,7 @@ RUN apt update && apt -y install --no-install-recommends \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     python -m venv --system-site-packages /srv/mapproxy/venv && \
-    pip install mapproxy==$MAPPROXY_VERSION uwsgi pyproj pillow pyyaml boto3 shapely && \
+    pip install mapproxy==$MAPPROXY_VERSION uwsgi pyproj pillow pyyaml boto3 shapely==1.7.1 && \
     pip cache purge && \
     addgroup --gid 1001 mapproxy && \
     adduser --uid 1001 --shell /bin/false --gid 1001 --no-create-home --disabled-login mapproxy && \
