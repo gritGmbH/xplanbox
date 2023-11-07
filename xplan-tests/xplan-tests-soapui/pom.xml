@@ -55,6 +55,7 @@
         <baseUrlDokumentenApi />
         <baseUrlServices />
         <baseUrlMapServer />
+        <baseUrlMapProxy />
         <username />
         <password />
         <apiKey />
@@ -100,6 +101,7 @@
                     <value>baseUrlDokumentenApi=${baseUrlDokumentenApi}</value>
                     <value>baseUrlServices=${baseUrlServices}</value>
                     <value>baseUrlMapServer=${baseUrlMapServer}</value>
+                    <value>baseUrlMapProxy=${baseUrlMapProxy}</value>
                     <value>username=${username}</value>
                     <value>password=${password}</value>
                     <value>apiKey=${apiKey}</value>
