@@ -1,7 +1,7 @@
 seeds:
   bpreseed:
     caches: [bplan_raster_cache,bplan_vektor_cache]
-    grids: [bp_25832]
+    grids: [gdi_de_25832]
     coverages: [bpchanges]
     refresh_before:
       days: 0
@@ -10,7 +10,7 @@ seeds:
       to: 6
   fpreseed:
     caches: [fplan_raster_cache,fplan_vektor_cache]
-    grids: [fp_25832]
+    grids: [gdi_de_25832]
     coverages: [fpchanges]
     refresh_before:
       days: 0
@@ -19,7 +19,7 @@ seeds:
       to: 4
   lpreseed:
     caches: [lplan_raster_cache,lplan_vektor_cache]
-    grids: [lp_25832]
+    grids: [gdi_de_25832]
     coverages: [lpchanges]
     refresh_before:
       days: 0
@@ -28,7 +28,7 @@ seeds:
       to: 4
   rpreseed:
     caches: [rplan_raster_cache,rplan_vektor_cache]
-    grids: [rp_25832]
+    grids: [gdi_de_25832]
     coverages: [rpchanges]
     refresh_before:
       days: 0
@@ -37,7 +37,7 @@ seeds:
       to: 4
   soreseed:
     caches: [soplan_raster_cache,soplan_vektor_cache]
-    grids: [so_25832]
+    grids: [gdi_de_25832]
     coverages: [sochanges]
     refresh_before:
       days: 0
