@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper.supportedTypes;
 import static java.lang.Boolean.TRUE;
@@ -81,7 +82,7 @@ public class WorkspaceRasterThemeManager {
 	 * @throws ConfigurationException
 	 */
 	public synchronized void insertLayersRightBefore(String type, String crs, List<String> rasterLayerIds,
-			String succeedingPlanId) throws JAXBException, IOException, ConfigurationException {
+			int succeedingPlanId) throws JAXBException, IOException, ConfigurationException {
 		checkIfTypeIsSupported(type);
 		WmsThemesConfig themesConfig = wmsWorkspaceWrapper.retrieveThemesForType(type, crs);
 
@@ -208,6 +209,22 @@ public class WorkspaceRasterThemeManager {
 		}
 	}
 
+	public void reorderWmsLayers(int planId, int moreRecentPlan, String statusType)
+			throws ConfigurationException, JAXBException, IOException {
+		WmsThemesConfig themesConfig = wmsWorkspaceWrapper.retrieveThemesForType(statusType);
+		Themes themes = themesConfig.getThemes();
+
+		ThemeType sortedTheme = themes.getTheme().getTheme().get(0);
+		List<Layer> layers = sortedTheme.getLayer();
+		List<Layer> layersToChangeIndex = layers.stream()
+			.filter(layer -> layer.getValue().startsWith(planId + "_"))
+			.collect(Collectors.toList());
+		layers.removeAll(layersToChangeIndex);
+		int index = findIndex(layers, moreRecentPlan);
+		layers.addAll(index, layersToChangeIndex);
+		persist(themes, themesConfig.getConfig());
+	}
+
 	private void reorderWmsLayers(List<String> sortedByDate, String crs, String supportedType)
 			throws JAXBException, IOException, ConfigurationException {
 		WmsThemesConfig themesConfig = wmsWorkspaceWrapper.retrieveThemesForType(supportedType, crs);
@@ -228,8 +245,8 @@ public class WorkspaceRasterThemeManager {
 		marshaller.marshal(themes, config);
 	}
 
-	private int findIndex(List<Layer> layers, String succedingPlanId) {
-		if (succedingPlanId != null) {
+	private int findIndex(List<Layer> layers, int succedingPlanId) {
+		if (succedingPlanId > -1) {
 			String prefix = succedingPlanId + "_";
 			for (int i = 0; i < layers.size(); i++) {
 				if (layers.get(i).getLayerStore().startsWith(prefix)) {

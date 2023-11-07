@@ -27,9 +27,9 @@ import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
-import de.latlon.xplanbox.api.manager.ApplicationPathConfig;
 import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
 import de.latlon.xplanbox.api.manager.config.DefaultValidationConfiguration;
+import de.latlon.xplanbox.api.manager.config.JerseyConfig;
 import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.exception.InvalidApiVersion;
 import de.latlon.xplanbox.api.manager.handler.PlanHandler;
@@ -400,7 +400,7 @@ public class PlanApi {
 		List<String> pathSegments = new ArrayList<>();
 		if (apiUrl.getPath() != null && !apiUrl.getPath().isEmpty())
 			pathSegments.addAll(Arrays.asList(apiUrl.getPath().split("/")));
-		pathSegments.addAll(Arrays.asList(ApplicationPathConfig.APP_PATH.split("/")));
+		pathSegments.addAll(Arrays.asList(JerseyConfig.APP_PATH.split("/")));
 		pathSegments.add("plans");
 		uriBuilder.setPathSegments(pathSegments.stream()
 			.filter(pathSegment -> pathSegment != null && !pathSegment.isEmpty())

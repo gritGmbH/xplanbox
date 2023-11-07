@@ -20,40 +20,26 @@
  */
 package de.latlon.xplan.commons.feature;
 
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertNull;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-@RunWith(Parameterized.class)
-public class ParameterizedXPlanGmlParserTest {
+class ParameterizedXPlanGmlParserTest {
 
-	private final String resourceUnderTest;
-
-	private final String expectedPlanName;
-
-	private final String expectedPlanGz;
-
-	private final String expectedPlanNumber;
-
-	private final int expectedNumberOfFeatures;
-
-	@Parameterized.Parameters
-	public static List<Object[]> data() {
+	static List<Object[]> data() {
 		return Arrays.asList(new Object[][] { { "xplan41/BP2070.zip", null, "4011000", null, 314 },
 				{ "xplan41/BP2135.zip", "Bebauungsplan 2135", "4011000", "2135", 241 },
 				{ "xplan41/Demo.zip", "BPlan Demo-Gemeinde", "1234567", null, 20 },
@@ -75,33 +61,26 @@ public class ParameterizedXPlanGmlParserTest {
 				{ "xplan51/LA67.zip", "Bebauungsplan LA 22", "1234567", "LA 22", 146 } });
 	}
 
-	public ParameterizedXPlanGmlParserTest(String resourceUnderTest, String expectedPlanName, String expectedPlanGz,
-			String expectedPlanNumber, int expectedNumberOfFeatures) {
-		this.resourceUnderTest = resourceUnderTest;
-		this.expectedPlanName = expectedPlanName;
-		this.expectedPlanGz = expectedPlanGz;
-		this.expectedPlanNumber = expectedPlanNumber;
-		this.expectedNumberOfFeatures = expectedNumberOfFeatures;
-	}
-
-	@Test
-	public void testRetrieveGeometricallyValidXPlanFeatures() throws Exception {
+	@ParameterizedTest
+	@MethodSource("data")
+	void testRetrieveGeometricallyValidXPlanFeatures(String resourceUnderTest, String expectedPlanName,
+			String expectedPlanGz, String expectedPlanNumber, int expectedNumberOfFeatures) throws Exception {
 		XPlanArchive archive = getTestArchive(resourceUnderTest);
 		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(archive);
 		if (expectedPlanName == null)
-			assertThat(fc.getPlanName(), containsString("Unbenannter XPlan"));
+			assertThat(fc.getPlanName()).contains("Unbenannter XPlan");
 		else
-			assertThat(fc.getPlanName(), is(expectedPlanName));
+			assertThat(fc.getPlanName()).isEqualTo(expectedPlanName);
 		if (expectedPlanGz == null)
 			assertNull(fc.getPlanGkz());
 		else
-			assertThat(fc.getPlanGkz(), is(expectedPlanGz));
+			assertThat(fc.getPlanGkz()).isEqualTo(expectedPlanGz);
 		if (expectedPlanNumber == null)
 			assertNull(fc.getPlanNummer());
 		else
-			assertThat(fc.getPlanNummer(), is(expectedPlanNumber));
+			assertThat(fc.getPlanNummer()).isEqualTo(expectedPlanNumber);
 
-		assertThat(fc.getFeatures().size(), is(expectedNumberOfFeatures));
+		assertThat(fc.getFeatures().size()).isEqualTo(expectedNumberOfFeatures);
 	}
 
 	private XPlanArchive getTestArchive(String name) throws IOException {

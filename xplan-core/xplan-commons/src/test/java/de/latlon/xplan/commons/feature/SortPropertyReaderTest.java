@@ -25,7 +25,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import org.deegree.feature.FeatureCollection;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,65 +35,64 @@ import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
-public class SortPropertyReaderTest {
+class SortPropertyReaderTest {
 
 	@Test
-	public void testReadSortDate() throws Exception {
+	void testReadSortDate() throws Exception {
 		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "technHerstellDatum");
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
 		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_40, readFeatureCollection());
 
-		assertThat(readSortDate, is(asDate("2001-08-06")));
+		assertThat(readSortDate).isEqualTo(asDate("2001-08-06"));
 	}
 
 	@Test
-	public void testReadSortDate_UnmatchingType() throws Exception {
+	void testReadSortDate_UnmatchingType() throws Exception {
 		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "technHerstellDatum");
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
 		Date readSortDate = sortPropertyReader.readSortDate(FP_Plan, XPLAN_40, readFeatureCollection());
 
-		assertThat(readSortDate, nullValue());
+		assertThat(readSortDate).isNull();
 	}
 
 	@Test
-	public void testReadSortDate_UnmatchingVersion() throws Exception {
+	void testReadSortDate_UnmatchingVersion() throws Exception {
 		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "technHerstellDatum");
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
 		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_50, readFeatureCollection());
 
-		assertThat(readSortDate, nullValue());
+		assertThat(readSortDate).isNull();
 	}
 
 	@Test
-	public void testReadSortDate_UnavailableFeatureType() throws Exception {
+	void testReadSortDate_UnavailableFeatureType() throws Exception {
 		SortConfiguration sortConfiguration = createSortConfiguration("BP_PlanNotThere", "technHerstellDatum");
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
 		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_50, readFeatureCollection());
 
-		assertThat(readSortDate, nullValue());
+		assertThat(readSortDate).isNull();
 	}
 
 	@Test
-	public void testReadSortDate_UnavailableProperty() throws Exception {
+	void testReadSortDate_UnavailableProperty() throws Exception {
 		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "notThereDatum");
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
 		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_50, readFeatureCollection());
 
-		assertThat(readSortDate, nullValue());
+		assertThat(readSortDate).isNull();
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void testReadSortDate_NullSortConfiguration() throws Exception {
-		new SortPropertyReader(null);
+	@Test
+	void testReadSortDate_NullSortConfiguration() throws Exception {
+		assertThrows(NullPointerException.class, () -> new SortPropertyReader(null));
 	}
 
 	private SortConfiguration createSortConfiguration(String featureType, String propertyName) {

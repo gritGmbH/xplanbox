@@ -5,6 +5,7 @@ FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat-gdal:$XPLANBOX_VERSION
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
+ARG JAR_FILE=target/*.jar
 ARG XPLANBOX_VERSION=latest
 
 # see https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
@@ -19,12 +20,13 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
 
 # set environment variables
-ENV TOMCAT_ADDITIONAL_ARG_APP="-DXPLANBOX_CONFIG=/xplanbox/xplan-manager-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng -Duser.timezone=Europe/Berlin"
+ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree
 
-# add xplan-api-manager
-ADD target/xplan-api-manager-*.war /tmp/
-RUN cd /tmp/ && unzip -q xplan-api-manager-*.war -d /usr/local/tomcat/webapps/xplan-api-manager \
-	&& rm /tmp/*.war
+ENV JAVA_ADDITIONAL_ARG_APP="-DXPLANBOX_CONFIG=/xplanbox/xplan-manager-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng"
 
-# run tomcat
-CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
+COPY ${JAR_FILE} /xplanbox/app.jar
+COPY run.sh /xplanbox/
+
+USER 1001
+
+ENTRYPOINT ["/bin/sh", "/xplanbox/run.sh"]

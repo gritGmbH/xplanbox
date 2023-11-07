@@ -63,11 +63,6 @@ Wird ein Text, Dokument oder eine Rasterbasis mit dem Namen _xplan.gml_ über di
 
 IMPORTANT: Der Fehler kann nicht in der xPlanBox behoben werden! Das XPlanArchiv muss aus der Datenhaltung entfernt, korrigiert und dann erneut über den XPlanManager importiert werden.
 
-=== XPlanManagerWeb und XPlanManagerAPI - Sortierung der Rasterdaten wird nach Änderungen nicht aktualisiert
-
-Wird über den XPlanManager ein für die Sortierung der Pläne in der Darstellung im XPlanWMS verwendete Datumsfeld angepasst, erfolgt derzeit keine automatische Aktualisierung der Konfiguration des XPlanWMS.
-Für eine Aktualisierung der Konfiguration des XPlanWMS steht ein Kommandozeilenwerkzeug für den Administrator zur Verfügung, weitere Hinweise zur Verwendung finden sich im Betriebshandbuch.
-
 === XPlanValidatorAPI - Verwendung von vollqualifizierten Pfaden im HTTP-Header "X-Filename"
 
 Wird der HTTP-Header "X-Filename" mit einem vollqualifizierten Pfad angegeben, kommt es bei der Anfrage eines Reports im Format PDF zu einem HTTP-Statusfehler 500.

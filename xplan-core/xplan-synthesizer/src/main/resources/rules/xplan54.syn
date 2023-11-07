@@ -13,10 +13,10 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-#  You should have received a copy of the GNU Affero General Public License
-#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#  #L%
-#Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 15.03.2023, 10:57:58
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# #L%
+#Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 02.11.2023, 10:41:35
 BP_AbgrabungsFlaeche/abbaugut=xpath('xplan:abbaugut')
 BP_AbgrabungsFlaeche/aufschrift=xpath('xplan:aufschrift')
 BP_AbgrabungsFlaeche/ebene=xpath('xplan:ebene')

@@ -20,7 +20,9 @@
  */
 package de.latlon.xplan.commons.configuration;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
@@ -28,17 +30,15 @@ import static de.latlon.xplan.commons.XPlanType.LP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
-public class SortConfigurationTest {
+class SortConfigurationTest {
 
 	@Test
-	public void testRetrieveFeatureType() {
+	void testRetrieveFeatureType() {
 		SortConfiguration sortConfiguration = new SortConfiguration();
 		sortConfiguration.addSortField(BP_Plan, XPLAN_40, "ft1", "pn1");
 		sortConfiguration.addSortField(BP_Plan, XPLAN_41, "ft1", "pn2");
@@ -55,17 +55,17 @@ public class SortConfigurationTest {
 		String unconfiguredPlanTypeFeatureType = sortConfiguration.retrieveFeatureType(LP_Plan, XPLAN_41);
 		String unconfiguredVersionFeatureType = sortConfiguration.retrieveFeatureType(BP_Plan, XPLAN_50);
 
-		assertThat(firstFeatureType, is("ft1"));
-		assertThat(secondFeatureType, is("ft1"));
-		assertThat(thirdFeatureType, is("ft2"));
-		assertThat(nullFeatureType, nullValue());
-		assertThat(overwrittenFeatureType, is("ft5"));
-		assertThat(unconfiguredPlanTypeFeatureType, nullValue());
-		assertThat(unconfiguredVersionFeatureType, nullValue());
+		assertThat(firstFeatureType).isEqualTo("ft1");
+		assertThat(secondFeatureType).isEqualTo("ft1");
+		assertThat(thirdFeatureType).isEqualTo("ft2");
+		assertThat(nullFeatureType).isNull();
+		assertThat(overwrittenFeatureType).isEqualTo("ft5");
+		assertThat(unconfiguredPlanTypeFeatureType).isNull();
+		assertThat(unconfiguredVersionFeatureType).isNull();
 	}
 
 	@Test
-	public void testRetrievePropertyName() {
+	void testRetrievePropertyName() {
 		SortConfiguration sortConfiguration = new SortConfiguration();
 		sortConfiguration.addSortField(BP_Plan, XPLAN_40, "ft1", "pn1");
 		sortConfiguration.addSortField(BP_Plan, XPLAN_41, "ft1", "pn2");
@@ -82,25 +82,25 @@ public class SortConfigurationTest {
 		String unconfiguredPlanTypePropertyName = sortConfiguration.retrievePropertyName(LP_Plan, XPLAN_41);
 		String unconfiguredVersionPropertyName = sortConfiguration.retrievePropertyName(BP_Plan, XPLAN_50);
 
-		assertThat(firstPropertyName, is("pn1"));
-		assertThat(secondPropertyName, is("pn2"));
-		assertThat(thirdPropertyName, is("pn1"));
-		assertThat(nullPropertyName, nullValue());
-		assertThat(overwrittenPropertyName, is("pn5"));
-		assertThat(unconfiguredPlanTypePropertyName, nullValue());
-		assertThat(unconfiguredVersionPropertyName, nullValue());
+		assertThat(firstPropertyName).isEqualTo("pn1");
+		assertThat(secondPropertyName).isEqualTo("pn2");
+		assertThat(thirdPropertyName).isEqualTo("pn1");
+		assertThat(nullPropertyName).isNull();
+		assertThat(overwrittenPropertyName).isEqualTo("pn5");
+		assertThat(unconfiguredPlanTypePropertyName).isNull();
+		assertThat(unconfiguredVersionPropertyName).isNull();
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void testAddSortField_NullPlanType() {
+	@Test
+	void testAddSortField_NullPlanType() {
 		SortConfiguration sortConfiguration = new SortConfiguration();
-		sortConfiguration.addSortField(null, XPLAN_40, "ft1", "pn1");
+		assertThrows(NullPointerException.class, () -> sortConfiguration.addSortField(null, XPLAN_40, "ft1", "pn1"));
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void testAddSortField_NullVersion() {
+	@Test
+	void testAddSortField_NullVersion() {
 		SortConfiguration sortConfiguration = new SortConfiguration();
-		sortConfiguration.addSortField(BP_Plan, null, "ft1", "pn1");
+		assertThrows(NullPointerException.class, () -> sortConfiguration.addSortField(BP_Plan, null, "ft1", "pn1"));
 	}
 
 }

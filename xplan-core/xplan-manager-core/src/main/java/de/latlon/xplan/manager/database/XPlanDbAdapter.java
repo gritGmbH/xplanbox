@@ -313,15 +313,17 @@ public class XPlanDbAdapter {
 	/**
 	 * retrieves the id of the plan closest in future to the date passed
 	 * @param releaseDate minimal release date
-	 * @return id of plan with minimal release date
+	 * @return id of plan with minimal release date, -1 if no such plan exists
 	 * @throws SQLException
 	 */
 	@Transactional(readOnly = true)
-	public String selectXPlanIdOfMoreRecentRasterPlan(Date releaseDate) {
+	public int selectXPlanIdOfMoreRecentRasterPlan(Date releaseDate) {
+		if (releaseDate == null)
+			return -1;
 		List<Plan> plan = planRepository.findByPlanWithMoreRecentRasterPlan(releaseDate);
 		if (plan.isEmpty())
-			return null;
-		return Integer.toString(plan.get(0).getId());
+			return -1;
+		return plan.get(0).getId();
 	}
 
 	/**
@@ -373,6 +375,20 @@ public class XPlanDbAdapter {
 		Optional<Plan> plan = planRepository.findById(planId);
 		if (plan.isPresent()) {
 			return plan.get().getInternalid();
+		}
+		return null;
+	}
+
+	/**
+	 * Retrieve sortDate by the manager id from xplanmgr.plans.
+	 * @param planId the planId of the plan, never <code>null</code>
+	 * @return the sortDate of a plan (if available), otherwise <code>null</code>
+	 */
+	@Transactional(readOnly = true)
+	public Date selectSortDate(int planId) {
+		Optional<Plan> plan = planRepository.findById(planId);
+		if (plan.isPresent()) {
+			return plan.get().getWmssortdate();
 		}
 		return null;
 	}

@@ -20,7 +20,9 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
 # apt-transport-https (needed to install java 11)
-RUN apt update && apt -y install apt-transport-https unzip wget
+RUN apt update && apt -y install apt-transport-https unzip wget \
+	&& ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+
 
 # install jdk
 RUN DEBIAN_FRONTEND=noninteractive apt -y install openjdk-11-jdk

@@ -21,113 +21,115 @@
 package de.latlon.xplan.commons.util;
 
 import de.latlon.xplan.commons.XPlanVersion;
+
+import org.assertj.core.api.AbstractAssert;
 import org.deegree.commons.xml.NamespaceBindings;
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.xml.namespace.QName;
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XPlanVersionUtilsTest {
+class XPlanVersionUtilsTest {
 
 	@Test
-	public void testDetermineBaseVersionFor40() {
+	void testDetermineBaseVersionFor40() {
 		QName element = new QName(XPLAN_40.getNamespace(), "element");
 		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(element);
-		assertThat(version, is(XPLAN_40));
+		assertThat(version).isEqualTo(XPLAN_40);
 	}
 
 	@Test
-	public void testDetermineBaseVersionFor41() {
+	void testDetermineBaseVersionFor41() {
 		QName element = new QName(XPLAN_41.getNamespace(), "element");
 		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(element);
-		assertThat(version, is(XPLAN_41));
+		assertThat(version).isEqualTo(XPLAN_41);
 	}
 
 	@Test
-	public void testDetermineBaseVersionFor50() {
+	void testDetermineBaseVersionFor50() {
 		QName element = new QName(XPLAN_50.getNamespace(), "element");
 		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(element);
-		assertThat(version, is(XPLAN_50));
+		assertThat(version).isEqualTo(XPLAN_50);
 	}
 
 	@Test
-	public void testDetermineBaseVersionFor51() {
+	void testDetermineBaseVersionFor51() {
 		QName element = new QName(XPLAN_51.getNamespace(), "element");
 		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(element);
-		assertThat(version, is(XPLAN_51));
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void testDetermineBaseVersionForUnknownNamespaceShouldFail() {
-		QName element = new QName("http://unknown.namespaceuri.de", "element");
-		XPlanVersionUtils.determineBaseVersion(element);
+		assertThat(version).isEqualTo(XPLAN_51);
 	}
 
 	@Test
-	public void testRetrieveNamespaceBindingsFor40() {
+	void testDetermineBaseVersionForUnknownNamespaceShouldFail() {
+		QName element = new QName("http://unknown.namespaceuri.de", "element");
+		assertThrows(IllegalArgumentException.class, () -> XPlanVersionUtils.determineBaseVersion(element));
+	}
+
+	@Test
+	void testRetrieveNamespaceBindingsFor40() {
 		QName element = new QName(XPLAN_40.getNamespace(), "element");
 		NamespaceBindings namespaceBindings = XPlanVersionUtils.retrieveNamespaceBindings(element);
-		assertThat(namespaceBindings, hasNamespace(XPLAN_40.getNamespace(), "xplan"));
-		assertThat(namespaceBindings, hasNamespace(XPLAN_40.getGmlVersion().getNamespace(), "gml"));
+		assertThatNamespaceBindings(namespaceBindings).hasNamespace(XPLAN_40.getNamespace(), "xplan");
+		assertThatNamespaceBindings(namespaceBindings).hasNamespace(XPLAN_40.getGmlVersion().getNamespace(), "gml");
 	}
 
 	@Test
-	public void testRetrieveNamespaceBindingsFor41() {
+	void testRetrieveNamespaceBindingsFor41() {
 		QName element = new QName(XPLAN_41.getNamespace(), "element");
 		NamespaceBindings namespaceBindings = XPlanVersionUtils.retrieveNamespaceBindings(element);
-		assertThat(namespaceBindings, hasNamespace(XPLAN_41.getNamespace(), "xplan"));
-		assertThat(namespaceBindings, hasNamespace(XPLAN_41.getGmlVersion().getNamespace(), "gml"));
+		assertThatNamespaceBindings(namespaceBindings).hasNamespace(XPLAN_41.getNamespace(), "xplan");
+		assertThatNamespaceBindings(namespaceBindings).hasNamespace(XPLAN_41.getGmlVersion().getNamespace(), "gml");
 	}
 
 	@Test
-	public void testRetrieveNamespaceBindingsFor50() {
+	void testRetrieveNamespaceBindingsFor50() {
 		QName element = new QName(XPLAN_50.getNamespace(), "element");
 		NamespaceBindings namespaceBindings = XPlanVersionUtils.retrieveNamespaceBindings(element);
-		assertThat(namespaceBindings, hasNamespace(XPLAN_50.getNamespace(), "xplan"));
-		assertThat(namespaceBindings, hasNamespace(XPLAN_50.getGmlVersion().getNamespace(), "gml"));
+		assertThatNamespaceBindings(namespaceBindings).hasNamespace(XPLAN_50.getNamespace(), "xplan");
+
+		assertThatNamespaceBindings(namespaceBindings).hasNamespace(XPLAN_50.getGmlVersion().getNamespace(), "gml");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testRetrieveNamespaceBindingsForUnknownNamespace() {
+	@Test
+	void testRetrieveNamespaceBindingsForUnknownNamespace() {
 		QName element = new QName("http://unknown.namespaceuri.de", "element");
-		XPlanVersionUtils.retrieveNamespaceBindings(element);
+		assertThrows(IllegalArgumentException.class, () -> XPlanVersionUtils.retrieveNamespaceBindings(element));
 	}
 
-	private Matcher<? super NamespaceBindings> hasNamespace(final String namespace, final String prefix) {
-		return new TypeSafeMatcher<NamespaceBindings>() {
+	static class NamespaceBindingsAssert extends AbstractAssert<NamespaceBindingsAssert, NamespaceBindings> {
 
-			@Override
-			protected boolean matchesSafely(NamespaceBindings bindings) {
-				Iterator<String> prefixes = bindings.getPrefixes();
-				while (prefixes.hasNext()) {
-					if (prefix.equals(prefixes.next())) {
-						String namespaceURI = bindings.getNamespaceURI(prefix);
-						if (namespace.equals(namespaceURI))
-							return true;
-					}
+		protected NamespaceBindingsAssert(NamespaceBindings actual) {
+			super(actual, NamespaceBindingsAssert.class);
+		}
+
+		NamespaceBindingsAssert hasNamespace(final String namespace, final String prefix) {
+			Iterator<String> prefixes = actual.getPrefixes();
+			while (prefixes.hasNext()) {
+				if (prefix.equals(prefixes.next())) {
+					String namespaceURI = actual.getNamespaceURI(prefix);
+					if (namespace.equals(namespaceURI))
+						return this;
 				}
-				return false;
 			}
 
-			@Override
-			public void describeTo(Description description) {
-				description
-					.appendText("NamespaceBindings must contain namespace " + namespace + " with prefix " + prefix);
-			}
-		};
+			throw failure("NamespaceBindings must contain namespace " + namespace + " with prefix " + prefix);
+		}
+
+	}
+
+	static NamespaceBindingsAssert assertThatNamespaceBindings(NamespaceBindings actual) {
+		return new NamespaceBindingsAssert(actual);
 	}
 
 }

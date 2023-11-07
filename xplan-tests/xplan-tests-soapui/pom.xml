@@ -58,6 +58,7 @@
         <username />
         <password />
         <apiKey />
+        <jdbcUrl />
         <endpoint />
       </properties>
       <build>
@@ -70,6 +71,11 @@
                 <groupId>com.jgoodies</groupId>
                 <artifactId>forms</artifactId>
                 <version>1.2.1</version>
+              </dependency>
+              <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.6.0</version>
               </dependency>
             </dependencies>
             <executions>
@@ -97,6 +103,7 @@
                     <value>username=${username}</value>
                     <value>password=${password}</value>
                     <value>apiKey=${apiKey}</value>
+                    <value>jdbcUrl=${jdbcUrl}</value>
                   </projectProperties>
                 </configuration>
               </execution>
