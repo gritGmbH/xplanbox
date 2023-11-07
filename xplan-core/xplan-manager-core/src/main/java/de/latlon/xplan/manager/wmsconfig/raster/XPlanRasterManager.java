@@ -102,8 +102,8 @@ public class XPlanRasterManager {
 			}
 		}
 		catch (Exception e) {
-			LOG.trace("Rasterlayers of plan with id " + planId + " could not be removed!", e);
 			LOG.error("Rasterlayers of plan with id " + planId + " could not be removed: {}", e.getMessage());
+			LOG.trace("Rasterlayers of plan with id " + planId + " could not be removed!", e);
 		}
 		finally {
 			applicationEventPublisher.publishEvent(storageEvent);
@@ -128,7 +128,7 @@ public class XPlanRasterManager {
 	 * layer was created, but never <code>null</code>
 	 */
 	public List<String> updateWmsWorkspaceWithRasterLayers(XPlanArchiveContentAccess archive,
-			List<String> rasterRefsFileNamesToAdd, int planId, String moreRecentPlanId, XPlanType type,
+			List<String> rasterRefsFileNamesToAdd, int planId, int moreRecentPlanId, XPlanType type,
 			PlanStatus planStatus, PlanStatus newPlanStatus, Date sortDate) {
 		long begin = System.currentTimeMillis();
 
@@ -149,12 +149,19 @@ public class XPlanRasterManager {
 			return rasterIds;
 		}
 		catch (Exception e) {
-			LOG.error("Rasterconfiguration could not be created!", e);
-			LOG.trace("Rasterconfiguration could not be created: {} ", e.getMessage());
+			LOG.error("Rasterconfiguration could not be created: {} ", e.getMessage());
+			LOG.trace("Rasterconfiguration could not be created!", e);
 			throw new RuntimeException("Fehler beim Erzeugen der Rasterkonfigurationen: " + e.getLocalizedMessage());
 		}
 		finally {
 			applicationEventPublisher.publishEvent(storageEvent);
+		}
+	}
+
+	public void updateSortOrderOfRasterLayers(int planId, int moreRecentPlan, PlanStatus oldPlanStatus,
+			PlanStatus newPlanStatus, XPlanType type) throws ConfigurationException, JAXBException, IOException {
+		if (newPlanStatus.equals(oldPlanStatus)) {
+			rasterConfigManager.reorderWmsLayers(planId, moreRecentPlan, newPlanStatus, type);
 		}
 	}
 
