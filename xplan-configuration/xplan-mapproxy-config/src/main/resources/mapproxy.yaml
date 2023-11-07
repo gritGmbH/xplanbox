@@ -180,7 +180,7 @@ caches:
     cache:
       directory: /soplan_vektor/
       type: s3
-    sources: ['bplan-wms:SO_Planvektor']
+    sources: ['soplan-wms:SO_Planvektor']
 sources:
   xplan-mapserver:
     <<: *wms_cfg
