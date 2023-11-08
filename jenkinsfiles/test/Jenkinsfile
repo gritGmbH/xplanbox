@@ -15,6 +15,7 @@ pipeline {
       string(name: 'BASE_URL_MANAGER_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanManagerAPI')
       string(name: 'BASE_URL_DOKUMENTEN_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDokumentenAPI')
       string(name: 'BASE_URL_MAPSERVER', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of MapServer')
+      string(name: 'BASE_URL_MAPPROXY', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of MapProxy')
       string(name: 'SLACK_CHANNEL', defaultValue: "#testumgebung", description: 'Set slack channel')
       string(name: 'SLACK_TESTED_ENVIRONMENT', defaultValue: "https://xplanbox.lat-lon.de/", description: 'Set name of test environment which shall be printed in slack messages')
       string(name: 'SLACK_TEAM_DOMAIN', defaultValue: "xplanbox", description: 'Set slack team domain')
@@ -62,7 +63,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=${BASE_URL_DIENSTE} -DbaseUrlInspirePlu=${BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlMapServer=${BASE_URL_MAPSERVER} -Dusername=$Username -Dpassword=$Password -DapiKey=${SERVICES_API_KEY}'
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=${BASE_URL_DIENSTE} -DbaseUrlInspirePlu=${BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlMapServer=${BASE_URL_MAPSERVER} -DbaseUrlMapProxy=${BASE_URL_MAPPROXY} -Dusername=$Username -Dpassword=$Password -DapiKey=${SERVICES_API_KEY}'
             }
          }
       }
