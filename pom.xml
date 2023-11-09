@@ -58,6 +58,7 @@
     <module>xplan-core</module>
     <module>xplan-documentation</module>
     <module>xplan-resources</module>
+    <module>xplan-security</module>
     <module>xplan-tests</module>
     <module>xplan-webapps</module>
     <module>xplan-webservices</module>
@@ -1369,6 +1370,16 @@
             <artifactId>logback-core</artifactId>
           </exclusion>
         </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+        <version>${spring-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <version>${spring-boot.version}</version>
       </dependency>
       <!-- Spring Security -->
       <dependency>
