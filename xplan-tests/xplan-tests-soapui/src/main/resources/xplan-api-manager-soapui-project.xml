@@ -17,7 +17,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<con:soapui-project id="adcdfd3f-0f4e-4107-8d7e-086010676cb7" activeEnvironment="Default" name="xplan-api-manager" resourceRoot="" soapui-version="5.7.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="adcdfd3f-0f4e-4107-8d7e-086010676cb7" activeEnvironment="Default" name="xplan-api-manager" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
   <con:description>For local execution use following property values:
 
 baseUrlManagerApi=http://localhost:8086/xplan-api-manager

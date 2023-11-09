@@ -17,7 +17,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<con:soapui-project id="4497dcb6-2c5f-4d87-bcee-3913ada70576" activeEnvironment="Default" name="xplan-webservices" resourceRoot="" soapui-version="5.7.1" abortOnError="false" runType="SEQUENTIAL" defaultScriptLanguage="Groovy" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="4497dcb6-2c5f-4d87-bcee-3913ada70576" activeEnvironment="Default" name="xplan-webservices" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" defaultScriptLanguage="Groovy" xmlns:con="http://eviware.com/soapui/config">
   <con:description>For local execution use following property values:
 
 baseUrlServices=http://localhost:8083
