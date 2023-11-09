@@ -48,6 +48,8 @@ public class ValidationReport {
 
 	private @Valid String name;
 
+	private @Valid List<DocumentSummary> documentSummary;
+
 	private @Valid PlanInfoBbox bbox;
 
 	private @Valid Date date;
@@ -98,6 +100,21 @@ public class ValidationReport {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 **/
+	public ValidationReport documentSummary(List<DocumentSummary> documentSummary) {
+		this.documentSummary = documentSummary;
+		return this;
+	}
+
+	public List<DocumentSummary> getDocumentSummary() {
+		return documentSummary;
+	}
+
+	public void setDocumentSummary(List<DocumentSummary> documentSummary) {
+		this.documentSummary = documentSummary;
 	}
 
 	/**
@@ -281,6 +298,7 @@ public class ValidationReport {
 		ValidationReport validationReport = (ValidationReport) o;
 		return Objects.equals(this.filename, validationReport.filename)
 				&& Objects.equals(this.name, validationReport.name)
+				&& Objects.equals(this.documentSummary, validationReport.documentSummary)
 				&& Objects.equals(this.version, validationReport.version)
 				&& Objects.equals(this.bbox, validationReport.bbox) && Objects.equals(this.date, validationReport.date)
 				&& Objects.equals(this.valid, validationReport.valid)
@@ -293,8 +311,8 @@ public class ValidationReport {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(filename, name, version, bbox, date, valid, externalReferences, wmsUrl, rulesMetadata,
-				validationResult);
+		return Objects.hash(filename, name, documentSummary, version, bbox, date, valid, externalReferences, wmsUrl,
+				rulesMetadata, validationResult);
 	}
 
 	@Override
@@ -304,6 +322,7 @@ public class ValidationReport {
 
 		sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
 		sb.append("    name: ").append(toIndentedString(name)).append("\n");
+		sb.append("    planInfos: ").append(toIndentedString(documentSummary)).append("\n");
 		sb.append("    version: ").append(toIndentedString(version)).append("\n");
 		sb.append("    bbox: ").append(toIndentedString(bbox)).append("\n");
 		sb.append("    date: ").append(toIndentedString(date)).append("\n");

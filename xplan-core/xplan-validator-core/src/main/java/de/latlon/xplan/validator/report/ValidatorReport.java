@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.report;
 
+import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
@@ -59,6 +60,8 @@ public class ValidatorReport {
 	private Date date;
 
 	private XPlanVersion xPlanVersion;
+
+	private XPlanType xPlanType;
 
 	private Envelope bboxIn4326;
 
@@ -215,6 +218,21 @@ public class ValidatorReport {
 	 */
 	public void setXPlanVersion(XPlanVersion xPlanVersion) {
 		this.xPlanVersion = xPlanVersion;
+	}
+
+	/**
+	 * @return the type of the validated XPlanGML, may be <code>null</code> if not known
+	 */
+	public XPlanType getXPlanType() {
+		return xPlanType;
+	}
+
+	/**
+	 * @param xPlanType the type of the validated XPlanGML, may be <code>null</code> if
+	 * not known
+	 */
+	public void setXPlanType(XPlanType xPlanType) {
+		this.xPlanType = xPlanType;
 	}
 
 	/**
