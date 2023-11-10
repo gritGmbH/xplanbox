@@ -17,7 +17,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<con:soapui-project activeEnvironment="Default" name="xplan-manager-web" resourceRoot="" soapui-version="5.7.1" abortOnError="false" runType="SEQUENTIAL" id="d6b438c5-e36f-447d-97b3-c0ed43c1c1a2" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project activeEnvironment="Default" name="xplan-manager-web" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" id="d6b438c5-e36f-447d-97b3-c0ed43c1c1a2" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="MANAGER" type="rest" basePath="/xplanmgrweb/rest" definitionUrl="" id="e35a1adf-d31f-49f2-8d74-efe2e22f0380" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:settings/>
