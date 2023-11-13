@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @since 7.1
+ */
 @Component
 public class UnauthorizedAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {
 

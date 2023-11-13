@@ -1,23 +1,29 @@
 package de.latlon.xplanbox.security.config;
 
+import de.latlon.xplanbox.security.authentication.PropertiesFileUserDetailsManager;
+import de.latlon.xplanbox.security.authentication.SecurityConfigurationException;
 import de.latlon.xplanbox.security.authentication.UnauthorizedAuthenticationEntryPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @since 7.1
+ */
 @EnableWebSecurity
 @Configuration
+@Profile("enableSecurity")
 @ComponentScan(basePackages = { "de.latlon.xplanbox.security" })
 public class SecurityContext {
 
@@ -39,12 +45,10 @@ public class SecurityContext {
 	}
 
 	@Bean
-	public InMemoryUserDetailsManager userDetailsService() {
-		UserDetails user = User.withUsername("user")
-			.password(passwordEncoder().encode("password"))
-			.roles("USER_ROLE")
-			.build();
-		return new InMemoryUserDetailsManager(user);
+	public PropertiesFileUserDetailsManager userDetailsService(
+			@Value("#{environment.XPLAN_SECURITY_USER_PROPERTIES_FILE}") String userPropertiesFile,
+			PasswordEncoder passwordEncoder) throws SecurityConfigurationException {
+		return new PropertiesFileUserDetailsManager(userPropertiesFile, passwordEncoder);
 	}
 
 	@Bean
