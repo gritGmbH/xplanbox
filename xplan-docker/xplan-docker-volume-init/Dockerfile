@@ -15,7 +15,8 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.vendor"="lat/lon GmbH" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
 
-RUN apk --no-cache add bash curl unzip
+RUN apk --no-cache add bash curl tzdata unzip
+ENV TZ=Europe/Berlin
 # TODO: update
 
 RUN mkdir -p /xplan-volume-init
