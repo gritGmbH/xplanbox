@@ -1,0 +1,241 @@
+parts:
+  wms_cfg: &wms_cfg
+    type: wms
+    wms_opts:
+      featureinfo: true
+      version: 1.3.0
+    supported_srs: ['${XPLAN_SERVICES_DEFAULT_CRS_SRID}']
+    coverage:
+      bbox: [${XPLAN_SERVICES_BBOX_4326}]
+      srs: 'EPSG:4326'
+  cache_cfg: &cache_cfg
+    format: image/png
+    grids: [gdi_de_25832]
+    disable_storage: ${XPLAN_MAPPROXY_CACHE_DISABLE}
+    cache:
+      type: s3
+      directory_layout: reverse_tms
+  md_cfg: &md_cfg
+    online_resource: ${XPLAN_SERVICES_PROVIDER_ONLINERESOURCE}
+    contact:
+      person: ${XPLAN_SERVICES_PROVIDER_CONTACT_NAME}
+      position: ${XPLAN_SERVICES_PROVIDER_CONTACT_POSITIONNAME}
+      organization: ${XPLAN_SERVICES_PROVIDER_NAME}
+      address: ${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_DELIVERYPOINT}
+      city: ${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_CITY}
+      postcode: ${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_POSTALCODE}
+      country: ${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_COUNTRY}
+      phone: ${XPLAN_SERVICES_PROVIDER_CONTACT_PHONE}
+      email: ${XPLAN_SERVICES_PROVIDER_CONTACT_MAIL}
+    access_constraints: Insert license and copyright information for this service.
+    fees: 'None'
+    keyword_list:
+      - vocabulary: GEMET
+        keywords:   [land use, land use plan]
+      - keywords:   [Bodennutzung, XPlanung]
+services:
+  # für Probes?
+  demo:
+  wms:
+    # TODO XPLAN_SERVICES_QUERY_CRS but with , as delimiter
+    srs: ['EPSG:3857','EPSG:4326','EPSG:25832','EPSG:25833']
+    bbox_srs: ["EPSG:4326"]
+    on_source_errors: raise
+    featureinfo_types: ["text", "html", "xml"]
+    md:
+      title: WMS Cache XPlanung
+      abstract: Gecachter WMS zur Visualisierung von XPlanungsdaten
+      <<: *md_cfg
+  wmts:
+    restful: true
+    restful_template: "/{Layer}/{TileMatrixSet}/{TileMatrix}/{TileCol}/{TileRow}.{Format}"
+    kvp: true
+    md:
+      title: WMTS XPlanung
+      abstract: WMTS zur Visualisierung von XPlanungsdaten
+      <<: *md_cfg
+layers:
+  - name: xplan_bplan
+    title: XPlanung Bebauungspläne
+    layers:
+      - name: bplan_raster
+        title: Rasterdarstellung der Bebauungspläne
+        sources: [bplan_raster_cache]
+        min_res: 1.4
+        max_res: 0.14
+      - name: bplan_vektor
+        title: Vektordarstellung der Bebauungspläne
+        sources: [bplan_vektor_cache]
+        min_res: 1.4
+        max_res: 0.14
+  - name: xplan_fplan
+    title: XPlanung Flächennutzungspläne
+    layers:
+      - name: fplan_raster
+        title: Rasterdarstellung der Flächennutzungspläne
+        sources: [fplan_raster_cache]
+        min_res: 7.0
+        max_res: 1.4
+      - name: fplan_vektor
+        title: Vektordarstellung der Flächennutzungspläne
+        sources: [fplan_vektor_cache]
+        min_res: 7.0
+        max_res: 1.4
+  - name: xplan_lplan
+    title: XPlanung Landschaftspläne
+    layers:
+      - name: lplan_raster
+        title: Rasterdarstellung der Landschaftspläne
+        sources: [lplan_raster_cache]
+        min_res: 7.0
+        max_res: 1.4
+      - name: lplan_vektor
+        title: Vektordarstellung der Landschaftspläne
+        sources: [lplan_vektor_cache]
+        min_res: 7.0
+        max_res: 1.4
+  - name: xplan_rplan
+    title: XPlanung Regionalpläne
+    layers:
+      - name: rplan_raster
+        title: Rasterdarstellung der Regionalpläne
+        sources: [rplan_raster_cache]
+        min_res: 7.0
+        max_res: 1.4
+      - name: rplan_vektor
+        title: Vektordarstellung der Regionalpläne
+        sources: [rplan_vektor_cache]
+        min_res: 7.0
+        max_res: 1.4
+  - name: xplan_soplan
+    title: XPlanung sonstige raumbezogene Pläne
+    layers:
+      - name: soplan_raster
+        title: Rasterdarstellung der sonstigen raumbezogenen Pläne
+        sources: [soplan_raster_cache]
+        min_res: 1.4
+        max_res: 0.14
+      - name: soplan_vektor
+        title: Vektordarstellung der sonstigen raumbezogenen Pläne
+        sources: [soplan_vektor_cache]
+        min_res: 1.4
+        max_res: 0.14
+caches:
+  bplan_raster_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /bplan_raster/
+      type: s3
+    sources: ['xplan-mapserver:bplanraster']
+  bplan_vektor_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /bplan_vektor/
+      type: s3
+    sources: ['bplan-wms:BP_Planvektor']
+  fplan_raster_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /fplan_raster/
+      type: s3
+    sources: ['xplan-mapserver:fplanraster']
+  fplan_vektor_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /fplan_vektor/
+      type: s3
+    sources: ['fplan-wms:FP_Planvektor']
+  lplan_raster_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /lplan_raster/
+      type: s3
+    sources: ['xplan-mapserver:lplanraster']
+  lplan_vektor_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /lplan_vektor/
+      type: s3
+    sources: ['lplan-wms:LP_Planvektor']
+  rplan_raster_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /rplan_raster/
+      type: s3
+    sources: ['xplan-mapserver:rplanraster']
+  rplan_vektor_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /rplan_vektor/
+      type: s3
+    sources: ['rplan-wms:RP_Planvektor']
+  soplan_raster_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /soplan_raster/
+      type: s3
+    sources: ['xplan-mapserver:soplanraster']
+  soplan_vektor_cache:
+    <<: *cache_cfg
+    cache:
+      directory: /soplan_vektor/
+      type: s3
+    sources: ['soplan-wms:SO_Planvektor']
+sources:
+  xplan-mapserver:
+    <<: *wms_cfg
+    req:
+      url: ${XPLAN_MAPSERVER_URL_INTERNAL}/mapserver?
+      transparent: true
+  bplan-wms:
+    <<: *wms_cfg
+    req:
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/bpwms?
+      transparent: true
+  fplan-wms:
+    <<: *wms_cfg
+    req:
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/fpwms?
+      transparent: true
+  lplan-wms:
+    <<: *wms_cfg
+    req:
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/lpwms?
+      transparent: true
+  rplan-wms:
+    <<: *wms_cfg
+    req:
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/rpwms?
+      transparent: true
+  soplan-wms:
+    <<: *wms_cfg
+    req:
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/sowms?
+      transparent: true
+grids:
+  gdi_de_25832:
+    srs: 'EPSG:25832'
+    tile_size: [512, 512]
+    res: [2800.0,1400.0,700.0,280.0,140.0,70.0,28.0,14.0,7.0,2.8,1.4,0.7,0.28,0.14,0.07,0.028]
+    bbox: [${XPLAN_SERVICES_BBOX_4326}]
+    bbox_srs: 'EPSG:4326'
+    origin: 'ul'
+globals:
+  cache:
+    lock_dir: "./cache_data/locks"
+    tile_lock_dir: "./cache_data/tile_locks"
+    s3:
+      endpoint_url: https://${XPLAN_S3_ENDPOINT}
+      bucket_name: ${XPLAN_S3_BUCKET_NAME_MAPPROXY_CACHE}
+      region_name: ${XPLAN_S3_REGION}
+  image:
+    paletted: true
+    resampling_method: bicubic
+    formats:
+      image/png:
+        encoding_options:
+          quantizer: fastoctree
+  http:
+    ssl_no_cert_checks: true
+    client_timeout: 300
+    method: GET

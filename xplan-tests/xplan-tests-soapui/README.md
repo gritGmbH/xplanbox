@@ -20,7 +20,7 @@
 
 ### xplan-webservices-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=https://xplanbox.lat-lon.de -DbaseUrlInspirePlu=https://xplanbox.lat-lon.de -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlMapServer=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
+> mvn clean test -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=https://xplanbox.lat-lon.de -DbaseUrlInspirePlu=https://xplanbox.lat-lon.de -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlMapServer=https://xplanbox.lat-lon.de -DbaseUrlMapProxy=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
 
 
 
@@ -49,6 +49,7 @@ docker run --env ... xplanbox/xplan-tests-soapui
 - `XPLAN_BASE_URL_DIENSTE`
 - `XPLAN_BASE_URL_INSPIRE_PLU`
 - `XPLAN_BASE_URL_MAPSERVER`
+- `XPLAN_BASE_URL_MAPPROXY`
 
 - `XPLAN_SERVICES_API_KEY`
 
