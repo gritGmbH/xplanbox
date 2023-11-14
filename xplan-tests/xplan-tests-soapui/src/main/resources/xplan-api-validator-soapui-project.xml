@@ -623,7 +623,7 @@ Validate XPlanGML or XPlanArchive</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>application/json</con:mediaType>
-          <con:status>400 406 415</con:status>
+          <con:status>400 406 415 422</con:status>
           <con:params/>
         </con:representation>
         <con:representation type="RESPONSE">
@@ -653,6 +653,24 @@ Validate XPlanGML or XPlanArchive</con:description>
         <con:representation type="RESPONSE">
           <con:mediaType xsi:nil="true"/>
           <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>400</con:status>
           <con:params/>
           <con:element>data</con:element>
         </con:representation>
@@ -719,7 +737,7 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fb838b6f-0eaa-45a1-8a43-f87364021182" name="JsonPath Match path /">
+            <con:assertion type="JsonPath Match" id="fb838b6f-0eaa-45a1-8a43-f87364021182" name="path /">
               <con:configuration>
                 <path>$.paths./</path>
                 <content>{"get":{"summary":"OpenAPI document","description":"API documentation","operationId":"openApi","responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object"}}}},"406":{"description":"Requested format is not available"}}}}</content>
@@ -728,7 +746,7 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="fb838b6f-0eaa-45a1-8a43-f87364021182" name="JsonPath Match path /validate X-Filename parameter">
+            <con:assertion type="JsonPath Match" id="fb838b6f-0eaa-45a1-8a43-f87364021182" name="path /validate X-Filename parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'X-Filename')]</path>
                 <content>[{"name":"X-Filename","in":"header","description":"Name of the file to be uploaded","schema":{"pattern":"^[A-Za-z0-9.()_\\-]*$","type":"string"},"example":"File names such as xplan.gml, xplan.xml, xplan.zip"}]</content>
@@ -737,7 +755,7 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate name parameter">
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="path /validate name parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'name')]</path>
                 <content>[{"name":"name","in":"query","description":"Name of the validation","schema":{"pattern":"^[A-Za-z0-9.()_\\-]*$","type":"string"},"example":"xplan-1Pruefbericht_Torstrasse_10_report-4223"}]</content>
@@ -746,7 +764,7 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate skipSemantisch parameter">
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="path /validate skipSemantisch parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'skipSemantisch')]</path>
                 <content>[{"name":"skipSemantisch","in":"query","description":"skip semantische Validierung","schema":{"type":"boolean","default":false}}]</content>
@@ -755,7 +773,7 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate skipGeometrisch parameter">
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="path /validate skipGeometrisch parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'skipGeometrisch')]</path>
                 <content>[{"name":"skipGeometrisch","in":"query","description":"skip geometrische Validierung","schema":{"type":"boolean","default":false}}]</content>
@@ -764,7 +782,7 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate skipFlaechenschluss parameter">
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="path /validate skipFlaechenschluss parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'skipFlaechenschluss')]</path>
                 <content>[{"name":"skipFlaechenschluss","in":"query","description":"skip Flaechenschluss Ueberpruefung","schema":{"type":"boolean","default":false}}]</content>
@@ -773,7 +791,7 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate skipGeltungsbereich parameter">
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="path /validate skipGeltungsbereich parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'skipGeltungsbereich')]</path>
                 <content>[{"name":"skipGeltungsbereich","in":"query","description":"skip Geltungsbereich Ueberpruefung","schema":{"type":"boolean","default":false}}]</content>
@@ -782,7 +800,7 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate skipLaufrichtung parameter">
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="path /validate skipLaufrichtung parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'skipLaufrichtung')]</path>
                 <content>[{"name":"skipLaufrichtung","in":"query","description":"skip Laufrichtung Ueberpruefung","schema":{"type":"boolean","default":false}}]</content>
@@ -791,7 +809,7 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate profiles parameter">
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="path /validate profiles parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'profiles')]</path>
                 <content>[{"name":"profiles","in":"query","description":"Names of profiles which shall be additionaly used for validation","explode":false,"schema":{"type":"array","items":{"type":"string"}}}]</content>
@@ -800,7 +818,7 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="jsonPath Match path validationReport externalReferences items type">
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="schemas ValidationReport externalReferences items type">
               <con:configuration>
                 <path>$.components.schemas.ValidationReport.properties.externalReferences.items.type</path>
                 <content>string</content>
@@ -809,10 +827,19 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="jsonPath Match path validationReport externalReferencesResult items ref">
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="schemas ValidationReport externalReferencesResult items ref">
               <con:configuration>
                 <path>$.components.schemas.ValidationReport.properties.externalReferencesResult.items.$ref</path>
                 <content>#/components/schemas/ExternalReferenceResult</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="21d4a0ad-da22-4876-8ecc-ce7ebc245f39" name="schemas DocumentSummary">
+              <con:configuration>
+                <path>$.components.schemas.DocumentSummary</path>
+                <content>true</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -979,6 +1006,24 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="095d1eee-73c5-4f78-9331-e60e460cb03a" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>Heideweg_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="095d1eee-73c5-4f78-9331-e60e460cb03a" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -1040,6 +1085,24 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$..geometrisch</path>
                 <content>[{"valid":false,"errors":["2.2.3.1: Das Objekt mit der gml id FEATURE_dc61f364-f67c-4e0f-846c-fb8da12644fe liegt vollständig außerhalb des Geltungsbereichs des Plans."],"warnings":[]}]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="7efd3f77-fef5-4f04-adaf-6757b05ba0a7" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>Heideweg_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="90a36c83-8d76-4b9e-8fff-5c853e68e741" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1107,6 +1170,24 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$..geometrisch.valid</path>
                 <content>[true]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="719e3476-4c5c-4534-a694-dd59b602c3b5" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>Heideweg_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="8942ec5f-811a-4df8-9bf9-485318a3f47e" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1188,6 +1269,24 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="1f7e0a9a-55fc-4349-a0aa-3a1c960e1eda" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>Heideweg_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f3054fcf-2af1-44a9-af41-77132657e9a2" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -1255,6 +1354,24 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="82f7c406-1ea2-4e34-8720-b2e874561587" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>Heideweg_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c9852dbd-152a-4d58-8303-d2733e1c969d" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -1317,6 +1434,24 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$.name</path>
                 <content>test-name</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="e8abbf69-aeae-4f0e-9001-407f44f98057" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>Heideweg_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="2d5794eb-e016-4904-95c2-e80506d66d7c" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1416,6 +1551,24 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="a174345e-6fff-4d9d-a768-19a5a9fe8706" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>Heideweg_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="96192c51-626b-4e76-a3f1-48926a4d0d97" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -1482,6 +1635,24 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$.valid</path>
                 <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0d923c8c-022a-47f5-bfad-b341416c26b7" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>Heideweg_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="e2373175-0a4e-4ae1-8c89-76a86b299526" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1554,6 +1725,24 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="6ee186de-ac30-4215-8340-00973b2cc5ed" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>Heideweg_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="04fe6449-0a75-4a4b-bbc0-f9b6437185cc" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -1615,6 +1804,24 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$.valid</path>
                 <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="65471d70-7128-4ea6-886e-334469a2a919" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>Heideweg_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="3eec16de-434c-445a-aef4-e202567df639" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1735,6 +1942,24 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="422f7ce4-06fc-44aa-9841-6d9d22243113" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>Heideweg_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="e4c5feeb-c495-487b-8259-43cc40aa24e5" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -1783,6 +2008,24 @@ assert json.version != null</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="XPath Match" id="0bfb6748-239d-45d0-b506-e77992a184c6" name="documentSummary_name">
+              <con:configuration>
+                <path>//validationReport/documentSummary/name</path>
+                <content>Heideweg_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" id="1140adcc-b4d4-4d1d-9de1-7c5ec5fd6985" name="documentSummary_type">
+              <con:configuration>
+                <path>//validationReport/documentSummary/type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -1829,6 +2072,24 @@ assert json.version != null</scriptText>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" id="83337f0b-2d75-49e3-8a1c-e25959aa374f" name="documentSummary_name">
+              <con:configuration>
+                <path>//validationReport/documentSummary/name</path>
+                <content>Heideweg_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" id="cc508505-df5e-48fd-b0bf-5a114a497ffe" name="documentSummary_type">
+              <con:configuration>
+                <path>//validationReport/documentSummary/type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -2009,6 +2270,24 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="609194b0-700a-4b3d-b278-01eff6f2d0fc" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>BPlan003_5-2_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="9f40b52d-6456-4ddd-904b-003c00290e61" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -2084,6 +2363,24 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="d4d9cbed-3413-4bea-8b5a-175a4a5d6501" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>BPlan002_5-3</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="429a212d-1fdf-4d62-835a-82267ac53f18" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -2145,6 +2442,42 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$.valid</path>
                 <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="7896af55-1fb4-4bf8-b1fd-87ed12b770c8" name="documentSummary_name_1">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>BPlan001_5-3_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="3e47ef93-e159-4377-945b-049147f73bf8" name="documentSummary_name_2">
+              <con:configuration>
+                <path>$.documentSummary[1].name</path>
+                <content>BPlan003_5-3_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a1503153-43aa-4f1e-8a3f-e7f46d47a506" name="documentSummary_type_1">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="943ce07c-3dfd-42bb-9d19-a3cf345ab28c" name="documentSummary_type_2">
+              <con:configuration>
+                <path>$.documentSummary[1].type</path>
+                <content>BP_Plan</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -2216,6 +2549,42 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="6a5c3e06-228c-4881-a9a7-30c447cb3ee7" name="documentSummary_name_1">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>BPlan003_5-3_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="4d840524-cc02-4f0b-ae8d-1b2ae37f6e7e" name="documentSummary_name_2">
+              <con:configuration>
+                <path>$.documentSummary[1].name</path>
+                <content>BPlan001_5-3_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="30f0fadc-95b7-4251-93ef-b7a1bfb66d49" name="documentSummary_type_1">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="66938068-003d-4265-91f6-be75b3fb6f86" name="documentSummary_type_2">
+              <con:configuration>
+                <path>$.documentSummary[1].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -2277,6 +2646,42 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$.valid</path>
                 <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="4911dc4c-07e2-46cb-977a-4c89f6021e4a" name="documentSummary_name_1">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>BPlan003_5-3_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="235a52ad-d5be-4f39-b740-4f4c98fe74a1" name="documentSummary_name_2">
+              <con:configuration>
+                <path>$.documentSummary[1].name</path>
+                <content>BPlan001_5-3_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="6c161d64-df77-4fc6-a121-3471b66ff5b7" name="documentSummary_type_1">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="731de1cb-983b-4408-bfcf-0174de5fa7a2" name="documentSummary_type_2">
+              <con:configuration>
+                <path>$.documentSummary[1].type</path>
+                <content>BP_Plan</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -2348,6 +2753,24 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="6a7df2c0-036b-48e1-946c-55f24e5d1f9c" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>BPlan003_5-3_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="27a0feb1-ec72-4362-a7c1-216c76bfaf29" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -2409,6 +2832,24 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$.valid</path>
                 <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="1801e958-8015-43b2-9918-9627bec17706" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>BPlan003_5-3_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="9a8a43c3-acd1-44c2-8c29-aee5c26d3954" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -2635,6 +3076,24 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="72f3251e-e74e-4f91-8daf-0d2d5380be45" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>Blankenese29_Testplan_60_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="00d94987-d2f2-4b82-9c66-d7ac5b064e2d" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -2739,6 +3198,15 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="9aedecf1-472c-4828-a02d-d7d444a171d2" name="documentSummary">
+              <con:configuration>
+                <path>$.documentSummary</path>
+                <content>[]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -2820,6 +3288,24 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$.validationResult.geometrisch.errors.length()</path>
                 <content>5</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a2b28343-3a71-4d2a-8d9d-83c1e1ad3ae1" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>Original60_test(1Aend)_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="c4162720-0cd8-4578-a192-3429d4c8458d" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -2964,6 +3450,24 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="54106c8e-d509-4d17-9a7a-f9ce81486d3f" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>BPlan_SO-Objekte-Test_6-0-2_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="851df244-575f-444a-a69f-3b67ee239da2" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -3053,6 +3557,24 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$.validationResult.semantisch.valid</path>
                 <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="8b79bb2e-63d6-416e-bb11-8f89ff0bd70f" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>BPlan_SO-Objekte-Test_6-0-2_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="e0b41ef1-2013-4160-9e4d-7600c4347d5b" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -3160,6 +3682,24 @@ assert json.version != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="87af63ab-3a39-4b39-be34-6ac0c36272fb" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>BPlan_SO-Objekte-Test_6-0-2_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="128c5519-0fab-4e23-b857-87bd88bc24bc" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>BP_Plan</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -3240,6 +3780,24 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$.validationResult.geometrisch.errors.length()</path>
                 <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="88c3fcba-65bc-44c3-b911-9de7fbb49843" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>FPlan_SO-Objekte-Test_6-0-2_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="74dafae5-7c00-4d09-a27a-02781ff1d17f" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>FP_Plan</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -3334,6 +3892,24 @@ assert json.version != null</scriptText>
               <con:configuration>
                 <path>$.validationResult.semantisch.valid</path>
                 <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="b1cb6884-8832-43b8-ae4a-9460f15bfdcd" name="documentSummary_name">
+              <con:configuration>
+                <path>$.documentSummary[0].name</path>
+                <content>FPlan_SO-Objekte-Test_6-0-2_SoapUI-XPlanValidatorAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="f2ad712c-0f8f-4184-8d1d-61cbf9084f6e" name="documentSummary_type">
+              <con:configuration>
+                <path>$.documentSummary[0].type</path>
+                <content>FP_Plan</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>

@@ -25,6 +25,7 @@ import de.latlon.xplan.validator.i18n.ValidationMessages;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
+import de.latlon.xplanbox.api.commons.v1.model.DocumentSummary;
 import de.latlon.xplanbox.api.commons.v1.model.ExternalReferenceResult;
 import de.latlon.xplanbox.api.commons.v1.model.ExternalReferenceStatusEnum;
 import de.latlon.xplanbox.api.commons.v1.model.PlanInfoBbox;
@@ -80,6 +81,7 @@ public class ValidationReportBuilder {
 		if (validatorReport != null) {
 			validationReport.date(validatorReport.getDate())
 				.name(validatorReport.getValidationName())
+				.documentSummary(buildDocumentSummary())
 				.version(fromXPlanVersion(validatorReport.getXPlanVersion()))
 				.valid(validatorReport.isReportValid())
 				.status(status())
@@ -92,6 +94,14 @@ public class ValidationReportBuilder {
 				.validationResult(createValidationResult());
 		}
 		return validationReport;
+	}
+
+	private List<DocumentSummary> buildDocumentSummary() {
+		return validatorReport.getPlanNames()
+			.stream()
+			.map(planName -> new DocumentSummary().name(planName)
+				.type(validatorReport.getXPlanType() != null ? validatorReport.getXPlanType().name() : null))
+			.collect(Collectors.toList());
 	}
 
 	private String status() {
