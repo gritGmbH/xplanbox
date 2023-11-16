@@ -3,6 +3,7 @@ package de.latlon.xplan.manager.web.client.utils;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ReferenceNameUtilsTest {
@@ -89,7 +90,7 @@ public class ReferenceNameUtilsTest {
 	public void testThatParseFilenameFromUrlWithEmptyString() {
 		String url = "";
 		String filename = ReferenceNameUtils.extractFilenameFromUrl(url);
-		assertThat(filename, is("Unbekannt"));
+		assertThat(filename, nullValue());
 	}
 
 	@Test
