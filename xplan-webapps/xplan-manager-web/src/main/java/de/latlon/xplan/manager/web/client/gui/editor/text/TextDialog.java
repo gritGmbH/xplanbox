@@ -100,10 +100,14 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 		if (rechtscharakterType != null) {
 			editedText.setRechtscharakter(rechtscharakterType.getValueAsEnum());
 		}
-		if (XPLAN_60.equals(version) && (textToEdit == null || textToEdit.getReferenzName() == null)) {
-			String referenzName = parseReferenzNameFromReferenzUrl();
-			editedText.setReferenzName(referenzName);
-		}
+		if (XPLAN_60.equals(version))
+			if (textToEdit != null && textToEdit.getReferenzName() != null) {
+				editedText.setReferenzName(textToEdit.getReferenzName());
+			}
+			else {
+				String referenzName = parseReferenzNameFromReferenzUrl();
+				editedText.setReferenzName(referenzName);
+			}
 		return editedText;
 	}
 
