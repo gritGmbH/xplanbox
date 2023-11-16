@@ -81,6 +81,7 @@ import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
+import de.latlon.xplanbox.security.config.SecurityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
@@ -108,7 +109,7 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_
  */
 @Configuration
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.manager.handler" })
-@Import({ JpaContext.class, RasterStorageContext.class, AmazonS3RasterStorageContext.class,
+@Import({ SecurityContext.class, JpaContext.class, RasterStorageContext.class, AmazonS3RasterStorageContext.class,
 		DocumentStorageContext.class, StorageCleanUpContext.class })
 public class ApplicationContext {
 
