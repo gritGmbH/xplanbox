@@ -88,7 +88,7 @@ public class JerseyConfig extends ResourceConfig {
 
 		OpenAPI openApi = new OpenAPI();
 		openApi.setInfo(new Info().title("XPlanValidatorAPI")
-			.version("1.2.0")
+			.version("1.3.0")
 			.description("XPlanValidator REST API")
 			.termsOfService(getTermsOfService(validatorApiConfiguration))
 			.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));
