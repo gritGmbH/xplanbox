@@ -61,24 +61,28 @@ layers:
       - name: bplan_raster
         title: Rasterdarstellung der Bebauungspläne
         sources: [bplan_raster_cache]
+        tile_sources: [bplan_raster_cache, bplan_raster_cache_3857]
         min_res: 1.4
-        max_res: 0.14
+        max_res: 0.28
       - name: bplan_vektor
         title: Vektordarstellung der Bebauungspläne
         sources: [bplan_vektor_cache]
+        tile_sources: [bplan_vektor_cache, bplan_vektor_cache_3857]
         min_res: 1.4
-        max_res: 0.14
+        max_res: 0.28
   - name: xplan_fplan
     title: XPlanung Flächennutzungspläne
     layers:
       - name: fplan_raster
         title: Rasterdarstellung der Flächennutzungspläne
         sources: [fplan_raster_cache]
+        tile_sources: [fplan_raster_cache, fplan_raster_cache_3857]
         min_res: 7.0
         max_res: 1.4
       - name: fplan_vektor
         title: Vektordarstellung der Flächennutzungspläne
         sources: [fplan_vektor_cache]
+        tile_sources: [fplan_vektor_cache, fplan_vektor_cache_3857]
         min_res: 7.0
         max_res: 1.4
   - name: xplan_lplan
@@ -87,11 +91,13 @@ layers:
       - name: lplan_raster
         title: Rasterdarstellung der Landschaftspläne
         sources: [lplan_raster_cache]
+        tile_sources: [lplan_raster_cache, lplan_raster_cache_3857]
         min_res: 7.0
         max_res: 1.4
       - name: lplan_vektor
         title: Vektordarstellung der Landschaftspläne
         sources: [lplan_vektor_cache]
+        tile_sources: [lplan_vektor_cache, lplan_vektor_cache_3857]
         min_res: 7.0
         max_res: 1.4
   - name: xplan_rplan
@@ -100,11 +106,13 @@ layers:
       - name: rplan_raster
         title: Rasterdarstellung der Regionalpläne
         sources: [rplan_raster_cache]
+        tile_sources: [rplan_raster_cache, rplan_raster_cache_3857]
         min_res: 7.0
         max_res: 1.4
       - name: rplan_vektor
         title: Vektordarstellung der Regionalpläne
         sources: [rplan_vektor_cache]
+        tile_sources: [rplan_vektor_cache, rplan_vektor_cache_3857]
         min_res: 7.0
         max_res: 1.4
   - name: xplan_soplan
@@ -113,14 +121,46 @@ layers:
       - name: soplan_raster
         title: Rasterdarstellung der sonstigen raumbezogenen Pläne
         sources: [soplan_raster_cache]
+        tile_sources: [soplan_raster_cache, soplan_raster_cache_3857]
         min_res: 1.4
-        max_res: 0.14
+        max_res: 0.28
       - name: soplan_vektor
         title: Vektordarstellung der sonstigen raumbezogenen Pläne
         sources: [soplan_vektor_cache]
+        tile_sources: [soplan_vektor_cache, soplan_vektor_cache_3857]
         min_res: 1.4
-        max_res: 0.14
+        max_res: 0.28
 caches:
+  bplan_raster_cache_3857:
+    grids: [GLOBAL_WEBMERCATOR]
+    sources: [bplan_raster_cache]
+  bplan_vektor_cache_3857:
+    grids: [GLOBAL_WEBMERCATOR]
+    sources: [bplan_vektor_cache]
+  fplan_raster_cache_3857:
+    grids: [GLOBAL_WEBMERCATOR]
+    sources: [fplan_raster_cache]
+  fplan_vektor_cache_3857:
+    grids: [GLOBAL_WEBMERCATOR]
+    sources: [fplan_vektor_cache]
+  lplan_raster_cache_3857:
+    grids: [GLOBAL_WEBMERCATOR]
+    sources: [lplan_raster_cache]
+  lplan_vektor_cache_3857:
+    grids: [GLOBAL_WEBMERCATOR]
+    sources: [lplan_vektor_cache]
+  rplan_raster_cache_3857:
+    grids: [GLOBAL_WEBMERCATOR]
+    sources: [rplan_raster_cache]
+  rplan_vektor_cache_3857:
+    grids: [GLOBAL_WEBMERCATOR]
+    sources: [rplan_vektor_cache]
+  soplan_raster_cache_3857:
+    grids: [GLOBAL_WEBMERCATOR]
+    sources: [soplan_raster_cache]
+  soplan_vektor_cache_3857:
+    grids: [GLOBAL_WEBMERCATOR]
+    sources: [soplan_vektor_cache]
   bplan_raster_cache:
     <<: *cache_cfg
     cache:
@@ -216,7 +256,7 @@ grids:
   gdi_de_25832:
     srs: 'EPSG:25832'
     tile_size: [512, 512]
-    res: [2800.0,1400.0,700.0,280.0,140.0,70.0,28.0,14.0,7.0,2.8,1.4,0.7,0.28,0.14,0.07,0.028]
+    res: [28.0,14.0,7.0,2.8,1.4,0.7,0.28]
     bbox: [${XPLAN_SERVICES_BBOX_4326}]
     bbox_srs: 'EPSG:4326'
     origin: 'ul'
@@ -229,7 +269,7 @@ globals:
       bucket_name: ${XPLAN_S3_BUCKET_NAME_MAPPROXY_CACHE}
       region_name: ${XPLAN_S3_REGION}
   image:
-    paletted: true
+    paletted: false
     resampling_method: bicubic
     formats:
       image/png:

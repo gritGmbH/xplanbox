@@ -5,45 +5,30 @@ seeds:
     coverages: [bpchanges]
     refresh_before:
       days: 0
-    levels:
-      from: 4
-      to: 6
   fpreseed:
     caches: [fplan_raster_cache,fplan_vektor_cache]
     grids: [gdi_de_25832]
     coverages: [fpchanges]
     refresh_before:
       days: 0
-    levels:
-      from: 2
-      to: 4
   lpreseed:
     caches: [lplan_raster_cache,lplan_vektor_cache]
     grids: [gdi_de_25832]
     coverages: [lpchanges]
     refresh_before:
       days: 0
-    levels:
-      from: 2
-      to: 4
   rpreseed:
     caches: [rplan_raster_cache,rplan_vektor_cache]
     grids: [gdi_de_25832]
     coverages: [rpchanges]
     refresh_before:
       days: 0
-    levels:
-      from: 2
-      to: 4
   soreseed:
     caches: [soplan_raster_cache,soplan_vektor_cache]
     grids: [gdi_de_25832]
     coverages: [sochanges]
     refresh_before:
       days: 0
-    levels:
-      from: 4
-      to: 6
   # wird bei einem frischen Deployment vermutlich gar nicht benötigt?
   fullseed:
     caches: [bplan_raster_cache,bplan_vektor_cache,fplan_raster_cache,fplan_vektor_cache,lplan_raster_cache,lplan_vektor_cache,rplan_raster_cache,rplan_vektor_cache,soplan_raster_cache,soplan_vektor_cache]
