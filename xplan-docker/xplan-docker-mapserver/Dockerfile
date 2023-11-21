@@ -16,8 +16,11 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION" \
 	"maintainer"=""
 
-RUN mkdir -p /xplan-docker-mapserver
-RUN chown 1001 /etc/mapserver
+ENV TZ=Europe/Berlin
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata
+
+RUN mkdir -p /xplan-docker-mapserver \
+	&& chown 1001 /etc/mapserver
 
 ADD target/xplan-docker-mapserver-*.tgz /
 ADD startupWithConfiguredMapserver.sh /xplan-docker-mapserver/

@@ -16,6 +16,10 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.vendor"="lat/lon GmbH" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
 
+ENV TZ=Europe/Berlin \
+  LC_TIME=en_US \
+  LC_ALL=
+
 # set environment variables
 ENV TOMCAT_ADDITIONAL_ARG_APP="-Dlog4j2.configurationFile=classpath:/log4j2.yaml -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin"
 

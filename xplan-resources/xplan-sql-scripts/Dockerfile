@@ -16,6 +16,9 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION" \
 	"maintainer"=""
 
+ENV TZ=Europe/Berlin \
+  LC_TIME=en_US
+
 # sets superuser and password for PG instance
 ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=postgres

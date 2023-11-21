@@ -16,9 +16,14 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION" \
 	"maintainer"=""
 
+ENV TZ=Europe/Berlin \
+  LC_TIME=en_US \
+  LC_ALL=
+
 # Install PSQL (probably not really needed) 
 USER root
 RUN apt-get update -y \
+  && locale-gen de_DE \
   && apt-get install --no-install-recommends -y postgresql-client \
   && rm -rf /var/lib/apt/lists/*
 

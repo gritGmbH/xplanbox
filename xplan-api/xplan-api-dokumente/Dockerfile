@@ -21,6 +21,7 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.vendor"="lat/lon GmbH" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
 
+ENV TZ=Europe/Berlin
 
 # copy jmx exporter from xplan-docker-tomcat until we switch to actuator based prometheus publishing
 ENV JMX_EXPORTER_DIR=/xplanbox/prometheus

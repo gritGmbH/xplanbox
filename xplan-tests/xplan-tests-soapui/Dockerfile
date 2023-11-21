@@ -15,6 +15,8 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.vendor"="lat/lon GmbH" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
 
+ENV TZ=Europe/Berlin
+
 RUN apk add py3-pip py3-pillow py3-cffi py3-brotli gcc musl-dev python3-dev pango pango-tools aws-cli
 RUN pip install weasyprint
 
@@ -30,5 +32,4 @@ RUN mvn validate \
 	&& mvn surefire-report:report-only \
 	&& rm -rf target
 
-	
 ENTRYPOINT ["/xplanbox/xplan-tests/xplan-tests-soapui/runAllSoapUiTests.sh"] 
