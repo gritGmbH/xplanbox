@@ -12,7 +12,7 @@ envsubst "$defined_envs" < /xplan-docker-mapproxy/xplan-mapproxy-config/seed.yam
 if [ "$executionMode" == "seed" ]
 then
 	echo "[$(date -Iseconds)] MapProxy seed..."
-	exec mapproxy-seed -f /srv/mapproxy/mapproxy.yaml -s /srv/mapproxy/seed.yaml -c $XPLAN_MAPPROXY_RESEED_CONCURRENCY --seed bpreseed,fpreseed
+	exec mapproxy-seed -f /srv/mapproxy/mapproxy.yaml -s /srv/mapproxy/seed.yaml -c $XPLAN_MAPPROXY_RESEED_CONCURRENCY --seed bpreseed,fpreseed,lpreseed,rpreseed,soreseed
 else
 	echo "[$(date -Iseconds)] MapProxy startup..."
 	exec uwsgi --ini /srv/mapproxy/uwsgi.ini
