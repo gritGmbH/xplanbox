@@ -1,4 +1,4 @@
-FROM maven:3.9-eclipse-temurin-11-alpine
+FROM maven:3.9.5-eclipse-temurin-11-alpine
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?

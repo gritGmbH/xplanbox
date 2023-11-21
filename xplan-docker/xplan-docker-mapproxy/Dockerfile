@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.12.0-slim
 
 ARG MAPPROXY_VERSION=1.16.0
 ARG BUILD_DATE=?
