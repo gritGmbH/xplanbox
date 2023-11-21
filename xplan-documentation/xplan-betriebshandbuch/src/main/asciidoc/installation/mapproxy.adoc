@@ -7,6 +7,4 @@ Weitere Informationen zur Installation sind in der https://mapproxy.org/document
 
 Die Konfigurationsdateien _mapproxy.yaml_ und _seed.yaml_ sind im Distributionspaket _xplan-mapproxy-config-<VERSION>.zip_ enthalten und müssen in das entsprechende Verzeichnis kopiert werden.
 
-In der Dokumention von MapProxy ist auch die Verwendung des Skripts  `mapproxy-seed` beschrieben, um nach einer Änderung des Datenbestands den Cache des MapProxy zu aktualisieren.
-
-
+In der http://mapproxy.github.io/mapproxy/seed.html[Dokumention von MapProxy] ist auch die Verwendung des Skripts `mapproxy-seed` beschrieben, um nach einer Änderung des Datenbestands den Cache des MapProxy zu aktualisieren.
