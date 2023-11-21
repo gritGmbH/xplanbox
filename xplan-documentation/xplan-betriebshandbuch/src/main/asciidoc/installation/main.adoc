@@ -19,4 +19,6 @@ include::hale-cli.adoc[]
 
 include::mapserver.adoc[]
 
+include::mapproxy.adoc[]
+
 include::startApplikationsserver.adoc[]
