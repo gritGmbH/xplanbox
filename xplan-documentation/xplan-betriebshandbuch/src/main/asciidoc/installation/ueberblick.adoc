@@ -30,6 +30,9 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
 * MapServer Konfiguration
  ** xplan-mapserver-config-<VERSION>.zip
 
+* MapProxy Konfiguration
+ ** xplan-mapproxy-config-<VERSION>.zip
+
 * Dokumentation (in HTML und PDF-Format):
  ** XPlanBenutzerhandbuch - Benutzerhandbuch für die Komponenten der xPlanBox
  ** XPlanBetriebshandbuch - Betriebshandbuch und Installationsanleitung für die xPlanBox

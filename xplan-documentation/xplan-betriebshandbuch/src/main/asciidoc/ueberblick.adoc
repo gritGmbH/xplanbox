@@ -101,10 +101,20 @@ IMPORTANT: Erforderlich ist GDAL 3.0+.
 [[mapserver]]
 === MapServer
 
-Optional kann der https://mapserver.org[MapServer] installiert werden. Wenn für die Bereitstellung von Rasterdaten der MapServer verwendet werden soll, dann muss dieser zusammen mit <<gdal, GDAL>> installiert werden. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-mapserver>>.
+Optional kann https://mapserver.org[MapServer] installiert werden. Wenn für die Bereitstellung von Rasterdaten MapServer verwendet werden soll, dann muss die Software zusammen mit <<gdal, GDAL>> installiert werden. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-mapserver>>.
 
 IMPORTANT: Erforderlich ist MapServer 8.0.0.
 
+[[mapproxy]]
+=== MapProxy
+
+Optional kann https://mapproxy.org/[MapProxy] installiert werden. MapProxy kann als Proxy kaskadierend für den XPlanWMS mit Cache-Funktion verwendet werden, um den Zugriff auf Raster- und Vektorebenen des XPlanWMS zu beschleunigen. Der Zugriff auf MapProxy kann über die Standardschnittstellen WMS und WMTS erfolgen.
+
+Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-mapproxy>>.
+
+IMPORTANT: Erforderlich ist MapProxy 1.16.0.
+
+[[halecli]]
 === HALE CLI
 
 Optional kann das https://github.com/halestudio/hale-cli/[HALE CLI] installiert werden. Wenn Daten der xPlanBox transformiert werden sollen, dann ist der Einsatz des HALE CLI erforderlich. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale-cli>>.
