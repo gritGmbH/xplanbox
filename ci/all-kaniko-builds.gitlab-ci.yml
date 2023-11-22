@@ -58,7 +58,7 @@ kaniko:xplan-docker-volume-init:
 kaniko:xplan-dokumente-api:
   extends: .kaniko:build
   variables:
-    dockerImageName: xplan-validator-api
+    dockerImageName: xplan-dokumente-api
     tarGzFile: xplan-api/xplan-api-dokumente/target/docker/xplanbox/xplan-dokumente-api/tmp/docker-build.tar.gz
   needs:
     - maven-prepare-docker-contexts-apis
@@ -134,3 +134,11 @@ kaniko:xplan-validator-wms:
   needs:
     - maven-prepare-docker-contexts-others
     - kaniko:xplan-docker-tomcat
+
+kaniko:xplan-cli-docker:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-cli-docker
+    tarGzFile: xplan-cli/xplan-cli-docker/target/docker/xplanbox/xplan-cli/tmp/docker-build.tar
+  needs:
+    - maven-prepare-docker-contexts-cli
