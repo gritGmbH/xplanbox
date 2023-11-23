@@ -41,6 +41,7 @@ import java.sql.Timestamp;
  * if currently valid according the validity period. Subclasses have to specify the
  * database schema.
  *
+ * @deprecated The VisibilityInspector will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public abstract class ValidityPeriodInspector implements LayerVisibilityInspector {

@@ -310,27 +310,45 @@ public class Plan {
 		return this;
 	}
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 */
 	public Date getGueltigkeitbeginn() {
 		return gueltigkeitbeginn;
 	}
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 */
 	public void setGueltigkeitbeginn(Date gueltigkeitbeginn) {
 		this.gueltigkeitbeginn = gueltigkeitbeginn;
 	}
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 */
 	public Plan gueltigkeitbeginn(Date gueltigkeitbeginn) {
 		this.gueltigkeitbeginn = gueltigkeitbeginn;
 		return this;
 	}
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 */
 	public Date getGueltigkeitende() {
 		return gueltigkeitende;
 	}
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 */
 	public void setGueltigkeitende(Date gueltigkeitende) {
 		this.gueltigkeitende = gueltigkeitende;
 	}
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 */
 	public Plan gueltigkeitende(Date gueltigkeitende) {
 		this.gueltigkeitende = gueltigkeitende;
 		return this;
