@@ -20,22 +20,20 @@
  */
 package de.latlon.xplan.commons.configuration;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
-public class SemanticConformityLinkConfigurationTest {
+class SemanticConformityLinkConfigurationTest {
 
 	@Test
-	public void testRetrieveLink() {
+	void testRetrieveLink() {
 		SemanticConformityLinkConfiguration linkConfiguration = new SemanticConformityLinkConfiguration();
 		linkConfiguration.addLink(XPLAN_40, "link1");
 		linkConfiguration.addLink(XPLAN_41, "link2");
@@ -45,9 +43,9 @@ public class SemanticConformityLinkConfigurationTest {
 		String overwrittenLink = linkConfiguration.retrieveLink(XPLAN_41);
 		String unconfiguredLink = linkConfiguration.retrieveLink(XPLAN_54);
 
-		assertThat(firstLink, is("link1"));
-		assertThat(overwrittenLink, is("link3"));
-		assertThat(unconfiguredLink, nullValue());
+		assertThat(firstLink).isEqualTo("link1");
+		assertThat(overwrittenLink).isEqualTo("link3");
+		assertThat(unconfiguredLink).isNull();
 	}
 
 }

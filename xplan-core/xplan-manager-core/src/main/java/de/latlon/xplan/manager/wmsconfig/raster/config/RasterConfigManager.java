@@ -35,7 +35,7 @@ import java.util.Map;
  */
 public interface RasterConfigManager {
 
-	void insertRasterLayers(int planId, String moreRecentPlanId, XPlanType type, PlanStatus planStatus,
+	void insertRasterLayers(int planId, int moreRecentPlanId, XPlanType type, PlanStatus planStatus,
 			PlanStatus newPlanStatus, List<String> rasterIds, Date sortDate)
 			throws JAXBException, IOException, ConfigurationException;
 
@@ -47,6 +47,9 @@ public interface RasterConfigManager {
 			throws JAXBException, IOException, ConfigurationException;
 
 	void reorderWmsLayers(Map<String, Date> planId2sortDate) throws Exception;
+
+	void reorderWmsLayers(int planId, int moreRecentPlan, PlanStatus planStatus, XPlanType xPlanType)
+			throws ConfigurationException, JAXBException, IOException;
 
 	void createConfiguration(String rasterId, String rasterFileName) throws IOException, JAXBException;
 

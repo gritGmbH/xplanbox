@@ -2,39 +2,49 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-api-manager</artifactId>
-  <packaging>war</packaging>
-  <description>xplan-api-manager</description>
+  <packaging>jar</packaging>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-api</artifactId>
-    <version>7.0.2</version>
+    <version>7.1-SNAPSHOT</version>
   </parent>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+       <executions>
           <execution>
-            <id>unpack</id>
-            <phase>generate-resources</phase>
             <goals>
-              <goal>unpack</goal>
+              <goal>repackage</goal>
             </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>de.xleitstelle.xplanung</groupId>
-                  <artifactId>regeln</artifactId>
-                  <overWrite>true</overWrite>
-                </artifactItem>
-              </artifactItems>
-              <outputDirectory>${project.build.outputDirectory}</outputDirectory>
-            </configuration>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+            <archive>
+              <manifest>
+                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              </manifest>
+            </archive>
+          </configuration>
       </plugin>
     </plugins>
   </build>
@@ -59,23 +69,14 @@
       <groupId>de.xleitstelle.xplanung</groupId>
       <artifactId>regeln</artifactId>
     </dependency>
-    <!-- Javax -->
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>${javax.servlet-api.version}</version>
-      <scope>provided</scope>
-    </dependency>
     <dependency>
       <groupId>jakarta.ws.rs</groupId>
       <artifactId>jakarta.ws.rs-api</artifactId>
-      <version>${jakarta.ws.rs-api.version}</version>
     </dependency>
     <!-- Jersey -->
     <dependency>
       <groupId>org.glassfish.jersey.connectors</groupId>
       <artifactId>jersey-apache-connector</artifactId>
-      <version>${jersey.version}</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
@@ -86,38 +87,32 @@
     <dependency>
       <groupId>org.glassfish.jersey.core</groupId>
       <artifactId>jersey-server</artifactId>
-      <version>${jersey.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.containers</groupId>
       <artifactId>jersey-container-servlet</artifactId>
-      <version>${jersey.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.media</groupId>
       <artifactId>jersey-media-multipart</artifactId>
-      <version>${jersey.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.media</groupId>
       <artifactId>jersey-media-json-jackson</artifactId>
-      <version>${jersey.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.ext</groupId>
       <artifactId>jersey-spring4</artifactId>
-      <version>${jersey.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.media</groupId>
       <artifactId>jersey-media-jaxb</artifactId>
-      <version>${jersey.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.ext</groupId>
       <artifactId>jersey-bean-validation</artifactId>
-      <version>${jersey.version}</version>
     </dependency>
+
     <!-- Swagger 3 -->
     <dependency>
       <groupId>io.swagger.core.v3</groupId>
@@ -133,22 +128,18 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
-      <version>${jackson.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>${jackson.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-joda</artifactId>
-      <version>${jackson.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.jaxrs</groupId>
       <artifactId>jackson-jaxrs-json-provider</artifactId>
-      <version>${jackson.version}</version>
     </dependency>
     <!-- Bean Validation API support -->
     <dependency>
@@ -157,8 +148,14 @@
     </dependency>
     <!-- spring -->
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <exclusions>
+          <exclusion>
+              <groupId>org.apache.tomcat.embed</groupId>
+              <artifactId>tomcat-embed-el</artifactId>
+          </exclusion>
+      </exclusions>
     </dependency>
     <!-- logging -->
     <dependency>
@@ -204,52 +201,44 @@
     </dependency>
     <dependency>
       <groupId>org.xmlunit</groupId>
-      <artifactId>xmlunit-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.xmlunit</groupId>
       <artifactId>xmlunit-assertj</artifactId>
-      <version>2.9.1</version>
       <scope>test</scope>
     </dependency>
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-test</artifactId>
-    <version>2.7.14</version>
-    <scope>test</scope>
-      <exclusions>
-      	<exclusion>
-      		<groupId>*</groupId>
-      		<artifactId>*</artifactId>
-      	</exclusion>
-      </exclusions>
-</dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-test</artifactId>
+      <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>*</groupId>
+              <artifactId>*</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.test-framework</groupId>
       <artifactId>jersey-test-framework-core</artifactId>
-      <version>${jersey.version}</version>
       <scope>test</scope>
       <exclusions>
-      	<exclusion>
-      		<groupId>org.hamcrest</groupId>
-      		<artifactId>hamcrest-core</artifactId>
-      	</exclusion>
-      	<exclusion>
-      		<groupId>junit</groupId>
-      		<artifactId>junit</artifactId>
-      	</exclusion>
+          <exclusion>
+              <groupId>org.hamcrest</groupId>
+              <artifactId>hamcrest-core</artifactId>
+          </exclusion>
+          <exclusion>
+              <groupId>junit</groupId>
+              <artifactId>junit</artifactId>
+          </exclusion>
       </exclusions>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.test-framework.providers</groupId>
       <artifactId>jersey-test-framework-provider-inmemory</artifactId>
-      <version>${jersey.version}</version>
       <scope>test</scope>
       <exclusions>
-      	<exclusion>
-      		<groupId>junit</groupId>
-      		<artifactId>junit</artifactId>
-      	</exclusion>
+          <exclusion>
+              <groupId>junit</groupId>
+              <artifactId>junit</artifactId>
+          </exclusion>
       </exclusions>
     </dependency>
     <dependency>

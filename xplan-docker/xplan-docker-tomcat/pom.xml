@@ -3,17 +3,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>xplan-docker-tomcat</artifactId>
+  <packaging>pom</packaging>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-docker</artifactId>
-  	<version>7.0.2</version>
+  	<version>7.1-SNAPSHOT</version>
   </parent>
 
   <properties>
     <docker-image.skip>false</docker-image.skip>
     <maven.deploy.skip>true</maven.deploy.skip>
-    <maven.install.skip>true</maven.install.skip>
   </properties>
   
   <dependencies>

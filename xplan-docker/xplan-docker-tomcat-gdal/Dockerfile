@@ -17,10 +17,12 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
 
 # set environment variables
+ENV TZ=Europe/Berlin
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
 # apt-transport-https (needed to install java 11)
 RUN apt update && apt -y install apt-transport-https unzip wget
+
 
 # install jdk
 RUN DEBIAN_FRONTEND=noninteractive apt -y install openjdk-11-jdk

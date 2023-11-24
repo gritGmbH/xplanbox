@@ -17,20 +17,22 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<con:soapui-project id="4497dcb6-2c5f-4d87-bcee-3913ada70576" activeEnvironment="Default" name="xplan-webservices" resourceRoot="" soapui-version="5.7.1" abortOnError="false" runType="SEQUENTIAL" defaultScriptLanguage="Groovy" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="4497dcb6-2c5f-4d87-bcee-3913ada70576" activeEnvironment="Default" name="xplan-webservices" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" defaultScriptLanguage="Groovy" xmlns:con="http://eviware.com/soapui/config">
   <con:description>For local execution use following property values:
 
 baseUrlServices=http://localhost:8083
 baseUrlInspirePlu=http://localhost:8084
 baseUrlManagerApi=http://localhost:8086/xplan-api-manager
 baseUrlMapServer=http://localhost:8087
+baseUrlMapProxy=http://localhost:8093
 
 For execution against test environment use following property values:
 
 baseUrlServices=https://xplanbox.lat-lon.de
 baseUrlInspirePlu=https://xplanbox.lat-lon.de
 baseUrlManagerApi=https://xplanbox.lat-lon.de
-baseUrlMapServer=https://xplanbox.lat-lon.de</con:description>
+baseUrlMapServer=https://xplanbox.lat-lon.de
+baseUrlMapProxy=https://xplanbox.lat-lon.de</con:description>
   <con:settings/>
   <con:testSuite id="ef6a4631-78a1-4c83-b55b-a5a410e4ae47" name="xplan-wms">
     <con:settings/>
@@ -11415,6 +11417,892 @@ exists(//wms:Layer[wms:Name='soplanrasterarchive'])</path>
     </con:testCase>
     <con:properties/>
   </con:testSuite>
+  <con:testSuite id="d74ba36d-1a76-41b3-9994-385392715598" name="mapproxy-wms">
+    <con:settings/>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="946bcdd6-2a7b-4fa6-ae14-b4b8776460c9" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetCapabilities" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="847d6c4f-14ba-491f-b31e-342bedcb5350">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="583d2488-b5af-4e99-bd6c-0780c2db7a8c" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="c5c89b24-24e9-475d-9dc7-d10fbc260ca6" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplan_raster">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='bplan_raster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplan_vektor">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='bplan_vektor'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplan_raster">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='fplan_raster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplan_vektor">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='fplan_vektor'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplan_raster">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='lplan_raster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplan_vektor">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='lplan_vektor'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplan_raster">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='rplan_raster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplan_vektor">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='rplan_vektor'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplan_raster">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='soplan_raster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplan_vektor">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='soplan_vektor'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="a5321167-9afd-4e39-ba43-43bc549b52e6" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetMap" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetMap - Raster" id="3a43e4a9-6065-43f8-83f0-5d1361bc441b">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap - Raster" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bplan_raster,fplan_raster,lplan_raster,rplan_raster,soplan_raster</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap - Vektor" id="ce5ea025-d851-4ff7-bbd2-9c894e290a1d">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap - Vektor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bplan_vektor,fplan_vektor,lplan_vektor,rplan_vektor,soplan_vektor</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:properties/>
+  </con:testSuite>
+  <con:testSuite id="ef3d45bf-0b99-410e-b070-6cc92d7a5056" name="mapproxy-wmts">
+    <con:settings/>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="7ba776c8-2f6b-4a8f-81dc-6764b04f26fe" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetCapabilities" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="08af9ac8-c960-457a-8588-d9824319ca51">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="583d2488-b5af-4e99-bd6c-0780c2db7a8c" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="c5c89b24-24e9-475d-9dc7-d10fbc260ca6" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
+
+exists(/wmts:Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplan_raster">
+            <con:configuration>
+              <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
+declare namespace ows='http://www.opengis.net/ows/1.1'
+
+exists(//wmts:Layer[ows:Identifier='bplan_raster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplan_vektor">
+            <con:configuration>
+              <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
+declare namespace ows='http://www.opengis.net/ows/1.1'
+
+exists(//wmts:Layer[ows:Identifier='bplan_vektor'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplan_raster">
+            <con:configuration>
+              <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
+declare namespace ows='http://www.opengis.net/ows/1.1'
+
+exists(//wmts:Layer[ows:Identifier='fplan_raster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplan_vektor">
+            <con:configuration>
+              <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
+declare namespace ows='http://www.opengis.net/ows/1.1'
+
+exists(//wmts:Layer[ows:Identifier='fplan_vektor'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplan_raster">
+            <con:configuration>
+              <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
+declare namespace ows='http://www.opengis.net/ows/1.1'
+
+exists(//wmts:Layer[ows:Identifier='lplan_raster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplan_vektor">
+            <con:configuration>
+              <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
+declare namespace ows='http://www.opengis.net/ows/1.1'
+
+exists(//wmts:Layer[ows:Identifier='lplan_vektor'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplan_raster">
+            <con:configuration>
+              <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
+declare namespace ows='http://www.opengis.net/ows/1.1'
+
+exists(//wmts:Layer[ows:Identifier='rplan_raster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplan_vektor">
+            <con:configuration>
+              <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
+declare namespace ows='http://www.opengis.net/ows/1.1'
+
+exists(//wmts:Layer[ows:Identifier='rplan_vektor'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplan_raster">
+            <con:configuration>
+              <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
+declare namespace ows='http://www.opengis.net/ows/1.1'
+
+exists(//wmts:Layer[ows:Identifier='soplan_raster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplan_vektor">
+            <con:configuration>
+              <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
+declare namespace ows='http://www.opengis.net/ows/1.1'
+
+exists(//wmts:Layer[ows:Identifier='soplan_vektor'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMTS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="0477e58b-8722-454e-9fbc-e71fdb5ae836" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetTile" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetTile - bplan_raster" id="60bd1a9f-2155-4f75-bd87-8d9fc309edc9">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="GetTile - bplan_raster" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="6f5f2a6d-d21d-476b-84d8-69b271ab5021" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="0ba4a08c-fb12-45de-8583-78dd90f56b16" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMTS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMTS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetTile</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetTile</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.0.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.0.0</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYER</con:name>
+              <con:value>bplan_vektor</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>bplan_raster</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLE</con:name>
+              <con:value>default</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>default</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TILEMATRIXSET</con:name>
+              <con:value>gdi_de_25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>gdi_de_25832</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TILEMATRIX</con:name>
+              <con:value>14</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>14</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TILEROW</con:name>
+              <con:value>4592</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>4592</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TILECOL</con:name>
+              <con:value>8202</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>8202</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetTile - bplan_vektor" id="4653916d-4d91-4f9c-b453-a2fdc51db108">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="GetTile - bplan_vektor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="6f5f2a6d-d21d-476b-84d8-69b271ab5021" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="0ba4a08c-fb12-45de-8583-78dd90f56b16" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMTS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMTS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetTile</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetTile</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.0.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.0.0</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYER</con:name>
+              <con:value>bplan_raster</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>bplan_raster</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLE</con:name>
+              <con:value>default</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>default</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TILEMATRIXSET</con:name>
+              <con:value>gdi_de_25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>gdi_de_25832</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TILEMATRIX</con:name>
+              <con:value>14</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>14</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TILEROW</con:name>
+              <con:value>4592</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>4592</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TILECOL</con:name>
+              <con:value>8202</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>8202</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="REST GetTile - bplan_raster" id="f0ebbf6d-8143-430b-aa7f-bf7831e55115">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="REST GetTile - bplan_raster" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wmts/bplan_raster/gdi_de_25832/14/8202/4592.png</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="6f5f2a6d-d21d-476b-84d8-69b271ab5021" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="0ba4a08c-fb12-45de-8583-78dd90f56b16" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters></con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="REST GetTile - bplan_vektor" id="16fa6248-6d25-4906-92ca-12b79fa8e63c">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="REST GetTile - bplan_vektor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wmts/bplan_vektor/gdi_de_25832/14/8202/4592.png</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="6f5f2a6d-d21d-476b-84d8-69b271ab5021" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="0ba4a08c-fb12-45de-8583-78dd90f56b16" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters></con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:properties/>
+  </con:testSuite>
   <con:properties>
     <con:property>
       <con:name>baseUrlServices</con:name>
@@ -11431,6 +12319,10 @@ exists(//wms:Layer[wms:Name='soplanrasterarchive'])</path>
     <con:property>
       <con:name>baseUrlMapServer</con:name>
       <con:value>http://localhost:8087</con:value>
+    </con:property>
+    <con:property>
+      <con:name>baseUrlMapProxy</con:name>
+      <con:value>http://localhost:8093</con:value>
     </con:property>
     <con:property>
       <con:name>username</con:name>

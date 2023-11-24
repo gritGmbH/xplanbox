@@ -1,11 +1,13 @@
 ARG XPLANBOX_VERSION=latest
 ARG XPLANBOX_IMAGE_NAME_PREFIX=xplanbox
 
-FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat:$XPLANBOX_VERSION
+FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat:$XPLANBOX_VERSION as builder
+
+FROM eclipse-temurin:11.0.17_8-jre-alpine
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
-ARG WEB_CONTEXT=ROOT
+ARG JAR_FILE=target/*.jar
 ARG XPLANBOX_VERSION=latest
 
 # see https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
@@ -19,18 +21,22 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.vendor"="lat/lon GmbH" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
 
+ENV TZ=Europe/Berlin
+
+# copy jmx exporter from xplan-docker-tomcat until we switch to actuator based prometheus publishing
+ENV JMX_EXPORTER_DIR=/xplanbox/prometheus
+RUN mkdir -p $JMX_EXPORTER_DIR
+COPY --from=builder $JMX_EXPORTER_DIR $JMX_EXPORTER_DIR
+
+ENV JAVA_ADDITIONAL_ARG_JMX_EXPORTER='-javaagent:$JMX_EXPORTER_DIR/jmx_prometheus_javaagent-0.19.0.jar=12345:$JMX_EXPORTER_DIR/jmx-exporter.config.yaml'
+
 # set environment variables
-ENV TOMCAT_ADDITIONAL_ARG_APP="-DXPLANBOX_CONFIG=/xplanbox/xplan-validator-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng -Duser.timezone=Europe/Berlin"
-ENV TOMCAT_ADDITIONAL_ARG_JAVA17_EXPORTS="--add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED"
+ENV JAVA_ADDITIONAL_ARG_APP="-DXPLANBOX_CONFIG=/xplanbox/xplan-validator-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng -Duser.timezone=Europe/Berlin"
 ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree
 
-USER root
-
-# add xplan-api-validator
-ADD target/xplan-api-validator-*.war /tmp/
-RUN mkdir /opt/bitnami/tomcat/webapps/$WEB_CONTEXT \
-    && cd /opt/bitnami/tomcat/webapps/$WEB_CONTEXT \
-    && jar xf /tmp/xplan-api-validator-*.war \
-    && rm /tmp/xplan-api-validator-*.war
+COPY ${JAR_FILE} /xplanbox/app.jar
+COPY run.sh /xplanbox/
 
 USER 1001
+
+ENTRYPOINT ["/bin/sh", "/xplanbox/run.sh"]

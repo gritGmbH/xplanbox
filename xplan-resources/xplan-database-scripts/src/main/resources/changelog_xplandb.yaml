@@ -25,3 +25,5 @@ databaseChangeLog:
       file: 6.0.1/changelog_v601.yaml
   - include:
       file: 7.0/changelog_v70.yaml
+  - include:
+      file: 7.1/changelog_v71.yaml

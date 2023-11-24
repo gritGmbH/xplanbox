@@ -18,12 +18,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplanbox.api.manager;
+package de.latlon.xplanbox.api.manager.config;
 
 import de.latlon.xplanbox.api.commons.ObjectMapperContextResolver;
-import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
+import de.latlon.xplanbox.api.commons.converter.StringListConverterProvider;
+import de.latlon.xplanbox.api.commons.exception.ConstraintViolationExceptionMapper;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedContentTypeExceptionMapper;
+import de.latlon.xplanbox.api.commons.exception.ValidatorExceptionMapper;
+import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
+import de.latlon.xplanbox.api.manager.exception.AmbiguousBereichNummernExceptionMapper;
+import de.latlon.xplanbox.api.manager.exception.PlanNotFoundExceptionMapper;
+import de.latlon.xplanbox.api.manager.exception.UnsupportedPlanExceptionMapper;
 import de.latlon.xplanbox.api.manager.openapi.ManagerOpenApiFilter;
 import de.latlon.xplanbox.api.manager.v1.DefaultApi;
+import de.latlon.xplanbox.api.manager.v1.InfoApi;
+import de.latlon.xplanbox.api.manager.v1.PlanAenderungenApi;
+import de.latlon.xplanbox.api.manager.v1.PlanApi;
+import de.latlon.xplanbox.api.manager.v1.PlanBasisdatenApi;
+import de.latlon.xplanbox.api.manager.v1.PlanDokumentApi;
+import de.latlon.xplanbox.api.manager.v1.PlanGueltigkeitApi;
+import de.latlon.xplanbox.api.manager.v1.PlanRasterbasisApi;
+import de.latlon.xplanbox.api.manager.v1.PlanTextApi;
+import de.latlon.xplanbox.api.manager.v1.PlansApi;
+import de.latlon.xplanbox.api.manager.v1.Status;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -36,6 +53,7 @@ import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
 import org.slf4j.Logger;
+import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.ApplicationPath;
@@ -58,25 +76,43 @@ import static org.slf4j.LoggerFactory.getLogger;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 @ApplicationPath("/xmanager/api/v1")
-public class ApplicationPathConfig extends ResourceConfig {
+@Configuration
+public class JerseyConfig extends ResourceConfig {
 
-	private static final Logger LOG = getLogger(ApplicationPathConfig.class);
+	private static final Logger LOG = getLogger(JerseyConfig.class);
 
 	public static final String APP_PATH = "xmanager/api/v1";
 
-	public ApplicationPathConfig(@Context ServletContext servletContext,
+	public JerseyConfig(@Context ServletContext servletContext,
 			@Context ManagerApiConfiguration managerApiConfiguration) {
-		super();
+		property(ServerProperties.WADL_FEATURE_DISABLE, true);
 		register(new ObjectMapperContextResolver());
-		packages("de.latlon.xplanbox.api.manager.v1");
-		packages("de.latlon.xplanbox.api.manager.exception");
-		packages("de.latlon.xplanbox.api.commons.exception");
-		packages("de.latlon.xplanbox.api.commons.converter");
-		packages("org.glassfish.jersey.examples.multipart");
+
+		register(InfoApi.class);
+		register(PlanAenderungenApi.class);
+		register(PlanApi.class);
+		register(PlanBasisdatenApi.class);
+		register(PlanDokumentApi.class);
+		register(PlanGueltigkeitApi.class);
+		register(PlanRasterbasisApi.class);
+		register(PlansApi.class);
+		register(PlanTextApi.class);
+		register(Status.class);
+		register(ConstraintViolationExceptionMapper.class);
+		register(UnsupportedContentTypeExceptionMapper.class);
+		register(ValidatorExceptionMapper.class);
+		register(XPlanApiExceptionMapper.class);
+		register(StringListConverterProvider.class);
+
+		register(AmbiguousBereichNummernExceptionMapper.class);
+		register(PlanNotFoundExceptionMapper.class);
+		register(UnsupportedPlanExceptionMapper.class);
+
+		// packages("org.glassfish.jersey.examples.multipart");
 		property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 		OpenAPI openApi = new OpenAPI();
 		openApi.setInfo(new Info().title("XPlanManagerAPI")
-			.version("1.3.0")
+			.version("1.4.0")
 			.description("XPlanManager REST API")
 			.termsOfService(getTermsOfService(managerApiConfiguration))
 			.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));

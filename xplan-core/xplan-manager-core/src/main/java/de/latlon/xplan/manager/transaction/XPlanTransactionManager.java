@@ -101,10 +101,7 @@ public abstract class XPlanTransactionManager {
 	protected List<String> createRasterConfiguration(XPlanArchiveContentAccess archive,
 			List<String> rasterRefsFileNamesToAdd, int planId, XPlanType type, PlanStatus planStatus,
 			PlanStatus newPlanStatus, Date sortDate) {
-		String moreRecentPlanId = null;
-		if (sortDate != null) {
-			moreRecentPlanId = xplanDao.getPlanIdOfMoreRecentRasterPlan(sortDate);
-		}
+		int moreRecentPlanId = xplanDao.getPlanIdOfMoreRecentRasterPlan(sortDate);
 		return xPlanRasterManager.updateWmsWorkspaceWithRasterLayers(archive, rasterRefsFileNamesToAdd, planId,
 				moreRecentPlanId, type, planStatus, newPlanStatus, sortDate);
 	}

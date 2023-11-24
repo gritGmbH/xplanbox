@@ -48,3 +48,6 @@
 \i xplanmgr/create.sql
 \i xplanmgr/planslog.sql
 \i changelog/databasechangelog_v60.sql
+\i xplanvalidator/01_create_xplanvalidator_schema.sql
+\i xplanvalidator/03_create_plansAndFeatures.sql
+\i xplanvalidator/create.sql

@@ -18,12 +18,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplanbox.api.validator;
+package de.latlon.xplanbox.api.validator.config;
 
 import de.latlon.xplanbox.api.commons.ObjectMapperContextResolver;
+import de.latlon.xplanbox.api.commons.converter.StringListConverterProvider;
+import de.latlon.xplanbox.api.commons.exception.ConstraintViolationExceptionMapper;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedContentTypeExceptionMapper;
+import de.latlon.xplanbox.api.commons.exception.ValidatorExceptionMapper;
+import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
 import de.latlon.xplanbox.api.commons.openapi.OpenApiFilter;
-import de.latlon.xplanbox.api.validator.config.ValidatorApiConfiguration;
 import de.latlon.xplanbox.api.validator.v1.DefaultApi;
+import de.latlon.xplanbox.api.validator.v1.InfoApi;
+import de.latlon.xplanbox.api.validator.v1.Status;
+import de.latlon.xplanbox.api.validator.v1.ValidateApi;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -33,7 +40,9 @@ import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.server.ServerProperties;
 import org.slf4j.Logger;
+import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.ApplicationPath;
@@ -55,24 +64,31 @@ import static org.slf4j.LoggerFactory.getLogger;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 @ApplicationPath("/xvalidator/api/v1")
-public class ApplicationPathConfig extends ResourceConfig {
+@Configuration
+public class JerseyConfig extends ResourceConfig {
 
-	private static final Logger LOG = getLogger(ApplicationPathConfig.class);
+	private static final Logger LOG = getLogger(JerseyConfig.class);
 
 	private static final String APP_PATH = "xvalidator/api/v1";
 
-	public ApplicationPathConfig(@Context ServletContext servletContext,
-			ValidatorApiConfiguration validatorApiConfiguration) {
-		super();
+	public JerseyConfig(@Context ServletContext servletContext, ValidatorApiConfiguration validatorApiConfiguration) {
+		property(ServerProperties.WADL_FEATURE_DISABLE, true);
+
 		register(new ObjectMapperContextResolver());
-		packages("de.latlon.xplanbox.api.validator.config");
-		packages("de.latlon.xplanbox.api.validator.handler");
-		packages("de.latlon.xplanbox.api.validator.v1");
-		packages("de.latlon.xplanbox.api.commons.exception");
-		packages("de.latlon.xplanbox.api.commons.converter");
+
+		register(InfoApi.class);
+		register(ValidateApi.class);
+		register(Status.class);
+		register(ConstraintViolationExceptionMapper.class);
+		register(ConstraintViolationExceptionMapper.class);
+		register(UnsupportedContentTypeExceptionMapper.class);
+		register(ValidatorExceptionMapper.class);
+		register(XPlanApiExceptionMapper.class);
+		register(StringListConverterProvider.class);
+
 		OpenAPI openApi = new OpenAPI();
 		openApi.setInfo(new Info().title("XPlanValidatorAPI")
-			.version("1.2.0")
+			.version("1.3.0")
 			.description("XPlanValidator REST API")
 			.termsOfService(getTermsOfService(validatorApiConfiguration))
 			.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));

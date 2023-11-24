@@ -18,13 +18,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplanbox.api.dokumente;
+package de.latlon.xplanbox.api.dokumente.config;
 
 import de.latlon.xplanbox.api.commons.ObjectMapperContextResolver;
 import de.latlon.xplanbox.api.commons.config.ApiConfiguration;
+import de.latlon.xplanbox.api.commons.converter.StringListConverterProvider;
+import de.latlon.xplanbox.api.commons.exception.ConstraintViolationExceptionMapper;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedContentTypeExceptionMapper;
+import de.latlon.xplanbox.api.commons.exception.ValidatorExceptionMapper;
+import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
 import de.latlon.xplanbox.api.commons.openapi.OpenApiFilter;
-import de.latlon.xplanbox.api.dokumente.config.DokumentenApiConfiguration;
+import de.latlon.xplanbox.api.dokumente.v1.InfoApi;
+import de.latlon.xplanbox.api.dokumente.v1.StatusApi;
 import de.latlon.xplanbox.api.dokumente.v1.DefaultApi;
+import de.latlon.xplanbox.api.dokumente.v1.DokumentApi;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -34,7 +41,9 @@ import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.server.ServerProperties;
 import org.slf4j.Logger;
+import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.ApplicationPath;
@@ -57,20 +66,27 @@ import static org.slf4j.LoggerFactory.getLogger;
  * @since 7.0
  */
 @ApplicationPath("/xdokumente/api/v1")
-public class ApplicationPathConfig extends ResourceConfig {
+@Configuration
+public class JerseyConfig extends ResourceConfig {
 
-	private static final Logger LOG = getLogger(ApplicationPathConfig.class);
+	private static final Logger LOG = getLogger(JerseyConfig.class);
 
 	private static final String APP_PATH = "xdokumente/api/v1";
 
-	public ApplicationPathConfig(@Context ServletContext servletContext, DokumentenApiConfiguration apiConfiguration) {
-		super();
+	public JerseyConfig(@Context ServletContext servletContext, DokumentenApiConfiguration apiConfiguration) {
+		property(ServerProperties.WADL_FEATURE_DISABLE, true);
+
 		register(new ObjectMapperContextResolver());
-		packages("de.latlon.xplanbox.api.dokumente.config");
-		packages("de.latlon.xplanbox.api.dokumente.handler");
-		packages("de.latlon.xplanbox.api.dokumente.v1");
-		packages("de.latlon.xplanbox.api.commons.exception");
-		packages("de.latlon.xplanbox.api.commons.converter");
+
+		register(InfoApi.class);
+		register(DokumentApi.class);
+		register(StatusApi.class);
+		register(ConstraintViolationExceptionMapper.class);
+		register(UnsupportedContentTypeExceptionMapper.class);
+		register(ValidatorExceptionMapper.class);
+		register(XPlanApiExceptionMapper.class);
+		register(StringListConverterProvider.class);
+
 		OpenAPI openApi = new OpenAPI();
 		openApi.setInfo(new Info().title("XPlanDokumentenAPI")
 			.version("1.0.0")

@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplanbox</artifactId>
-    <version>7.0.2</version>
+    <version>7.1-SNAPSHOT</version>
   </parent>
 
   <build>
@@ -197,6 +197,12 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-mapserver-config</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-mapproxy-config</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>

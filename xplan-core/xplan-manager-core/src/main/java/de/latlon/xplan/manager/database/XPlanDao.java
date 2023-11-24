@@ -168,7 +168,7 @@ public class XPlanDao {
 	 * @return id of plan with minimal release date
 	 * @throws SQLException
 	 */
-	public String getPlanIdOfMoreRecentRasterPlan(Date releaseDate) {
+	public int getPlanIdOfMoreRecentRasterPlan(Date releaseDate) {
 		return xPlanDbAdapter.selectXPlanIdOfMoreRecentRasterPlan(releaseDate);
 	}
 
@@ -235,6 +235,16 @@ public class XPlanDao {
 	 */
 	public String retrieveInternalId(int planId) {
 		return xPlanDbAdapter.selectInternalId(planId);
+	}
+
+	/**
+	 * Retrieve internalId by the manager id from xplanmgr.plans.
+	 * @param planId the planId of the plan, never <code>null</code>
+	 * @return the internal id of a plan (if available), <code>null</code> if an error
+	 * occurred
+	 */
+	public Date retrieveSortDate(int planId) {
+		return xPlanDbAdapter.selectSortDate(planId);
 	}
 
 	/**

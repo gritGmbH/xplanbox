@@ -31,24 +31,22 @@ import org.deegree.filter.FilterEvaluationException;
 import org.deegree.filter.IdFilter;
 import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.standard.primitive.DefaultPolygon;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Coordinate;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class OrientationFixerTest {
+class OrientationFixerTest {
 
 	@Test
-	public void testOrientationFixer_validLaufrichtung() throws Exception {
+	void testOrientationFixer_validLaufrichtung() throws Exception {
 		XPlanArchive testArchive = getArchive("geometryOrientationValid.gml");
 		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder()
 			.build()
@@ -59,12 +57,12 @@ public class OrientationFixerTest {
 			.build()
 			.parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointRepaired = getSecondPoint(xPlanFeatureCollectionFixOrientation);
-		assertThat(startPointRepaired.getX(), is(startPointOriginal.getX()));
-		assertThat(startPointRepaired.getY(), is(startPointOriginal.getY()));
+		assertThat(startPointRepaired.getX()).isEqualTo(startPointOriginal.getX());
+		assertThat(startPointRepaired.getY()).isEqualTo(startPointOriginal.getY());
 	}
 
 	@Test
-	public void testOrientationFixer_invalidLaufrichtung() throws Exception {
+	void testOrientationFixer_invalidLaufrichtung() throws Exception {
 		XPlanArchive testArchive = getArchive("geometryOrientationInvalid.gml");
 		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder()
 			.build()
@@ -75,8 +73,8 @@ public class OrientationFixerTest {
 			.build()
 			.parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointRepaired = getSecondPoint(xPlanFeatureCollectionFixOrientation);
-		assertThat(startPointRepaired.getX(), not(startPointOriginal.getX()));
-		assertThat(startPointRepaired.getY(), not(startPointOriginal.getY()));
+		assertThat(startPointRepaired.getX()).isNotEqualTo(startPointOriginal.getX());
+		assertThat(startPointRepaired.getY()).isNotEqualTo(startPointOriginal.getY());
 	}
 
 	private Coordinate getSecondPoint(XPlanFeatureCollection xPlanFeatureCollection) throws FilterEvaluationException {

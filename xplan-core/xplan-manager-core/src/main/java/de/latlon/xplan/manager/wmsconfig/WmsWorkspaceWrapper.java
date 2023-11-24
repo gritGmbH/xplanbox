@@ -130,8 +130,7 @@ public class WmsWorkspaceWrapper {
 		return configFile;
 	}
 
-	private void checkTheme(String type, File config, Themes themes)
-			throws JAXBException, IOException, ConfigurationException {
+	private void checkTheme(String type, File config, Themes themes) throws ConfigurationException {
 		ThemeType theme = themes.getTheme();
 		if (theme == null) {
 			throw new ConfigurationException("Datei '" + config + "' enthält kein Theme-Element.");

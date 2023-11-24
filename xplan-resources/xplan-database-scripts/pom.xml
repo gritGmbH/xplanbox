@@ -8,7 +8,7 @@
     <parent>
         <groupId>de.latlon.product.xplanbox</groupId>
         <artifactId>xplan-resources</artifactId>
-        <version>7.0.2</version>
+        <version>7.1-SNAPSHOT</version>
     </parent>
 
     <build>
@@ -486,10 +486,11 @@
                         <groupId>org.liquibase</groupId>
                         <artifactId>liquibase-maven-plugin</artifactId>
                         <configuration>
-                            <propertyFile>${project.basedir}/src/main/resources/liquibase-diff.properties</propertyFile>
+                            <searchPath>${project.basedir}/src/main/resources</searchPath>
+                            <propertyFile>liquibase-diff.properties</propertyFile>
                             <diffTypes>tables,views,columns,indexes,primarykeys,foreignkeys,uniqueconstraints,data</diffTypes>
                             <verbose>true</verbose>
-                            <changeLogFile>${project.basedir}/src/main/resources/changelog_v60.yaml</changeLogFile>
+                            <changeLogFile>${project.basedir}/src/main/resources/changelog_xplandb.yaml</changeLogFile>
                             <diffIncludeSchema>true</diffIncludeSchema>
                         </configuration>
                         <executions>
@@ -503,6 +504,19 @@
                                     <defaultSchemaName>xplanmgr</defaultSchemaName>
                                     <referenceDefaultSchemaName>xplanmgr</referenceDefaultSchemaName>
                                     <diffChangeLogFile>${project.basedir}/target/generated-resources/changelog_xplanmgr.yaml
+                                    </diffChangeLogFile>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>xplanvalidator</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>diff</goal>
+                                </goals>
+                                <configuration>
+                                    <defaultSchemaName>xplanvalidator</defaultSchemaName>
+                                    <referenceDefaultSchemaName>xplanvalidator</referenceDefaultSchemaName>
+                                    <diffChangeLogFile>${project.basedir}/target/generated-resources/changelog_xplanvalidator.yaml
                                     </diffChangeLogFile>
                                 </configuration>
                             </execution>

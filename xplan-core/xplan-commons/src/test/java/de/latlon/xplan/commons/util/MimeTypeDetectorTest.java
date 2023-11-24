@@ -20,18 +20,18 @@
  */
 package de.latlon.xplan.commons.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static de.latlon.xplan.commons.util.MimeTypeDetector.getArtefactMimeType;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class MimeTypeDetectorTest {
+class MimeTypeDetectorTest {
 
 	@Test
-	public void testGetArtefactMimeType() {
+	void testGetArtefactMimeType() {
 		assertEquals("application/xml", getArtefactMimeType("test.xml"));
 		assertEquals("application/xml", getArtefactMimeType("test.gml"));
 		assertEquals("application/pdf", getArtefactMimeType("test.pdf"));

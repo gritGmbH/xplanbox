@@ -84,7 +84,7 @@ Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an belie
 ** _xplan-update-data-cli/bin/bereichUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Informationen zu den Bereichen einzelner Pläne (nur für ein Update auf Version 5.0.2 erforderlich). Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** _xplan-update-data-cli/bin/districtUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** _xplan-update-data-cli/bin/reSynthesizer_ - ermöglicht die Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** _xplan-update-data-cli/bin/sortDateUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Sortierfelder. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** _xplan-update-data-cli/bin/sortDateUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Sortierfelder und die Sortierung der Rasterdaten in der Themes Konfiguration, sofern deegree für die Bereitstellung der Rasterdaten verwendet wird. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
 TIP: Um die Kommandozeilenwerkzeuge von einem beliebigen Ort aufrufen zu können, empfiehlt es sich, die Pfade in die `PATH` Variable mit aufzunehmen.
 
