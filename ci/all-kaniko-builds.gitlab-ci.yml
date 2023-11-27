@@ -142,3 +142,19 @@ kaniko:xplan-cli-docker:
     tarGzFile: xplan-cli/xplan-cli-docker/target/docker/xplanbox/xplan-cli/tmp/docker-build.tar
   needs:
     - maven-prepare-docker-contexts-cli
+
+kaniko:xplan-inspireplu:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-inspireplu
+    tarGzFile: xplan-webservices/xplan-inspireplu/target/docker/xplanbox/xplan-inspireplu/tmp/docker-build.tar
+  needs:
+    - maven-prepare-docker-contexts-others
+
+kaniko:xplan-root:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-root
+    tarGzFile: xplan-webapps/xplan-root/target/docker/xplanbox/xplan-root/tmp/docker-build.tar
+  needs:
+    - maven-prepare-docker-contexts-web-apps
