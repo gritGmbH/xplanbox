@@ -120,6 +120,8 @@ unbeabsichtigt zu einer Zustandsänderung des Plans kommen kann!
 Entsprechung im XPlanGML. Die Angabe des Zeitraums, wie sie beim Import
 erfolgt ist, wird beim Ändern des Zeitraums überschrieben.
 
+IMPORTANT: Die Möglichkeit einen Gültigkeitszeitraum anzugeben ist veraltet, das Editieren des Gültigkeitszeitraum wird in zukünftigen Versionen der xPlanBox entfernt.
+
 *Änderungen*
 
 bis XPlanGML 5.4:
