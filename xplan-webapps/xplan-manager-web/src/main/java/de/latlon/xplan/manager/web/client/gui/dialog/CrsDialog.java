@@ -20,8 +20,6 @@
  */
 package de.latlon.xplan.manager.web.client.gui.dialog;
 
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -32,17 +30,18 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
+
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 
 /**
  * Wizard to select a crs.
  *
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @version $Revision: $, $Date: $
  */
 public class CrsDialog extends WizardDialogBox {
 

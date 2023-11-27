@@ -132,6 +132,7 @@ public class ManagerWebConfiguration implements Serializable {
 
 	/**
 	 * @return default crs of the crs dialog, never <code>null</code>
+	 * @deprecated method will be removed in a future version.
 	 */
 	public String getCrsDialogDefaultCrs() {
 		return crsDialogDefaultCrs;
@@ -139,6 +140,7 @@ public class ManagerWebConfiguration implements Serializable {
 
 	/**
 	 * @return list of possible crs for the crs dialog, never <code>null</code>
+	 * @deprecated method will be removed in a future version.
 	 */
 	public String[] getCrsDialogChooseCrs() {
 		if (crsDialogChooseCrs == null)
