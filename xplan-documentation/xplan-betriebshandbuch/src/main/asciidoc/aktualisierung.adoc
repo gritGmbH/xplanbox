@@ -275,8 +275,6 @@ TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert w
 [[aktualisierung-version-7.1]]
 === Aktualisierung auf die Version 7.1 der xPlanBox
 
-Mit der Version 7.1 erfolgte die Integration des MapProxy in die xPlanBox. Die Komponente ist optional und kann bei Bedarf wie im Abschnitt <<installation-mapproxy>> beschrieben installiert und konfiguriert werden.
-
 Für die Aktualisierung auf die Version 7.1 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)

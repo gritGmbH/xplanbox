@@ -5,10 +5,10 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 ## Version 7.1 (2023-11-XX)
 
 ### Erweiterungen
-- Unterstützung für MapProxy 1.16.0 zur Bereitstellung von gecachten Raster- und Vektordaten über WMTS und WMS
+- Unterstützung für MapProxy 1.16.0 zur Bereitstellung von Raster- und Vektordaten über WMTS und WMS mit S3-Objektspeicher als Cache
 - Aktualisierung der Validierungsregeln auf v1.1.6
 - Ausgabe des Plannamen und der Planart im Validierungsbericht der XPlanValidatorAPI und XPlanManagerAPI
-- Unterstützung einer einfachen Absicherung des XPlanValidatorAPI und XPlanManagerAPI
+- Erweiterung von XPlanValidatorAPI und XPlanManagerAPI zur Absicherung der REST-Schnittstellen
 
 ### Sicherheitsupdates
 - Aktualisierung von Bibliotheken mit bekannten Sicherheitsmängeln
@@ -16,13 +16,14 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 ### Fehlerbehebungen
 - Fehler im Editiermodus des XPlanManagerWeb für XPlanGML 6.0 behoben
 - Ergänzung fehlender Properties aus XPlanGML 6.0.2 in XPlanDB für den XPlanValidatorWMS
-- Fehler bei der Sortierung von Rasterdaten nach dem Editieren bei Nutzung von deegree für die Bereitstellung von Rasterdaten behoben
+- Fehler bei der Sortierung von Rasterdaten nach dem Editieren bei Nutzung von deegree WMS für die Bereitstellung von Rasterdaten behoben
 
 ### Veraltete Funktionen
 
 Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version der xPlanBox entfernt:
-- Setzen des Gültigkeitszeitraums für ein Planwerk ist veraltet (deprecated)
-- Konfigurationsoptionen defaultCRS und chooseCrs für die Auswahl eines Koordinatenreferenzsystems für die Vektordaten eines Planwerks sind veraltet (deprecated)
+
+- Setzen eines Gültigkeitszeitraums beim Import eines Planwerk über den XPlanManagerWeb ist veraltet (deprecated)
+- Konfigurationsoptionen `defaultCRS` und `chooseCrs` zur Auswahl eines Koordinatenreferenzsystems für die Vektordaten eines Planwerks sind veraltet (deprecated)
 
 ## Version 7.0.2 (2023-10-26)
 
@@ -92,6 +93,7 @@ Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version 
 ### Veraltete Funktionen
 
 Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version der xPlanBox entfernt:
+
 - LDAP-Schnittstelle ist veraltet (deprecated)
 - Schnittstelle zur Verfahrensdatenbank ist veraltet (deprecated)
 - Filterkategorien im XPlanManagerWeb sind veraltet (deprecated)
