@@ -63,32 +63,27 @@ angepasst werden.
 
 [[jdk]]
 === Java SE
-Als Java SE 11 wird sowohl
-https://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK 11]
-als auch OpenJDK 11 (https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot[AdoptOpenJDK 11]
-oder https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html[Amazon Corretto 11]) unterstützt.
 
-TIP: Empfohlen wird AdoptOpenJDK/Temurin 11.0+.
+Als Java SE wird sowohl https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot[AdoptOpenJDK 11]
+als auch https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html[Amazon Corretto 11] unterstützt.
 
+TIP: Empfohlen wird AdoptOpenJDK/Eclipse Temurin 11.0+.
 
 [[java-applikationsserver]]
 === Java Applikationsserver
 
-Als Applikationsserver wird Apache Tomcat empfohlen.
-Das Installationsarchiv findet sich bei der https://tomcat.apache.org[Apache Foundation]. Diese Dokumentation bezieht sich grundsätzlich auf den Apache Tomcat.
+Als Applikationsserver wird jeder Servlet-Container verwendet werden, der das Java EE 7 Web Profil unterstützt. Diese Installationsanleitung bezieht sich im Folgenden auf den Apache Tomcat. Das Installationsarchiv von Apache Tomcat kann über die Webseite der https://tomcat.apache.org[Apache Foundation] heruntergeladen werden.
 
 Um eine spätere Trennung der Dienste (Web-Anwendungen) zu gewährleisten, wird die Konfiguration von mehreren Tomcat-Instanzen empfohlen (siehe Kapitel <<web-anwendungen>>).
 
-TIP: Die minimale Anforderung an den Applikationsserver ist das Java EE 7 Web
-Profil. Empfohlen wird Apache Tomcat Version 9.0+.
+TIP: Empfohlen wird Apache Tomcat Version 9.0+.
 
 [[datenbank]]
 === Datenbank
 
-Als Datenbanksystem ist eine Installation von PostgreSQL 12+ mit der
-Erweiterung PostGIS 3.1+ erforderlich.
+Als Datenbanksystem ist eine https://www.postgresql.org[PostgreSQL-Datenbank] mit installierter https://postgis.net/[PostGIS-Erweiterung] erforderlich.
 
-TIP: Empfohlen wird PostgreSQL 14+ mit PostGIS 3.3+.
+TIP: Empfohlen wird PostgreSQL 14+ mit PostGIS 3.4+.
 
 [[gdal]]
 === GDAL
@@ -96,14 +91,14 @@ TIP: Empfohlen wird PostgreSQL 14+ mit PostGIS 3.3+.
 Optional kann die https://gdal.org/[GDAL-Bibliothek] installiert werden. Wenn teilvektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTiff vorliegen, die mit der xPlanBox verwaltet werden sollen, dann ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen nur im GeoTiff-Format vor, wird GDAL nicht benötigt.
 Weitere Informationen zur Installation von GDAL befinden sich im Abschnitt <<installation-gdal>>.
 
-IMPORTANT: Erforderlich ist GDAL 3.0+.
+IMPORTANT: Unterstützt wird GDAL 3.0+.
 
 [[mapserver]]
 === MapServer
 
 Optional kann https://mapserver.org[MapServer] installiert werden. Wenn für die Bereitstellung von Rasterdaten MapServer verwendet werden soll, dann muss die Software zusammen mit <<gdal, GDAL>> installiert werden. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-mapserver>>.
 
-IMPORTANT: Erforderlich ist MapServer 8.0.0.
+IMPORTANT: Unterstützt wird MapServer 8.0.0.
 
 [[mapproxy]]
 === MapProxy
@@ -112,11 +107,11 @@ Optional kann https://mapproxy.org/[MapProxy] installiert werden. MapProxy kann 
 
 Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-mapproxy>>.
 
-IMPORTANT: Erforderlich ist MapProxy 1.16.0.
+IMPORTANT: Unterstützt wird MapProxy 1.16.0.
 
 [[halecli]]
 === HALE CLI
 
 Optional kann das https://github.com/halestudio/hale-cli/[HALE CLI] installiert werden. Wenn Daten der xPlanBox transformiert werden sollen, dann ist der Einsatz des HALE CLI erforderlich. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale-cli>>.
 
-IMPORTANT: Erforderlich ist HALE CLI 3.4.0.
+IMPORTANT: Unterstützt wird HALE CLI 3.4.0.

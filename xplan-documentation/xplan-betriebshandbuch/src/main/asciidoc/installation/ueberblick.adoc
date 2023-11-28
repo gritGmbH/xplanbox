@@ -37,4 +37,4 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
  ** XPlanBenutzerhandbuch - Benutzerhandbuch für die Komponenten der xPlanBox
  ** XPlanBetriebshandbuch - Betriebshandbuch und Installationsanleitung für die xPlanBox
 
-NOTE: Bitte kontaktieren Sie https://www.lat-lon.de[lat/lon GmbH], per E-mail an info@lat-lon.de, wenn Installationskomponenten fehlen.
+NOTE: Stellen Sie vor Beginn der Installation sicher, dass die Distributionsdatei vollständig ist. Bitte kontaktieren Sie https://www.lat-lon.de[lat/lon GmbH], per E-Mail an info@lat-lon.de, wenn Installationskomponenten fehlen.

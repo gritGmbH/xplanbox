@@ -1,16 +1,6 @@
 == XPlanDB
 
-[[datenzugriff-xplandb]]
-=== Zugriff auf Daten der XPlanDB
-
-Über die <<xplanmanager-api, REST-API des XPlanManager>> und den <<xplanwfs>> kann jedes importierte XPlanGML-Dokument abgerufen werden. Je nach Version des XPlanGML-Dokuments und Planstatus wird dieses aus der <<xplandb>> ausgelesen, wobei folgende Beispiele den Zugriff auf das XML-Dokument in der Tabelle `<DATENBANK_SCHEMA>.GML_OBJECTS.BINARY_OBJECT` verdeutlichen sollen:
-
-- für einen rechtskräftigen Plan mit Planstatus "festgestellt" in der Version 5.1 erfolgt der Abruf aus `XPLAN51.GML_OBJECTS.BINARY_OBJECT` über den XPlanWFS Endpoint _wfs51_.
-- für einen in Aufstellung befindlichen Plan in der Version 5.3 erfolgt der Abruf aus `XPLAN53PRE.GML_OBJECTS.BINARY_OBJECT` über den XPlanWFS Endpoint _wfs53pre_.
-
-Änderungen, die über den XPlanManager vorgenommen werden, werden in der XPlanDB gespeichert. Die Datenbankschemata der XPlanDB sind im Anhang unter <<appendix_xplandb>> zu finden. Der Ablageort der Rasterdaten aus einem XPlanArchiv wird im Anhang unter <<appendix_xplanwms-workspace>> näher beschrieben.
-
-==== Übersicht der Datenbankschemata
+=== Übersicht der Datenbankschemata
 
 Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschemata und die auf diese Schema zugreifenden Komponenten am Beispiel der festgestellten.
 
@@ -58,5 +48,14 @@ Für alle in Aufstellung befindlichen Pläne existiert zusätzlich ein Datenbank
 
 Die Datenbankstruktur für die Schemata `xplan*` wird im Anhang <<appendix_xplandb>> beschrieben.
 
+[[datenzugriff-xplandb]]
+=== Zugriff auf Daten der XPlanDB
+
+Über die <<xplanmanager-api, REST-API des XPlanManager>> und den <<xplanwfs>> sowie <<xplansynwfs>> kann jedes importierte XPlanGML-Dokument abgerufen werden. Je nach Version des XPlanGML-Dokuments und Planstatus wird dieses aus der <<xplandb>> ausgelesen, wobei folgende Beispiele den Zugriff auf das XML-Dokument in der Tabelle `<DATENBANK_SCHEMA>.GML_OBJECTS.BINARY_OBJECT` verdeutlichen sollen:
+
+- für einen rechtskräftigen Plan mit Planstatus "festgestellt" in der Version 5.1 erfolgt der Abruf aus `XPLAN51.GML_OBJECTS.BINARY_OBJECT` über den XPlanWFS Endpoint _wfs51_.
+- für einen in Aufstellung befindlichen Plan in der Version 5.3 erfolgt der Abruf aus `XPLAN53PRE.GML_OBJECTS.BINARY_OBJECT` über den XPlanWFS Endpoint _wfs53pre_.
+
+Änderungen, die über den XPlanManager vorgenommen werden, werden in der XPlanDB gespeichert. Die Datenbankschemata der XPlanDB sind im Anhang unter <<appendix_xplandb>> zu finden.
 
 
