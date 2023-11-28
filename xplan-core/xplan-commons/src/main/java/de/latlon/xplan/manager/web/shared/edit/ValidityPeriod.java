@@ -26,6 +26,7 @@ import java.util.Date;
 /**
  * Encapsulates the validity period of a plan.
  *
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */

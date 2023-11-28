@@ -109,6 +109,7 @@ public class ManagerWebConfiguration implements Serializable {
 	/**
 	 * @return <code>true</code> if the dialog to select the validity period of a plan
 	 * should be activated, <code>false</code> otherwise
+	 * @deprecated method will be removed in a future version.
 	 */
 	public boolean isValidityPeriodActivated() {
 		return validityPeriodActivated;

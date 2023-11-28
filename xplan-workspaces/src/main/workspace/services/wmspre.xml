@@ -36,6 +36,7 @@
     <wms:ThemeId>lplanpreraster</wms:ThemeId>
     <wms:ThemeId>rplanpreraster</wms:ThemeId>
     <wms:ThemeId>soplanpreraster</wms:ThemeId>
+    <!--Deprecated: The VisibilityInspector will be removed in a future version. -->
     <wms:VisibilityInspector>
       <wms:JavaClass>de.latlon.xplan.wms.visibility.PreValidityPeriodInspector</wms:JavaClass>
       <wms:CategoryLayerIdentifier>BP_Planraster</wms:CategoryLayerIdentifier>
