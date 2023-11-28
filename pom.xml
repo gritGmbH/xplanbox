@@ -28,13 +28,13 @@
     <jacoco.version>0.8.11</jacoco.version>
     <log4j.version>2.17.2</log4j.version>
     <slf4j.version>1.7.36</slf4j.version>
-    <spring.version>5.3.30</spring.version>
-    <spring-boot.version>2.7.17</spring-boot.version>
-    <spring-batch.version>4.3.9</spring-batch.version>
+    <spring.version>5.3.31</spring.version>
+    <spring-boot.version>2.7.18</spring-boot.version>
+    <spring-batch.version>4.3.10</spring-batch.version>
     <spring-security.version>5.5.8</spring-security.version>
-    <spring-data.version>2.7.17</spring-data.version>
+    <spring-data.version>2.7.18</spring-data.version>
     <hibernate.version>5.6.15.Final</hibernate.version>
-    <jackson.version>2.14.3</jackson.version>
+    <jackson.version>2.16.0</jackson.version>
     <liquibase.version>4.25.0</liquibase.version>
     <postgresql.version>42.5.4</postgresql.version>
     <owasp.version>8.4.3</owasp.version>
@@ -917,7 +917,7 @@
       <dependency>
         <groupId>net.bytebuddy</groupId>
         <artifactId>byte-buddy</artifactId>
-        <version>1.14.5</version>
+        <version>1.14.10</version>
       </dependency>
       <dependency>
         <groupId>org.objenesis</groupId>
@@ -978,7 +978,7 @@
       <dependency>
         <groupId>com.sun.xml.bind</groupId>
         <artifactId>jaxb-impl</artifactId>
-        <version>2.3.8</version>
+        <version>2.3.9</version>
       </dependency>
       <dependency>
         <groupId>jakarta.annotation</groupId>
@@ -1169,13 +1169,13 @@
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter</artifactId>
-        <version>5.10.0</version>
+        <version>5.10.1</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-params</artifactId>
-        <version>5.10.0</version>
+        <version>5.10.1</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -1542,7 +1542,7 @@
       <dependency>
         <groupId>com.amazonaws</groupId>
         <artifactId>aws-java-sdk-bom</artifactId>
-        <version>1.12.520</version>
+        <version>1.12.598</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
