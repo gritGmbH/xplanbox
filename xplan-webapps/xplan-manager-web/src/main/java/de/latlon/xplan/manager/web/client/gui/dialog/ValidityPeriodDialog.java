@@ -20,22 +20,21 @@
  */
 package de.latlon.xplan.manager.web.client.gui.dialog;
 
-import java.util.Date;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
 import de.latlon.xplan.manager.web.client.gui.widget.Validable;
 import de.latlon.xplan.manager.web.client.gui.widget.ValidityPeriodInput;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+
+import java.util.Date;
 
 /**
  * Dialog to set the validity period of a plan.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @version $Revision: $, $Date: $
+ * @deprecated class will be removed in a future version.
  */
 public class ValidityPeriodDialog extends WizardDialogBox implements Validable {
 

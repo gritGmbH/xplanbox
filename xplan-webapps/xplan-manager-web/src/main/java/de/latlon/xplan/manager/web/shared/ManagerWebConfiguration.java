@@ -109,6 +109,7 @@ public class ManagerWebConfiguration implements Serializable {
 	/**
 	 * @return <code>true</code> if the dialog to select the validity period of a plan
 	 * should be activated, <code>false</code> otherwise
+	 * @deprecated method will be removed in a future version.
 	 */
 	public boolean isValidityPeriodActivated() {
 		return validityPeriodActivated;
@@ -132,6 +133,7 @@ public class ManagerWebConfiguration implements Serializable {
 
 	/**
 	 * @return default crs of the crs dialog, never <code>null</code>
+	 * @deprecated method will be removed in a future version.
 	 */
 	public String getCrsDialogDefaultCrs() {
 		return crsDialogDefaultCrs;
@@ -139,6 +141,7 @@ public class ManagerWebConfiguration implements Serializable {
 
 	/**
 	 * @return list of possible crs for the crs dialog, never <code>null</code>
+	 * @deprecated method will be removed in a future version.
 	 */
 	public String[] getCrsDialogChooseCrs() {
 		if (crsDialogChooseCrs == null)

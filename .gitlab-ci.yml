@@ -72,16 +72,17 @@ maven-prepare-docker-contexts-cli:
 maven-prepare-docker-contexts-web-apps:
   extends: .maven-prepare-docker-contexts
   variables:
-    mvnProjects: ':xplan-manager-web,:xplan-validator-web'
+    mvnProjects: ':xplan-manager-web,:xplan-validator-web,:xplan-root'
   artifacts:
     paths:
     - './xplan-webapps/xplan-manager-web/**/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-webapps/xplan-validator-web/**/target/docker/**/tmp/docker-build.tar.gz'
+    - './xplan-webapps/xplan-root/**/target/docker/**/tmp/docker-build.tar.gz'
 
 maven-prepare-docker-contexts-others:
   extends: .maven-prepare-docker-contexts
   variables:
-    mvnProjects: ':xplan-services-docker,:xplan-tests-soapui,:xplan-docker-tomcat,:xplan-docker-tomcat-gdal,:xplan-database-scripts,:xplan-docker-mapserver,:xplan-validator-wms'
+    mvnProjects: ':xplan-services-docker,:xplan-tests-soapui,:xplan-docker-tomcat,:xplan-docker-tomcat-gdal,:xplan-database-scripts,:xplan-docker-mapserver,:xplan-validator-wms,:xplan-inspireplu'
   artifacts:
     paths:
     - './xplan-docker/**/target/docker/**/tmp/docker-build.tar.gz'

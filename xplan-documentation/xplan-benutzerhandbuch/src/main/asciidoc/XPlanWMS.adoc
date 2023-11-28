@@ -226,6 +226,8 @@ Wird der XPlanWMSInAufstellung innerhalb des gewählten Zeitraums angefragt, so 
 
 NOTE: Ausnahme: Die Sichtbarkeit der Layer, die den Geltungsbereich darstellen, werden nicht über den Gültigkeitszeitraum verändert und werden immer angezeigt.
 
+IMPORTANT: Die Möglichkeit einen Gültigkeitszeitraum anzugeben ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt.
+
 [[xplanwms-getfeatureinfo]]
 ==== GetFeatureInfo
 

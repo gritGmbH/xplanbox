@@ -52,8 +52,14 @@ public class FeatureCollectionManipulator {
 
 	private static final String XPLAN_MGR_PLAN_ID_PROP_NAME = "xplanMgrPlanId";
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 */
 	private static final String START_DATE_TIME_PROP_NAME = "gueltigkeitBeginn";
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 */
 	private static final String END_DATE_TIME_PROP_NAME = "gueltigkeitEnde";
 
 	/**
@@ -142,6 +148,9 @@ public class FeatureCollectionManipulator {
 			addDateProperty(feature, featureType, WMS_SORT_DATE_PROP_NAME, releaseDate);
 	}
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 */
 	private void addStartAndEndDateTimeProperty(Date beginValidity, Date endValidity, Feature feature,
 			FeatureType featureType) {
 		if (beginValidity != null)

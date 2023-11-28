@@ -32,6 +32,7 @@ import java.util.Collections;
 /**
  * Handles editing of Zeitraum.
  *
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 @Component

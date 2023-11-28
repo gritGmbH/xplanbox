@@ -23,6 +23,7 @@ package de.latlon.xplan.wms.visibility;
 /**
  * A {@link ValidityPeriodInspector} for schema 'xplansynarchive'
  *
+ * @deprecated The VisibilityInspector will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class ArchiveValidityPeriodInspector extends ValidityPeriodInspector {

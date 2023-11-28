@@ -29,3 +29,5 @@ Dazu ist folgender Abschnitt in der Datei _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms
   <wms:CategoryLayerIdentifier>soplanraster_sortiert</wms:CategoryLayerIdentifier>
 </wms:VisibilityInspector>
 ----
+
+IMPORTANT: Die Möglichkeit einen Gültigkeitszeitraum für einen Plan anzugeben ist veraltet, die dazugehörigen Konfigurationsmöglichkeiten werden in zukünftigen Versionen der xPlanBox entfernt.

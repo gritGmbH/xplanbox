@@ -72,6 +72,7 @@ public class XPlanToEdit {
 	}
 
 	/**
+	 * @deprecated will be removed in a future version.
 	 * @return the validityPeriod, never <code>null</code>
 	 */
 	public ValidityPeriod getValidityPeriod() {
@@ -81,6 +82,7 @@ public class XPlanToEdit {
 	}
 
 	/**
+	 * @deprecated will be removed in a future version.
 	 * @param validityPeriod the validityPeriod to set, may be <code>null</code>
 	 */
 	public void setValidityPeriod(ValidityPeriod validityPeriod) {
