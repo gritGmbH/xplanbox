@@ -1,4 +1,4 @@
-FROM tomcat:9-jdk11
+FROM tomcat:9.0.83-jdk11-temurin-jammy
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?

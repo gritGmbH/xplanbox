@@ -1,4 +1,4 @@
-FROM nginx:1.25-alpine
+FROM nginx:1.25.3-alpine
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
