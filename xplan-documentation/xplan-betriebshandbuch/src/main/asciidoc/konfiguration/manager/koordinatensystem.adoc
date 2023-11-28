@@ -24,6 +24,8 @@ _chooseCrs_ konfiguriert werden:
 chooseCrs=EPSG:4326,EPSG:25833,EPSG:31466,EPSG:31467,EPSG:31468,EPSG:31469
 ----
 
+IMPORTANT: Die Konfiguration des Koordinatenreferenzsystems der Vektordaten ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt. Das Koordinatenreferenzsystem der Vektordaten muss gemäß der Konformitätsregel 2.1.3 Koordinaten-Referenzsysteme (CRS) im XPlanGML gesetzt sein.
+
 [[crs-rasterdaten]]
 ==== Rasterdaten
 

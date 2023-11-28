@@ -202,6 +202,12 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-mapproxy-config</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
       <classifier>xplan-manager-workspace</classifier>

@@ -41,6 +41,7 @@ import javax.ws.rs.Produces;
 /**
  * Controller class for handling access to the gueltigkeit resource of a plan.
  *
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 4.4
  */
@@ -59,11 +60,9 @@ public class PlanGueltigkeitApi {
 					@ApiResponse(responseCode = "400",
 							description = "Unsupported plan version or planID is not a valid int value"),
 					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
-					@ApiResponse(responseCode = "406", description = "Requested format is not available"), })
-	public Zeitraum getGueltigkeit(
-			@PathParam("planId") @Parameter(description = "ID of the plan gueltigkeit to be returned",
-					example = "123") String planId)
-			throws Exception {
+					@ApiResponse(responseCode = "406", description = "Requested format is not available"), },
+			description = "deprecated: Gueltigkeitszeitraum will be removed in a future version.", deprecated = true)
+	public Zeitraum getGueltigkeit(@PathParam("planId") @Parameter(example = "123") String planId) throws Exception {
 		return editGueltigkeitHandler.retrieveGueltigkeit(planId);
 	}
 
@@ -80,7 +79,8 @@ public class PlanGueltigkeitApi {
 					@ApiResponse(responseCode = "406", description = "Requested format is not available"),
 					@ApiResponse(responseCode = "422", description = "Request body contains invalid content") },
 			requestBody = @RequestBody(content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Zeitraum.class)) }))
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Zeitraum.class)) }),
+			description = "deprecated: Gueltigkeitszeitraum will be removed in a future version.", deprecated = true)
 	public Zeitraum replaceGueltigkeit(@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 			example = "123") String planId, @Valid Zeitraum zeitraum) throws Exception {
 		return editGueltigkeitHandler.replaceGueltigkeit(planId, zeitraum);

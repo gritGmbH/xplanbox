@@ -1,12 +1,16 @@
 [[installation-mapserver]]
 === Installation und Konfiguration von MapServer
 
-Die xPlanBox unterstützt für die Darstellung von Rasterdaten über einen WMS zusätzlich zum deegreeWMS den MapServer. Die Installation von MapServer ist optional. Die Konfiguration ist im Abschnitt <<konfiguration-xplanwms-mapserver>> beschrieben.
+Die xPlanBox unterstützt für die Darstellung von Rasterdaten über einen WMS zusätzlich zum deegreeWMS den MapServer WMS. Die Installation von MapServer ist optional und in der https://mapserver.org/installation/unix.html#installation[Dokumentation] beschrieben.
+
+Die Konfigurationsdatei _mapserver.map_ ist im Distributionspaket _xplan-mapserver-config-<VERSION>.zip_ enthalten und muss in das entsprechende Verzeichnis kopiert werden.
+
+Die Konfiguration des XPlanWMS mit MapServer ist im Abschnitt <<konfiguration-xplanwms-mapserver>> beschrieben.
 
 [[installation-mapserver-linux]]
 ==== Linux
 
-MapServer 8.0 kann aus einer Paketquelle installiert werden. Weitere Hinweise zur Installation ist in der https://mapserver.org/installation/unix.html#installation[Dokumentation des MapServer] zu finden.
+MapServer 8.0 kann über den Paketmanager der Linux-Distribution installiert werden. Weitere Hinweise zur Installation sind in der https://mapserver.org/installation/unix.html#installation[Installationsanleitung des MapServer] zu finden.
 
 [[installation-mapserver-windows]]
 ==== Windows

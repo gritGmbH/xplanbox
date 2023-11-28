@@ -38,7 +38,7 @@ public final class ReferenceNameUtils {
 
 	public static String extractFilenameFromUrl(String url) {
 		if (url == null || url.isEmpty()) {
-			return UNKNOWN;
+			return null;
 		}
 		url = removeTrailingQuestionmark(url);
 		if (url.contains("?")) {
