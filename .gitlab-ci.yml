@@ -28,6 +28,8 @@ maven-build:
   - 'echo "with Maven goal: $MAVEN_GOAL"'
   - 'mvn $MAVEN_CLI_OPTS $MAVEN_GOAL -PskipAll -Dxplan-tests.maven.deploy.skip=true'
   rules:
+  - if: $OPERATION != null
+    when: never 
   - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
     variables:
       MAVEN_GOAL: "install"
@@ -39,7 +41,7 @@ maven-build:
   stage: build:java4docker
   image: registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest
   script:
-  - 'mvn package -Dxplan-tests.maven.deploy.skip=true -Pdocker,skipping -pl $mvnProjects -am'
+  - mvn package -Dxplan-tests.maven.deploy.skip=true -Pdocker,skipAll -pl $mvnProjects -am
   - find . -name docker-build.tar | xargs gzip
   - set -o pipefail; find . -name docker-build.tar.gz | grep . | xargs du -h
   rules:
@@ -53,13 +55,14 @@ maven-build:
   variables:
     UPSTREAM_REF: $CI_COMMIT_REF_NAME
 
-maven-prepare-docker-contexts-apis:
+maven-prepare-docker-contexts-apis-and-inspire-plu:
   extends: .maven-prepare-docker-contexts
   variables:
-    mvnProjects: ':xplan-api-validator,:xplan-api-manager,:xplan-api-dokumente'
+    mvnProjects: ':xplan-api-validator,:xplan-api-manager,:xplan-api-dokumente,:xplan-inspireplu'
   artifacts:
     paths:
     - './xplan-api/**/target/docker/**/tmp/docker-build.tar.gz'
+    - './xplan-webservices/xplan-inspireplu/target/docker/**/docker-build.tar.gz'
 
 maven-prepare-docker-contexts-cli:
   extends: .maven-prepare-docker-contexts
@@ -82,7 +85,7 @@ maven-prepare-docker-contexts-web-apps:
 maven-prepare-docker-contexts-others:
   extends: .maven-prepare-docker-contexts
   variables:
-    mvnProjects: ':xplan-services-docker,:xplan-tests-soapui,:xplan-docker-tomcat,:xplan-docker-tomcat-gdal,:xplan-database-scripts,:xplan-docker-mapserver,:xplan-validator-wms,:xplan-inspireplu'
+    mvnProjects: ':xplan-services-docker,:xplan-tests-soapui,:xplan-docker-tomcat,:xplan-docker-tomcat-gdal,:xplan-database-scripts,:xplan-docker-mapserver,:xplan-validator-wms'
   artifacts:
     paths:
     - './xplan-docker/**/target/docker/**/tmp/docker-build.tar.gz'
@@ -115,7 +118,7 @@ gitlab-release:
   stage: deploy
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   rules:
-  - if: $CI_PIPELINE_SOURCE == 'schedule'
+  - if: $OPERATION != null
     when: never 
   - if: $CI_COMMIT_TAG
   script:
@@ -135,7 +138,7 @@ create-maven-build-image:
   script:
   - /kaniko/executor
     --context "${CI_PROJECT_DIR}"
-    --dockerfile "${CI_PROJECT_DIR}/ci/mvnBuildImage.Dockerfile"
+    --dockerfile "${CI_PROJECT_DIR}/ci/mvn-build-image.Dockerfile"
     --destination "${CI_REGISTRY_IMAGE}/mvn-build-image:latest"
     --cache=true --compressed-caching=false --use-new-run --cleanup
   rules:

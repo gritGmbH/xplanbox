@@ -1,4 +1,5 @@
-FROM camptocamp/mapserver:8.0
+# latest linux/amd64 on 21.11.23
+FROM camptocamp/mapserver@sha256:0ed39cd88641ea384f7ec3ae2cff02c841d7e20d5daea2c4d567e21e53d9c0c2
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?

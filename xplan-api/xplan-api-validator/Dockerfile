@@ -3,7 +3,7 @@ ARG XPLANBOX_IMAGE_NAME_PREFIX=xplanbox
 
 FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat:$XPLANBOX_VERSION as builder
 
-FROM eclipse-temurin:11.0.17_8-jre-alpine
+FROM eclipse-temurin:11.0.21_9-jre-alpine
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
