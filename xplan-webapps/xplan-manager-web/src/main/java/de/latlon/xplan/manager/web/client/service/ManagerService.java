@@ -120,6 +120,7 @@ public interface ManagerService extends RestService {
 	@GET
 	@Produces(APPLICATION_JSON)
 	@Path("/crs/{id}")
+	@Deprecated
 	void isCrsSet(@PathParam("id") String id, MethodCallback<Boolean> callback);
 
 	@GET

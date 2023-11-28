@@ -219,6 +219,7 @@ public class XPlanManager {
 
 	/**
 	 * Check if the crs is set in target file.
+	 * @deprecated will be removed in a future version
 	 * @param archiveFileName path to the file
 	 * @return true if crs is set, false if crs is not set
 	 * @throws IOException
