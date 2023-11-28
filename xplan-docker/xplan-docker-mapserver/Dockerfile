@@ -17,6 +17,9 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION" \
 	"maintainer"=""
 
+ENV TZ=Europe/Berlin
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata
+
 RUN mkdir -p /xplan-docker-mapserver \
 	&& chown 1001 /etc/mapserver
 

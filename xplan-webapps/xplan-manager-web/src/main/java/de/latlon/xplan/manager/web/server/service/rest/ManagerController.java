@@ -396,6 +396,7 @@ public class ManagerController {
 
 	@RequestMapping(value = "/crs/{id}", method = GET)
 	@ResponseBody
+	@Deprecated
 	// @formatter:off
     public boolean isCrsSet( @PathVariable String id,@Context HttpServletRequest request,  @Context HttpServletResponse response )
                     throws Exception {

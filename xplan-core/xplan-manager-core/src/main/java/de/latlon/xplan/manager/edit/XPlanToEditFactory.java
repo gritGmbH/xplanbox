@@ -122,6 +122,9 @@ public class XPlanToEditFactory {
 		return xPlanToEdit;
 	}
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 */
 	private void setValidityPeriod(AdditionalPlanData additionalPlanData, XPlanToEdit xPlanToEdit) {
 		if (additionalPlanData != null) {
 			additionalPlanData.getStartDateTime();

@@ -25,14 +25,11 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
-
 import de.latlon.xplan.manager.web.client.gui.widget.Validable;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 
@@ -100,14 +97,6 @@ public class PreserveExistingFileUpload extends VerticalPanel implements Validab
 	public boolean isFileSelected() {
 		String filename = getFilename();
 		return filename != null && filename.length() > 0;
-	}
-
-	/**
-	 * @param isEnabled true if enable, false otherwise
-	 */
-	public void setEnabled(boolean isEnabled) {
-		selectedFile.setEnabled(isEnabled);
-		removeButton.setEnabled(isEnabled);
 	}
 
 	/**

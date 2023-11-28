@@ -62,7 +62,7 @@ Optional, wenn die Tests der XPlanDB bei Ausführung der XPlanManagerAPI-SopaUI-
 - `XPLAN_DB_PASSWORD`
 
 
-Der Report im PDF Format kann zu einem S3 Bucket hochgeladen werden, dafür müssen folgende Umgebungsvariable gesetzt werden:
+Der Report im PDF Format kann zu einem S3 Bucket hochgeladen werden, dafür müssen folgende Umgebungsvariablen gesetzt werden:
 
 - `XPLAN_UPLOAD_TEST_REPORT`: muss auf `true` gesetzt werden
 - `XPLAN_S3_ENDPOINT_URL`: die S3 Url, z.B. https://the.s3.url
@@ -77,7 +77,13 @@ Der Report kann aus S3 lokal kopiert werden, z,B. mit:
 
 	aws s3 cp s3://my-bucket/test-reports/report-2023-05-26T08:57:15.pdf report.pdf --endpoint-url https://the.s3.url
 
-Eine Notification kann nach der Ausführung der Tests zu einem Slack Chanel geschickt werden. Dafür müssen folgende Umgebungsvariable gesetzt werden:
+Eine Notification kann nach der Ausführung der Tests zu einem Slack Chanel geschickt werden. Dafür müssen folgende Umgebungsvariablen gesetzt werden:
 
 - `XPLAN_NOTIFY_SLACK_CHANNEL`: der Slack Kanal
 - `XPLAN_NOTIFY_SLACK_TOKEN`: das Slack Authorisierungstoken
+
+## Konventionen für Entwickler
+
+ * Um die von den SoapUI-Tests verwendeten Plänen identifizieren zu können, werden alle Pläne, die importiert werden nach folgendem Schema umbenannt: _\<NAME>\_SoapUI-\<KOMPONENTE>_. Mit folgenden Platzhaltern:
+   * _\<NAME>_: Name des Plans
+   * _\<KOMPONENTE>_: Name der zu testenden Komponente, z.B.: XPlanManagerAPI, XPlanValidatorAPI, XPlanDokumentenAPI

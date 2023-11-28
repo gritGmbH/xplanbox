@@ -2307,7 +2307,7 @@ assert actualHeader != null</scriptText>
             <con:assertion type="JsonPath Match" id="727c0fd3-5cab-490a-a799-0465207ecae1" name="name">
               <con:configuration>
                 <path>$[0].xplanModelData.name</path>
-                <content>Eidelstedt4_SoapUI-XPlanManagerAPI</content>
+                <content>BPlan004_4-1_SoapUI-XPlanManagerAPI</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -2330,11 +2330,11 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>BP_4.1_MimeTypeV2.zip</con:name>
+              <con:name>BPlan004_4-1.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>BP_4.1_MimeTypeV2.zip</con:contentId>
+              <con:contentId>BPlan004_4-1.zip</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager/plans/BP_4.1_MimeTypeV2.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/BPlan004_4-1.zip</con:url>
               <con:id>a9a8ee6f-17f6-421c-bab9-e60905d0f606</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3193,7 +3193,7 @@ assert actualHeader != null</scriptText>
             <con:assertion type="JsonPath Match" id="727c0fd3-5cab-490a-a799-0465207ecae1" name="name">
               <con:configuration>
                 <path>$.xplanModelData.name</path>
-                <content>BPlan002_5-3</content>
+                <content>BPlan002_5-3_1_SoapUI-XPlanManagerAPI</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>

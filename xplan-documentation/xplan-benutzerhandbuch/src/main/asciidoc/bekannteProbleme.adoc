@@ -34,7 +34,7 @@ ein FPlan mit Rasterdaten.
 
 === XPlanWMS - Darstellung von Plänen mit Gültigkeitszeitraum
 
-Wenn beim Import eines Plans über den XPlanManager ein Gültigkeitszeitraum angegeben wird, werden derzeit keine Vektordaten bei GetMap-Anfragen an den XPlanWMS angezeigt. Dies gilt für alle XPlanWMS unabhängig vom Planststatus.
+Wenn beim Import eines Plans über den XPlanManager ein Gültigkeitszeitraum angegeben wird, werden derzeit keine Vektordaten bei GetMap-Anfragen an den XPlanWMS angezeigt. Dies gilt für alle XPlanWMS unabhängig vom Planstatus.
 
 === XPlanManagerWeb - Anzeige der Pläne auf der letzten Seite
 

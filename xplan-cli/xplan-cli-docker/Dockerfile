@@ -21,6 +21,7 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.vendor"="lat/lon GmbH" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
 
+ENV TZ=Europe/Berlin
 RUN apk --no-cache add bash
 
 COPY target/unpacked-deps/xplan-manager-cli-* /xplanbox/xplan-manager-cli/

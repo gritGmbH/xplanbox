@@ -33,6 +33,7 @@ import java.util.Objects;
 /**
  * Datatype for Zeitraum.
  *
+ * @deprecated will be removed in a future version.
  * @since 4.4
  */
 @XmlRootElement

@@ -77,6 +77,7 @@
         <include>de.latlon.product.xplanbox:xplan-validator-config:zip:*</include>
         <include>de.latlon.product.xplanbox:xplan-dokumenten-config:zip:*</include>
         <include>de.latlon.product.xplanbox:xplan-mapserver-config:zip:*</include>
+        <include>de.latlon.product.xplanbox:xplan-mapproxy-config:zip:*</include>
         <include>de.latlon.product.xplanbox:xplan-workspaces:zip:*</include>
       </includes>
     </dependencySet>

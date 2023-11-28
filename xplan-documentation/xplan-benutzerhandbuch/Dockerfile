@@ -16,5 +16,7 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION" \
 	"maintainer"=""
 
+ENV TZ=Europe/Berlin
+
 RUN mkdir /usr/share/nginx/html/xPlanBox-Benutzerhandbuch
 COPY target/html/ /usr/share/nginx/html/xPlanBox-Benutzerhandbuch/

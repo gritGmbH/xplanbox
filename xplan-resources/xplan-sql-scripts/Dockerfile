@@ -16,6 +16,13 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION" \
 	"maintainer"=""
 
+RUN echo "en_GB.UTF-8 UTF-8" > /etc/locale.gen \
+	&& locale-gen 
+
+ENV TZ=Europe/Berlin \
+	LC_ALL=en_GB.UTF-8
+
+
 # sets superuser and password for PG instance
 ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=postgres
