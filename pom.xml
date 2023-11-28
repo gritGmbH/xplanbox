@@ -49,6 +49,8 @@
     <build-date-utc>${maven.build.timestamp}Z</build-date-utc>
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
     <dependency-check.skip>true</dependency-check.skip>
+    <docker-image.skip>true</docker-image.skip>
+    <docker-image.skip-sources>${docker-image.skip}</docker-image.skip-sources>
   </properties>
 
   <modules>
@@ -220,8 +222,6 @@
     <profile>
       <id>docker</id>
       <properties>
-        <docker-image.skip>true</docker-image.skip>
-        <docker-image.skip-sources>${docker-image.skip}</docker-image.skip-sources>
         <docker-image.namePrefix>xplanbox</docker-image.namePrefix>
         <docker-image.name>${project.artifactId}</docker-image.name>
       </properties>
@@ -229,59 +229,50 @@
         <module>xplan-docker</module>
       </modules>
       <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>io.fabric8</groupId>
-              <artifactId>docker-maven-plugin</artifactId>
-              <version>0.43.4</version>
-              <configuration>
-                <skip>${docker-image.skip}</skip>
-                <images>
-                  <image>
-                    <name>${docker-image.namePrefix}/${docker-image.name}</name>
-                    <build>
-                      <dockerFileDir>${project.basedir}</dockerFileDir>
-                      <args>
-                        <BUILD_DATE>'${build-date-utc}'</BUILD_DATE>
-                        <DOCKER_IMAGE_NAME>${docker-image.name}</DOCKER_IMAGE_NAME>
-                        <GIT_REVISION>${git.commit.id}</GIT_REVISION>
-                        <WEB_CONTEXT>${project.artifactId}</WEB_CONTEXT>
-                        <XPLANBOX_VERSION>${project.version}</XPLANBOX_VERSION>
-                        <XPLANBOX_IMAGE_NAME_PREFIX>${docker-image.namePrefix}</XPLANBOX_IMAGE_NAME_PREFIX>
-                      </args>
-                      <tags>
-                        <tag>${project.version}</tag>
-                      </tags>
-                    </build>
-                  </image>
-                </images>
-              </configuration>
-              <executions>
-                <execution>
-                  <id>context-sources</id>
-                  <goals>
-                    <goal>source</goal>
-                  </goals>
-                  <configuration>
-                    <skip>${docker-image.skip-sources}</skip>
-                  </configuration>
-                </execution>
-                <execution>
-                  <id>default</id>
-                  <goals>
-                    <goal>build</goal>
-                    <goal>push</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin>
-          </plugins>
-        </pluginManagement>
         <plugins>
           <plugin>
             <groupId>io.fabric8</groupId>
             <artifactId>docker-maven-plugin</artifactId>
+            <configuration>
+              <skip>${docker-image.skip}</skip>
+              <images>
+                <image>
+                  <name>${docker-image.namePrefix}/${docker-image.name}</name>
+                  <build>
+                    <dockerFileDir>${project.basedir}</dockerFileDir>
+                    <args>
+                      <BUILD_DATE>'${build-date-utc}'</BUILD_DATE>
+                      <DOCKER_IMAGE_NAME>${docker-image.name}</DOCKER_IMAGE_NAME>
+                      <GIT_REVISION>${git.commit.id}</GIT_REVISION>
+                      <WEB_CONTEXT>${project.artifactId}</WEB_CONTEXT>
+                      <XPLANBOX_VERSION>${project.version}</XPLANBOX_VERSION>
+                      <XPLANBOX_IMAGE_NAME_PREFIX>${docker-image.namePrefix}</XPLANBOX_IMAGE_NAME_PREFIX>
+                    </args>
+                    <tags>
+                      <tag>${project.version}</tag>
+                    </tags>
+                  </build>
+                </image>
+              </images>
+            </configuration>
+            <executions>
+              <execution>
+                <id>context-sources</id>
+                <goals>
+                  <goal>source</goal>
+                </goals>
+                <configuration>
+                  <skip>${docker-image.skip-sources}</skip>
+                </configuration>
+              </execution>
+              <execution>
+                <id>default</id>
+                <goals>
+                  <goal>build</goal>
+                  <goal>push</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -665,6 +656,11 @@
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
           <version>${spring-boot.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>io.fabric8</groupId>
+          <artifactId>docker-maven-plugin</artifactId>
+          <version>0.43.4</version>
         </plugin>
       </plugins>
     </pluginManagement>

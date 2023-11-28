@@ -1,0 +1,8 @@
+.classpath
+.dockerignore
+.project
+.settings/**
+
+pom.xml
+src/**
+target/*.war

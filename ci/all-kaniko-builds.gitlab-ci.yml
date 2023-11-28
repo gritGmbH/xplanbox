@@ -18,9 +18,18 @@
     when: never 
   - when: on_success 
   variables:
+    GIT_STRATEGY: none
     destination: ${CI_REGISTRY_IMAGE}/xplanbox/${dockerImageName}
 
 ## job per image to produce
+
+kaniko:xplan-cli-docker:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-cli-docker
+    tarGzFile: xplan-cli/xplan-cli-docker/target/docker/xplanbox/xplan-cli/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-cli
 
 kaniko:xplan-db-updater:
   extends: .kaniko:build
@@ -61,8 +70,16 @@ kaniko:xplan-dokumente-api:
     dockerImageName: xplan-dokumente-api
     tarGzFile: xplan-api/xplan-api-dokumente/target/docker/xplanbox/xplan-dokumente-api/tmp/docker-build.tar.gz
   needs:
-    - maven-prepare-docker-contexts-apis
+    - maven-prepare-docker-contexts-apis-and-inspire-plu
     - kaniko:xplan-docker-tomcat
+
+kaniko:xplan-inspireplu:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-inspireplu
+    tarGzFile: xplan-webservices/xplan-inspireplu/target/docker/xplanbox/xplan-inspireplu/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-apis-and-inspire-plu
 
 kaniko:xplan-manager-api:
   extends: .kaniko:build
@@ -70,7 +87,7 @@ kaniko:xplan-manager-api:
     dockerImageName: xplan-manager-api
     tarGzFile: xplan-api/xplan-api-manager/target/docker/xplanbox/xplan-manager-api/tmp/docker-build.tar.gz
   needs:
-    - maven-prepare-docker-contexts-apis
+    - maven-prepare-docker-contexts-apis-and-inspire-plu
     - kaniko:xplan-docker-tomcat-gdal
 
 kaniko:xplan-mapserver:
@@ -90,6 +107,14 @@ kaniko:xplan-manager-web:
     - maven-prepare-docker-contexts-web-apps
     - kaniko:xplan-docker-tomcat-gdal
 
+kaniko:xplan-root:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-root
+    tarGzFile: xplan-webapps/xplan-root/target/docker/xplanbox/xplan-root/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-web-apps
+    
 kaniko:xplan-services:
   extends: .kaniko:build
   variables:
@@ -113,7 +138,7 @@ kaniko:xplan-validator-api:
     dockerImageName: xplan-validator-api
     tarGzFile: xplan-api/xplan-api-validator/target/docker/xplanbox/xplan-validator-api/tmp/docker-build.tar.gz
   needs:
-    - maven-prepare-docker-contexts-apis
+    - maven-prepare-docker-contexts-apis-and-inspire-plu
     - kaniko:xplan-docker-tomcat
  
 
@@ -134,27 +159,3 @@ kaniko:xplan-validator-wms:
   needs:
     - maven-prepare-docker-contexts-others
     - kaniko:xplan-docker-tomcat
-
-kaniko:xplan-cli-docker:
-  extends: .kaniko:build
-  variables:
-    dockerImageName: xplan-cli-docker
-    tarGzFile: xplan-cli/xplan-cli-docker/target/docker/xplanbox/xplan-cli/tmp/docker-build.tar
-  needs:
-    - maven-prepare-docker-contexts-cli
-
-kaniko:xplan-inspireplu:
-  extends: .kaniko:build
-  variables:
-    dockerImageName: xplan-inspireplu
-    tarGzFile: xplan-webservices/xplan-inspireplu/target/docker/xplanbox/xplan-inspireplu/tmp/docker-build.tar
-  needs:
-    - maven-prepare-docker-contexts-others
-
-kaniko:xplan-root:
-  extends: .kaniko:build
-  variables:
-    dockerImageName: xplan-root
-    tarGzFile: xplan-webapps/xplan-root/target/docker/xplanbox/xplan-root/tmp/docker-build.tar
-  needs:
-    - maven-prepare-docker-contexts-web-apps
