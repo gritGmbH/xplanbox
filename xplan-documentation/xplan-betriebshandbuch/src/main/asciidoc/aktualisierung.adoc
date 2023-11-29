@@ -140,8 +140,7 @@ IMPORTANT: Im Verzeichnis _themes/_ nicht die Dateien, die auf _raster.xml_ ende
 IMPORTANT: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen. Wenn dies nicht notwendig ist, kann die Datenbank XPlanDB neu aufgesetzt werden (siehe Kapitel <<konfiguration-der-datenbank>>).
 
 Die SQL-Skripte für die Datenbankschemas jeder Version befinden sich im
-_xplan-manager-workspace_ im Verzeichnis _sql/_. Für jedes Datenbankschema gibt es dort
-einen eigenen Unterordner. Neu hinzugekommene Datenbankschemas können zu der
+_xplan-manager-workspace_ im Verzeichnis _sql/_. Für jedes Datenbankschema gibt es dort einen eigenen Unterordner. Neu hinzugekommene Datenbankschemas können zu der
 Datenbank hinzugefügt werden und stehen danach für die Anwendung
 bereit. Bei Änderungen an einem Datenbankschema müssen diese durch ein
 SQL-Skript durchgeführt werden. Für die Aktualisierungen der XPlanDB liegen die entsprechenden Skripte im Verzeichnis _update/_.
@@ -150,12 +149,13 @@ Führen Sie die zu der Version passenden SQL-Skripte aus dem entsprechenden Unte
 
 - von 6.0 auf 6.0.1 aus dem Verzeichnis _from_6.0_to_6.0.1/_
 - von 6.0.1 auf 7.0 aus dem Verzeichnis _from_6.0.1_to_7.0/_
+- von 7.0 auf 7.1 aus dem Verzeichnis _from_7.0_to_7.1/_
 
 IMPORTANT: Erstellen Sie vor der Aktualisierung ein Backup der Datenbank! Und achten Sie bei der Ausführung der SQL-Skripte darauf, dass diese vollständig ausgeführt werden! Nutzen Sie für die Ausführung der SQL-Skripte das `psql`-Tool z.B. mit dem Aufruf `psql -h $PGHOST -p $PGPORT -U $PGUSER -d $PGDATABASE -f $PATH_TO_SCRIPTS/UPDATE_SCRIPT.sql`.
 
-NOTE: Bei der Aktualisierung der XPlanDB kann es bei Ausführung der SQL zu folgender Fehlermeldungen kommen: _ERROR:  relation "databasechangeloglock" already exists_ kommen. Diese Fehlermeldung kann ignoriert werden.
+NOTE: Bei der Aktualisierung der XPlanDB kann es bei Ausführung der SQL-Skripte zu folgender Fehlermeldungen kommen: _ERROR:  relation "databasechangeloglock" already exists_ kommen. Diese Fehlermeldung kann ignoriert werden.
 
-NOTE: Manuelle Änderungen an den Datenbank-Schemata können die fehlerfreie Ausführung der SQL-Skripte verhindern. Wenn Sie Änderungen an den Datenbank-Schemata vorgenommen haben, müssen diese vor Ausführung der SQL-Skripte zurückgesetzt werden.
+NOTE: Manuelle Änderungen an den Datenbank-Schemata können die fehlerfreie und vollständige Ausführung der SQL-Skripte verhindern. Wenn Sie Änderungen an den Datenbank-Schemata vorgenommen haben, müssen diese vor Ausführung der SQL-Skripte zurückgesetzt werden.
 
 [[aktualisierung-der-daten]]
 === Aktualisierung der Daten
