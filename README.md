@@ -63,26 +63,6 @@ Folgen Sie der [Installationsanleitung von Maven](https://maven.apache.org/insta
 
 Weitere Informationen zur Konfiguration von Maven finden Sie in der [Referenzdokumentation zu den Maven Settings](https://maven.apache.org/settings.html).
 
-#### deegree erstellen
-
-Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.com/lat-lon/deegree3/tree/xplanbox-deegree3.5) kompiliert werden. Dazu muss die passende Version von deegree ausgewählt werden. Für Version 7.0+ der Anwendung muss deegree **Version 3.5.0.2** verwendet werden:
-
-```shell
-git clone https://github.com/lat-lon/deegree3.git
-cd deegree3
-git checkout tags/xplanbox-deegree-3.5.0.2
-mvn clean install
-```
-> **_Hinweis_**: Aktuell kann noch nicht eine offizielle Release-Version von deegree verwendet werden, da für das Fachdatenschema XPlanung noch spezifische Erweiterungen an deegree vorgenommen wurden. Sobald eine Version von deegree mit Unterstützung dieser Erweiterungen verfügbar ist, entfällt dieser Schritt.
-
-> **_Hinweis_**: Unter dem Betriebssystem Windows kann es bei der Ausführung von Unit-Test zu Fehlern kommen. Es kann dann erforderlich sein, die Tests zu überspringen. Dazu ist die Option `-DskipTests` beim Aufruf von Maven zu ergänzen.
-
-#### XPlanung-Validierungsregeln einbinden
-
-Die Anwendung nutzt die öffentlich verfügbaren XPlanung-Validierungsregeln des XPlanung-Standards aus dem [OpenCoDE-Repository der XLeitstelle](https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard).
-
-> **_Hinweis_**: Um eine andere Version der XPlanung-Validierungsregeln zu installieren, folgen Sie der Anleitung im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc).
-
 #### Anwendung erstellen
 
 Die Erstellung der Binärdateien der Anwendung erfolgt dann im Basisverzeichnis mit folgendem Maven Aufruf:
@@ -93,9 +73,17 @@ cd ozgxplanung
 mvn clean install
 ```
 
+> **_Hinweis_**: Unter dem Betriebssystem Windows kann es bei der Ausführung von Unit-Test zu Fehlern kommen. Es kann dann erforderlich sein, die Tests zu überspringen. Dazu ist die Option `-DskipTests` beim Aufruf von Maven zu ergänzen.
+
 ### Installation und Konfiguration
 
 Die Installation und Konfiguration der Anwendung ist im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc) dokumentiert.
+
+#### XPlanung-Validierungsregeln einbinden
+
+Die Anwendung nutzt die öffentlich verfügbaren XPlanung-Validierungsregeln des XPlanung-Standards aus dem [OpenCoDE-Repository der XLeitstelle](https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard).
+
+> **_Hinweis_**: Um eine andere Version der XPlanung-Validierungsregeln zu installieren, folgen Sie der Anleitung im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc).
 
 ----
 © 2023 lat/lon gesellschaft für raumbezogene informationssysteme mbH  
