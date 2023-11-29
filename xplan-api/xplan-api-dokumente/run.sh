@@ -7,4 +7,4 @@ if [ -n "${ALL_ADDITIONAL_ARGS}" ]; then
     echo "xPlanBox JAVA_OPTS set: $JAVA_OPTS"
 fi
 
-exec java $JAVA_OPTS -jar /xplanbox/app.jar
+exec java $JAVA_OPTS -jar /xplanbox/app.war
