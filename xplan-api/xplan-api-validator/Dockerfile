@@ -7,7 +7,7 @@ FROM eclipse-temurin:11.0.21_9-jre-alpine
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
-ARG WAR_FILE=target/-repackaged.war
+ARG WAR_FILE=target/*-repackaged.war
 ARG XPLANBOX_VERSION=latest
 
 # see https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
