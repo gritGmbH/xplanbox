@@ -18,7 +18,7 @@
     <java.version>11</java.version>
     <maven.version>3.8.1</maven.version>
     <!-- version properties -->
-    <deegree3.version>3.5.0.2</deegree3.version>
+    <deegree3.version>3.5.3.1</deegree3.version>
     <xplanung.regeln.version>1.1.6</xplanung.regeln.version>
     <xplanung.regeln.berlin.version>0.4</xplanung.regeln.berlin.version>
     <gwt.version>2.10.0</gwt.version>
