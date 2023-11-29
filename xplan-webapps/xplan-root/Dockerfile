@@ -1,4 +1,4 @@
-FROM httpd:2.4
+FROM httpd:2.4.58-alpine
 
 ENV TZ=Europe/Berlin
 

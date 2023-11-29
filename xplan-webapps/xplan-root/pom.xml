@@ -27,7 +27,7 @@
               </descriptors>
               <appendAssemblyId>false</appendAssemblyId>
             </configuration>
-            <phase>package</phase>
+            <phase>prepare-package</phase>
           </execution>
           <execution>
             <id>default</id>
@@ -43,7 +43,7 @@
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>
-            <phase>package</phase>
+            <phase>prepare-package</phase>
           </execution>
         </executions>
       </plugin>
