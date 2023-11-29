@@ -5,7 +5,7 @@ FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat-gdal:$XPLANBOX_VERSION
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
-ARG JAR_FILE=target/*.jar
+ARG WAR_FILE=target/*-repackaged.war
 ARG XPLANBOX_VERSION=latest
 
 # see https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
@@ -24,7 +24,7 @@ ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree
 
 ENV JAVA_ADDITIONAL_ARG_APP="-DXPLANBOX_CONFIG=/xplanbox/xplan-manager-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng"
 
-COPY ${JAR_FILE} /xplanbox/app.jar
+COPY ${WAR_FILE} /xplanbox/app.war
 COPY run.sh /xplanbox/
 
 USER 1001
