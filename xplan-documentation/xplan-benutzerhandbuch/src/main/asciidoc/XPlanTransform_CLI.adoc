@@ -5,10 +5,9 @@ Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug, welches dem Fac
 
 Die transformierten Pläne können entweder syntaktisch validiert und das Validierungsergebnis in eine CSV-Datei geschrieben werden oder die transformierten Pläne werden in die entsprechende Datenhaltung eingespielt.
 
-[NOTE]
-====
+NOTE: Unterstützt wird derzeit die Transformation von XPlanGML 4.1 nach XPlanGML 5.1
 
-Unterstützt wird derzeit die Transformation von XPlanGML 4.1 nach XPlanGML 5.1
+IMPORTANT: Das XPlanTransformCLI ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt
 
 ====
 
