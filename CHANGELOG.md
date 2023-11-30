@@ -24,6 +24,7 @@ Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version 
 
 - Setzen eines Gültigkeitszeitraums beim Import eines Planwerk über den XPlanManagerWeb ist veraltet (deprecated)
 - Konfigurationsoptionen `defaultCRS` und `chooseCrs` zur Auswahl eines Koordinatenreferenzsystems für die Vektordaten eines Planwerks sind veraltet (deprecated)
+- XPlanTransformCLI zur Transformation von XPlanGML 4.1 nach XPlanGML 5.1 ist veraltet (deprecated)
 
 ## Version 7.0.2 (2023-10-26)
 
