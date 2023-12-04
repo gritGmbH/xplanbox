@@ -9,8 +9,6 @@ NOTE: Unterstützt wird derzeit die Transformation von XPlanGML 4.1 nach XPlanGM
 
 IMPORTANT: Das XPlanTransformCLI ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt
 
-====
-
 [[xplantransform-cli-installation]]
 === Installation
 
