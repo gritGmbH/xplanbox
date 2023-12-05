@@ -88,6 +88,8 @@ welches dem Fachadministrator der xPlanBox ermöglicht,
 bereits über den XPlanManagerWeb oder das XPlanManagerCLI
 importierte Pläne in eine aktuellere XPlanGML-Version zu transformieren und in der <<xplandb>> zu speichern.
 
+IMPORTANT: Das XPlanTransformCLI ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt.
+
 [[xplanevaluationschemasynchronize-cli]]
 === XPlanAuswerteschemaCLI
 

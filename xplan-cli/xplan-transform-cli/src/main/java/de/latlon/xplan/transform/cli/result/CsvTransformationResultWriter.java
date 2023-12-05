@@ -40,6 +40,7 @@ import static java.nio.file.Files.newOutputStream;
 import static org.apache.commons.io.IOUtils.write;
 
 /**
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class CsvTransformationResultWriter implements TransformationResultWriter {
