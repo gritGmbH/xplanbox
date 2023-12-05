@@ -100,9 +100,9 @@ maven-release:
 #  image: maven:3.8.6-jdk-11
   image: registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest
   stage: deploy
-  only:
-    - main
   rules:
+  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+    when: never 
   - if: $OPERATION != null
     when: never 
   - when: manual
