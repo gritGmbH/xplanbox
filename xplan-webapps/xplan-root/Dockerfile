@@ -16,6 +16,7 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.vendor"="lat/lon GmbH" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
 
+RUN apk add -U tzdata
 ENV TZ=Europe/Berlin
 
 COPY target/xplan-root-*-default /usr/local/apache2/htdocs/
