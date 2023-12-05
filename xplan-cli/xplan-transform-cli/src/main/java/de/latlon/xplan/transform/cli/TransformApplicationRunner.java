@@ -45,6 +45,7 @@ import static java.nio.file.Files.exists;
 import static java.nio.file.Files.isDirectory;
 
 /**
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 @Component

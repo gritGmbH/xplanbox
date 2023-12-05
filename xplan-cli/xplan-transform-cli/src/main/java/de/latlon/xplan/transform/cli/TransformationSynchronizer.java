@@ -57,6 +57,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.transform.cli.TransformApplicationRunner.LOG_TABLE_NAME;
 
 /**
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class TransformationSynchronizer implements Synchronizer {

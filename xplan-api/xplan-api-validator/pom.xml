@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-api-validator</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
@@ -43,7 +44,9 @@
             <port>8080</port>
             <idleTimeout>60000</idleTimeout>
           </httpConnector>
-          <jvmArgs>--illegal-access=warn --add-opens java.base/java.lang=ALL-UNNAMED -Dorg.eclipse.jetty.webapp.LEVEL=DEBUG -Dcatalina.base=${project.basedir}/target</jvmArgs>
+          <jvmArgs>--illegal-access=warn --add-opens java.base/java.lang=ALL-UNNAMED
+            -Dorg.eclipse.jetty.webapp.LEVEL=DEBUG -Dcatalina.base=${project.basedir}/target
+          </jvmArgs>
         </configuration>
         <!--
         <executions>
@@ -71,13 +74,16 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>repackage</goal>
-                    </goals>
-                </execution>
-            </executions>
+        <configuration>
+          <classifier>repackaged</classifier>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin><!-- redeclare here to run *after* spring-boot repackage -->
         <groupId>io.fabric8</groupId>
@@ -95,16 +101,16 @@
         </executions>
       </plugin>
       <plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-jar-plugin</artifactId>
-		  <configuration>
-            <archive>
-              <manifest>
-                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-              </manifest>
-            </archive>
-		  </configuration>
-	  </plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <dependencies>
@@ -221,7 +227,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-    
+
     <!-- logging -->
     <dependency>
       <groupId>org.slf4j</groupId>

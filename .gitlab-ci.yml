@@ -102,7 +102,10 @@ maven-release:
   stage: deploy
   only:
     - main
-  when: manual
+  rules:
+  - if: $OPERATION != null
+    when: never 
+  - when: manual
   before_script:
   - mkdir -p ~/.ssh/
   - cp $DEPLOY_PRIVATE_KEY ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
