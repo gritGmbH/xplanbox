@@ -10,8 +10,8 @@ workflow:
   - when: always
 
 variables:
-  MAVEN_OPTS: "-Xmx500m -XX:GCLockerRetryAllocationCount=100 -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN"
-  MAVEN_CLI_OPTS: "--batch-mode -DinstallAtEnd=true -DdeployAtEnd=true -DskipDeployBigArtefact=true -s $CI_PROJECT_DIR/ci_settings.xml"
+  MAVEN_OPTS: "-Xmx500m -XX:+UseSerialGC -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN"
+  MAVEN_CLI_OPTS: "--batch-mode -DskipDeployBigArtefact=true -s $CI_PROJECT_DIR/ci_settings.xml"
 
 stages:
 - build
@@ -30,6 +30,8 @@ maven-build:
   rules:
   - if: $OPERATION != null
     when: never 
+  - if: $CI_COMMIT_TAG != null
+    when: never 
   - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
     variables:
       MAVEN_GOAL: "install"
@@ -42,18 +44,24 @@ maven-build:
   image: registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest
   script:
   - mvn package -Dxplan-tests.maven.deploy.skip=true -Pdocker,skipAll -pl $mvnProjects -am
+  - ci/readEnvPropsForKanikoBuilds.sh > build.env
   - find . -name docker-build.tar | xargs gzip
   - set -o pipefail; find . -name docker-build.tar.gz | grep . | xargs du -h
   rules:
   - if: $CI_PIPELINE_SOURCE == 'schedule'
     when: never 
+  - if: $CI_COMMIT_TAG != null
+    when: on_success
   - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
     when: never
   - when: on_success 
   artifacts:
     expire_in: 1 hour
+    reports:
+      dotenv: build.env
   variables:
     UPSTREAM_REF: $CI_COMMIT_REF_NAME
+
 
 maven-prepare-docker-contexts-apis-and-inspire-plu:
   extends: .maven-prepare-docker-contexts
@@ -96,25 +104,15 @@ maven-prepare-docker-contexts-others:
 include: ci/all-kaniko-builds.gitlab-ci.yml
 
 
-maven-release:
+maven-deploy-release:
   image: registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest
   stage: build:jvm
   rules:
-  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
-    when: never 
   - if: $OPERATION != null
     when: never 
-  - if: $CI_COMMIT_TAG
-  before_script:
-  - mkdir -p ~/.ssh/
-  - cp $DEPLOY_PRIVATE_KEY ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
-  - cp $KNOWN_HOSTS ~/.ssh/known_hosts
-  - apt-get update && apt-get install -y git
-  - git config --global user.email "noreply@gitlab.opencode.de"
-  - git config --global user.name "xplanung GitLab CI"
-  - git checkout -B "$CI_COMMIT_REF_NAME"
+  - if: $CI_COMMIT_TAG != null
   script:
-  - mvn release:prepare release:perform $MAVEN_CLI_OPTS -DscmReleaseCommitComment="release @{releaseLabel}" -DtagNameFormat="v@{project.version}"
+  - mvn $MAVEN_CLI_OPTS deploy -PskipAll -Dxplan-tests.maven.deploy.skip=true
 
 gitlab-release:
   stage: deploy
@@ -122,9 +120,9 @@ gitlab-release:
   rules:
   - if: $OPERATION != null
     when: never 
-  - if: $CI_COMMIT_TAG
+  - if: $CI_COMMIT_TAG != null
   script:
-  - echo "Running the release job for $CI_COMMIT_TAG"
+  - echo "Running job gitlab-release for $CI_COMMIT_TAG"
   release:
     tag_name: $CI_COMMIT_TAG
     name: 'Release $CI_COMMIT_TAG'
