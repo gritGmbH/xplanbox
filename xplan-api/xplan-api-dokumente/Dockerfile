@@ -7,7 +7,7 @@ FROM eclipse-temurin:11.0.21_9-jre-alpine
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
-ARG JAR_FILE=target/*.jar
+ARG WAR_FILE=target/*-repackaged.war
 ARG XPLANBOX_VERSION=latest
 
 # see https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
@@ -34,7 +34,7 @@ ENV JAVA_ADDITIONAL_ARG_JMX_EXPORTER='-javaagent:$JMX_EXPORTER_DIR/jmx_prometheu
 ENV JAVA_ADDITIONAL_ARG_APP="-DXPLANBOX_CONFIG=/xplanbox/xplan-dokumenten-config/ -Duser.timezone=Europe/Berlin"
 ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree
 
-COPY ${JAR_FILE} /xplanbox/app.jar
+COPY ${WAR_FILE} /xplanbox/app.war
 COPY run.sh /xplanbox/
 
 USER 1001
