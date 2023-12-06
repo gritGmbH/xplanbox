@@ -2,10 +2,8 @@ package de.latlon.xplanbox.security.config;
 
 import de.latlon.xplanbox.security.authentication.PropertiesFileUserDetailsManager;
 import de.latlon.xplanbox.security.authentication.SecurityConfigurationException;
-import de.latlon.xplanbox.security.authentication.UnauthorizedAuthenticationEntryPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,18 +27,10 @@ public class SecurityContext {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SecurityContext.class);
 
-	@Autowired
-	private UnauthorizedAuthenticationEntryPoint unauthorizedAuthenticationEntryPoint;
-
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		LOG.info("Configure security.");
-		http.authorizeRequests()
-			.anyRequest()
-			.authenticated()
-			.and()
-			.httpBasic()
-			.authenticationEntryPoint(unauthorizedAuthenticationEntryPoint);
+		http.csrf((csrf) -> csrf.disable()).authorizeRequests().anyRequest().authenticated().and().httpBasic();
 		return http.build();
 	}
 
