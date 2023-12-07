@@ -78,6 +78,11 @@
       <groupId>de.latlon.product.xplanbox</groupId>
       <artifactId>xplan-api-commons</artifactId>
     </dependency>
+    <dependency>
+      <groupId>de.latlon.product.xplanbox</groupId>
+      <artifactId>xplan-security</artifactId>
+      <version>${project.version}</version>
+    </dependency>
     <!-- deegree -->
     <dependency>
       <groupId>de.latlon</groupId>
