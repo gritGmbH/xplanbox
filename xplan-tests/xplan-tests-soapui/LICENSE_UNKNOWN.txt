@@ -7,6 +7,9 @@ Dritte ausser zu Testzwecken der Anwendung xPlanBox ist nicht gestattet.
 
 Inhalt des Verzeichnisses src/main/resources:
 --------------------------
+├── xplan-api-dokumente
+│   └── plans
+│       └── BPlan004_6-0.zip
 ├── xplan-api-manager
 │   ├── attachments
 │   │   ├── invalidContentType.odt
@@ -35,7 +38,6 @@ Inhalt des Verzeichnisses src/main/resources:
 │       ├── BP_4.0_Laufrichtungsfehler.zip
 │       ├── BP_4.0.zip
 │       ├── BP_4.1_2.zip
-│       ├── BP_4.1_MimeTypeV2.zip
 │       ├── BP_4.1.zip
 │       ├── BP_5.0_Entity.zip
 │       ├── BP_5.0_WithAenderungAndDokument.zip
@@ -52,10 +54,12 @@ Inhalt des Verzeichnisses src/main/resources:
 │       ├── BP_5.3_WithText.zip
 │       ├── BP_5.3.zip
 │       ├── BP_5.4_MultiplePlaene.zip
+│       ├── BP_6.0.2_NoBereichButReferenceExists.zip
 │       ├── BP_6.0.2.zip
 │       ├── BP_6.0.gml
 │       ├── BP_6.0_syntaxErrors.gml
 │       ├── BP_6.0.zip
+│       ├── BPlan004_4-1.zip
 │       ├── FP_5.0.zip
 │       ├── FP_6.0.2.zip
 │       ├── LP_6.0.zip
@@ -75,6 +79,7 @@ Inhalt des Verzeichnisses src/main/resources:
 │       ├── BP_5.3_WfsFc.zip
 │       ├── BP_5.3.zip
 │       ├── BP_6.0.2_invalide.zip
+│       ├── BP_6.0.2_NoBereichButReferenceExists.zip
 │       ├── BP_6.0.2_valide.zip
 │       ├── BP_6.0.gml
 │       ├── BP_6.0_syntaxErrors.gml
@@ -94,4 +99,3 @@ Inhalt des Verzeichnisses src/main/resources:
 │       ├── Eidelstedt_4_V4-soapui-webservices.zip
 │       ├── Eidelstedt4V4-with-nummer-soapui-webservices.zip
 │       └── Osdorf48_Test_60.zip
-
