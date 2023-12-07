@@ -32,6 +32,7 @@ import java.util.List;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 
 /**
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class ValidateExecutor {

@@ -43,14 +43,14 @@
             <resource>
               <directory>src/main/webapp</directory>
               <includes>
-                <include>version.txt</include>
+                <include>**/version.txt</include>
               </includes>
               <filtering>true</filtering>
             </resource>
             <resource>
               <directory>src/main/webapp</directory>
               <excludes>
-                <exclude>version.txt</exclude>
+                <exclude>**/version.txt</exclude>
               </excludes>
               <filtering>false</filtering>
             </resource>

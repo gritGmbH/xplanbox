@@ -42,6 +42,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class TransformingValidator {

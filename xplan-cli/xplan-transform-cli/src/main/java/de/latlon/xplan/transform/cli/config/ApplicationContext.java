@@ -58,6 +58,7 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorksp
 /**
  * Spring Application Context for initialising TransformTool components.
  *
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
 @Configuration

@@ -3,6 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-transform-cli</artifactId>
   <description>Kommandozeilentool fuer die Transformation zwischen XPlanGML Versionen</description>
+  <!-- XPlanTransformCLI is deprecated and will be removed in a future version. -->
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>

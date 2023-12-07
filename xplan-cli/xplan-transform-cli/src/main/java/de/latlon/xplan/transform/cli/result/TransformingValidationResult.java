@@ -25,6 +25,7 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 
 /**
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class TransformingValidationResult {

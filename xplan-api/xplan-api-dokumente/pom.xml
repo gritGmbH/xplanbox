@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-api-dokumente</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
@@ -21,12 +22,15 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  
+
   <build>
-	<plugins>
+    <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <classifier>repackaged</classifier>
+        </configuration>
         <executions>
           <execution>
             <goals>
@@ -51,16 +55,16 @@
         </executions>
       </plugin>
       <plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-jar-plugin</artifactId>
-		  <configuration>
-            <archive>
-              <manifest>
-                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-              </manifest>
-            </archive>
-		  </configuration>
-	  </plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
@@ -199,10 +203,10 @@
       <artifactId>jersey-test-framework-core</artifactId>
       <scope>test</scope>
       <exclusions>
-      	<exclusion>
-      		<groupId>junit</groupId>
-      		<artifactId>junit</artifactId>
-      	</exclusion>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -210,10 +214,10 @@
       <artifactId>jersey-test-framework-provider-inmemory</artifactId>
       <scope>test</scope>
       <exclusions>
-      	<exclusion>
-      		<groupId>junit</groupId>
-      		<artifactId>junit</artifactId>
-      	</exclusion>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>

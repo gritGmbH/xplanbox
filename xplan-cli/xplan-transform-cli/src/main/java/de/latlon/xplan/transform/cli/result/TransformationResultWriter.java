@@ -26,6 +26,7 @@ import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import java.io.Closeable;
 
 /**
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public interface TransformationResultWriter extends Closeable {
