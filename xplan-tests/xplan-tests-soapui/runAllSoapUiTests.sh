@@ -48,7 +48,7 @@ echo "Transforming to PDF $REPORT_PATH_PDF..."
 sed -i 's/display:none;//' target/site/surefire-report.html
 weasyprint file://$PWD/target/site/surefire-report.html $REPORT_PATH_PDF
 REPORT_PATH_TAR=target/test-report.tar.gz
-tar cfz $REPORT_PATH_TAR -C target/site .
+tar cfz $REPORT_PATH_TAR -C target site soapui
 
 if [ "$XPLAN_UPLOAD_TEST_REPORT" = "true" ];
 then
