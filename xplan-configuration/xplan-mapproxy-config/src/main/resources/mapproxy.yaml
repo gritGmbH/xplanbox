@@ -200,27 +200,27 @@ sources:
   bplan-wms:
     <<: *wms_cfg
     req:
-      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/bpwms?
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/bpwms?PIXELSIZE=0.28001
       transparent: true
   fplan-wms:
     <<: *wms_cfg
     req:
-      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/fpwms?
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/fpwms?PIXELSIZE=0.28001
       transparent: true
   lplan-wms:
     <<: *wms_cfg
     req:
-      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/lpwms?
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/lpwms?PIXELSIZE=0.28001
       transparent: true
   rplan-wms:
     <<: *wms_cfg
     req:
-      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/rpwms?
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/rpwms?PIXELSIZE=0.28001
       transparent: true
   soplan-wms:
     <<: *wms_cfg
     req:
-      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/sowms?
+      url: ${XPLAN_SERVICES_URL_INTERNAL}/xplan-wms/services/sowms?PIXELSIZE=0.28001
       transparent: true
 grids:
   gdi_de_25832:
