@@ -17,7 +17,7 @@ parts:
       directory_layout: reverse_tms
   cache_cfg_3857: &cache_cfg_3857
     format: image/png
-    grids: [gdi_de_3857]
+    grids: [GoogleMapsCompatible]
     disable_storage: ${XPLAN_MAPPROXY_CACHE_DISABLE}
     cache:
       type: s3
@@ -297,10 +297,12 @@ grids:
     bbox: [${XPLAN_SERVICES_BBOX_4326}]
     bbox_srs: 'EPSG:4326'
     origin: 'ul'
-  gdi_de_3857:
+  GoogleMapsCompatible:
       srs: 'EPSG:3857'
       tile_size: [512, 512]
-      res: [28.0,14.0,7.0,2.8,1.4,0.7,0.28]
+      num_levels: 9
+      min_res: 38.21851414258813
+      max_res: 0.1492910708694849
       bbox: [${XPLAN_SERVICES_BBOX_4326}]
       bbox_srs: 'EPSG:4326'
       origin: 'ul'
