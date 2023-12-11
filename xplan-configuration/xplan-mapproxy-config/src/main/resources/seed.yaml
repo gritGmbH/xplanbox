@@ -1,38 +1,62 @@
 seeds:
-  bpreseed:
-    caches: [bplan_raster_cache,bplan_vektor_cache]
-    grids: [gdi_de_25832]
+  bpreseed_25832:
+    caches: [bplan_raster_cache_25832,bplan_vektor_cache_25832]
     coverages: [bpchanges]
     refresh_before:
       days: 0
-  fpreseed:
-    caches: [fplan_raster_cache,fplan_vektor_cache]
-    grids: [gdi_de_25832]
+  fpreseed_25832:
+    caches: [fplan_raster_cache_25832,fplan_vektor_cache_25832]
     coverages: [fpchanges]
     refresh_before:
       days: 0
-  lpreseed:
-    caches: [lplan_raster_cache,lplan_vektor_cache]
-    grids: [gdi_de_25832]
+  lpreseed_25832:
+    caches: [lplan_raster_cache_25832,lplan_vektor_cache_25832]
     coverages: [lpchanges]
     refresh_before:
       days: 0
-  rpreseed:
-    caches: [rplan_raster_cache,rplan_vektor_cache]
-    grids: [gdi_de_25832]
+  rpreseed_25832:
+    caches: [rplan_raster_cache_25832,rplan_vektor_cache_25832]
     coverages: [rpchanges]
     refresh_before:
       days: 0
-  soreseed:
-    caches: [soplan_raster_cache,soplan_vektor_cache]
-    grids: [gdi_de_25832]
+  soreseed_25832:
+    caches: [soplan_raster_cache_25832,soplan_vektor_cache_25832]
+    coverages: [sochanges]
+    refresh_before:
+      days: 0
+  bpreseed_3857:
+    caches: [bplan_raster_cache_3857,bplan_vektor_cache_3857]
+    coverages: [bpchanges]
+    refresh_before:
+      days: 0
+  fpreseed_3857:
+    caches: [fplan_raster_cache_3857,fplan_vektor_cache_3857]
+    coverages: [fpchanges]
+    refresh_before:
+      days: 0
+  lpreseed_3857:
+    caches: [lplan_raster_cache_3857,lplan_vektor_cache_3857]
+    coverages: [lpchanges]
+    refresh_before:
+      days: 0
+  rpreseed_3857:
+    caches: [rplan_raster_cache_3857,rplan_vektor_cache_3857]
+    coverages: [rpchanges]
+    refresh_before:
+      days: 0
+  soreseed_3857:
+    caches: [soplan_raster_cache_3857,soplan_vektor_cache_3857]
     coverages: [sochanges]
     refresh_before:
       days: 0
   # wird bei einem frischen Deployment vermutlich gar nicht benötigt?
-  fullseed:
-    caches: [bplan_raster_cache,bplan_vektor_cache,fplan_raster_cache,fplan_vektor_cache,lplan_raster_cache,lplan_vektor_cache,rplan_raster_cache,rplan_vektor_cache,soplan_raster_cache,soplan_vektor_cache]
-    grids: [gdi_de_25832]
+  fullseed_25832:
+    caches: [bplan_raster_cache_25832,bplan_vektor_cache_25832,fplan_raster_cache_25832,fplan_vektor_cache_25832,lplan_raster_cache_25832,lplan_vektor_cache_25832,rplan_raster_cache_25832,rplan_vektor_cache_25832,soplan_raster_cache_25832,soplan_vektor_cache_25832]
+    coverages: [full]
+    refresh_before:
+      days: 0
+  fullseed_3857:
+    caches: [bplan_raster_cache_3857,bplan_vektor_cache_3857,fplan_raster_cache_3857,fplan_vektor_cache_3857,lplan_raster_cache_3857,lplan_vektor_cache_3857,rplan_raster_cache_3857,rplan_vektor_cache_3857,soplan_raster_cache_3857,soplan_vektor_cache_3857]
     coverages: [full]
     refresh_before:
       days: 0
