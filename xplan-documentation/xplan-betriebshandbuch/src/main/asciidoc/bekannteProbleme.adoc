@@ -35,7 +35,7 @@ Wenn die erzeugten deegree Konfigurationsdateien für Layer und Themes leere XML
 
 ==== Lösungsansätze
 
-- Für die Erzeugung der deegree Konfigurationsdateien muss zwingend die Bibliothek Apache Xalan 2.7.2 verwendet werden.
+- Für die Erzeugung der deegree Konfigurationsdateien muss zwingend die Bibliothek Apache Xalan 2.7.3 verwendet werden.
 - Zusätzlich muss sichergestellt sein, dass im Java Classpath des Prozesses, der den XPlanManagerCLI aufruft, keine anderen JAXP (SAX/DOM) Implementierungen vorhanden sind als die Dateien _Saxon-HE-9.9.x.jar_ und _xalan-2.7.2.jar_.
 - Eine Umgehung des Fehlers ist möglich, wenn die leeren XML-Namensraum-Attribute manuell entfernt werden. Dann ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
 
