@@ -1,6 +1,10 @@
 [[konfiguration-rest-api]]
 == Konfiguration der REST-Schnittstellen
 
+Die xPlanBox stellt die folgenden REST-Schnittstellen bereit: die XPlanValidatorAPI,XPlanManagerAPI und XPlanDokumentenAPI.
+
+TIP: Die REST-Schnittstellen von XPlanValidatorAPI und XPlanManagerAPI sind über Spring Security abgesichert. Um für einen Aufruf der REST-Schnittstellen die  erfolgreiche Authentifizierung zu prüfen, muss das Spring-Profil `enableSecurity` für die Komponenten aktiviert werden.
+
 [[konfiguration-manager-api]]
 === XPlanManagerAPI
 
@@ -18,9 +22,9 @@ Beispiel:
 apiUrl=https://xplanbox.lat-lon.de
 ----
 
-==== Kontakt E-Mail Adresse
+==== Kontakt E-Mail-Adresse
 
-E-Mail Adresse des Kontakts, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
+E-Mail-Adresse des Kontakts, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
 Beispiel:
 
 ----
@@ -87,9 +91,9 @@ Beispiel:
 apiUrl=https://xplanbox.lat-lon.de
 ----
 
-==== Kontakt E-Mail Adresse
+==== Kontakt E-Mail-Adresse
 
-E-Mail Adresse des Kontakts, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
+E-Mail-Adresse des Kontakts, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
 Beispiel:
 
 ----
@@ -105,7 +109,7 @@ Beispiel:
 termsOfServiceUrl=https://opensource.org/tos/
 ----
 
-==== URL zur Dokumentation der xPLanBox
+==== URL zur Dokumentation der xPlanBox
 
 URL zur Dokumentation, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
 Beispiel:
@@ -130,9 +134,9 @@ apiUrl=https://xplanbox.lat-lon.de
 ----
 Wird keine URL angegeben, dann wird eine relative URL ausgegeben
 
-==== Kontakt E-Mail Adresse
+==== Kontakt E-Mail-Adresse
 
-E-Mail Adresse des Kontakts, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
+E-Mail-Adresse des Kontakts, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
 Beispiel:
 
 ----
@@ -148,7 +152,7 @@ Beispiel:
 termsOfServiceUrl=https://opensource.org/tos/
 ----
 
-==== URL zur Dokumentation der xPLanBox
+==== URL zur Dokumentation der xPlanBox
 
 URL zur Dokumentation, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
 Beispiel:

@@ -236,6 +236,7 @@ Für die Aktualisierung auf die Version 7.0 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 ** Es wird empfohlen zur Absicherung der REST-Schnittstellen der XPlanDienste von der Authentifizierung über einen Tomcat-Nutzer auf API-Key umzustellen. Details dazu finden sich im Abschnitt <<dienste-tomcat>>. Soll weiterhin die Absicherung über einen konfigurierten Tomcat-Nutzer erfolgen, muss in der Datei _<DEEGREE_WORKSPACE_ROOT>/config.apikey_ ein `*` eingetragen werden, um die Absicherung zu deaktivieren.
+** Im _xplan-manager-workspace_ muss eine neue Konfigurationsdatei für einen `JpaConnectionProvider` im Unterverzeichnis _jdbc/_ angelegt werden. Die Datei muss mit der bereits vorhandenen Konfigurationsdatei für den `DataSourceConnectionProvider` über die Ressourcen-ID verknüpft werden. Vorlagen befinden sich in dem bereitgestellten Workspace _xplan-manager-workspace_.
 * Aktualisierung der Datenbank:
 ** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_6.0.1_to_7.0_ im Modul _xplan-manager-workspace_
 *** vor Ausführung des Skripts muss die Variable `${xplan.srid}` mit dem verwendeten CRS ausgetauscht werden. Die Datei _migrate_25832.sql_ beinhaltet bereits die Ersetzung durch den CRS Code `25832` und kann ohne Änderungen ausgeführt werden.
