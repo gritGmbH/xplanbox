@@ -12,30 +12,30 @@ dependsOn:
     - name: OSGeo deegree webservices (with XPlanung patch)
       optional: false
       version: '3.5'
-      versionMax: '3.5.0'
-      versionMin: '3.5-PRE1'
+      versionMax: '3.5.3'
+      versionMin: '3.5.0'
     - name: XPlanung-Validierungsregeln
       optional: false
       version: '1.0'
-      versionMax: '1.0'
+      versionMax: '1.1.6'
       versionMin: '1.0'
     - name: PostgreSQL Datenbank mit PostGIS-Erweiterung
       optional: false
       version: '12.0'
-      versionMax: '13.0'
+      versionMax: '14.0'
       versionMin: '12.0'
 description:
   de:
     documentation: |-
       https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/README.md
     features:
-      - XPlanValidator: Web-Oberfläche für den XPlanGML-Validator
-      - XPlanManager: Web-Oberfläche für das Datenmanagement
-      - XPlanWMS: Standard-Karten-Dienst für die Auskunft
-      - XPlanWFS: Standard-Daten-Dienst für die Auskunft (originale XPlanGML-Datenstruktur)
-      - XPlanSynWFS: Standard-Daten-Dienst für die Auskunft (vereinfachte Datenstruktur)
-      - XPlanValidatorAPI: REST-Schnittstelle für den XPlanGML-Validator
-      - XPlanManagerAPI: REST-Schnittstelle für das Datenmanagement
+      XPlanValidator: Web-Oberfläche für den XPlanGML-Validator
+      XPlanManager: Web-Oberfläche für das Datenmanagement
+      XPlanWMS: Standard-Karten-Dienst für die Auskunft
+      XPlanWFS: Standard-Daten-Dienst für die Auskunft (originale XPlanGML-Datenstruktur)
+      XPlanSynWFS: Standard-Daten-Dienst für die Auskunft (vereinfachte Datenstruktur)
+      XPlanValidatorAPI: REST-Schnittstelle für den XPlanGML-Validator
+      XPlanManagerAPI: REST-Schnittstelle für das Datenmanagement
     genericName: ozgxplanung
     longDescription: |-
       Die Anwendung dient der Abbildung der Bauleit- und der Landschaftsplanung und basiert auf den Standards des 
@@ -67,9 +67,9 @@ maintenance:
 name: ozgxplanung
 platforms:
   - web
-releaseDate: '2022-10-28'
+releaseDate: '2023-10-26'
 softwareType: standalone/depends
-softwareVersion: 6.0
+softwareVersion: 7.0
 url: 'https://gitlab.opencode.de/diplanung/ozgxplanung.git'
 usedBy:
   - XLeitstelle, Hamburg

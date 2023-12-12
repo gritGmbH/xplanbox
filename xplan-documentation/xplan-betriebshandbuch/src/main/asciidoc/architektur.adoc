@@ -132,7 +132,6 @@ Der XPlanWMS greift auf dasselbe Datenbankschema wie der <<xplansynwfs>> in der 
 Während der XPlanWMS planübergreifend arbeitet, beschränkt sich der
 XPlanWerkWMS auf einzelne Planwerke. Der XPlanArtWMS stellt je einen Endpunkt für jede Planart wie z. B. BPlan oder FPlan zur Verfügung.
 
-
 [[xplanwfs]]
 === XPlanWFS
 
@@ -170,4 +169,4 @@ Testdaten sowie die Dokumente mit den Konformitätsbedingungen des Standards XPl
 [[xplandb]]
 === XPlanDB
 
-Die Komponente stellt die zentrale Datenhaltungskomponente für die alle Komponenten der xPlanBox bereit und wird durch eine PostgreSQL/PostGIS DB realisiert. Die Einrichtung der Datenbank ist im Kapitel <<konfiguration-der-datenbank>>, die Datenbankstruktur im Anhang <<appendix_xplandb>> sowie der Datenzugriff im Kapitel <<datenzugriff-xplandb>> beschrieben.
+Die Komponente stellt die zentrale Datenhaltungskomponente für die alle Komponenten der xPlanBox bereit und wird durch eine <<datenbank,PostgreSQL/PostGIS DB>> realisiert. Die Einrichtung der Datenbank ist im Kapitel <<konfiguration-der-datenbank>>, die Datenbankstruktur im Anhang <<appendix_xplandb>> sowie der Datenzugriff im Kapitel <<datenzugriff-xplandb>> beschrieben.

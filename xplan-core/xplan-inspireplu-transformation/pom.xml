@@ -15,7 +15,6 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-commons</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -33,10 +32,6 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
     </dependency>
-      <dependency>
-          <groupId>de.latlon.product.xplanbox</groupId>
-          <artifactId>xplan-commons</artifactId>
-      </dependency>
   </dependencies>
 
 </project>

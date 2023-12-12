@@ -1,4 +1,4 @@
-=== XPlanRessourcen
+== XPlanRessourcen
 
 Die Einstiegsseite der Komponente XPlanRessourcen enthält Referenzen zu
 den anderen Komponenten der xPlanBox. Die Referenzen müssen ggf. an die

@@ -1,5 +1,5 @@
 [[anwendung-installieren]]
-=== Anwendung installieren
+=== Anwendungskomponten installieren
 
 Speichern Sie die Distributionsdatei in einem lokalen Verzeichnis und entpacken Sie die ZIP-Datei. Prüfen Sie die Vollständigkeit der Distributionsdatei anhand der Auflistung der im Kapitel <<installationskomponenten>>.
 

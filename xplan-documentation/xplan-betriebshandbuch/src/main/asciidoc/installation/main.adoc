@@ -1,5 +1,5 @@
 [[installation]]
-== Installation der Komponenten
+== Installationsanleitung
 
 In den nachfolgenden Kapiteln wird die Installation der einzelnen Komponenten erläutert.
 
@@ -7,9 +7,9 @@ include::ueberblick.adoc[]
 
 include::vorbereitung.adoc[]
 
-include::installation.adoc[]
-
 include::datenbank.adoc[]
+
+include::installation.adoc[]
 
 include::konfigurationApplikationsserver.adoc[]
 

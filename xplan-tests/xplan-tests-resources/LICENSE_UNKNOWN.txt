@@ -5,7 +5,7 @@ Die in diesem Verzeichnis abgelegten XPlanArchive und XPlanGML-Dateien werden zu
 Dateien können keine genaueren Angaben zur Quelle und zu etwaigen Nutzungsrechten angegeben werden. Eine Weitergabe an
 Dritte ausser zu Testzwecken der Anwendung xPlanBox ist nicht gestattet.
 
-Inhalt des Verzeichnisses:
+Inhalt des Verzeichnisses src/main/resources:
 --------------------------
 └── de
     └── latlon
