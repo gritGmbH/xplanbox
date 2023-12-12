@@ -1,0 +1,6 @@
+---------
+---------
+Platzhalter für die Third Party Lizenzen.
+Beim Release Build wird die Liste der Third Parties Lizenzen generiert und statt dieser Datei verwendet.
+---------
+---------

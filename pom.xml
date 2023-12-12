@@ -73,6 +73,25 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <inherited>false</inherited>
+            <executions>
+              <execution> <!-- generated list used by xplan-betriebshandbuch --> 
+                <id>aggregateLicenses</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>aggregate-add-third-party</goal>
+                </goals>
+                <configuration>
+                  <excludedGroups>de.latlon.product.xplanbox</excludedGroups>
+                  <excludedScopes>test</excludedScopes>
+                  <failOnMissing>true</failOnMissing>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
             <version>3.1.0</version>
@@ -106,7 +125,6 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>license-maven-plugin</artifactId>
-            <version>2.2.0</version>
             <configuration>
               <canUpdateCopyright>true</canUpdateCopyright>
               <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
@@ -662,6 +680,11 @@
           <groupId>io.fabric8</groupId>
           <artifactId>docker-maven-plugin</artifactId>
           <version>0.43.4</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>2.3.0</version>
         </plugin>
       </plugins>
     </pluginManagement>
