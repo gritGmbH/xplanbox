@@ -1,7 +1,7 @@
 [[s3-storage]]
 == S3-Objektspeicher
 
-Die Ablage von Rasterdaten und Begleitdokumente in einemS3-Objektspeicher wird ab der Version 7.0 der xPlanBox unterstützt.
+Die Ablage von Rasterdaten und Begleitdokumente in einem S3-Objektspeicher wird ab der Version 7.0 der xPlanBox unterstützt.
 
 [[s3-storage-image]]
 === Rasterdaten
