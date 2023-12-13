@@ -2,7 +2,7 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
-## Version 7.1 (2023-11-XX)
+## Version 7.1 (2023-12-13)
 
 ### Erweiterungen
 - Unterstützung für MapProxy 1.16.0 zur Bereitstellung von Raster- und Vektordaten über WMTS und WMS mit S3-Objektspeicher als Cache
