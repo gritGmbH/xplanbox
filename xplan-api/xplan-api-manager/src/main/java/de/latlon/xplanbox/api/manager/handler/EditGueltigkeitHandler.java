@@ -37,6 +37,7 @@ import java.util.Collections;
  */
 @Component
 @Singleton
+@Deprecated
 public class EditGueltigkeitHandler extends EditHandler {
 
 	/**

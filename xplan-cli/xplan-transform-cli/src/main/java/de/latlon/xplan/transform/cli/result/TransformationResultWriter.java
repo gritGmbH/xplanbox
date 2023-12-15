@@ -29,6 +29,7 @@ import java.io.Closeable;
  * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
+@Deprecated
 public interface TransformationResultWriter extends Closeable {
 
 	void writeResult(String id, String name, SyntacticValidatorResult validatorResult,

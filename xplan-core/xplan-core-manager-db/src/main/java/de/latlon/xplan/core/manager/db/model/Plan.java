@@ -313,6 +313,7 @@ public class Plan {
 	/**
 	 * @deprecated will be removed in a future version.
 	 */
+	@Deprecated
 	public Date getGueltigkeitbeginn() {
 		return gueltigkeitbeginn;
 	}
@@ -320,6 +321,7 @@ public class Plan {
 	/**
 	 * @deprecated will be removed in a future version.
 	 */
+	@Deprecated
 	public void setGueltigkeitbeginn(Date gueltigkeitbeginn) {
 		this.gueltigkeitbeginn = gueltigkeitbeginn;
 	}
@@ -327,6 +329,7 @@ public class Plan {
 	/**
 	 * @deprecated will be removed in a future version.
 	 */
+	@Deprecated
 	public Plan gueltigkeitbeginn(Date gueltigkeitbeginn) {
 		this.gueltigkeitbeginn = gueltigkeitbeginn;
 		return this;
@@ -335,6 +338,7 @@ public class Plan {
 	/**
 	 * @deprecated will be removed in a future version.
 	 */
+	@Deprecated
 	public Date getGueltigkeitende() {
 		return gueltigkeitende;
 	}
@@ -342,6 +346,7 @@ public class Plan {
 	/**
 	 * @deprecated will be removed in a future version.
 	 */
+	@Deprecated
 	public void setGueltigkeitende(Date gueltigkeitende) {
 		this.gueltigkeitende = gueltigkeitende;
 	}
@@ -349,6 +354,7 @@ public class Plan {
 	/**
 	 * @deprecated will be removed in a future version.
 	 */
+	@Deprecated
 	public Plan gueltigkeitende(Date gueltigkeitende) {
 		this.gueltigkeitende = gueltigkeitende;
 		return this;

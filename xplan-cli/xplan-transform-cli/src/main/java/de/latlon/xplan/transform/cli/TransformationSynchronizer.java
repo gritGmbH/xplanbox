@@ -60,6 +60,7 @@ import static de.latlon.xplan.transform.cli.TransformApplicationRunner.LOG_TABLE
  * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
+@Deprecated
 public class TransformationSynchronizer implements Synchronizer {
 
 	private static final Logger LOG = LoggerFactory.getLogger(TransformationSynchronizer.class);

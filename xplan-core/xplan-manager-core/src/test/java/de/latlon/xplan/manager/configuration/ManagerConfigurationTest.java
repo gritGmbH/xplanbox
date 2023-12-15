@@ -59,6 +59,7 @@ public class ManagerConfigurationTest {
 	public void testGetCategoryMapping() throws Exception {
 		ManagerConfiguration managerConfiguration = new ManagerConfiguration(mockPropertiesLoader());
 
+		@Deprecated
 		Map<String, List<String>> categoryMapping = managerConfiguration.getCategoryMapping();
 		List<String> cat1Parts = categoryMapping.get("Cat1");
 		List<String> cat2Parts = categoryMapping.get("Cat2");

@@ -50,6 +50,7 @@ import static java.nio.file.Files.isDirectory;
  */
 @Component
 @Import(ApplicationContext.class)
+@Deprecated
 public class TransformApplicationRunner implements ApplicationRunner {
 
 	private static final Logger LOG = LoggerFactory.getLogger(TransformApplicationRunner.class);

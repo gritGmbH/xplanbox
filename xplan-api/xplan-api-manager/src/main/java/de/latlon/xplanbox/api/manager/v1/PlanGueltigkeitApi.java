@@ -46,6 +46,7 @@ import javax.ws.rs.Produces;
  * @since 4.4
  */
 @Path("/plan/{planId}/gueltigkeit")
+@Deprecated
 public class PlanGueltigkeitApi {
 
 	@Autowired

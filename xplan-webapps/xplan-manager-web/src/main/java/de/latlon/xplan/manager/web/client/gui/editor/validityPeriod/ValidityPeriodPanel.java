@@ -39,6 +39,7 @@ import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
  * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
+@Deprecated
 public class ValidityPeriodPanel extends CaptionPanel implements Validable {
 
 	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);

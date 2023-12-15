@@ -36,6 +36,7 @@ import java.util.Date;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @deprecated class will be removed in a future version.
  */
+@Deprecated
 public class ValidityPeriodDialog extends WizardDialogBox implements Validable {
 
 	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);

@@ -224,6 +224,7 @@ public class XPlanManager {
 	 * @return true if crs is set, false if crs is not set
 	 * @throws IOException
 	 */
+	@Deprecated
 	public boolean isCrsSet(String archiveFileName) throws IOException {
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		return archive.getCrs() != null;

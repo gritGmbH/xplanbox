@@ -30,6 +30,7 @@ import java.util.Date;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
+@Deprecated
 public class ValidityPeriod {
 
 	@Valid

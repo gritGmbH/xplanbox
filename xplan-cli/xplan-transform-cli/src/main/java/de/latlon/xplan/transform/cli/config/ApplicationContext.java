@@ -63,6 +63,7 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorksp
  */
 @Configuration
 @Import(JpaContext.class)
+@Deprecated
 public class ApplicationContext {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ApplicationContext.class);
