@@ -2,7 +2,7 @@
 
 In diesem Repository ist der Quellcode für die Open Source-Version der Anwendung "xPlanBox" der Firma [lat/lon](https://www.lat-lon.de) enthalten. Die Anwendung dient der Abbildung der Bauleit- und der Landschaftsplanung sowie der Raumordnung auf Basis des Standards [XPlanung](https://xleitstelle.de/xplanung/ueber_xplanung). Die Anwendung basiert zudem auf den Standards des [Open Geospatial Consortium](https://www.ogc.org/), den technischen Empfehlungen der [INSPIRE Richtlinie](https://inspire.ec.europa.eu/) und insbesondere der Abbildung des deutschen Planungsrechts durch das [GML-Anwendungsschema XPlanGML](https://xleitstelle.de/xplanung/releases-xplanung). Die Komponenten der Anwendung wurden u.a. unter der Verwendung der Open Source-Software [deegree](https://www.deegree.org) implementiert.
 
-Die Anwendung ist Bestandteil der [DiPlanung](https://diplanung.de)-Plattform zur Umsetzung der [OZG](https://www.onlinezugangsgesetz.de)-Leistungen "Beteiligungsverfahren nach dem Baugesetzbuch, dem Raumordnungsgesetz und in der Planfeststellung" und "Einstellen von raumbezogenen Planwerken in das Internet" im Themenfeld "Bauen und Wohnen". Sie wird in diesem Zusammenhang per Software-as-a-Service (SaaS) als sog. [EfA-Lösung](https://www.onlinezugangsgesetz.de/Webs/OZG/DE/grundlagen/nachnutzung/nachnutzung-node.html) zur Nachnutzung bereitgestellt. Anfragen zur Nachnutzung können an ozg-buw@bsw.hamburg.de gerichtet werden.
+Die Anwendung ist Bestandteil der [DiPlanung](https://diplanung.de)-Plattform zur Umsetzung der [OZG](https://www.onlinezugangsgesetz.de)-Leistungen "Beteiligungsverfahren nach dem Baugesetzbuch, dem Raumordnungsgesetz und in der Planfeststellung" und "Einstellen von raumbezogenen Planwerken in das Internet" im Themenfeld "Bauen und Wohnen". Sie wird in diesem Zusammenhang per Software-as-a-Service (SaaS) als sog. [EfA-Lösung](https://www.digitale-verwaltung.de/Webs/DV/DE/onlinezugangsgesetz/efa/efa-node.html) zur Nachnutzung bereitgestellt. Anfragen zur Nachnutzung können an ozg-buw@bsw.hamburg.de gerichtet werden.
 
 ## xPlanBox im OZG-Kontext
 
@@ -63,26 +63,6 @@ Folgen Sie der [Installationsanleitung von Maven](https://maven.apache.org/insta
 
 Weitere Informationen zur Konfiguration von Maven finden Sie in der [Referenzdokumentation zu den Maven Settings](https://maven.apache.org/settings.html).
 
-#### deegree erstellen
-
-Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.com/lat-lon/deegree3/tree/xplanbox-deegree3.5) kompiliert werden. Dazu muss die passende Version von deegree ausgewählt werden. Für Version 7.0+ der Anwendung muss deegree **Version 3.5.0.2** verwendet werden:
-
-```shell
-git clone https://github.com/lat-lon/deegree3.git
-cd deegree3
-git checkout tags/xplanbox-deegree-3.5.0.2
-mvn clean install
-```
-> **_Hinweis_**: Aktuell kann noch nicht eine offizielle Release-Version von deegree verwendet werden, da für das Fachdatenschema XPlanung noch spezifische Erweiterungen an deegree vorgenommen wurden. Sobald eine Version von deegree mit Unterstützung dieser Erweiterungen verfügbar ist, entfällt dieser Schritt.
-
-> **_Hinweis_**: Unter dem Betriebssystem Windows kann es bei der Ausführung von Unit-Test zu Fehlern kommen. Es kann dann erforderlich sein, die Tests zu überspringen. Dazu ist die Option `-DskipTests` beim Aufruf von Maven zu ergänzen.
-
-#### XPlanung-Validierungsregeln einbinden
-
-Die Anwendung nutzt die öffentlich verfügbaren XPlanung-Validierungsregeln des XPlanung-Standards aus dem [OpenCoDE-Repository der XLeitstelle](https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard).
-
-> **_Hinweis_**: Um eine andere Version der XPlanung-Validierungsregeln zu installieren, folgen Sie der Anleitung im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc).
-
 #### Anwendung erstellen
 
 Die Erstellung der Binärdateien der Anwendung erfolgt dann im Basisverzeichnis mit folgendem Maven Aufruf:
@@ -93,9 +73,17 @@ cd ozgxplanung
 mvn clean install
 ```
 
+> **_Hinweis_**: Unter dem Betriebssystem Windows kann es bei der Ausführung von Unit-Test zu Fehlern kommen. Es kann dann erforderlich sein, die Tests zu überspringen. Dazu ist die Option `-DskipTests` beim Aufruf von Maven zu ergänzen.
+
 ### Installation und Konfiguration
 
 Die Installation und Konfiguration der Anwendung ist im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc) dokumentiert.
+
+#### XPlanung-Validierungsregeln einbinden
+
+Die Anwendung nutzt die öffentlich verfügbaren XPlanung-Validierungsregeln des XPlanung-Standards aus dem [OpenCoDE-Repository der XLeitstelle](https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard).
+
+> **_Hinweis_**: Um eine andere Version der XPlanung-Validierungsregeln zu installieren, folgen Sie der Anleitung im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc).
 
 ----
 © 2023 lat/lon gesellschaft für raumbezogene informationssysteme mbH  

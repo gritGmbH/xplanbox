@@ -51,6 +51,9 @@ xplan-resources/xplan-database-scripts/src/main/resources/
 │   ├── changelog_v70.yaml
 │   ├── changelog_xplanmgr.yaml
 │   └── changelog_xplanvalidator.yaml
+├── 7.1
+│   ├── changelog_v71.yaml
+│   └── changelog_xplanvalidator.yaml
 ├── changelog_xplandb.yaml
 ├── liquibase-diff.properties
 └── liquibase.properties

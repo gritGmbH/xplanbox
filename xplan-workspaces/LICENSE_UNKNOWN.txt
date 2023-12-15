@@ -87,9 +87,11 @@ Inhalt des Verzeichnisses src/main/workspace/styles/xplansyn/symbols/:
 ├── schutzgebgembed_sym.svg
 ├── schutzgebgeschbio_sym.svg
 ├── schutzgebgeschla_sym.svg
+├── schutzgeblandsch_sym.svg
 ├── schutzgebnatpark_sym.svg
 ├── schutzgebnaturdenk_sym.svg
 ├── schutzgebnaturpark_sym.svg
+├── schutzgebnatur_sym.svg
 ├── schutzpflentwfl_rs.svg
 ├── sichtflaeche.png
 ├── speziellebauweise_arkade.png
@@ -102,7 +104,6 @@ Inhalt des Verzeichnisses src/main/workspace/styles/xplansyn/symbols/:
 ├── spispoanlflspo_sym.svg
 ├── strkoerperauf_rs.svg
 ├── strkoerperstuetz_rs.svg
-├── test.txt
 ├── todo.svg
 ├── verentsorgabfall_sym.svg
 ├── verentsorgablag_sym.svg
@@ -110,6 +111,7 @@ Inhalt des Verzeichnisses src/main/workspace/styles/xplansyn/symbols/:
 ├── verentsorgelektr_sym.svg
 ├── verentsorggas_sym.svg
 ├── verentsorgwasser_sym.svg
-└── verksflbeszwb_neu.png
+├── verksflbeszwb_neu.png
+└── wegerecht.svg
 
 

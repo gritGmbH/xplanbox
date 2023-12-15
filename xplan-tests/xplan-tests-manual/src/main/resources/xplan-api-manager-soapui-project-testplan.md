@@ -92,49 +92,71 @@
 ## /plan/{planId}/dokument/ TestCase
 * GET BP 5.0 pI currentStatus
 * POST BP 5.0 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing
+* JDBC BP 5.0 XX checkDokument
 * GET BP 5.0 pI verifyStatus
 * POST BP 5.0 pI expectErrorDokumentAlreadyExists
 * GET FP 5.0 pI currentStatus
 * POST FP 5.0 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing 2
+* JDBC FP 5.0 XX checkDokument
 * GET FP 5.0 pI verifyStatus
 * GET LP 6.0 pI currentStatus
 * POST LP 6.0 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing 3
+* JDBC LP 6.0 XX checkDokument
 * GET LP 6.0 pI verifyStatus
 * GET RP 5.1 pI currentStatus
 * POST RP 5.1 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing 4
+* JDBC RP 5.1 XX checkDokument
 * GET RP 5.1 pI verifyStatus
 * GET SO 5.3 pI currentStatus
 * POST SO 5.3 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing 5
+* JDBC SO 5.3 XX checkDokument
 * GET SO 5.3 pI verifyStatus
 * Property Transfer
 ## /plan/{planId}/dokument/{id} TestCase
-* GET BP 5.3 pI,id currentStatus
-* PUT BP 5.3 pI,id modifyStatusXSSExpectError
-* PUT BP 5.3 pI,id modifyStatus
-* Property Transfer BP 5.3
-* PUT BP 5.3 pI,id modifyStatusExpectError
-* DEL BP 5.3 pI,id modifyStatus
-* GET BP 5.3 pI,id verifyStatus
+* GET BP 5.0 pI,id currentStatus
+* PUT BP 5.0 pI,id modifyStatusXSSExpectError
+* PUT BP 5.0 pI,id modifyStatus
+* skipNextStepIfJdbcUrlMissing
+* JDBC BP 5.0 XX checkDokument
+* Property Transfer BP 5.0
+* PUT BP 5.0 pI,id modifyStatusExpectError
+* DEL BP 5.0 pI,id modifyStatus
+* GET BP 5.0 pI,id verifyStatus
 * PUT FP 5.0 pI,id modifyStatus
+* skipNextStepIfJdbcUrlMissing 2
+* JDBC FP 5.0 XX checkDokument
 * Property Transfer FP 5.0
 * GET FP 5.0 pI,id currentStatus
 * DEL FP 5.0 pI,id modifyStatus
 * GET FP 5.0 pI,id verifyStatusExpectError
 * PUT LP 6.0 pI,id modifyStatus
+* skipNextStepIfJdbcUrlMissing 3
+* JDBC LP 6.0 XX checkDokument
 * Property Transfer LP 6.0
 * GET LP 6.0 pI,id currentStatus
 * DEL LP 6.0 pI,id modifyStatus
 * GET LP 6.0 pI,id verifyStatusExpectError
 * PUT RP 5.1 pI,id modifyStatus
+* skipNextStepIfJdbcUrlMissing 4
+* JDBC RP 5.1 XX checkDokument
 * Property Transfer RP 5.1
 * GET RP 5.1 pI,id currentStatus
 * DEL RP 5.1 pI,id modifyStatus
 * GET RP 5.1 pI,id verifyStatusExpectError
 * PUT SO 5.3 pI,id modifyStatus
+* skipNextStepIfJdbcUrlMissing 5
+* JDBC SO 5.3 XX checkDokument
 * Property Transfer SO 5.3
 * GET SO 5.3 pI,id currentStatus
 * DEL SO 5.3 pI,id modifyStatus
 * GET SO 5.3 pI,id verifyStatusExpectError
+* skipNextStepIfJdbcUrlMissing 6
+* JDBC XX XX XX checkDokumentDelete
 * Cleanup
 ## /plan/{planId}/gueltigkeit/ TestCase
 * GET BP 4.1 pI currentStatus
@@ -146,6 +168,8 @@
 * GET BP 5.3 pI currentStatus
 * GET BP 5.2 pI currentStatusWithoutBereich
 * POST BP 5.3 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing
+* JDBC BP 5.3 XX checkRasterbasis
 * POST BP 5.2 pI modifyStatusWithoutBereichExpectError
 * GET BP 5.3 pI verifyStatus
 * POST BP 5.3 pI modifyStatusWithoutBereichNummerExpectError
@@ -157,22 +181,32 @@
 * GET BP 6.0 pI currentStatusGML
 * GET FP 5.0 pI currentStatus
 * POST FP 5.0 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing 2
+* JDBC FP 5.0 XX checkRasterbasis
 * GET FP 5.0 pI verifyStatus
 * GET LP 6.0 pI currentStatus
 * POST LP 6.0 pI modifyStatusXSSExpectError
 * POST LP 6.0 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing 3
+* JDBC LP 6.0 XX checkRasterbasis
 * GET LP 6.0 pI verifyStatus
 * GET RP 5.1 pI currentStatus
 * POST RP 5.1 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing 4
+* JDBC RP 5.1 XX checkRasterbasis
 * GET RP 5.1 pI verifyStatus
 * GET SO 5.3 pI currentStatus
 * POST SO 5.3 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing 5
+* JDBC SO 5.3 XX checkRasterbasis
 * GET SO 5.3 pI verifyStatus
 * Property Transfer
 ## /plan/{planId}/rasterbasis/{id} TestCase
 * GET BP 5.3 pI,id currentStatus
 * PUT BP 5.3 pI,id modifyStatus
 * Property Transfer BP 5.3
+* skipNextStepIfJdbcUrlMissing
+* JDBC BP 5.3 XX checkRasterbasis
 * PUT BP 5.3 pI,id modifyStatusUnsupportedContentTypeExpectError
 * GET BP 5.3 pI,id verifyStatus
 * DEL BP 5.3 pI,id modifyStatus
@@ -190,24 +224,34 @@
 * DEL BP 6.0 pI,id modifyStatusGML
 * PUT FP 5.0 pI,id modifyStatus
 * Property Transfer FP 5.0
+* skipNextStepIfJdbcUrlMissing 2
+* JDBC FP 5.0 XX checkRasterbasis
 * GET FP 5.0 pI,id currentStatus
 * DEL FP 5.0 pI,id modifyStatus
 * GET FP 5.0 pI,id verifyStatusExpectError
 * PUT LP 6.0 pI,id modifyStatus
 * Property Transfer LP 6.0
+* skipNextStepIfJdbcUrlMissing 3
+* JDBC LP 6.0 XX checkRasterbasis
 * GET LP 6.0 pI,id currentStatus
 * DEL LP 6.0 pI,id modifyStatus
 * GET LP 6.0 pI,id verifyStatusExpectError
 * PUT RP 5.1 pI,id modifyStatus
 * Property Transfer RP 5.1
+* skipNextStepIfJdbcUrlMissing 4
+* JDBC RP 5.1 XX checkRasterbasis
 * GET RP 5.1 pI,id currentStatus
 * DEL RP 5.1 pI,id modifyStatus
 * GET RP 5.1 pI,id verifyStatusExpectError
 * PUT SO 5.3 pI,id modifyStatus
 * Property Transfer SO 5.3
+* skipNextStepIfJdbcUrlMissing 5
+* JDBC SO 5.3 XX checkRasterbasis
 * GET SO 5.3 pI,id currentStatus
 * DEL SO 5.3 pI,id modifyStatus
 * GET SO 5.3 pI,id verifyStatusExpectError
+* skipNextStepIfJdbcUrlMissing 6
+* JDBC XX XX XX checkRasterbasisDelete
 * Cleanup
 ## /plan/{planId}/text/ TestCase
 * GET BP 5.3 pI currentStatus
@@ -216,34 +260,54 @@
 * GET BP 5.4 pI currentStatusMultiplePlaene
 * GET BP 6.0 pI currentStatus
 * POST BP 6.0 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing
+* JDBC BP 6.0 XX checkText
 * GET BP 6.0 pI verifyStatus
 * GET FP 5.0 pI currentStatus
 * POST FP 5.0 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing 2
+* JDBC FP 5.0 XX checkText
 * GET FP 5.0 pI verifyStatus
 * GET LP 6.0 pI currentStatus
 * POST LP 6.0 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing 3
+* JDBC LP 6.0 XX checkText
 * GET LP 6.0 pI verifyStatus
 * GET RP 5.1 pI currentStatus
 * POST RP 5.1 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing 4
+* JDBC RP 5.1 XX checkText
 * GET RP 5.1 pI verifyStatus
 * GET SO 5.3 pI currentStatus
 * POST SO 5.3 pI modifyStatus
+* skipNextStepIfJdbcUrlMissing 5
+* JDBC SO 5.3 XX checkText
 * GET SO 5.3 pI verifyStatus
 * Property Transfer
 ## /plan/{planId}/text/{id} TestCase
 * GET BP 5.3 pI,id currentStatus
 * POST BP 5.3 pI,id modifyStatusXSSExpectError
 * POST BP 5.3 pI,id modifyStatus
+* skipNextStepIfJdbcUrlMissing
+* JDBC BP 5.3 XX checkText
 * POST BP 5.3 pI,id modifyStatusUnsupportedContentTypeExpectError
 * GET BP 5.3 pI,id verifyStatus
 * GET BP 5.3 pI,id verifyStatusExpectError
 * PUT FP 5.0 pI,id modifyStatus
+* skipNextStepIfJdbcUrlMissing 2
+* JDBC FP 5.0 XX checkText
 * GET FP 5.0 pI,id currentStatus
 * PUT LP 6.0 pI,id modifyStatus
+* skipNextStepIfJdbcUrlMissing 3
+* JDBC LP 6.0 XX checkText
 * GET LP 6.0 pI,id currentStatus
 * PUT RP 5.1 pI,id modifyStatus
+* skipNextStepIfJdbcUrlMissing 4
+* JDBC RP 5.1 XX checkText
 * GET RP 5.1 pI,id currentStatus
 * PUT SO 5.3 pI,id modifyStatus
+* skipNextStepIfJdbcUrlMissing 5
+* JDBC SO 5.3 XX checkText
 * GET SO 5.3 pI,id currentStatus
 ## /plan/{planId} TestCase
 * GET BP 4.1 pI currentStatus

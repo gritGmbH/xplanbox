@@ -1,14 +1,14 @@
 [[s3-storage]]
 == S3-Objektspeicher
 
-Die Ablage von Rasterdaten und Begleitdokumente im Objektspeicher von AWS S3 wird ab der Version 7.0 der xPlanBox unterstützt.
+Die Ablage von Rasterdaten und Begleitdokumente in einem S3-Objektspeicher wird ab der Version 7.0 der xPlanBox unterstützt.
 
 [[s3-storage-image]]
 === Rasterdaten
 
-Rasterdaten können im Objektspeicher von AWS S3 gespeichert und über den MapServer abgerufen werden.
+Rasterdaten können in einem S3-Objektspeicher gespeichert und über den MapServer abgerufen werden.
 
-Dazu müssen in der Konfiguration für <<konfiguration-xplanwms-mapserver,MapServer>> und <<konfiguration-manager-mapserver,XPlanManager>> die Verbindungsdaten für das AWS S3-API angegeben werden. Für den MapServer steht in dem Distributionspaket _xplan-mapserver-config-<VERSION>.zip_ eine Konfigurationsdatei _mapserver.map_ bereit. In dieser Datei müssen die Angaben für `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_S3_ENDPOINT` (siehe https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html[AWS CLI Umgebungsvariablen]) angepasst werden.
+Dazu müssen in der Konfiguration für <<konfiguration-xplanwms-mapserver,MapServer>> und <<konfiguration-manager-mapserver,XPlanManager>> die Verbindungsdaten für das S3-API angegeben werden. Für den MapServer steht in dem Distributionspaket _xplan-mapserver-config-<VERSION>.zip_ eine Konfigurationsdatei _mapserver.map_ bereit. In dieser Datei müssen die Angaben für `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_S3_ENDPOINT` (siehe https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html[AWS CLI Umgebungsvariablen]) angepasst werden.
 
 TIP: Weitere Informationen zur Konfiguration des https://aws.amazon.com/de/s3/[S3] Objektspeichers im MapServer https://mapserver.org/mapfile/map.html[Mapfile] und https://gdal.org/user/virtual_file_systems.html[GDAL Virtual File Systems].
 
