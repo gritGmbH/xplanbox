@@ -24,77 +24,77 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.FeatureType;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
 
 import javax.xml.namespace.QName;
 import java.util.stream.Stream;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class FeatureTypeNameSynthesizerTest {
+class FeatureTypeNameSynthesizerTest {
 
 	@Test
-	public void testIdsMatchSynFeatureType_matchingIds() {
+	void testIdsMatchSynFeatureType_matchingIds() {
 		XPlanFeatureCollection xPlanFeatureCollection = mockXPlanFeatureCollection("XPLAN_BP_PLAN_123", "BP_Plan",
 				"XPLAN_BP_GRUENFLAECHE_456", "BP_Gruenflaeche");
 		FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 		boolean idsMatchSynFeatureType = featureTypeNameSynthesizer.idsMatchSynFeatureType(xPlanFeatureCollection);
-		assertThat(idsMatchSynFeatureType, is(true));
+		assertTrue(idsMatchSynFeatureType);
 	}
 
 	@Test
-	public void testIdsMatchSynFeatureType_nonMatchingIds() {
+	void testIdsMatchSynFeatureType_nonMatchingIds() {
 		XPlanFeatureCollection xPlanFeatureCollection = mockXPlanFeatureCollection("BP_Plan_123", "BP_Plan",
 				"BP_Gruenflaeche_456", "BP_Gruenflaeche");
 		FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 		boolean idsMatchSynFeatureType = featureTypeNameSynthesizer.idsMatchSynFeatureType(xPlanFeatureCollection);
-		assertThat(idsMatchSynFeatureType, is(false));
+		assertFalse(idsMatchSynFeatureType);
 	}
 
 	@Test
-	public void testIdsMatchSynFeatureType_nonMatchingIdsGml() {
+	void testIdsMatchSynFeatureType_nonMatchingIdsGml() {
 		XPlanFeatureCollection xPlanFeatureCollection = mockXPlanFeatureCollection("GML_123", "BP_Plan", "GML_456",
 				"BP_Gruenflaeche");
 		FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 		boolean idsMatchSynFeatureType = featureTypeNameSynthesizer.idsMatchSynFeatureType(xPlanFeatureCollection);
-		assertThat(idsMatchSynFeatureType, is(false));
+		assertFalse(idsMatchSynFeatureType);
 	}
 
 	@Test
-	public void testIdsMatchSynFeatureType_nonMatchingIdsSynWithTypo() {
+	void testIdsMatchSynFeatureType_nonMatchingIdsSynWithTypo() {
 		XPlanFeatureCollection xPlanFeatureCollection = mockXPlanFeatureCollection("XPLAN_BP_PLAN_123", "BP_Plan",
 				"XPLAN_BP_ABWEICHUNGVONUEBERBAUBERERGRUNDSTUECKSFLAECHE_4546",
 				"BP_AbweichungVonUeberbaubererGrundstuecksFlaeche");
 		FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 		boolean idsMatchSynFeatureType = featureTypeNameSynthesizer.idsMatchSynFeatureType(xPlanFeatureCollection);
-		assertThat(idsMatchSynFeatureType, is(false));
+		assertFalse(idsMatchSynFeatureType);
 	}
 
 	@Test
-	public void testIdsMatchSynFeatureType_matchingIdsSynWithTypo() {
+	void testIdsMatchSynFeatureType_matchingIdsSynWithTypo() {
 		XPlanFeatureCollection xPlanFeatureCollection = mockXPlanFeatureCollection("XPLAN_BP_PLAN_123", "BP_Plan",
 				"XPLAN_BP_ABWEICHUNGVONUEBERBAUBARERGRUNDSTUECKSFLAECHE_4546",
 				"BP_AbweichungVonUeberbaubererGrundstuecksFlaeche");
 		FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 		boolean idsMatchSynFeatureType = featureTypeNameSynthesizer.idsMatchSynFeatureType(xPlanFeatureCollection);
-		assertThat(idsMatchSynFeatureType, is(true));
+		assertTrue(idsMatchSynFeatureType);
 	}
 
 	@Test
-	public void testIdsMatchSynFeatureType_matchingIdsSynWithoutTypo() {
+	void testIdsMatchSynFeatureType_matchingIdsSynWithoutTypo() {
 		XPlanFeatureCollection xPlanFeatureCollection = mockXPlanFeatureCollection("XPLAN_BP_PLAN_123", "BP_Plan",
 				"XPLAN_BP_ABWEICHUNGVONUEBERBAUBARERGRUNDSTUECKSFLAECHE_4546",
 				"BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche");
 		FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 		boolean idsMatchSynFeatureType = featureTypeNameSynthesizer.idsMatchSynFeatureType(xPlanFeatureCollection);
-		assertThat(idsMatchSynFeatureType, is(true));
+		assertTrue(idsMatchSynFeatureType);
 	}
 
 	private static XPlanFeatureCollection mockXPlanFeatureCollection(String feature1Id, String feature1TypeName,

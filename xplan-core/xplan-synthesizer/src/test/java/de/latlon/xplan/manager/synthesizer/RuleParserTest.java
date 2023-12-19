@@ -24,43 +24,43 @@ import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.SchriftinhaltLookup;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
-import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class RuleParserTest {
+class RuleParserTest {
 
 	@Test
-	public void testParse_Xpath() {
+	void testParse_Xpath() {
 		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
 		RuleParser ruleParser = new RuleParser(synRulesAccessor);
 		Xpath xpath = (Xpath) ruleParser.parse("xpath('xplan:drehwinkel/text()')");
 
-		assertThat(xpath.getDefaultValue(), is(nullValue()));
+		assertNull(xpath.getDefaultValue());
 	}
 
 	@Test
-	public void testParse_XpathWithDefaultValue() {
+	void testParse_XpathWithDefaultValue() {
 		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
 		RuleParser ruleParser = new RuleParser(synRulesAccessor);
 		Xpath xpath = (Xpath) ruleParser.parse("xpath('xplan:drehwinkel/text()', 42.0)");
 
-		assertThat(xpath.getDefaultValue(), is(42.0));
+		assertEquals(42.0, xpath.getDefaultValue());
 	}
 
 	@Test
-	public void testParse_SchriftinhaltLookup() {
+	void testParse_SchriftinhaltLookup() {
 		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
 		RuleParser ruleParser = new RuleParser(synRulesAccessor);
 		Expression expression = ruleParser.parse("schriftinhaltLookup()");
 
-		assertThat(expression, is(instanceOf(SchriftinhaltLookup.class)));
+		assertInstanceOf(SchriftinhaltLookup.class, expression);
 	}
 
 }

@@ -29,14 +29,14 @@ import de.latlon.xplan.manager.synthesizer.expression.flatten.XplanFlattenProper
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.AdditionalMatchers.not;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
@@ -45,10 +45,10 @@ import static org.mockito.Mockito.when;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class ComplexFlattenerTest {
+class ComplexFlattenerTest {
 
 	@Test
-	public void testFlatten_KomplexeZweckbestimmung_zweckbestimmungTranslate() throws Exception {
+	void testFlatten_KomplexeZweckbestimmung_zweckbestimmungTranslate() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load("xplan60/BPlan001_6-0.zip");
 		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
@@ -58,7 +58,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_KomplexeZweckbestimmung_zweckbestimmungCode() throws Exception {
+	void testFlatten_KomplexeZweckbestimmung_zweckbestimmungCode() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load("xplan60/BPlan001_6-0.zip");
 		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
@@ -69,7 +69,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_KomplexeZweckbestimmung_zweckbestimmungTranslate_Code_MissingCodelist() throws Exception {
+	void testFlatten_KomplexeZweckbestimmung_zweckbestimmungTranslate_Code_MissingCodelist() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_60, "flatten/BP_KomplexeZweckbestGruen.xml");
 		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
@@ -81,7 +81,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_KomplexeZweckbestimmung_zweckbestimmungTranslate_Code_WithCodelist() throws Exception {
+	void testFlatten_KomplexeZweckbestimmung_zweckbestimmungTranslate_Code_WithCodelist() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_60, "flatten/BP_KomplexeZweckbestGruen.xml");
 		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
@@ -94,7 +94,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_KomplexeZweckbestimmung_zweckbestimmungTranslate_Code_UnknownCode() throws Exception {
+	void testFlatten_KomplexeZweckbestimmung_zweckbestimmungTranslate_Code_UnknownCode() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_60, "flatten/BP_KomplexeZweckbestGruen.xml");
 		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
@@ -107,7 +107,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_KomplexeZweckbestimmung_zweckbestimmungCode_Code() throws Exception {
+	void testFlatten_KomplexeZweckbestimmung_zweckbestimmungCode_Code() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_60, "flatten/BP_KomplexeZweckbestGruen.xml");
 		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
@@ -119,7 +119,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_BPDachgestaltung() throws Exception {
+	void testFlatten_BPDachgestaltung() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_51, "flatten/BpDachgestaltung.xml");
 		Feature feature = getTestFeature(features, "BP_BAUGEBTF");
@@ -131,7 +131,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_LpEingriffsregelungKomplex() throws Exception {
+	void testFlatten_LpEingriffsregelungKomplex() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load("xplan60/LP-Test_60.zip");
 		Feature feature = getTestFeature(features, "Gml_35828929-2C80-4454-A4E3-8EA08D4F5D13");
@@ -142,7 +142,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_SoKomplexeFestlegungGewaesser() throws Exception {
+	void testFlatten_SoKomplexeFestlegungGewaesser() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load("xplan60/FNP_Test_60.zip");
 		Feature feature = getTestFeature(features, "GML_8FDB6A1E-EFF1-9413-3AE1-B3CDAC3D573DA");
@@ -152,7 +152,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_SoKomplexeZweckbestStrassenverkehr() throws Exception {
+	void testFlatten_SoKomplexeZweckbestStrassenverkehr() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load("xplan60/FNP_Test_60.zip");
 		Feature feature = getTestFeature(features, "GML_2F2B7735-5081-24D2-6BFB-FF4545106711D");
@@ -162,7 +162,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_XpGesetzlicheGrundlage_gesetzlicheGrundlage() throws Exception {
+	void testFlatten_XpGesetzlicheGrundlage_gesetzlicheGrundlage() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load("xplan60/FNP_Test_60.zip");
 		Feature feature = getTestFeature(features, "GML_24922052-2F62-B415-9862-CA135DBEC0CBA");
@@ -173,7 +173,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_XpGesetzlicheGrundlage_versionBauGB() throws Exception {
+	void testFlatten_XpGesetzlicheGrundlage_versionBauGB() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load("xplan60/BPlan002_6-0.zip");
 		Feature feature = getTestFeature(features, "GML_bf2168c4-c292-4340-bc50-7a2aa2cab5be");
@@ -183,7 +183,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_XpSPEMassnahmenDaten() throws Exception {
+	void testFlatten_XpSPEMassnahmenDaten() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_51, "flatten/XpSPEMassnahmenDaten.xml");
 		Feature feature = getTestFeature(features, "BP_SCHUTZPFLENTWFLAECHE");
@@ -193,7 +193,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_XpVerbundenerPlan_aendert() throws Exception {
+	void testFlatten_XpVerbundenerPlan_aendert() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_51, "flatten/XpVerbundenerPlanFlattener.xml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
@@ -205,7 +205,7 @@ public class ComplexFlattenerTest {
 	}
 
 	@Test
-	public void testFlatten_XpVerbundenerPlan_wurdeGeaendertVon() throws Exception {
+	void testFlatten_XpVerbundenerPlan_wurdeGeaendertVon() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_51, "flatten/XpVerbundenerPlanFlattener.xml");
 		Feature feature = getTestFeature(features, "BP_PLAN");

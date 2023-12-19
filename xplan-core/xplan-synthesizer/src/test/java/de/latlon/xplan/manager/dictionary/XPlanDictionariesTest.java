@@ -21,105 +21,105 @@
 package de.latlon.xplan.manager.dictionary;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import org.junit.Test;
 
 import java.net.URL;
 
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.deegree.gml.GMLVersion.GML_30;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
-public class XPlanDictionariesTest {
+class XPlanDictionariesTest {
 
 	@Test
-	public void testGetTranslation_XPlan41() {
+	void testGetTranslation_XPlan41() {
 		XPlanVersion version = XPlanVersion.XPLAN_41;
 		XPlanDictionaries dictionaries = XPlanEnumerationFactory.get(version);
 		String translation = dictionaries.getTranslation("BP_Rechtsstand", "4000");
 
-		assertThat(translation, is("InkraftGetreten"));
+		assertThat(translation).isEqualTo("InkraftGetreten");
 	}
 
 	@Test
-	public void testGetTranslation_XPlan52() {
+	void testGetTranslation_XPlan52() {
 		XPlanVersion version = XPlanVersion.XPLAN_52;
 		XPlanDictionaries dictionaries = XPlanEnumerationFactory.get(version);
 		String translation = dictionaries.getTranslation("BP_Rechtsstand", "4000");
 
-		assertThat(translation, is("InkraftGetreten"));
+		assertThat(translation).isEqualTo("InkraftGetreten");
 	}
 
 	@Test
-	public void testGetTranslation_XPlan53() {
+	void testGetTranslation_XPlan53() {
 		XPlanVersion version = XPlanVersion.XPLAN_53;
 		XPlanDictionaries dictionaries = XPlanEnumerationFactory.get(version);
 		String translation = dictionaries.getTranslation("BP_Rechtsstand", "4000");
 
-		assertThat(translation, is("InkraftGetreten"));
+		assertThat(translation).isEqualTo("InkraftGetreten");
 	}
 
 	@Test
-	public void testGetTranslation_XPlan60() {
+	void testGetTranslation_XPlan60() {
 		XPlanVersion version = XPlanVersion.XPLAN_60;
 		XPlanDictionaries dictionaries = XPlanEnumerationFactory.get(version);
 		String translation = dictionaries.getTranslation("BP_Rechtsstand", "4000");
 
-		assertThat(translation, is("In Kraft getreten"));
+		assertThat(translation).isEqualTo("In Kraft getreten");
 	}
 
 	@Test
-	public void testGetTranslation_XPlan60_lesbarereName() {
+	void testGetTranslation_XPlan60_lesbarereName() {
 		XPlanVersion version = XPlanVersion.XPLAN_60;
 		XPlanDictionaries dictionaries = XPlanEnumerationFactory.get(version);
 		String translation = dictionaries.getTranslation("XP_ArtHoehenbezug", "1000");
 
-		assertThat(translation, is("Absolut NHN"));
+		assertThat(translation).isEqualTo("Absolut NHN");
 	}
 
 	@Test
-	public void testGetCodeEntry_XPlan60_kuerzelAndLesbarerName() {
+	void testGetCodeEntry_XPlan60_kuerzelAndLesbarerName() {
 		XPlanVersion version = XPlanVersion.XPLAN_60;
 		XPlanDictionaries dictionaries = XPlanEnumerationFactory.get(version);
 		XPlanDictionary dictionary = dictionaries.getDictionary("XP_ArtHoehenbezug");
 		XPlanDictionaryEntry dictionaryEntry = dictionary.getDictionaryEntry("1000");
 
-		assertThat(dictionaryEntry.getName(), is("absolutNHN"));
-		assertThat(dictionaryEntry.getLesbarerName(), is("Absolut NHN"));
-		assertThat(dictionaryEntry.getKuerzel(), is("NHN"));
+		assertThat(dictionaryEntry.getName()).isEqualTo("absolutNHN");
+		assertThat(dictionaryEntry.getLesbarerName()).isEqualTo("Absolut NHN");
+		assertThat(dictionaryEntry.getKuerzel()).isEqualTo("NHN");
 	}
 
 	@Test
-	public void testParseCodelist_GML3() throws Exception {
+	void testParseCodelist_GML3() throws Exception {
 		URL codeListFile = XPlanDictionariesTest.class
 			.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan4.xml");
 		XPlanDictionaries dictionaries = new XPlanDictionariesParser().parseDictionaries(codeListFile, GML_30);
 		XPlanDictionary dictionary = dictionaries.getDictionary("xplan_XP_BesondereArtDerBaulNutzung");
 
-		assertThat(dictionaries.getDictionaries().size(), is(1));
-		assertThat(dictionary.getDictionaryEntries().size(), is(5));
+		assertThat(dictionaries.getDictionaries().size()).isEqualTo(1);
+		assertThat(dictionary.getDictionaryEntries().size()).isEqualTo(5);
 	}
 
 	@Test
-	public void testParseCodelist_GML32() throws Exception {
+	void testParseCodelist_GML32() throws Exception {
 		URL codeListFile = XPlanDictionariesTest.class
 			.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan5.xml");
 		XPlanDictionaries dictionaries = new XPlanDictionariesParser().parseDictionaries(codeListFile);
 		XPlanDictionary dictionary = dictionaries.getDictionary("XP_BesondereArtDerBaulNutzung");
 
-		assertThat(dictionaries.getDictionaries().size(), is(1));
-		assertThat(dictionary.getDictionaryEntries().size(), is(15));
+		assertThat(dictionaries.getDictionaries().size()).isEqualTo(1);
+		assertThat(dictionary.getDictionaryEntries().size()).isEqualTo(15);
 	}
 
 	@Test
-	public void testGetZweckbestimmungGruenTypeCodelistEntry_GML40() {
+	void testGetZweckbestimmungGruenTypeCodelistEntry_GML40() {
 		XPlanVersion version = XPlanVersion.XPLAN_40;
 		XPlanDictionaries dictionaries = XPlanEnumerationFactory.get(version);
 		XPlanDictionary xpZweckbestimmungGruen = dictionaries.getDictionary("XP_ZweckbestimmungGruen");
 		XPlanDictionaryEntry xpZweckbestimmungGruenCodeEntry = xpZweckbestimmungGruen.getDictionaryEntry("9999");
-		assertThat(xpZweckbestimmungGruenCodeEntry.getName(), is("Sonstiges"));
+		assertThat(xpZweckbestimmungGruenCodeEntry.getName()).isEqualTo("Sonstiges");
 	}
 
 }
