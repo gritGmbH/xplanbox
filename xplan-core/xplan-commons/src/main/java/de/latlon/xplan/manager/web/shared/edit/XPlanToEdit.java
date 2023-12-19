@@ -75,6 +75,7 @@ public class XPlanToEdit {
 	 * @deprecated will be removed in a future version.
 	 * @return the validityPeriod, never <code>null</code>
 	 */
+	@Deprecated
 	public ValidityPeriod getValidityPeriod() {
 		if (this.validityPeriod == null)
 			this.validityPeriod = new ValidityPeriod();
@@ -85,6 +86,7 @@ public class XPlanToEdit {
 	 * @deprecated will be removed in a future version.
 	 * @param validityPeriod the validityPeriod to set, may be <code>null</code>
 	 */
+	@Deprecated
 	public void setValidityPeriod(ValidityPeriod validityPeriod) {
 		this.validityPeriod = validityPeriod;
 	}

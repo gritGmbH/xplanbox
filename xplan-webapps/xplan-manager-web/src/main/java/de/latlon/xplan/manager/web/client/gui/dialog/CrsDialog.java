@@ -43,6 +43,7 @@ import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  */
+@Deprecated
 public class CrsDialog extends WizardDialogBox {
 
 	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);
