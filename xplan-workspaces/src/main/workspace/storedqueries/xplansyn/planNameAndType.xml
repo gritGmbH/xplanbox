@@ -28,7 +28,7 @@
   </wfs:Parameter>
   <wfs:QueryExpressionText returnFeatureTypes="${deegreewfs:ServedFeatureTypes}"
                            language="urn:ogc:def:queryLanguage:OGC-WFS::WFS_QueryExpression" isPrivate="false">
-    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0"
                typeNames="${typeNames}">
       <fes:Filter>
         <fes:And>
