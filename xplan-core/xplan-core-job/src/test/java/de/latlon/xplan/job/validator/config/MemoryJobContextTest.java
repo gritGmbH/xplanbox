@@ -20,38 +20,38 @@
  */
 package de.latlon.xplan.job.validator.config;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.quartz.JobKey;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { JobContext.class, SqlJobContext.class, MemoryJobContext.class })
 @ActiveProfiles("validatorwmsmemory")
-public class MemoryJobContextTest {
+class MemoryJobContextTest {
 
 	@Autowired
 	private Scheduler scheduler;
 
 	@Test
-	public void checkScheduler() throws SchedulerException {
+	void checkScheduler() throws SchedulerException {
 		boolean sqlDeleteJobExists = scheduler.checkExists(new JobKey("sqlDeleteJob", "xplan-validator-wms"));
 		boolean gmlDeleteJobExists = scheduler.checkExists(new JobKey("gmlDeleteJob", "xplan-validator-wms"));
 		boolean gmlImportJobExists = scheduler.checkExists(new JobKey("gmlImportJob", "xplan-validator-wms"));
-		assertThat(sqlDeleteJobExists, is(false));
-		assertThat(gmlDeleteJobExists, is(true));
-		assertThat(gmlImportJobExists, is(true));
+		assertFalse(sqlDeleteJobExists);
+		assertTrue(gmlDeleteJobExists);
+		assertTrue(gmlImportJobExists);
 	}
 
 }

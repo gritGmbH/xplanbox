@@ -40,6 +40,7 @@ import static org.apache.commons.io.IOUtils.write;
  * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
+@Deprecated
 public class FileTransformationResultWriter implements TransformationResultWriter {
 
 	private static final Logger LOG = LoggerFactory.getLogger(FileTransformationResultWriter.class);

@@ -25,13 +25,14 @@ import de.latlon.xplan.core.manager.db.config.JpaContext;
 import de.latlon.xplan.core.manager.db.config.PostgisJpaContext;
 import de.latlon.xplan.core.manager.db.model.Plan;
 import de.latlon.xplan.core.manager.db.model.PlanwerkWmsMetadata;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.transaction.TestTransaction;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,14 +40,14 @@ import java.util.Date;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ActiveProfiles("test-hsql")
 @ContextConfiguration(classes = { JpaContext.class, HsqlJpaContext.class, PostgisJpaContext.class })
 @Transactional
-public class PlanwerkWmsMetadataRepositoryTest {
+class PlanwerkWmsMetadataRepositoryTest {
 
 	@Autowired
 	private PlanRepository planRepository;
@@ -56,7 +57,7 @@ public class PlanwerkWmsMetadataRepositoryTest {
 
 	@Test
 	@Commit
-	public void verify_saveAndFindById() {
+	void verify_saveAndFindById() {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		Plan plan = new Plan().importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false);
 		planRepository.save(plan);
@@ -69,7 +70,7 @@ public class PlanwerkWmsMetadataRepositoryTest {
 
 		planwerkWmsMetadataRepository.save(planwerkWmsMetadata);
 
-		assertTrue(planwerkWmsMetadata.getPlanId() == plan.getId());
+		assertEquals(plan.getId(), planwerkWmsMetadata.getPlanId());
 	}
 
 }

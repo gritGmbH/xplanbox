@@ -44,6 +44,7 @@ import java.sql.Timestamp;
  * @deprecated The VisibilityInspector will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
+@Deprecated
 public abstract class ValidityPeriodInspector implements LayerVisibilityInspector {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ValidityPeriodInspector.class);

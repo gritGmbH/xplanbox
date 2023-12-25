@@ -23,25 +23,27 @@ package de.latlon.xplan.manager.synthesizer.expression;
 import de.latlon.xplan.manager.dictionary.XPlanCodelists;
 import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.XplanFlattenProperty;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
-import static org.junit.Assert.assertEquals;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XplanFlattenPropertyTest {
+class XplanFlattenPropertyTest {
 
 	@Test
-	public void testEvaluateWithGenericFeature() throws Exception {
+	void testEvaluateWithGenericFeature() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
@@ -52,7 +54,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithGenericReference() throws Exception {
+	void testEvaluateWithGenericReference() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Bereich_1");
@@ -64,7 +66,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpBegruendungAbschnitt() throws Exception {
+	void testEvaluateWithXpBegruendungAbschnitt() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
@@ -77,7 +79,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpExterneReferenz() throws Exception {
+	void testEvaluateWithXpExterneReferenz() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
@@ -89,7 +91,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpExterneReferenzPlan() throws Exception {
+	void testEvaluateWithXpExterneReferenzPlan() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
@@ -101,7 +103,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpGenerAttribut() throws Exception {
+	void testEvaluateWithXpGenerAttribut() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
@@ -111,7 +113,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpHoehenangabe() throws Exception {
+	void testEvaluateWithXpHoehenangabe() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
@@ -123,7 +125,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpRasterplanBasis() throws Exception {
+	void testEvaluateWithXpRasterplanBasis() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Bereich_1");
@@ -135,7 +137,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpRasterplanAenderung() throws Exception {
+	void testEvaluateWithXpRasterplanAenderung() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Bereich_1");
@@ -147,7 +149,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpTextAbschnitt() throws Exception {
+	void testEvaluateWithXpTextAbschnitt() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
@@ -159,7 +161,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpGemeinde() throws Exception {
+	void testEvaluateWithXpGemeinde() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
@@ -170,7 +172,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateXpVerfahrensMerkmal() throws Exception {
+	void testEvaluateXpVerfahrensMerkmal() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
@@ -183,7 +185,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateXpTextAbschnitte() throws Exception {
+	void testEvaluateXpTextAbschnitte() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
@@ -195,7 +197,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluate50WithXpBegruendungAbschnitt() throws Exception {
+	void testEvaluate50WithXpBegruendungAbschnitt() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_50);
 		Feature feature = getTestFeature(features, "BP_VerEntsorgung");
@@ -206,7 +208,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluate50XpTextAbschnitt() throws Exception {
+	void testEvaluate50XpTextAbschnitt() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_50);
 		Feature feature = getTestFeature(features, "BP_Plan");
@@ -216,7 +218,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluate53XpSpezExterneReferenz() throws Exception {
+	void testEvaluate53XpSpezExterneReferenz() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_53);
 		Feature feature = getTestFeature(features, "BP_Plan");

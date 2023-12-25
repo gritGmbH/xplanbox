@@ -20,23 +20,21 @@
  */
 package de.latlon.xplan.manager.synthesizer;
 
-import com.anarsoft.vmlens.concurrent.junit.ConcurrentTestRunner;
-import com.anarsoft.vmlens.concurrent.junit.ThreadCount;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import org.deegree.feature.Feature;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-@RunWith(ConcurrentTestRunner.class)
+@Execution(value = ExecutionMode.CONCURRENT)
 public class XPlanSynthesizerConcurrencyTest extends AbstractXplanSynthesizerTest {
 
-	@Test
-	@ThreadCount(2)
+	@RepeatedTest(2)
 	public void testSynthesize_Concurrency() throws Exception {
 		XPlanArchive archive = getTestArchive("xplan52/BPlan001_5-2_Bereiche.zip");
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);

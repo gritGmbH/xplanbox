@@ -10,7 +10,11 @@
     <artifactId>xplan-documentation</artifactId>
     <version>7.2-SNAPSHOT</version>
   </parent>
-
+  
+  <properties>
+    <list.third-parties-licences>${project.basedir}/src/main/asciidoc/anhang/third-party.dummy.txt</list.third-parties-licences>
+  </properties>
+  
   <build>
     <plugins>
       <plugin>
@@ -43,6 +47,12 @@
       <properties>
         <docker-image.skip>false</docker-image.skip>
       </properties>
+    </profile>
+    <profile>
+      <id>release</id>
+      <properties>
+	    <list-third-parties-licences>${project.basedir}/../../target/generated-sources/license/THIRD-PARTY.txt</list-third-parties-licences>
+	  </properties>
     </profile>
   </profiles>
 </project>

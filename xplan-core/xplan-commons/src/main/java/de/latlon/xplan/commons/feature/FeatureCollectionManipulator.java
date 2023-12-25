@@ -55,11 +55,13 @@ public class FeatureCollectionManipulator {
 	/**
 	 * @deprecated will be removed in a future version.
 	 */
+	@Deprecated
 	private static final String START_DATE_TIME_PROP_NAME = "gueltigkeitBeginn";
 
 	/**
 	 * @deprecated will be removed in a future version.
 	 */
+	@Deprecated
 	private static final String END_DATE_TIME_PROP_NAME = "gueltigkeitEnde";
 
 	/**
@@ -151,6 +153,7 @@ public class FeatureCollectionManipulator {
 	/**
 	 * @deprecated will be removed in a future version.
 	 */
+	@Deprecated
 	private void addStartAndEndDateTimeProperty(Date beginValidity, Date endValidity, Feature feature,
 			FeatureType featureType) {
 		if (beginValidity != null)

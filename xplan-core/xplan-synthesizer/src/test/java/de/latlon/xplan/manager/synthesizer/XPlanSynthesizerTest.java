@@ -27,10 +27,9 @@ import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
-import org.junit.BeforeClass;
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import javax.xml.namespace.QName;
 import java.io.IOException;
@@ -41,17 +40,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import static org.apache.commons.io.IOUtils.closeQuietly;
-import static org.hamcrest.CoreMatchers.anyOf;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
-
-	@ClassRule
-	public static TemporaryFolder folder = new TemporaryFolder();
+class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 
 	private static Path configDirectoryWithRule;
 
@@ -59,23 +54,23 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 
 	private static Path configDirectoryWithCodelist;
 
-	@BeforeClass
-	public static void copyRules() throws IOException {
-		configDirectoryWithRule = folder.newFolder("configDirectoryWithRule").toPath();
+	@BeforeAll
+	static void copyRules(@TempDir Path tmpDir) throws IOException {
+		configDirectoryWithRule = Files.createDirectory(tmpDir.resolve("configDirectoryWithRule"));
 		createTmpDirectoryAndCopyRuleFile(configDirectoryWithRule, "xplan41.syn",
 				"XP_BesondereArtDerBaulNutzung-XPlan4.xml");
 
-		configDirectoryWithEnum = folder.newFolder("configDirectoryWithEnum").toPath();
+		configDirectoryWithEnum = Files.createDirectory(tmpDir.resolve("configDirectoryWithEnum"));
 		createTmpDirectoryAndCopyRuleFile(configDirectoryWithEnum, "xplan41_XP_BesondereArtDerBaulNutzung.syn",
 				"XP_BesondereArtDerBaulNutzung-XPlan4.xml");
 
-		configDirectoryWithCodelist = folder.newFolder("configDirectoryWithCodelist").toPath();
+		configDirectoryWithCodelist = Files.createDirectory(tmpDir.resolve("configDirectoryWithCodelist"));
 		createTmpDirectoryAndCopyRuleFile(configDirectoryWithCodelist, "xplan41_BP_DetailArtDerBaulNutzung.syn",
 				"BP_DetailArtDerBaulNutzung.xml");
 	}
 
 	@Test
-	public void testSynthesize_ConfigDirectoryWithRule() throws Exception {
+	void testSynthesize_ConfigDirectoryWithRule() throws Exception {
 		SynRulesAccessor synRulesAccessor = new SynRulesAccessor(configDirectoryWithRule);
 		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
 
@@ -89,13 +84,14 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 			if ("BP_BaugebietsTeilFlaeche".equals(feature.getName().getLocalPart())) {
 				List<Property> properties = feature
 					.getProperties(new QName(feature.getName().getNamespaceURI(), "besondereArtDerBaulNutzung"));
-				assertThat(properties.get(0).getValue().toString(), anyOf(is("Art2"), is("Art5")));
+
+				assertThat(properties.get(0).getValue().toString()).isIn("Art2", "Art5");
 			}
 		}
 	}
 
 	@Test
-	public void testSynthesize_Synthesize_Enumeration_XP_BesondereArtDerBaulNutzung() throws Exception {
+	void testSynthesize_Synthesize_Enumeration_XP_BesondereArtDerBaulNutzung() throws Exception {
 		SynRulesAccessor synRulesAccessor = new SynRulesAccessor(configDirectoryWithEnum);
 		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
 
@@ -105,11 +101,11 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 
 		String firstPropertyValue = valueOfFirstProperty(synthesizedFeatures, "BP_BaugebietsTeilFlaeche",
 				"besondereArtDerBaulNutzung");
-		assertThat(firstPropertyValue, is("Art2"));
+		assertEquals("Art2", firstPropertyValue);
 	}
 
 	@Test
-	public void testSynthesize_Synthesize_Codelist_BP_DetailArtDerBaulNutzung() throws Exception {
+	void testSynthesize_Synthesize_Codelist_BP_DetailArtDerBaulNutzung() throws Exception {
 		SynRulesAccessor synRulesAccessor = new SynRulesAccessor(configDirectoryWithCodelist);
 		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
 
@@ -119,7 +115,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 
 		String firstPropertyValue = valueOfFirstProperty(synthesizedFeatures, "BP_BaugebietsTeilFlaeche",
 				"detaillierteArtDerBaulNutzung");
-		assertThat(firstPropertyValue, is("Wohngebiet11"));
+		assertEquals("Wohngebiet11", firstPropertyValue);
 	}
 
 	private XPlanFeatureCollection parseFeatureCollection(XPlanArchive archive) throws Exception {

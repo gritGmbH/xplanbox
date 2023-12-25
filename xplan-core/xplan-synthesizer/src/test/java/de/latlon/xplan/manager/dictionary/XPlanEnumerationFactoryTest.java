@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -21,28 +21,22 @@
 package de.latlon.xplan.manager.dictionary;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 
-@RunWith(Parameterized.class)
-public class XPlanEnumerationFactoryTest {
+class XPlanEnumerationFactoryTest {
 
-	private XPlanVersion versionUnderTest;
-
-	@Parameterized.Parameters
-	public static List<XPlanVersion> xPlanVersions() {
+	static List<XPlanVersion> xPlanVersions() {
 		List<XPlanVersion> versions = new ArrayList<>();
 		for (XPlanVersion versionToAdd : XPlanVersion.values())
 			if (!XPlanVersion.XPLAN_SYN.equals(versionToAdd))
@@ -50,14 +44,11 @@ public class XPlanEnumerationFactoryTest {
 		return versions;
 	}
 
-	public XPlanEnumerationFactoryTest(XPlanVersion versionUnderTest) {
-		this.versionUnderTest = versionUnderTest;
-	}
-
-	@Test
-	public void testCreateSynFeatures() {
+	@ParameterizedTest
+	@MethodSource("xPlanVersions")
+	void testCreateSynFeatures(XPlanVersion versionUnderTest) {
 		XPlanDictionaries enumerations = XPlanEnumerationFactory.get(versionUnderTest);
-		assertThat(enumerations, is(notNullValue()));
+		assertNotNull(enumerations);
 	}
 
 }

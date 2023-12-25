@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -21,9 +21,9 @@
 package de.latlon.xplan.inspire.plu.transformation;
 
 import de.latlon.xplan.inspire.plu.transformation.hale.HaleCliInspirePluTransformator;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.xmlunit.matchers.HasXPathMatcher;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.xmlunit.assertj3.XmlAssert;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -35,16 +35,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.xmlunit.builder.Input.fromURI;
-import static org.xmlunit.matchers.ValidationMatcher.valid;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-@Ignore
-public class HaleCliInspirePluTransformatorTest {
+@Disabled
+class HaleCliInspirePluTransformatorTest {
 
 	private final String testResource = "/tmp/Billstedt28/xplan.gml";
 
@@ -52,16 +50,16 @@ public class HaleCliInspirePluTransformatorTest {
 
 	private final Path haleProjectDirectory = Paths.get("/tmp/hale");
 
-	@SuppressWarnings("unchecked")
 	@Test
-	public void testTransformationToPlu() throws Exception {
+	void testTransformationToPlu() throws Exception {
 		HaleCliInspirePluTransformator transformator = new HaleCliInspirePluTransformator(haleCli,
 				haleProjectDirectory);
 		Path inspirePlu = transformator.transformToPlu(Paths.get(testResource), XPLAN_41);
 
-		assertThat(inspirePlu, notNullValue());
-		assertThat(the(inspirePlu), HasXPathMatcher.hasXPath("//plu:SpatialPlan").withNamespaceContext(nsContext()));
-		assertThat(the(inspirePlu), valid(fromURI("http://inspire.ec.europa.eu/schemas/plu/4.0/PlannedLandUse.xsd")));
+		assertNotNull(inspirePlu);
+		XmlAssert.assertThat(the(inspirePlu)).withNamespaceContext(nsContext()).hasXPath("//plu:SpatialPlan");
+		XmlAssert.assertThat(the(inspirePlu))
+			.isValidAgainst(fromURI("http://inspire.ec.europa.eu/schemas/plu/4.0/PlannedLandUse.xsd"));
 	}
 
 	private String the(Path path) throws Exception {

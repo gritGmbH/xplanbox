@@ -34,6 +34,7 @@ import static de.latlon.xplan.transform.cli.TransformApplicationRunner.LOG_TABLE
  * @since 1.0
  */
 @SpringBootApplication
+@Deprecated
 public class XPlanTransformCLI {
 
 	/**

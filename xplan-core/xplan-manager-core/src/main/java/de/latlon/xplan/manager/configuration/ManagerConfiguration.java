@@ -95,6 +95,7 @@ public class ManagerConfiguration {
 
 	private WorkspaceReloaderConfiguration workspaceReloaderConfiguration = new WorkspaceReloaderConfiguration();
 
+	@Deprecated
 	private InternalIdRetrieverConfiguration internalIdRetrieverConfiguration = new InternalIdRetrieverConfiguration();
 
 	private SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = new SemanticConformityLinkConfiguration();
@@ -173,6 +174,7 @@ public class ManagerConfiguration {
 	 * @deprecated InternalIdRetrieverConfiguration will be removed in a future version.
 	 * @return the {@link InternalIdRetrieverConfiguration}, never <code>null</code>
 	 */
+	@Deprecated
 	public InternalIdRetrieverConfiguration getInternalIdRetrieverConfiguration() {
 		return internalIdRetrieverConfiguration;
 	}

@@ -23,48 +23,49 @@ package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class AusrichtungTest {
+class AusrichtungTest {
 
 	@Test
-	public void testEvaluate_Empty() throws Exception {
+	void testEvaluate_Empty() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_51, "Praesentationsobjekte.gml");
 		Feature feature = TestFeaturesUtils.getTestFeature(features, "XP_PTO_EMPTY");
 		Ausrichtung horzontaleAusrichtung = new Ausrichtung(new Xpath("xplan:horizontaleAusrichtung"));
 		TypedObjectNode horizontaleValue = horzontaleAusrichtung.evaluate(feature, features, planContext);
-		assertThat(asDouble(horizontaleValue), is(0.5));
+		assertThat(asDouble(horizontaleValue)).isEqualTo(0.5);
 
 		Ausrichtung vertikaleAusrichtung = new Ausrichtung(new Xpath("xplan:vertikaleAusrichtung"));
 		TypedObjectNode vertikaleValue = vertikaleAusrichtung.evaluate(feature, features, planContext);
-		assertThat(asDouble(vertikaleValue), is(0.5));
+		assertThat(asDouble(vertikaleValue)).isEqualTo(0.5);
 	}
 
 	@Test
-	public void testEvaluate() throws Exception {
+	void testEvaluate() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_51, "Praesentationsobjekte.gml");
 		Feature feature = TestFeaturesUtils.getTestFeature(features, "XP_PTO");
 		Ausrichtung horzontaleAusrichtung = new Ausrichtung(new Xpath("xplan:horizontaleAusrichtung"));
 		TypedObjectNode horizontaleValue = horzontaleAusrichtung.evaluate(feature, features, planContext);
-		assertThat(asDouble(horizontaleValue), is(0.0));
+		assertThat(asDouble(horizontaleValue)).isEqualTo(0.0);
 
 		Ausrichtung vertikaleAusrichtung = new Ausrichtung(new Xpath("xplan:vertikaleAusrichtung"));
 		TypedObjectNode vertikaleValue = vertikaleAusrichtung.evaluate(feature, features, planContext);
-		assertThat(asDouble(vertikaleValue), is(1.0));
+		assertThat(asDouble(vertikaleValue)).isEqualTo(1.0);
 	}
 
 	private double asDouble(TypedObjectNode value) {

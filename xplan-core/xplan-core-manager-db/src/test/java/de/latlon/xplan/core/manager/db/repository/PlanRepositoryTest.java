@@ -30,16 +30,15 @@ import de.latlon.xplan.core.manager.db.model.Bereich;
 import de.latlon.xplan.core.manager.db.model.Feature;
 import de.latlon.xplan.core.manager.db.model.Plan;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.locationtech.jts.geom.Geometry;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.locationtech.jts.io.ParseException;
-import org.locationtech.jts.io.WKTReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.transaction.TestTransaction;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,19 +54,16 @@ import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ActiveProfiles("test-hsql")
 @ContextConfiguration(classes = { JpaContext.class, HsqlJpaContext.class, PostgisJpaContext.class })
 @Transactional
-public class PlanRepositoryTest {
+class PlanRepositoryTest {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -79,15 +75,15 @@ public class PlanRepositoryTest {
 	private PlanRepository planRepository;
 
 	@Test
-	public void verify_injectedComponentsAreNotNull() {
-		assertThat(dataSource, is(notNullValue()));
-		assertThat(entityManager, is(notNullValue()));
-		assertThat(planRepository, is(notNullValue()));
+	void verify_injectedComponentsAreNotNull() {
+		assertNotNull(dataSource);
+		assertNotNull(entityManager);
+		assertNotNull(planRepository);
 	}
 
 	@Test
 	@Commit
-	public void verify_saveAndFindById() throws ParseException {
+	void verify_saveAndFindById() throws ParseException {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		Bereich bereich = new Bereich().nummer("0").name("test");
 		Feature feature = new Feature().num(1).fid("123");
@@ -121,7 +117,7 @@ public class PlanRepositoryTest {
 
 	@Test
 	@Commit
-	public void verify_findByName() {
+	void verify_findByName() {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		String name = "saveAndFindByName";
 
@@ -145,7 +141,7 @@ public class PlanRepositoryTest {
 
 	@Test
 	@Commit
-	public void verify_findByNameLike() {
+	void verify_findByNameLike() {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		String name = "saveAndFindByLikeName";
 		Bereich bereich = new Bereich().nummer("0").name("test");
@@ -167,7 +163,7 @@ public class PlanRepositoryTest {
 
 	@Test
 	@Commit
-	public void verify_findByPlanWithMoreRecentRasterPlan() {
+	void verify_findByPlanWithMoreRecentRasterPlan() {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		Bereich bereich = new Bereich().nummer("0").name("test");
 		Feature feature = new Feature().num(1).fid("123");
@@ -193,7 +189,7 @@ public class PlanRepositoryTest {
 
 	@Test
 	@Commit
-	public void verify_existsPlanByNameAndPlanstatus() {
+	void verify_existsPlanByNameAndPlanstatus() {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		String name = "existsPlanByNameAndPlanstatus";
 		String planstatus = PlanStatus.FESTGESTELLT.name();
@@ -223,7 +219,7 @@ public class PlanRepositoryTest {
 
 	@Test
 	@Commit
-	public void verify_existsPlanById() {
+	void verify_existsPlanById() {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		String name = "existsPlanByNameAndPlanstatus";
 		String planstatus = PlanStatus.FESTGESTELLT.name();
@@ -242,11 +238,6 @@ public class PlanRepositoryTest {
 
 		boolean notPlanExists = planRepository.existsPlanById(99999);
 		assertFalse(notPlanExists);
-	}
-
-	private static void setBbox(Plan plan) throws ParseException {
-		Geometry bbox = new WKTReader().read("POLYGON((10 53, 11 53, 11 54, 10 54, 10 53))");
-		plan.bbox(bbox);
 	}
 
 }

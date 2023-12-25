@@ -28,7 +28,8 @@ import org.deegree.geometry.Geometry;
 import org.deegree.gml.GMLOutputFactory;
 import org.deegree.gml.GMLStreamWriter;
 import org.deegree.gml.GMLVersion;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.xmlunit.assertj3.XmlAssert;
 
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamWriter;
@@ -40,19 +41,16 @@ import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XplanGeometryTest {
+class XplanGeometryTest {
 
 	@Test
-	public void testEvaluate() throws Exception {
+	void testEvaluate() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
@@ -62,7 +60,7 @@ public class XplanGeometryTest {
 	}
 
 	@Test
-	public void testEvaluateEmptyProperty() throws Exception {
+	void testEvaluateEmptyProperty() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "XP_PPO_3");
@@ -72,7 +70,7 @@ public class XplanGeometryTest {
 	}
 
 	@Test
-	public void testEvaluateCurve() throws Exception {
+	void testEvaluateCurve() throws Exception {
 		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_41, "FeatureWithCurve.xml");
 		Feature feature = getTestFeature(features, "BP_BaugebietsTeilFlaeche");
@@ -84,7 +82,7 @@ public class XplanGeometryTest {
 		String geom = writeGMLGeometry(value);
 
 		String xPath = "count(/gml:Polygon/gml:exterior/gml:Ring/gml:curveMember/gml:Curve/gml:segments/gml:LineStringSegment[@interpolation='linear'])";
-		assertThat(geom, hasXPath(xPath, is("6")).withNamespaceContext(nsContext()));
+		XmlAssert.assertThat(geom).withNamespaceContext(nsContext()).valueByXPath(xPath).isEqualTo(6);
 
 	}
 
