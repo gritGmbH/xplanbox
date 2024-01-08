@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>xplan-manager-web</artifactId>
+  <artifactId>xplan-validator-web</artifactId>
   <packaging>war</packaging>
-  <name>xplan-manager-web</name>
-  <description>Webanwendung XPlanManagerWeb</description>
+  <name>xplan-validator-web</name>
+  <description>Webanwendung XPlanValidatorWeb</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
-    <artifactId>xplan-webapps</artifactId>
+    <artifactId>xplan-validator</artifactId>
     <version>7.2-SNAPSHOT</version>
   </parent>
 
   <properties>
-    <gwt.moduleName>de.latlon.xplan.manager.web.XPlanMgrWeb</gwt.moduleName>
+    <gwt.moduleName>de.latlon.xplan.validator.web.XPlanValidatorWeb</gwt.moduleName>
   </properties>
 
   <build>
@@ -43,6 +43,24 @@
               <outputDirectory>${project.build.outputDirectory}</outputDirectory>
             </configuration>
           </execution>
+          <execution>
+            <id>unpack-benutzerhandbuch</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>${project.groupId}</groupId>
+                  <artifactId>xplan-benutzerhandbuch</artifactId>
+                  <classifier>validator-html</classifier>
+                  <type>zip</type>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.directory}/benutzerhandbuch</outputDirectory>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -65,6 +83,9 @@
                 <exclude>version.txt</exclude>
               </excludes>
               <filtering>false</filtering>
+            </resource>
+            <resource>
+              <directory>${project.build.directory}/benutzerhandbuch</directory>
             </resource>
           </webResources>
         </configuration>
@@ -104,19 +125,7 @@
     </dependency>
     <dependency>
       <groupId>de.latlon</groupId>
-      <artifactId>deegree-layers-feature</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>de.latlon</groupId>
       <artifactId>deegree-core-commons</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>de.latlon</groupId>
-      <artifactId>deegree-sqldialect-postgis</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>javax.ws.rs</groupId>
-      <artifactId>jsr311-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -145,13 +154,6 @@
       <artifactId>jackson-databind</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>${jackson.version}</version>
-      <classifier>sources</classifier>
-      <type>jar</type>
-    </dependency>
-    <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-yaml</artifactId>
     </dependency>
@@ -168,6 +170,10 @@
       <artifactId>commons-fileupload</artifactId>
     </dependency>
     <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+    <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-commons</artifactId>
     </dependency>
@@ -182,15 +188,15 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-validator-web-commons</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-manager-core</artifactId>
+      <artifactId>xplan-validator-core</artifactId>
       <exclusions>
         <exclusion>
           <groupId>org.eclipse.jdt.core.compiler</groupId>
           <artifactId>ecj</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -200,49 +206,48 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>org.gwtopenmaps.openlayers</groupId>
-      <artifactId>gwt-openlayers-client</artifactId>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-validator-web-commons</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-benutzerhandbuch</artifactId>
+      <classifier>validator-html</classifier>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>de.xleitstelle.xplanung</groupId>
+      <artifactId>regeln</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.fusesource.restygwt</groupId>
-      <artifactId>restygwt</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate.validator</groupId>
-      <artifactId>hibernate-validator</artifactId>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
     </dependency>
     <dependency>
       <groupId>jakarta.validation</groupId>
       <artifactId>jakarta.validation-api</artifactId>
-    </dependency>
-    <!-- Spring Security -->
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-core</artifactId>
+      <classifier>sources</classifier>
     </dependency>
     <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-config</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-ldap</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>net.bytebuddy</groupId>
-      <artifactId>byte-buddy</artifactId>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
@@ -263,19 +268,7 @@
       <dependencies>
         <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
           <groupId>de.latlon.product.xplanbox</groupId>
-          <artifactId>xplan-docker-tomcat-gdal</artifactId>
-          <version>${project.version}</version>
-          <type>pom</type>
-        </dependency>
-        <dependency> <!-- faked maven dependency to be after volume initializer in the reactor build  -->
-          <groupId>de.latlon.product.xplanbox</groupId>
-          <artifactId>xplan-docker-volume-init</artifactId>
-          <version>${project.version}</version>
-          <type>pom</type>
-        </dependency>
-        <dependency> <!-- faked maven dependency to be after xplan-sql-scripts image in the reactor build  -->
-          <groupId>de.latlon.product.xplanbox</groupId>
-          <artifactId>xplan-sql-scripts</artifactId>
+          <artifactId>xplan-docker-tomcat</artifactId>
           <version>${project.version}</version>
           <type>pom</type>
         </dependency>
@@ -285,36 +278,7 @@
           <artifactId>regeln-berlin</artifactId>
         </dependency>
       </dependencies>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>io.fabric8</groupId>
-            <artifactId>docker-maven-plugin</artifactId>
-            <configuration>
-              <images>
-                <image>
-                  <name>${docker-image.namePrefix}/${docker-image.name}</name>
-                </image>
-                <image>
-                  <name>${docker-image.namePrefix}/${docker-image.name}-hale</name>
-                  <build>
-                    <contextDir>${project.basedir}</contextDir>
-                    <dockerFile>DockerfileHale</dockerFile>
-                    <args>
-                      <XPLANBOX_VERSION>${project.version}</XPLANBOX_VERSION>
-                      <XPLANBOX_IMAGE_NAME_PREFIX>${docker-image.namePrefix}</XPLANBOX_IMAGE_NAME_PREFIX>
-                      <WEB_CONTEXT>${project.artifactId}</WEB_CONTEXT>
-                    </args>
-                    <tags>
-                      <tag>${project.version}</tag>
-                    </tags>
-                  </build>
-                </image>
-              </images>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
   </profiles>
+
 </project>

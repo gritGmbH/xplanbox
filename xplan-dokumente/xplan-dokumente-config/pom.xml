@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>xplan-manager-config</artifactId>
+  <artifactId>xplan-dokumente-config</artifactId>
   <packaging>pom</packaging>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
-    <artifactId>xplan-configuration</artifactId>
+    <artifactId>xplan-dokumente</artifactId>
     <version>7.2-SNAPSHOT</version>
   </parent>
 
@@ -17,19 +17,16 @@
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
           <execution>
-            <id>default</id>
+            <id>zip</id>
             <goals>
               <goal>single</goal>
             </goals>
             <configuration>
-              <filters>
-                <filter>${project.basedir}/src/main/filter/filter-default.properties</filter>
-              </filters>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/assembly-default.xml</descriptor>
+                <descriptor>${project.basedir}/src/main/assembly/assembly.xml</descriptor>
               </descriptors>
-              <appendAssemblyId>true</appendAssemblyId>
+              <appendAssemblyId>false</appendAssemblyId>
             </configuration>
             <phase>package</phase>
           </execution>
@@ -37,14 +34,5 @@
       </plugin>
     </plugins>
   </build>
-
-  <dependencies>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-schemas</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-    </dependency>
-  </dependencies>
 
 </project>

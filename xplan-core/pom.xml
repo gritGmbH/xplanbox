@@ -12,6 +12,7 @@
   </parent>
 
   <modules>
+    <module>xplan-core-api</module>
     <module>xplan-commons</module>
     <module>xplan-inspireplu-transformation</module>
     <module>xplan-manager-core</module>

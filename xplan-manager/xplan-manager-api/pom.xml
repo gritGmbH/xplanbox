@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>xplan-api-manager</artifactId>
+  <artifactId>xplan-manager-api</artifactId>
   <packaging>war</packaging>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
-    <artifactId>xplan-api</artifactId>
+    <artifactId>xplan-manager</artifactId>
     <version>7.2-SNAPSHOT</version>
   </parent>
 
@@ -55,6 +55,34 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+          </archive>
+          <webResources>
+            <resource>
+              <directory>src/main/webapp</directory>
+              <includes>
+                <include>**/version.txt</include>
+              </includes>
+              <filtering>true</filtering>
+            </resource>
+            <resource>
+              <directory>src/main/webapp</directory>
+              <excludes>
+                <exclude>**/version.txt</exclude>
+              </excludes>
+              <filtering>false</filtering>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
           <archive>
@@ -75,7 +103,7 @@
     </dependency>
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-api-commons</artifactId>
+      <artifactId>xplan-core-api</artifactId>
     </dependency>
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>

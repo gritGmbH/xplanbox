@@ -14,8 +14,6 @@
   <modules>
     <module>xplan-commons-web</module>
     <module>xplan-validator-web-commons</module>
-    <module>xplan-validator-web</module>
-    <module>xplan-manager-web</module>
     <module>xplan-root</module>
   </modules>
 

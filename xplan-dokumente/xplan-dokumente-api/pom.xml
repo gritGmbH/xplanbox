@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>xplan-api-validator</artifactId>
+  <artifactId>xplan-dokumente-api</artifactId>
   <packaging>war</packaging>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
-    <artifactId>xplan-api</artifactId>
+    <artifactId>xplan-dokumente</artifactId>
     <version>7.2-SNAPSHOT</version>
   </parent>
 
@@ -24,52 +24,6 @@
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.4.44.v20210927</version>
-        <configuration>
-          <webApp>
-            <contextPath>/xplan-api-validator</contextPath>
-            <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
-            <webInfIncludeJarPattern>^$</webInfIncludeJarPattern>
-            <containerIncludeJarPattern>^$</containerIncludeJarPattern>
-          </webApp>
-          <webAppSourceDirectory>target/${project.artifactId}-${project.version}</webAppSourceDirectory>
-          <stopPort>8079</stopPort>
-          <stopKey>stopit</stopKey>
-          <stopWait>10</stopWait>
-          <httpConnector>
-            <port>8080</port>
-            <idleTimeout>60000</idleTimeout>
-          </httpConnector>
-          <jvmArgs>--illegal-access=warn --add-opens java.base/java.lang=ALL-UNNAMED
-            -Dorg.eclipse.jetty.webapp.LEVEL=DEBUG -Dcatalina.base=${project.basedir}/target
-          </jvmArgs>
-        </configuration>
-        <!--
-        <executions>
-          <execution>
-            <id>start-jetty</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>start</goal>
-            </goals>
-            <configuration>
-              <scanIntervalSeconds>0</scanIntervalSeconds>
-              <daemon>true</daemon>
-            </configuration>
-          </execution>
-          <execution>
-            <id>stop-jetty</id>
-            <phase>post-integration-test</phase>
-            <goals>
-              <goal>stop</goal>
-            </goals>
-          </execution>
-        </executions>
-        -->
-      </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -101,6 +55,34 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+          </archive>
+          <webResources>
+            <resource>
+              <directory>src/main/webapp</directory>
+              <includes>
+                <include>**/version.txt</include>
+              </includes>
+              <filtering>true</filtering>
+            </resource>
+            <resource>
+              <directory>src/main/webapp</directory>
+              <excludes>
+                <exclude>**/version.txt</exclude>
+              </excludes>
+              <filtering>false</filtering>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
           <archive>
@@ -112,37 +94,20 @@
       </plugin>
     </plugins>
   </build>
+
   <dependencies>
-    <!-- xPlanBox -->
     <dependency>
-      <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-validator-core</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>com.google.code.findbugs</groupId>
-          <artifactId>annotations</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.apache.xmlgraphics</groupId>
-          <artifactId>batik-js</artifactId>
-        </exclusion>
-      </exclusions>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-core-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-api-commons</artifactId>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-manager-core</artifactId>
     </dependency>
     <dependency>
-      <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-security</artifactId>
-      <version>${project.version}</version>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-core-manager-db</artifactId>
     </dependency>
-    <!-- XPlanung -->
-    <dependency>
-      <groupId>de.xleitstelle.xplanung</groupId>
-      <artifactId>regeln</artifactId>
-    </dependency>
-    <!-- Javax -->
     <dependency>
       <groupId>jakarta.ws.rs</groupId>
       <artifactId>jakarta.ws.rs-api</artifactId>
@@ -221,17 +186,11 @@
       <groupId>com.fasterxml.jackson.jaxrs</groupId>
       <artifactId>jackson-jaxrs-json-provider</artifactId>
     </dependency>
-    <!-- Bean Validation API support -->
-    <dependency>
-      <groupId>jakarta.validation</groupId>
-      <artifactId>jakarta.validation-api</artifactId>
-    </dependency>
     <!-- spring -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-
     <!-- logging -->
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -257,7 +216,15 @@
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-layout-template-json</artifactId>
     </dependency>
+    <dependency>
+      <groupId>net.bytebuddy</groupId>
+      <artifactId>byte-buddy</artifactId>
+    </dependency>
     <!-- test -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.test-framework</groupId>
       <artifactId>jersey-test-framework-core</artifactId>
@@ -281,8 +248,13 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -293,51 +265,17 @@
 
   <profiles>
     <profile>
-      <id>generate-swagger</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.openapitools</groupId>
-            <artifactId>openapi-generator-maven-plugin</artifactId>
-            <version>4.3.1</version>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>generate</goal>
-                </goals>
-                <configuration>
-                  <inputSpec>${project.basedir}/src/main/resources/xplanvalidator.yaml</inputSpec>
-                  <language>jaxrs-spec</language>
-                  <packageName>${base.package.name}.api.validator.v2</packageName>
-                  <modelPackage>${base.package.name}.api.validator.v2.model</modelPackage>
-                  <apiPackage>${base.package.name}.api.validator.v2</apiPackage>
-                  <configOptions>
-                    <sourceFolder>${project.build}/generated-sources/swagger</sourceFolder>
-                  </configOptions>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>docker</id>
       <properties>
         <docker-image.skip>false</docker-image.skip>
-        <docker-image.name>xplan-validator-api</docker-image.name>
+        <docker-image.name>xplan-dokumente-api</docker-image.name>
       </properties>
       <dependencies>
-        <dependency> <!-- to copy jmx exporter stuff from docker image  -->
+        <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
           <groupId>de.latlon.product.xplanbox</groupId>
           <artifactId>xplan-docker-tomcat</artifactId>
           <version>${project.version}</version>
           <type>pom</type>
-        </dependency>
-        <!-- Profiles -->
-        <dependency>
-          <groupId>de.xleitstelle.xplanung</groupId>
-          <artifactId>regeln-berlin</artifactId>
         </dependency>
       </dependencies>
     </profile>
