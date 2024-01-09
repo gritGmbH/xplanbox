@@ -20,6 +20,7 @@
     <module>xplan-tests-resources</module>
     <module>xplan-tests-soapui</module>
     <module>xplan-tests-manual</module>
+    <module>xplan-tests-selenium</module>
   </modules>
 
 </project>
