@@ -12,7 +12,7 @@
   </parent>
 
   <modules>
-    <module>xplan-commons-webservices</module>
+    <module>xplan-webservices-core</module>
     <module>xplan-inspireplu</module>
     <module>xplansyn-wfs</module>
     <module>xplan-wfs</module>
