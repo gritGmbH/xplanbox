@@ -19,4 +19,4 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 RUN apk add -U tzdata
 ENV TZ=Europe/Berlin
 
-COPY target/xplan-root-*-default /usr/local/apache2/htdocs/
+COPY target/xplan-webpages-*-default /usr/local/apache2/htdocs/

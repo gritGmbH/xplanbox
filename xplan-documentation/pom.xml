@@ -75,6 +75,7 @@
 
   <modules>
     <module>xplan-benutzerhandbuch</module>
+    <module>xplan-webpages</module>
   </modules>
 
   <profiles>
