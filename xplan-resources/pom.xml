@@ -13,7 +13,6 @@
 
   <modules>
     <module>xplan-sql-scripts</module>
-    <module>xplan-schemas</module>
     <module>xplan-database-scripts</module>
   </modules>
 
