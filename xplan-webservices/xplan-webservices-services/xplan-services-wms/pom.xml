@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>xplan-wms</artifactId>
+  <artifactId>xplan-services-wms</artifactId>
   <packaging>war</packaging>
   <description>deegree XPlan WebMapService</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
-    <artifactId>xplan-webservices</artifactId>
+    <artifactId>xplan-webservices-services</artifactId>
     <version>7.2-SNAPSHOT</version>
   </parent>
 

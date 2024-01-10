@@ -66,8 +66,6 @@
     <module>xplan-documentation</module>
     <module>xplan-dokumente</module>
     <module>xplan-manager</module>
-    <module>xplan-mapproxy</module>
-    <module>xplan-mapserver</module>
     <module>xplan-resources</module>
     <module>xplan-root</module>
     <module>xplan-security</module>

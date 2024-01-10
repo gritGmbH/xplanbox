@@ -27,10 +27,10 @@ ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree
 USER root
 
 # add xplan-validator-wms directly unpacked
-ADD target/xplan-validator-wms-*.war /tmp/
+ADD target/xplan-webservices-validator-wms-*.war /tmp/
 RUN mkdir /opt/bitnami/tomcat/webapps/$WEB_CONTEXT \
 	&& cd /opt/bitnami/tomcat/webapps/$WEB_CONTEXT \
-	&& jar xf /tmp/xplan-validator-wms-*.war \
-	&& rm /tmp/xplan-validator-wms-*.war
+	&& jar xf /tmp/xplan-webservices-validator-wms-*.war \
+	&& rm /tmp/xplan-webservices-validator-wms-*.war
 
 USER 1001
