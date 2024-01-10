@@ -47,7 +47,7 @@ COPY --chown=1001:1001 ./uwsgi.ini /srv/mapproxy/uwsgi.ini
 COPY --chown=1001:1001 ./app.py /srv/mapproxy/app.py
 COPY --chown=1001:1001 ./log.ini /srv/mapproxy/log.ini
 
-ADD target/xplan-docker-mapproxy-*.tgz /
+ADD target/xplan-mapproxy-docker-*.tgz /
 ADD docker-entrypoint.sh /docker-entrypoint.sh
 
 WORKDIR /srv/mapproxy

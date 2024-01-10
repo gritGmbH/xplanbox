@@ -23,7 +23,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata
 RUN mkdir -p /xplan-docker-mapserver \
 	&& chown 1001 /etc/mapserver
 
-ADD target/xplan-docker-mapserver-*.tgz /
+ADD target/xplan-mapserver-docker-*.tgz /
 ADD startupWithConfiguredMapserver.sh /xplan-docker-mapserver/
 
 USER 1001
