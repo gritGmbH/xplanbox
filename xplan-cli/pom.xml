@@ -12,6 +12,7 @@
   </parent>
 
   <modules>
+    <module>xplan-cli-core</module>
     <module>xplan-manager-cli</module>
     <module>xplan-validator-cli</module>
     <module>xplan-transform-cli</module>

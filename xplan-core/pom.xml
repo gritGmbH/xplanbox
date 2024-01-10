@@ -13,7 +13,6 @@
 
   <modules>
     <module>xplan-core-api</module>
-    <module>xplan-core-cli</module>
     <module>xplan-core-commons</module>
     <module>xplan-core-gwt</module>
     <module>xplan-core-inspireplu</module>

@@ -1111,7 +1111,7 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-core-cli</artifactId>
+        <artifactId>xplan-cli-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

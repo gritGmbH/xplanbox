@@ -108,7 +108,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-core-cli</artifactId>
+      <artifactId>xplan-cli-core</artifactId>
     </dependency>
     <dependency>
       <groupId>de.latlon</groupId>
