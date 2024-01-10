@@ -99,7 +99,7 @@
     <!-- xPlanBox -->
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-manager-core</artifactId>
+      <artifactId>xplan-core-manager</artifactId>
     </dependency>
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>

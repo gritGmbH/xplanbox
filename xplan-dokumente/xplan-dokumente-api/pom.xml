@@ -102,7 +102,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-manager-core</artifactId>
+      <artifactId>xplan-core-manager</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>

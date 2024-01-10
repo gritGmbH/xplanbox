@@ -1100,23 +1100,23 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-commons</artifactId>
+        <artifactId>xplan-core-commons</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-commons</artifactId>
+        <artifactId>xplan-core-commons</artifactId>
         <classifier>sources</classifier>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-commons-cli</artifactId>
+        <artifactId>xplan-core-cli</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-validator-core</artifactId>
+        <artifactId>xplan-core-validator</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -1137,7 +1137,7 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-manager-core</artifactId>
+        <artifactId>xplan-core-manager</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -1152,7 +1152,7 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-inspireplu-transformation</artifactId>
+        <artifactId>xplan-core-inspireplu</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

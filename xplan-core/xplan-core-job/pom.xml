@@ -12,7 +12,7 @@
   <dependencies>
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-commons</artifactId>
+      <artifactId>xplan-core-commons</artifactId>
     </dependency>
     <dependency>
       <groupId>de.latlon</groupId>

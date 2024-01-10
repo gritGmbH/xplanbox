@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>xplan-manager-core</artifactId>
+  <artifactId>xplan-core-manager</artifactId>
   <packaging>jar</packaging>
   <description>XPlan Manager Core Komponente</description>
 
@@ -52,11 +52,11 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-commons</artifactId>
+      <artifactId>xplan-core-commons</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-validator-core</artifactId>
+      <artifactId>xplan-core-validator</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -64,7 +64,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-inspireplu-transformation</artifactId>
+      <artifactId>xplan-core-inspireplu</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>

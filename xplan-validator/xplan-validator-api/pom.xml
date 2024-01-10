@@ -144,7 +144,7 @@
     <!-- xPlanBox -->
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-validator-core</artifactId>
+      <artifactId>xplan-core-validator</artifactId>
       <exclusions>
         <exclusion>
           <groupId>com.google.code.findbugs</groupId>

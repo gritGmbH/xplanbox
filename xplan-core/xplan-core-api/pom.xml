@@ -13,7 +13,7 @@
   <dependencies>
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-validator-core</artifactId>
+      <artifactId>xplan-core-validator</artifactId>
     </dependency>
     <dependency>
       <groupId>jakarta.ws.rs</groupId>
