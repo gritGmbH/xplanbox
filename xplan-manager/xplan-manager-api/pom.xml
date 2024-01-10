@@ -107,7 +107,7 @@
     </dependency>
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-security</artifactId>
+      <artifactId>xplan-core-security</artifactId>
       <version>${project.version}</version>
     </dependency>
     <!-- deegree -->

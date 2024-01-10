@@ -20,6 +20,7 @@
     <module>xplan-core-manager</module>
     <module>xplan-core-manager-db</module>
     <module>xplan-core-manager-deegree</module>
+    <module>xplan-core-security</module>
     <module>xplan-core-synthesizer</module>
     <module>xplan-core-validator</module>
   </modules>

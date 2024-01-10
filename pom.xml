@@ -67,7 +67,6 @@
     <module>xplan-dokumente</module>
     <module>xplan-manager</module>
     <module>xplan-resources</module>
-    <module>xplan-security</module>
     <module>xplan-tests</module>
     <module>xplan-validator</module>
     <module>xplan-webservices</module>
