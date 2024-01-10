@@ -20,7 +20,7 @@
  */
 package de.latlon.xplan.validator.web.spring.config;
 
-import de.latlon.xplan.validator.web.server.service.ReportProvider;
+import de.latlon.xplanbox.core.gwt.commons.server.service.ReportProvider;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

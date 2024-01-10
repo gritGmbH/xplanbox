@@ -21,16 +21,17 @@
 package de.latlon.xplan.validator.web.server.service;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import de.latlon.xplanbox.core.gwt.commons.server.service.ValidationUtils;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.report.ValidatorReport;
-import de.latlon.xplan.validator.web.client.service.ValidationService;
-import de.latlon.xplan.validator.web.shared.InvalidParameterException;
-import de.latlon.xplan.validator.web.shared.ValidationException;
+import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationService;
+import de.latlon.xplanbox.core.gwt.commons.shared.InvalidParameterException;
+import de.latlon.xplanbox.core.gwt.commons.shared.ValidationException;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
-import de.latlon.xplan.validator.web.shared.ValidationSummary;
+import de.latlon.xplanbox.core.gwt.commons.shared.ValidationSummary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +88,7 @@ public class XPlanValidationServiceImpl extends RemoteServiceServlet implements 
 	public ValidationSummary validate(ValidationSettings validationSettings)
 			throws ValidationException, InvalidParameterException {
 		LOG.debug("Starting validation of plan with {}", validationSettings.toString());
-		ValidationUtils.validate(validationSettings);
+		ValidationUtils.validate( validationSettings);
 		try {
 			XPlan planToVerify = planArchiveManager.readPlanFromSession(session);
 			String planUuid = planToVerify.getId();

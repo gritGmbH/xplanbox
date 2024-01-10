@@ -79,7 +79,7 @@ import de.latlon.xplan.validator.semantic.profile.SemanticProfilesCreator;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
-import de.latlon.xplan.validator.web.server.service.ReportProvider;
+import de.latlon.xplanbox.core.gwt.commons.server.service.ReportProvider;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

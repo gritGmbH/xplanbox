@@ -39,7 +39,7 @@ import de.latlon.xplan.validator.semantic.profile.SemanticProfilesCreator;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
-import de.latlon.xplan.validator.web.server.service.ReportProvider;
+import de.latlon.xplanbox.core.gwt.commons.server.service.ReportProvider;
 import de.latlon.xplan.validator.web.server.service.ValidatorReportProvider;
 import de.latlon.xplan.validator.wms.MapPreviewCreationException;
 import de.latlon.xplan.validator.wms.MapPreviewManager;

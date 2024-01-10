@@ -32,12 +32,14 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener;
-import de.latlon.xplan.validator.web.client.service.ValidationConfigService;
-import de.latlon.xplan.validator.web.client.service.ValidationConfigServiceAsync;
-import de.latlon.xplan.validator.web.shared.ValidationConfig;
+import de.latlon.xplanbox.core.gwt.commons.client.ValidatorOptionsDialog;
+import de.latlon.xplanbox.core.gwt.commons.client.ValidatorWebCommonsMessages;
+import de.latlon.xplanbox.core.gwt.commons.client.report.ReportDownloadFinishedListener;
+import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationConfigService;
+import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationConfigServiceAsync;
+import de.latlon.xplanbox.core.gwt.commons.shared.ValidationConfig;
 
-import static de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener.FinishStatus.NEXT;
+import static de.latlon.xplanbox.core.gwt.commons.client.report.ReportDownloadFinishedListener.FinishStatus.NEXT;
 
 /**
  * Extends the {@link DialogBox} with a button to close the dialog
@@ -47,7 +49,7 @@ import static de.latlon.xplan.validator.web.client.report.ReportDownloadFinished
  */
 class UploadFinishedDialogBox extends DialogBox {
 
-	private final ValidatorWebCommonsMessages messages = GWT.create(ValidatorWebCommonsMessages.class);
+	private final ValidatorWebCommonsMessages messages = GWT.create( ValidatorWebCommonsMessages.class);
 
 	private final ValidationConfigServiceAsync validationConfigService = GWT.create(ValidationConfigService.class);
 
@@ -116,8 +118,8 @@ class UploadFinishedDialogBox extends DialogBox {
 								xPlanValidatorWeb.resetPanelToUpload();
 							}
 						};
-						ValidatorOptionsDialog xPlanValidatorSettings = new ValidatorOptionsDialog(validationConfig,
-								new ReportDownloadFinishedListener() {
+						ValidatorOptionsDialog xPlanValidatorSettings = new ValidatorOptionsDialog( validationConfig,
+                                                                                                    new ReportDownloadFinishedListener() {
 									@Override
 									public void downloadFinished(FinishStatus finishStatus) {
 										if (NEXT.equals(finishStatus))

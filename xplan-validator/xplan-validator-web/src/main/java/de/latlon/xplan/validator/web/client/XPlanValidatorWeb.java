@@ -37,7 +37,7 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import de.latlon.xplan.commons.web.CloseableDialogBox;
+import de.latlon.xplanbox.core.gwt.commons.web.CloseableDialogBox;
 
 /**
  * Entry point of the validation, containing the file upload and a button to navigate to

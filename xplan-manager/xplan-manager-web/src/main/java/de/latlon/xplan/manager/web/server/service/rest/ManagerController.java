@@ -34,7 +34,7 @@ import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
-import de.latlon.xplan.validator.web.shared.InvalidParameterException;
+import de.latlon.xplanbox.core.gwt.commons.shared.InvalidParameterException;
 import org.deegree.commons.utils.Pair;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;

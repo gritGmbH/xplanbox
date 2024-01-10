@@ -24,7 +24,7 @@ import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.spring.config.TestConfig;
 import de.latlon.xplan.manager.web.spring.config.XPlanManagerWebContextConfig;
-import de.latlon.xplan.validator.web.server.service.ReportProvider;
+import de.latlon.xplanbox.core.gwt.commons.server.service.ReportProvider;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

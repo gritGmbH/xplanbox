@@ -32,7 +32,7 @@ import de.latlon.xplan.manager.web.client.gui.event.EditorStartedEvent;
 import de.latlon.xplan.manager.web.client.gui.event.EditorStartedEventHandler;
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
-import de.latlon.xplan.validator.web.shared.ValidationConfig;
+import de.latlon.xplanbox.core.gwt.commons.shared.ValidationConfig;
 
 /**
  * Controller controlling the main views (like plan list with upload and edit views).

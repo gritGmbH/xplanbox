@@ -22,7 +22,7 @@ package de.latlon.xplan.manager.web.server.service;
 
 import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.validator.web.shared.ValidationException;
+import de.latlon.xplanbox.core.gwt.commons.shared.ValidationException;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;

@@ -48,13 +48,13 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.CellPreviewEvent;
 import com.google.gwt.view.client.CellPreviewEvent.Handler;
 import com.google.gwt.view.client.ListDataProvider;
-import de.latlon.xplan.commons.web.DisengageableButtonCell;
+import de.latlon.xplanbox.core.gwt.commons.web.DisengageableButtonCell;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.validator.web.client.ValidatorOptionsDialog;
-import de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener;
-import de.latlon.xplan.validator.web.shared.ValidationConfig;
+import de.latlon.xplanbox.core.gwt.commons.client.ValidatorOptionsDialog;
+import de.latlon.xplanbox.core.gwt.commons.client.report.ReportDownloadFinishedListener;
+import de.latlon.xplanbox.core.gwt.commons.shared.ValidationConfig;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
@@ -62,7 +62,7 @@ import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
 import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
-import static de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener.FinishStatus.NEXT;
+import static de.latlon.xplanbox.core.gwt.commons.client.report.ReportDownloadFinishedListener.FinishStatus.NEXT;
 
 /**
  * Files system panel of the xplan manager web gui.

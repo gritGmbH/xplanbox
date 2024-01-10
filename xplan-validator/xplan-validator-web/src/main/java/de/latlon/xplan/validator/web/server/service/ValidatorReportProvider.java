@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.web.server.service;
 
+import de.latlon.xplanbox.core.gwt.commons.server.service.ReportProvider;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.web.shared.ArtifactType;
 import org.springframework.beans.factory.annotation.Autowired;

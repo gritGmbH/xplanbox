@@ -184,10 +184,6 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-commons-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
       <artifactId>xplan-validator-core</artifactId>
       <exclusions>
         <exclusion>
@@ -208,6 +204,11 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-validator-web-commons</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-validator-web-commons</artifactId>
+      <classifier>sources</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>

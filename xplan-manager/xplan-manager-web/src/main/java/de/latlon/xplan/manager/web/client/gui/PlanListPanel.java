@@ -42,7 +42,7 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.view.client.CellPreviewEvent;
 import com.google.gwt.view.client.CellPreviewEvent.Handler;
 import com.google.gwt.view.client.ListDataProvider;
-import de.latlon.xplan.commons.web.DisengageableButtonCell;
+import de.latlon.xplanbox.core.gwt.commons.web.DisengageableButtonCell;
 import de.latlon.xplan.manager.web.client.comparator.ColumnComparator;
 import de.latlon.xplan.manager.web.client.filter.PlanFilter;
 import de.latlon.xplan.manager.web.client.gui.dialog.MapPreviewDialog;

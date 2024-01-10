@@ -57,7 +57,7 @@
   </servlet>
   <servlet>
     <servlet-name>xplanvalidatorwebValidationconfigService</servlet-name>
-    <servlet-class>de.latlon.xplan.validator.web.server.service.DefaultValidationConfigService</servlet-class>
+    <servlet-class>de.latlon.xplanbox.core.gwt.commons.server.service.DefaultValidationConfigService</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>xplanmgrwebrest</servlet-name>

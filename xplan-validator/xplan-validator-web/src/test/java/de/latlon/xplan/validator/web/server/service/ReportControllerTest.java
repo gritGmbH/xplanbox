@@ -20,6 +20,8 @@
  */
 package de.latlon.xplan.validator.web.server.service;
 
+import de.latlon.xplanbox.core.gwt.commons.server.service.ReportController;
+import de.latlon.xplanbox.core.gwt.commons.server.service.ReportProvider;
 import de.latlon.xplan.validator.web.spring.config.TestConfig;
 import de.latlon.xplan.validator.web.spring.config.XPlanValidatorWebContextConfig;
 import de.latlon.xplan.validator.web.spring.config.XPlanValidatorWebSpringConfig;

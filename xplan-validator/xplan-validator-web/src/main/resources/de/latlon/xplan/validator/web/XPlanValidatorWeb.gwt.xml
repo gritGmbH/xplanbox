@@ -39,8 +39,9 @@
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
   
   <!-- Other module inherits                                      -->
-  <inherits name='de.latlon.xplan.commons.XPlanCommonsWeb'/>
-  <inherits name='de.latlon.xplan.validator.web.XPlanValidatorWebCommons'/>
+  <inherits name='de.latlon.xplan.manager.XPlanManagerCore'/>
+  <inherits name='de.latlon.xplan.validator.XPlanValidatorCore'/>
+  <inherits name='de.latlon.xplanbox.core.gwt.commons.XPlanCommons'/>
 
 
   <!-- Specify the app entry point class.                         -->

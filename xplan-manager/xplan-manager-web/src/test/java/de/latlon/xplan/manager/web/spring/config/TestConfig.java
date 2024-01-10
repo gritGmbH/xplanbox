@@ -23,7 +23,7 @@ package de.latlon.xplan.manager.web.spring.config;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.web.server.service.security.AuthorizationManager;
-import de.latlon.xplan.validator.web.server.service.ReportProvider;
+import de.latlon.xplanbox.core.gwt.commons.server.service.ReportProvider;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

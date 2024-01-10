@@ -24,7 +24,7 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
-import de.latlon.xplan.validator.web.shared.ValidationConfig;
+import de.latlon.xplanbox.core.gwt.commons.shared.ValidationConfig;
 
 /**
  * Summarizes the PlanListPanel and UploadPanel in one view.

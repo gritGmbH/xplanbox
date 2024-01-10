@@ -12,8 +12,6 @@
   </parent>
 
   <modules>
-    <module>xplan-commons-web</module>
-    <module>xplan-validator-web-commons</module>
     <module>xplan-root</module>
   </modules>
 

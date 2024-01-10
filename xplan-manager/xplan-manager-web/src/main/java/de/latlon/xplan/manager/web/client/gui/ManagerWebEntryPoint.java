@@ -32,9 +32,9 @@ import de.latlon.xplan.manager.web.client.service.ManagerWebConfigurationService
 import de.latlon.xplan.manager.web.client.service.SecurityService;
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
-import de.latlon.xplan.validator.web.client.service.ValidationConfigService;
-import de.latlon.xplan.validator.web.client.service.ValidationConfigServiceAsync;
-import de.latlon.xplan.validator.web.shared.ValidationConfig;
+import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationConfigService;
+import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationConfigServiceAsync;
+import de.latlon.xplanbox.core.gwt.commons.shared.ValidationConfig;
 import org.fusesource.restygwt.client.Defaults;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
