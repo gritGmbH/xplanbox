@@ -63,10 +63,10 @@
   <modules>
     <module>xplan-cli</module>
     <module>xplan-core</module>
+    <module>xplan-database</module>
     <module>xplan-documentation</module>
     <module>xplan-dokumente</module>
     <module>xplan-manager</module>
-    <module>xplan-resources</module>
     <module>xplan-tests</module>
     <module>xplan-validator</module>
     <module>xplan-webservices</module>
