@@ -70,7 +70,6 @@
     <module>xplan-tests</module>
     <module>xplan-validator</module>
     <module>xplan-webservices</module>
-    <module>xplan-workspaces</module>
   </modules>
 
   <profiles>
@@ -1113,12 +1112,12 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-validator-web-commons</artifactId>
+        <artifactId>xplan-core-gwt</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-validator-web-commons</artifactId>
+        <artifactId>xplan-core-gwt</artifactId>
         <classifier>sources</classifier>
         <version>${project.version}</version>
       </dependency>

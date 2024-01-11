@@ -18,6 +18,7 @@
     <module>xplan-webservices-mapserver</module>
     <module>xplan-webservices-services</module>
     <module>xplan-webservices-validator-wms</module>
+    <module>xplan-webservices-workspaces</module>
   </modules>
 
   <build>
