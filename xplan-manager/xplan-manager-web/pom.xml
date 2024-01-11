@@ -274,9 +274,9 @@
           <version>${project.version}</version>
           <type>pom</type>
         </dependency>
-        <dependency> <!-- faked maven dependency to be after xplan-sql-scripts image in the reactor build  -->
+        <dependency> <!-- faked maven dependency to be after xplan-database-docker image in the reactor build  -->
           <groupId>de.latlon.product.xplanbox</groupId>
-          <artifactId>xplan-sql-scripts</artifactId>
+          <artifactId>xplan-database-docker</artifactId>
           <version>${project.version}</version>
           <type>pom</type>
         </dependency>
