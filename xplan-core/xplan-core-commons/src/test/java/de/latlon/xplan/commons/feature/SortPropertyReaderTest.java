@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.commons.feature;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
@@ -91,7 +90,7 @@ class SortPropertyReaderTest {
 	}
 
 	@Test
-	void testReadSortDate_NullSortConfiguration() throws Exception {
+	void testReadSortDate_NullSortConfiguration() {
 		assertThrows(NullPointerException.class, () -> new SortPropertyReader(null));
 	}
 
@@ -106,7 +105,7 @@ class SortPropertyReaderTest {
 		String name = "xplan51/BP2070.zip";
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
-				ResourceAccessor.readResourceStream(name));
+				getClass().getResourceAsStream("/testdata/" + name));
 		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(archive);
 	}
 

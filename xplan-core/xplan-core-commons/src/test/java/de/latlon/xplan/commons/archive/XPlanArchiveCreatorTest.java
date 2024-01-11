@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.commons.archive;
 
-import de.latlon.xplan.ResourceAccessor;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
 import org.junit.jupiter.api.Test;
@@ -146,7 +145,7 @@ class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	void testPlanWithWrongGmlFileNameShouldThrowIllegalArgumentException() throws Exception {
+	void testPlanWithWrongGmlFileNameShouldThrowIllegalArgumentException() {
 		assertThrows(IllegalArgumentException.class,
 				() -> getTestArchive("xplan41/Eidelstedt_4_V4-wrongGmlFileName.zip"));
 	}
@@ -154,7 +153,7 @@ class XPlanArchiveCreatorTest {
 	@Test
 	void testCreateXPlanArchive_51_GmlFile() throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
-		InputStream gmlAsStream = ResourceAccessor.readResourceStream("xplan51/BPlan001_5-1.gml");
+		InputStream gmlAsStream = getClass().getResourceAsStream("/testdata/xplan51/BPlan001_5-1.gml");
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("BPlan001_5-1.gml", gmlAsStream);
 		assertEquals(XPLAN_51, archive.getVersion());
 		assertEquals(null, archive.getDistricts().get(0));
@@ -184,7 +183,7 @@ class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	void testCreateXPlanArchive_NoXPlanGml() throws IOException {
+	void testCreateXPlanArchive_NoXPlanGml() {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
 		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
 			.getResourceAsStream("V4_1_ID_103-noXPlanGmlCollection.gml");
@@ -193,7 +192,7 @@ class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	void testCreateXPlanArchive_withEntity() throws IOException {
+	void testCreateXPlanArchive_withEntity() {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
 		InputStream zipAsStream = XPlanArchiveCreatorTest.class
 			.getResourceAsStream("Blankenese29_Test_60_withEntity.zip");
@@ -203,12 +202,12 @@ class XPlanArchiveCreatorTest {
 
 	private XPlanArchive getTestArchive(String name) throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		return archiveCreator.createXPlanArchiveFromZip(name, ResourceAccessor.readResourceStream(name));
+		return archiveCreator.createXPlanArchiveFromZip(name, getClass().getResourceAsStream("/testdata/" + name));
 	}
 
 	private XPlanArchive getTestArchiveWithMapper(String name) throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
-		return archiveCreator.createXPlanArchiveFromZip(name, ResourceAccessor.readResourceStream(name));
+		return archiveCreator.createXPlanArchiveFromZip(name, getClass().getResourceAsStream("/testdata/" + name));
 	}
 
 	private LocalCenterToDistrictMapper mockMapper() {
