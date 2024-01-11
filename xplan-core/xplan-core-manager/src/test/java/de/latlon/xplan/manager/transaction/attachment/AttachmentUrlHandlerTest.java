@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.transaction.attachment;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
@@ -252,7 +251,7 @@ public class AttachmentUrlHandlerTest {
 
 	private XPlanFeatureCollection getXPlanFeatureCollection(String resource)
 			throws IOException, XMLStreamException, UnknownCRSException {
-		InputStream inputStream = ResourceAccessor.readResourceStream(resource);
+		InputStream inputStream = getClass().getResourceAsStream("/testdata/" + resource);
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(resource, inputStream);
 		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder()

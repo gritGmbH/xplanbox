@@ -20,11 +20,9 @@
  */
 package de.latlon.xplan.manager;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
@@ -165,7 +163,7 @@ public class XPlanManagerTest {
 	}
 
 	private String copyPlan() throws IOException {
-		InputStream resource = ResourceAccessor.readResourceStream("xplan41/BPlan001_4-1.zip");
+		InputStream resource = getClass().getResourceAsStream("/testdata/xplan41/BPlan001_4-1.zip");
 		FileOutputStream output = null;
 		try {
 			File resourceFile = File.createTempFile("XPlanManagerTest_", ".zip");

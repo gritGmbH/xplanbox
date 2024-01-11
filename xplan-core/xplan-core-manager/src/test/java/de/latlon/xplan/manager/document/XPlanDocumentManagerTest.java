@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.document;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
@@ -60,7 +59,7 @@ public class XPlanDocumentManagerTest {
 		ApplicationEventPublisher applicationEventPublisher = mock(ApplicationEventPublisher.class);
 		XPlanDocumentManager xPlanDocumentManager = new XPlanDocumentManager(storage, applicationEventPublisher);
 
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/StErhVO_Hamm_60.zip");
+		InputStream inputStream = getClass().getResourceAsStream("/testdata/xplan60/StErhVO_Hamm_60.zip");
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip("StErhVO_Hamm_60.zip", inputStream);
 		FeatureCollection featureCollection = XPlanGmlParserBuilder.newBuilder()

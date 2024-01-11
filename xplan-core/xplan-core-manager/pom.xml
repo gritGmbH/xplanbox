@@ -158,11 +158,6 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-tests-resources</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
       <artifactId>xplan-workspaces</artifactId>
       <classifier>xplan-manager-workspace</classifier>
       <scope>test</scope>

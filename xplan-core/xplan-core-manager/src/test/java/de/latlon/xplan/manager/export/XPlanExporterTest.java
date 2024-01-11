@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.export;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
@@ -132,7 +131,7 @@ public class XPlanExporterTest {
 
 	private XPlanArchive createArchive(String testArchiveName) throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		InputStream archiveResource = ResourceAccessor.readResourceStream(testArchiveName);
+		InputStream archiveResource = getClass().getResourceAsStream("/testdata/" + testArchiveName);
 		return archiveCreator.createXPlanArchiveFromZip(testArchiveName, archiveResource);
 	}
 

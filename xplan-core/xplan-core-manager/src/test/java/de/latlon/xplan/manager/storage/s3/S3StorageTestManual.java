@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.storage.s3;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.storage.s3.config.AmazonS3TestContext;
@@ -61,7 +60,7 @@ public class S3StorageTestManual {
 
 	@Test
 	public void testInsertObjectAndGetObject() throws IOException, StorageException {
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/Blankenese29_Test_60.zip");
+		InputStream inputStream = getClass().getResourceAsStream("/testdata/xplan60/Blankenese29_Test_60.zip");
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchiveContentAccess archive = archiveCreator.createXPlanArchiveFromZip("Blankenese29_Test_60.zip",
 				inputStream);

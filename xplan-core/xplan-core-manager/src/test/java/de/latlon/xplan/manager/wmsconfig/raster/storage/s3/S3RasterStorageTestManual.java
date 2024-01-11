@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster.storage.s3;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.storage.StorageEvent;
@@ -70,7 +69,7 @@ public class S3RasterStorageTestManual {
 
 	@Test
 	public void testAddRasterFile() throws IOException, StorageException {
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/Blankenese29_Test_60.zip");
+		InputStream inputStream = getClass().getResourceAsStream("/testdata/xplan60/Blankenese29_Test_60.zip");
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchiveContentAccess archive = archiveCreator.createXPlanArchiveFromZip("Blankenese29_Test_60.zip",
 				inputStream);
@@ -92,7 +91,7 @@ public class S3RasterStorageTestManual {
 	}
 
 	private void importRasterFile() throws IOException, StorageException {
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/Blankenese29_Test_60.zip");
+		InputStream inputStream = getClass().getResourceAsStream("/testdata/xplan60/Blankenese29_Test_60.zip");
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchiveContentAccess archive = archiveCreator.createXPlanArchiveFromZip("Blankenese29_Test_60.zip",
 				inputStream);

@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.edit;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -1200,7 +1199,7 @@ public class XPlanManipulatorTest {
 	}
 
 	private FeatureCollection readXPlanGmlFromZip(String resource) throws Exception {
-		InputStream resourceAsStream = ResourceAccessor.readResourceStream(resource);
+		InputStream resourceAsStream = getClass().getResourceAsStream("/testdata/" + resource);
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive xPlanArchive = archiveCreator.createXPlanArchiveFromZip(resource, resourceAsStream);
 		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(xPlanArchive);

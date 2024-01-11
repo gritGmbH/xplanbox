@@ -20,11 +20,10 @@
  */
 package de.latlon.xplan.manager.document.s3;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.document.s3.config.AmazonS3DocumentStorageContext;
+import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.storage.s3.config.AmazonS3TestContext;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.junit.Test;
@@ -67,7 +66,7 @@ public class S3DocumentStorageIT {
 
 	@Test
 	public void testImportDocuments() throws IOException, StorageException {
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/StErhVO_Hamm_60.zip");
+		InputStream inputStream = getClass().getResourceAsStream("/testdata/xplan60/StErhVO_Hamm_60.zip");
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip("StErhVO_Hamm_60.zip", inputStream);
 

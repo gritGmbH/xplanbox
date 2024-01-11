@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.edit;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -534,7 +533,7 @@ public class XPlanToEditFactoryTest {
 	private FeatureCollection readXPlanArchive(XPlanVersion xplanVersion, String resource)
 			throws IOException, XMLStreamException, UnknownCRSException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		InputStream inputStream = ResourceAccessor.readResourceStream(resource);
+		InputStream inputStream = getClass().getResourceAsStream("/testdata/" + resource);
 		XPlanArchive xPlanArchiveFromZip = archiveCreator.createXPlanArchiveFromZip(resource, inputStream);
 		InputStream mainFileInputStream = xPlanArchiveFromZip.getMainFileInputStream();
 		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(mainFileInputStream, xplanVersion);

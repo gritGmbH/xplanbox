@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster.access;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import org.junit.Ignore;
@@ -47,7 +46,7 @@ public class GdalRasterAdapterTest {
 		assumeTrue(isGdalSuccessfullInitialized());
 
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		InputStream testPlan = ResourceAccessor.readResourceStream("xplan60/Blankenese29_Test_60.zip");
+		InputStream testPlan = getClass().getResourceAsStream("/testdata/xplan60/Blankenese29_Test_60.zip");
 		XPlanArchive xPlanArchive = archiveCreator.createXPlanArchiveFromZip("Blankenese29_Test_60.zip", testPlan);
 
 		GdalRasterAdapter gdalRasterAdapter = new GdalRasterAdapter();
@@ -74,7 +73,7 @@ public class GdalRasterAdapterTest {
 		assumeTrue(isGdalSuccessfullInitialized());
 
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		InputStream testPlan = ResourceAccessor.readResourceStream("xplan60/Blankenese29_Test_60.zip");
+		InputStream testPlan = getClass().getResourceAsStream("/testdata/xplan60/Blankenese29_Test_60.zip");
 		XPlanArchive xPlanArchive = archiveCreator.createXPlanArchiveFromZip("Blankenese29_Test_60.zip", testPlan);
 
 		GdalRasterAdapter gdalRasterAdapter = new GdalRasterAdapter();
