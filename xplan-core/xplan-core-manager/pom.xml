@@ -60,7 +60,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-schemas</artifactId>
+      <artifactId>xplan-core-schemas</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
