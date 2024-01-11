@@ -29,7 +29,7 @@
     language="urn:ogc:def:queryLanguage:OGC-WFS::WFS_QueryExpression" isPrivate="false">
 
     <!-- BP_Plan -->
-    <wfs:Query xmlns:gml="http://www.opengis.net/gml/3.2" typeNames="xplan:BP_Plan">
+    <wfs:Query srsName="${srsName}" xmlns:gml="http://www.opengis.net/gml/3.2" typeNames="xplan:BP_Plan">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -61,7 +61,7 @@
     </wfs:Query>
 
     <!-- FP_Plan -->
-    <wfs:Query xmlns:gml="http://www.opengis.net/gml/3.2" typeNames="xplan:FP_Plan">
+    <wfs:Query srsName="${srsName}" xmlns:gml="http://www.opengis.net/gml/3.2" typeNames="xplan:FP_Plan">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -93,7 +93,7 @@
     </wfs:Query>
 
     <!-- LP_Plan -->
-    <wfs:Query xmlns:gml="http://www.opengis.net/gml/3.2" typeNames="xplan:LP_Plan">
+    <wfs:Query srsName="${srsName}" xmlns:gml="http://www.opengis.net/gml/3.2" typeNames="xplan:LP_Plan">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -125,7 +125,7 @@
     </wfs:Query>
 
     <!-- RP_Plan -->
-    <wfs:Query xmlns:gml="http://www.opengis.net/gml/3.2" typeNames="xplan:RP_Plan">
+    <wfs:Query srsName="${srsName}" xmlns:gml="http://www.opengis.net/gml/3.2" typeNames="xplan:RP_Plan">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
