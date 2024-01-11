@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
@@ -30,8 +29,6 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
 import java.io.InputStream;
-
-import static org.apache.commons.io.IOUtils.closeQuietly;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -46,7 +43,7 @@ public class TestFeaturesUtils {
 	public static XPlanFeatureCollection getTestFeatureCollection(String resourceName) throws Exception {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(resourceName,
-				ResourceAccessor.readResourceStream(resourceName));
+				TestFeaturesUtils.class.getResourceAsStream("/testdata/" + resourceName));
 		return XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(archive);
 	}
 

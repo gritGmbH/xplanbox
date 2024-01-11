@@ -20,9 +20,6 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.synthesizer.PlanContext;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -30,8 +27,6 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.property.GenericProperty;
 import org.deegree.feature.property.SimpleProperty;
-
-import java.io.IOException;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
@@ -56,11 +51,6 @@ public abstract class AbstractPraesentationsobjektLookupTest {
 			return simpleProperty.getValue();
 		}
 		return (PrimitiveValue) evaluate;
-	}
-
-	protected XPlanArchive getTestArchive(String name) throws IOException {
-		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		return archiveCreator.createXPlanArchiveFromZip(name, ResourceAccessor.readResourceStream(name));
 	}
 
 }

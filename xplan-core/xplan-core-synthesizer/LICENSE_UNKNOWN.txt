@@ -80,5 +80,40 @@ Inhalt des Verzeichnisses src/test/resources:
 │                   └── xplan41_XP_BesondereArtDerBaulNutzung.syn
 ├── HafenCity7.gml
 ├── log4j2.yaml
-└── Rotherbaum27.gml
+├── Rotherbaum27.gml
+└── testdata
+    ├── xplan40
+    │   └── BPlan004_4-0.zip
+    ├── xplan41
+    │   ├── BP2070-detailierteArtDerBaulNutzung.zip
+    │   ├── BP2070.zip
+    │   ├── BP2135.zip
+    │   ├── BPlan001_4-1.zip
+    │   ├── Demo.zip
+    │   ├── Eidelstedt_4_V4.zip
+    │   ├── FPlan.zip
+    │   ├── hc7_bereich_2_V4.zip
+    │   ├── LA22.zip
+    │   └── LA67.zip
+    ├── xplan50
+    │   ├── BP2070.zip
+    │   ├── BP2135.zip
+    │   ├── LA22.zip
+    │   └── LA67.zip
+    ├── xplan51
+    │   ├── BP2070.zip
+    │   ├── BP2135.zip
+    │   ├── LA22.zip
+    │   └── LA67.zip
+    ├── xplan52
+    │   ├── BP2070.zip
+    │   ├── BP2135.zip
+    │   ├── BPlan001_5-2_Bereiche.zip
+    │   ├── LA22.zip
+    │   └── LA67.zip
+    └── xplan60
+        ├── BPlan001_6-0.zip
+        ├── BPlan002_6-0.zip
+        ├── FNP_Test_60.zip
+        └── LP-Test_60.zip
 
