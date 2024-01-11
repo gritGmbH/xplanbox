@@ -57,7 +57,7 @@
       <includes>
         <include>de.latlon.product.xplanbox:xplan-manager-web:war:*</include>
         <include>de.latlon.product.xplanbox:xplan-manager-api:war:*</include>
-        <include>de.latlon.product.xplanbox:xplan-root:war:*</include>
+        <include>de.latlon.product.xplanbox:xplan-webpages:war:*</include>
         <include>de.latlon.product.xplanbox:xplan-validator-web:war:*</include>
         <include>de.latlon.product.xplanbox:xplan-validator-api:war:*</include>
         <include>de.latlon.product.xplanbox:xplan-dokumente-api:war:*</include>
