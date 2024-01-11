@@ -158,7 +158,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <classifier>xplan-manager-workspace</classifier>
       <scope>test</scope>
       <type>zip</type>

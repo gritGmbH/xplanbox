@@ -208,49 +208,49 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <classifier>xplan-manager-workspace</classifier>
       <type>zip</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <classifier>xplansyn-wfs-workspace</classifier>
       <type>zip</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <classifier>xplansyn-wms-workspace</classifier>
       <type>zip</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <classifier>xplan-wfs-workspace</classifier>
       <type>zip</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <classifier>xplan-inspireplu-workspace</classifier>
       <type>zip</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <classifier>xplan-validator-wms-memory-workspace</classifier>
       <type>zip</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <classifier>xplan-validator-wms-sql-workspace</classifier>
       <type>zip</type>

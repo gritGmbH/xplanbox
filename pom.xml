@@ -184,7 +184,7 @@
                     <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-manager/**</exclude>
                     <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-validator/**</exclude>
                     <exclude>*/xplan-tests-soapui/src/main/resource/xplan-webservices/**</exclude>
-                    <exclude>*/xplan-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
+                    <exclude>*/xplan-webservices-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
                     <exclude>**/*.json</exclude>
                     <exclude>**./.properties</exclude>
                   </excludes>
@@ -1169,7 +1169,7 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-workspaces</artifactId>
+        <artifactId>xplan-webservices-workspaces</artifactId>
         <classifier>xplan-manager-workspace</classifier>
         <version>${project.version}</version>
         <type>zip</type>
