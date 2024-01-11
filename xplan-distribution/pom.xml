@@ -114,7 +114,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-api-manager</artifactId>
+      <artifactId>xplan-manager-api</artifactId>
       <version>${project.version}</version>
       <type>war</type>
     </dependency>
@@ -133,43 +133,43 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-api-validator</artifactId>
+      <artifactId>xplan-validator-api</artifactId>
       <version>${project.version}</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-api-dokumente</artifactId>
+      <artifactId>xplan-dokumente-api</artifactId>
       <version>${project.version}</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplansyn-wfs</artifactId>
+      <artifactId>xplan-services-wfs-syn</artifactId>
       <version>${project.version}</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-wfs</artifactId>
+      <artifactId>xplan-services-wfs</artifactId>
       <version>${project.version}</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-wms</artifactId>
+      <artifactId>xplan-services-wms</artifactId>
       <version>${project.version}</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-inspireplu</artifactId>
+      <artifactId>xplan-webservices-inspireplu</artifactId>
       <version>${project.version}</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-validator-wms</artifactId>
+      <artifactId>xplan-webservices-validator-wms</artifactId>
       <version>${project.version}</version>
       <type>war</type>
     </dependency>
@@ -190,7 +190,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-dokumenten-config</artifactId>
+      <artifactId>xplan-dokumente-config</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>

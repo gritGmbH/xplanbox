@@ -36,7 +36,7 @@
   <dependencySets>
     <dependencySet>
       <includes>
-        <include>de.latlon.product.xplanbox:xplan-schemas:zip:*</include>
+        <include>de.latlon.product.xplanbox:xplan-core-schemas:zip:*</include>
       </includes>
       <useProjectArtifact>false</useProjectArtifact>
       <unpack>true</unpack>

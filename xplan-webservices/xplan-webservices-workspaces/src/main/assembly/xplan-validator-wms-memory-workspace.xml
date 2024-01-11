@@ -75,7 +75,7 @@
   <dependencySets>
     <dependencySet>
       <includes>
-        <include>de.latlon.product.xplanbox:xplan-schemas</include>
+        <include>de.latlon.product.xplanbox:xplan-core-schemas</include>
       </includes>
       <unpack>true</unpack>
       <outputDirectory>/</outputDirectory>

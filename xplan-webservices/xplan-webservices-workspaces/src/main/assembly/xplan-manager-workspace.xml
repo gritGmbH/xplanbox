@@ -52,19 +52,19 @@
       <outputDirectory>/modules</outputDirectory>
       <useProjectArtifact>false</useProjectArtifact>
       <excludes>
-        <exclude>de.latlon.product.xplanbox:xplan-schemas</exclude>
+        <exclude>de.latlon.product.xplanbox:xplan-core-schemas</exclude>
       </excludes>
     </dependencySet>
     <dependencySet>
       <includes>
-        <include>de.latlon.product.xplanbox:xplan-schemas</include>
+        <include>de.latlon.product.xplanbox:xplan-core-schemas</include>
       </includes>
       <unpack>true</unpack>
       <outputDirectory>/</outputDirectory>
     </dependencySet>
     <dependencySet>
       <includes>
-        <include>de.latlon.product.xplanbox:xplan-sql-scripts</include>
+        <include>de.latlon.product.xplanbox:xplan-database-docker</include>
       </includes>
       <unpack>true</unpack>
       <outputDirectory>/sql</outputDirectory>

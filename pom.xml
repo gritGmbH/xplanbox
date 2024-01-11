@@ -1138,7 +1138,7 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-commons-webservices</artifactId>
+        <artifactId>xplan-webservices-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

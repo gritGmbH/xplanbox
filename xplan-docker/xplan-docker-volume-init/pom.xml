@@ -104,10 +104,10 @@
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>
-    <!--xplan-dokumenten-config-->
+    <!--xplan-dokumente-config-->
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-dokumenten-config</artifactId>
+      <artifactId>xplan-dokumente-config</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>
