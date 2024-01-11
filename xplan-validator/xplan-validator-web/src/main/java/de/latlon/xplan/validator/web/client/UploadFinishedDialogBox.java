@@ -49,7 +49,7 @@ import static de.latlon.xplanbox.core.gwt.commons.client.report.ReportDownloadFi
  */
 class UploadFinishedDialogBox extends DialogBox {
 
-	private final ValidatorWebCommonsMessages messages = GWT.create( ValidatorWebCommonsMessages.class);
+	private final ValidatorWebCommonsMessages messages = GWT.create(ValidatorWebCommonsMessages.class);
 
 	private final ValidationConfigServiceAsync validationConfigService = GWT.create(ValidationConfigService.class);
 
@@ -118,8 +118,8 @@ class UploadFinishedDialogBox extends DialogBox {
 								xPlanValidatorWeb.resetPanelToUpload();
 							}
 						};
-						ValidatorOptionsDialog xPlanValidatorSettings = new ValidatorOptionsDialog( validationConfig,
-                                                                                                    new ReportDownloadFinishedListener() {
+						ValidatorOptionsDialog xPlanValidatorSettings = new ValidatorOptionsDialog(validationConfig,
+								new ReportDownloadFinishedListener() {
 									@Override
 									public void downloadFinished(FinishStatus finishStatus) {
 										if (NEXT.equals(finishStatus))

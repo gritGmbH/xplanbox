@@ -32,7 +32,7 @@ public class PollingTextBox extends TextBox {
 
 	private final Timer timer;
 
-	public PollingTextBox( ValidationServiceAsync validationService) {
+	public PollingTextBox(ValidationServiceAsync validationService) {
 		timer = new Timer() {
 			@Override
 			public void run() {

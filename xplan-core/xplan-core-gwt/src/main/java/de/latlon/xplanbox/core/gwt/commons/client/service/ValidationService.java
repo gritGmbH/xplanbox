@@ -41,7 +41,7 @@ public interface ValidationService extends RemoteService {
 	 * @return the uuid of the plan
 	 * @throws ValidatorException if an exception occurred during validation
 	 */
-	ValidationSummary validate( ValidationSettings validationSettings)
+	ValidationSummary validate(ValidationSettings validationSettings)
 			throws ValidationException, IllegalArgumentException, InvalidParameterException;
 
 	boolean poll();

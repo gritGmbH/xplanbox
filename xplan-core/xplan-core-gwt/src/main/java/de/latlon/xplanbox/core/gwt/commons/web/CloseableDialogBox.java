@@ -39,7 +39,7 @@ import de.latlon.xplanbox.core.gwt.commons.web.i18n.XPlanMessages;
  */
 public class CloseableDialogBox extends DialogBox {
 
-	private final XPlanMessages messages = GWT.create( XPlanMessages.class);
+	private final XPlanMessages messages = GWT.create(XPlanMessages.class);
 
 	private Button button;
 

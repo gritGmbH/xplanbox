@@ -88,7 +88,7 @@ public class XPlanValidationServiceImpl extends RemoteServiceServlet implements 
 	public ValidationSummary validate(ValidationSettings validationSettings)
 			throws ValidationException, InvalidParameterException {
 		LOG.debug("Starting validation of plan with {}", validationSettings.toString());
-		ValidationUtils.validate( validationSettings);
+		ValidationUtils.validate(validationSettings);
 		try {
 			XPlan planToVerify = planArchiveManager.readPlanFromSession(session);
 			String planUuid = planToVerify.getId();

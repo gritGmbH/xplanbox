@@ -74,9 +74,9 @@ public class ValidatorOptionsDialog extends FormPanel {
 
 	private static final String SKIP_LAUFRICHTUNG = "skip-laufrichtung";
 
-	private final ValidationServiceAsync validationService = GWT.create( ValidationService.class);
+	private final ValidationServiceAsync validationService = GWT.create(ValidationService.class);
 
-	private final MapPreviewConfigServiceAsync mapPreviewConfigService = GWT.create( MapPreviewConfigService.class);
+	private final MapPreviewConfigServiceAsync mapPreviewConfigService = GWT.create(MapPreviewConfigService.class);
 
 	private final TextBox validationName = new TextBox();
 

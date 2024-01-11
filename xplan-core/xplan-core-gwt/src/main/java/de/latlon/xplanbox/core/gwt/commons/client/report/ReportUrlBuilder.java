@@ -35,7 +35,7 @@ import de.latlon.xplan.validator.web.shared.ArtifactType;
  */
 public class ReportUrlBuilder {
 
-	String createHtmlUrl( ValidationSummary validationSummary) {
+	String createHtmlUrl(ValidationSummary validationSummary) {
 		String url = createBaseUrl("rest/report/html/" + validationSummary.getPlanUuid());
 		url = appendValidationName(validationSummary, url);
 		return url;
