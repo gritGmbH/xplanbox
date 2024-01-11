@@ -353,7 +353,6 @@
       <id>docker</id>
       <properties>
         <docker-image.skip>false</docker-image.skip>
-        <docker-image.name>xplan-validator-api</docker-image.name>
       </properties>
       <dependencies>
         <dependency> <!-- to copy jmx exporter stuff from docker image  -->

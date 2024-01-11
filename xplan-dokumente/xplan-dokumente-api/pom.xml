@@ -268,7 +268,6 @@
       <id>docker</id>
       <properties>
         <docker-image.skip>false</docker-image.skip>
-        <docker-image.name>xplan-dokumente-api</docker-image.name>
       </properties>
       <dependencies>
         <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
