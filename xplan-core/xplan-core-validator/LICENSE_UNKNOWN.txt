@@ -150,3 +150,39 @@ Inhalt des Verzeichnisses src/test/resources:
 │                       ├── inhaltBPPlan-referenziertSO.xml
 │                       ├── xplan.gml
 │                       └── XP_PPO-positionPoint-keinFlaechenschluss.xml
+├── log4j2-test.yaml
+├── profiles-test1.yml
+├── profiles-test2.yaml
+└── testdata
+    ├── xplan40
+    │   └── BPlan004_4-0.zip
+    ├── xplan41
+    │   ├── BP2070.zip
+    │   ├── BP2135.zip
+    │   ├── BPlan001_4-1.zip
+    │   ├── Demo.zip
+    │   ├── Eidelstedt_4_V4-broken-geometry.zip
+    │   ├── Eidelstedt_4_V4_Syntaxfehler.zip
+    │   ├── Eidelstedt_4_V4.zip
+    │   ├── FPlan.zip
+    │   ├── LA22.zip
+    │   ├── LA67.zip
+    │   └── PlanWithComplexCurve.zip
+    ├── xplan50
+    │   ├── BP2070.zip
+    │   ├── BP2135.zip
+    │   ├── FPlan.zip
+    │   ├── LA22.zip
+    │   └── LA67.zip
+    ├── xplan51
+    │   ├── BP2070.zip
+    │   ├── BP2135.zip
+    │   ├── BPlan001_5-1.zip
+    │   ├── FPlan.zip
+    │   ├── LA22.zip
+    │   └── LA67.zip
+    └── xplan60
+        ├── Blankenese29.gml
+        ├── Blankenese29_Test_60.zip
+        ├── BPlan001_6-0.zip
+        └── StErhVO_Hamm_60_httpRef.gml

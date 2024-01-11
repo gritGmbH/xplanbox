@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.validator.wms;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
@@ -67,7 +66,7 @@ public class ValidatorWmsManagerTest {
 	private XPlanFeatureCollection parseFeatureCollection(String name) throws Exception {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
-				ResourceAccessor.readResourceStream(name));
+				getClass().getResourceAsStream("/testdata/" + name));
 		return XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(archive);
 	}
 

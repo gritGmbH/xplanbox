@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.validator.wms.storage;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
@@ -74,7 +73,7 @@ public class SqlPlanStorageTest {
 	private XPlanFeatureCollection parseFeatureCollection(String name) throws Exception {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
-				ResourceAccessor.readResourceStream(name));
+				getClass().getResourceAsStream("/testdata/" + name));
 		return XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(archive);
 	}
 

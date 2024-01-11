@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.validator;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
@@ -67,7 +66,7 @@ public class FeatureParserUtils {
 	 */
 	public static FeatureCollection readFeaturesFromZip(String name, FeatureInspector... inspectors)
 			throws IOException, XMLStreamException, UnknownCRSException {
-		InputStream inputStream = ResourceAccessor.readResourceStream(name);
+		InputStream inputStream = FeatureParserUtils.class.getResourceAsStream("/testdata/" + name);
 		return readFeaturesFromZip(name, inputStream, inspectors);
 	}
 
@@ -94,7 +93,7 @@ public class FeatureParserUtils {
 	 */
 	public static FeatureCollection readFeaturesFromGml(String name, FeatureInspector... inspectors)
 			throws IOException, XMLStreamException, UnknownCRSException {
-		InputStream inputStream = ResourceAccessor.readResourceStream(name);
+		InputStream inputStream = FeatureParserUtils.class.getResourceAsStream("/testdata/" + name);
 		return readFeaturesFromGml(name, inputStream, inspectors);
 	}
 

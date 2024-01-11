@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.validator;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
@@ -103,7 +102,7 @@ public class XPlanValidatorTest {
 
 	@BeforeClass
 	public static void initFileToValidate() throws IOException {
-		InputStream input = ResourceAccessor.readResourceStream("xplan60/Blankenese29.gml");
+		InputStream input = XPlanValidatorTest.class.getResourceAsStream("/testdata/xplan60/Blankenese29.gml");
 		Path xPlanGml = Files.createTempFile("XPlanValidatorTest", ".gml");
 		FileOutputStream output = new FileOutputStream(xPlanGml.toFile());
 		IOUtils.copy(input, output);

@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.validator.reference;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
@@ -43,7 +42,7 @@ public class ExternalReferenceEvaluatorTest {
 
 	@Test
 	public void testValidateExternalReferences_Avalaible() throws Exception {
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/Blankenese29_Test_60.zip");
+		InputStream inputStream = getClass().getResourceAsStream("/testdata/xplan60/Blankenese29_Test_60.zip");
 		XPlanArchive xPlanArchive = new XPlanArchiveCreator().createXPlanArchiveFromZip("Blankenese29_Test_60",
 				inputStream);
 		XPlanFeatureCollection features = XPlanGmlParserBuilder.newBuilder()
@@ -59,7 +58,7 @@ public class ExternalReferenceEvaluatorTest {
 
 	@Test
 	public void testValidateExternalReferences_Missing() throws Exception {
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/Blankenese29.gml");
+		InputStream inputStream = getClass().getResourceAsStream("/testdata/xplan60/Blankenese29.gml");
 		XPlanArchive xPlanArchive = new XPlanArchiveCreator().createXPlanArchiveFromGml("Blankenese29", inputStream);
 		XPlanFeatureCollection features = XPlanGmlParserBuilder.newBuilder()
 			.build()
@@ -74,7 +73,7 @@ public class ExternalReferenceEvaluatorTest {
 
 	@Test
 	public void testValidateExternalReferences_Http() throws Exception {
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/StErhVO_Hamm_60_httpRef.gml");
+		InputStream inputStream = getClass().getResourceAsStream("/testdata/xplan60/StErhVO_Hamm_60_httpRef.gml");
 		XPlanArchive xPlanArchive = new XPlanArchiveCreator().createXPlanArchiveFromGml("StErhVO_Hamm_60_httpRef.gml",
 				inputStream);
 		XPlanFeatureCollection features = XPlanGmlParserBuilder.newBuilder()

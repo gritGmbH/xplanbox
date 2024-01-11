@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.validator.semantic.xquery;
 
-import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration;
@@ -140,7 +139,7 @@ public class XQuerySemanticValidatorTest {
 
 	private XPlanArchive getTestArchive(String name) throws Exception {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		return archiveCreator.createXPlanArchiveFromZip(name, ResourceAccessor.readResourceStream(name));
+		return archiveCreator.createXPlanArchiveFromZip(name, getClass().getResourceAsStream("/testdata/" + name));
 	}
 
 	private Path pathToSampleRules() throws URISyntaxException {
