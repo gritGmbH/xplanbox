@@ -77,7 +77,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-synthesizer</artifactId>
+      <artifactId>xplan-core-synthesizer</artifactId>
     </dependency>
     <dependency>
       <groupId>jakarta.xml.bind</groupId>
