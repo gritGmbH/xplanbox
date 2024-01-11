@@ -179,7 +179,7 @@ den Plan mit dem Namen _Musterdorf_ in der XPlanGML-Version 5.4:
 http://<host>:<port>/xplan-wfs/services/wfs54?request=GetFeature&service=WFS&version=2.0.0&resolvedepth=*&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf
 ----
 
-Über den optionalen Parameter _srsName_ lässt sich das Koordinatensystem der zurückgegebenen Geometrien angeben. Wird der Parameter nicht angegeben, erfolgt die Ausgabe der Geometrien in dem default-Koordinatensystem des Dienstes. Der Parameter wird von allen StoredQueries unterstützt.
+Über den optionalen Parameter _srsName_ lässt sich das Koordinatenreferenzsystem der zurückzugebenden Geometrien angeben. Wird der Parameter nicht verwendet, erfolgt die Ausgabe der Geometrien in dem default-Koordinatenreferenzsystem des Dienstes. Der Parameter wird von allen StoredQueries unterstützt.
 Beispielanfrage für den Plan mit dem Namen _Musterdorf_ in der XPlanGML-Version 5.4 mit _srsName=EPSG:4326_:
 
 ----
