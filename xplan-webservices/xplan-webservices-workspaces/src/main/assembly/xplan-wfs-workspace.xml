@@ -67,6 +67,7 @@
   </fileSets>
   <dependencySets>
     <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
       <includes>
         <include>de.latlon.product.xplanbox:xplan-core-schemas</include>
       </includes>

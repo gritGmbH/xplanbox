@@ -56,6 +56,7 @@
       </excludes>
     </dependencySet>
     <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
       <includes>
         <include>de.latlon.product.xplanbox:xplan-core-schemas</include>
       </includes>
@@ -63,6 +64,7 @@
       <outputDirectory>/</outputDirectory>
     </dependencySet>
     <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
       <includes>
         <include>de.latlon.product.xplanbox:xplan-database-docker</include>
       </includes>

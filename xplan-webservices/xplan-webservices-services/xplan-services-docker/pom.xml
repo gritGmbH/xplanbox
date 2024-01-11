@@ -28,6 +28,7 @@
                   <inline>
                     <dependencySets>
                       <dependencySet>
+                        <useProjectArtifact>false</useProjectArtifact>
                         <outputDirectory>xplan-wms</outputDirectory>
                         <includes>
                           <include>${project.groupId}:xplan-services-wms:war</include>
@@ -35,16 +36,18 @@
                         <unpack>true</unpack>
                       </dependencySet>
                       <dependencySet>
+                        <useProjectArtifact>false</useProjectArtifact>
                         <outputDirectory>xplan-wfs</outputDirectory>
                         <includes>
-                          <include>${project.groupId}:xplan-wfs:war</include>
+                          <include>${project.groupId}:xplan-services-wfs:war</include>
                         </includes>
                         <unpack>true</unpack>
                       </dependencySet>
                       <dependencySet>
+                        <useProjectArtifact>false</useProjectArtifact>
                         <outputDirectory>xplansyn-wfs</outputDirectory>
                         <includes>
-                          <include>${project.groupId}:xplansyn-wfs:war</include>
+                          <include>${project.groupId}:xplan-services-wfs-syn:war</include>
                         </includes>
                         <unpack>true</unpack>
                       </dependencySet>
