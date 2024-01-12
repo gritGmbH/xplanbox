@@ -4,27 +4,28 @@
 Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefereinheit darstellen:
 
 * Kommandozeilenwerkzeuge:
- ** xplan-manager-cli-<VERSION>.zip
- ** xplan-validator-cli-<VERSION>.zip
- ** xplan-transform-cli-<VERSION>.zip
- ** xplan-validatedb-cli-<VERSION>.zip
  ** xplan-evaluation-schema-synchronize-cli-<VERSION>.zip
+ ** xplan-manager-cli-<VERSION>.zip
+ ** xplan-transform-cli-<VERSION>.zip
  ** xplan-update-data-cli-<VERSION>.zip
+ ** xplan-validatedb-cli-<VERSION>.zip
+ ** xplan-validator-cli-<VERSION>.zip
 * Web-Anwendungen und Web-Dienste und zugehörige Konfigurationen:
 
 [width="100%",cols="40%,60%",options="header"]
 |===
 |*Web-Anwendung/Dienst* |*Konfigurationen*
-|xplan-root-<VERSION>.war |-
-|xplan-validator-web-<VERSION>.war |xplan-validator-config-<VERSION>.zip
+|xplan-dokumente-api-<VERSION>.war |xplan-dokumente-config-<VERSION>.zip
 |xplan-manager-web-<VERSION>.war |xplan-manager-config-<VERSION>.zip und xplan-workspaces-<VERSION>-xplan-manager-workspace.zip
-|xplan-api-validator-<VERSION>.war |xplan-validator-config-<VERSION>.zip
-|xplan-api-manager-<VERSION>.war |xplan-manager-config-<VERSION>.zip und xplan-workspaces-<VERSION>-xplan-manager-workspace.zip
-|xplansyn-wfs-<VERSION>.war |xplan-workspaces-<VERSION>-xplansyn-wfs-workspace.zip
-|xplan-wfs-<VERSION>.war |xplan-workspaces-<VERSION>-xplan-wfs-workspace.zip
-|xplan-wms-<VERSION>.war |xplan-workspaces-<VERSION>-xplansyn-wms-workspace.zip
-|xplan-inspireplu-<VERSION>.war |xplan-workspaces-<VERSION>-xplan-inspireplu-workspace.zip
-|xplan-validator-wms-<VERSION>.war |xplan-workspaces-<VERSION>-xplan-validator-wms-memory-workspace.zip, xplan-workspaces-<VERSION>-xplan-validator-wms-sql-workspace.zip
+|xplan-manager-api-<VERSION>.war |xplan-manager-config-<VERSION>.zip und xplan-workspaces-<VERSION>-xplan-manager-workspace.zip
+|xplan-services-wfs-syn-<VERSION>.war |xplan-workspaces-<VERSION>-xplansyn-wfs-workspace.zip
+|xplan-services-wfs-<VERSION>.war |xplan-workspaces-<VERSION>-xplan-wfs-workspace.zip
+|xplan-services-wms-<VERSION>.war |xplan-workspaces-<VERSION>-xplansyn-wms-workspace.zip
+|xplan-validator-web-<VERSION>.war |xplan-validator-config-<VERSION>.zip
+|xplan-validator-api-<VERSION>.war |xplan-validator-config-<VERSION>.zip
+|xplan-webpages-default-<VERSION>.war |-
+|xplan-webservices-inspireplu-<VERSION>.war |xplan-workspaces-<VERSION>-xplan-inspireplu-workspace.zip
+|xplan-webservices-validator-wms-<VERSION>.war |xplan-workspaces-<VERSION>-xplan-validator-wms-memory-workspace.zip, xplan-workspaces-<VERSION>-xplan-validator-wms-sql-workspace.zip
 |===
 
 * MapServer Konfiguration
@@ -34,7 +35,7 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
  ** xplan-mapproxy-config-<VERSION>.zip
 
 * Dokumentation (in HTML und PDF-Format):
- ** XPlanBenutzerhandbuch - Benutzerhandbuch für die Komponenten der xPlanBox
- ** XPlanBetriebshandbuch - Betriebshandbuch und Installationsanleitung für die xPlanBox
+ ** xplan-benutzerhandbuch-<FORMAT>-<VERSION>.zip - XPlanBenutzerhandbuch - Benutzerhandbuch für die Komponenten der xPlanBox
+ ** xplan-betriebshandbuch-<FORMAT>-<VERSION>.zip - XPlanBetriebshandbuch - Betriebshandbuch und Installationsanleitung für die xPlanBox
 
 NOTE: Stellen Sie vor Beginn der Installation sicher, dass die Distributionsdatei vollständig ist. Bitte kontaktieren Sie https://www.lat-lon.de[lat/lon GmbH], per E-Mail an info@lat-lon.de, wenn Installationskomponenten fehlen.

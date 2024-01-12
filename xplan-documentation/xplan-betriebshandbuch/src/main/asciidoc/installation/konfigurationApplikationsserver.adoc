@@ -97,6 +97,6 @@ Zusätzlich sollte die xPlanBox wie folgt konfiguriert sein:
 . die Tomcat-Instanzen werden hinter einem Proxy (z. B. Apache httpd oder nginx) betrieben.
 . der Zugriff auf den XPlanManagerWeb ist durch Benutzername und Kennwort abgesichert (siehe Kapitel <<security>>).
 . die Komponente XPlanManagerAPI ist ebenfalls über Benutzername und Kennwort abgesichert.
-. die über den XPlanManagerAPI/Web sowie XPlanValidatorAPI/Web hochgeladenen Dateien sollten vorher durch einen Proxy mit Virenscanner auf Viren und Malware geprüft werden.
+. die über den XPlanManagerAPI/-Web sowie XPlanValidatorAPI/-Web hochgeladenen Dateien sollten vorher durch einen Proxy mit Virenscanner auf Viren und Malware geprüft werden.
 
 CAUTION: Der Betrieb der xPlanBox *ohne* die Umsetzung dieser Maßnahmen kann die IT-Sicherheit der Anwendung gefährden!

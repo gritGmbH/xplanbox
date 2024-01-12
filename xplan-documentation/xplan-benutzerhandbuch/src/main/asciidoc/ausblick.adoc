@@ -5,7 +5,7 @@ Die Leitstelle XPlanung/XBau hat einen https://www.xleitstelle.de/leitfaden[Leit
 
 === Einbindung in andere Software
 
-Zur Betrachtung der über den XPlanManager importierten Planwerke bietet sich die Einbindung des <<xplanwms, XPlanWMS oder XPlanWerkWMS>> in einen geeigneten Client an. Da es sich bei beiden Diensten jeweils um einen standardkonformen WMS handelt, kann jeder Client verwendet werden, der diese Schnittstelle in den Versionen 1.1.1 und 1.3.0 unterstützt.
-Der Zugriff auf die XPlanGML-Daten ist über den XPlanSynWFS oder die versionsspezifischen <<xplanwfs, XPlanWFS-Dienste>> möglich.
+Zur Betrachtung der über den XPlanManager importierten Planwerke bietet sich die Einbindung des <<xplanwms,XPlanWMS oder XPlanWerkWMS>> in einen geeigneten Client an. Da es sich bei beiden Diensten jeweils um einen standardkonformen WMS handelt, kann jeder Client verwendet werden, der diese Schnittstelle in den Versionen 1.1.1 und 1.3.0 unterstützt.
+Der Zugriff auf die XPlanGML-Daten ist über den XPlanSynWFS oder die versionsspezifischen <<xplanwfs,XPlanWFS-Dienste>> möglich.
 
 TIP: Als Desktop-Client wird https://qgis.org/[QGIS] empfohlen. Als WebGIS-Client wird das https://www.masterportal.org[Masterportal] empfohlen. Detaillierte Informationen zur Installation, Konfiguration und Benutzung finden sich in der Dokumentation der jeweiligen Software.

@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-distribution</artifactId>
   <packaging>pom</packaging>
-  <description>Modul zur Distributierung der xPlanBox</description>
+  <description>Distributionsmodul der xPlanBox</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
@@ -36,8 +36,7 @@
   </build>
 
   <dependencies>
-    <!-- Dokumentation -->
-    <!-- mkdir doc -->
+    <!-- Dokumentation > /doc -->
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-benutzerhandbuch</artifactId>
@@ -66,8 +65,7 @@
       <classifier>pdf</classifier>
       <type>zip</type>
     </dependency>
-    <!-- CLI -->
-    <!-- mkdir bin -->
+    <!-- CLI > /bin -->
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-manager-cli</artifactId>
@@ -104,8 +102,7 @@
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>
-    <!-- Webapps and Webservices -->
-    <!-- mkdir web -->
+    <!-- Webapps and Webservices > /web -->
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-manager-web</artifactId>
@@ -173,8 +170,7 @@
       <version>${project.version}</version>
       <type>war</type>
     </dependency>
-    <!-- Config -->
-    <!-- mkdir conf -->
+    <!-- Config > /conf -->
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-manager-config</artifactId>
@@ -255,15 +251,13 @@
       <classifier>xplan-validator-wms-sql-workspace</classifier>
       <type>zip</type>
     </dependency>
-    <!-- Test -->
-    <!-- mkdir test -->
+    <!-- Test > /test -->
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-tests-soapui</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>
-
   </dependencies>
 
 </project>

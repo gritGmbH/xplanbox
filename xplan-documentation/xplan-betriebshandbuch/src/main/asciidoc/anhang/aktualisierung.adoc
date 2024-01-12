@@ -14,18 +14,18 @@ Die Zuordnung der Anwendungskomponenten zu den jeweiligen Konfigurationen ist im
 * [ ] Alle Tomcat-Instanzen sind gestoppt
 * [ ] Sicherungskopie der WAR-Dateien bzw. die entpackten Verzeichnisse aus _Dienste-Tomcat/webapps/_, _Anwendungs-Tomcat/webapps/_, _API-Tomcat/webapps/_ ist im Verzeichnis _<BACKUP_CONFIG>_ abgelegt.
 * [ ] Folgenden Dateien sind nach _Dienste-Tomcat/webapps/_ kopiert:
-  ** _xplan-wms.war_
-  ** _xplan-wfs.war_
-  ** _xplansyn-wfs.war_
-  ** _xplan-inspireplu.war_
-  ** _xplan-validator-wms.war_
+  ** _xplan-services-wms.war_
+  ** _xplan-services-wfs.war_
+  ** _xplan-services-wfs-syn.war_
+  ** _xplan-webservices-inspireplu.war_
+  ** _xplan-webservices-validator-wms.war_
 * [ ] Folgenden Dateien sind nach _Anwendungs-Tomcat/webapps/_ kopiert:
   ** _xplan-manager-web.war_
   ** _xplan-validator-web.war_
   ** _xplan-root.war_
 * [ ] Folgenden Dateien sind nach _API-Tomcat/webapps/_ kopiert:
-  ** _xplan-api-manager.war_
-  ** _xplan-api-validator.war_
+  ** _xplan-manager-api.war_
+  ** _xplan-validator-api.war_
 
 ==== Checkliste für die Übernahme von Konfigurationen der Webanwendungen
 
