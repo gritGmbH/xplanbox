@@ -31,7 +31,7 @@
                            language="urn:ogc:def:queryLanguage:OGC-WFS::WFS_QueryExpression" isPrivate="false">
 
     <!-- BP_Plan -->
-    <wfs:Query typeNames="xplan60:BP_Plan">
+    <wfs:Query srsName="${srsName}" typeNames="xplan60:BP_Plan">
       <fes:Filter>
         <fes:PropertyIsEqualTo>
           <fes:ValueReference>
@@ -43,7 +43,7 @@
     </wfs:Query>
 
     <!-- FP_Plan -->
-    <wfs:Query typeNames="xplan60:FP_Plan">
+    <wfs:Query srsName="${srsName}" typeNames="xplan60:FP_Plan">
       <fes:Filter>
         <fes:PropertyIsEqualTo>
           <fes:ValueReference>
@@ -55,7 +55,7 @@
     </wfs:Query>
 
     <!-- LP_Plan -->
-    <wfs:Query typeNames="xplan60:LP_Plan">
+    <wfs:Query srsName="${srsName}" typeNames="xplan60:LP_Plan">
       <fes:Filter>
         <fes:PropertyIsEqualTo>
           <fes:ValueReference>
@@ -67,7 +67,7 @@
     </wfs:Query>
 
     <!-- RP_Plan -->
-    <wfs:Query typeNames="xplan60:RP_Plan">
+    <wfs:Query srsName="${srsName}" typeNames="xplan60:RP_Plan">
       <fes:Filter>
         <fes:PropertyIsEqualTo>
           <fes:ValueReference>

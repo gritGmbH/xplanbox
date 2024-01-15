@@ -115,6 +115,13 @@ den Plan mit dem Namen _Musterdorf_:
 http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&service=WFS&version=2.0.0&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf
 ----
 
+Über den optionalen Parameter _srsName_ lässt sich das Koordinatensystem der zurückgegebenen Geometrien angeben. Wird der Parameter nicht angegeben, erfolgt die Ausgabe der Geometrien in dem default-Koordinatensystem des Dienstes. Der Parameter wird von allen StoredQueries unterstützt.
+Beispielanfrage für den Plan mit dem Namen _Musterdorf_ mit _srsName=EPSG:4326_:
+
+----
+http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&service=WFS&version=2.0.0&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf&srsName=EPSG:4326
+----
+
 [[xplansynwfs-koordinatenreferenzsysteme]]
 === Koordinatenreferenzsysteme
 
