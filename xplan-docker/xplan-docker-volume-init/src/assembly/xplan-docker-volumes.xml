@@ -10,25 +10,25 @@
   <dependencySets>
     <!--xplan-workspaces-->
     <dependencySet>
-      <outputDirectory>/xplan-workspaces/xplansyn-wms-workspace</outputDirectory>
+      <outputDirectory>/xplan-workspaces/xplan-services-wms-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-webservices-workspaces::xplansyn-wms-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-services-wms-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
     <dependencySet>
-      <outputDirectory>/xplan-workspaces/xplansyn-wfs-workspace</outputDirectory>
+      <outputDirectory>/xplan-workspaces/xplan-services-wfs-wfs-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-webservices-workspaces::xplansyn-wfs-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-wfs-services-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
     <dependencySet>
-      <outputDirectory>/xplan-workspaces/xplan-wfs-workspace</outputDirectory>
+      <outputDirectory>/xplan-workspaces/xplan-services-wfs-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-webservices-workspaces::xplan-wfs-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-services-wfs-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
@@ -85,29 +85,29 @@
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
-    <!--xplan-inspireplu-workspaces-->
+    <!--xplan-webservices-inspireplu-workspaces-->
     <dependencySet>
-      <outputDirectory>/xplan-inspireplu-workspaces/xplan-inspireplu-workspace</outputDirectory>
+      <outputDirectory>/xplan-inspireplu-workspaces/xplan-webservices-inspireplu-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-webservices-workspaces::xplan-inspireplu-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-webservices-inspireplu-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
-    <!-- xplan-validator-wms-memory-workspaces -->
+    <!-- xplan-webservices-validator-wms-memory-workspaces -->
     <dependencySet>
-      <outputDirectory>/xplan-validator-workspaces/xplan-validator-wms-memory-workspace</outputDirectory>
+      <outputDirectory>/xplan-validator-workspaces/xplan-webservices-validator-wms-memory-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-webservices-workspaces::xplan-validator-wms-memory-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-webservices-validator-wms-memory-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
-    <!-- xplan-validator-wms-sql-workspaces -->
+    <!-- xplan-webservices-validator-wms-sql-workspaces -->
     <dependencySet>
-      <outputDirectory>/xplan-validator-workspaces/xplan-validator-wms-sql-workspace</outputDirectory>
+      <outputDirectory>/xplan-validator-workspaces/xplan-webservices-validator-wms-sql-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-webservices-workspaces::xplan-validator-wms-sql-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-webservices-validator-wms-sql-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
@@ -121,8 +121,8 @@
     </fileSet>
     <!--xplan-inspireplu-workspaces-->
     <fileSet>
-      <outputDirectory>xplan-inspireplu-workspaces</outputDirectory>
-      <directory>src/main/resources/xplan-inspireplu-workspaces</directory>
+      <outputDirectory>xplan-webservices-inspireplu-workspaces</outputDirectory>
+      <directory>src/main/resources/xplan-webservices-inspireplu-workspaces</directory>
     </fileSet>
     <!--xplan-validator-workspaces-->
     <fileSet>

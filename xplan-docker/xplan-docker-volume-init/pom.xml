@@ -45,35 +45,35 @@
       <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplansyn-wms-workspace</classifier>
+      <classifier>xplan-services-wms-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplansyn-wfs-workspace</classifier>
+      <classifier>xplan-services-wfs-syn-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-wfs-workspace</classifier>
+      <classifier>xplan-services-wfs-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-validator-wms-memory-workspace</classifier>
+      <classifier>xplan-webservices-validator-wms-memory-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-validator-wms-sql-workspace</classifier>
+      <classifier>xplan-webservices-validator-wms-sql-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -117,7 +117,7 @@
       <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-inspireplu-workspace</classifier>
+      <classifier>xplan-webservices-inspireplu-workspace</classifier>
     </dependency>
   </dependencies>
 </project>

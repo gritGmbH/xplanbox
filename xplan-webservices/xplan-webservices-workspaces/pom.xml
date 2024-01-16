@@ -19,7 +19,7 @@
         <executions>
           <!-- XPlanInspirePlu Workspace -->
           <execution>
-            <id>xplan-inspireplu-workspace</id>
+            <id>xplan-webservices-inspireplu-workspace</id>
             <goals>
               <goal>single</goal>
             </goals>
@@ -27,7 +27,7 @@
             <configuration>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/xplan-inspireplu-workspace.xml</descriptor>
+                <descriptor>${project.basedir}/src/main/assembly/xplan-webservices-inspireplu-workspace.xml</descriptor>
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>
@@ -64,7 +64,7 @@
           </execution>
           <!-- XPlanValidatorWMS Workspace - InMemory -->
           <execution>
-            <id>xplan-validator-wms-memory-workspace</id>
+            <id>xplan-webservices-validator-wms-memory-workspace</id>
             <goals>
               <goal>single</goal>
             </goals>
@@ -72,14 +72,14 @@
             <configuration>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/xplan-validator-wms-memory-workspace.xml</descriptor>
+                <descriptor>${project.basedir}/src/main/assembly/xplan-webservices-validator-wms-memory-workspace.xml</descriptor>
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>
           </execution>
           <!-- XPlanValidatorWMS Workspace SQLFeatureStore-->
           <execution>
-            <id>xplan-validator-wms-sql-workspace</id>
+            <id>xplan-webservices-validator-wms-sql-workspace</id>
             <goals>
               <goal>single</goal>
             </goals>
@@ -87,14 +87,14 @@
             <configuration>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/xplan-validator-wms-sql-workspace.xml</descriptor>
+                <descriptor>${project.basedir}/src/main/assembly/xplan-webservices-validator-wms-sql-workspace.xml</descriptor>
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>
           </execution>
           <!-- XPlanWFS Workspace -->
           <execution>
-            <id>xplan-wfs-workspace</id>
+            <id>xplan-services-wfs-workspace</id>
             <goals>
               <goal>single</goal>
             </goals>
@@ -102,14 +102,14 @@
             <configuration>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/xplan-wfs-workspace.xml</descriptor>
+                <descriptor>${project.basedir}/src/main/assembly/xplan-services-wfs-workspace.xml</descriptor>
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>
           </execution>
           <!-- XPlanSynWFS Workspace -->
           <execution>
-            <id>xplansyn-wfs-workspace</id>
+            <id>xplan-services-wfs-syn-workspace</id>
             <goals>
               <goal>single</goal>
             </goals>
@@ -117,14 +117,14 @@
             <configuration>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/xplansyn-wfs-workspace.xml</descriptor>
+                <descriptor>${project.basedir}/src/main/assembly/xplan-services-wfs-syn-workspace.xml</descriptor>
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>
           </execution>
-          <!-- XPlanSynWMS Workspace -->
+          <!-- XPlanWMS Workspace -->
           <execution>
-            <id>xplansyn-wms-workspace</id>
+            <id>xplan-services-wms-workspace</id>
             <goals>
               <goal>single</goal>
             </goals>
@@ -132,7 +132,7 @@
             <configuration>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/xplansyn-wms-workspace.xml</descriptor>
+                <descriptor>${project.basedir}/src/main/assembly/xplan-services-wms-workspace.xml</descriptor>
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>

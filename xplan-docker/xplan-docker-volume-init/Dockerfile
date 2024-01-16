@@ -24,7 +24,7 @@ ADD target/xplan-docker-volume-init-*.tgz /xplan-volume-init/
 ADD setupVolumes.sh /xplan-volume-init/
 ADD synthesizer /xplan-volume-init/synthesizer/
 
-COPY src/main/resources/xplan-inspireplu-workspaces/webapps.properties /xplan-volume-init/xplan-inspirepluvalidator-workspaces/
+COPY src/main/resources/xplan-webservices-inspireplu-workspaces/webapps.properties /xplan-volume-init/xplan-webservices-inspireplu-workspaces/
 COPY src/main/resources/xplan-validator-workspaces/webapps.properties /xplan-volume-init/xplan-validator-workspaces/
 COPY src/main/resources/xplan-workspaces/webapps.properties /xplan-volume-init/xplan-workspaces/
 

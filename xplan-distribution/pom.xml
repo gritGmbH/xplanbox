@@ -213,42 +213,42 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
-      <classifier>xplansyn-wfs-workspace</classifier>
+      <classifier>xplan-services-wfs-syn-workspace</classifier>
       <type>zip</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
-      <classifier>xplansyn-wms-workspace</classifier>
+      <classifier>xplan-services-wms-workspace</classifier>
       <type>zip</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
-      <classifier>xplan-wfs-workspace</classifier>
+      <classifier>xplan-services-wfs-workspace</classifier>
       <type>zip</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
-      <classifier>xplan-inspireplu-workspace</classifier>
+      <classifier>xplan-webservices-inspireplu-workspace</classifier>
       <type>zip</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
-      <classifier>xplan-validator-wms-memory-workspace</classifier>
+      <classifier>xplan-webservices-validator-wms-memory-workspace</classifier>
       <type>zip</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
-      <classifier>xplan-validator-wms-sql-workspace</classifier>
+      <classifier>xplan-webservices-validator-wms-sql-workspace</classifier>
       <type>zip</type>
     </dependency>
     <!-- Test > /test -->

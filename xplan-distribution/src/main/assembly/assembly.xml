@@ -78,6 +78,13 @@
         <include>de.latlon.product.xplanbox:xplan-dokumente-config:zip:*</include>
         <include>de.latlon.product.xplanbox:xplan-mapserver-config:zip:*</include>
         <include>de.latlon.product.xplanbox:xplan-mapproxy-config:zip:*</include>
+      </includes>
+    </dependencySet>
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>conf</outputDirectory>
+      <outputFileNameMapping>${artifact.classifier}.${artifact.extension}</outputFileNameMapping>
+      <includes>
         <include>de.latlon.product.xplanbox:xplan-webservices-workspaces:zip:*</include>
       </includes>
     </dependencySet>

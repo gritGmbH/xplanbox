@@ -20,7 +20,7 @@
   -->
 <assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
-  <id>xplansyn-wfs-workspace</id>
+  <id>xplan-webservices-inspireplu-workspace</id>
   <formats>
     <format>zip</format>
   </formats>
@@ -28,45 +28,43 @@
   <fileSets>
     <fileSet>
       <directory>${basedir}/src/main/workspace</directory>
-      <includes>
-        <include>datasources/feature/xplansyn*</include>
-        <include>jdbc/xplan.xml</include>
-        <include>services/xplansyn*</include>
-        <include>storedqueries/xplansyn/**</include>
-      </includes>
-      <excludes>
-        <exclude>appschemas/*</exclude>
-        <exclude>services/xplansynwfs_metadata.xml</exclude>
-        <exclude>services/xplansynwfspre_metadata.xml</exclude>
-        <exclude>services/xplansynwfsarchive_metadata.xml</exclude>
-      </excludes>
       <outputDirectory>.</outputDirectory>
       <filtered>false</filtered>
+      <includes>
+        <include>appschemas/inspireplu/PlannedLandUse.xsd</include>
+        <include>datasources/feature/inspireplu.xml</include>
+        <include>datasources/feature/inspireplu_view.xml</include>
+        <include>jdbc/inspireplu.xml</include>
+        <include>layers/inspireplu.xml</include>
+        <include>services/downloadservice*</include>
+        <include>services/viewservice*</include>
+        <include>services/inspirepluhtml.gfi</include>
+        <include>styles/*</include>
+        <include>themes/inspireplu.xml</include>
+      </includes>
+      <excludes>
+        <exclude>services/downloadservice_metadata.xml</exclude>
+        <exclude>services/viewservice_metadata.xml</exclude>
+      </excludes>
     </fileSet>
     <fileSet>
       <directory>${basedir}/src/main/workspace</directory>
-      <includes>
-        <include>services/xplansynwfs_metadata.xml</include>
-        <include>services/xplansynwfspre_metadata.xml</include>
-        <include>services/xplansynwfsarchive_metadata.xml</include>
-      </includes>
       <outputDirectory>.</outputDirectory>
       <filtered>true</filtered>
+      <includes>
+        <include>services/downloadservice_metadata.xml</include>
+        <include>services/viewservice_metadata.xml</include>
+      </includes>
     </fileSet>
     <fileSet>
-      <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-xplansyn</directory>
+      <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-inspireplu</directory>
       <outputDirectory>datasources/feature/</outputDirectory>
       <filtered>false</filtered>
     </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/styles/inspireplu</directory>
+      <outputDirectory>styles/</outputDirectory>
+      <filtered>false</filtered>
+    </fileSet>
   </fileSets>
-  <dependencySets>
-    <dependencySet>
-      <useProjectArtifact>false</useProjectArtifact>
-      <includes>
-        <include>de.latlon.product.xplanbox:xplan-core-schemas</include>
-      </includes>
-      <unpack>true</unpack>
-      <outputDirectory>/</outputDirectory>
-    </dependencySet>
-  </dependencySets>
 </assembly>
