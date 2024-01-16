@@ -53,6 +53,8 @@ class XPlanValidatorWebIT {
 		options.setExperimentalOption("prefs", chromePrefs);
 
 		options.addArguments("--no-sandbox");
+		options.addArguments("--ignore-certificate-errors");
+
 		// options.addArguments("--headless");
 		WebDriver driver = new ChromeDriver(options);
 		String myZIPFile = getClass().getResource("/" + NAMEBPLAN_ORIGINAL + ".zip").getFile().toString();
