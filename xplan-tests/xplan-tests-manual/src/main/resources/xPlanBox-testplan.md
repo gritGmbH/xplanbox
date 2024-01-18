@@ -700,7 +700,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **Hinweis**
 
 * [1]  `./sortDateUpdate`
-* [2]  `.deegree/xplansyn-wms-workspace/themes/bplanraster.xml`
+* [2]  `.deegree/xplan-wms-syn-workspace/themes/bplanraster.xml`
   * Der Pfad kann variieren.
 
 # 7. XPlanTransformCLI  

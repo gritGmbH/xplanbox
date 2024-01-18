@@ -125,26 +125,26 @@ sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-workspaces/xplan-manager-
 sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
 sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplucp.xml
 
-sed -i 's|http://localhost:8080/xplan-wms|'$XPLAN_WMS_URL_PUBLIC'/xplan-wms|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
+sed -i 's|http://localhost:8080/xplan-wms|'$XPLAN_WMS_URL_PUBLIC'/xplan-wms|g' xplan-workspaces/xplan-services-wms-workspace/services/html.gfi
 
-sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
-sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
-sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
+sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-inspireplu-workspaces/xplan-webservices-inspireplu-workspace/jdbc/inspireplu.xml
+sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-inspireplu-workspaces/xplan-webservices-inspireplu-workspace/jdbc/inspireplu.xml
+sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-inspireplu-workspaces/xplan-webservices-inspireplu-workspace/jdbc/inspireplu.xml
 
 echo "[$(date -Iseconds)] Configure XPlanServices StorageCRS with srid $XPLAN_SERVICES_DEFAULT_CRS_SRID"
 find xplan-workspaces/xplan-manager-workspace/datasources/feature -iname *.xml -exec sed -i 's|<StorageCRS srid="25832"|<StorageCRS srid="'$XPLAN_SERVICES_DEFAULT_CRS_SRID'"|g' {} \;
-find xplan-workspaces/xplan-wfs-workspace/datasources/feature -iname *.xml -exec sed -i 's|<StorageCRS srid="25832"|<StorageCRS srid="'$XPLAN_SERVICES_DEFAULT_CRS_SRID'"|g' {} \;
-find xplan-workspaces/xplansyn-wms-workspace/datasources/feature -iname *.xml -exec sed -i 's|<StorageCRS srid="25832"|<StorageCRS srid="'$XPLAN_SERVICES_DEFAULT_CRS_SRID'"|g' {} \;
-find xplan-workspaces/xplansyn-wfs-workspace/datasources/feature -iname *.xml -exec sed -i 's|<StorageCRS srid="25832"|<StorageCRS srid="'$XPLAN_SERVICES_DEFAULT_CRS_SRID'"|g' {} \;
+find xplan-workspaces/xplan-services-wfs-workspace/datasources/feature -iname *.xml -exec sed -i 's|<StorageCRS srid="25832"|<StorageCRS srid="'$XPLAN_SERVICES_DEFAULT_CRS_SRID'"|g' {} \;
+find xplan-workspaces/xplan-services-wms-workspace/datasources/feature -iname *.xml -exec sed -i 's|<StorageCRS srid="25832"|<StorageCRS srid="'$XPLAN_SERVICES_DEFAULT_CRS_SRID'"|g' {} \;
+find xplan-workspaces/xplan-services-wfs-syn-workspace/datasources/feature -iname *.xml -exec sed -i 's|<StorageCRS srid="25832"|<StorageCRS srid="'$XPLAN_SERVICES_DEFAULT_CRS_SRID'"|g' {} \;
 find xplan-workspaces/xplan-manager-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
-find xplan-workspaces/xplan-wfs-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
-find xplan-workspaces/xplansyn-wms-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
-find xplan-workspaces/xplansyn-wfs-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
+find xplan-workspaces/xplan-services-wfs-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
+find xplan-workspaces/xplan-services-wms-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
+find xplan-workspaces/xplan-services-wfs-syn-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
 echo "[$(date -Iseconds)] Configure XPlanWMS CRS"
-find xplan-workspaces/xplansyn-wms-workspace/themes -iname *.xml -exec sed -i 's/<s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839<\/s:CRS>/<s:CRS>'"$XPLAN_SERVICES_DEFAULT_CRS $( echo ${XPLAN_SERVICES_QUERY_CRS_ARR[@]} )"'<\/s:CRS>/g' {} \;
-find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's|<s:CRS>EPSG:25832</s:CRS>|<s:CRS>'$XPLAN_SERVICES_DEFAULT_CRS'</s:CRS>|g' {} \;
+find xplan-workspaces/xplan-services-wms-workspace/themes -iname *.xml -exec sed -i 's/<s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839<\/s:CRS>/<s:CRS>'"$XPLAN_SERVICES_DEFAULT_CRS $( echo ${XPLAN_SERVICES_QUERY_CRS_ARR[@]} )"'<\/s:CRS>/g' {} \;
+find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's|<s:CRS>EPSG:25832</s:CRS>|<s:CRS>'$XPLAN_SERVICES_DEFAULT_CRS'</s:CRS>|g' {} \;
 echo "[$(date -Iseconds)] Configure XPlanWFS QueryCRS"
-find xplan-workspaces/xplan-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i '/<QueryCRS>EPSG:.*<\/QueryCRS>/d' {} \;
+find xplan-workspaces/xplan-services-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i '/<QueryCRS>EPSG:.*<\/QueryCRS>/d' {} \;
 
 find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<ProviderName>lat/lon GmbH</ProviderName>|<ProviderName>'"$XPLAN_SERVICES_PROVIDER_NAME"'</ProviderName>|g' {} \;
 find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<ProviderSite>http://www.lat-lon.de</ProviderSite>|<ProviderSite>'"$XPLAN_SERVICES_PROVIDER_SITE"'</ProviderSite>|g' {} \;
@@ -163,19 +163,19 @@ find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed 
 
 for crs in "${XPLAN_SERVICES_QUERY_CRS_ARR[@]}"
 do
-  find xplan-workspaces/xplan-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$crs'<\/QueryCRS>/g' {} \;
+  find xplan-workspaces/xplan-services-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$crs'<\/QueryCRS>/g' {} \;
 done
-find xplan-workspaces/xplan-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$XPLAN_SERVICES_DEFAULT_CRS'<\/QueryCRS>/g' {} \;
-find xplan-workspaces/xplan-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>//g' {} \;
+find xplan-workspaces/xplan-services-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$XPLAN_SERVICES_DEFAULT_CRS'<\/QueryCRS>/g' {} \;
+find xplan-workspaces/xplan-services-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>//g' {} \;
 
 echo "[$(date -Iseconds)] Configure XPlanSynWFS QueryCRS"
-find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i '/<QueryCRS>EPSG:.*<\/QueryCRS>/d' {} \;
+find xplan-workspaces/xplan-services-wfs-syn-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i '/<QueryCRS>EPSG:.*<\/QueryCRS>/d' {} \;
 for crs in "${XPLAN_SERVICES_QUERY_CRS_ARR[@]}"
 do
-  find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$crs'<\/QueryCRS>/g' {} \;
+  find xplan-workspaces/xplan-services-wfs-syn-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$crs'<\/QueryCRS>/g' {} \;
 done
-find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$XPLAN_SERVICES_DEFAULT_CRS'<\/QueryCRS>/g' {} \;
-find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>//g' {} \;
+find xplan-workspaces/xplan-services-wfs-syn-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$XPLAN_SERVICES_DEFAULT_CRS'<\/QueryCRS>/g' {} \;
+find xplan-workspaces/xplan-services-wfs-syn-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>//g' {} \;
 
 echo $XPLAN_SERVICES_API_KEY >> xplan-workspaces/config.apikey
 
@@ -185,30 +185,30 @@ if [ $XPLAN_INIT_RASTERTYPE = "gdal" ]
 then
   echo "[$(date -Iseconds)] Configure rastertype gdal"
   sed -i 's/rasterConfigurationType=geotiff/rasterConfigurationType=gdal/g' xplan-manager-config/managerConfiguration.properties
-  mv xplan-workspaces/xplansyn-wms-workspace/gdal.ignore xplan-workspaces/xplansyn-wms-workspace/gdal.xml
-  mv xplan-workspaces/xplansyn-wms-workspace/datasources/tile/dummy.ignore xplan-workspaces/xplansyn-wms-workspace/datasources/tile/dummy.xml
-  mv xplan-workspaces/xplansyn-wms-workspace/datasources/tile/tilematrixset/dummy.ignore xplan-workspaces/xplansyn-wms-workspace/datasources/tile/tilematrixset/dummy.xml
-  mv xplan-workspaces/xplansyn-wms-workspace/layers/dummyrasterlayer.ignore xplan-workspaces/xplansyn-wms-workspace/layers/dummyrasterlayer.xml
-  find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/<!--<LayerStoreId>dummyrasterlayer/<LayerStoreId>dummyrasterlayer/g' {} \;
-  find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/dummyrasterlayer<\/LayerStoreId>-->/dummyrasterlayer<\/LayerStoreId>/g' {} \;
+  mv xplan-workspaces/xplan-services-wms-workspace/gdal.ignore xplan-workspaces/xplan-services-wms-workspace/gdal.xml
+  mv xplan-workspaces/xplan-services-wms-workspace/datasources/tile/dummy.ignore xplan-workspaces/xplan-services-wms-workspace/datasources/tile/dummy.xml
+  mv xplan-workspaces/xplan-services-wms-workspace/datasources/tile/tilematrixset/dummy.ignore xplan-workspaces/xplan-services-wms-workspace/datasources/tile/tilematrixset/dummy.xml
+  mv xplan-workspaces/xplan-services-wms-workspace/layers/dummyrasterlayer.ignore xplan-workspaces/xplan-services-wms-workspace/layers/dummyrasterlayer.xml
+  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/<!--<LayerStoreId>dummyrasterlayer/<LayerStoreId>dummyrasterlayer/g' {} \;
+  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/dummyrasterlayer<\/LayerStoreId>-->/dummyrasterlayer<\/LayerStoreId>/g' {} \;
 elif [ $XPLAN_INIT_RASTERTYPE = "geotiff" ]
 then
   echo "[$(date -Iseconds)] Configure rastertype geotiff"
-  rm xplan-workspaces/xplansyn-wms-workspace/datasources/tile/dummy.ignore
-  rm xplan-workspaces/xplansyn-wms-workspace/datasources/tile/tilematrixset/dummy.ignore
-  rm xplan-workspaces/xplansyn-wms-workspace/layers/dummyrasterlayer.ignore
+  rm xplan-workspaces/xplan-services-wms-workspace/datasources/tile/dummy.ignore
+  rm xplan-workspaces/xplan-services-wms-workspace/datasources/tile/tilematrixset/dummy.ignore
+  rm xplan-workspaces/xplan-services-wms-workspace/layers/dummyrasterlayer.ignore
 else
   echo "[$(date -Iseconds)] Configure rastertype mapserver"
   sed -i 's/rasterConfigurationType=geotiff/rasterConfigurationType=mapserver/g' xplan-manager-config/managerConfiguration.properties
-  mv xplan-workspaces/xplansyn-wms-workspace/layers/mapserver.ignore xplan-workspaces/xplansyn-wms-workspace/layers/mapserver.xml
-  mv xplan-workspaces/xplansyn-wms-workspace/datasources/remoteows/mapserver.ignore xplan-workspaces/xplansyn-wms-workspace/datasources/remoteows/mapserver.xml
-  find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/<!--<LayerStoreId>mapserver/<LayerStoreId>mapserver/g' {} \;
-  find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/mapserver<\/LayerStoreId>-->/mapserver<\/LayerStoreId>/g' {} \;
-  find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/<!--<Layer layerStore="mapserver"/<Layer layerStore="mapserver"/g' {} \;
-  find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planrasterarchive<\/Layer>-->/planrasterarchive<\/Layer>/g' {} \;
-  find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planrasterpre<\/Layer>-->/planrasterpre<\/Layer>/g' {} \;
-  find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planraster<\/Layer>-->/planraster<\/Layer>/g' {} \;
-  sed -i 's|http://localhost:8080/mapserver|'$XPLAN_MAPSERVER_URL_INTERNAL'/mapserver|g' xplan-workspaces/xplansyn-wms-workspace/datasources/remoteows/mapserver.xml
+  mv xplan-workspaces/xplan-services-wms-workspace/layers/mapserver.ignore xplan-workspaces/xplan-services-wms-workspace/layers/mapserver.xml
+  mv xplan-workspaces/xplan-services-wms-workspace/datasources/remoteows/mapserver.ignore xplan-workspaces/xplan-services-wms-workspace/datasources/remoteows/mapserver.xml
+  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/<!--<LayerStoreId>mapserver/<LayerStoreId>mapserver/g' {} \;
+  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/mapserver<\/LayerStoreId>-->/mapserver<\/LayerStoreId>/g' {} \;
+  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/<!--<Layer layerStore="mapserver"/<Layer layerStore="mapserver"/g' {} \;
+  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planrasterarchive<\/Layer>-->/planrasterarchive<\/Layer>/g' {} \;
+  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planrasterpre<\/Layer>-->/planrasterpre<\/Layer>/g' {} \;
+  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planraster<\/Layer>-->/planraster<\/Layer>/g' {} \;
+  sed -i 's|http://localhost:8080/mapserver|'$XPLAN_MAPSERVER_URL_INTERNAL'/mapserver|g' xplan-workspaces/xplan-services-wms-workspace/datasources/remoteows/mapserver.xml
 fi
 
 sed -i 's|validatorWmsEndpoint=|validatorWmsEndpoint='$XPLAN_VALIDATORWMS_URL_PUBLIC'\/xplan-validator-wms\/services\/wms|g' xplan-validator-config/validatorConfiguration.properties

@@ -18,9 +18,9 @@
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
     <dependencySet>
-      <outputDirectory>/xplan-workspaces/xplan-services-wfs-wfs-workspace</outputDirectory>
+      <outputDirectory>/xplan-workspaces/xplan-services-wfs-syn-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-webservices-workspaces::xplan-wfs-services-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-services-wfs-syn-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
@@ -85,7 +85,7 @@
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
-    <!--xplan-webservices-inspireplu-workspaces-->
+    <!--xplan-inspireplu-workspaces-->
     <dependencySet>
       <outputDirectory>/xplan-inspireplu-workspaces/xplan-webservices-inspireplu-workspace</outputDirectory>
       <includes>
@@ -121,8 +121,8 @@
     </fileSet>
     <!--xplan-inspireplu-workspaces-->
     <fileSet>
-      <outputDirectory>xplan-webservices-inspireplu-workspaces</outputDirectory>
-      <directory>src/main/resources/xplan-webservices-inspireplu-workspaces</directory>
+      <outputDirectory>xplan-inspireplu-workspaces</outputDirectory>
+      <directory>src/main/resources/xplan-inspireplu-workspaces</directory>
     </fileSet>
     <!--xplan-validator-workspaces-->
     <fileSet>
