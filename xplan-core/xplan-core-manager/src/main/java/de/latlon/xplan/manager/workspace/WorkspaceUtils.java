@@ -40,7 +40,7 @@ public class WorkspaceUtils {
 
 	private static final Logger LOG = LoggerFactory.getLogger(WorkspaceUtils.class);
 
-	public static final String DEFAULT_XPLANSYN_WMS_WORKSPACE = "xplan-wms-syn-workspace";
+	public static final String DEFAULT_XPLANSYN_WMS_WORKSPACE = "xplan-services-wms-workspace";
 
 	public static final String DEFAULT_XPLAN_MANAGER_WORKSPACE = "xplan-manager-workspace";
 
@@ -106,8 +106,8 @@ public class WorkspaceUtils {
 	/**
 	 * @param workspaceDir directory to use as workspace, may be <code>null</code>
 	 * @return the location of the workspace (passed directory or the workspace with
-	 * default name ('xplan-wms-syn-workspace') in the deegree workspace root directory)
-	 * if exist, never <code>null</code>
+	 * default name ('xplan-services-wms-workspace') in the deegree workspace root
+	 * directory) if exist, never <code>null</code>
 	 * @throws Exception - if a workspace with the given name does not exist
 	 */
 	public static File findWorkspaceDirectory(File workspaceDir) throws Exception {
