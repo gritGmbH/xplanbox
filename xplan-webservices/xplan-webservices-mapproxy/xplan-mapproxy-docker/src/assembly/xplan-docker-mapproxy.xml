@@ -7,7 +7,7 @@
   </formats>
   <baseDirectory>xplan-docker-mapproxy</baseDirectory>
   <dependencySets>
-    <!--xplan-manager-config-->
+    <!--xplan-mapproxy-config-->
     <dependencySet>
       <outputDirectory>/xplan-mapproxy-config</outputDirectory>
       <includes>

@@ -3,7 +3,7 @@
 echo "MapServer config initialization..."
 
 if [ -z ${MS_MAPFILE+x} ]; then
-	echo "ERROR: environment variable MS_MAPFILE not set!"
+	echo "[$(date -Iseconds)] ERROR: environment variable MS_MAPFILE not set!"
 	exit 1
 fi
 
@@ -15,7 +15,7 @@ fi
 
 echo "[$(date -Iseconds)] Initializing mapserver config ..."
 
-cp /xplan-docker-mapserver/xplan-mapserver-config/mapserver.map $MS_MAPFILE
+cp /xplan-mapserver-config/xplan-mapserver-config/mapserver.map $MS_MAPFILE
 
 XPLAN_S3_BUCKET_NAME="${XPLAN_S3_BUCKET_NAME:-tobedefined}"
 AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:-tobedefined}"
