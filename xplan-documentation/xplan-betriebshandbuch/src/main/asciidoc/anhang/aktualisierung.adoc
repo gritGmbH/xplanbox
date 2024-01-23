@@ -22,7 +22,7 @@ Die Zuordnung der Anwendungskomponenten zu den jeweiligen Konfigurationen ist im
 * [ ] Folgenden Dateien sind nach _Anwendungs-Tomcat/webapps/_ kopiert:
   ** _xplan-manager-web.war_
   ** _xplan-validator-web.war_
-  ** _xplan-root.war_
+  ** _xplan-webpages-default.war_
 * [ ] Folgenden Dateien sind nach _API-Tomcat/webapps/_ kopiert:
   ** _xplan-manager-api.war_
   ** _xplan-validator-api.war_

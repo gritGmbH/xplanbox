@@ -55,12 +55,12 @@ Es müssen alle Tomcat-Instanzen neu gestartet werden. Der Neustart muss nach de
 Die ZIP-Archive mit den <<kommandozeilen-anwendungen,Kommandozeilenwerkzeugen>> müssen entpackt werden:
 
 ----
-unzip ${WORK_DIR}/bin/xplan-manager-cli-${VERSION}.zip
-unzip ${WORK_DIR}/bin/xplan-transform-cli-${VERSION}.zip
-unzip ${WORK_DIR}/bin/xplan-update-data-cli-${VERSION}.zip
-unzip ${WORK_DIR}/bin/xplan-validator-cli-${VERSION}.zip
-unzip ${WORK_DIR}/bin/xplan-validatedb-cli-${VERSION}.zip
-unzip ${WORK_DIR}/bin/xplan-evaluation-schema-synchronize-cli-${VERSION}.zip
+unzip ${WORK_DIR}/bin/xplan-manager-cli.zip
+unzip ${WORK_DIR}/bin/xplan-transform-cli.zip
+unzip ${WORK_DIR}/bin/xplan-update-data-cli.zip
+unzip ${WORK_DIR}/bin/xplan-validator-cli.zip
+unzip ${WORK_DIR}/bin/xplan-validatedb-cli.zip
+unzip ${WORK_DIR}/bin/xplan-evaluation-schema-synchronize-cli.zip
 ----
 
 === Übersicht über die Datenhaltung betreffende Änderungen
@@ -100,13 +100,13 @@ Es müssen die bereitgestellten Konfigurationsdateien in das Verzeichnis _<DEEGR
 Diese ersetzen die bereits vorhandenen:
 
 ----
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wms-workspace.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace.zip
-cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}.zip
-cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-manager-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-services-wfs-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-services-wfs-syn-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-services-wms-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-webservices-inspireplu-workspace.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/conf/xplan-manager-config-default.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/conf/xplan-validator-config.zip
 ----
 
 [[teilweise-aktualisierung]]
@@ -116,12 +116,12 @@ Es müssen die bereitgestellten Konfigurationsdateien mit Ausnahme des _xplansyn
 _<DEEGREE_WORKSPACE_ROOT>_ kopiert werden. Diese ersetzen die bereits vorhanden:
 
 ----
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace.zip
-cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}.zip
-cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-manager-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-services-wfs-workspace-.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-services-wfs-syn-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-webservices-inspireplu-workspace.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/conf/xplan-manager-config-default.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/conf/xplan-validator-config.zip
 ----
 
 Folgende Verzeichnisse des neuen _xplansyn-wms-workspace_ müssen in die bestehende Installation integriert werden:

@@ -8,18 +8,18 @@ Speichern Sie die Distributionsdatei in einem lokalen Verzeichnis und entpacken 
 
 Die ZIP-Archive mit den deegree Workspaces (s. <<installationskomponenten>>) müssen in das Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (s. <<vorbereitung-der-installation>>) entpackt werden:
 
-* _xplan-webservices-workspaces-xplan-manager-workspace.zip_
-* _xplan-webservices-workspaces-xplansyn-wfs-workspace.zip_
-* _xplan-webservices-workspaces-xplansyn-wms-workspace.zip_
-* _xplan-webservices-workspaces-xplan-wfs-workspace.zip_
-* _xplan-webservices-workspaces-xplan-validator-wms-memory-workspace.zip_ *oder* _xplan-webservices-workspaces-xplan-validator-wms-sql-workspace.zip_ (siehe <<konfiguration-xplanvalidatorwms>>)
-* _xplan-webservices-workspaces-xplan-inspireplu-workspace.zip_ (optional)
+* _xplan-manager-workspace.zip_
+* _xplan-services-wfs-workspace.zip_
+* _xplan-services-wfs-syn-workspace.zip_
+* _xplan-services-wms-workspace.zip_
+* _xplan-webservices-validator-wms-memory-workspace.zip_ *oder* _xplan-webservices-validator-wms-sql-workspace.zip_ (siehe <<konfiguration-xplanvalidatorwms>>)
+* _xplan-webservices-inspireplu-workspace.zip_ (optional)
 
 Die ZIP-Archive mit den Konfigurationen für die XPlanManager und XPlanValidator (s. <<installationskomponenten>>) müssen in das Verzeichnis _<XPLANBOX_CONFIG>_ (s. <<vorbereitung-der-installation>>) entpackt werden:
 
-* _xplan-manager-config_
-* _xplan-validator-config_ (nur erforderlich, wenn ausschließlich der XPlanValidator installiert werden soll)
-* _xplan-dokumente-config_ (optional)
+* _xplan-manager-config-default.zip_
+* _xplan-validator-config.zip_ (nur erforderlich, wenn ausschließlich der XPlanValidator installiert werden soll)
+* _xplan-dokumente-config.zip_ (optional)
 
 [[web-anwendungen]]
 ==== Web-Anwendungen
@@ -33,25 +33,24 @@ betrieben werden. Im Folgenden ist beschrieben, wie eine Installation der Kompon
 
 Die folgenden WAR-Archive (s. <<installationskomponenten>>) müssen in das Verzeichnis _<CATALINA_HOME>/webapps_ der Tomcat-Instanz _Dienste-Tomcat_ (z. B. auf Port: 8080) kopiert werden:
 
-* _xplan-services-wms.war_ (XPlanWMS und XPlanWerkWMS)
 * _xplan-services-wfs.war_ (XPlanWFS)
 * _xplan-services-wfs-syn.war_ (XPlanSynWFS)
+* _xplan-services-wms.war_ (XPlanWMS und XPlanWerkWMS)
 * _xplan-webservices-inspireplu.war_ (XPlanInspirePluWMS und XPlanInspirePluWFS) (optional)
 * _xplan-webservices-validator-wms.war_ (XPlanValidatorWMS)
 
-Die WAR-Archive der Anwendungskomponenten XPlanManagerWeb und XPlanValidatorWeb werden über eine
-weitere Tomcat-Instanz _Anwendungs-Tomcat_ (z. B. auf Port: 8081) bereitgestellt:
+Die WAR-Archive der Anwendungskomponenten XPlanManagerWeb und XPlanValidatorWeb werden über eine weitere Tomcat-Instanz _Anwendungs-Tomcat_ (z. B. auf Port: 8081) bereitgestellt:
 
 * _xplan-manager-web.war_ (XPlanManagerWeb)
 * _xplan-validator-web.war_ (XPlanValidatorWeb)
-* _xplan-root.war_ (XPlanRessourcen)
+* _xplan-webpages-default.war_ (XPlanRessourcen)
 
 Die WAR-Archive der REST-API werden über eine weitere Tomcat-Instanz _API-Tomcat_ (z. B. auf Port: 8082) bereitgestellt:
 
 * _xplan-manager-api.war_ (XPlanManagerAPI)
 * _xplan-validator-api.war_ (XPlanValidatorAPI)
 
-TIP: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp der Instanz _Anwendungs-Tomcat_ zu installieren. Das WAR-Archiv _xplan-root.war_ muss dafür im Verzeichnis _ROOT_ entpackt werden.
+TIP: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp der Instanz _Anwendungs-Tomcat_ zu installieren. Das WAR-Archiv _xplan-pages-default.war_ muss dafür im Verzeichnis _ROOT_ entpackt werden.
 
 ==== Verknüpfung von Webapp und Workspace
 
