@@ -5,7 +5,7 @@ Die Tests in diesem Projekt sind nicht gedacht, um direkt als Teil vom Build aus
 ## Ausführung mit Maven
 
 ```
-mvn clean integration-test -Psystem-tests -DbaseUrlValidatorWeb=https://xplanbox.lat-lon.de -Dpassword='PWD' -Dusername=xplanbox
+mvn clean integration-test -Psystem-tests -DbaseUrlValidatorWeb=https://xplanbox.lat-lon.de/xplan-validator-web -Dpassword='PWD' -Dusername=xplanbox
 ```
 
 ## Ausführung im Docker Container
