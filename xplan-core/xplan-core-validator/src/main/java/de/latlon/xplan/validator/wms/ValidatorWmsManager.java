@@ -47,7 +47,7 @@ public class ValidatorWmsManager {
 
 	/**
 	 * @param synthesizer used to synthesize the XPlan GML
-	 * @param planStorage path to the workspace xplan-validator-wms-memory-workspace, the
+	 * @param planStorage path to the workspace xplan-webservices-validator-wms-memory-workspace, the
 	 * directory data is created if required
 	 */
 	public ValidatorWmsManager(XPlanSynthesizer synthesizer, PlanStorage planStorage) {

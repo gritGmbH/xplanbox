@@ -57,7 +57,7 @@ class DefaultApiTest extends JerseyTest {
 
 	@BeforeAll
 	static void setupFakedWorkspace() throws IOException {
-		Path workspace = tempFolder.resolve("xplan-validator-wms-memory-workspace");
+		Path workspace = tempFolder.resolve("xplan-webservices-validator-wms-memory-workspace");
 		Files.createDirectories(workspace);
 		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParent().toString());
 	}

@@ -7,7 +7,7 @@
   </formats>
   <baseDirectory>xplan-docker-mapserver</baseDirectory>
   <dependencySets>
-    <!--xplan-manager-config-->
+    <!--xplan-mapserver-config-->
     <dependencySet>
       <outputDirectory>/xplan-mapserver-config</outputDirectory>
       <includes>

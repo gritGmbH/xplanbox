@@ -217,7 +217,7 @@ sed -i 's|validatorWmsEndpoint=|validatorWmsEndpoint='$XPLAN_VALIDATORWMS_URL_PU
 if [[ -z "${spring_profiles_active##*validatorwmssql*}" ]]
 then
   echo "[$(date -Iseconds)] Configure XPlanValidatorWMS with database"
-  sed -i 's|xplan-validator-wms-memory-workspace|xplan-validator-wms-sql-workspace|g' xplan-validator-workspaces/webapps.properties
+  sed -i 's|xplan-webservices-validator-wms-memory-workspace|xplan-webservices-validator-wms-sql-workspace|g' xplan-validator-workspaces/webapps.properties
 fi
 
 #copy example external codelist
