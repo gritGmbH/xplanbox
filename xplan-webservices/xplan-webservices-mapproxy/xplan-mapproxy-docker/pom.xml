@@ -23,7 +23,7 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <descriptors>
-                        <descriptor>src/assembly/xplan-docker-mapproxy.xml</descriptor>
+                        <descriptor>src/assembly/xplan-mapproxy-docker.xml</descriptor>
                     </descriptors>
                     <appendAssemblyId>false</appendAssemblyId>
                 </configuration>

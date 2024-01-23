@@ -6,8 +6,8 @@ executionMode=$1
 echo "[$(date -Iseconds)] MapProxy config initialization..."
 
 defined_envs="$(printf '${%s} ' $(env | cut -d'=' -f1))"
-envsubst "$defined_envs" < /xplan-docker-mapproxy/xplan-mapproxy-config/mapproxy.yaml > /srv/mapproxy/mapproxy.yaml
-envsubst "$defined_envs" < /xplan-docker-mapproxy/xplan-mapproxy-config/seed.yaml > /srv/mapproxy/seed.yaml
+envsubst "$defined_envs" < /xplan-mapproxy-docker/xplan-mapproxy-config/mapproxy.yaml > /srv/mapproxy/mapproxy.yaml
+envsubst "$defined_envs" < /xplan-mapproxy-docker/xplan-mapproxy-config/seed.yaml > /srv/mapproxy/seed.yaml
 
 if [ "$executionMode" == "seed" ]
 then
