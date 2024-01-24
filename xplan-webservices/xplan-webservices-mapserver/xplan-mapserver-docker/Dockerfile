@@ -20,12 +20,12 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 ENV TZ=Europe/Berlin
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata
 
-RUN mkdir -p /xplan-mapserver-config \
+RUN mkdir -p /xplan-mapserver-docker \
 	&& chown 1001 /etc/mapserver
 
 ADD target/xplan-mapserver-docker-*.tgz /
-ADD startupWithConfiguredMapserver.sh /xplan-mapserver-config/
+ADD startupWithConfiguredMapserver.sh /xplan-mapserver-docker/
 
 USER 1001
 
-CMD ["/xplan-mapserver-config/startupWithConfiguredMapserver.sh"]
+CMD ["/xplan-mapserver-docker/startupWithConfiguredMapserver.sh"]

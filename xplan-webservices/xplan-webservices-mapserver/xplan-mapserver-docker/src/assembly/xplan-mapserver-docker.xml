@@ -5,7 +5,7 @@
   <formats>
     <format>tgz</format>
   </formats>
-  <baseDirectory>xplan-mapserver-config</baseDirectory>
+  <baseDirectory>xplan-mapserver-docker</baseDirectory>
   <dependencySets>
     <!--xplan-mapserver-config-->
     <dependencySet>
