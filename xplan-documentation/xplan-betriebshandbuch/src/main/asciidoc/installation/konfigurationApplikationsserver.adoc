@@ -91,8 +91,8 @@ Wenn die xPlanBox in einer produktiven Umgebung betrieben wird, sollte der Apach
 
 Zusätzlich sollte die xPlanBox wie folgt konfiguriert sein:
 
-. die deegree webservice console (Kontextpfad _/console_) für die Dienste _xplan-wms_, _xplan-wfs_, _xplansyn-wfs_ und _xplan-inspireplu_ im _Dienste-Tomcat_ ist durch ein Kennwort geschützt (Datei _console.pw_ im deegree Workspace).
-. die deegree REST-Schnittstelle (Kontextpfad _/config_) für die Dienste _xplan-wms_, _xplan-wfs_, _xplansyn-wfs_ und _xplan-inspireplu_ ist durch einen API-Key abgesichert (Datei _config.apikey_ im Workspace-Verzeichnis, siehe Kapitel <<dienste-tomcat>>).
+. die deegree webservice console (Kontextpfad _/console_) für die Dienste _xplan-services-wms_, _xplan-services-wfs_, _xplan-services-wfs-syn_ und _xplan-webservices-inspireplu_ im _Dienste-Tomcat_ ist durch ein Kennwort geschützt (Datei _console.pw_ im deegree Workspace).
+. die deegree REST-Schnittstelle (Kontextpfad _/config_) für die Dienste _xplan-services-wms_, _xplan-services-wfs_, _xplan-services-wfs-syn_ und _xplan-webservices-inspireplu_ ist durch einen API-Key abgesichert (Datei _config.apikey_ im Workspace-Verzeichnis, siehe Kapitel <<dienste-tomcat>>).
 . zusätzlich wird die Einschränkung des Zugriffs auf die deegree webservice console und deegree REST-Schnittstelle auf IP-Adressbereiche bzw. Domänen empfohlen (Datei _context.xml_ innerhalb der Webanwendungen).
 . die Tomcat-Instanzen werden hinter einem Proxy (z. B. Apache httpd oder nginx) betrieben.
 . der Zugriff auf den XPlanManagerWeb ist durch Benutzername und Kennwort abgesichert (siehe Kapitel <<security>>).

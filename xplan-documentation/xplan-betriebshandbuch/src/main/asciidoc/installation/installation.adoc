@@ -60,11 +60,11 @@ Diese enthält die Verknüpfung zwischen der Webapp und dem Workspace.
 .Beispiel für _webapps.properties_ für den _Dienste-Tomcat_:
 [source,properties]
 ----
-/xplan-wms=xplan-services-wms-workspace
-/xplansyn-wfs=xplan-services-wfs-syn-workspace
-/xplan-wfs=xplan-services-wfs-workspace
-/xplan-validator-wms=xplan-webservices-validator-wms-sql-workspace
-/xplan-inspireplu=xplan-webservices-inspireplu-workspace
+/xplan-services-wms=xplan-services-wms-workspace
+/xplan-services-wfs-syn=xplan-services-wfs-syn-workspace
+/xplan-services-wfs=xplan-services-wfs-workspace
+/xplan-webservices-validator-wms=xplan-webservices-validator-wms-sql-workspace
+/xplan-webservices-inspireplu=xplan-webservices-inspireplu-workspace
 ----
 
 Weitere Informationen zur Konfiguration des XPlanValidatorWMS sind im Kapitel <<konfiguration-xplanvalidatorwms>> zu finden.

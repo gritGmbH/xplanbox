@@ -28,7 +28,7 @@ CREATE EXTENSION IF NOT EXISTS postgis;
  .. _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wfs-syn-workspace/jdbc/xplan.xml_
  .. _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wms-workspace/jdbc/xplan.xml_
 . Anpassen der Datenbank-Verbindungen im XPlanValidatorWMS, wenn die persistente Datenhaltung verwendet wird (siehe <<konfiguration-xplanvalidatorwms>>)
-.. _<DEEGREE_WORKSPACE_ROOT>/xplan-validator-wms-sql-workspace/jdbc/xplan.xml_
+.. _<DEEGREE_WORKSPACE_ROOT>/xplan-webservices-validator-wms-sql-workspace/jdbc/xplan.xml_
 
 NOTE: Weitere Informationen zu der Erstellung der XPlanDB im Anhang <<appendix_xplandb_skript>>.
 

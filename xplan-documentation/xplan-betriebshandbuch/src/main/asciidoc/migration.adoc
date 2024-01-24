@@ -16,7 +16,7 @@ Kartenvorschau im XPlanManager funktioniert. Dazu muss der Wert des
 Schlüssels `wmsUrl` angepasst werden:
 
 ----
-wmsUrl=http://<host>:<port>/xplan-wms/services
+wmsUrl=http://<host>:<port>/xplan-services-wms/services
 ----
 
 Für mehr Details siehe Kapitel <<kartenvorschau>>.

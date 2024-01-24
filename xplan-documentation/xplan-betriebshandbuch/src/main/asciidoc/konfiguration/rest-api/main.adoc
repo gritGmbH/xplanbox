@@ -55,7 +55,7 @@ URL des XPlanwerkWMS, über den einzelne Pläne über die ManagerID angefragt we
 Beispiel:
 
 ----
-wmsUrl=http://xplanbox.lat-lon.de/xplan-wms
+wmsUrl=http://xplanbox.lat-lon.de/xplan-services-wms
 ----
 
 ==== Standard-Validierungseinstellungen

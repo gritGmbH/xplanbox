@@ -8,7 +8,7 @@ erfolgen. Die URL der Variable `WMS_URL` muss auf die öffentliche URL des XPlan
 
 Vorgabewert in der Datei _html.gfi_:
 ----
-var WMS_URL = "http://localhost:8080/xplan-wms";
+var WMS_URL = "http://localhost:8080/xplan-services-wms";
 ----
 
 Eine Übersicht der weiteren Konfigurationsdateien des XPlanWMS ist im Anhang <<appendix_xplanwms-workspace>> zu finden.
