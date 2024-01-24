@@ -18,4 +18,4 @@ Die REST-API der Komponente XPlanDokumentenAPI stellt folgende Ressourcen bereit
 
 Eine vollständige Beschreibung der HTTP Status-Codes und der unterstützten Inhaltstypen (media types) und Formate (Encodings) für die jeweiligen Ressourcen sind in der OpenAPI-Schnittstellenbeschreibung enthalten.
 
-NOTE: Die URL für die REST-API der Komponente XPlanDokumentenAPI setzt sich wie folgt zusammen: http://<host>:<port>/xplan-api-dokumente/xdokumente/api/v1/. Die URL für die xPlanBox-Demo lautet https://xplanbox.lat-lon.de/xdokumente/api/v1/.
+NOTE: Die URL für die REST-API der Komponente XPlanDokumentenAPI setzt sich wie folgt zusammen: http://<host>:<port>/xplan-dokumente-api/xdokumente/api/v1/. Die URL für die xPlanBox-Demo lautet https://xplanbox.lat-lon.de/xdokumente/api/v1/.

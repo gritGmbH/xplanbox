@@ -41,7 +41,7 @@ kommunizieren.
 [[fuer-den-xplanwms]]
 ==== Für den XPlanWMS:
 
-* _html.gfi_ (im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/services_)
+* _html.gfi_ (im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wms-workspace/services_)
 
 *Anpassungen in der Datei html.gfi:*
 

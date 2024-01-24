@@ -78,31 +78,31 @@ NOTE: Diese Schritte sind nur erforderlich, wenn nur der der XPlanValidator inst
 
 ==== Checkliste für XPlanSynWFS Workspace Konfiguration
 
-* [ ] Konfiguration im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wfs-workspace/_ aktualisiert:
-  ** _<BACKUP_CONFIG>/xplansyn-wfs-workspace/jdbc/_ kopiert
+* [ ] Konfiguration im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wfs-syn-workspace/_ aktualisiert:
+  ** _<BACKUP_CONFIG>/xplan-services-wfs-syn-workspace/jdbc/_ kopiert
 
 ==== Checkliste für XPlanWMS Workspace Konfiguration
 
-* [ ] Konfiguration im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/_ aktualisiert:
-  ** _<BACKUP_CONFIG>/xplansyn-wms-workspace/jdbc/_ kopiert
-  ** _<BACKUP_CONFIG>/xplansyn-wms-workspace/gdal.xml_ kopiert, wenn GDAL genutzt wird (siehe <<installation-gdal>> und <<konfiguration-gdal>>)
-  ** _<BACKUP_CONFIG>/xplansyn-wms-workspace/services/html.gfi_ kopiert
-  ** _<BACKUP_CONFIG>/xplansyn-wms-workspace/data/_ zurückkopiert
-  ** _<BACKUP_CONFIG>/xplansyn-wms-workspace/datasources/tile_ zurückkopiert
-  ** _<BACKUP_CONFIG>/xplansyn-wms-workspace/layers/_ alle Layer, die mit einer Zahl beginnen, zurückkopiert
-  ** _<BACKUP_CONFIG>/xplansyn-wms-workspace/themes/*raster.xml_ (alle Dateien die auf _raster.xml_ enden) zurückkopiert
+* [ ] Konfiguration im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wms-workspace/_ aktualisiert:
+  ** _<BACKUP_CONFIG>/xplan-services-wms-workspace/jdbc/_ kopiert
+  ** _<BACKUP_CONFIG>/xplan-services-wms-workspace/gdal.xml_ kopiert, wenn GDAL genutzt wird (siehe <<installation-gdal>> und <<konfiguration-gdal>>)
+  ** _<BACKUP_CONFIG>/xplan-services-wms-workspace/services/html.gfi_ kopiert
+  ** _<BACKUP_CONFIG>/xplan-services-wms-workspace/data/_ zurückkopiert
+  ** _<BACKUP_CONFIG>/xplan-services-wms-workspace/datasources/tile_ zurückkopiert
+  ** _<BACKUP_CONFIG>/xplan-services-wms-workspace/layers/_ alle Layer, die mit einer Zahl beginnen, zurückkopiert
+  ** _<BACKUP_CONFIG>/xplan-services-wms-workspace/themes/*raster.xml_ (alle Dateien die auf _raster.xml_ enden) zurückkopiert
 
 NOTE: Weitere Hinweise zu der Verzeichnisstruktur und der Ablage von Rasterdateien sind im Anhang <<appendix_xplanwms-workspace>> zu finden.
 
 ==== Checkliste für XPlanWFS Workspace Konfiguration
 
-* [ ] Konfiguration im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplan-wfs-workspace/_ aktualisiert:
-  ** _<BACKUP_CONFIG>/xplan-wfs-workspace/jdbc/_ kopiert
+* [ ] Konfiguration im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wfs-workspace/_ aktualisiert:
+  ** _<BACKUP_CONFIG>/xplan-services-wfs-workspace/jdbc/_ kopiert
 
 ==== Checkliste für XPlanInspirePluWFS und XPlanInspirePluWMS Workspace Konfiguration
 
-* [ ] Konfiguration im Verzeichnis _<XPLANBOX_CONFIG>/xplan-inspireplu-workspace/_ aktualisiert:
-  ** _<BACKUP_CONFIG>/xplan-inspireplu-workspace/jdbc/_ kopiert
+* [ ] Konfiguration im Verzeichnis _<XPLANBOX_CONFIG>/xplan-webservices-inspireplu-workspace/_ aktualisiert:
+  ** _<BACKUP_CONFIG>/xplan-webservices-inspireplu-workspace/jdbc/_ kopiert
 
 === Checkliste für Aktualisierung der Datenbank
 

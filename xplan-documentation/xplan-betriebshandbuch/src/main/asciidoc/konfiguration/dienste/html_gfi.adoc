@@ -1,6 +1,6 @@
 [[konfiguration-xplanwms-gfi]]
 === HTML-Template für XPlanWMS GFI
-Nach der Installation ist in der Datei _html.gfi_ im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/services_ die Anpassung der URL des XPlanWMS vorzunehmen.
+Nach der Installation ist in der Datei _html.gfi_ im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wms-workspace/services_ die Anpassung der URL des XPlanWMS vorzunehmen.
 
 Damit Links auf Dokumente in der WMS GetFeatureInfo (GFI) Ausgabe
 auch bei externen Aufrufen funktionsfähig sind, muss eine Anpassung der URL in der Datei _html.gfi_

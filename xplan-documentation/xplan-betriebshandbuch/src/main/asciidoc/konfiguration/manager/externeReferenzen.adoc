@@ -6,7 +6,7 @@ Um im XPlanManager den Austausch der relativen URLs in absolute URLs für den di
 .Beispiel für die Verwendung der XPlanDokumentenAPI
 [source,properties]
 ----
-XPLAN_DOCUMENT_URL_PUBLIC=http://<host>:<port>/xplan-api-dokumente/xdokumente/api/v1/dokument/{planId}/{fileName}
+XPLAN_DOCUMENT_URL_PUBLIC=http://<host>:<port>/xplan-dokumente-api/xdokumente/api/v1/dokument/{planId}/{fileName}
 ----
 
 .Beispiel für die Verwendung der S3-API

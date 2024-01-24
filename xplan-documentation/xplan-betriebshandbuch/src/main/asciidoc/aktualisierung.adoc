@@ -112,7 +112,7 @@ cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/conf/xplan-validator-config.zip
 [[teilweise-aktualisierung]]
 ==== Teilweise Aktualisierung der Workspaces
 
-Es müssen die bereitgestellten Konfigurationsdateien mit Ausnahme des _xplansyn-wms-workspace_ in das Verzeichnis
+Es müssen die bereitgestellten Konfigurationsdateien mit Ausnahme des _xplan-services-wms-workspace_ in das Verzeichnis
 _<DEEGREE_WORKSPACE_ROOT>_ kopiert werden. Diese ersetzen die bereits vorhanden:
 
 ----
@@ -124,7 +124,7 @@ cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/conf/xplan-manager-config-default.
 cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/conf/xplan-validator-config.zip
 ----
 
-Folgende Verzeichnisse des neuen _xplansyn-wms-workspace_ müssen in die bestehende Installation integriert werden:
+Folgende Verzeichnisse des neuen _xplan-services-wms-workspace_ müssen in die bestehende Installation integriert werden:
 
 * _appschemas/_
 * _datasources/feature/_
@@ -256,7 +256,7 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 ** _xplan-validator-web.war_
 ** _xplan-manager-web.war_
 * Aktualisierung des Workspace und der Konfigurationen (s. <<teilweise-aktualisierung>>) für:
-** _xplansyn-wms-workspace_
+** _xplan-services-wms-workspace_
 
 TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 

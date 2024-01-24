@@ -50,7 +50,7 @@ Die WAR-Archive der REST-API werden über eine weitere Tomcat-Instanz _API-Tomca
 * _xplan-manager-api.war_ (XPlanManagerAPI)
 * _xplan-validator-api.war_ (XPlanValidatorAPI)
 
-TIP: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp der Instanz _Anwendungs-Tomcat_ zu installieren. Das WAR-Archiv _xplan-pages-default.war_ muss dafür im Verzeichnis _ROOT_ entpackt werden.
+TIP: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp der Instanz _Anwendungs-Tomcat_ zu installieren. Das WAR-Archiv _xplan-webpages-default.war_ muss dafür im Verzeichnis _ROOT_ entpackt werden.
 
 ==== Verknüpfung von Webapp und Workspace
 
@@ -60,11 +60,11 @@ Diese enthält die Verknüpfung zwischen der Webapp und dem Workspace.
 .Beispiel für _webapps.properties_ für den _Dienste-Tomcat_:
 [source,properties]
 ----
-/xplan-wms=xplansyn-wms-workspace
-/xplansyn-wfs=xplansyn-wfs-workspace
-/xplan-wfs=xplan-wfs-workspace
-/xplan-validator-wms=xplan-validator-wms-sql-workspace
-/xplan-inspireplu=xplan-inspireplu-workspace
+/xplan-wms=xplan-services-wms-workspace
+/xplansyn-wfs=xplan-services-wfs-syn-workspace
+/xplan-wfs=xplan-services-wfs-workspace
+/xplan-validator-wms=xplan-webservices-validator-wms-sql-workspace
+/xplan-inspireplu=xplan-webservices-inspireplu-workspace
 ----
 
 Weitere Informationen zur Konfiguration des XPlanValidatorWMS sind im Kapitel <<konfiguration-xplanvalidatorwms>> zu finden.
