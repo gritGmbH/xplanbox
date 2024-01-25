@@ -100,15 +100,15 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-manager-core</artifactId>
+      <artifactId>xplan-core-manager</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-commons</artifactId>
+      <artifactId>xplan-core-commons</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-commons-cli</artifactId>
+      <artifactId>xplan-cli-core</artifactId>
     </dependency>
     <dependency>
       <groupId>de.latlon</groupId>

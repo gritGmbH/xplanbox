@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  xplan-validator-web - Modul zur Gruppierung aller Webapps
+  %%
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+  <session-config>
+    <session-timeout>120</session-timeout>
+  </session-config>
+
+  <!-- Spring WebApplication Context -->
+  <context-param>
+    <param-name>contextClass</param-name>
+    <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+  </context-param>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>de.latlon.xplan.validator.web.spring.config.XPlanValidatorWebSpringConfig</param-value>
+  </context-param>
+
+  <!-- Bootstrap the root application context as usual using ContextLoaderListener -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>xplanvalidatorwebServlet</servlet-name>
+    <servlet-class>de.latlon.xplan.validator.web.server.service.XPlanUploadService</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>xplanvalidatorwebValidationService</servlet-name>
+    <servlet-class>de.latlon.xplan.validator.web.server.service.XPlanValidationServiceImpl</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>xplanvalidatorwebMappreviewconfigService</servlet-name>
+    <servlet-class>de.latlon.xplan.validator.web.server.service.ValidatorMapPreviewConfigService</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>xplanvalidatorwebValidationconfigService</servlet-name>
+    <servlet-class>de.latlon.xplanbox.core.gwt.commons.server.service.DefaultValidationConfigService</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>xplanvalidatorrest</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextClass</param-name>
+      <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </init-param>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>de.latlon.xplan.validator.web.spring.config.XPlanValidatorWebContextConfig</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>xplanvalidatorwebServlet</servlet-name>
+    <url-pattern>/xplanvalidatorweb/upload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>xplanvalidatorwebValidationService</servlet-name>
+    <url-pattern>/xplanvalidatorweb/validation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>xplanvalidatorwebMappreviewconfigService</servlet-name>
+    <url-pattern>/xplanvalidatorweb/mappreviewconfig</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>xplanvalidatorwebValidationconfigService</servlet-name>
+    <url-pattern>/xplanvalidatorweb/validationconfig</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>xplanvalidatorrest</servlet-name>
+    <url-pattern>/xplanvalidatorweb/rest/*</url-pattern>
+  </servlet-mapping>
+
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

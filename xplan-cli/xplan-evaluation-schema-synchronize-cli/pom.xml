@@ -111,7 +111,7 @@
     </dependency>
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-commons-cli</artifactId>
+      <artifactId>xplan-cli-core</artifactId>
       <scope>compile</scope>
       <exclusions>
         <exclusion>

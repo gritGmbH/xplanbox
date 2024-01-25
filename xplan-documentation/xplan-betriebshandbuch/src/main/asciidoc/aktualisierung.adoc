@@ -30,15 +30,16 @@ der jeweiligen Tomcat-Instanz kopiert werden.
 Als Platzhalter werden im Folgenden __<WORK_DIR>__ als Download-Verzeichnis mit der entpackten Distributionsdatei und __<CATALINA_HOME>__ mit dem Installationsverzeichnis des Tomcat-Servers verwendet.
 
 ----
+# Anwendungs-Tomcat
 cp ${WORK_DIR}/web/xplan-manager-web.war <CATALINA_HOME>/webapps/
 cp ${WORK_DIR}/web/xplan-validator-web.war <CATALINA_HOME>/webapps/
-
-cp ${WORK_DIR}/web/xplan-api-manager.war <CATALINA_HOME>/webapps/
-cp ${WORK_DIR}/web/xplan-api-validator.war <CATALINA_HOME>/webapps/
-
-cp ${WORK_DIR}/web/xplansyn-wfs.war <CATALINA_HOME>/webapps/
-cp ${WORK_DIR}/web/xplan-wfs.war <CATALINA_HOME>/webapps/
-cp ${WORK_DIR}/web/xplan-wms.war <CATALINA_HOME>/webapps/
+# API-Tomcat
+cp ${WORK_DIR}/web/xplan-manager-api.war <CATALINA_HOME>/webapps/
+cp ${WORK_DIR}/web/xplan-validator-api.war <CATALINA_HOME>/webapps/
+# Dienste-Tomcat
+cp ${WORK_DIR}/web/xplan-services-wfs-syn.war <CATALINA_HOME>/webapps/
+cp ${WORK_DIR}/web/xplan-services-wfs.war <CATALINA_HOME>/webapps/
+cp ${WORK_DIR}/web/xplan-services-wms.war <CATALINA_HOME>/webapps/
 ----
 
 NOTE: Falls die Hintergrundkarte der Kartenvorschau im XPlanValidatorWeb angepasst wurde, müssen die Änderungen in der Datei _services-internet.template.json_ manuell in die neue Webapp _xplan-validator-web_ übertragen werden (s. <<kartenvorschau-validator>>).
@@ -54,12 +55,12 @@ Es müssen alle Tomcat-Instanzen neu gestartet werden. Der Neustart muss nach de
 Die ZIP-Archive mit den <<kommandozeilen-anwendungen,Kommandozeilenwerkzeugen>> müssen entpackt werden:
 
 ----
-unzip ${WORK_DIR}/cli/xplan-manager-cli-${VERSION}.zip 
-unzip ${WORK_DIR}/cli/xplan-validator-cli-${VERSION}.zip 
-unzip ${WORK_DIR}/cli/xplan-transform-cli-${VERSION}.zip
-unzip ${WORK_DIR}/cli/xplan-update-data-cli-${VERSION}.zip
-unzip ${WORK_DIR}/cli/xplan-validatedb-cli-${VERSION}.zip
-unzip ${WORK_DIR}/cli/xplan-evaluation-schema-synchronize-cli--${VERSION}.zip
+unzip ${WORK_DIR}/bin/xplan-manager-cli.zip
+unzip ${WORK_DIR}/bin/xplan-transform-cli.zip
+unzip ${WORK_DIR}/bin/xplan-update-data-cli.zip
+unzip ${WORK_DIR}/bin/xplan-validator-cli.zip
+unzip ${WORK_DIR}/bin/xplan-validatedb-cli.zip
+unzip ${WORK_DIR}/bin/xplan-evaluation-schema-synchronize-cli.zip
 ----
 
 === Übersicht über die Datenhaltung betreffende Änderungen
@@ -99,31 +100,31 @@ Es müssen die bereitgestellten Konfigurationsdateien in das Verzeichnis _<DEEGR
 Diese ersetzen die bereits vorhandenen:
 
 ----
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wms-workspace.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace.zip
-cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}.zip
-cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-manager-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-services-wfs-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-services-wfs-syn-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-services-wms-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-webservices-inspireplu-workspace.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/conf/xplan-manager-config-default.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/conf/xplan-validator-config.zip
 ----
 
 [[teilweise-aktualisierung]]
 ==== Teilweise Aktualisierung der Workspaces
 
-Es müssen die bereitgestellten Konfigurationsdateien mit Ausnahme des _xplansyn-wms-workspace_ in das Verzeichnis
+Es müssen die bereitgestellten Konfigurationsdateien mit Ausnahme des _xplan-services-wms-workspace_ in das Verzeichnis
 _<DEEGREE_WORKSPACE_ROOT>_ kopiert werden. Diese ersetzen die bereits vorhanden:
 
 ----
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-wfs-workspace-.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplansyn-wfs-workspace.zip
-cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-inspireplu-workspace.zip
-cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}.zip
-cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-manager-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-services-wfs-workspace-.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-services-wfs-syn-workspace.zip
+cd ${DEEGREE_WORKSPACE_ROOT} && unzip -o ${WORK_DIR}/conf/xplan-webservices-inspireplu-workspace.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/conf/xplan-manager-config-default.zip
+cd ${XPLANBOX_CONFIG} && unzip -o ${WORK_DIR}/conf/xplan-validator-config.zip
 ----
 
-Folgende Verzeichnisse des neuen _xplansyn-wms-workspace_ müssen in die bestehende Installation integriert werden:
+Folgende Verzeichnisse des neuen _xplan-services-wms-workspace_ müssen in die bestehende Installation integriert werden:
 
 * _appschemas/_
 * _datasources/feature/_
@@ -207,8 +208,8 @@ Für die Aktualisierung auf die Version 6.0.1 sind folgende Schritte auszuführe
 Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
 
 * Austausch der Webapps:
-** _xplan-api-validator.war_
-** _xplan-api-manager.war_
+** _xplan-validator-api.war_
+** _xplan-manager-api.war_
 ** _xplan-validator-web.war_
 ** _xplan-manager-web.war_
 
@@ -220,8 +221,8 @@ TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert w
 Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
 
 * Austausch der Webapps:
-** _xplan-api-validator.war_
-** _xplan-api-manager.war_
+** _xplan-validator-api.war_
+** _xplan-manager-api.war_
 ** _xplan-validator-web.war_
 ** _xplan-manager-web.war_
 
@@ -250,12 +251,12 @@ IMPORTANT: Mit der Version 7.0 der xPlanBox ist die Kartenvorschau im XPlanValid
 Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
 
 * Austausch der Webapps:
-** _xplan-api-validator.war_
-** _xplan-api-manager.war_
+** _xplan-validator-api.war_
+** _xplan-manager-api.war_
 ** _xplan-validator-web.war_
 ** _xplan-manager-web.war_
 * Aktualisierung des Workspace und der Konfigurationen (s. <<teilweise-aktualisierung>>) für:
-** _xplansyn-wms-workspace_
+** _xplan-services-wms-workspace_
 
 TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
@@ -265,8 +266,8 @@ TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert w
 Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
 
 * Austausch der Webapps:
-** _xplan-api-validator.war_
-** _xplan-api-manager.war_
+** _xplan-validator-api.war_
+** _xplan-manager-api.war_
 ** _xplan-validator-web.war_
 ** _xplan-manager-web.war_
 * Austausch der ZIP-Datei mit dem XPlanUpdateDataCLI und Ausführung des Kommandozeilenwerkzeugs __artefactsTableUpdate__ zur Aktualisierung der XPlanDB, wenn dieses bei der Installation der Version 7.0 oder 7.0.1 nicht erfolgreich ausgeführt werden konnte.

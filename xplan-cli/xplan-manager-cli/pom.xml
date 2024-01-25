@@ -101,18 +101,15 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-manager-core</artifactId>
-      <version>${project.version}</version>
+      <artifactId>xplan-core-manager</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-commons</artifactId>
-      <version>${project.version}</version>
+      <artifactId>xplan-core-commons</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-validator-core</artifactId>
-      <version>${project.version}</version>
+      <artifactId>xplan-core-validator</artifactId>
     </dependency>
     <dependency>
       <groupId>de.latlon</groupId>

@@ -16,7 +16,7 @@ http://<host>:<port>/xplan-manager-web/
 
 ==== Funktionen des XPlanManagerWeb
 
-Mit dem XPlanManagerWeb kann der Benutzer <<xplanarchiv, XPlanArchive>> und <<xplangmlfile, XPlanGML-Dateien>> in die Datenhaltung laden, diese editieren und löschen sowie bereits importiere Planwerke wieder exportieren.
+Mit dem XPlanManagerWeb kann der Benutzer <<xplanarchiv,XPlanArchive>> und <<xplangmlfile,XPlanGML-Dateien>> in die Datenhaltung laden, diese editieren und löschen sowie bereits importiere Planwerke wieder exportieren.
 
 [[xplanmanager-web-hinzufuegen]]
 ===== Hinzufügen
@@ -30,9 +30,9 @@ _Hinzufügen_ hochgeladen werden. Der Benutzer wird über den Abschluss des Vorg
 ===== Validieren
 
 Nachdem die Datei hochgeladen wurde, kann diese
-validiert werden. Hier stehen die Auswahlmöglichkeiten des <<xplanvalidator-web-validieren, XPlanValidatorWeb>> zur Verfügung.
+validiert werden. Hier stehen die Auswahlmöglichkeiten des <<xplanvalidator-web-validieren,XPlanValidatorWeb>> zur Verfügung.
 
-IMPORTANT: Bei der Validierung werden die syntaktische und basisgeometrische Prüfung (s. Abschnitt <<xplanvalidator-web-geometrisch, geometrische Validierung>>) immer mit ausgeführt. Diese Prüfungen stellen sicher, dass ein Plan keine schwerwiegenden Fehler enthält, die einen Import verhindern. Um die automatische Korrektur der Laufrichtung von Polygonen beim Import zu erzwingen, muss die Option "Prüfung der Laufrichtung (2.2.2.1) überspringen" aktiviert sein.
+IMPORTANT: Bei der Validierung werden die syntaktische und basisgeometrische Prüfung (s. Abschnitt <<xplanvalidator-web-geometrisch,geometrische Validierung>>) immer mit ausgeführt. Diese Prüfungen stellen sicher, dass ein Plan keine schwerwiegenden Fehler enthält, die einen Import verhindern. Um die automatische Korrektur der Laufrichtung von Polygonen beim Import zu erzwingen, muss die Option "Prüfung der Laufrichtung (2.2.2.1) überspringen" aktiviert sein.
 
 [[xplanmanager-web-import]]
 ===== Import

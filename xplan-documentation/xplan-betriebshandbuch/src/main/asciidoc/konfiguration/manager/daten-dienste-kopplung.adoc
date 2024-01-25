@@ -26,7 +26,7 @@ directoryToStoreMetadata=/tmp/
 
 Erläuterung der einzelnen Properties:
 
- * *planWerkWmsBaseUrl*: Die öffentliche Basis-URL des XPlanWerkWMS, z. B. http://xplanbox.lat-lon.de/xplan-wms/
+ * *planWerkWmsBaseUrl*: Die öffentliche Basis-URL des XPlanWerkWMS, z. B. http://xplanbox.lat-lon.de/xplan-services-wms/
  * *planWerkWmsGetMapLayers_BP_Plan* und *planWerkWmsGetMapStyles_BP_Plan*: Angabe der zu verwendenen Layer und Styles, die in der GetMap Anfrage (GraphicOverview) angegeben werden sollen
  * *planWerkWmsGetMapWidth* und *planWerkWmsGetMapHeight*: Angabe der zu verwendenden Höhe und Breite des Kartenbildes in Pixeln, die in der GetMap Anfrage (GraphicOverview) angegeben werden sollen
  * *cswUrlProvidingDatasetMetadata*: GetCapabilities URL des CSW, der Daten-Metadatensätze zu einem Plan bereitstellt

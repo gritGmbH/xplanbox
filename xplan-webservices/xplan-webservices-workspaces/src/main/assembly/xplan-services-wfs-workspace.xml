@@ -1,0 +1,78 @@
+<!--
+  #%L
+  xplan-workspaces - Modul zur Gruppierung aller Workspaces
+  %%
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+  <id>xplan-services-wfs-workspace</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <fileSets>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace</directory>
+      <includes>
+        <include>datasources/feature/xplan4*</include>
+        <include>datasources/feature/xplan5*</include>
+        <include>datasources/feature/xplan6*</include>
+        <include>jdbc/xplan.xml</include>
+        <include>storedqueries/xplan4*/**</include>
+        <include>storedqueries/xplan5*/**</include>
+        <include>storedqueries/xplan6*/**</include>
+        <include>services/wfs4*</include>
+        <include>services/wfs5*</include>
+        <include>services/wfs6*</include>
+      </includes>
+      <excludes>
+        <exclude>appschemas/*</exclude>
+        <exclude>services/wfs4*_metadata.xml</exclude>
+        <exclude>services/wfs5*_metadata.xml</exclude>
+        <exclude>services/wfs6*_metadata.xml</exclude>
+      </excludes>
+      <outputDirectory>.</outputDirectory>
+      <filtered>false</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace</directory>
+      <includes>
+        <include>services/wfs4*_metadata.xml</include>
+        <include>services/wfs5*_metadata.xml</include>
+        <include>services/wfs6*_metadata.xml</include>
+      </includes>
+      <outputDirectory>.</outputDirectory>
+      <filtered>true</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-xplangml</directory>
+      <outputDirectory>datasources/feature/</outputDirectory>
+      <filtered>false</filtered>
+    </fileSet>
+  </fileSets>
+  <dependencySets>
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplan-core-schemas</include>
+      </includes>
+      <unpack>true</unpack>
+      <outputDirectory>/</outputDirectory>
+    </dependencySet>
+  </dependencySets>
+</assembly>
