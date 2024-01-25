@@ -305,35 +305,6 @@
 
   <profiles>
     <profile>
-      <id>generate-swagger</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.openapitools</groupId>
-            <artifactId>openapi-generator-maven-plugin</artifactId>
-            <version>4.3.1</version>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>generate</goal>
-                </goals>
-                <configuration>
-                  <inputSpec>${project.basedir}/src/main/resources/xplanmanager.yaml</inputSpec>
-                  <language>jaxrs-spec</language>
-                  <packageName>${base.package.name}.api.manager.v1</packageName>
-                  <modelPackage>${base.package.name}.api.manager.v1.model</modelPackage>
-                  <apiPackage>${base.package.name}.api.manager.v1</apiPackage>
-                  <configOptions>
-                    <sourceFolder>${project.build}/generated-sources/swagger</sourceFolder>
-                  </configOptions>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>docker</id>
       <properties>
         <docker-image.skip>false</docker-image.skip>
