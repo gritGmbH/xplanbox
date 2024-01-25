@@ -20,7 +20,7 @@ Der XPlanInspirePluWFS ist ein INSPIRE Download Service (WFS 2.0) basierend auf 
 ==== Adresse des Dienstes
 
 ----
-http://<host>:<port>/xplan-inspireplu/services/downloadservice?
+http://<host>:<port>/xplan-webservices-inspireplu/services/downloadservice?
 ----
 
 [[xplaninspirepluwfs-beispielanfragen]]
@@ -31,21 +31,21 @@ http://<host>:<port>/xplan-inspireplu/services/downloadservice?
 ===== GetCapabilities
 
 ----
-http://<host>:<port>/xplan-inspireplu/services/downloadservice?request=GetCapabilities&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-webservices-inspireplu/services/downloadservice?request=GetCapabilities&Service=WFS&Version=2.0.0
 ----
 
 [[xplaninspirepluwfs-getfeature]]
 ===== GetFeature
 
 ----
-http://<host>:<port>/xplan-inspireplu/services/downloadservice?request=GetFeature&Service=WFS&Version=2.0.0&typename=plu:SpatialPlan
+http://<host>:<port>/xplan-webservices-inspireplu/services/downloadservice?request=GetFeature&Service=WFS&Version=2.0.0&typename=plu:SpatialPlan
 ----
 
 [[xplaninspirepluwfs-describefeaturetype]]
 ===== DescribeFeatureType
 
 ----
-http://<host>:<port>/xplan-inspireplu/services/downloadservice?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-webservices-inspireplu/services/downloadservice?request=DescribeFeatureType&Service=WFS&Version=2.0.0
 ----
 
 [[xplaninspirepluwfs-operationen]]

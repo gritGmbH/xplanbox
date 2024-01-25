@@ -6,7 +6,7 @@ Die nachfolgende Konfiguration muss in der Datei _<XPLANBOX_CONFIG>/validatorCon
 Um die Kartenvorschau im XPlanValidatorWeb zu aktivieren, muss die URL des XPlanValidatorWMS konfiguriert werden:
 
 ----
-validatorWmsEndpoint=http://<host>:<port>>/xplan-validator-wms/services/wms
+validatorWmsEndpoint=http://<host>:<port>>/xplan-webservices-validator-wms/services/wms
 ----
 
 Um die Hintergrundkarte der Kartenvorschau anzupassen, ist die Anpassung einer Datei im _xplan-validator-web.war_ erforderlich.
@@ -34,14 +34,14 @@ NOTE: Die Zeilen mit den Angaben für `${SERVICESCONFIG}`, `id` und `name` dürf
 
 Im XPlanValidatorWMS werden die im XPlanValidator hochgeladenen XPlanGML-Dateien visualisiert und über die Kartenvorschau im XPlanValidatorWeb angezeigt. Der XPlanValidatorWMS kann für die temporäre Datenhaltung so konfiguriert werden, dass die Daten ausschliesslich im Arbeitsspeicher vorgehalten oder in einer Datenbank gespeichert werden.
 
-Über den _xplan-validator-wms-memory-workspace_ (dies ist der Vorgabewert) steht eine Konfiguration für den XPlanValidatorWMS bereit, die die Daten ausschliesslich im Arbeitsspeicher vorhält. Mit dem _xplan-validator-wms-sql-workspace_ kann stattdessen die XPlanDB als Datenhaltung ausgewählt werden. Dabei muss ein separates Schema für den XPlanValidatorWMS in der XPlanDB angelegt werden (weitere Informationen zur Einrichtung der XPlanDB im Kapitel <<konfiguration-der-datenbank>>).
+Über den _xplan-webservices-validator-wms-memory-workspace_ (dies ist der Vorgabewert) steht eine Konfiguration für den XPlanValidatorWMS bereit, die die Daten ausschliesslich im Arbeitsspeicher vorhält. Mit dem _xplan-validator-wms-sql-workspace_ kann stattdessen die XPlanDB als Datenhaltung ausgewählt werden. Dabei muss ein separates Schema für den XPlanValidatorWMS in der XPlanDB angelegt werden (weitere Informationen zur Einrichtung der XPlanDB im Kapitel <<konfiguration-der-datenbank>>).
 
 Die Aktivierung des jeweiligen Workspace erfolgt über die Datei _<DEEGREE_WORKSPACE_ROOT>/webapps.properties_.
 
 .Beispiel für den Eintrag in der _webapps.properties_ mit der Auswahl der XPlanDB als Datenhaltung für den XPlanValidatorWMS:
 [source,properties]
 ----
-/xplan-validator-wms=xplan-validator-wms-sql-workspace
+/xplan-webservices-validator-wms=xplan-webservices-validator-wms-sql-workspace
 ----
 
 [IMPORTANT]

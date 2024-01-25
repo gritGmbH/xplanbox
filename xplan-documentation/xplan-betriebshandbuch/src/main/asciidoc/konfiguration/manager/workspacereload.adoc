@@ -22,7 +22,7 @@ workspaceReloadAction=[ALL,RELOAD,PLANWERKWMS] <3>
 .Beispiel für mehrere URLs für das Element `workspaceReloadUrls`:
 [source,properties]
 ----
-workspaceReloadUrls=http://server1/xplan-wms/,http://server2:8081/xplan-wms/
+workspaceReloadUrls=http://server1/xplan-services-wms/,http://server2:8081/xplan-services-wms/
 ----
 
 CAUTION: *Wichtig*! Alle Dienste müssen über den gleichen API-Key aufgerufen werden können.

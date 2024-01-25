@@ -13,7 +13,7 @@
     <!-- xPlanBox -->
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-commons</artifactId>
+      <artifactId>xplan-core-commons</artifactId>
     </dependency>
     <dependency>
       <groupId>de.latlon</groupId>

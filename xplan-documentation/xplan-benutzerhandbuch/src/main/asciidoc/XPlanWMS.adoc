@@ -30,7 +30,7 @@ Die folgende Tabelle gibt einen Überblick über die zur Verfügung stehenden Op
 ==== Adresse des XPlanWMS
 
 ----
-http://<host>:<port>/xplan-wms/services/wms?
+http://<host>:<port>/xplan-services-wms/services/wms?
 ----
 
 [[xplanwms-adresse-xplanwerkwms]]
@@ -43,7 +43,7 @@ Die vollständige XPlanWerkWMS URL kann über die Kartenvorschau im XPlanManager
 IMPORTANT: Vermeiden Sie Sonderzeichen im Plannamen wie z. B. `:`, `&`, `#` , `/`, `\`, `?`, `@`, `'`, `"` oder Zeilenumbrüche.
 
 ----
-http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>
+http://<host>:<port>/xplan-services-wms/services/planwerkwms/planname/<PLANNAME>
 ----
 
 TIP: Alternativ kann die URL auch ohne Sonderzeichen verwendet werden. Dafür müssen alle anderen Zeichen als `a-zA-Z0-9-_` aus <PLANNAME> entfernt werden. Die so erstellte URL liefert eine identische Response wie die dazugehörige, kodierte URL.
@@ -55,7 +55,7 @@ Die Adresse des XPlanWerkWMS ist abhängig von der Planart die angefragt werden 
 Neben der Planart ist auch der Planstatus bei der Nutzung des XPlanArtWMS entscheidend, so setzt sich der Name nach folgendem Schema zusammen _XPlanArtWMS<PLANART><PLANSTATUS>_, z.B. _XPlanArtWMSBPlanArchive_. Die URL des WMS ist wie folgt aufgebaut:
 
 ----
-http://<host>:<port>/xplan-wms/services/<PLANART>wms<PLANSTATUS>?
+http://<host>:<port>/xplan-services-wms/services/<PLANART>wms<PLANSTATUS>?
 ----
 
 Die folgende Tabelle listet die Endpunkte des XPlanArtWMS auf:
@@ -69,63 +69,63 @@ Die folgende Tabelle listet die Endpunkte des XPlanArtWMS auf:
 |XPlanArtWMSBPlan
 |BPlan
 |Festgestellt
-|http://<host>:<port>/xplan-wms/services/bpwms?
+|http://<host>:<port>/xplan-services-wms/services/bpwms?
 |XPlanArtWMSBPlanPre
 |BPlan
 |In Aufstellung
-|http://<host>:<port>/xplan-wms/services/bpwmspre?
+|http://<host>:<port>/xplan-services-wms/services/bpwmspre?
 |XPlanArtWMSBPlanArchive
 |BPlan
 |Archiviert
-|http://<host>:<port>/xplan-wms/services/bpwmsarchive?
+|http://<host>:<port>/xplan-services-wms/services/bpwmsarchive?
 |XPlanArtWMSFPlan
 |FPlan
 |Festgestellt
-|http://<host>:<port>/xplan-wms/services/fpwms?
+|http://<host>:<port>/xplan-services-wms/services/fpwms?
 |XPlanArtWMSFPlanPre
 |FPlan
 |In Aufstellung
-|http://<host>:<port>/xplan-wms/services/fpwmspre?
+|http://<host>:<port>/xplan-services-wms/services/fpwmspre?
 |XPlanArtWMSFPlanArchive
 |FPlan
 |Archiviert
-|http://<host>:<port>/xplan-wms/services/fpwmsarchive?
+|http://<host>:<port>/xplan-services-wms/services/fpwmsarchive?
 |XPlanArtWMSLPlan
 |LPlan
 |Festgestellt
-|http://<host>:<port>/xplan-wms/services/lpwms?
+|http://<host>:<port>/xplan-services-wms/services/lpwms?
 |XPlanArtWMSLPlanPre
 |LPlan
 |In Aufstellung
-|http://<host>:<port>/xplan-wms/services/lpwmspre?
+|http://<host>:<port>/xplan-services-wms/services/lpwmspre?
 |XPlanArtWMSLPlanArchive
 |LPlan
 |Archiviert
-|http://<host>:<port>/xplan-wms/services/lpwmsarchive?
+|http://<host>:<port>/xplan-services-wms/services/lpwmsarchive?
 |XPlanArtWMSRPlan
 |RPlan
 |Festgestellt
-|http://<host>:<port>/xplan-wms/services/rpwms?
+|http://<host>:<port>/xplan-services-wms/services/rpwms?
 |XPlanArtWMSRPlanPre
 |RPlan
 |In Aufstellung
-|http://<host>:<port>/xplan-wms/services/rlpwmspre?
+|http://<host>:<port>/xplan-services-wms/services/rlpwmspre?
 |XPlanArtWMSRPlanArchive
 |RPlan
 |Archiviert
-|http://<host>:<port>/xplan-wms/services/rpwmsarchive?
+|http://<host>:<port>/xplan-services-wms/services/rpwmsarchive?
 |XPlanArtWMSSOPlan
 |SOPlan
 |Festgestellt
-|http://<host>:<port>/xplan-wms/services/sowms?
+|http://<host>:<port>/xplan-services-wms/services/sowms?
 |XPlanArtWMSSOPlanPre
 |SOPlan
 |In Aufstellung
-|http://<host>:<port>/xplan-wms/services/sowmspre?
+|http://<host>:<port>/xplan-services-wms/services/sowmspre?
 |XPlanArtWMSSOPlanArchive
 |SOPlan
 |Archiviert
-|http://<host>:<port>/xplan-wms/services/sowmsarchive?
+|http://<host>:<port>/xplan-services-wms/services/sowmsarchive?
 |===
 
 
@@ -144,20 +144,20 @@ WMS angebotenen WMS Ebenen.
 
 *XPlanWMS*
 ----
-http://<host>:<port>/xplan-wms/services/wms?request=GetCapabilities&service=WMS&version=1.1.1
-http://<host>:<port>/xplan-wms/services/wms?request=GetCapabilities&service=WMS&version=1.3.0
+http://<host>:<port>/xplan-services-wms/services/wms?request=GetCapabilities&service=WMS&version=1.1.1
+http://<host>:<port>/xplan-services-wms/services/wms?request=GetCapabilities&service=WMS&version=1.3.0
 ----
 
 *XPlanWerkWMS*
 ----
-http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetCapabilities&service=WMS&version=1.1.1
-http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetCapabilities&service=WMS&version=1.3.0
+http://<host>:<port>/xplan-services-wms/services/planwerkwms/planname/<PLANNAME>?request=GetCapabilities&service=WMS&version=1.1.1
+http://<host>:<port>/xplan-services-wms/services/planwerkwms/planname/<PLANNAME>?request=GetCapabilities&service=WMS&version=1.3.0
 ----
 
 *XPlanArtWMS*
 ----
-http://<host>:<port>/xplan-wms/services/<PLANART>wms<PLANSTATUS>?request=GetCapabilities&service=WMS&version=1.1.1
-http://<host>:<port>/xplan-wms/services/<PLANART>wms<PLANSTATUS>?request=GetCapabilities&service=WMS&version=1.3.0
+http://<host>:<port>/xplan-services-wms/services/<PLANART>wms<PLANSTATUS>?request=GetCapabilities&service=WMS&version=1.1.1
+http://<host>:<port>/xplan-services-wms/services/<PLANART>wms<PLANSTATUS>?request=GetCapabilities&service=WMS&version=1.3.0
 ----
 
 [[xplanwms-getmap]]
@@ -170,14 +170,14 @@ unterstützen.
 
 *XPlanWMS*
 ----
-http://<host>:<port>/xplan-wms/services/wms?request=GetMap&Service=WMS&Version=1.1.1&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Srs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
-http://<host>:<port>/xplan-wms/services/wms?request=GetMap&Service=WMS&Version=1.3.0&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Crs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
+http://<host>:<port>/xplan-services-wms/services/wms?request=GetMap&Service=WMS&Version=1.1.1&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Srs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
+http://<host>:<port>/xplan-services-wms/services/wms?request=GetMap&Service=WMS&Version=1.3.0&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Crs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
 ----
 
 *XPlanWerkWMS*
 ----
-http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetMap&Service=WMS&Version=1.1.1&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Srs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
-http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetMap&Service=WMS&Version=1.3.0&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Crs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
+http://<host>:<port>/xplan-services-wms/services/planwerkwms/planname/<PLANNAME>?request=GetMap&Service=WMS&Version=1.1.1&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Srs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
+http://<host>:<port>/xplan-services-wms/services/planwerkwms/planname/<PLANNAME>?request=GetMap&Service=WMS&Version=1.3.0&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Crs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
 ----
 
 [[xplanwms-styles]]
@@ -239,14 +239,14 @@ Dokumente und Grafiken über die Operation <<xplanwms-getattachement>> abzurufen
 
 *XPlanWMS*
 ----
-http://<host>:<port>/xplan-wms/services/wms?request=GetFeatureInfo&Service=WMS&Version=1.3.0&Width=460&Height=348&Layers=fp_bebausfl&Transparent=TRUE&Format=image%2Fpng&BBox=381754.08781343646,5716831.670553746,382351.0673120646,5717283.298522273&Crs=EPSG:25833&Styles=&Query_layers=fp_bebausfl&I=217&J=94&Feature_count=10&Info_format=text/html
-http://<host>:<port>/xplan-wms/services/wms?request=GetFeatureInfo&Service=WMS&Version=1.3.0&Width=460&Height=348&Layers=fp_bebausfl&Transparent=TRUE&Format=image%2Fpng&BBox=381754.08781343646,5716831.670553746,382351.0673120646,5717283.298522273&Crs=EPSG:25833&Styles=&Query_layers=fp_bebausfl&I=217&J=94&Feature_count=10&info_format=application/vnd.ogc.gml
+http://<host>:<port>/xplan-services-wms/services/wms?request=GetFeatureInfo&Service=WMS&Version=1.3.0&Width=460&Height=348&Layers=fp_bebausfl&Transparent=TRUE&Format=image%2Fpng&BBox=381754.08781343646,5716831.670553746,382351.0673120646,5717283.298522273&Crs=EPSG:25833&Styles=&Query_layers=fp_bebausfl&I=217&J=94&Feature_count=10&Info_format=text/html
+http://<host>:<port>/xplan-services-wms/services/wms?request=GetFeatureInfo&Service=WMS&Version=1.3.0&Width=460&Height=348&Layers=fp_bebausfl&Transparent=TRUE&Format=image%2Fpng&BBox=381754.08781343646,5716831.670553746,382351.0673120646,5717283.298522273&Crs=EPSG:25833&Styles=&Query_layers=fp_bebausfl&I=217&J=94&Feature_count=10&info_format=application/vnd.ogc.gml
 ----
 
 *XPlanWerkWMS*
 ----
-http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetFeatureInfo&Service=WMS&Version=1.3.0&Width=460&Height=348&Layers=fp_bebausfl&Transparent=TRUE&Format=image%2Fpng&BBox=381754.08781343646,5716831.670553746,382351.0673120646,5717283.298522273&Crs=EPSG:25833&Styles=&Query_layers=fp_bebausfl&I=217&J=94&Feature_count=10&Info_format=text/html
-http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetFeatureInfo&Service=WMS&Version=1.3.0&Width=460&Height=348&Layers=fp_bebausfl&Transparent=TRUE&Format=image%2Fpng&BBox=381754.08781343646,5716831.670553746,382351.0673120646,5717283.298522273&Crs=EPSG:25833&Styles=&Query_layers=fp_bebausfl&I=217&J=94&Feature_count=10&info_format=application/vnd.ogc.gml
+http://<host>:<port>/xplan-services-wms/services/planwerkwms/planname/<PLANNAME>?request=GetFeatureInfo&Service=WMS&Version=1.3.0&Width=460&Height=348&Layers=fp_bebausfl&Transparent=TRUE&Format=image%2Fpng&BBox=381754.08781343646,5716831.670553746,382351.0673120646,5717283.298522273&Crs=EPSG:25833&Styles=&Query_layers=fp_bebausfl&I=217&J=94&Feature_count=10&Info_format=text/html
+http://<host>:<port>/xplan-services-wms/services/planwerkwms/planname/<PLANNAME>?request=GetFeatureInfo&Service=WMS&Version=1.3.0&Width=460&Height=348&Layers=fp_bebausfl&Transparent=TRUE&Format=image%2Fpng&BBox=381754.08781343646,5716831.670553746,382351.0673120646,5717283.298522273&Crs=EPSG:25833&Styles=&Query_layers=fp_bebausfl&I=217&J=94&Feature_count=10&info_format=application/vnd.ogc.gml
 ----
 
 [[xplanwms-getlegendgraphic]]
@@ -258,14 +258,14 @@ Abfragen von Legendengrafiken der Ebenen.
 
 *XPlanWMS*
 ----
-http://<host>:<port>/xplan-wms/services/wms?request=GetLegendGraphic&Service=WMS&Version=1.1.1&layer=bp_gruenfl&format=image/png
-http://<host>:<port>/xplan-wms/services/wms?request=GetLegendGraphic&Service=WMS&Version=1.3.0&layer=bp_gruenfl&format=image/png
+http://<host>:<port>/xplan-services-wms/services/wms?request=GetLegendGraphic&Service=WMS&Version=1.1.1&layer=bp_gruenfl&format=image/png
+http://<host>:<port>/xplan-services-wms/services/wms?request=GetLegendGraphic&Service=WMS&Version=1.3.0&layer=bp_gruenfl&format=image/png
 ----
 
 *XPlanWerkWMS*
 ----
-http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetLegendGraphic&Service=WMS&Version=1.1.1&layer=bp_gruenfl&format=image/png
-http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetLegendGraphic&Service=WMS&Version=1.3.0&layer=bp_gruenfl&format=image/png
+http://<host>:<port>/xplan-services-wms/services/planwerkwms/planname/<PLANNAME>?request=GetLegendGraphic&Service=WMS&Version=1.1.1&layer=bp_gruenfl&format=image/png
+http://<host>:<port>/xplan-services-wms/services/planwerkwms/planname/<PLANNAME>?request=GetLegendGraphic&Service=WMS&Version=1.3.0&layer=bp_gruenfl&format=image/png
 ----
 
 [[xplanwms-getattachement]]
@@ -281,7 +281,7 @@ Die Operation unterstützt folgende Parameter:
 
 *XPlanWMS*
 ----
-http://<host>:<port>/xplan-wms/getAttachment?featureID=XPLAN_XP_RASTERPLANBASIS_7b36b0ee-5139-4a55-afc0-01fec18e9f0a&filename=Stellingen64.png
+http://<host>:<port>/xplan-services-wms/getAttachment?featureID=XPLAN_XP_RASTERPLANBASIS_7b36b0ee-5139-4a55-afc0-01fec18e9f0a&filename=Stellingen64.png
 ----
 
 [[xplanwms-koordinatenreferenzsysteme]]

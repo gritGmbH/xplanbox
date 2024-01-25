@@ -39,52 +39,52 @@
   </build>
 
   <dependencies>
-    <!--xplan-workspaces-->
+    <!--xplan-webservices-workspaces-->
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplansyn-wms-workspace</classifier>
+      <classifier>xplan-services-wms-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplansyn-wfs-workspace</classifier>
+      <classifier>xplan-services-wfs-syn-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-wfs-workspace</classifier>
+      <classifier>xplan-services-wfs-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-validator-wms-memory-workspace</classifier>
+      <classifier>xplan-webservices-validator-wms-memory-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-validator-wms-sql-workspace</classifier>
+      <classifier>xplan-webservices-validator-wms-sql-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
       <classifier>xplan-manager-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
       <classifier>xplan-validator-workspace</classifier>
@@ -104,20 +104,20 @@
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>
-    <!--xplan-dokumenten-config-->
+    <!--xplan-dokumente-config-->
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-dokumenten-config</artifactId>
+      <artifactId>xplan-dokumente-config</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>
     <!--xplan-inspireplu-workspaces-->
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-inspireplu-workspace</classifier>
+      <classifier>xplan-webservices-inspireplu-workspace</classifier>
     </dependency>
   </dependencies>
 </project>

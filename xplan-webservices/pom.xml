@@ -12,22 +12,15 @@
   </parent>
 
   <modules>
-    <module>xplan-commons-webservices</module>
-    <module>xplan-inspireplu</module>
-    <module>xplansyn-wfs</module>
-    <module>xplan-wfs</module>
-    <module>xplan-wms</module>
-    <module>xplan-validator-wms</module>
+    <module>xplan-webservices-core</module>
+    <module>xplan-webservices-inspireplu</module>
+    <module>xplan-webservices-mapproxy</module>
+    <module>xplan-webservices-mapserver</module>
+    <module>xplan-webservices-services</module>
+    <module>xplan-webservices-validator-wms</module>
+    <module>xplan-webservices-workspaces</module>
   </modules>
 
-  <profiles>
-    <profile>
-      <id>docker</id>
-      <modules>
-        <module>xplan-services-docker</module>
-      </modules>
-    </profile>
-  </profiles>
   <build>
     <plugins>
       <plugin>

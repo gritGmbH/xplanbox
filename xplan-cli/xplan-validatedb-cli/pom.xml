@@ -99,15 +99,15 @@
   <dependencies>
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-commons</artifactId>
+      <artifactId>xplan-core-commons</artifactId>
     </dependency>
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-manager-core</artifactId>
+      <artifactId>xplan-core-manager</artifactId>
     </dependency>
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-validator-core</artifactId>
+      <artifactId>xplan-core-validator</artifactId>
       <exclusions>
         <exclusion>
           <groupId>de.latlon.product.xplanbox</groupId>

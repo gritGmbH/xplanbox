@@ -1,0 +1,70 @@
+Hinweis:
+========
+
+Die Testdaten im Verzeichnis src/test/resources werden zu Testzwecken verwendet.
+Zu diesen Dateien können keine genaueren Angaben zur Quelle und zu etwaigen Nutzungsrechten angegeben werden. Eine Weitergabe an
+Dritte ausser zu Testzwecken der Anwendung xPlanBox ist nicht gestattet.
+
+Inhalt des Verzeichnisses src/test/resources:
+---------------------------------------------
+├── de
+│   └── latlon
+│       └── xplan
+│           └── manager
+│               ├── edit
+│               │   ├── xplan41
+│               │   │   ├── Eidelstedt_4_V4-Blankenese.gml
+│               │   │   ├── V4_1_ID_103.gml
+│               │   │   ├── V4_1_ID_103_references.gml
+│               │   │   └── V4_1_ID_103_texts.gml
+│               │   ├── xplan50
+│               │   │   ├── BP2070.gml
+│               │   │   └── V4_1_ID_103.gml
+│               │   ├── xplan51
+│               │   │   ├── BP2070.gml
+│               │   │   ├── V4_1_ID_103.gml
+│               │   │   └── V4_1_ID_103_refScan.gml
+│               │   ├── xplan53
+│               │   │   └── BPlan_ohneBereich.gml
+│               │   └── xplan54
+│               │       └── BPlan002_5-4.gml
+│               ├── metadata
+│               │   └── iso-service-metadata-example-template.xml
+│               └── wmsconfig
+│                   └── raster
+│                       └── evaluation
+│                           ├── dem30_geotiff_tiled_epsg4326.tiff
+│                           ├── dem30_geotiff_tiled.tiff
+│                           ├── dem30.tiff
+│                           ├── dem30.wld
+│                           ├── png_25833.png
+│                           ├── png_25833.png.aux.xml
+│                           ├── png_nocrs.png
+│                           └── test.txt
+├── log4j2-test.yaml
+├── s3Mock.properties
+└── testdata
+    ├── xplan40
+    │   └── BPlan004_4-0.zip
+    ├── xplan41
+    │   ├── BPlan001_4-1_Bereiche.zip
+    │   ├── BPlan001_4-1.zip
+    │   └── BPlan004_4-1.zip
+    ├── xplan50
+    │   ├── BPlan002_5-0.zip
+    │   └── BPlan004_5-0.zip
+    ├── xplan51
+    │   ├── BPlan004_5-1.zip
+    │   ├── FPlan.zip
+    │   ├── RROP_Landkreis_Test_51.zip
+    │   └── StErhVO_Heidberg_51.zip
+    ├── xplan52
+    │   ├── BPlan001_5-2_Bereiche.zip
+    │   └── BPlan004_5-2.zip
+    └── xplan60
+        ├── Blankenese29_Test_60.zip
+        ├── BPlan001_6-0.zip
+        ├── BPlan004_6-0.zip
+        ├── FNP_Test_60.zip
+        ├── LP-Test_60.zip
+        └── StErhVO_Hamm_60.zip

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>xplan-database-docker</artifactId>
+  <packaging>pom</packaging>
+  <description>SQL Skripte zum Aufsetzen der Datenhaltung.</description>
+
+  <parent>
+    <groupId>de.latlon.product.xplanbox</groupId>
+    <artifactId>xplan-database</artifactId>
+    <version>7.2-SNAPSHOT</version>
+  </parent>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>sql-scripts</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>${project.basedir}/src/main/assembly/assembly.xml</descriptor>
+              </descriptors>
+              <appendAssemblyId>false</appendAssemblyId>
+            </configuration>
+            <phase>package</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>docker</id>
+      <properties>
+        <docker-image.skip>false</docker-image.skip>
+        <docker-image.name>xplan-db</docker-image.name>
+      </properties>
+    </profile>
+  </profiles>
+</project>

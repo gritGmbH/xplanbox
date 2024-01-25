@@ -28,7 +28,7 @@ zusammen. Der XPlanSynWFS unterstützt Anfragen per HTTP GET (KVP) und POST (XML
 ==== Adresse des Dienstes
 
 ----
-http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?
+http://<host>:<port>/xplan-services-wfs-syn/services/xplansynwfs?
 ----
 
 [[xplansynwfs-operationen]]
@@ -46,7 +46,7 @@ Dienstbetreiber, zu den unterstützten Operationen sowie den durch den
 WFS angebotenen Objektarten.
 
 ----
-http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetCapabilities&Service=WFS&Version=1.1.0
+http://<host>:<port>/xplan-services-wfs-syn/services/xplansynwfs?request=GetCapabilities&Service=WFS&Version=1.1.0
 ----
 
 [[xplansynwfs-getfeature]]
@@ -58,7 +58,7 @@ Planinhalten mit GIS Clients zu nutzen, die die Schnittstellen WFS 1.1.0
 bzw. WFS 2.0.0 unterstützen.
 
 ----
-http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&Service=WFS&Version=1.1.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-services-wfs-syn/services/xplansynwfs?request=GetFeature&Service=WFS&Version=1.1.0&typename=xplan:BP_Bereich
 ----
 
 [[xplansynwfs-describefeaturetype]]
@@ -68,7 +68,7 @@ Die Operation DescribeFeatureType gibt Informationen zur Struktur der
 einzelnen Feature Types wieder.
 
 ----
-http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=DescribeFeatureType&Service=WFS&Version=1.1.0
+http://<host>:<port>/xplan-services-wfs-syn/services/xplansynwfs?request=DescribeFeatureType&Service=WFS&Version=1.1.0
 ----
 
 [[xplansynwfs-liststoredqueries]]
@@ -79,7 +79,7 @@ StoredQueries zurück. Diese Operation steht nur in der Protokollversion
 2.0.0 zur Verfügung.
 
 ----
-http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs-syn/services/xplansynwfs?request=ListStoredQueries&Service=WFS&Version=2.0.0
 ----
 
 === StoredQueries
@@ -112,7 +112,14 @@ Die Nutzung der StoredQueries erfolgt über GetFeature-Anfragen. Beispielanfrage
 den Plan mit dem Namen _Musterdorf_:
 
 ----
-http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&service=WFS&version=2.0.0&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf
+http://<host>:<port>/xplan-services-wfs-syn/services/xplansynwfs?request=GetFeature&service=WFS&version=2.0.0&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf
+----
+
+Über den optionalen Parameter _srsName_ lässt sich das Koordinatenreferenzsystem der zurückzugebenden Geometrien angeben. Wird der Parameter nicht verwendet, erfolgt die Ausgabe der Geometrien in dem default-Koordinatenreferenzsystem des Dienstes. Der Parameter wird von allen StoredQueries unterstützt.
+Beispielanfrage für den Plan mit dem Namen _Musterdorf_ mit _srsName=EPSG:4326_:
+
+----
+http://<host>:<port>/xplan-services-wfs-syn/services/xplansynwfs?request=GetFeature&service=WFS&version=2.0.0&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf&srsName=EPSG:4326
 ----
 
 [[xplansynwfs-koordinatenreferenzsysteme]]

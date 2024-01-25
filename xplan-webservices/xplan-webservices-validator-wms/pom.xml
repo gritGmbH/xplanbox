@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>xplan-webservices-validator-wms</artifactId>
+  <packaging>war</packaging>
+  <description>XPlanValidatorWMS</description>
+
+  <parent>
+    <groupId>de.latlon.product.xplanbox</groupId>
+    <artifactId>xplan-webservices</artifactId>
+    <version>7.2-SNAPSHOT</version>
+  </parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-services-wms</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-webservices-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-yaml</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-layout-template-json</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-core-job</artifactId>
+    </dependency>
+
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>docker</id>
+      <properties>
+        <docker-image.skip>false</docker-image.skip>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <configuration>
+              <images>
+                <image>
+                  <build>
+                    <args>
+                      <WEB_CONTEXT>xplan-validator-wms</WEB_CONTEXT>
+                    </args>
+                  </build>
+                </image>
+              </images>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+	  <dependencies>
+	    <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
+	      <groupId>de.latlon.product.xplanbox</groupId>
+	      <artifactId>xplan-docker-tomcat</artifactId>
+	      <version>${project.version}</version>
+	      <type>pom</type>
+	    </dependency>
+	  </dependencies>
+    </profile>
+  </profiles>
+</project>

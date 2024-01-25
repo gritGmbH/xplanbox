@@ -16,7 +16,7 @@ Kartenvorschau im XPlanManager funktioniert. Dazu muss der Wert des
 Schlüssels `wmsUrl` angepasst werden:
 
 ----
-wmsUrl=http://<host>:<port>/xplan-wms/services
+wmsUrl=http://<host>:<port>/xplan-services-wms/services
 ----
 
 Für mehr Details siehe Kapitel <<kartenvorschau>>.
@@ -41,7 +41,7 @@ kommunizieren.
 [[fuer-den-xplanwms]]
 ==== Für den XPlanWMS:
 
-* _html.gfi_ (im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/services_)
+* _html.gfi_ (im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wms-workspace/services_)
 
 *Anpassungen in der Datei html.gfi:*
 

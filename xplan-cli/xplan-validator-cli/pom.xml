@@ -88,7 +88,7 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-validator-core</artifactId>
+      <artifactId>xplan-core-validator</artifactId>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>

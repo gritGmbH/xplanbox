@@ -62,14 +62,14 @@ Die folgende Tabelle fasst die vom XPlanWFS unterstützten Operationen zusammen.
 ==== Adresse des Dienstes
 
 ----
-http://<host>:<port>/xplan-wfs/services/wfs40?
-http://<host>:<port>/xplan-wfs/services/wfs41?
-http://<host>:<port>/xplan-wfs/services/wfs50?
-http://<host>:<port>/xplan-wfs/services/wfs51?
-http://<host>:<port>/xplan-wfs/services/wfs52?
-http://<host>:<port>/xplan-wfs/services/wfs53?
-http://<host>:<port>/xplan-wfs/services/wfs54?
-http://<host>:<port>/xplan-wfs/services/wfs60?
+http://<host>:<port>/xplan-services-wfs/services/wfs40?
+http://<host>:<port>/xplan-services-wfs/services/wfs41?
+http://<host>:<port>/xplan-services-wfs/services/wfs50?
+http://<host>:<port>/xplan-services-wfs/services/wfs51?
+http://<host>:<port>/xplan-services-wfs/services/wfs52?
+http://<host>:<port>/xplan-services-wfs/services/wfs53?
+http://<host>:<port>/xplan-services-wfs/services/wfs54?
+http://<host>:<port>/xplan-services-wfs/services/wfs60?
 ----
 
 
@@ -88,14 +88,14 @@ Dienstbetreiber, zu den unterstützten Operationen sowie zu den durch den
 WFS angebotenen WFS Objektarten.
 
 ----
-http://<host>:<port>/xplan-wfs/services/wfs40?request=GetCapabilities&Service=WFS
-http://<host>:<port>/xplan-wfs/services/wfs41?request=GetCapabilities&Service=WFS
-http://<host>:<port>/xplan-wfs/services/wfs50?request=GetCapabilities&Service=WFS
-http://<host>:<port>/xplan-wfs/services/wfs51?request=GetCapabilities&Service=WFS
-http://<host>:<port>/xplan-wfs/services/wfs52?request=GetCapabilities&Service=WFS
-http://<host>:<port>/xplan-wfs/services/wfs53?request=GetCapabilities&Service=WFS
-http://<host>:<port>/xplan-wfs/services/wfs54?request=GetCapabilities&Service=WFS
-http://<host>:<port>/xplan-wfs/services/wfs60?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-services-wfs/services/wfs40?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-services-wfs/services/wfs41?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-services-wfs/services/wfs50?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-services-wfs/services/wfs51?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-services-wfs/services/wfs52?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-services-wfs/services/wfs53?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-services-wfs/services/wfs54?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-services-wfs/services/wfs60?request=GetCapabilities&Service=WFS
 ----
 
 [[xplanwfs-getfeature]]
@@ -107,14 +107,14 @@ mit GIS Clients zu nutzen, die die Schnittstellen WFS 1.1.0 bzw. WFS
 2.0.0 unterstützen.
 
 ----
-http://<host>:<port>/xplan-wfs/services/wfs40?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
-http://<host>:<port>/xplan-wfs/services/wfs41?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
-http://<host>:<port>/xplan-wfs/services/wfs50?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
-http://<host>:<port>/xplan-wfs/services/wfs51?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
-http://<host>:<port>/xplan-wfs/services/wfs52?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
-http://<host>:<port>/xplan-wfs/services/wfs53?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
-http://<host>:<port>/xplan-wfs/services/wfs54?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
-http://<host>:<port>/xplan-wfs/services/wfs60?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-services-wfs/services/wfs40?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-services-wfs/services/wfs41?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-services-wfs/services/wfs50?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-services-wfs/services/wfs51?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-services-wfs/services/wfs52?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-services-wfs/services/wfs53?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-services-wfs/services/wfs54?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-services-wfs/services/wfs60?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
 ----
 
 [[xplanwfs-describefeaturetype]]
@@ -124,14 +124,14 @@ Die Operation DescribeFeatureType gibt Informationen zur Struktur der
 einzelnen Feature Types wieder.
 
 ----
-http://<host>:<port>/xplan-wfs/services/wfs40?request=DescribeFeatureType&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs41?request=DescribeFeatureType&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs50?request=DescribeFeatureType&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs51?request=DescribeFeatureType&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs52?request=DescribeFeatureType&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs53?request=DescribeFeatureType&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs54?request=DescribeFeatureType&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs60?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs40?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs41?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs50?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs51?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs52?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs53?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs54?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs60?request=DescribeFeatureType&Service=WFS&Version=2.0.0
 ----
 
 [[xplanwfs-liststoredqueries]]
@@ -142,14 +142,14 @@ StoredQueries zurück. Diese Operation steht nur in der Protokollversion
 2.0.0 über die Endpunkte __wfs40__, __wfs41__, __wfs50__, __wfs51__, __wfs52__, __wfs53__ und __wfs54__ zur Verfügung.
 
 ----
-http://<host>:<port>/xplan-wfs/services/wfs40?request=ListStoredQueries&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs41?request=ListStoredQueries&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs50?request=ListStoredQueries&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs51?request=ListStoredQueries&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs52?request=ListStoredQueries&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs53?request=ListStoredQueries&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs54?request=ListStoredQueries&Service=WFS&Version=2.0.0
-http://<host>:<port>/xplan-wfs/services/wfs60?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs40?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs41?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs50?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs51?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs52?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs53?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs54?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-services-wfs/services/wfs60?request=ListStoredQueries&Service=WFS&Version=2.0.0
 ----
 
 ==== StoredQueries
@@ -176,7 +176,14 @@ Die Nutzung der StoredQueries erfolgt über GetFeature-Anfragen. Beispielanfrage
 den Plan mit dem Namen _Musterdorf_ in der XPlanGML-Version 5.4:
 
 ----
-http://<host>:<port>/xplan-wfs/services/wfs54?request=GetFeature&service=WFS&version=2.0.0&resolvedepth=*&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf
+http://<host>:<port>/xplan-services-wfs/services/wfs54?request=GetFeature&service=WFS&version=2.0.0&resolvedepth=*&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf
+----
+
+Über den optionalen Parameter _srsName_ lässt sich das Koordinatenreferenzsystem der zurückzugebenden Geometrien angeben. Wird der Parameter nicht verwendet, erfolgt die Ausgabe der Geometrien in dem default-Koordinatenreferenzsystem des Dienstes. Der Parameter wird von allen StoredQueries unterstützt.
+Beispielanfrage für den Plan mit dem Namen _Musterdorf_ in der XPlanGML-Version 5.4 mit _srsName=EPSG:4326_:
+
+----
+http://<host>:<port>/xplan-services-wfs/services/wfs54?request=GetFeature&service=WFS&version=2.0.0&resolvedepth=*&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf&srsName=EPSG:4326
 ----
 
 [[xplanwfs-koordinatenreferenzsysteme]]
