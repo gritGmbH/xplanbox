@@ -19,10 +19,10 @@ folgenden Komponenten:
  * <<xplanwms,XPlanWMS>>: Standard-Kartendienst (WMS) für die Auskunft
  * <<xplanwfs,XPlanWFS>>: Standard-Datendienst (WFS) für die Auskunft (XPlanGML-konforme Datenstruktur)
  * <<xplansynwfs,XPlanSynWFS>>: Standard-Datendienst (WFS) für die Auskunft (vereinfachte Datenstruktur)
- * <<xplandokumenten-api, XPlanDokumentenAPI>>: Optionale Komponente für den Zugriff auf Dokumente aus einem <<xplanarchiv, XPlanArchiv>>
- * <<xplantransform-cli, XPlanTransformCLI>>: Kommandozeilenwerkzeug für die Transformation von Plänen
- * <<xplaninspirepluwms, XPlanInspirePluWMS>>: Optionale Komponente mit INSPIRE View Service für die Auskunft im INSPIRE Datenthema Planned Land Use (PLU)
- * <<xplaninspirepluwfs, XPlanInspirePluWFS>>: Optionale Komponente mit INSPIRE Download Service für die Auskunft im INSPIRE Datenthema Planned Land Use (PLU)
+ * <<xplandokumenten-api,XPlanDokumentenAPI>>: Optionale Komponente für den Zugriff auf Dokumente aus einem <<xplanarchiv, XPlanArchiv>>
+ * <<xplantransform-cli,XPlanTransformCLI>>: Kommandozeilenwerkzeug für die Transformation von Plänen
+ * <<xplaninspirepluwms,XPlanInspirePluWMS>>: Optionale Komponente mit INSPIRE View Service für die Auskunft im INSPIRE Datenthema Planned Land Use (PLU)
+ * <<xplaninspirepluwfs,XPlanInspirePluWFS>>: Optionale Komponente mit INSPIRE Download Service für die Auskunft im INSPIRE Datenthema Planned Land Use (PLU)
 
 Aktuell werden für Bebauungspläne, Flächennutzungspläne, Landschaftspläne und Raumordnungspläne die XPlanGML-Versionen 4.0, 4.1, 5.0, 5.1, 5.2, 5.3, 5.4 und 6.0 durch die xPlanBox unterstützt.
 Für sonstige raumbezogene Planwerke werden die XPlanGML-Versionen 5.0, 5.1, 5.2, 5.3, 5.4 und 6.0 unterstützt.

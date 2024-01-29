@@ -24,11 +24,11 @@ CREATE EXTENSION IF NOT EXISTS postgis;
 - Das SQL-Skript _create.sql_ aus dem Verzeichnis _xplan-manager-workspace/sql_ in der neu angelegten Datenbank in der Rolle `$DB_INIT_USER` ausführen.
 - Anpassen der Datenbank-Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace unter Verwendung der Rolle `$DB_USER`:
  .. _<DEEGREE_WORKSPACE_ROOT>/xplan-manager-workspace/jdbc/xplan.xml_
- .. _<DEEGREE_WORKSPACE_ROOT>/xplan-wfs-workspace/jdbc/xplan.xml_
- .. _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wfs-workspace/jdbc/xplan.xml_
- .. _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/jdbc/xplan.xml_
+ .. _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wfs-workspace/jdbc/xplan.xml_
+ .. _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wfs-syn-workspace/jdbc/xplan.xml_
+ .. _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wms-workspace/jdbc/xplan.xml_
 . Anpassen der Datenbank-Verbindungen im XPlanValidatorWMS, wenn die persistente Datenhaltung verwendet wird (siehe <<konfiguration-xplanvalidatorwms>>)
-.. _<DEEGREE_WORKSPACE_ROOT>/xplan-validator-wms-sql-workspace/jdbc/xplan.xml_
+.. _<DEEGREE_WORKSPACE_ROOT>/xplan-webservices-validator-wms-sql-workspace/jdbc/xplan.xml_
 
 NOTE: Weitere Informationen zu der Erstellung der XPlanDB im Anhang <<appendix_xplandb_skript>>.
 
@@ -43,7 +43,7 @@ Es müssen die folgenden Schritte ausgeführt werden:
  .. _01_create_inspireplu_schema.sql_
  .. _02_create_inspireplu_view.sql_
  . Anpassen der Datenbank-Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace:
- .. _<DEEGREE_WORKSPACE_ROOT>/xplan-inspireplu-workspace/jdbc/inspireplu.xml_
+ .. _<DEEGREE_WORKSPACE_ROOT>/xplan-webservices-inspireplu-workspace/jdbc/inspireplu.xml_
  .. _<DEEGREE_WORKSPACE_ROOT>/xplan-manager-workspace/jdbc/inspireplu.xml_
 
 ==== Weiterführende Informationen zur Konfiguration des Datenbankzugriffs

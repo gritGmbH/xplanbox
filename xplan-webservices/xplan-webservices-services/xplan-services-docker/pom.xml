@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>xplan-services-docker</artifactId>
+  <packaging>pom</packaging>
+
+  <parent>
+    <groupId>de.latlon.product.xplanbox</groupId>
+    <artifactId>xplan-webservices-services</artifactId>
+    <version>7.2-SNAPSHOT</version>
+  </parent>
+  
+  <properties>
+    <docker-image.skip>false</docker-image.skip>
+    <docker-image.name>xplan-services</docker-image.name>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <images>
+            <image>
+              <build>
+                <assembly>
+                  <inline>
+                    <dependencySets>
+                      <dependencySet>
+                        <useProjectArtifact>false</useProjectArtifact>
+                        <outputDirectory>xplan-wms</outputDirectory>
+                        <includes>
+                          <include>${project.groupId}:xplan-services-wms:war</include>
+                        </includes>
+                        <unpack>true</unpack>
+                      </dependencySet>
+                      <dependencySet>
+                        <useProjectArtifact>false</useProjectArtifact>
+                        <outputDirectory>xplan-wfs</outputDirectory>
+                        <includes>
+                          <include>${project.groupId}:xplan-services-wfs:war</include>
+                        </includes>
+                        <unpack>true</unpack>
+                      </dependencySet>
+                      <dependencySet>
+                        <useProjectArtifact>false</useProjectArtifact>
+                        <outputDirectory>xplansyn-wfs</outputDirectory>
+                        <includes>
+                          <include>${project.groupId}:xplan-services-wfs-syn:war</include>
+                        </includes>
+                        <unpack>true</unpack>
+                      </dependencySet>
+                    </dependencySets>
+                  </inline>
+                </assembly>
+              </build>
+            </image>
+          </images>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-services-wms</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-services-wfs</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-services-wfs-syn</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
+      <groupId>de.latlon.product.xplanbox</groupId>
+      <artifactId>xplan-docker-tomcat-gdal</artifactId>
+      <version>${project.version}</version>
+      <type>pom</type>
+    </dependency>
+    <dependency> <!-- faked maven dependency to be after volume initializer in the reactor build  -->
+      <groupId>de.latlon.product.xplanbox</groupId>
+      <artifactId>xplan-docker-volume-init</artifactId>
+      <version>${project.version}</version>
+      <type>pom</type>
+    </dependency>
+    <dependency> <!-- faked maven dependency to be after xplan-database-docker image in the reactor build  -->
+      <groupId>de.latlon.product.xplanbox</groupId>
+      <artifactId>xplan-database-docker</artifactId>
+      <version>${project.version}</version>
+      <type>pom</type>
+    </dependency>
+  </dependencies>
+
+</project>

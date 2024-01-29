@@ -48,7 +48,7 @@ Tritt bei Aufruf des XPlanManagerCLI der Fehler `java.lang.UnsatisfiedLinkError:
 
 ==== Lösungsansätze
 
-* Ist das Rasterdatenformat *GeoTIFF* für die Datenhaltung des XPlanWMS über den Eintrag `rasterConfigurationType=geotiff` konfiguriert, müssen folgenden Dateien aus dem _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/_ gelöscht werden:
+* Ist das Rasterdatenformat *GeoTIFF* für die Datenhaltung des XPlanWMS über den Eintrag `rasterConfigurationType=geotiff` konfiguriert, müssen folgenden Dateien aus dem _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wms-workspace/_ gelöscht werden:
 
 ** _datasources/tile/dummy.ignore_
 ** _datasources/tile/tilematrixset/dummy.ignore_

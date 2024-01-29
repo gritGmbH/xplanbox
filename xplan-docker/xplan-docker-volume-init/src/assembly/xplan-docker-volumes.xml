@@ -10,25 +10,25 @@
   <dependencySets>
     <!--xplan-workspaces-->
     <dependencySet>
-      <outputDirectory>/xplan-workspaces/xplansyn-wms-workspace</outputDirectory>
+      <outputDirectory>/xplan-workspaces/xplan-services-wms-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplansyn-wms-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-services-wms-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
     <dependencySet>
-      <outputDirectory>/xplan-workspaces/xplansyn-wfs-workspace</outputDirectory>
+      <outputDirectory>/xplan-workspaces/xplan-services-wfs-syn-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplansyn-wfs-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-services-wfs-syn-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
     <dependencySet>
-      <outputDirectory>/xplan-workspaces/xplan-wfs-workspace</outputDirectory>
+      <outputDirectory>/xplan-workspaces/xplan-services-wfs-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplan-wfs-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-services-wfs-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
@@ -36,7 +36,7 @@
     <dependencySet>
       <outputDirectory>/xplan-workspaces/xplan-manager-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplan-manager-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-manager-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
@@ -44,7 +44,7 @@
     <dependencySet>
       <outputDirectory>/xplan-validator-workspaces/xplan-validator-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplan-validator-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-validator-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
@@ -71,7 +71,7 @@
     <dependencySet>
       <outputDirectory>/xplan-dokumenten-config</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-dokumenten-config</include>
+        <include>${project.groupId}:xplan-dokumente-config</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
@@ -87,27 +87,27 @@
     </dependencySet>
     <!--xplan-inspireplu-workspaces-->
     <dependencySet>
-      <outputDirectory>/xplan-inspireplu-workspaces/xplan-inspireplu-workspace</outputDirectory>
+      <outputDirectory>/xplan-inspireplu-workspaces/xplan-webservices-inspireplu-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplan-inspireplu-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-webservices-inspireplu-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
-    <!-- xplan-validator-wms-memory-workspaces -->
+    <!-- xplan-webservices-validator-wms-memory-workspaces -->
     <dependencySet>
-      <outputDirectory>/xplan-validator-workspaces/xplan-validator-wms-memory-workspace</outputDirectory>
+      <outputDirectory>/xplan-validator-workspaces/xplan-webservices-validator-wms-memory-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplan-validator-wms-memory-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-webservices-validator-wms-memory-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
-    <!-- xplan-validator-wms-sql-workspaces -->
+    <!-- xplan-webservices-validator-wms-sql-workspaces -->
     <dependencySet>
-      <outputDirectory>/xplan-validator-workspaces/xplan-validator-wms-sql-workspace</outputDirectory>
+      <outputDirectory>/xplan-validator-workspaces/xplan-webservices-validator-wms-sql-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplan-validator-wms-sql-workspace</include>
+        <include>${project.groupId}:xplan-webservices-workspaces::xplan-webservices-validator-wms-sql-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>

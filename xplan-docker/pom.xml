@@ -12,8 +12,6 @@
   </parent>
 
   <modules>
-    <module>xplan-docker-mapproxy</module>
-    <module>xplan-docker-mapserver</module>
     <module>xplan-docker-tomcat</module>
     <module>xplan-docker-tomcat-gdal</module>
     <module>xplan-docker-volume-init</module>

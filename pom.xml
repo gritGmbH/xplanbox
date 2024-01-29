@@ -38,6 +38,13 @@
     <liquibase.version>4.25.0</liquibase.version>
     <postgresql.version>42.5.4</postgresql.version>
     <owasp.version>8.4.3</owasp.version>
+    <!-- API properties -->
+    <base.package.name>de.latlon.xplanbox</base.package.name>
+    <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+    <jakarta.ws.rs-api.version>2.1.6</jakarta.ws.rs-api.version>
+    <jersey.version>2.35</jersey.version>
+    <swagger.version>2.1.13</swagger.version>
+    <swagger-ui.version>3.17.0</swagger-ui.version>
     <!-- project properties -->
     <distribution.repo.id>gitlab-maven</distribution.repo.id>
     <distribution.repo.url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</distribution.repo.url>
@@ -54,17 +61,15 @@
   </properties>
 
   <modules>
-    <module>xplan-api</module>
     <module>xplan-cli</module>
-    <module>xplan-configuration</module>
     <module>xplan-core</module>
+    <module>xplan-database</module>
     <module>xplan-documentation</module>
-    <module>xplan-resources</module>
-    <module>xplan-security</module>
+    <module>xplan-dokumente</module>
+    <module>xplan-manager</module>
     <module>xplan-tests</module>
-    <module>xplan-webapps</module>
+    <module>xplan-validator</module>
     <module>xplan-webservices</module>
-    <module>xplan-workspaces</module>
   </modules>
 
   <profiles>
@@ -179,7 +184,7 @@
                     <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-manager/**</exclude>
                     <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-validator/**</exclude>
                     <exclude>*/xplan-tests-soapui/src/main/resource/xplan-webservices/**</exclude>
-                    <exclude>*/xplan-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
+                    <exclude>*/xplan-webservices-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
                     <exclude>**/*.json</exclude>
                     <exclude>**./.properties</exclude>
                   </excludes>
@@ -1081,43 +1086,39 @@
       <!-- xplan-manager internal dependencies with version -->
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-api-commons</artifactId>
+        <artifactId>xplan-core-api</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-tests-resources</artifactId>
+        <artifactId>xplan-core-commons</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-commons</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-commons</artifactId>
+        <artifactId>xplan-core-commons</artifactId>
         <classifier>sources</classifier>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-commons-cli</artifactId>
+        <artifactId>xplan-cli-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-commons-web</artifactId>
+        <artifactId>xplan-core-validator</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-validator-core</artifactId>
+        <artifactId>xplan-core-gwt</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-validator-web-commons</artifactId>
+        <artifactId>xplan-core-gwt</artifactId>
+        <classifier>sources</classifier>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -1127,27 +1128,27 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-manager-core</artifactId>
+        <artifactId>xplan-core-manager</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-schemas</artifactId>
+        <artifactId>xplan-core-schemas</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-commons-webservices</artifactId>
+        <artifactId>xplan-webservices-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-inspireplu-transformation</artifactId>
+        <artifactId>xplan-core-inspireplu</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-synthesizer</artifactId>
+        <artifactId>xplan-core-synthesizer</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -1157,7 +1158,7 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-schemas</artifactId>
+        <artifactId>xplan-core-schemas</artifactId>
         <version>${project.version}</version>
         <type>zip</type>
       </dependency>
@@ -1168,7 +1169,7 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-workspaces</artifactId>
+        <artifactId>xplan-webservices-workspaces</artifactId>
         <classifier>xplan-manager-workspace</classifier>
         <version>${project.version}</version>
         <type>zip</type>

@@ -11,9 +11,9 @@ Um den XPlanWMS im XPlanManagerWeb für die Kartenvorschau zu konfigurieren, mus
 
 _Beispiel der Konfiguration des XPlanWMS für die Kartenvorschau:_
 ----
-wmsUrl=http://<host>:<port>/xplan-wms/services
-vectorWmsName=XPlan-WMS: Vektorkarten
-rasterWmsName=XPlan-WMS: Rasterkarten
+wmsUrl=http://<host>:<port>/xplan-services-wms/services
+vectorWmsName=xplan-services-wms: Vektorkarten
+rasterWmsName=xplan-services-wms: Rasterkarten
 wmsEndpoint=wms
 wmsPreEndpoint=wmspre
 wmsArchiveEndpoint=wmsarchive

@@ -12,15 +12,18 @@
   </parent>
 
   <modules>
-    <module>xplan-commons</module>
-    <module>xplan-inspireplu-transformation</module>
-    <module>xplan-manager-core</module>
-    <module>xplan-synthesizer</module>
-    <module>xplan-validator-core</module>
-    <module>xplan-commons-cli</module>
+    <module>xplan-core-api</module>
+    <module>xplan-core-commons</module>
+    <module>xplan-core-gwt</module>
+    <module>xplan-core-inspireplu</module>
     <module>xplan-core-job</module>
+    <module>xplan-core-manager</module>
     <module>xplan-core-manager-db</module>
     <module>xplan-core-manager-deegree</module>
+    <module>xplan-core-schemas</module>
+    <module>xplan-core-security</module>
+    <module>xplan-core-synthesizer</module>
+    <module>xplan-core-validator</module>
   </modules>
 
 </project>

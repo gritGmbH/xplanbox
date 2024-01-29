@@ -4,7 +4,7 @@
 Um im XPlanManger die GDAL-Unterstützung zu aktivieren, muss vorher die <<installation-gdal,Installation>> von GDAL erfolgt sein.
 
 Um die GDAL-Unterstützung in deegree zu aktivieren, muss die
-GDAL-Konfigurationsdatei erzeugt werden. Dazu muss im Workspace-Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace_ eine Datei mit dem Namen _gdal.xml_ und mit folgendem Inhalt vorhanden sein:
+GDAL-Konfigurationsdatei erzeugt werden. Dazu muss im Workspace-Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wms-workspace_ eine Datei mit dem Namen _gdal.xml_ und mit folgendem Inhalt vorhanden sein:
 
 [source,xml]
 ----
@@ -26,7 +26,7 @@ muss zusätzlich in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties
 rasterConfigurationType=gdal
 ----
 
-Der _xplansyn-wms-workspace_ wird mit einer Dummy-Konfiguration eines GDAL-Rasterlayers ausgeliefert. Liegen zunächst keine Daten vor, kann dieser aktiviert werden, um Fehler nach dem ersten Import eines Plans mit Rasterdaten zu vermeiden. Dazu muss in den Theme-Konfigurationen unter _themes_ in allen Dateien, die mit _raster.xml_ enden, die folgende Zeile auskommentiert werden:
+Der _xplan-services-wms-workspace_ wird mit einer Dummy-Konfiguration eines GDAL-Rasterlayers ausgeliefert. Liegen zunächst keine Daten vor, kann dieser aktiviert werden, um Fehler nach dem ersten Import eines Plans mit Rasterdaten zu vermeiden. Dazu muss in den Theme-Konfigurationen unter _themes_ in allen Dateien, die mit _raster.xml_ enden, die folgende Zeile auskommentiert werden:
 [source,xml]
 ----
 <Layer layerStore="dummyrasterlayer">dummyraster</Layer>

@@ -1,0 +1,66 @@
+Hinweis:
+========
+
+Die Testdaten im Verzeichnis src/test/resources werden zu Testzwecken verwendet.
+Zu diesen Dateien können keine genaueren Angaben zur Quelle und zu etwaigen Nutzungsrechten angegeben werden. Eine Weitergabe an
+Dritte ausser zu Testzwecken der Anwendung xPlanBox ist nicht gestattet.
+
+Inhalt des Verzeichnisses src/test/resources:
+---------------------------------------------
+├── de
+│   └── latlon
+│       └── xplan
+│           └── commons
+│               ├── archive
+│               │   ├── Blankenese29_Test_60_withEntity.zip
+│               │   ├── V4_1_ID_103-asWfsFeatureCollection.gml
+│               │   └── V4_1_ID_103-noXPlanGmlCollection.gml
+│               ├── feature
+│               │   ├── geometryOrientationInvalid.gml
+│               │   ├── geometryOrientationValid.gml
+│               │   ├── wfs20FeatureCollection-additionalObjects.gml
+│               │   ├── wfs20FeatureCollection.gml
+│               │   ├── xplan-multipleInstances.gml
+│               │   ├── xplan-multipleInstances-withUnreferenced.gml
+│               │   └── xplan-multipleInstances-withVerbundenerPlan.gml
+│               └── util
+│                   ├── Blankenese29.pgw
+│                   ├── Blankenese29.png
+│                   ├── Blankenese29_Test_60_InvalidContent.zip
+│                   ├── Blankenese29_Test_60.zip
+│                   └── test.odt
+└── testdata
+    ├── xplan40
+    │   └── BPlan004_4-0.zip
+    ├── xplan41
+    │   ├── BP2070.zip
+    │   ├── BP2135.zip
+    │   ├── BPlan001_4-1.zip
+    │   ├── Demo.zip
+    │   ├── Eidelstedt_4_V4-Eimsbuettel.zip
+    │   ├── Eidelstedt_4_V4-wrongGmlFileName.zip
+    │   ├── Eidelstedt_4_V4.zip
+    │   ├── Erhaltung.zip
+    │   ├── FPlan-with-wirksamkeitsDatum.zip
+    │   ├── FPlan.zip
+    │   ├── LA22.zip
+    │   └── LA67.zip
+    ├── xplan50
+    │   ├── BP2070.zip
+    │   ├── BP2135.zip
+    │   ├── BPlan004_5-0.zip
+    │   ├── FPlan.zip
+    │   ├── LA22.zip
+    │   └── LA67.zip
+    ├── xplan51
+    │   ├── BP2070_mehrererOrtsteile.zip
+    │   ├── BP2070.zip
+    │   ├── BP2135.zip
+    │   ├── BPlan001_5-1.gml
+    │   ├── BPlan002_5-1_rasterBasisAlsRefScan.zip
+    │   ├── BPlan002_5-1.zip
+    │   ├── FPlan.zip
+    │   ├── LA22.zip
+    │   └── LA67.zip
+    └── xplan52
+        └── BPlan001_5-2_Bereiche.zip

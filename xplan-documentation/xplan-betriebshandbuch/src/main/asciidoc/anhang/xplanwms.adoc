@@ -2,7 +2,7 @@
 [[appendix_xplanwms-workspace]]
 == XPlanWMS Workspace
 
-Der Workspace _xplansyn-wms-workspace_ wird durch den XPlanManager verwaltet. Werden XPlanArchive mit Rasterdaten über den XPlanManager importiert, dann werden die Rasterdateien im Dateisystem abgespeichert und entsprechende Konfigurationsdateien erzeugt bzw. erweitert.
+Der Workspace _xplan-services-wms-workspace_ wird durch den XPlanManager verwaltet. Werden XPlanArchive mit Rasterdaten über den XPlanManager importiert, dann werden die Rasterdateien im Dateisystem abgespeichert und entsprechende Konfigurationsdateien erzeugt bzw. erweitert.
 Die folgende Übersicht der Verzeichnisstruktur und der darin enthaltenen Dateien erläutert, wo die Rasterdateien abgelegt und die entsprechenden Konfigurationsdateien generiert werden. Dies sind die mit den Ziffern <2>, <3>, <4>, <7> und <13> markierten Verzeichnisse.
 
 ----

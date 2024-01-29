@@ -1,0 +1,188 @@
+Hinweis:
+========
+
+Die Testdaten im Verzeichnis src/test/resources werden zu Testzwecken verwendet.
+Zu diesen Dateien können keine genaueren Angaben zur Quelle und zu etwaigen Nutzungsrechten angegeben werden. Eine Weitergabe an
+Dritte ausser zu Testzwecken der Anwendung xPlanBox ist nicht gestattet.
+
+Inhalt des Verzeichnisses src/test/resources:
+├── de
+│   └── latlon
+│       └── xplan
+│           └── validator
+│               ├── configuration
+│               │   ├── profile-invalidId.yaml
+│               │   ├── profile-invalidName.yaml
+│               │   ├── profiles-duplicateId.yaml
+│               │   ├── profiles-duplicateName.yaml
+│               │   ├── profiles.yaml
+│               │   ├── profile.yaml
+│               │   └── validatorConfiguration.properties
+│               ├── geometric
+│               │   ├── curve.gml
+│               │   ├── duplicateControlPointRing.gml
+│               │   ├── geometryOrientationInvalid.gml
+│               │   ├── geometryOrientationValid.gml
+│               │   ├── inspector
+│               │   │   ├── aenderungen
+│               │   │   │   ├── aendertPlanUndAendertPlanBereich.gml
+│               │   │   │   └── aendertUndWurdeGeandertVon.gml
+│               │   │   ├── doppelbelegung
+│               │   │   │   ├── BPlan_6-0_4-5-2-4-Ueberlappung_valide.gml
+│               │   │   │   └── xplan60-4_5_2_4.gml
+│               │   │   ├── flaechenschluss
+│               │   │   │   ├── BP_Alles_Parmis.gfs
+│               │   │   │   ├── BP_Alles_Parmis.gml
+│               │   │   │   ├── BPlan001_5-4_Toleranz_Geltungsbereich_0008.gml
+│               │   │   │   ├── BPlan_Kompensationsbereich_6-0-2.gml
+│               │   │   │   ├── BPlan_Kompensationsbereich_6-0-2_Luecke.gml
+│               │   │   │   ├── BPlan_Kompensationsbereich_6-0-2_Ueberlappung.gml
+│               │   │   │   ├── BPlan_TeilbereichAusserhalbPlanbereich_6-0-2.gml
+│               │   │   │   ├── BPlan_Wirksamkeit_6-0-2_invalide.gml
+│               │   │   │   ├── BPlan_Wirksamkeit_6-0-2_valide.gml
+│               │   │   │   ├── equalFlaechenschlussGeometries.gml
+│               │   │   │   ├── Flaechenschluss-Test_1mm.gml
+│               │   │   │   ├── Flaechenschluss-Test_1mm-nichtUeberlappend.gml
+│               │   │   │   ├── FNP_031545401000_Zusammenzeichnung.gml
+│               │   │   │   ├── FNP_Insel-Test.gml
+│               │   │   │   ├── test41-54_1-missing-gehoertZuBereich.gml
+│               │   │   │   ├── test41-54_1-missing-gehoertZuBereich-multipleBereiche.gml
+│               │   │   │   ├── Test_Insel_Luecke_5mm.gml
+│               │   │   │   ├── Test_Luecke.gml
+│               │   │   │   ├── V4_1_ID_103_kein-flaechenschluss.gml
+│               │   │   │   ├── V4_1_ID_103_wirksamkeit.gml
+│               │   │   │   ├── xplan51-5_1_4_1_Flaechenschlussfehler.gml
+│               │   │   │   ├── xplan51-5_1_4_2_Flaechenschlussfehler.gml
+│               │   │   │   ├── xplan51-5_5_4_2_Flaechenschlussfehler.gml
+│               │   │   │   ├── xplan52_Flaechenschlussfehler_Luecke_Geltungsbereich.gml
+│               │   │   │   ├── xplan52_Flaechenschlussfehler_vollstaendige_Ueberlappung.gml
+│               │   │   │   ├── xplan53-4_1_7_1_Flaechenschlussfehler.gml
+│               │   │   │   ├── xplan54_Flaechenschlussfehler_Luecken.gml
+│               │   │   │   ├── xplan60_Aenderungsplan_Luecke.gml
+│               │   │   │   └── xplan60_Aenderungsplan_valide.gml
+│               │   │   └── geltungsbereich
+│               │   │       ├── 1_Geltungsbereich-Test.gml
+│               │   │       ├── 1_Schnittpunkte_Geltungsbereich_Polygon.gml
+│               │   │       ├── 2_Geltungsbereich-Test.gml
+│               │   │       ├── 2_Schnittpunkte_Geltungsbereich_Polygon.gml
+│               │   │       ├── 3_Geltungsbereich-Test.gml
+│               │   │       ├── 3_Schnittpunkte_Geltungsbereich_Polygon.gml
+│               │   │       ├── 4_Geltungsbereich-Test.gml
+│               │   │       ├── 4_Schnittpunkte_Geltungsbereich_Polygon.gml
+│               │   │       ├── 5_Geltungsbereich-Test.gml
+│               │   │       ├── 5_Schnittpunkte_Geltungsbereich_Linie.gml
+│               │   │       ├── 6_Geltungsbereich-Test.gml
+│               │   │       ├── 6_Schnittpunkte_Geltungsbereich_Linie.gml
+│               │   │       ├── 7_Geltungsbereich-Test.gml
+│               │   │       ├── 7_Schnittpunkte_Geltungsbereich_Linie.gml
+│               │   │       ├── 8_Schnittpunkte_Geltungsbereich_Linie.gml
+│               │   │       ├── BPlan001_5-4_Sliver-Polygon.gml
+│               │   │       ├── BPlan002_5-2_Schnittpunkt_Geltungsbereich.gml
+│               │   │       ├── BPlan_Kompensationsbereich_6-0-2_valide.gml
+│               │   │       ├── BPlan_Teilbereich_6-0-2_invalide.gml
+│               │   │       ├── HafenCity11_HafenCity14_Bereich_ohne_Geometrie.gml
+│               │   │       ├── SystematischeGeltungsbereichspruefung_GPundGB.jpg
+│               │   │       ├── test41-54_1-missing-gehoertZuBereich.gml
+│               │   │       ├── test41-54_1-missing-gehoertZuBereich-multipleBereiche.gml
+│               │   │       ├── Testplan_position_geltungsbereich.gml
+│               │   │       ├── Testplan_position_geltungsbereichLoch.gml
+│               │   │       └── V4_1_ID_103_withtolerance.gml
+│               │   ├── invalidSelfintersectionDeteced.gml
+│               │   ├── multiSurface-covering.gml
+│               │   ├── multiSurface.gml
+│               │   ├── multiSurface-intersection.gml
+│               │   ├── multiSurface-intersectionInIntersection.gml
+│               │   ├── multiSurface-touches.gml
+│               │   ├── polygon-orientation-invalid.gml
+│               │   ├── polygonWithInteriorRing.gml
+│               │   ├── polygonWithInteriorRings-touching.gml
+│               │   ├── polygonWithInteriorRing-touching.gml
+│               │   ├── selfIntersectingRIng-2intersections.gml
+│               │   ├── selfIntersectingRing.gml
+│               │   ├── selfIntersectingRing-samePoint.gml
+│               │   └── surface.gml
+│               └── semantic
+│                   ├── configuration
+│                   │   └── xquery
+│                   │       └── rules
+│                   │           ├── exists.xq
+│                   │           ├── falseStatement.xq
+│                   │           ├── gmlIds.xq
+│                   │           ├── gmlId-warningsAndErrors.xq
+│                   │           ├── gmlId.xq
+│                   │           ├── so
+│                   │           │   ├── SOignore.unrule
+│                   │           │   └── SOignore.xq
+│                   │           ├── sub
+│                   │           │   └── Sub.xq
+│                   │           ├── xplangml40
+│                   │           │   └── hello.xq
+│                   │           └── xplangml41
+│                   │               ├── 41.xq
+│                   │               └── xp
+│                   │                   ├── 41_XPignore.xq
+│                   │                   └── subXp
+│                   │                       └── 41_XPignore_Sub.xq
+│                   └── xquery
+│                       ├── 5.0
+│                       │   ├── BP2070.gml
+│                       │   ├── BP_GemeinschaftsanlagenZuordnung-LineString.gml
+│                       │   ├── BP_GemeinschaftsanlagenZuordnung-Polygon-flaechenschlussFalse.gml
+│                       │   ├── BP_GemeinschaftsanlagenZuordnung-Polygon-flaechenschlussTrue.gml
+│                       │   ├── BP_Landwirtschaft-LineString.gml
+│                       │   ├── BP_Landwirtschaft-Polygon-flaechenschlussFalse.gml
+│                       │   ├── BP_Landwirtschaft-Polygon-flaechenschlussTrue.gml
+│                       │   ├── Demo-bereich-invalid.gml
+│                       │   ├── Demo-gehoertZuBereich-invalid.gml
+│                       │   ├── Demo-gehoertZuPlan-invalid.gml
+│                       │   ├── Demo.gml
+│                       │   ├── Demo-planinhalt-invalid.gml
+│                       │   ├── Demo-refBegruendungInhalt-invalid.gml
+│                       │   ├── FPlan.gml
+│                       │   ├── LA67.gml
+│                       │   └── V4_1_ID_103.gml
+│                       ├── BP_AnpflanzungBindungErhaltung-Polygon-flaechenschlussTrue.xml
+│                       ├── BP_BaugebietsTeilFlaeche-GFZ_GF_GRZ_GZ.xml
+│                       ├── BP_NebenanlagenFlaeche-mehrfacheZBUndWeitere.xml
+│                       ├── BP_NebenanlagenFlaeche-nurWeitereZB.xml
+│                       ├── BP_UnverbindlicheVormerkung-Polygon-flaechenschlussTrue.xml
+│                       ├── BP_Wegerecht-Polygon-flaechenschlussFehlt.xml
+│                       ├── inhaltBPPlan-referenziertSO.xml
+│                       ├── xplan.gml
+│                       └── XP_PPO-positionPoint-keinFlaechenschluss.xml
+├── log4j2-test.yaml
+├── profiles-test1.yml
+├── profiles-test2.yaml
+└── testdata
+    ├── xplan40
+    │   └── BPlan004_4-0.zip
+    ├── xplan41
+    │   ├── BP2070.zip
+    │   ├── BP2135.zip
+    │   ├── BPlan001_4-1.zip
+    │   ├── Demo.zip
+    │   ├── Eidelstedt_4_V4-broken-geometry.zip
+    │   ├── Eidelstedt_4_V4_Syntaxfehler.zip
+    │   ├── Eidelstedt_4_V4.zip
+    │   ├── FPlan.zip
+    │   ├── LA22.zip
+    │   ├── LA67.zip
+    │   └── PlanWithComplexCurve.zip
+    ├── xplan50
+    │   ├── BP2070.zip
+    │   ├── BP2135.zip
+    │   ├── FPlan.zip
+    │   ├── LA22.zip
+    │   └── LA67.zip
+    ├── xplan51
+    │   ├── BP2070.zip
+    │   ├── BP2135.zip
+    │   ├── BPlan001_5-1.zip
+    │   ├── FPlan.zip
+    │   ├── LA22.zip
+    │   └── LA67.zip
+    └── xplan60
+        ├── Blankenese29.gml
+        ├── Blankenese29_Test_60.zip
+        ├── BPlan001_6-0.zip
+        └── StErhVO_Hamm_60_httpRef.gml
