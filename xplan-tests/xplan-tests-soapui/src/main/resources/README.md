@@ -6,7 +6,7 @@ Dieses Dokument beinhaltet Hinweise zur Benutzung der einzelnen SoapUI Projekte.
 
 Im Folgenden werden die einzelnen Projekte beschrieben.
 
-### xplan-api-manager Projekt
+### xplan-manager-api Projekt
 
 Dieses SoapUI Projekt testet die Komponente XPlanManagerAPI.
 
@@ -55,23 +55,23 @@ Für die Ausführung ist auch die Konfiguration der XPlanDienste URL erforderlic
 * username (optional)
 * password (optional)
 
-### xplan-api-validator Projekt
+### xplan-validator-api Projekt
 
 Dieses SoapUI Projekt testet die Komponente XPlanValidatorAPI.
 
-Die Ausführung des SoapUI Projekt erfolgt, wie in dem [xplan-api-manager Projekt](#xplan-api-manager-projekt) beschrieben. Es gelten auch die dort beschriebenen Hinweise.
+Die Ausführung des SoapUI Projekt erfolgt, wie in dem [xplan-manager-api Projekt](#xplan-manager-api-projekt) beschrieben. Es gelten auch die dort beschriebenen Hinweise.
 
-### xplan-api-dokumente Projekt
+### xplan-dokumente-api Projekt
 
 Dieses SoapUI Projekt testet die Komponente XPlanDokumentenAPI.
 
-Die Ausführung des SoapUI Projekt erfolgt, wie in dem [xplan-api-manager Projekt](#xplan-api-manager-projekt) beschrieben. Es gelten auch die dort beschriebenen Hinweise.
+Die Ausführung des SoapUI Projekt erfolgt, wie in dem [xplan-manager-api Projekt](#xplan-manager-api-projekt) beschrieben. Es gelten auch die dort beschriebenen Hinweise.
 
 ### xplan-webservices Projekt
 
 Dieses SoapUI Projekt testet die Komponente XPlanDienste.
 
-Die Ausführung des SoapUI Projekt erfolgt, wie in dem [xplan-api-manager Projekt](#xplan-api-manager-projekt) beschrieben. Es gelten auch die dort beschriebenen Hinweise.
+Die Ausführung des SoapUI Projekt erfolgt, wie in dem [xplan-manager-api Projekt](#xplan-manager-api-projekt) beschrieben. Es gelten auch die dort beschriebenen Hinweise.
 
 ***Hinweise***
 
@@ -110,7 +110,7 @@ Sind für den Zugriff auf den Server Credentials erforderlich, so müssen diese 
 
 Für das Projekt [xplan-manager-web](#xplan-manager-web-projekt) in SoapUI die Ansicht "Show Service Viewer > Service Endpoints" öffnen. Dort müssen Username und Password für den Endpoint eingetragen und dann mit `All Requests and TestRequests` aus der Drop-Down-Liste auf alle Test angewendet werden.
 
-Für die Projekte [xplan-api-manager](#xplan-api-manager-projekt), [xplan-api-validator](#xplan-api-validator-projekt), [xplan-api-dokumente](#xplan-api-dokumente-projekt) und [xplan-webservices](#xplan-webservices-projekt) in SoapUI das Projekt auswählen und den Reiter `Custom Properties` auswählen. Dort die Properties `username` und `password` setzen.
+Für die Projekte [xplan-manager-api](#xplan-manager-api-projekt), [xplan-validator-api](#xplan-validator-api-projekt), [xplan-dokumente-api](#xplan-dokumente-api-projekt) und [xplan-webservices](#xplan-webservices-projekt) in SoapUI das Projekt auswählen und den Reiter `Custom Properties` auswählen. Dort die Properties `username` und `password` setzen.
 
 ### Datenbanktests
 
@@ -128,7 +128,7 @@ Wenn Änderungen an einem SoapUI Projekt vorgenommen werden, dann muss die Datei
 
 > **_ACHTUNG:_** Vor jedem Commit muss geprüft werden, dass keine Passwörter in den SoapUI Projekten gespeichert sind.
 
-Die Namenskonvention für die TestSteps der SoapUI Projekte xplan-api-manager und xplan-api-validator folgen diesem Muster:
+Die Namenskonvention für die TestSteps der SoapUI Projekte xplan-manager-api und xplan-validator-api folgen diesem Muster:
 
 > `HTTPMETHODE|PROTOKOLL PLANART XPLANGMLVERSION QUERYPARAMETER ADDITIONALINFORMATION`
 

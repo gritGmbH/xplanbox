@@ -17,10 +17,10 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<con:soapui-project id="c0330194-e671-4de1-89fb-fd5cd92eb5af" activeEnvironment="Default" name="xplan-api-dokumente" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="c0330194-e671-4de1-89fb-fd5cd92eb5af" activeEnvironment="Default" name="xplan-dokumente-api" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
   <con:description>For local execution use following property values:
 
-baseUrlManagerApi=http://localhost:8086/xplan-api-manager
+baseUrlManagerApi=http://localhost:8086/xplan-manager-api
 
 For execution against test environment use following property values:
 
@@ -32,7 +32,7 @@ baseUrlManagerApi=https://xplanbox.lat-lon.de</con:description>
     <con:definitionCache type="TEXT" rootPart=""/>
     <con:endpoints>
       <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
-      <con:endpoint>http://localhost:8092/xplan-api-dokumente/xdokumente/api/v1</con:endpoint>
+      <con:endpoint>http://localhost:8092/xplan-dokumente-api/xdokumente/api/v1</con:endpoint>
       <con:endpoint>https://xplanbox.lat-lon.de/xdokumente/api/v1</con:endpoint>
     </con:endpoints>
     <con:resource name="/dokument/{planId}" path="/dokument/{planId}" id="727aa3ab-f91f-4632-ab06-20c558326713">
@@ -474,7 +474,7 @@ OpenAPI document</con:description>
             <con:name>BP_6.0.2.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>BPlan004_6-0.zip</con:contentId>
-            <con:url>${projectDir}/xplan-api-dokumente/plans/BPlan004_6-0.zip</con:url>
+            <con:url>${projectDir}/xplan-dokumente-api/plans/BPlan004_6-0.zip</con:url>
             <con:id>1ea51185-0d48-44eb-9ac0-3caf101510fa</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -512,7 +512,7 @@ OpenAPI document</con:description>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="ed716dba-fd89-43c2-8ae7-271b19e493ba" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -584,7 +584,7 @@ OpenAPI document</con:description>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="ed716dba-fd89-43c2-8ae7-271b19e493ba" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>406</codes>
@@ -616,7 +616,7 @@ OpenAPI document</con:description>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//info</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//info</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="bd5a77c9-81f7-4bd5-827c-ef56ee3b68fe" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -662,7 +662,7 @@ assert json.version != null</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//info</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//info</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="bd5a77c9-81f7-4bd5-827c-ef56ee3b68fe" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>406</codes>
@@ -694,7 +694,7 @@ assert json.version != null</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="bc6247a3-5d0d-47a5-93ea-59d65ed2d3d9" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -750,7 +750,7 @@ assert json.version != null</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="bc6247a3-5d0d-47a5-93ea-59d65ed2d3d9" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>400</codes>
@@ -779,7 +779,7 @@ assert json.version != null</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="bc6247a3-5d0d-47a5-93ea-59d65ed2d3d9" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>404</codes>
@@ -813,7 +813,7 @@ assert json.version != null</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -858,7 +858,7 @@ assert contentLength[0].toInteger() == 67450</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -903,7 +903,7 @@ assert contentLength[0].toInteger() == 320960</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -948,7 +948,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>400</codes>
@@ -978,7 +978,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>404</codes>
@@ -1008,7 +1008,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>404</codes>
@@ -1038,7 +1038,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//dokument//</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//dokument//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1090,7 +1090,7 @@ assert contentLength[0].toInteger() == 67450</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//dokument//</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//dokument//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1142,7 +1142,7 @@ assert contentLength[0].toInteger() == 320960</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//dokument//</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//dokument//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1187,7 +1187,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//dokument//</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//dokument//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>400</codes>
@@ -1217,7 +1217,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//dokument//</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//dokument//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>404</codes>
@@ -1247,7 +1247,7 @@ assert contentLength[0].toInteger() == 73</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-dokumente/xdokumente/api/v1//dokument//</con:originalUri>
+            <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//dokument//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>404</codes>
@@ -1337,11 +1337,11 @@ assert contentLength[0].toInteger() == 73</scriptText>
   <con:properties>
     <con:property>
       <con:name>baseUrlDokumentenApi</con:name>
-      <con:value>http://localhost:8092/xplan-api-dokumente</con:value>
+      <con:value>http://localhost:8092/xplan-dokumente-api</con:value>
     </con:property>
     <con:property>
       <con:name>baseUrlManagerApi</con:name>
-      <con:value>http://localhost:8086/xplan-api-manager</con:value>
+      <con:value>http://localhost:8086/xplan-manager-api</con:value>
     </con:property>
     <con:property>
       <con:name>username</con:name>

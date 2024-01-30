@@ -17,14 +17,14 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<con:soapui-project id="45582ef9-4bae-43d8-9226-a378e02ff0b5" activeEnvironment="Default" name="xplan-api-validator" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="45582ef9-4bae-43d8-9226-a378e02ff0b5" activeEnvironment="Default" name="xplan-validator-api" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:interface xsi:type="con:RestService" id="85ec4fc3-149e-4a77-a566-194de2899fd3" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanValidatorAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:description>XPlanValidator REST API</con:description>
     <con:settings/>
     <con:definitionCache type="TEXT" rootPart=""/>
     <con:endpoints>
-      <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+      <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
       <con:endpoint>https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
     </con:endpoints>
     <con:resource name="/" path="/" id="67855cf1-a5d0-4312-b0d2-c4a15d490e6b">
@@ -44,7 +44,7 @@ OpenAPI document</con:description>
           <con:mediaType>application/json</con:mediaType>
           <con:status>200</con:status>
           <con:params/>
-          <con:element xmlns:v1="http://localhost/xplan-api-validator/xvalidator/api/v1/">v1:Response</con:element>
+          <con:element xmlns:v1="http://localhost/xplan-validator-api/xvalidator/api/v1/">v1:Response</con:element>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html; charset=iso-8859-1</con:mediaType>
@@ -56,9 +56,9 @@ OpenAPI document</con:description>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+          <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
           <con:request/>
-          <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/</con:originalUri>
+          <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/</con:originalUri>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
@@ -90,7 +90,7 @@ Show system and application configuration</con:description>
           <con:mediaType>application/json</con:mediaType>
           <con:status>200</con:status>
           <con:params/>
-          <con:element xmlns:info="http://localhost/xplan-api-validator/xvalidator/api/v1/info">info:Response</con:element>
+          <con:element xmlns:info="http://localhost/xplan-validator-api/xvalidator/api/v1/info">info:Response</con:element>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html; charset=iso-8859-1</con:mediaType>
@@ -102,9 +102,9 @@ Show system and application configuration</con:description>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+          <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
           <con:request/>
-          <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/info</con:originalUri>
+          <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/info</con:originalUri>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
@@ -207,7 +207,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           <con:mediaType>application/json</con:mediaType>
           <con:status>200</con:status>
           <con:params/>
-          <con:element xmlns:val="http://localhost/xplan-api-validator/xvalidator/api/v1/validate">val:Response</con:element>
+          <con:element xmlns:val="http://localhost/xplan-validator-api/xvalidator/api/v1/validate">val:Response</con:element>
         </con:representation>
         <con:representation type="REQUEST">
           <con:mediaType>application/octet-stream</con:mediaType>
@@ -678,9 +678,9 @@ Validate XPlanGML or XPlanArchive</con:description>
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+          <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
           <con:request/>
-          <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+          <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
@@ -720,9 +720,9 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="f3ba4686-3a8b-4dc9-8e96-9bc351221c5a" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -871,9 +871,9 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/info</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/info</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="0cc46e02-cf98-4922-b9a0-70051141ecfd" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -932,9 +932,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>422</codes>
@@ -953,7 +953,7 @@ assert json.version != null</scriptText>
               <con:name>BP_6.0.gml</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_5.0_Entity.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.0_Entity.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.0_Entity.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -980,9 +980,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1037,7 +1037,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>0674bd13-bd66-4955-bdcc-29379df18928</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1064,9 +1064,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1121,7 +1121,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>c2ad293c-0484-4694-b14c-c746c4db6364</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1149,9 +1149,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1206,7 +1206,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>2dc1f48b-f0b2-42cd-b396-8c75efdafeba</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1234,9 +1234,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1300,7 +1300,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>12533ac6-bb17-48e1-acd3-129594475d5c</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1328,9 +1328,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1385,7 +1385,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>fedcacb5-ae8e-4024-a96c-35bb0b741e18</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1413,9 +1413,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1470,7 +1470,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>d6da07de-1ae7-48e3-9f13-662980c79fb7</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1498,9 +1498,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1582,7 +1582,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>2dd08acb-0726-40eb-9b85-92131a201708</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1614,9 +1614,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1672,7 +1672,7 @@ assert json.version != null</scriptText>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>b4650cb7-28a8-4dc6-80a5-4101746bc10a</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1699,9 +1699,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1756,7 +1756,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.gml</con:name>
               <con:contentType>application/gml+xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>063489ad-69e6-4ca7-8e9a-3fbae9b65823</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1783,9 +1783,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1840,7 +1840,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_5.1.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.zip</con:url>
               <con:id>89b970d2-d511-433c-85fb-6c83d6ad5141</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1867,9 +1867,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>422</codes>
@@ -1889,7 +1889,7 @@ assert json.version != null</scriptText>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.zip</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.zip</con:url>
               <con:id>afea6522-6945-45bd-a136-66b7b97188e3</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1916,9 +1916,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -1973,7 +1973,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>aabe5618-4f2e-4732-9b98-86a91f5a7d09</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2000,9 +2000,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/xml" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -2039,7 +2039,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>2329b5ac-65c6-4698-8e17-cd9b3107dc13</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2066,9 +2066,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="text/xml" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -2105,7 +2105,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>529248e2-6869-4797-8183-f085e9a69eaf</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2132,9 +2132,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/pdf" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -2160,7 +2160,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>5aafa4ea-db83-4773-9912-f3fbf65c5e50</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2187,9 +2187,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/zip" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -2208,7 +2208,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.1.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.1.gml</con:url>
               <con:id>e732572e-3951-40e3-bb5f-986701f374f8</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2235,9 +2235,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -2300,8 +2300,8 @@ assert json.version != null</scriptText>
             <con:attachment>
               <con:name>BP_5.3.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>${projectDir}/xplan-api-validator/plans/BP_5.2_MissingAndUncheckedReference.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.2_MissingAndUncheckedReference.zip</con:url>
+              <con:contentId>${projectDir}/xplan-validator-api/plans/BP_5.2_MissingAndUncheckedReference.zip</con:contentId>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.2_MissingAndUncheckedReference.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2328,9 +2328,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -2394,7 +2394,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.3.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_5.3.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.3.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2421,9 +2421,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -2496,7 +2496,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.3.zip</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.3_FeatureCollection_additionalObjects.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3_MultiplePlansWfsFcAdditionalObjects.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.3_MultiplePlansWfsFcAdditionalObjects.gml</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2523,9 +2523,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -2598,7 +2598,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.3.zip</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.3_FeatureCollection_additionalObjects.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3_MultiplePlansWfsFc.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.3_MultiplePlansWfsFc.gml</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2625,9 +2625,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -2700,7 +2700,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.3.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_5.3_FeatureCollection_additionalObjects.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3_MultiplePlansWfsFc.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.3_MultiplePlansWfsFc.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2727,9 +2727,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -2784,7 +2784,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.3.zip</con:name>
               <con:contentType>text/xml</con:contentType>
               <con:contentId>BP_5.3_FeatureCollection_additionalObjects.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3_WfsFc.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.3_WfsFc.gml</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2811,9 +2811,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -2868,7 +2868,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.3.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_5.3_FeatureCollection_additionalObjects.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3_WfsFc.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.3_WfsFc.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2895,9 +2895,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>400</codes>
@@ -2916,7 +2916,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.3.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_5.3.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.3.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2944,9 +2944,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/pdf" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>400</codes>
@@ -2965,7 +2965,7 @@ assert json.version != null</scriptText>
               <con:name>BP_5.3.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_5.3.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_5.3.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2993,9 +2993,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>415</codes>
@@ -3014,7 +3014,7 @@ assert json.version != null</scriptText>
               <con:name>BP_6.0.gml</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>Blankenese29_Test_60_InvalidContent.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/Blankenese29_Test_60_InvalidContent.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/Blankenese29_Test_60_InvalidContent.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3041,9 +3041,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -3108,7 +3108,7 @@ assert json.version != null</scriptText>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_6.0.zip</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_6.0.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3136,9 +3136,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -3221,7 +3221,7 @@ assert json.version != null</scriptText>
               <con:contentType>application/gml+xml</con:contentType>
               <con:contentId>BP_6.0_syntaxErrors.gml</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0_syntaxErrors.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_6.0_syntaxErrors.gml</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3249,9 +3249,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -3324,7 +3324,7 @@ assert json.version != null</scriptText>
               <con:name>BP_6.0.gml</con:name>
               <con:contentType>application/gml+xml</con:contentType>
               <con:contentId>BP_6.0.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_6.0.gml</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3351,9 +3351,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>400</codes>
@@ -3379,7 +3379,7 @@ assert json.version != null</scriptText>
               <con:name>BP_6.0.gml</con:name>
               <con:contentType>application/gml+xml</con:contentType>
               <con:contentId>BP_6.0.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.gml</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_6.0.gml</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3406,9 +3406,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -3482,7 +3482,7 @@ assert json.version != null</scriptText>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_6.0.2_valide.zip</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.2_valide.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_6.0.2_valide.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3509,9 +3509,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -3593,7 +3593,7 @@ assert json.version != null</scriptText>
               <con:name>BP_6.0.gml</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_6.0.2_invalide.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.2_invalide.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_6.0.2_invalide.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3620,9 +3620,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -3714,7 +3714,7 @@ assert json.version != null</scriptText>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_6.0.2_valide.zip</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.2_NoBereichButReferenceExists.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_6.0.2_NoBereichButReferenceExists.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3741,9 +3741,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -3817,7 +3817,7 @@ assert json.version != null</scriptText>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>FP_6.0.2_valide.zip</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-validator/plans/FP_6.0.2_valide.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/FP_6.0.2_valide.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3844,9 +3844,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -3928,7 +3928,7 @@ assert json.version != null</scriptText>
               <con:name>BP_6.0.gml</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>FP_6.0.2_invalide.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/FP_6.0.2_invalide.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/FP_6.0.2_invalide.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3955,9 +3955,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>415</codes>
@@ -3976,7 +3976,7 @@ assert json.version != null</scriptText>
               <con:name>invalidContentType.odt</con:name>
               <con:contentType>application/vnd.oasis.opendocument.text</con:contentType>
               <con:contentId>invalidContentType.odt</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/invalidContentType.odt</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/invalidContentType.odt</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -4012,9 +4012,9 @@ assert json.version != null</scriptText>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/info</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/info</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="79bf32cf-1071-4e79-ba39-ea58115c33a0" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -4117,9 +4117,9 @@ assert json.version != null</scriptText>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
             <con:encoding>UTF-8</con:encoding>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:endpoint>http://localhost:8085/xplan-validator-api/xvalidator/api/v1</con:endpoint>
             <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:originalUri>http://localhost/xplan-validator-api/xvalidator/api/v1/validate</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="5f4dcada-c13f-4671-84c1-8a94197dfc67" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
@@ -4174,7 +4174,7 @@ assert json.version != null</scriptText>
               <con:name>BP_6.0.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_6.0.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.zip</con:url>
+              <con:url>${projectDir}/xplan-validator-api/plans/BP_6.0.zip</con:url>
               <con:id>3940446e-fc4f-45cd-93d1-9f53341835ba</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
