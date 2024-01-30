@@ -27,7 +27,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlServices=${BASE_URL_DIENSTE} -Dusername=$Username -Dpassword=$Password'
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-manager-api-soapui-project.xml -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlServices=${BASE_URL_DIENSTE} -Dusername=$Username -Dpassword=$Password'
             }
          }
       }
@@ -36,7 +36,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=${ENDPOINT_VALIDATOR_API} -Dusername=$Username -Dpassword=$Password'
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-validator-api-soapui-project.xml -Dendpoint=${ENDPOINT_VALIDATOR_API} -Dusername=$Username -Dpassword=$Password'
             }
          }
       }
@@ -45,7 +45,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-api-dokumente-soapui-project.xml -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlDokumentenApi=${BASE_URL_DOKUMENTEN_API} -Dusername=$Username -Dpassword=$Password'
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlDokumentenApi=${BASE_URL_DOKUMENTEN_API} -Dusername=$Username -Dpassword=$Password'
             }
          }
       }
