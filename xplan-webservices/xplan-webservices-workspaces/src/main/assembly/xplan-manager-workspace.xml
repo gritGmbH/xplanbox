@@ -48,14 +48,6 @@
   </fileSets>
   <dependencySets>
     <dependencySet>
-      <useTransitiveDependencies>false</useTransitiveDependencies>
-      <outputDirectory>/modules</outputDirectory>
-      <useProjectArtifact>false</useProjectArtifact>
-      <excludes>
-        <exclude>de.latlon.product.xplanbox:xplan-core-schemas</exclude>
-      </excludes>
-    </dependencySet>
-    <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <includes>
         <include>de.latlon.product.xplanbox:xplan-core-schemas</include>
