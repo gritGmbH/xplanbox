@@ -22,7 +22,7 @@
 
 baseUrlServices=http://localhost:8083
 baseUrlInspirePlu=http://localhost:8084
-baseUrlManagerApi=http://localhost:8086/xplan-api-manager
+baseUrlManagerApi=http://localhost:8086/xplan-manager-api
 baseUrlMapServer=http://localhost:8087
 baseUrlMapProxy=http://localhost:8093
 
@@ -12820,7 +12820,7 @@ exists(//wmts:Layer[ows:Identifier='soplan_vektor'])</path>
     </con:property>
     <con:property>
       <con:name>baseUrlManagerApi</con:name>
-      <con:value>http://localhost:8086/xplan-api-manager</con:value>
+      <con:value>http://localhost:8086/xplan-manager-api</con:value>
     </con:property>
     <con:property>
       <con:name>baseUrlMapServer</con:name>

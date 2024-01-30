@@ -7,10 +7,10 @@ Dritte ausser zu Testzwecken der Anwendung xPlanBox ist nicht gestattet.
 
 Inhalt des Verzeichnisses src/main/resources:
 --------------------------
-├── xplan-api-dokumente
+├── xplan-dokumente-api
 │   └── plans
 │       └── BPlan004_6-0.zip
-├── xplan-api-manager
+├── xplan-manager-api
 │   ├── attachments
 │   │   ├── invalidContentType.odt
 │   │   ├── postDok.json
@@ -65,7 +65,7 @@ Inhalt des Verzeichnisses src/main/resources:
 │       ├── LP_6.0.zip
 │       ├── RP_5.1.zip
 │       └── SO_5.3.zip
-├── xplan-api-validator
+├── xplan-validator-api
 │   └── plans
 │       ├── Blankenese29_Test_60_InvalidContent.zip
 │       ├── BP_5.0_Entity.zip
