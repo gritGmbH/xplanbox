@@ -216,22 +216,6 @@
       <artifactId>swagger-jaxrs2</artifactId>
       <version>${swagger.version}</version>
     </dependency>
-    <dependency>
-      <groupId>io.swagger.core.v3</groupId>
-      <artifactId>swagger-jaxrs2-servlet-initializer</artifactId>
-      <version>${swagger.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>io.swagger.parser.v3</groupId>
-      <artifactId>swagger-parser</artifactId>
-      <version>2.0.33</version>
-      <exclusions>
-        <exclusion>
-          <groupId>javax.validation</groupId>
-          <artifactId>validation-api</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
     <!-- jackson -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -320,35 +304,6 @@
   </dependencies>
 
   <profiles>
-    <profile>
-      <id>generate-swagger</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.openapitools</groupId>
-            <artifactId>openapi-generator-maven-plugin</artifactId>
-            <version>4.3.1</version>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>generate</goal>
-                </goals>
-                <configuration>
-                  <inputSpec>${project.basedir}/src/main/resources/xplanvalidator.yaml</inputSpec>
-                  <language>jaxrs-spec</language>
-                  <packageName>${base.package.name}.api.validator.v2</packageName>
-                  <modelPackage>${base.package.name}.api.validator.v2.model</modelPackage>
-                  <apiPackage>${base.package.name}.api.validator.v2</apiPackage>
-                  <configOptions>
-                    <sourceFolder>${project.build}/generated-sources/swagger</sourceFolder>
-                  </configOptions>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
     <profile>
       <id>docker</id>
       <properties>

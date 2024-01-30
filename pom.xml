@@ -43,8 +43,7 @@
     <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
     <jakarta.ws.rs-api.version>2.1.6</jakarta.ws.rs-api.version>
     <jersey.version>2.35</jersey.version>
-    <swagger.version>2.1.13</swagger.version>
-    <swagger-ui.version>3.17.0</swagger-ui.version>
+    <swagger.version>2.2.20</swagger.version>
     <!-- project properties -->
     <distribution.repo.id>gitlab-maven</distribution.repo.id>
     <distribution.repo.url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</distribution.repo.url>
