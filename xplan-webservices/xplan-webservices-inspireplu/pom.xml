@@ -18,6 +18,12 @@
       <artifactId>xplan-webservices-core</artifactId>
     </dependency>
     <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-webservices</artifactId>
+      <type>war</type>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
     </dependency>

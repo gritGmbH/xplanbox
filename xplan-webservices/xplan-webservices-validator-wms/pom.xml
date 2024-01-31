@@ -23,6 +23,18 @@
 
   <dependencies>
     <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <scope>provided</scope>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-webservices</artifactId>
+      <type>war</type>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>de.latlon</groupId>
       <artifactId>deegree-services-wms</artifactId>
     </dependency>
