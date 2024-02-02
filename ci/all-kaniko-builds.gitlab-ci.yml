@@ -25,6 +25,22 @@
 
 ## job per image to produce
 
+kaniko:xplan-benutzerhandbuch:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-benutzerhandbuch
+    tarGzFile: xplan-documentation/xplan-benutzerhandbuch/target/docker/xplanbox/xplan-benutzerhandbuch/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-cli
+
+kaniko:xplan-betriebshandbuch:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-betriebshandbuch
+    tarGzFile: xplan-documentation/xplan-betriebshandbuch/target/docker/xplanbox/xplan-betriebshandbuch/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-cli
+
 kaniko:xplan-cli-docker:
   extends: .kaniko:build
   variables:
@@ -33,6 +49,14 @@ kaniko:xplan-cli-docker:
   needs:
     - maven-prepare-docker-contexts-cli
     - kaniko:xplan-docker-volume-init
+
+kaniko:xplan-database-docker:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-db
+    tarGzFile: xplan-database/xplan-database-docker/target/docker/xplanbox/xplan-db/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-cli
 
 kaniko:xplan-db-updater:
   extends: .kaniko:build
@@ -170,3 +194,11 @@ kaniko:xplan-validator-wms:
   needs:
     - maven-prepare-docker-contexts-others
     - kaniko:xplan-docker-tomcat
+
+kaniko:xplan-webpages:
+  extends: .kaniko:build
+  variables:
+    dockerImageName: xplan-webpages
+    tarGzFile: xplan-documentation/xplan-webpages/target/docker/xplanbox/xplan-webpages/tmp/docker-build.tar.gz
+  needs:
+    - maven-prepare-docker-contexts-cli
