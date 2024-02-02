@@ -12,6 +12,7 @@ workflow:
 variables:
   MAVEN_OPTS: "-Xmx500m -XX:+UseSerialGC -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN"
   MAVEN_CLI_OPTS: "--batch-mode -DskipDeployBigArtefact=true -s $CI_PROJECT_DIR/ci_settings.xml"
+  MAIN_BRANCH: $CI_DEFAULT_BRANCH
 
 stages:
 - build
@@ -32,10 +33,10 @@ maven-build:
     when: never 
   - if: $CI_COMMIT_TAG != null
     when: never 
-  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+  - if: $CI_COMMIT_REF_NAME != $MAIN_BRANCH
     variables:
       MAVEN_GOAL: "install"
-  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  - if: $CI_COMMIT_REF_NAME == $MAIN_BRANCH
     variables:
       MAVEN_GOAL: "deploy"
 
@@ -52,7 +53,7 @@ maven-build:
     when: never 
   - if: $CI_COMMIT_TAG != null
     when: on_success
-  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+  - if: $CI_COMMIT_REF_NAME != $MAIN_BRANCH
     when: never
   - when: on_success 
   artifacts:
@@ -100,11 +101,11 @@ maven-prepare-docker-contexts-others:
     paths:
     - './xplan-docker/**/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-database/xplan-database-scripts/target/docker/**/tmp/docker-build.tar.gz'
+    - './xplan-tests/xplan-tests-soapui/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-webservices/xplan-webservices-mapproxy/xplan-mapproxy-docker/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-webservices/xplan-webservices-mapserver/xplan-mapserver-docker/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-webservices/xplan-webservices-services/xplan-services-docker/target/docker/**/tmp/docker-build.tar.gz'
-    - './xplan-webservices/xplan-webservices-services/xplan-services-docker/target/docker/**/tmp/docker-build.tar.gz'
-    - './xplan-tests/xplan-tests-soapui/target/docker/**/tmp/docker-build.tar.gz'
+    - './xplan-webservices/xplan-webservices-validator-wms/target/docker/**/tmp/docker-build.tar.gz'
 
 include: ci/all-kaniko-builds.gitlab-ci.yml
 

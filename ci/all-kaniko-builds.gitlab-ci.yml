@@ -16,7 +16,7 @@
     when: never 
   - if: $CI_COMMIT_TAG != null
     when: on_success
-  - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+  - if: $CI_COMMIT_REF_NAME != $MAIN_BRANCH
     when: never 
   - when: on_success 
   variables:
@@ -38,7 +38,7 @@ kaniko:xplan-db-updater:
   extends: .kaniko:build
   variables:
     dockerImageName: xplan-db-updater
-    tarGzFile: xplan-resources/xplan-database-scripts/target/docker/xplanbox/xplan-db-updater/tmp/docker-build.tar.gz
+    tarGzFile: xplan-database/xplan-database-scripts/target/docker/xplanbox/xplan-db-updater/tmp/docker-build.tar.gz
   needs:
     - maven-prepare-docker-contexts-others
 
