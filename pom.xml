@@ -180,8 +180,9 @@
                     <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
                     <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
                     <exclude>*/xplan-database-scripts/src/main/resource/**/*.yaml</exclude>
-                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-manager/**</exclude>
-                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-validator/**</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-dokumente-api/**</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-manager-api/**</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-validator-api/**</exclude>
                     <exclude>*/xplan-tests-soapui/src/main/resource/xplan-webservices/**</exclude>
                     <exclude>*/xplan-webservices-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
                     <exclude>**/*.json</exclude>

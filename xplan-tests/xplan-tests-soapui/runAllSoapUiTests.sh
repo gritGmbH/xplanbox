@@ -11,22 +11,22 @@ if [ -n "$XPLAN_NOTIFY_SLACK_CHANNEL" ] &&  [ -n "$XPLAN_NOTIFY_SLACK_TOKEN" ]; 
 fi
 
 if [ -z ${XPLAN_DB_HOSTNAME+x} ]; then
-  echo "XPLAN_DB_HOSTNAME is not set. jdbcUrl is not used in xplan-api-manager SoapUI Tests"
+  echo "XPLAN_DB_HOSTNAME is not set. jdbcUrl is not used in xplan-manager-api SoapUI Tests"
 else
-	echo "XPLAN_DB_HOSTNAME is set, jdbcUrl is created and used for xplan-api-manager SoapUI Tests"
+	echo "XPLAN_DB_HOSTNAME is set, jdbcUrl is created and used for xplan-manager-api SoapUI Tests"
 	JDBC_URL="jdbc:postgresql://$XPLAN_DB_HOSTNAME:$XPLAN_DB_PORT/$XPLAN_DB_NAME?user=$XPLAN_DB_USER&password=$XPLAN_DB_PASSWORD"
 fi
 
 echo "Executing tests..."
-mvn test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_API_MANAGER_BASE_URL -DbaseUrlServices=$XPLAN_BASE_URL_DIENSTE -DjdbcUrl=$JDBC_URL -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD
+mvn test -Psystem-tests -DtestFileName=xplan-manager-api-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_API_MANAGER_BASE_URL -DbaseUrlServices=$XPLAN_BASE_URL_DIENSTE -DjdbcUrl=$JDBC_URL -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD
 
-mvn test -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=$XPLAN_API_VALIDATOR_ENDPOINT -Dusername=$XPLAN_API_VALIDATOR_USERNAME -Dpassword=$XPLAN_API_VALIDATOR_PASSWORD
+mvn test -Psystem-tests -DtestFileName=xplan-validator-api-soapui-project.xml -Dendpoint=$XPLAN_API_VALIDATOR_ENDPOINT -Dusername=$XPLAN_API_VALIDATOR_USERNAME -Dpassword=$XPLAN_API_VALIDATOR_PASSWORD
 
 if [ -z ${XPLAN_API_DOKUMENTE_BASE_URL+x} ];
 then
 	echo "XPlanDokumentenAPI Tests are skipped!"
 else
-	mvn test -Psystem-tests -DtestFileName=xplan-api-dokumente-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_API_MANAGER_BASE_URL -DbaseUrlDokumentenApi=$XPLAN_API_DOKUMENTE_BASE_URL -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD
+	mvn test -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_API_MANAGER_BASE_URL -DbaseUrlDokumentenApi=$XPLAN_API_DOKUMENTE_BASE_URL -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD
 fi
 
 mvn test -Psystem-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=$XPLAN_MANAGER_WEB_ENDPOINT -Dusername=$XPLAN_MANAGER_WEB_USERNAME -Dpassword=$XPLAN_MANAGER_WEB_PASSWORD

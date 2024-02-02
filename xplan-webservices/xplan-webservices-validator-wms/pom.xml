@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-webservices-validator-wms</artifactId>
   <packaging>war</packaging>
@@ -11,7 +12,28 @@
     <version>7.2-SNAPSHOT</version>
   </parent>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
   <dependencies>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <scope>provided</scope>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-webservices</artifactId>
+      <type>war</type>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>de.latlon</groupId>
       <artifactId>deegree-services-wms</artifactId>
@@ -68,14 +90,14 @@
           </plugin>
         </plugins>
       </build>
-	  <dependencies>
-	    <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
-	      <groupId>de.latlon.product.xplanbox</groupId>
-	      <artifactId>xplan-docker-tomcat</artifactId>
-	      <version>${project.version}</version>
-	      <type>pom</type>
-	    </dependency>
-	  </dependencies>
+      <dependencies>
+        <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
+          <groupId>de.latlon.product.xplanbox</groupId>
+          <artifactId>xplan-docker-tomcat</artifactId>
+          <version>${project.version}</version>
+          <type>pom</type>
+        </dependency>
+      </dependencies>
     </profile>
   </profiles>
 </project>

@@ -2,17 +2,17 @@
 
 ## Aufruf der SoapUI Tests mit mvn
 
-### xplan-api-validator-soapui-project
+### xplan-validator-api-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xvalidator/api/v1 -Dusername=xplanbox -Dpassword='PWD'
+> mvn clean test -Psystem-tests -DtestFileName=xplan-validator-api-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xvalidator/api/v1 -Dusername=xplanbox -Dpassword='PWD'
 
-### xplan-api-manager-soapui-project
+### xplan-manager-api-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlServices=https://xplanbox.lat-lon.de -DjdbcUrl=jdbc:postgresql://localhost:5433/xplanbox?user=xplanbox&password=xplanbox -Dusername=xplanbox -Dpassword='PWD'
+> mvn clean test -Psystem-tests -DtestFileName=xplan-manager-api-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlServices=https://xplanbox.lat-lon.de -DjdbcUrl=jdbc:postgresql://localhost:5433/xplanbox?user=xplanbox&password=xplanbox -Dusername=xplanbox -Dpassword='PWD'
 
-### xplan-api-dokumente-soapui-project
+### xplan-dokumente-api-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-api-dokumente-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlDokumentenApi=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
+> mvn clean test -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlDokumentenApi=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
 
 ### xplan-manager-web-soapui-project
 
