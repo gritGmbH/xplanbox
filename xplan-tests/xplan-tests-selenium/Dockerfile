@@ -24,6 +24,8 @@ ADD maven/xplan-tests-pom.xml /xplanbox/xplan-tests/pom.xml
 
 WORKDIR /xplanbox/xplan-tests/xplan-tests-selenium
 
+ENV TZ=Europe/Berlin
+
 # pre-fill local maven repo (including plugins)
 RUN mvn -B integration-test -Psystem-tests -Dtest=NotExistingOne -Dsurefire.failIfNoSpecifiedTests=false > /dev/null \
 	&& mvn -B surefire-report:report-only \
