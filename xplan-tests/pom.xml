@@ -19,6 +19,7 @@
   <modules>
     <module>xplan-tests-soapui</module>
     <module>xplan-tests-manual</module>
+    <module>xplan-tests-selenium</module>
   </modules>
 
 </project>

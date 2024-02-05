@@ -13,6 +13,7 @@ pipeline {
       string(name: 'BASE_URL_DIENSTE', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDienste')
       string(name: 'BASE_URL_INSPIRE_PLU', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of INSPIRE PLU')
       string(name: 'BASE_URL_MANAGER_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanManagerAPI')
+      string(name: 'BASE_URL_Validator_WEB', defaultValue: "https://xplanbox.lat-lon.de/xplan-validator-web", description: 'Set base URL of XPlanValidatorWeb')
       string(name: 'BASE_URL_DOKUMENTEN_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDokumentenAPI')
       string(name: 'BASE_URL_MAPSERVER', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of MapServer')
       string(name: 'BASE_URL_MAPPROXY', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of MapProxy')
@@ -22,7 +23,7 @@ pipeline {
       string(name: 'SLACK_TOKEN_CREDENTIAL_ID', defaultValue: "slack-integration-id", description: 'Set slack token credential id')
    }
    stages {
-      stage('Test XPlanManagerAPI') {
+      stage('SoapUI-Test XPlanManagerAPI') {
          steps {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
@@ -31,7 +32,7 @@ pipeline {
             }
          }
       }
-      stage('Test XPlanValidatorAPI') {
+      stage('SoapUI-Test XPlanValidatorAPI') {
          steps {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
@@ -40,7 +41,7 @@ pipeline {
             }
          }
       }
-      stage('Test XPlanDokumentenAPI') {
+      stage('SoapUI-Test XPlanDokumentenAPI') {
          steps {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
@@ -49,7 +50,7 @@ pipeline {
             }
          }
       }
-      stage('Test XPlanManagerWeb') {
+      stage('SoapUI-Test XPlanManagerWeb') {
          steps {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
@@ -58,7 +59,7 @@ pipeline {
             }
          }
       }
-      stage('Test XPlanDienste') {
+      stage('SoapUI-Test XPlanDienste') {
          steps {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
@@ -67,9 +68,19 @@ pipeline {
             }
          }
       }
+      stage('Selenium-Test XPlanValidatorWeb') {
+         steps {
+            withCredentials([
+               usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
+            ]) {
+               sh 'mvn integration-test -pl :xplan-tests-selenium -Psystem-tests -DbaseUrlValidatorWeb=${BASE_URL_Validator_WEB} -Dusername=$Username -Dpassword=$Password'
+            }
+         }
+      }
       stage('Results') {
          steps{
             junit '**/**/target/soapui/TEST-*.xml'
+            junit '**/**/target/failsafe-reports/TEST-*.xml'
          }
       }
    }
