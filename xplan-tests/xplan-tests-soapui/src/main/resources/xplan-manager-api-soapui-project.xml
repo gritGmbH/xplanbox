@@ -4733,10 +4733,46 @@ assert actualHeader != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0a3c4269-f153-4f4a-a0bf-e11e4a9ae7b1" name="xplanModelData">
+            <con:assertion type="JsonPath Match" id="0a3c4269-f153-4f4a-a0bf-e11e4a9ae7b1" name="xplanModelData.bereiche.nummer">
               <con:configuration>
-                <path>$[0].xplanModelData</path>
-                <content>{"name":"Eidelstedt4_SoapUI-XPlanManagerAPI","nummer":"-","internalId":null,"ags":"02000000","gemeindeName":null,"rechtsstand":"InkraftGetreten","inkrafttretensDatum":"1973-10-16T00:00:00.000+0100","bereiche":[{"nummer":"0","name":null}]}</content>
+                <path>$[0].xplanModelData.bereiche[0].nummer</path>
+                <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a3c4269-f153-4f4a-a0bf-e11e4a9ae7b1" name="xplanModelData.name">
+              <con:configuration>
+                <path>$[0].xplanModelData.name</path>
+                <content>Eidelstedt4_SoapUI-XPlanManagerAPI</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a3c4269-f153-4f4a-a0bf-e11e4a9ae7b1" name="xplanModelData.ags">
+              <con:configuration>
+                <path>$[0].xplanModelData.ags</path>
+                <content>02000000</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a3c4269-f153-4f4a-a0bf-e11e4a9ae7b1" name="xplanModelData.rechtsstand">
+              <con:configuration>
+                <path>$[0].xplanModelData.rechtsstand</path>
+                <content>InkraftGetreten</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a3c4269-f153-4f4a-a0bf-e11e4a9ae7b1" name="xPlanModelData.inkrafttretensDatum">
+              <con:configuration>
+                <path>$[0].xplanModelData.inkrafttretensDatum</path>
+                <content>1973-10-15T23:00:00.000+00:00</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9296,8 +9332,8 @@ if (jdbcUrl == ""){
             </con:settings>
             <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
             <con:request>{
-   "start": "2021-11-09T00:00:00.000+0100",
-   "ende": "2021-11-11T00:00:00.000+0100"
+   "start": "2021-11-09T00:00:00.000+00:00",
+   "ende": "2021-11-11T00:00:00.000+00:00"
 }</con:request>
             <con:originalUri>http://localhost/xplan-manager-api/xmanager/api/v1/plan//gueltigkeit/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="870670ee-b96a-4ca1-8f21-05f788869309" name="Valid HTTP Status Codes">
@@ -9305,10 +9341,10 @@ if (jdbcUrl == ""){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="d800035e-41b6-4e0b-9f17-54f6eba2095f" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="d800035e-41b6-4e0b-9f17-54f6eba2095f" name="start">
               <con:configuration>
                 <path>$.start</path>
-                <content>2021-11-09T00:00:00.000+0100</content>
+                <content>2021-11-09T00:00:00.000+00:00</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9346,7 +9382,7 @@ if (jdbcUrl == ""){
             <con:assertion type="JsonPath Match" id="5f3a4893-7453-4a04-9893-bb1376db503c" name="JsonPath Match">
               <con:configuration>
                 <path>$.start</path>
-                <content>2021-11-09T00:00:00.000+0100</content>
+                <content>2021-11-09T00:00:00.000+00:00</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
