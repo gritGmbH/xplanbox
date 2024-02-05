@@ -13,7 +13,7 @@ pipeline {
       string(name: 'BASE_URL_DIENSTE', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDienste')
       string(name: 'BASE_URL_INSPIRE_PLU', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of INSPIRE PLU')
       string(name: 'BASE_URL_MANAGER_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanManagerAPI')
-      string(name: 'BASE_URL_Validator_WEB', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanValidatorWeb')
+      string(name: 'BASE_URL_Validator_WEB', defaultValue: "https://xplanbox.lat-lon.de/xplan-validator-web", description: 'Set base URL of XPlanValidatorWeb')
       string(name: 'BASE_URL_DOKUMENTEN_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDokumentenAPI')
       string(name: 'BASE_URL_MAPSERVER', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of MapServer')
       string(name: 'BASE_URL_MAPPROXY', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of MapProxy')

@@ -36,7 +36,7 @@ class XPlanValidatorWebIT {
 
 	@BeforeAll
 	static void readSystemProperties() {
-		String url = System.getProperty("baseUrlValidatorWeb", "https://xplanbox.lat-lon.de");
+		String url = System.getProperty("baseUrlValidatorWeb", "https://xplanbox.lat-lon.de/xplan-validator-web");
 		String username = System.getProperty("username", null);
 		String password = System.getProperty("password", null);
 		connectUrl = createConnectUrl(url, username, password);
