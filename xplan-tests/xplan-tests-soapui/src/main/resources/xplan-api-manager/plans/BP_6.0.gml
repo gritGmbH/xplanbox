@@ -43,6 +43,7 @@
         </xplan:XP_Gemeinde>
       </xplan:gemeinde>
       <xplan:planArt>1000</xplan:planArt>
+      <xplan:sonstPlanArt codeSpace="https://registry.gdi-de.org/codelist/de.xleitstelle.xplanung/BP_SonstPlanArt" >9999_4</xplan:sonstPlanArt>
       <xplan:rechtsstand>3000</xplan:rechtsstand>
       <xplan:staedtebaulicherVertrag>false</xplan:staedtebaulicherVertrag>
       <xplan:erschliessungsVertrag>false</xplan:erschliessungsVertrag>

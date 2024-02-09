@@ -5,7 +5,7 @@ FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat-gdal:$XPLANBOX_VERSION
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
-ARG WEB_CONTEXT=ROOT
+ARG WEB_CONTEXT=xplan-manager-web
 ARG XPLANBOX_VERSION=latest
 
 # see https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
@@ -22,10 +22,12 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 # set environment variables
 ENV TOMCAT_ADDITIONAL_ARG_APP="-DXPLANBOX_CONFIG=/xplanbox/xplan-manager-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng -Duser.timezone=Europe/Berlin"
 
-# add xplan-manager-web
-# TODO: add unpacked
-COPY target/xplan-manager-web-*.war /usr/local/tomcat/webapps/xplan-manager-web.war
-
+# add xplan-manager-web directly unpacked
+COPY target/xplan-manager-web-*.war /tmp/
+RUN mkdir /usr/local/tomcat/webapps/$WEB_CONTEXT \
+	&& cd /usr/local/tomcat/webapps/$WEB_CONTEXT \
+	&& jar xf /tmp/xplan-manager-web-*.war \
+	&& rm /tmp/xplan-manager-web-*.war
 
 # run tomcat
 CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]

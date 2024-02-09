@@ -156,7 +156,14 @@ public class XPlanToEditFactory {
 				baseData.setPlanTypeCode(asInteger(propertyValue));
 			}
 			else if ("sonstPlanArt".equals(propertyName)) {
-				baseData.setOtherPlanTypeCode(asInteger(propertyValue));
+				try {
+					int sonstPlanArtValue = Integer.parseInt(propertyValue.toString());
+					baseData.setOtherPlanTypeCode(sonstPlanArtValue);
+				}
+				catch (NumberFormatException e) {
+					LOG.warn("sonstPlanArt is not an integer value. Currently only integer values are supported.");
+					baseData.setOtherPlanTypeCode(-1);
+				}
 			}
 			else if ("verfahren".equals(propertyName)) {
 				baseData.setMethodCode(asInteger(propertyValue));
