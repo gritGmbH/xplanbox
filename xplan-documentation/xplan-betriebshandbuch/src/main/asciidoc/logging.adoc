@@ -8,18 +8,14 @@ Nach Standard-Out werden Informationen, Warnungen und Fehler geschrieben.
 
 === Protokolldateien der Komponenten
 
-Zusätzlich wird eine Log-Datei für alle Kommandozeilenwerkzeuge in einer entsprechend benannten Datei im Log-Verzeichnis des Tomcat-Servers _${catalina.base}/logs/_ geschrieben.
+Zusätzlich wird eine Log-Datei für alle Kommandozeilenwerkzeuge in einer entsprechend benannten Datei im Log-Verzeichnis des Tomcat-Servers _logs_ geschrieben.
 In die Log-Dateien werden Informationen, Warnungen und Fehler geschrieben.
 
 [width="88%",cols="35%,65%",options="header"]
 |===
 |Anwendung |Log-Datei
-|XPlanManagerCLI |./xplan-manager-cli.log
-|XPlanValidatorCLI |./xplan-validator-cli.log
-|XPlanTransformCLI |./xplan-transform-cli.log
-|XPlanValidateDB |./xplan-validatedb-cli.log
-|XPlanAuswerteschemaCLI|./xplan-evaluation-schema-synchronize-cli.log
-|XPlanUpdateDataCLI |./xplan-update-data-cli.log
+|XPlanCLI |./xplan-validatedb-cli.log
+|XPlanTransformCLI |./xplan-cli-tools.log
 |===
 
 NOTE: Ab der xPlanBox Version 7.0 ist die Ausgabe in Log-Dateien deaktiviert. Für die Konfiguration kann das Beispiel für die Ausgabe über einen `RollingFile`-Appender im folgenden Kapitel <<logging-konfiguration>> verwendet werden.

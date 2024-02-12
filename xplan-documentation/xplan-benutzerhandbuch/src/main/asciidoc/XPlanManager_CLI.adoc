@@ -1,22 +1,12 @@
 [[xplanmanager-cli]]
-=== XPlanManagerCLI
+===  XPlanCLI - Das manage Kommando
 
-Die Komponente XPlanManagerCLI ist ein Kommandozeilenwerkzeug, welches
-dem Fachadministrator der xPlanBox ermöglicht, die Datenhaltung zu
-kontrollieren. Dabei ist das Kommandozeilenwerkzeug in der Lage,
-XPlanGML-Dokumente in die Datenhaltung zu Laden, zu Löschen,
-Listenausgaben zu erzeugen sowie Service-Metadaten für den XPlanWerkWMS zu erzeugen.
+Mit den XPlanCLI `manage` Kommando können XPlanGML-Dateien und XPlanArchive in die XPlanDB verwaltet werden, sowie Service-Metadaten für den XPlanWerkWMS zu erzeugt werden.
 
 [[xplanmanager-cli-benutzungsanleitung]]
 ==== Benutzungsanleitung
 
-Beim XPlanManagerCLI handelt es sich um ein Kommandozeilenwerkzeug, das
-parametrisiert aufgerufen wird. Da diese Anwendung bei der Installation
-in die PATH Variable aufgenommen wird, ist diese von einem beliebigen
-Ort aufrufbar.
-
-Das Basisverzeichnis mit dem Workspace `xplan-manager-workspace` muss über
-die Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ gesetzt werden.
+Das Kommando wird mit `xpb manage [SUBCOMMAND]` aufgerufen.
 
 [[xplanmanager-cli-konfiguration-ueber-datei]]
 ===== Konfiguration über Datei
@@ -34,50 +24,38 @@ Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
 ===== Hilfe
 
 Die Hilfe mit den Angaben zu den möglichen Eingabeparametern lässt sich
-mit dem Parameter `help` ausgeben.
+mit dem Kommando `help` ausgeben.
 
 Aufruf:
 
 ----
-./XPlanManager --help
+xpb manage help
 ----
 
 Ausgabe:
 
 ----
-Usage: XPlanManager <options>
-
- --help
- --list
- --import <xplanarchiv> [<xplanarchiv>..] [--force] [--crs=<CRS>]
-     <xplanarchiv> Die absolute oder relative Referenz auf den Plan, der importiert werden soll (verpflichtend). Mehrere Plaene koennen durch ein Leerzeichen getrennt angegeben werden.
-     --force Erzwingen des Imports eines Plans mit Geomtriefehlern oder Validierungsfehlern (optional). EMPFOHLEN ist die Behebung der Fehler!
-     --crs Angabe des Koordinatenreferenzsystems in dem die Daten vorliegen (optional).
- --export <planid> [<planid>..] [--target=<verzeichnis>]
-     <planid> Die ID des Plans der exportiert werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.
-     --target Angabe des Verzeichnis in dem die exportierten XPlanArchive abgelegt werden sollen (optional).
- --delete <planid> [<planid>..]
-     <planid> Die ID des Plans der geloescht werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.
- --createMetadata <planid> [<planid>..]
-     <planid> Die ID des Plans zu dem der Service-Metadatensatz generiert werden soll (optional). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden. Wenn keine ID angegeben ist, werden fuer alle Plaene Metadatensaetze erstellt.
-
-Allgemeine Parameter:
-     --v Ausgabe der Systemeigenschaften
-
-Allgemeine Hinweise:
-      Das Verzeichnis in dem die Konfigurationsdatei managerConfiguration.properties liegt, muss durch Angabe des Verzeichnis in der Datei etc/application.properties oder durch Setzen der Umgebungsvariablen _XPLANBOX_CONFIG_ erfolgen. Andernfalls wird die Konfiguration aus etc/managerConfiguration.properties verwendet.
-     Der Workspace `xplan-manager-workspace` muss im Verzeichnis _.deegree/_ des Home-Verzeichnis des Nutzers liegen, der das XPlanManagerCLI aufruft. Alternativ kann das Verzeichnis, in dem der Workspace liegt, durch Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ gesetzt werden.
+Usage: xpb manage [COMMAND]
+Manage plans
+Commands:
+  help             Display help information about the specified command.
+  list             List all plans that are available in the data storage.
+  import           Import a single or multiple XPlanArchive(s) or XPlanGML file
+                     (s).
+  export           Export a single or multiple plan(s).
+  delete           Delete a single or multiple plan(s).
+  create-metadata  Create service metadata records.
 ----
 
 [[xplanmanager-cli-auflistung]]
 ===== Auflistung
 
-Der Parameter `list` gibt die Liste der Pläne aus, die im XPlanManager importiert sind.
+Das Kommando `list` gibt die Liste der Pläne aus, die im XPlanManager importiert sind.
 
 Aufruf:
 
 ----
-./XPlanManager --list
+xpb manage list
 ----
 
 Beispiel Ausgabe:
@@ -98,15 +76,15 @@ Anzahl Plaene: 24
 [[xplanmanager-cli-import]]
 ===== Import
 
-Ein Import kann durch Angabe des Parameters `import` gefolgt vom Pfad
-zum XPlanArchiv angestoßen werden. Bei dem Import können
+Ein Import kann durch das Kommando `import`, gefolgt vom Pfad
+zum XPlanArchiv, angestoßen werden. Bei dem Import können
 XPlanGML-Vektordaten und XPlanGML-Rasterdaten ohne zusätzlichen
 Parameter in die Datenhaltung geladen werden. Mehrere Pläne können durch Leerzeichen getrennt angegeben werden.
 
 Beispiel Aufruf:
 
 ----
-./XPlanManager --import ../Input-Planverzeichnis/Infrastruktur.zip
+xpb manage import planwerk.zip
 ----
 
 Während des Imports finden zahlreiche Konsistenz- und
@@ -131,7 +109,7 @@ CAUTION: Bitte beachten Sie, dass dabei vorliegenden Geometriefehler o.ä. über
 Auswirkungen können von einer fehlerhaften Darstellung des Plans bis hin zu unerwarteten Verhalten der xPlanBox reichen.
 
 ----
-./XPlanManager --import --force ../Input-Planverzeichnis/Infrastruktur.zip
+xpb import --force --files=planwerk.zip
 ----
 
 _-–crs_
@@ -142,7 +120,7 @@ dieses mit dem Parameter `crs` übergeben werden.
 Beispiel Aufruf:
 
 ----
-./XPlanManager --import ../Input-Planverzeichnis/Infrastruktur.zip --crs=EPSG:25832
+xpb manage import --files=planwerk.zip --crs=EPSG:25832
 ----
 
 Beispiel Ausgabe für erfolgreichen Import
@@ -184,7 +162,7 @@ Die Prüfung beinhaltet das CRS des Rasterplans, sowie das Format.
 Beispiel Aufruf:
 
 ----
-./XPlanManager --import ~/test-data/BPlan002_5-2.zip
+xpb import --files=planwerk.zip
 ----
 
 Beispiel Ausgabe:
@@ -218,14 +196,14 @@ Aufgrund invalider Rasterdaten wird der Import abgebrochen. Sie können den Impo
 [[xplanmanager-cli-export]]
 ===== Export
 
-Der Export eines Planes erfolgt unter Angabe des Parameters `export`
+Der Export eines Planes erfolgt mit dem Kommando `export`,
 gefolgt von der PlanID (diese kann zuvor mit dem Parameter `list` herausgefunden werden)
 und dem Ausgabeverzeichnis. Mehrere PlanIDs können durch Leerzeichen getrennt angegeben werden.
 
 Beispiel Aufruf:
 
 ----
-./XPlanManager --export 9 --target=outputverzeichnis
+xpb manage export --id=9 --target=../ausgabeverzeichnis
 ----
 
 Beispiel Ausgabe für erfolgreichen Export:
@@ -238,13 +216,13 @@ Plan 9 wurde nach 'xplan-exported-9.zip' exportiert.
 [[xplanmanager-cli-loeschen]]
 ===== Löschen
 
-Beim Löschen wird dem Parameter `delete` die PlanID (diese kann zuvor mit
+Beim Löschen wird dem Kommando `delete` die PlanID (diese kann zuvor mit
 `list` herausgefunden werden) übergeben. Mehrere PlanIDs können durch Leerzeichen getrennt angegeben werden.
 
 Beispiel Aufruf:
 
 ----
-./XPlanManager --delete 21
+xpb manage delete --id=21
 ----
 
 Beispiel Ausgabe:
@@ -268,7 +246,7 @@ Für einzelne Pläne können Metadatensätze durch Angabe der PlanID (diese kann
 Beispiel Aufruf:
 
 ----
-./XPlanManager --createMetadata 1
+xpb manage create-metadata --ids=1
 ----
 
 [[xplanmanager-cli-troubleshooting]]

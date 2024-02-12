@@ -26,8 +26,6 @@ include::XPlanManager.adoc[]
 
 include::XPlanDokumentenAPI.adoc[]
 
-include::XPlanTransform_CLI.adoc[]
-
 include::XPlanWMS.adoc[]
 
 include::XPlanWFS.adoc[]
@@ -37,6 +35,8 @@ include::XPlanSynWFS.adoc[]
 include::XPlanInspirePluWMS.adoc[]
 
 include::XPlanInspirePluWFS.adoc[]
+
+include::XPlanCLITools.adoc[]
 
 include::bekannteProbleme.adoc[]
 

@@ -10,18 +10,15 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 
 * <<xplanmanager-web, XPlanManagerWeb>>
 * <<xplanmanager-api, XPlanManagerAPI>>
-* <<xplanmanager-cli, XPlanManagerCLI>>
 * <<xplanvalidator-web, XPlanValidatorWeb>> inkl. <<xplanvalidator-wms, XPlanValidatorWMS>>
 * <<xplanvalidator-api, XPlanValidatorAPI>>
-* <<xplanvalidator-cli, XPlanValidatorCLI>>
 * <<xplandokumenten-api, XPlanDokumentenAPI>>
-* <<xplantransform-cli, XPlanTransformCLI>>
-* <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>>
 * <<xplanwms, XPlanWMS, XPlanArtWMS und XPlanWerkWMS>>
 * <<xplanwfs, XPlanWFS>>
 * <<xplansynwfs, XPlanSynWFS>>
 * <<xplaninspirepluwms, XPlanInspirePluWMS>>
 * <<xplaninspirepluwfs, XPlanInspirePluWFS>>
+* <<xplanclitools, XPlanCLI Tools>>
 * <<xplanresources, XPlanRessourcen>>
 * <<xplandb, XPlanDB>>
 
@@ -43,13 +40,6 @@ die Datenhaltung <<XPlanDB>> über einen Browser zu verwalten.
 Die Komponente XPlanManagerAPI stellt eine REST-Schnittstelle bereit, über die
 die Datenhaltung <<XPlanDB>> verwaltet werden kann.
 
-[[xplanmanager-cli]]
-=== XPlanManagerCLI
-
-Die Komponente XPlanManagerCLI ist ein Kommandozeilenwerkzeug, welches
-dem Fachadministrator der xPlanBox ermöglicht,
-die Datenhaltung <<XPlanDB>> über das Terminal zu verwalten.
-
 [[xplanvalidator-web]]
 === XPlanValidatorWeb
 
@@ -68,33 +58,10 @@ des XPlanValidatorWeb. Validierte Plänen können über den XPlanValidatorWMS in
 
 Die Komponente XPlanValidatorAPI stellt eine REST-Schnittstelle bereit, über die XPlanGML-Dokumente validiert werden können.
 
-[[xplanvalidator-cli]]
-=== XPlanValidatorCLI
-
-Die Komponente XPlanValidatorCLI ist ein Kommandozeilenwerkzeug,
-welches dem Fachadministrator der xPlanBox ermöglicht,
-XPlanGML-Dokumente über das Terminal zu validieren.
-
 [[xplandokumenten-api]]
 === XPlanDokumentenAPI
 
 Die optionale Komponente XPlanDokumentenAPI stellt eine REST-Schnittstelle bereit, über die zu einem Plan zugehörigen Dokumente abgerufen werden können.
-
-[[xplantransform-cli]]
-=== XPlanTransformCLI
-
-Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug,
-welches dem Fachadministrator der xPlanBox ermöglicht,
-bereits über den XPlanManagerWeb oder das XPlanManagerCLI
-importierte Pläne in eine aktuellere XPlanGML-Version zu transformieren und in der <<xplandb>> zu speichern.
-
-IMPORTANT: Das XPlanTransformCLI ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt.
-
-[[xplanevaluationschemasynchronize-cli]]
-=== XPlanAuswerteschemaCLI
-
-Die Komponente XPlanAuswerteschemaCLI ist ein Kommandozeilenwerkzeug,
-welches dem Fachadministrator der xPlanBox ermöglicht, ein weiteres Datenbankschema für die Auswertung zu erzeugen und die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas zu synchronisieren.
 
 [[xplanwms]]
 === XPlanWMS, XPlanArtWMS und XPlanWerkWMS
@@ -158,6 +125,14 @@ Bereitstellung importierter Pläne im INSPIRE Datenthema Planned Land Use (PLU).
 
 Der XPlanInspirePluWFS ist ein INSPIRE Download Service für die
 Bereitstellung importierter Pläne im INSPIRE Datenthema Planned Land Use (PLU).
+
+[[xplanclitools]]
+=== XPlanCLI Tools
+
+Das Kommandozeilenwerkzeug XPlanCLI unterstützt mehrere Kommandos zur Validierung und Verwaltung von Planwerken, sowie Kommandos zur Erstellung eines Auswerteschemas oder Generierung von Metadaten.
+Das XPlanTransformCLI ermöglicht es, bereits in die <<XPlanDB>> importierte Pläne in eine aktuellere XPlanGML-Version zu transformieren.
+
+IMPORTANT: Das XPlanTransformCLI ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt.
 
 [[xplanresources]]
 === XPlanRessourcen

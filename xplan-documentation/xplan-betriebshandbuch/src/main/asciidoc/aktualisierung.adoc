@@ -55,12 +55,8 @@ Es müssen alle Tomcat-Instanzen neu gestartet werden. Der Neustart muss nach de
 Die ZIP-Archive mit den <<kommandozeilen-anwendungen,Kommandozeilenwerkzeugen>> müssen entpackt werden:
 
 ----
-unzip ${WORK_DIR}/bin/xplan-manager-cli.zip
+unzip ${WORK_DIR}/bin/xplan-cli-tools.zip
 unzip ${WORK_DIR}/bin/xplan-transform-cli.zip
-unzip ${WORK_DIR}/bin/xplan-update-data-cli.zip
-unzip ${WORK_DIR}/bin/xplan-validator-cli.zip
-unzip ${WORK_DIR}/bin/xplan-validatedb-cli.zip
-unzip ${WORK_DIR}/bin/xplan-evaluation-schema-synchronize-cli.zip
 ----
 
 === Übersicht über die Datenhaltung betreffende Änderungen
@@ -188,7 +184,7 @@ Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 ** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_5.0.2_to_6.0_ im Modul _xplan-manager-workspace_
 ** Ausführen des Skripts _databasechangelog_v60.sql_ im Verzeichnis _sql/changelog_ im Modul _xplan-manager-workspace_
 ** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ aus XPlanUpdateDataCLI zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten ist erforderlich. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (optional)
+** Installation des Kommandozeilenwerkzeugs <<xplanclitools,XPlanCLI>> und dem <<xplanevaluationschema,Auswerteschemas>> (optional)
 
 [[aktualisierung-version-6.0.1]]
 === Aktualisierung auf die Version 6.0.1 der xPlanBox

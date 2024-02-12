@@ -4,12 +4,8 @@
 Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefereinheit darstellen:
 
 * Kommandozeilenwerkzeuge:
- ** xplan-evaluation-schema-synchronize-cli.zip
- ** xplan-manager-cli.zip
+ ** xplan-cli-tools.zip
  ** xplan-transform-cli.zip
- ** xplan-update-data-cli.zip
- ** xplan-validatedb-cli.zip
- ** xplan-validator-cli.zip
 * Web-Anwendungen und Web-Dienste und zugehörige Konfigurationen:
 
 [width="100%",cols="40%,60%",options="header"]

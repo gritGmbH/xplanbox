@@ -56,7 +56,8 @@ public class WorkspaceUtils {
 	 * @throws Exception - an exception occurred during instantiation or a workspace with
 	 * the given name does not exist
 	 */
-	static DeegreeWorkspace instantiateWorkspace(String workspaceName, File workspaceDir) throws WorkspaceException {
+	public static DeegreeWorkspace instantiateWorkspace(String workspaceName, File workspaceDir)
+			throws WorkspaceException {
 		if (workspaceDir != null && workspaceName != null)
 			return instantiateWorkspaceByNameAndDir(workspaceDir, workspaceName);
 		else if (workspaceDir != null)

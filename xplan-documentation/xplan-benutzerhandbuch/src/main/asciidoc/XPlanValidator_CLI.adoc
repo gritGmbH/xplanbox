@@ -1,15 +1,12 @@
 [[xplanvalidator-cli]]
-=== XPlanValidatorCLI
+=== XPlanCLI - Das validate Kommando
 
-Analog zum XPlanManagerWeb können XPlanGML-Dokumente mit der Komponente XPlanValidatorCLI über ein Kommandozeilenwerkzeug validiert werden.
+Mit den XPlanCLI `validate` Kommando können XPlanGML-Dateien und XPlanArchive validiert werden.
 
 [[xplanvalidator-cli-benutzungsanleitung]]
 ==== Benutzungsanleitung
 
-Beim XPlanValidatorCLI handelt es sich um ein Kommandozeilenwerkzeug, das
-parametrisiert aufgerufen wird. Da diese Anwendung bei der Installation
-in die PATH Variable aufgenommen wird, ist diese von einem beliebigen
-Ort aufrufbar.
+Das Kommando wird mit `xpb validate [SUBCOMMAND]` aufgerufen.
 
 [[xplanvalidator-cli-konfiguration-ueber-datei]]
 ===== Konfiguration über Datei
@@ -38,38 +35,31 @@ mit dem Parameter `help` ausgeben.
 Aufruf:
 
 ----
-./XPlanValidator --help
+xpb validate help
 ----
 
 Ausgabe:
 
 ----
-Validates XPlanGML files.
-
-usage: XPlanValidator [-name <arg>] -validate <arg> [-vo <arg>] [-vtype <arg>]
-
-   -name <arg>         name of the validation
-   -validate <arg>     zip file path
-   -vo <arg>           validation options, possible values are:
-                       skip-flaechenschluss=true, skip-geltungsbereich=true,
-                       skip-laufrichtung=true. Each value must be passed as
-                       single options, e.g: -vo skip-geltungsbereich=true -vo
-                       skip-laufrichtung=true
-   -vtype <arg>        values: syntax, geometric, semantic. multiple types must
-                       be comma separated
+Usage: xpb validate [COMMAND]
+Validate a plan or all plans in a database
+Commands:
+  help  Display help information about the specified command.
+  file  Validate a XPlanArchive or XPlanGML file.
+  db    Validate XPlanGML in xPlanBox database.
 ----
 
 [[xplanvalidator-cli-auswahl-planarchiv]]
 ===== Auswahl XPlanArchiv
 
-Über den Parameter `validate <planarchiv>` kann der Pfad zum XPlanArchiv
- auswählt werden, welcher validiert werden soll. Die Angabe
+Über das Kommando `validate` und Angabe des Pfads zum XPlanArchiv
+ kann ausgewählt werden, welches Planwerk validiert werden soll. Die Angabe
 des Parameters ist obligatorisch.
 
 Aufruf:
 
 ----
-./XPlanValidator -validate Plan.zip
+xpb validate --file=planwerk.zip
 ----
 
 [[xplanvalidator-cli-bezeichnung-der-validierung]]
@@ -82,7 +72,7 @@ Fehlt dieser Parameter, wird der Name des XPlanArchivs verwendet.
 Aufruf:
 
 ----
-./XPlanValidator -validate Plan.zip -name Validierung
+xpb validate --file=planwerk.zip --name=Report_Planwerk_1
 ----
 
 [[xplanvalidator-cli-validierungsart]]
@@ -95,7 +85,7 @@ Parameters `-vtype` ist optional.
 Aufruf:
 
 ----
-./XPlanValidator -validate Plan.zip -vtype [syntax|geometric|semantic]
+xpb validate --file=planwerk.zip --type=[syntax|geometric|semantic]
 ----
 
 Zuordnung der Werte:
@@ -104,13 +94,13 @@ Zuordnung der Werte:
 * geometric = Geometrisch
 * semantic = Semantisch
 
-Wird kein `vtype` Parameter gewählt, werden alle Validierungsarten durchgeführt.
+Wird kein `type` Parameter gewählt, werden alle Validierungsarten durchgeführt.
 
 Beispiel für eine Ausgabe:
 
 ----
-Configuration directory is /xplan-validator-cli-7.1-SNAPSHOT/etc
-Configuration is read from file /xplan-validator-cli-7.1-SNAPSHOT/etc/validatorConfiguration.properties
+Configuration directory is /xplan-cli-tools/etc
+Configuration is read from file /xplan-cli-tools/etc/validatorConfiguration.properties
 -------------------------------------------
 [main] Configuration of the XPlanValidator:
 -------------------------------------------
@@ -147,19 +137,19 @@ Archiv mit Validierungsergebnissen wurde unter /tmp/validationReport174464162274
 
 Die Kommandozeilenschnittstelle des XPlanValidator kann zur Auswahl von
 zusätzlichen Validierungsoptionen parametrisiert aufgerufen werden. Die
-Angabe des Parameters `-vo` ist optional.
+Angabe des Parameters `--option` ist optional.
 
 Aufruf:
 
 ----
-./XPlanValidator -validate Plan.zip -vo skip-flaechenschluss=true -vo skip-geltungsbereich=true -vo skip-laufrichtung=true
+xpb validate --file=planwerk.zip -option=skip-flaechenschluss,skip-geltungsbereich,skip-laufrichtung=true
 ----
 
 Zuordnung der Werte:
 
-  * skip-flaechenschluss -> Geometrische Überprüfung der Flächenschlussbedingung (2.2.1.1) überspringen [ja]
-  * skip-geltungsbereich -> Geometrische Überprüfung des Geltungsbereich (2.2.3.1) überspringen [ja]
-  * skip-laufrichtung -> Geometrische Überprüfung Laufrichtung (2.2.2.1) überspringen
+  * `skip-flaechenschluss`: Geometrische Überprüfung der Flächenschlussbedingung (2.2.1.1) überspringen [ja]
+  * `skip-geltungsbereich`: Geometrische Überprüfung des Geltungsbereich (2.2.3.1) überspringen [ja]
+  * `skip-laufrichtung`: Geometrische Überprüfung Laufrichtung (2.2.2.1) überspringen
 
 [[xplanvalidator-cli-validierungsergebnis]]
 ===== Validierungsergebnis

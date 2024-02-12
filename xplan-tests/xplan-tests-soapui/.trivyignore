@@ -1,0 +1,6 @@
+CVE-2023-26119 # htmlunit-2.7.jar is a dependency of soapui-maven-plugin 5.7.2
+
+CVE-2017-1000487 # plexus-utils-1.5.8.jar is a dependency of spring-javaformat:0.0.39
+
+CVE-2018-8088 # slf4j-ext-1.7.22.jar seems to be a dependency of soapui-maven-plugin 5.7.2
+

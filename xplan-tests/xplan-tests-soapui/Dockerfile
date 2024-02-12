@@ -1,4 +1,5 @@
-FROM maven:3.9.5-eclipse-temurin-11-alpine
+# latest 3.9-eclipse-temurin-11-alpine on 06.02.24
+FROM maven@sha256:22ee597e032ce843bc6d09db72c80223f582102aa2d7f22a65b5104ca33eb4ec
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
@@ -17,8 +18,7 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 
 ENV TZ=Europe/Berlin
 
-RUN apk add py3-pip py3-pillow py3-cffi py3-brotli gcc musl-dev python3-dev pango pango-tools aws-cli
-RUN pip install weasyprint
+RUN apk add weasyprint aws-cli
 
 ADD . /xplanbox/xplan-tests/xplan-tests-soapui
 ADD maven/xplanbox-pom.xml /xplanbox/pom.xml

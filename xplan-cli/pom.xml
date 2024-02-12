@@ -13,21 +13,8 @@
 
   <modules>
     <module>xplan-cli-core</module>
-    <module>xplan-manager-cli</module>
-    <module>xplan-validator-cli</module>
     <module>xplan-transform-cli</module>
-    <module>xplan-evaluation-schema-synchronize-cli</module>
-    <module>xplan-validatedb-cli</module>
-    <module>xplan-update-data-cli</module>
+    <module>xplan-cli-tools</module>
   </modules>
-
-  <profiles>
-    <profile>
-      <id>docker</id>
-      <modules>
-        <module>xplan-cli-docker</module>
-      </modules>
-    </profile>
-  </profiles>
 
 </project>

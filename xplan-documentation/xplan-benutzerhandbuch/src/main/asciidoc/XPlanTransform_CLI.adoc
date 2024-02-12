@@ -1,5 +1,5 @@
 [[xplantransform-cli]]
-== XPlanTransformCLI
+=== XPlanTransformCLI
 
 Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug, welches dem Fachadministrator der xPlanBox ermöglicht, bereits über den XPlanManagerWeb, XPlanManagerAPI oder das XPlanManagerCLI importierte Pläne in eine aktuellere XPlanGML-Version zu transformieren.
 
@@ -7,10 +7,10 @@ Die transformierten Pläne können entweder syntaktisch validiert und das Validi
 
 NOTE: Unterstützt wird derzeit die Transformation von XPlanGML 4.1 nach XPlanGML 5.1
 
-IMPORTANT: Das XPlanTransformCLI ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt
+IMPORTANT: Das XPlanTransformCLI ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt!
 
 [[xplantransform-cli-installation]]
-=== Installation
+==== Installation
 
 Für die Nutzung des Tools muss die Installation der Software https://github.com/halestudio/hale-cli/[HALE CLI] erfolgreich abgeschlossen sein. Weitere Informationen zur Installation finden Sie im Betriebshandbuch der xPlanBox.
 
@@ -22,7 +22,7 @@ Weiterhin sind zusätzliche SQL-Skripte auszuführen, die sich im Verzeichnis _s
  4. 04_grant_user.sql (zuvor ist die Variable $DB_USER im Skript durch den Namen des Datenbanknutzers auszutauschen, mit dem der XPlanManager und die XPlanDienste auf die XPlaNDB zugreifen, s. Abschnitt "Konfiguration der Datenbank" im Betriebshandbuch)
 
 [[xplantransform-cli-benutzungsanleitung]]
-=== Benutzungshinweise
+==== Benutzungsanleitung
 
 Beim XPlanTransformCLI handelt es sich um ein Kommandozeilenwerkzeug, das parametrisiert aufgerufen wird. Weitere Informationen über die verschiedenen Parameter gibt das Kommandozeilenwerkzeug aus, wenn der Parameter `--help` angehängt wird:
 
@@ -62,4 +62,4 @@ Beispiel für das initiale Einspielen der in XPlanGML 4.1 vorliegenden Pläne in
 ./XPlanTransformCLI --type ALL 
 -------
 
-Empfohlen ist zunächst einmalig die Ausführung der Option *ALL* und anschließend regelmäßig (z. B. nachts mit Hilfe eines Cron-Jobs) die Option *SYNC* um einen tagesaktuellen Stand der über den XPlanWFS 5.1 anfragbaren Pläne zu erreichen.
+Empfohlen ist zunächst einmalig die Ausführung der Option *ALL* und anschließend regelmäßig (z. B. nachts mit Hilfe eines Cron-Jobs) die Option *SYNC*, um einen aktualisierten Stand der über den XPlanWFS 5.1 anfragbaren Pläne zu erreichen.

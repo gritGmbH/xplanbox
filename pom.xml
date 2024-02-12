@@ -37,6 +37,7 @@
     <jackson.version>2.16.0</jackson.version>
     <liquibase.version>4.25.0</liquibase.version>
     <postgresql.version>42.5.4</postgresql.version>
+    <picocli.version>4.7.5</picocli.version>
     <owasp.version>8.4.3</owasp.version>
     <!-- API properties -->
     <base.package.name>de.latlon.xplanbox</base.package.name>
@@ -248,6 +249,7 @@
       <properties>
         <docker-image.namePrefix>xplanbox</docker-image.namePrefix>
         <docker-image.name>${project.artifactId}</docker-image.name>
+        <trivy.severity>CRITICAL</trivy.severity>
       </properties>
       <modules>
         <module>xplan-docker</module>
@@ -295,6 +297,40 @@
                   <goal>build</goal>
                   <goal>push</goal>
                 </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.1.1</version>
+            <executions>
+              <execution>
+                <id>trivyScanForFixedIssues</id>
+                <configuration>
+                  <executable>docker</executable>
+                  <arguments>
+                    <argument>run</argument>
+                    <argument>-v</argument>
+                    <argument>/var/run/docker.sock:/run/docker.sock</argument>
+                    <argument>-v</argument>
+                    <argument>/tmp/trivy-cache:/root/.cache/</argument>
+                    <argument>-v</argument>
+                    <argument>${project.basedir}/.trivyignore:/workdir/.trivyignore</argument>
+                    <argument>aquasec/trivy</argument>
+                    <argument>image</argument>
+                    <argument>--ignore-unfixed</argument>
+                    <argument>--ignorefile</argument>
+                    <argument>/workdir/.trivyignore</argument>
+                    <argument>--severity</argument>
+                    <argument>${trivy.severity}</argument>
+                    <argument>--exit-code</argument>
+                    <argument>1</argument>
+                    <argument>${docker-image.namePrefix}/${docker-image.name}:${project.version}</argument>
+                  </arguments>
+                  <skip>${docker-image.skip}</skip>
+                  <timeout>300000</timeout> <!-- 5 minutes -->
+                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -491,7 +527,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.2.2</version>
+        <version>3.2.5</version>
         <configuration>
           <argLine>-Xmx${tests.jvm.xmx} @{jacoco.argLine}</argLine>
         </configuration>
@@ -1180,6 +1216,17 @@
         <version>${project.version}</version>
         <classifier>validator-html</classifier>
         <type>zip</type>
+      </dependency>
+      <!-- cli -->
+      <dependency>
+        <groupId>info.picocli</groupId>
+        <artifactId>picocli</artifactId>
+        <version>${picocli.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>info.picocli</groupId>
+        <artifactId>picocli-spring-boot-starter</artifactId>
+        <version>${picocli.version}</version>
       </dependency>
       <!-- for tests -->
       <dependency>

@@ -40,7 +40,7 @@ Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschemata und 
 | <<xplaninspirepluwfs>>/_downloadservice_, <<xplaninspirepluwms>>/_viewservice_
 | Relational
 | `xplanmgr`
-| <<xplanmanager-web>>, <<xplanmanager-api>>, <<xplanmanager-cli>>, <<xplanwms, XPlanWerkWMS>>
+| <<xplanmanager-web>>, <<xplanmanager-api>>, <<kommandozeilen-anwendungen,XPlanCLI>>, <<xplanwms,XPlanWerkWMS>>
 | Relational <<appendix_xplandb_xplanmgr,(Schema)>>
 |===
 

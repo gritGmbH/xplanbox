@@ -40,8 +40,24 @@ Docker in Docker funktioniert auf OpenCoDE nicht, weil dort die Gitlab Runners a
 
 ### Anforderungen
 
-Diese Vorangehensweise bringt zusätzliche Anforderungen:
+Diese Vorgehensweise bringt zusätzliche Anforderungen:
 
 * Vorbereitungen für die Docker Images (z.B. Dependencies entpacken) müssen vor der Phase `package` stattfinden, um in der Phase `package` von `docker-maven-plugin:source` verwendet zu werden
 * die `docker-build.tar` Dateien sollen so klein wie möglich gehalten werden, sonst wird die Obergrenze für die maximale Größe von Packages überschritten (`413 Request Entity Too Large`). Mit Hilfe einer [`.maven-dockerignore` Datei](http://dmp.fabric8.io/#ex-build-dockerexclude) ist es möglich zu konfigurieren, was nicht in die tar-Datei gelangen soll.
 * zur Zeit sind die gezipped `docker-build.tar` Dateien leider zu groß für die OpenCoDE zu groß, um als Artefakte von einem einzelnen Job gespeichert zu werden. Als Workaround wird das Bauen in mehreren Jobs aufgeteilt, was leider mehr Konfiguration erfordert.
+
+### Security Check mit Trivy
+
+Issues in den Docker Images mit existierenden Fixes können mit [Trivy](https://trivy.dev/) gesucht werden:
+
+```
+mvn -Pdocker exec:exec@trivyScanForFixedIssues
+```
+
+Per Default werden nur die Issues mit der Stufe CRITICAL gesucht. Dies kann mit dem Property `trivy.severity` geändert werden, z.B. so:
+
+```
+mvn -Pdocker exec:exec@trivyScanForFixedIssues -Dtrivy.severity='CRITICAL,HIGH,MEDIUM'
+```
+
+Issues, die ignoriert werden sollen, müssen in `.trivyignore` in den jeweiligen Projekten gepflegt werden.

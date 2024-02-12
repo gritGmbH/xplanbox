@@ -1,0 +1,15 @@
+[[xplanclitools]]
+== XPlanCLI Tools
+
+Die Hilfe für das XPlanCLI kann mit `xpb help` aufgerufen werden. Das XPlanCLI unterstützt verschiedene Kommandos und die allgemeine Syntax ist: `xpb <COMMAND> <SUBCOMMAND> [parameters]`.
+Folgende Kommandos werden unterstützt: `validate, manage, admin`.
+Globale Parameter sind:
+
+- `--workspace`: Pfad zum deegree Workspace `DEEGREE_WORKSPACE_ROOT` Verzeichnis
+- `--config`: Pfad zum `XPLAN_CONFIG` Verzeichnis
+
+include::XPlanValidator_CLI.adoc[]
+
+include::XPlanManager_CLI.adoc[]
+
+include::XPlanTransform_CLI.adoc[]

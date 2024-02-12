@@ -1,5 +1,5 @@
 [[anwendung-installieren]]
-=== Anwendungskomponten installieren
+=== Anwendungskomponenten installieren
 
 Speichern Sie die Distributionsdatei in einem lokalen Verzeichnis und entpacken Sie die ZIP-Datei. Prüfen Sie die Vollständigkeit der Distributionsdatei anhand der Auflistung der im Kapitel <<installationskomponenten>>.
 
@@ -72,32 +72,28 @@ Weitere Informationen zur Konfiguration des XPlanValidatorWMS sind im Kapitel <<
 [[kommandozeilen-anwendungen]]
 ==== Kommandozeilen-Anwendungen
 
-Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an beliebiger Stelle entpackt werden. Im jeweiligen _bin/_ Verzeichnis des Kommandozeilenwerkzeugs befindet sich das Ausführungsskript. Folgende Kommandozeilenwerkzeuge sind Teil der xPlanBox:
-
-* XPlanManagerCLI: _xplan-manager-cli/bin/XPlanManager_ - Beschreibung der Funktionalität im Kapitel "XPlanManagerCLI" des XPlanBenutzerhandbuchs.
-* XPlanValidatorCLI: _xplan-validator-cli/bin/XPlanValidator_ - Beschreibung der Funktionalität im Kapitel "XPlanValidatorCLI" des XPlanBenutzerhandbuchs.
-* XPlanTransformCLI: _xplan-transform-cli/bin/XPlanTransformCLI_ - Beschreibung der Funktionalität im Kapitel "XPlanTransformCLI" des XPlanBenutzerhandbuchs.
-* XPlanValidateDB: _xplan-validatedb-cli/bin/XPlanValidateDB_ - ermöglicht die **semantische** Validierung von bereits in die XPlanDB importierten Plänen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-* XPlanAuswerteschemaCLI: _xplan-evaluation-schema-synchronize-cli/bin/EvaluationSchemaSynchronizer_ - Beschreibung der Funktionalität im Kapitel <<install-xplanevaluationschemasynchronize-cli>>.
-* XPlanUpdateDataCLI: _xplan-update-data-cli/bin/_ - die in diesem Modul enthaltenen Werkzeuge können für die Aktualisierung des Datenbestands genutzt werden, weitere Informationen befinden sich im Abschnitt <<aktualisierung>>. Die Funktionen im Überblick:
-** _xplan-update-data-cli/bin/artefactsTableUpdate_ - ermöglicht die Aktualisierung der im XPlanManager-Schema gespeicherten Informationen zu den Artefakten (nur für ein Update auf Version 7.0 erforderlich). Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** _xplan-update-data-cli/bin/bereichUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Informationen zu den Bereichen einzelner Pläne (nur für ein Update auf Version 5.0.2 erforderlich). Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** _xplan-update-data-cli/bin/districtUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** _xplan-update-data-cli/bin/reSynthesizer_ - ermöglicht die Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** _xplan-update-data-cli/bin/sortDateUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Sortierfelder und die Sortierung der Rasterdaten in der Themes Konfiguration, sofern deegree für die Bereitstellung der Rasterdaten verwendet wird. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an beliebiger Stelle entpackt werden. Im jeweiligen _bin/_ Verzeichnis des Kommandozeilenwerkzeugs befindet sich das Ausführungsskript.
 
 TIP: Um die Kommandozeilenwerkzeuge von einem beliebigen Ort aufrufen zu können, empfiehlt es sich, die Pfade in die `PATH` Variable mit aufzunehmen.
 
 IMPORTANT: Je nach Kommandozeilenwerkzeug müssen über Umgebungsvariablen wie z. B. `DEEGREE_WORKSPACE_ROOT` der Pfad zum deegree Workspace und mit `LD_LIBRARY_PATH` der Pfad zum Installationsverzeichnis von GDAL gesetzt werden (siehe auch <<installation-gdal>>).
 
-[[install-xplanevaluationschemasynchronize-cli]]
-===== XPlanAuswerteschemaCLI
+Folgende Kommandos sind Teil der XPlanCLI Tools:
 
-Das Kommandozeilenwerkzeug XPlanAuswerteschemaCLI erzeugt ein weiteres Datenbankschema für die Auswertung und kann die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas synchronisieren. Das Auswerteschema unterscheidet sich zum XPlanSyn-Schema dadurch, dass die GML-Geometrien (wie z.B. Kreisbögen) aus dem XPlanGML zusätzlich zu den https://www.ogc.org/standards/sfa[Simple Features Geometrien] abgelegt sind.
+* Kommando `validate`: _xpb validate_ - Beschreibung der Funktionalität im Kapitel "XPlanCLI Tools" des XPlanBenutzerhandbuchs.
+** Subkommando `db`: _xpb validate db_ - ermöglicht die **semantische** Validierung von bereits in die <<XPlanDB>> importierten Plänen. Der Aufruf des Kommandos mit `help` liefert Hinweise zur Verwendung.
+* Kommando `manage`: _xpb manage_ - Beschreibung der Funktionalität im Kapitel "XPlanCLI Tools" des XPlanBenutzerhandbuchs.
+** Subkommando `create-metadata`: _xpb manage create-metadata_ - Erzeugt Dienst-Metadaten für den <<xplanwms, XPlanWerkWMS>>.
+* Kommando `admin`: _xpb admin_ - mit folgenden Subkommandos, die für die <<aktualisierung,Aktualisierung>> des Datenbestands in der <<xplandb>> verwendet werden können.
+** Subkommando `district-update`:  _xpb admin district-update_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen. Der Aufruf des Tools mit `help` liefert Hinweise zur Verwendung.
+** Subkommando `resynthesize`: _xpb admin resynthesize_ - ermöglicht die Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `help` liefert Hinweise zur Verwendung.
+** Subkommando `sortdate-update`: _xpb admin sortDateUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Sortierfelder und die Sortierung der Rasterdaten in der Themes Konfiguration, sofern deegree für die Bereitstellung der Rasterdaten verwendet wird. Der Aufruf des Tools mit `help` liefert Hinweise zur Verwendung.
+** Subkommando `evaluation-db-update`: _xpb admin evaluation-db-update_ - das Kommando erzeugt ein weiteres Datenbankschema für die Auswertung und kann die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas synchronisieren. Das Auswerteschema unterscheidet sich zum XPlanSyn-Schema dadurch, dass die GML-Geometrien (wie z.B. Kreisbögen) aus dem XPlanGML zusätzlich zu den https://www.ogc.org/standards/sfa[Simple Features Geometrien] abgelegt sind.
 
-====== Installation
+[[xplanevaluationschema]]
+===== Konfiguration für das Auswerteschema
 
-Die Installation dieses Kommandozeilenwerkzeugs sowie das Anlegen des zusätzlichen Datenbankschemas ist optional. Für den Betrieb der xPlanBox sind diese nicht erforderlich.
+Das Anlegen des zusätzlichen Datenbankschemas ist optional. Für den Betrieb der xPlanBox ist dieses nicht erforderlich.
 Das Datenbankschema für die Auswertung muss durch Ausführen der SQL-Skripte aus dem Verzeichnis _scripts/_ angelegt werden. Folgende Reihenfolge muss beibehalten werden:
 
 . _00_create_schema.sql_
@@ -107,16 +103,13 @@ Das Datenbankschema für die Auswertung muss durch Ausführen der SQL-Skripte au
 . _04_create_trigger.sql_
 . _05_grant_user.sql_ (zuvor ist die Variable $DB_USER im Skript durch den Namen des Datenbanknutzers auszutauschen, mit dem der XPlanManager und die XPlanDienste auf die XPlaNDB zugreifen, s. Abschnitt "Konfiguration der Datenbank" im Betriebshandbuch)
 
-
 Die Skripte erstellen eine Kopie der drei XPlanSyn-Schemas in den Schemas _xplanevaluationxplansynpre_, _xplanevaluationxplansyn_ und _xplanevaluationxplansynarchive_ sowie eine Log-Tabelle _xplanevaluation.planTableLog_.
 
 Die Log-Tabelle wird beim Importieren, Editieren und Löschen von Plänen über den XPlanManager mit einer Historie der ausgeführten Operationen auf die einzelnen Pläne gefüllt und dient als Basis für die regelmäßige Synchronisierung des XPlanSyn-Schema und des Auswerteschemas.
 
-Damit das Tool ausgeführt werden kann, muss GDAL installiert werden, wie in Kapitel <<installation-gdal>> beschrieben.
+===== Synchronisation des Auswerteschemas
 
-====== Nutzung
-
-Das CLI _EvaluationSchemaSynchronizer_ unterstützt zwei Modi, die über die Option `-t` aufgerufen werden können:
+Das Kommando unterstützt zwei Modi, die über die Option `-t` aufgerufen werden können:
 
 * Option *ALL* zur Überführung aller Pläne aus dem XPlanSyn-Schema der xPlanBox in das Auswerteschema.
 * Option *SYNC* um die Synchronisierung der seit der letzten Ausführung des Werkzeuges geänderten Pläne aus dem XPlanSyn-Schema in das Auswerteschema durchzuführen.
@@ -127,13 +120,13 @@ Die zweimalige Ausführung mit der Option *ALL* führt zu einem Fehler bei der A
 Die einzelnen Parameter des Werkzeuges können durch folgenden Aufruf abgerufen werden:
 
 -------
-EvaluationSchemaSynchronizer -?
+xpb admin evaluation-db-update help
 -------
 
-Beispiel für den Aufruf mit den Parametern `-h` für den Hostnamen des PostgreSQL-Servers, `-p` den Port, `-d` der Datenbank, `-u` dem Benutzer, `-t` der Angabe zur Synchronisierung:
+Beispiel für den Aufruf mit den Parametern `-h` für den Hostnamen des PostgreSQL-Servers, `-p` den Port, `-d` der Datenbank, `-u` dem Benutzer, `-P` dem Passwort, `-t` der Angabe zur Synchronisierung:
 
 -------
-EvaluationSchemaSynchronizer -h localhost -p 5432 -d xplanbox -u postgres -w postgres -t ALL
+xpb admin evaluation-db-update -h localhost -p 5432 -d xplanbox -u postgres -P postgres -t ALL
 -------
 
 [[dokumentation]]
