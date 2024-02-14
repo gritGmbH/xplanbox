@@ -250,6 +250,7 @@
         <docker-image.namePrefix>xplanbox</docker-image.namePrefix>
         <docker-image.name>${project.artifactId}</docker-image.name>
         <trivy.severity>CRITICAL</trivy.severity>
+        <docker-contextTarFile.expectedSizeInMbAt10pct></docker-contextTarFile.expectedSizeInMbAt10pct>
       </properties>
       <modules>
         <module>xplan-docker</module>
@@ -333,6 +334,54 @@
                 </configuration>
               </execution>
             </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.gmavenplus</groupId>
+            <artifactId>gmavenplus-plugin</artifactId>
+            <version>3.0.2</version>
+            <executions>
+              <execution>
+                <id>verifyDockerContextSize</id>
+                <goals>
+                  <goal>execute</goal>
+                </goals>
+                <phase>verify</phase>
+              </execution>
+            </executions>
+            <configuration>
+              <scripts>
+                <script><![CDATA[
+  def tarFileName = '${project.build.directory}/docker/${docker-image.namePrefix}/${docker-image.name}/tmp/docker-build.tar'
+  def tarFile = new File(tarFileName)
+  assert tarFile.exists()
+  def sizeInMb = (int) (tarFile.length() / (1024 * 1024))
+  def configuredExpectedSize = '${docker-contextTarFile.expectedSizeInMbAt10pct}'
+  int expectedSize = configuredExpectedSize ? configuredExpectedSize as int : 1
+  def pct = ((int) (1000 * sizeInMb / expectedSize)) / 10
+  if ((pct >= 90 && pct <= 110) || (sizeInMb + expectedSize) < 2) {
+      log.info("Context tar file ok (" + pct + "% from configured expectation)")
+  }
+  else {
+      throw new RuntimeException("Docker tar file outside expectations: " + sizeInMb + "Mb (" + pct + "%): " + tarFile.absolutePath)
+  }
+             ]]></script>
+              </scripts>
+              <skipScriptExecution>${docker-image.skip}</skipScriptExecution>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.apache.groovy</groupId>
+                <artifactId>groovy</artifactId>
+                <version>4.0.18</version>
+                <scope>runtime</scope>
+              </dependency>
+              <dependency> <!-- just to avoid a stupid warning -->
+                <groupId>org.apache.groovy</groupId>
+                <artifactId>groovy-ant</artifactId>
+                <version>4.0.18</version>
+                <scope>runtime</scope>
+              </dependency>
+            </dependencies>
           </plugin>
         </plugins>
       </build>

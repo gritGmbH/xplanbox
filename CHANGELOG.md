@@ -2,6 +2,13 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+## Version 7.1.1 (2024-02-09)
+
+### Fehlerbehebungen
+- Fehler bei der Installation der XPlanManagerAPI, XPlanValidatorAPI und XPlanDokumenteAPI im Tomcat behoben
+- Fehler beim Editieren eines Plans, bei dem sonstPlanArt gesetzt ist und keine Ganzzahl beinhaltet behoben
+- Fehler bei der Flächenschlussprüfung, wenn der Geltungsbereich von Bereich und PlanFeature nicht übereinstimmen behoben
+
 ## Version 7.1 (2023-12-13)
 
 ### Erweiterungen

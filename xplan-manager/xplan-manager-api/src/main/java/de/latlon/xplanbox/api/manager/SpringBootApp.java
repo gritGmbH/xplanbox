@@ -26,16 +26,28 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
 import org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.manager.config" })
 @EnableAutoConfiguration(
 		exclude = { QuartzAutoConfiguration.class, LiquibaseAutoConfiguration.class, SecurityAutoConfiguration.class })
-public class SpringBootApp {
+public class SpringBootApp extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootApp.class, args);
+	}
+
+	/**
+	 * Runs the application as deployable WAR.
+	 * @param application Spring application builder
+	 * @return Spring application builder with this application configured
+	 */
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(SpringBootApp.class);
 	}
 
 }

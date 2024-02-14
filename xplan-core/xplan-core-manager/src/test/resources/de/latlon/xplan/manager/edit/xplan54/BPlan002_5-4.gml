@@ -59,6 +59,7 @@
         </xplan:XP_Gemeinde>
       </xplan:gemeinde>
       <xplan:planArt>1000</xplan:planArt>
+      <xplan:sonstPlanArt codeSpace="https://registry.gdi-de.org/codelist/de.xleitstelle.xplanung/BP_SonstPlanArt" >9999_4</xplan:sonstPlanArt>
       <xplan:verfahren>1000</xplan:verfahren>
       <xplan:rechtsstand>3000</xplan:rechtsstand>
       <xplan:veraenderungssperre>false</xplan:veraenderungssperre>

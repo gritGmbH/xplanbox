@@ -77,6 +77,7 @@ Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versione
 | 7.0.1             | ja (<<aktualisierung-version-7.0.1, Details>>)  | nein
 | 7.0.2             | ja (<<aktualisierung-version-7.0.2, Details>>)  | nein
 | 7.1             | ja (<<aktualisierung-version-7.1, Details>>)  | ja (<<aktualisierung-version-7.1, Details>>)
+| 7.1.1             | nein | nein
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |===
 
@@ -287,3 +288,17 @@ Bei unerwartetem Verhalten der xPlanBox nach einer Aktualisierung können folgen
 * Löschen des Verzeichnisses _<CATALINA_HOME>/work/_ des Tomcat-Servers. Der Tomcat-Server muss zuvor gestoppt und anschließend neu gestartet werden.
 * Reload der Workspaces der XPlanDienste.
 * Löschen des Browser-Caches.
+
+[[aktualisierung-version-7.1.1]]
+=== Aktualisierung auf die Version 7.1.1
+
+Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
+
+* Austausch der Webapps:
+** _xplan-api-validator.war_
+** _xplan-api-manager.war_
+** _xplan-validator-web.war_
+** _xplan-manager-web.war_
+** _xplan-api-dokumente.war_
+
+TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.

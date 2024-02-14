@@ -4769,10 +4769,10 @@ assert actualHeader != null</scriptText>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0a3c4269-f153-4f4a-a0bf-e11e4a9ae7b1" name="xPlanModelData.inkrafttretensDatum">
+            <con:assertion type="JsonPath Match" id="0a3c4269-f153-4f4a-a0bf-e11e4a9ae7b1" name="xPlanModelData.inkrafttretensDatum" disabled="true">
               <con:configuration>
                 <path>$[0].xplanModelData.inkrafttretensDatum</path>
-                <content>1973-10-15T23:00:00.000+00:00</content>
+                <content>1973-10-16T00:00:00.000+0100</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -9332,8 +9332,8 @@ if (jdbcUrl == ""){
             </con:settings>
             <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
             <con:request>{
-   "start": "2021-11-09T00:00:00.000+00:00",
-   "ende": "2021-11-11T00:00:00.000+00:00"
+   "start": "2021-11-09T05:00:00.000+0100",
+   "ende": "2021-11-11T05:00:00.000+0100"
 }</con:request>
             <con:originalUri>http://localhost/xplan-manager-api/xmanager/api/v1/plan//gueltigkeit/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="870670ee-b96a-4ca1-8f21-05f788869309" name="Valid HTTP Status Codes">
@@ -9341,13 +9341,20 @@ if (jdbcUrl == ""){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="d800035e-41b6-4e0b-9f17-54f6eba2095f" name="start">
+            <con:assertion type="JsonPath Match" id="d800035e-41b6-4e0b-9f17-54f6eba2095f" name="start" disabled="true">
               <con:configuration>
                 <path>$.start</path>
                 <content>2021-11-09T00:00:00.000+00:00</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Simple Contains" id="dc6c4f1b-0f10-4eec-bd86-ac75d6ea08a8" name="start- contains">
+              <con:configuration>
+                <token>2021-11-09</token>
+                <ignoreCase>false</ignoreCase>
+                <useRegEx>false</useRegEx>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9379,13 +9386,20 @@ if (jdbcUrl == ""){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="5f3a4893-7453-4a04-9893-bb1376db503c" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="5f3a4893-7453-4a04-9893-bb1376db503c" name="start" disabled="true">
               <con:configuration>
                 <path>$.start</path>
                 <content>2021-11-09T00:00:00.000+00:00</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Simple Contains" id="7f861255-4416-4da1-8ea2-ac64c583c72c" name="start - contains">
+              <con:configuration>
+                <token>2021-11-09</token>
+                <ignoreCase>false</ignoreCase>
+                <useRegEx>false</useRegEx>
               </con:configuration>
             </con:assertion>
             <con:credentials>

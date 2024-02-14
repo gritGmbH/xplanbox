@@ -69,7 +69,7 @@ maven-prepare-docker-contexts-apis-and-inspire-plu:
   variables:
     mvnProjects: ':xplan-validator-api,:xplan-manager-api,:xplan-dokumente-api,:xplan-webservices-inspireplu'
   artifacts:
-    paths:
+    paths: # 2024.02.02: ~387M
     - './xplan-validator/xplan-validator-api/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-manager/xplan-manager-api/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-dokumente/xplan-dokumente-api/target/docker/**/tmp/docker-build.tar.gz'
@@ -78,17 +78,19 @@ maven-prepare-docker-contexts-apis-and-inspire-plu:
 maven-prepare-docker-contexts-cli:
   extends: .maven-prepare-docker-contexts
   variables:
-    mvnProjects: ':xplan-cli-docker'
+    mvnProjects: ':xplan-benutzerhandbuch,:xplan-betriebshandbuch,:xplan-cli-docker,:xplan-database-docker,:xplan-webpages'
   artifacts:
-    paths:
-    - './xplan-cli/**/target/docker/**/tmp/docker-build.tar.gz'
+    paths: # 2024.02.02: ~371M
+    - './xplan-cli/xplan-cli-docker/target/docker/**/docker-build.tar.gz'
+    - './xplan-documentation/**/target/docker/**/docker-build.tar.gz'
+    - './xplan-database/xplan-database-docker/target/docker/**/docker-build.tar.gz'
 
 maven-prepare-docker-contexts-web-apps:
   extends: .maven-prepare-docker-contexts
   variables:
     mvnProjects: ':xplan-manager-web,:xplan-validator-web,:xplan-webpages'
   artifacts:
-    paths:
+    paths: # 2024.02.02: ~481M
     - './xplan-manager/xplan-manager-web/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-validator/xplan-validator-web/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-documentation/xplan-webpages/target/docker/**/tmp/docker-build.tar.gz'
@@ -98,7 +100,7 @@ maven-prepare-docker-contexts-others:
   variables:
     mvnProjects: ':xplan-docker-tomcat,:xplan-docker-tomcat-gdal,:xplan-database-scripts,:xplan-mapproxy-docker,:xplan-mapserver-docker,:xplan-webservices-validator-wms,:xplan-services-docker,:xplan-tests-soapui'
   artifacts:
-    paths:
+    paths: # 2024.02.02: ~432M
     - './xplan-docker/**/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-database/xplan-database-scripts/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-tests/xplan-tests-soapui/target/docker/**/tmp/docker-build.tar.gz'

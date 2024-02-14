@@ -70,6 +70,7 @@
       <id>docker</id>
       <properties>
         <docker-image.skip>false</docker-image.skip>
+        <docker-contextTarFile.expectedSizeInMbAt10pct>210</docker-contextTarFile.expectedSizeInMbAt10pct>
       </properties>
       <build>
         <plugins>

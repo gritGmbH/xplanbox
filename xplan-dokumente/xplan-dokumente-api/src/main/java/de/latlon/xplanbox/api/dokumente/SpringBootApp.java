@@ -22,14 +22,26 @@ package de.latlon.xplanbox.api.dokumente;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.dokumente.config" })
-public class SpringBootApp {
+public class SpringBootApp extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootApp.class, args);
+	}
+
+	/**
+	 * Runs the application as deployable WAR.
+	 * @param application Spring application builder
+	 * @return Spring application builder with this application configured
+	 */
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(SpringBootApp.class);
 	}
 
 }

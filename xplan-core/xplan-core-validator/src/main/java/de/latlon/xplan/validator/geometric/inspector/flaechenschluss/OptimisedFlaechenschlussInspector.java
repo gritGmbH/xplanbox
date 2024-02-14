@@ -76,7 +76,6 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -554,8 +553,11 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		}
 		else if (geltungsbereichFeature instanceof PlanFeature) {
 			FeaturesUnderTest planFeaturesUnderTest = new FeaturesUnderTest(flaechenschlussUnion, featuresUnderTest);
-			planFeaturesWithFeaturesUnderTest.put((PlanFeature) geltungsbereichFeature,
-					Collections.singletonList(planFeaturesUnderTest));
+			PlanFeature planFeature = (PlanFeature) geltungsbereichFeature;
+			if (!planFeaturesWithFeaturesUnderTest.containsKey(planFeature)) {
+				planFeaturesWithFeaturesUnderTest.put(planFeature, new ArrayList<>());
+			}
+			planFeaturesWithFeaturesUnderTest.get(planFeature).add(planFeaturesUnderTest);
 		}
 	}
 

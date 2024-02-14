@@ -13,6 +13,7 @@
   <properties>
     <docker-image.skip>false</docker-image.skip>
     <docker-image.name>xplan-services</docker-image.name>
+    <docker-contextTarFile.expectedSizeInMbAt10pct>202</docker-contextTarFile.expectedSizeInMbAt10pct>
   </properties>
 
   <build>

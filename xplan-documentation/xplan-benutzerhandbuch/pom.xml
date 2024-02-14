@@ -88,6 +88,7 @@
       <id>docker</id>
       <properties>
         <docker-image.skip>false</docker-image.skip>
+        <docker-contextTarFile.expectedSizeInMbAt10pct>19</docker-contextTarFile.expectedSizeInMbAt10pct>
       </properties>
     </profile>
   </profiles>

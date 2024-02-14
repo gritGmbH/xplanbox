@@ -13,6 +13,10 @@
     <version>7.2-SNAPSHOT</version>
   </parent>
 
+  <properties>
+    <docker-contextTarFile.expectedSizeInMbAt10pct>697</docker-contextTarFile.expectedSizeInMbAt10pct>
+  </properties>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
