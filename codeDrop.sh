@@ -5,6 +5,7 @@ set -e
 # e.g. 1840
 ticketIdNo=${1:-}
 srcBranchOrTag=${2:-main}
+opencodeBase=${3:-remote-opencode/main}
 commitMessage="XPLANBOX-$ticketIdNo code drop"
 
 echo "Creating code drop, ticketId is XPLANBOX-$ticketIdNo, source branch is $srcBranchOrTag"
@@ -31,7 +32,7 @@ git fetch remote-opencode main
 
 echo "Preparing code drop"
 
-git checkout -b $branchName remote-opencode/main
+git checkout -b $branchName $opencodeBase
 echo "Branch $branchName created"
 
 echo "Replacing content with $srcBranchOrTag..."

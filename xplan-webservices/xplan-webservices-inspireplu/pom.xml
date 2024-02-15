@@ -51,7 +51,7 @@
       <id>docker</id>
       <properties>
         <docker-image.skip>false</docker-image.skip>
-        <docker-contextTarFile.expectedSizeInMbAt10pct>68</docker-contextTarFile.expectedSizeInMbAt10pct>
+        <docker-contextTarFile.expectedSizeInMat10pct>68</docker-contextTarFile.expectedSizeInMat10pct>
       </properties>
       <build>
         <plugins>

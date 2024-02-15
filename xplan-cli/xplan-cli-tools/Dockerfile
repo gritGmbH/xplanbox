@@ -24,10 +24,12 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 ENV TZ=Europe/Berlin
 RUN apk --no-cache add bash
 
-COPY target/xplan-cli-tools-*/xplan-cli-tools-* /xplanbox/xplan-cli/
+ADD target/xplan-cli-tools-*.tar /tmp
 
-RUN mkdir /xplanbox/xplan-cli/logs \
-	&& chmod a+xw /xplanbox/xplan-cli/logs
+RUN mkdir /xplanbox \
+    && mv /tmp/xplan-cli-tools-* /xplanbox/xplan-cli \
+    && mkdir /xplanbox/xplan-cli/logs \
+    && chmod a+xw /xplanbox/xplan-cli/logs
 
 COPY --from=volumeInitBuilder /xplan-volume-init/ /xplan-volume-init
 COPY resynthesize.sh /xplanbox/

@@ -27,7 +27,7 @@
   <id>distribution</id>
   <formats>
     <format>zip</format>
-    <format>dir</format>
+    <format>tar</format>
   </formats>
   <fileSets>
     <fileSet>
@@ -69,6 +69,10 @@
       <outputDirectory>etc</outputDirectory>
     </dependencySet>
     <dependencySet>
+      <excludes>
+        <exclude>*:zip</exclude>
+        <exclude>*:pom</exclude>
+      </excludes>
       <outputDirectory>repo</outputDirectory>
     </dependencySet>
   </dependencySets>

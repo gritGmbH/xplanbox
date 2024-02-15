@@ -41,7 +41,7 @@
       <properties>
         <docker-image.skip>false</docker-image.skip>
         <docker-image.name>xplan-db</docker-image.name>
-        <docker-contextTarFile.expectedSizeInMbAt10pct>19</docker-contextTarFile.expectedSizeInMbAt10pct>
+        <docker-contextTarFile.expectedSizeInMat10pct>18</docker-contextTarFile.expectedSizeInMat10pct>
       </properties>
     </profile>
   </profiles>

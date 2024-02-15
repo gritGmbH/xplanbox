@@ -897,7 +897,7 @@
 			<properties>
 				<docker-image.skip>false</docker-image.skip>
 				<docker-image.name>xplan-db-updater</docker-image.name>
-				<docker-contextTarFile.expectedSizeInMbAt10pct>16</docker-contextTarFile.expectedSizeInMbAt10pct>
+				<docker-contextTarFile.expectedSizeInMat10pct>15</docker-contextTarFile.expectedSizeInMat10pct>
 			</properties>
 		</profile>
     </profiles>

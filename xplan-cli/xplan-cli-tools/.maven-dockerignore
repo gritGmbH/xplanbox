@@ -1,9 +1,0 @@
-.classpath
-.dockerignore
-.project
-.settings/**
-
-pom.xml
-src
-target/dependency-maven-plugin-markers/**
-target/docker

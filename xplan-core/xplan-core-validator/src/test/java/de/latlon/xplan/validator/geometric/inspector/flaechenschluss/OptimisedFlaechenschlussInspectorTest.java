@@ -388,4 +388,16 @@ public class OptimisedFlaechenschlussInspectorTest {
 		assertThat(flaechenschlussInspector.getErrors().size(), is(1));
 	}
 
+	@Test
+	public void testCheckFlaechenschluss_MultipleBereicheAndPlan_OneBereichWithoutGeom() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54,
+				BP_Plan);
+		readFeaturesFromGml("BPlan_5_4-MultipleBereicheAndPlan_OneBereichWithoutGeom.gml",
+				OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(0));
+	}
+
 }
