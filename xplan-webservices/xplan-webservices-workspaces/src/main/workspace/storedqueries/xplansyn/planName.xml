@@ -1,22 +1,22 @@
 <!-- #%L
-  xplanbox-syn - Automatisiert erzeugte Konfiguration
-  %%
-  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU Affero General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%-->
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 02.11.2023, 10:41:35-->
+ xplanbox-syn - Automatisiert erzeugte Konfiguration
+ %%
+ Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+ %%
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU Affero General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #L%-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 15.02.2024, 07:55:32-->
 <wfs:StoredQueryDefinition xmlns:wfs="http://www.opengis.net/wfs/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd" id="urn:ogc:def:query:OGC-WFS::PlanName">
   <wfs:Title>planName</wfs:Title>
   <wfs:Abstract>Es koennen alle zu dem PlanNamen gehoerenden Features im XPlanSyn-Schema heruntergeladen werden.</wfs:Abstract>
@@ -24,7 +24,7 @@
     <wfs:Abstract>planName (Mandatory)</wfs:Abstract>
   </wfs:Parameter>
   <wfs:QueryExpressionText returnFeatureTypes="${deegreewfs:ServedFeatureTypes}" language="urn:ogc:def:queryLanguage:OGC-WFS::WFS_QueryExpression" isPrivate="false">
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_AbgrabungsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_AbgrabungsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -52,7 +52,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_AbstandsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_AbstandsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -80,7 +80,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_AbstandsMass">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_AbstandsMass">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -108,7 +108,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_AbweichungVonBaugrenze">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_AbweichungVonBaugrenze">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -136,7 +136,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -164,7 +164,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_AnpflanzungBindungErhaltung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_AnpflanzungBindungErhaltung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -192,7 +192,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_AufschuettungsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_AufschuettungsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -220,7 +220,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_AusgleichsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_AusgleichsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -248,7 +248,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_AusgleichsMassnahme">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_AusgleichsMassnahme">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -276,7 +276,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_BauGrenze">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_BauGrenze">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -304,7 +304,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_BauLinie">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_BauLinie">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -332,7 +332,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_Baugebiet">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_Baugebiet">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -360,7 +360,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_BaugebietsTeilFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_BaugebietsTeilFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -388,7 +388,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_Bereich">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_Bereich">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -416,7 +416,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_BereichOhneEinAusfahrtLinie">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_BereichOhneEinAusfahrtLinie">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -444,7 +444,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_BesondererNutzungszweckFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_BesondererNutzungszweckFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -472,7 +472,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_BodenschaetzeFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_BodenschaetzeFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -500,7 +500,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_DenkmalschutzEinzelanlage">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_DenkmalschutzEinzelanlage">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -528,7 +528,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_DenkmalschutzEnsembleFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_DenkmalschutzEnsembleFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -556,7 +556,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_EinfahrtPunkt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_EinfahrtPunkt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -584,7 +584,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_EinfahrtsbereichLinie">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_EinfahrtsbereichLinie">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -612,7 +612,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_EingriffsBereich">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_EingriffsBereich">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -640,7 +640,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_ErhaltungsBereichFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_ErhaltungsBereichFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -668,7 +668,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_ErneuerbareEnergieFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_ErneuerbareEnergieFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -696,7 +696,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_FestsetzungNachLandesrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_FestsetzungNachLandesrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -724,7 +724,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_FirstRichtungsLinie">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_FirstRichtungsLinie">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -752,7 +752,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_FlaecheOhneFestsetzung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_FlaecheOhneFestsetzung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -780,7 +780,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_FoerderungsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_FoerderungsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -808,7 +808,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_FreiFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_FreiFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -836,7 +836,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_GebaeudeFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_GebaeudeFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -864,7 +864,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_GebaeudeStellung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_GebaeudeStellung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -892,7 +892,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_GemeinbedarfsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_GemeinbedarfsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -920,7 +920,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_GemeinschaftsanlagenFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_GemeinschaftsanlagenFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -948,7 +948,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_GemeinschaftsanlagenZuordnung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_GemeinschaftsanlagenZuordnung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -976,7 +976,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_GenerischesObjekt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_GenerischesObjekt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1004,7 +1004,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_GewaesserFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_GewaesserFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1032,7 +1032,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_GruenFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_GruenFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1060,7 +1060,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_HoehenMass">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_HoehenMass">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1088,7 +1088,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_Immissionsschutz">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_Immissionsschutz">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1116,7 +1116,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_KennzeichnungsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_KennzeichnungsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1144,7 +1144,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_KleintierhaltungFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_KleintierhaltungFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1172,7 +1172,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_Landwirtschaft">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_Landwirtschaft">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1200,7 +1200,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_LandwirtschaftsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_LandwirtschaftsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1228,7 +1228,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_LuftreinhalteFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_LuftreinhalteFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1256,7 +1256,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_NebenanlagenAusschlussFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_NebenanlagenAusschlussFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1284,7 +1284,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_NebenanlagenFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_NebenanlagenFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1312,7 +1312,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_NichtUeberbaubareGrundstuecksflaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_NichtUeberbaubareGrundstuecksflaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1340,7 +1340,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_NutzungsartenGrenze">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_NutzungsartenGrenze">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1368,7 +1368,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_PersGruppenBestimmteFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_PersGruppenBestimmteFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1396,7 +1396,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_Plan">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_Plan">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1424,7 +1424,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_RasterplanAenderung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_RasterplanAenderung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1452,7 +1452,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_RegelungVergnuegungsstaetten">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_RegelungVergnuegungsstaetten">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1480,7 +1480,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_RekultivierungsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_RekultivierungsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1508,7 +1508,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_RichtungssektorGrenze">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_RichtungssektorGrenze">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1536,7 +1536,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_SchutzPflegeEntwicklungsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_SchutzPflegeEntwicklungsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1564,7 +1564,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_SchutzPflegeEntwicklungsMassnahme">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_SchutzPflegeEntwicklungsMassnahme">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1592,7 +1592,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_Schutzgebiet">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_Schutzgebiet">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1620,7 +1620,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_Sichtflaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_Sichtflaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1648,7 +1648,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_SpezielleBauweise">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_SpezielleBauweise">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1676,7 +1676,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_SpielSportanlagenFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_SpielSportanlagenFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1704,7 +1704,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_StrassenVerkehrsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_StrassenVerkehrsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1732,7 +1732,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_StrassenbegrenzungsLinie">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_StrassenbegrenzungsLinie">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1760,7 +1760,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_Strassenkoerper">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_Strassenkoerper">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1788,7 +1788,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_TechnischeMassnahmenFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_TechnischeMassnahmenFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1816,7 +1816,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_TextAbschnitt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_TextAbschnitt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1844,7 +1844,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_TextAbschnittFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_TextAbschnittFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1872,7 +1872,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_TextlicheFestsetzungsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_TextlicheFestsetzungsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1900,7 +1900,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_UeberbaubareGrundstuecksFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_UeberbaubareGrundstuecksFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1928,7 +1928,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_UnverbindlicheVormerkung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_UnverbindlicheVormerkung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1956,7 +1956,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_VerEntsorgung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_VerEntsorgung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1984,7 +1984,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_Veraenderungssperre">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_Veraenderungssperre">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2012,7 +2012,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_VerkehrsflaecheBesondererZweckbestimmung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_VerkehrsflaecheBesondererZweckbestimmung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2040,7 +2040,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_WaldFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_WaldFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2068,7 +2068,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_WasserwirtschaftsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_WasserwirtschaftsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2096,7 +2096,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_Wegerecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_Wegerecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2124,7 +2124,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_WohngebaeudeFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_WohngebaeudeFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2152,7 +2152,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_ZentralerVersorgungsbereich">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_ZentralerVersorgungsbereich">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2180,7 +2180,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_ZusatzkontingentLaerm">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_ZusatzkontingentLaerm">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2208,7 +2208,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_ZusatzkontingentLaermFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:BP_ZusatzkontingentLaermFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2236,7 +2236,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Abgrabung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_Abgrabung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2264,7 +2264,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_AbgrabungsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_AbgrabungsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2292,7 +2292,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_AnpassungKlimawandel">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_AnpassungKlimawandel">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2320,7 +2320,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Aufschuettung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_Aufschuettung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2348,7 +2348,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_AufschuettungsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_AufschuettungsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2376,7 +2376,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_AusgleichsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_AusgleichsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2404,7 +2404,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_BebauungsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_BebauungsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2432,7 +2432,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Bereich">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_Bereich">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2460,7 +2460,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Bodenschaetze">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_Bodenschaetze">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2488,7 +2488,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_BodenschaetzeFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_BodenschaetzeFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2516,7 +2516,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_DarstellungNachLandesrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_DarstellungNachLandesrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2544,7 +2544,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_FlaecheOhneDarstellung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_FlaecheOhneDarstellung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2572,7 +2572,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Gemeinbedarf">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_Gemeinbedarf">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2600,7 +2600,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_GenerischesObjekt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_GenerischesObjekt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2628,7 +2628,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Gewaesser">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_Gewaesser">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2656,7 +2656,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Gruen">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_Gruen">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2684,7 +2684,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_KeineZentrAbwasserBeseitigungFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_KeineZentrAbwasserBeseitigungFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2712,7 +2712,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Kennzeichnung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_Kennzeichnung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2740,7 +2740,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Landwirtschaft">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_Landwirtschaft">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2768,7 +2768,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_LandwirtschaftsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_LandwirtschaftsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2796,7 +2796,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Nutzungsbeschraenkung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_Nutzungsbeschraenkung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2824,7 +2824,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_NutzungsbeschraenkungsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_NutzungsbeschraenkungsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2852,7 +2852,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Plan">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_Plan">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2880,7 +2880,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_PrivilegiertesVorhaben">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_PrivilegiertesVorhaben">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2908,7 +2908,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_RasterplanAenderung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_RasterplanAenderung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2936,7 +2936,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_SchutzPflegeEntwicklung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_SchutzPflegeEntwicklung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2964,7 +2964,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_SpielSportanlage">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_SpielSportanlage">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -2992,7 +2992,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Strassenverkehr">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_Strassenverkehr">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3020,7 +3020,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_TextAbschnitt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_TextAbschnitt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3048,7 +3048,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_TextAbschnittFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_TextAbschnittFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3076,7 +3076,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_TextlicheDarstellungsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_TextlicheDarstellungsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3104,7 +3104,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_UnverbindlicheVormerkung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_UnverbindlicheVormerkung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3132,7 +3132,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_VerEntsorgung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_VerEntsorgung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3160,7 +3160,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_VorbehalteFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_VorbehalteFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3188,7 +3188,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_WaldFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_WaldFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3216,7 +3216,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Wasserwirtschaft">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_Wasserwirtschaft">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3244,7 +3244,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_ZentralerVersorgungsbereich">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:FP_ZentralerVersorgungsbereich">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3272,7 +3272,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Abgrenzung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_Abgrenzung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3300,7 +3300,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_AllgGruenflaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_AllgGruenflaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3328,7 +3328,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_AnpflanzungBindungErhaltung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_AnpflanzungBindungErhaltung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3356,7 +3356,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Ausgleich">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_Ausgleich">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3384,7 +3384,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Bereich">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_Bereich">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3412,7 +3412,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_BiotopverbundBiotopvernetzung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_BiotopverbundBiotopvernetzung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3440,7 +3440,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Biotopverbundflaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_Biotopverbundflaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3468,7 +3468,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Bodenschutzrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_Bodenschutzrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3496,7 +3496,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Denkmalschutzrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_Denkmalschutzrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3524,7 +3524,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Eingriffsregelung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_Eingriffsregelung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3552,7 +3552,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_ErholungFreizeit">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_ErholungFreizeit">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3580,7 +3580,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Forstrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_Forstrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3608,7 +3608,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_GenerischesObjekt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_GenerischesObjekt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3636,7 +3636,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Landschaftsbild">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_Landschaftsbild">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3664,7 +3664,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_NutzungsAusschluss">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_NutzungsAusschluss">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3692,7 +3692,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_NutzungserfordernisRegelung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_NutzungserfordernisRegelung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3720,7 +3720,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Plan">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_Plan">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3748,7 +3748,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_PlanerischeVertiefung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_PlanerischeVertiefung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3776,7 +3776,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_RasterplanAenderung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_RasterplanAenderung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3804,7 +3804,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_SchutzBestimmterTeileVonNaturUndLandschaft">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_SchutzBestimmterTeileVonNaturUndLandschaft">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3832,7 +3832,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_SchutzPflegeEntwicklung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_SchutzPflegeEntwicklung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3860,7 +3860,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_SchutzobjektBundesrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_SchutzobjektBundesrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3888,7 +3888,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_SchutzobjektInternatRecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_SchutzobjektInternatRecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3916,7 +3916,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_SonstigeAbgrenzuung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_SonstigeAbgrenzuung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3944,7 +3944,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_SonstigesRecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_SonstigesRecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3972,7 +3972,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_TextAbschnitt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_TextAbschnitt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4000,7 +4000,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_TextAbschnittObjekt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_TextAbschnittObjekt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4028,7 +4028,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_TextlicheFestsetzungsFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_TextlicheFestsetzungsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4056,7 +4056,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_WasserrechtGemeingebrEinschraenkungNaturschutz">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_WasserrechtGemeingebrEinschraenkungNaturschutz">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4084,7 +4084,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_WasserrechtSchutzgebiet">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_WasserrechtSchutzgebiet">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4112,7 +4112,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_WasserrechtSonstige">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_WasserrechtSonstige">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4140,7 +4140,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_WasserrechtWirtschaftAbflussHochwSchutz">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_WasserrechtWirtschaftAbflussHochwSchutz">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4168,7 +4168,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_ZieleErfordernisseMassnahmen">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_ZieleErfordernisseMassnahmen">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4196,7 +4196,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_ZuBegruenendeGrundstueckflaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_ZuBegruenendeGrundstueckflaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4224,7 +4224,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Zwischennutzung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:LP_Zwischennutzung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4252,7 +4252,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Achse">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Achse">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4280,7 +4280,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Bereich">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Bereich">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4308,7 +4308,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Bodenschutz">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Bodenschutz">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4336,7 +4336,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Einzelhandel">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Einzelhandel">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4364,7 +4364,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Energieversorgung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Energieversorgung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4392,7 +4392,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Entsorgung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Entsorgung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4420,7 +4420,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Erholung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Erholung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4448,7 +4448,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_ErneuerbareEnergie">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_ErneuerbareEnergie">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4476,7 +4476,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Forstwirtschaft">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Forstwirtschaft">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4504,7 +4504,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Freiraum">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Freiraum">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4532,7 +4532,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_FreizeitErholung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_FreizeitErholung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4560,7 +4560,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Funktionszuweisung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Funktionszuweisung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4588,7 +4588,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_GemeindeFunktionSiedlungsentwicklung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_GemeindeFunktionSiedlungsentwicklung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4616,7 +4616,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_GenerischesObjekt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_GenerischesObjekt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4644,7 +4644,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Gewaesser">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Gewaesser">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4672,7 +4672,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Grenze">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Grenze">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4700,7 +4700,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_GruenzugGruenzaesur">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_GruenzugGruenzaesur">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4728,7 +4728,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Hochwasserschutz">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Hochwasserschutz">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4756,7 +4756,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_IndustrieGewerbe">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_IndustrieGewerbe">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4784,7 +4784,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Klimaschutz">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Klimaschutz">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4812,7 +4812,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Kommunikation">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Kommunikation">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4840,7 +4840,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_KulturellesSachgut">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_KulturellesSachgut">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4868,7 +4868,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Kulturlandschaft">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Kulturlandschaft">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4896,7 +4896,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_LaermschutzBauschutz">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_LaermschutzBauschutz">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4924,7 +4924,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Laermschutzbereich">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Laermschutzbereich">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4952,7 +4952,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Landwirtschaft">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Landwirtschaft">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -4980,7 +4980,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Legendenobjekt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Legendenobjekt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5008,7 +5008,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Luftverkehr">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Luftverkehr">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5036,7 +5036,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_NaturLandschaft">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_NaturLandschaft">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5064,7 +5064,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_NaturschutzrechtlichesSchutzgebiet">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_NaturschutzrechtlichesSchutzgebiet">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5092,7 +5092,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Plan">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Plan">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5120,7 +5120,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Planungsraum">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Planungsraum">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5148,7 +5148,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_RadwegWanderweg">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_RadwegWanderweg">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5176,7 +5176,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_RasterplanAenderung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_RasterplanAenderung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5204,7 +5204,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Raumkategorie">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Raumkategorie">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5232,7 +5232,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Rohstoff">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Rohstoff">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5260,7 +5260,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Rohstoffsicherung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Rohstoffsicherung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5288,7 +5288,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Schienenverkehr">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Schienenverkehr">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5316,7 +5316,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Siedlung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Siedlung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5344,7 +5344,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_SonstVerkehr">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_SonstVerkehr">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5372,7 +5372,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_SonstigeInfrastruktur">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_SonstigeInfrastruktur">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5400,7 +5400,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_SonstigeSiedlungsstruktur">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_SonstigeSiedlungsstruktur">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5428,7 +5428,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_SonstigerFreiraumschutz">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_SonstigerFreiraumschutz">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5456,7 +5456,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_SonstigerFreiraumstruktur">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_SonstigerFreiraumstruktur">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5484,7 +5484,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_SonstigerSiedlungsbereich">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_SonstigerSiedlungsbereich">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5512,7 +5512,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_SozialeInfrastruktur">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_SozialeInfrastruktur">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5540,7 +5540,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Sperrgebiet">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Sperrgebiet">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5568,7 +5568,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Sportanlage">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Sportanlage">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5596,7 +5596,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Strassenverkehr">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Strassenverkehr">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5624,7 +5624,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_TextAbschnitt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_TextAbschnitt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5652,7 +5652,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Verkehr">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Verkehr">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5680,7 +5680,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_VorbHochwasserschutz">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_VorbHochwasserschutz">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5708,7 +5708,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Wasserschutz">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Wasserschutz">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5736,7 +5736,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Wasserverkehr">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Wasserverkehr">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5764,7 +5764,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Wasserwirtschaft">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Wasserwirtschaft">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5792,7 +5792,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_Windenergienutzung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_Windenergienutzung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5820,7 +5820,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_WohnenSiedlung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_WohnenSiedlung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5848,7 +5848,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:RP_ZentralerOrt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:RP_ZentralerOrt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5876,7 +5876,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Baubeschraenkung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Baubeschraenkung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5904,7 +5904,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Bauverbotszone">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Bauverbotszone">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5932,7 +5932,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Bereich">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Bereich">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5960,7 +5960,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Bodenschutzrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Bodenschutzrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5988,7 +5988,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Denkmalschutzrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Denkmalschutzrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6016,7 +6016,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Forstrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Forstrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6044,7 +6044,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Gebiet">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Gebiet">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6072,7 +6072,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Gelaendemorphologie">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Gelaendemorphologie">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6100,7 +6100,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Gewaesser">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Gewaesser">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6128,7 +6128,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Grenze">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Grenze">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6156,7 +6156,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Linienobjekt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Linienobjekt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6184,7 +6184,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Luftverkehrsrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Luftverkehrsrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6212,7 +6212,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Objekt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Objekt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6240,7 +6240,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Plan">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Plan">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6268,7 +6268,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_RasterplanAenderung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_RasterplanAenderung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6296,7 +6296,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Schienenverkehrsrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Schienenverkehrsrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6324,7 +6324,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_SchutzgebietNaturschutzrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_SchutzgebietNaturschutzrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6352,7 +6352,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_SchutzgebietSonstigesRecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_SchutzgebietSonstigesRecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6380,7 +6380,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_SchutzgebietWasserrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_SchutzgebietWasserrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6408,7 +6408,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Sichtflaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Sichtflaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6436,7 +6436,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_SonstigesRecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_SonstigesRecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6464,7 +6464,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Strassenverkehr">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Strassenverkehr">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6492,7 +6492,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Strassenverkehrsrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Strassenverkehrsrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6520,7 +6520,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_TextAbschnitt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_TextAbschnitt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6548,7 +6548,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_TextAbschnittFlaeche">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_TextAbschnittFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6576,7 +6576,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Wasserrecht">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Wasserrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6604,7 +6604,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Wasserwirtschaft">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:SO_Wasserwirtschaft">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6632,7 +6632,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:XP_BegruendungAbschnitt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:XP_BegruendungAbschnitt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6660,7 +6660,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:XP_FPO">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:XP_FPO">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6688,7 +6688,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:XP_LPO">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:XP_LPO">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6716,7 +6716,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:XP_LTO">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:XP_LTO">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6744,7 +6744,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:XP_Nutzungsschablone">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:XP_Nutzungsschablone">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6772,7 +6772,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:XP_PPO">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:XP_PPO">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6800,7 +6800,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:XP_PTO">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:XP_PTO">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6828,7 +6828,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:XP_Praesentationsobjekt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:XP_Praesentationsobjekt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6856,7 +6856,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:XP_Rasterdarstellung">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:XP_Rasterdarstellung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6884,7 +6884,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:XP_RasterplanBasis">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:XP_RasterplanBasis">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6912,7 +6912,7 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query srsName="${srsName}" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:XP_TextAbschnitt">
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" srsName="${srsName}" typeNames="xplan:XP_TextAbschnitt">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>

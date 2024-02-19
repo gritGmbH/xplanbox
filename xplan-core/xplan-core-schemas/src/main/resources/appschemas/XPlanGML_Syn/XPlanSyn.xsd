@@ -16,7 +16,7 @@
  You should have received a copy of the GNU Affero General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  #L%-->
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 02.11.2023, 10:41:35-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 15.02.2024, 07:55:32-->
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.deegree.org/xplanung/1/0" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <element name="BP_AbgrabungsFlaeche" substitutionGroup="gml:AbstractFeature">
@@ -782,7 +782,7 @@
             <element name="zugunstenVon" minOccurs="0" type="string"/>
             <element name="flaechenteil" minOccurs="0" type="string"/>
             <element name="abweichungText" minOccurs="0" type="string"/>
-            <element name="position" type="gml:GeometryPropertyType"/>
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType"/>
             <element name="rechtsstand" minOccurs="0" type="string"/>
             <element name="rechtsstandWert" minOccurs="0" type="string"/>
             <element name="gesetzlicheGrundlage" minOccurs="0" type="string"/>
@@ -1068,7 +1068,7 @@
             <element name="name" minOccurs="0" type="string"/>
             <element name="detaillierteBedeutung" minOccurs="0" type="string"/>
             <element name="erstellungsMassstab" minOccurs="0" type="integer"/>
-            <element name="geltungsbereich" type="gml:GeometryPropertyType"/>
+            <element name="geltungsbereich" minOccurs="0" type="gml:GeometryPropertyType"/>
             <element name="refScan" minOccurs="0" type="string"/>
             <element name="planinhalt" minOccurs="0" type="string"/>
             <element name="praesentationsobjekt" minOccurs="0" type="string"/>
@@ -3685,7 +3685,7 @@
             <element name="refScan" minOccurs="0" type="string"/>
             <element name="refText" minOccurs="0" type="string"/>
             <element name="refLegende" minOccurs="0" type="string"/>
-            <element name="geltungsbereichAenderung" type="gml:GeometryPropertyType"/>
+            <element name="geltungsbereichAenderung" minOccurs="0" type="gml:GeometryPropertyType"/>
             <element name="besonderheiten" minOccurs="0" type="string"/>
             <element name="aufstellungsbeschlussDatum" minOccurs="0" type="date"/>
             <element name="auslegungsStartDatum" minOccurs="0" type="date"/>
@@ -6323,7 +6323,7 @@
             <element name="name" minOccurs="0" type="string"/>
             <element name="detaillierteBedeutung" minOccurs="0" type="string"/>
             <element name="erstellungsMassstab" minOccurs="0" type="integer"/>
-            <element name="geltungsbereich" type="gml:GeometryPropertyType"/>
+            <element name="geltungsbereich" minOccurs="0" type="gml:GeometryPropertyType"/>
             <element name="refScan" minOccurs="0" type="string"/>
             <element name="planinhalt" minOccurs="0" type="string"/>
             <element name="praesentationsobjekt" minOccurs="0" type="string"/>
@@ -7420,7 +7420,7 @@
             <element name="refScan" minOccurs="0" type="string"/>
             <element name="refText" minOccurs="0" type="string"/>
             <element name="refLegende" minOccurs="0" type="string"/>
-            <element name="geltungsbereichAenderung" type="gml:GeometryPropertyType"/>
+            <element name="geltungsbereichAenderung" minOccurs="0" type="gml:GeometryPropertyType"/>
             <element name="besonderheiten" minOccurs="0" type="string"/>
             <element name="aufstellungbeschlussDatum" minOccurs="0" type="date"/>
             <element name="auslegungsStartDatum" minOccurs="0" type="date"/>
@@ -8394,7 +8394,7 @@
             <element name="name" minOccurs="0" type="string"/>
             <element name="detaillierteBedeutung" minOccurs="0" type="string"/>
             <element name="erstellungsMassstab" minOccurs="0" type="integer"/>
-            <element name="geltungsbereich" type="gml:GeometryPropertyType"/>
+            <element name="geltungsbereich" minOccurs="0" type="gml:GeometryPropertyType"/>
             <element name="refScan" minOccurs="0" type="string"/>
             <element name="planinhalt" minOccurs="0" type="string"/>
             <element name="praesentationsobjekt" minOccurs="0" type="string"/>
@@ -9222,7 +9222,7 @@
             <element name="refScan" minOccurs="0" type="string"/>
             <element name="refText" minOccurs="0" type="string"/>
             <element name="refLegende" minOccurs="0" type="string"/>
-            <element name="geltungsbereichAenderung" type="gml:GeometryPropertyType"/>
+            <element name="geltungsbereichAenderung" minOccurs="0" type="gml:GeometryPropertyType"/>
             <element name="besonderheiten" minOccurs="0" type="string"/>
             <element name="aufstellungsbeschlussDatum" minOccurs="0" type="date"/>
             <element name="auslegungsDatum" minOccurs="0" type="date"/>
@@ -10171,7 +10171,7 @@
             <element name="name" minOccurs="0" type="string"/>
             <element name="detaillierteBedeutung" minOccurs="0" type="string"/>
             <element name="erstellungsMassstab" minOccurs="0" type="integer"/>
-            <element name="geltungsbereich" type="gml:GeometryPropertyType"/>
+            <element name="geltungsbereich" minOccurs="0" type="gml:GeometryPropertyType"/>
             <element name="refScan" minOccurs="0" type="string"/>
             <element name="planinhalt" minOccurs="0" type="string"/>
             <element name="praesentationsobjekt" minOccurs="0" type="string"/>
@@ -12024,7 +12024,7 @@
             <element name="refScan" minOccurs="0" type="string"/>
             <element name="refText" minOccurs="0" type="string"/>
             <element name="refLegende" minOccurs="0" type="string"/>
-            <element name="geltungsbereichAenderung" type="gml:GeometryPropertyType"/>
+            <element name="geltungsbereichAenderung" minOccurs="0" type="gml:GeometryPropertyType"/>
             <element name="besonderheiten" minOccurs="0" type="string"/>
             <element name="aufstellungsbeschlussDatum" minOccurs="0" type="date"/>
             <element name="auslegungsStartDatum" minOccurs="0" type="date"/>
@@ -13538,7 +13538,7 @@
             <element name="name" minOccurs="0" type="string"/>
             <element name="detaillierteBedeutung" minOccurs="0" type="string"/>
             <element name="erstellungsMassstab" minOccurs="0" type="integer"/>
-            <element name="geltungsbereich" type="gml:GeometryPropertyType"/>
+            <element name="geltungsbereich" minOccurs="0" type="gml:GeometryPropertyType"/>
             <element name="refScan" minOccurs="0" type="string"/>
             <element name="planinhalt" minOccurs="0" type="string"/>
             <element name="praesentationsobjekt" minOccurs="0" type="string"/>
@@ -14350,7 +14350,7 @@
             <element name="refScan" minOccurs="0" type="string"/>
             <element name="refText" minOccurs="0" type="string"/>
             <element name="refLegende" minOccurs="0" type="string"/>
-            <element name="geltungsbereichAenderung" type="gml:GeometryPropertyType"/>
+            <element name="geltungsbereichAenderung" minOccurs="0" type="gml:GeometryPropertyType"/>
             <element name="besonderheiten" minOccurs="0" type="string"/>
           </sequence>
         </extension>

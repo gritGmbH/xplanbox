@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
 
+import uk.org.webcompere.systemstubs.environment.EnvironmentVariables;
 import uk.org.webcompere.systemstubs.jupiter.SystemStubsExtension;
 import uk.org.webcompere.systemstubs.properties.SystemProperties;
 
@@ -44,14 +45,42 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SystemPropertyPropertiesLoaderTest {
 
 	@Test
-	void test_withProperty_XPLANBOX_COFIG(@TempDir File xplanBoxConfig, SystemProperties systemProperties)
+	void test_withProperty_XPLANBOX_CONFIG(@TempDir Path xplanBoxConfig, SystemProperties systemProperties)
 			throws IOException {
-		systemProperties.set(CONFIG_SYSTEM_PROPERTY, xplanBoxConfig.toString());
+		systemProperties.set(CONFIG_SYSTEM_PROPERTY, xplanBoxConfig.toAbsolutePath().toString());
 
 		SystemPropertyPropertiesLoader systemPropertyPropertiesLoader = new SystemPropertyPropertiesLoader();
 		Path configDirectory = systemPropertyPropertiesLoader.getConfigDirectory();
 
-		assertEquals(Paths.get(xplanBoxConfig.toURI()), configDirectory);
+		assertEquals(xplanBoxConfig, configDirectory);
+	}
+
+	@Test
+	void test_withEnvVar_XPLANBOX_CONFIG(@TempDir Path tmpDir, EnvironmentVariables envVars) throws IOException {
+		envVars.set(CONFIG_SYSTEM_PROPERTY, tmpDir.toAbsolutePath().toString());
+
+		SystemPropertyPropertiesLoader systemPropertyPropertiesLoader = new SystemPropertyPropertiesLoader();
+		Path configDirectory = systemPropertyPropertiesLoader.getConfigDirectory();
+
+		assertEquals(tmpDir, configDirectory);
+	}
+
+	@Test
+	void test_systemPropertyWinsOverEnvVar_XPLANBOX_CONFIG(@TempDir Path tmpDir, SystemProperties systemProperties,
+			EnvironmentVariables envVars) throws IOException {
+
+		Path dirForSysVar = tmpDir.resolve("subdir2").toAbsolutePath();
+		Files.createDirectory(dirForSysVar);
+		Path dirForEnvProps = tmpDir.resolve("subdir1");
+		Files.createDirectory(dirForEnvProps).toAbsolutePath();
+
+		systemProperties.set(CONFIG_SYSTEM_PROPERTY, dirForSysVar.toString());
+		envVars.set(CONFIG_SYSTEM_PROPERTY, dirForEnvProps.toString());
+
+		SystemPropertyPropertiesLoader systemPropertyPropertiesLoader = new SystemPropertyPropertiesLoader();
+		Path configDirectory = systemPropertyPropertiesLoader.getConfigDirectory();
+
+		assertEquals(configDirectory, dirForSysVar);
 	}
 
 	@Test

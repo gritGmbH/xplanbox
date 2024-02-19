@@ -20,9 +20,9 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
 
 # set environment variables
-ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree
-
-ENV JAVA_ADDITIONAL_ARG_APP="-DXPLANBOX_CONFIG=/xplanbox/xplan-manager-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng"
+ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree \
+	JAVA_ADDITIONAL_ARG_APP="-Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng" \
+	XPLANBOX_CONFIG="/xplanbox/xplan-manager-config/"
 
 COPY ${WAR_FILE} /xplanbox/app.war
 COPY run.sh /xplanbox/

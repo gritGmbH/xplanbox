@@ -105,6 +105,8 @@ public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
 	private Path findConfigDirectory() {
 		LOG.info("Try to receive configuration set with system property {}", CONFIG_SYSTEM_PROPERTY);
 		String configFilePath = System.getProperty(CONFIG_SYSTEM_PROPERTY);
+		if (configFilePath == null)
+			configFilePath = System.getenv(CONFIG_SYSTEM_PROPERTY);
 		if (configFilePath != null)
 			return findConfigDirectory(configFilePath);
 		LOG.info("Try to receive configuration from default directory ${user.home}/xplanbox");

@@ -88,7 +88,7 @@
       <id>docker</id>
       <properties>
         <docker-image.skip>false</docker-image.skip>
-        <docker-contextTarFile.expectedSizeInMat10pct>10</docker-contextTarFile.expectedSizeInMat10pct>
+        <docker-contextTarFile.expectedSizeInMat10pct>1</docker-contextTarFile.expectedSizeInMat10pct>
       </properties>
     </profile>
   </profiles>

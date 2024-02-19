@@ -31,8 +31,9 @@ COPY --from=builder $JMX_EXPORTER_DIR $JMX_EXPORTER_DIR
 ENV JAVA_ADDITIONAL_ARG_JMX_EXPORTER='-javaagent:$JMX_EXPORTER_DIR/jmx_prometheus_javaagent-0.19.0.jar=12345:$JMX_EXPORTER_DIR/jmx-exporter.config.yaml'
 
 # set environment variables
-ENV JAVA_ADDITIONAL_ARG_APP="-DXPLANBOX_CONFIG=/xplanbox/xplan-validator-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng -Duser.timezone=Europe/Berlin"
-ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree
+ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree \
+	JAVA_ADDITIONAL_ARG_APP="-Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng -Duser.timezone=Europe/Berlin" \
+	XPLANBOX_CONFIG="/xplanbox/xplan-validator-config/"
 
 COPY ${WAR_FILE} /xplanbox/app.war
 COPY run.sh /xplanbox/
