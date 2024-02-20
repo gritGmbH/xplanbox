@@ -60,6 +60,17 @@ MAP
 	  	 "wms_title" "xPlanBox Rasterdaten"
 	  	 "wms_srs" "EPSG:25832"
 	  	 "wms_enable_request" "*"
+		 "wms_addresstype" "postal"
+		 "wms_contactorganization" "${XPLAN_SERVICES_PROVIDER_NAME}"
+		 "wms_contactperson" "${XPLAN_SERVICES_PROVIDER_CONTACT_NAME}"
+		 "wms_contactposition" "${XPLAN_SERVICES_PROVIDER_CONTACT_POSITIONNAME}"
+		 "wms_contactvoicetelephone" "${XPLAN_SERVICES_PROVIDER_CONTACT_PHONE}"
+		 "wms_contactelectronicmailaddress" "${XPLAN_SERVICES_PROVIDER_CONTACT_MAIL}"
+		 "wms_address" "${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_DELIVERYPOINT}"
+		 "wms_city" "${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_CITY}"
+		 "wms_postcode" "${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_POSTALCODE}"
+		 "wms_country" "${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_COUNTRY}"
+		 "wms_service_onlineresource" "${XPLAN_SERVICES_PROVIDER_ONLINERESOURCE}"
 	  END
    END # WEB
 

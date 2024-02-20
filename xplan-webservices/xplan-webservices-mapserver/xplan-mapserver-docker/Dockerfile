@@ -18,7 +18,7 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"maintainer"=""
 
 ENV TZ=Europe/Berlin
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata gettext-base
 
 RUN mkdir -p /xplan-mapserver-docker \
 	&& chown 1001 /etc/mapserver

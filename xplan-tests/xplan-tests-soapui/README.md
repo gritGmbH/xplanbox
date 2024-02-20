@@ -4,24 +4,33 @@
 
 ### xplan-validator-api-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-validator-api-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xvalidator/api/v1 -Dusername=xplanbox -Dpassword='PWD'
+```
+mvn clean test -Psystem-tests -DtestFileName=xplan-validator-api-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xvalidator/api/v1 -Dusername=xplanbox -Dpassword='PWD'
+```
 
 ### xplan-manager-api-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-manager-api-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlServices=https://xplanbox.lat-lon.de -DjdbcUrl=jdbc:postgresql://localhost:5433/xplanbox?user=xplanbox&password=xplanbox -Dusername=xplanbox -Dpassword='PWD'
+```
+mvn clean test -Psystem-tests -DtestFileName=xplan-manager-api-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlServices=https://xplanbox.lat-lon.de -DjdbcUrl=jdbc:postgresql://localhost:5433/xplanbox?user=xplanbox&password=xplanbox -Dusername=xplanbox -Dpassword='PWD'
+```
 
 ### xplan-dokumente-api-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlDokumentenApi=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
+```
+mvn clean test -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlDokumentenApi=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
+```
 
 ### xplan-manager-web-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xplan-manager-web -Dusername=xplanbox -Dpassword='PWD'
+```
+mvn clean test -Psystem-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xplan-manager-web -Dusername=xplanbox -Dpassword='PWD'
+```
 
 ### xplan-webservices-soapui-project
 
-> mvn clean test -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=https://xplanbox.lat-lon.de -DbaseUrlInspirePlu=https://xplanbox.lat-lon.de -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlMapServer=https://xplanbox.lat-lon.de -DbaseUrlMapProxy=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
-
+```
+mvn clean test -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=https://xplanbox.lat-lon.de -DbaseUrlInspirePlu=https://xplanbox.lat-lon.de -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlMapServer=https://xplanbox.lat-lon.de -DbaseUrlMapProxy=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
+```
 
 
 ## Ausführung im Docker container
@@ -34,24 +43,19 @@ docker run --env ... xplanbox/xplan-tests-soapui
 
 ### Umgebungsvariablen
 
-- `XPLAN_API_MANAGER_BASE_URL`
-- `XPLAN_API_MANAGER_USERNAME`
-- `XPLAN_API_MANAGER_PASSWORD`
-
-- `XPLAN_API_VALIDATOR_ENDPOINT`
-
-- `XPLAN_API_DOKUMENTE_BASE_URL` optional: XPlanDokumentenAPI Tests werden geskipped, wenn die Umgebungsvariable nicht gesetzt ist.
-
+- `XPLAN_DIENSTE_BASE_URL`
+- `XPLAN_DOKUMENTE_API_BASE_URL` optional: XPlanDokumentenAPI Tests werden geskipped, wenn die Umgebungsvariable nicht gesetzt ist.
+- `XPLAN_INSPIRE_PLU_BASE_URL`
+- `XPLAN_MANAGER_API_BASE_URL`
+- `XPLAN_MANAGER_API_USERNAME`
+- `XPLAN_MANAGER_API_PASSWORD`
 - `XPLAN_MANAGER_WEB_ENDPOINT`
-- `XPLAN_MANAGER_WEB_USERNAME`
 - `XPLAN_MANAGER_WEB_PASSWORD`
-
-- `XPLAN_BASE_URL_DIENSTE`
-- `XPLAN_BASE_URL_INSPIRE_PLU`
-- `XPLAN_BASE_URL_MAPSERVER`
-- `XPLAN_BASE_URL_MAPPROXY`
-
+- `XPLAN_MANAGER_WEB_USERNAME`
+- `XPLAN_MAPPROXY_BASE_URL`
+- `XPLAN_MAPSERVER_BASE_URL`
 - `XPLAN_SERVICES_API_KEY`
+- `XPLAN_VALIDATOR_API_BASE_URL`
 
 Optional, wenn die Tests der XPlanDB bei Ausführung der XPlanManagerAPI-SopaUI-Tests ausgeführt werden sollen:
 

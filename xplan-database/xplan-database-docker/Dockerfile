@@ -1,4 +1,6 @@
-FROM postgis/postgis:14-3.4
+# latest postgis/postgis:14-3.4 on 16.02.24
+FROM postgis/postgis@sha256:2ab44884bc8922c1d3a42c29a1ccd3d0d61536c6d48bd2f4ef122c2f33648114
+
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?

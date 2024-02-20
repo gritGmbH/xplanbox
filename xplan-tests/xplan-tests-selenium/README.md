@@ -13,14 +13,14 @@ mvn clean integration-test -Psystem-tests -DbaseUrlValidatorWeb=https://xplanbox
 Die Selenium Tests können in einem Docker Container ausgeführt werden
 
 ```
-docker run --env XPLAN_WEB_VALIDATOR_BASE_URL=... xplanbox/xplan-tests-selenium
+docker run --env XPLAN_VALIDATOR_WEB_BASE_URL=... xplanbox/xplan-tests-selenium
 ```
 
 ### Umgebungsvariablen
 
-- `XPLAN_WEB_VALIDATOR_BASE_URL`
-- `XPLAN_WEB_VALIDATOR_USERNAME`
-- `XPLAN_WEB_VALIDATOR_PASSWORD`
+- `XPLAN_VALIDATOR_WEB_BASE_URL`
+- `XPLAN_VALIDATOR_WEB_USERNAME`
+- `XPLAN_VALIDATOR_WEB_PASSWORD`
 
 Der Report im PDF Format kann zu einem S3 Bucket hochgeladen werden, dafür müssen folgende Umgebungsvariablen gesetzt werden:
 

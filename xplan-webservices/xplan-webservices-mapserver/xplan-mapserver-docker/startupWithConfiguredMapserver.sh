@@ -15,7 +15,10 @@ fi
 
 echo "[$(date -Iseconds)] Initializing mapserver config ..."
 
-cp /xplan-mapserver-docker/xplan-mapserver-config/mapserver.map $MS_MAPFILE
+echo "[$(date -Iseconds)] MapProxy config initialization..."
+
+defined_envs="$(printf '${%s} ' $(env | cut -d'=' -f1))"
+envsubst "$defined_envs" < /xplan-mapserver-docker/xplan-mapserver-config/mapserver.map > $MS_MAPFILE
 
 XPLAN_S3_BUCKET_NAME="${XPLAN_S3_BUCKET_NAME:-tobedefined}"
 AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:-tobedefined}"

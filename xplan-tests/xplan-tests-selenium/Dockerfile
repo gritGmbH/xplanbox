@@ -24,7 +24,8 @@ ADD maven/xplan-tests-pom.xml /xplanbox/xplan-tests/pom.xml
 
 WORKDIR /xplanbox/xplan-tests/xplan-tests-selenium
 
-ENV TZ=Europe/Berlin
+ENV TZ=Europe/Berlin \
+	GIT_REVISION=$GIT_REVISION
 
 # pre-fill local maven repo (including plugins)
 RUN mvn -B integration-test -Psystem-tests -Dit.test=NotExistingOne -Dfailsafe.failIfNoSpecifiedTests=false > /dev/null \
