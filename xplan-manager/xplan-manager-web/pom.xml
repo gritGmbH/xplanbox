@@ -19,7 +19,7 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
+        <groupId>net.ltgt.gwt.maven</groupId>
         <artifactId>gwt-maven-plugin</artifactId>
       </plugin>
       <plugin>
@@ -69,6 +69,38 @@
           </webResources>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-ban-duplicate-classes</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <banDuplicateClasses>
+                  <ignoreClasses>
+                    <ignoreClass>javax.activation.*</ignoreClass>
+                    <ignoreClass>javax.xml.stream.*</ignoreClass>
+                    <ignoreClass>org.apache.commons.logging.*</ignoreClass>
+                    <ignoreClass>org.w3c.dom.*</ignoreClass>
+                    <ignoreClass>org.eclipse.jdt.*</ignoreClass>
+                  </ignoreClasses>
+                  <scopes>
+                    <scope>compile</scope>
+                    <scope>provided</scope>
+                  </scopes>
+                  <findAllDuplicates>true</findAllDuplicates>
+                  <ignoreWhenIdentical>true</ignoreWhenIdentical>
+                </banDuplicateClasses>
+              </rules>
+              <fail>true</fail>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -80,6 +112,25 @@
     <dependency>
       <groupId>javax.el</groupId>
       <artifactId>el-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.gwtproject</groupId>
+      <artifactId>gwt-dev</artifactId>
+      <scope>provided</scope>
+      <exclusions>
+		  <exclusion>
+			  <groupId>javax.annotation</groupId>
+			  <artifactId>javax.annotation-api</artifactId>
+		  </exclusion>
+		  <exclusion>
+  			  <groupId>net.sourceforge.htmlunit</groupId>
+			  <artifactId>htmlunit</artifactId>
+		  </exclusion>
+		  <exclusion>
+  			  <groupId>org.mortbay.jasper</groupId>
+			  <artifactId>apache-el</artifactId>
+		  </exclusion>
+	  </exclusions>
     </dependency>
     <dependency>
       <groupId>org.gwtproject</groupId>
@@ -260,7 +311,7 @@
       <id>docker</id>
       <properties>
         <docker-image.skip>false</docker-image.skip>
-        <docker-contextTarFile.expectedSizeInMat10pct>363</docker-contextTarFile.expectedSizeInMat10pct>
+        <docker-contextTarFile.expectedSizeInMat10pct>121</docker-contextTarFile.expectedSizeInMat10pct>
       </properties>
       <dependencies>
         <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->

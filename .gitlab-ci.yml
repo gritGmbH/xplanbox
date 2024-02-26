@@ -98,12 +98,13 @@ maven-prepare-docker-contexts-web-apps:
 maven-prepare-docker-contexts-others:
   extends: .maven-prepare-docker-contexts
   variables:
-    mvnProjects: ':xplan-docker-tomcat,:xplan-docker-tomcat-gdal,:xplan-database-scripts,:xplan-mapproxy-docker,:xplan-mapserver-docker,:xplan-webservices-validator-wms,:xplan-services-docker,:xplan-tests-soapui'
+    mvnProjects: ':xplan-docker-tomcat,:xplan-docker-tomcat-gdal,:xplan-database-scripts,:xplan-mapproxy-docker,:xplan-mapserver-docker,:xplan-webservices-validator-wms,:xplan-services-docker,:xplan-tests-soapui,:xplan-tests-selenium'
   artifacts:
     paths: # 2024.02.02: ~432M
     - './xplan-docker/**/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-database/xplan-database-scripts/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-tests/xplan-tests-soapui/target/docker/**/tmp/docker-build.tar.gz'
+    - './xplan-tests/xplan-tests-selenium/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-webservices/xplan-webservices-mapproxy/xplan-mapproxy-docker/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-webservices/xplan-webservices-mapserver/xplan-mapserver-docker/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-webservices/xplan-webservices-services/xplan-services-docker/target/docker/**/tmp/docker-build.tar.gz'

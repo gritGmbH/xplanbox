@@ -21,7 +21,7 @@
     <deegree3.version>3.5.6-SNAPSHOT</deegree3.version>
     <xplanung.regeln.version>1.1.6</xplanung.regeln.version>
     <xplanung.regeln.berlin.version>0.4</xplanung.regeln.berlin.version>
-    <gwt.version>2.10.0</gwt.version>
+    <gwt.version>2.11.0</gwt.version>
     <geotools.version>29.2</geotools.version>
     <jacoco.argLine />
     <jacoco.skip>true</jacoco.skip>
@@ -632,36 +632,23 @@
           <artifactId>maven-war-plugin</artifactId>
           <version>3.4.0</version>
         </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
+		<plugin>
+          <groupId>net.ltgt.gwt.maven</groupId>
           <artifactId>gwt-maven-plugin</artifactId>
-          <version>${gwt.version}</version>
+          <version>1.1.0</version>
+          <extensions>true</extensions>
           <configuration>
-            <disableCastChecking>true</disableCastChecking>
-            <disableClassMetadata>true</disableClassMetadata>
-            <extraJvmArgs>-Xmx500M</extraJvmArgs>
-            <module>${gwt.moduleName}</module>
-            <runTarget>index.html</runTarget>
-            <hostedWebapp>${project.build.directory}/${project.build.finalName}</hostedWebapp>
-            <copyWebapp>true</copyWebapp>
+            <moduleName>${gwt.moduleName}</moduleName>
+            <jvmArgs>-Xmx500M</jvmArgs>
           </configuration>
           <executions>
             <execution>
-              <id>compile</id>
-              <phase>test-compile</phase>
               <goals>
                 <goal>compile</goal>
               </goals>
             </execution>
-            <execution>
-              <id>clean</id>
-              <phase>clean</phase>
-              <goals>
-                <goal>clean</goal>
-              </goals>
-            </execution>
           </executions>
-        </plugin>
+		</plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>jaxb2-maven-plugin</artifactId>

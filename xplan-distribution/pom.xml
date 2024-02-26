@@ -68,37 +68,13 @@
     <!-- CLI > /bin -->
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-manager-cli</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-validator-cli</artifactId>
+      <artifactId>xplan-cli-tools</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-transform-cli</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-validatedb-cli</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-evaluation-schema-synchronize-cli</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-update-data-cli</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>

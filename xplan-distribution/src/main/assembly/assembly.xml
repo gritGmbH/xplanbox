@@ -42,12 +42,8 @@
       <outputDirectory>bin</outputDirectory>
       <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
       <includes>
-        <include>de.latlon.product.xplanbox:xplan-manager-cli:zip:*</include>
-        <include>de.latlon.product.xplanbox:xplan-validator-cli:zip:*</include>
+        <include>de.latlon.product.xplanbox:xplan-cli-tools:zip:*</include>
         <include>de.latlon.product.xplanbox:xplan-transform-cli:zip:*</include>
-        <include>de.latlon.product.xplanbox:xplan-validatedb-cli:zip:*</include>
-        <include>de.latlon.product.xplanbox:xplan-evaluation-schema-synchronize-cli:zip:*</include>
-        <include>de.latlon.product.xplanbox:xplan-update-data-cli:zip:*</include>
       </includes>
     </dependencySet>
     <dependencySet>
