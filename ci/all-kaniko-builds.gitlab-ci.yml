@@ -170,7 +170,7 @@ kaniko:xplan-tests-soapui:
 kaniko:xplan-tests-selenium:
   extends: .kaniko:build
   variables:
-    dockerImageName: xplan-tests-soapui
+    dockerImageName: xplan-tests-selenium
     tarGzFile: xplan-tests/xplan-tests-selenium/target/docker/xplanbox/xplan-tests-selenium/tmp/docker-build.tar.gz
   needs:
     - maven-prepare-docker-contexts-others
