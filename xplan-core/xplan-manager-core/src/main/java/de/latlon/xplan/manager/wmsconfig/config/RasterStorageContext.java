@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.wmsconfig.config;
 
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.storage.filesystem.DeegreeRasterCacheCleaner;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.wmsconfig.raster.config.DeegreeRasterConfigManager;
@@ -57,14 +58,16 @@ public class RasterStorageContext {
 
 	@Bean
 	public RasterStorage rasterStorage(ManagerConfiguration managerConfiguration,
-			WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation) {
+			WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation,
+			DeegreeRasterCacheCleaner deegreeRasterCacheCleaner) {
 		final Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
 		switch (managerConfiguration.getRasterConfigurationType()) {
 			case gdal:
 			case mapserver:
-				return new GdalRasterStorage(dataDirectory, rasterEvaluation, new GdalRasterAdapter());
+				return new GdalRasterStorage(dataDirectory, rasterEvaluation, new GdalRasterAdapter(),
+						deegreeRasterCacheCleaner);
 			default:
-				return new FileSystemStorage(dataDirectory, rasterEvaluation);
+				return new FileSystemStorage(dataDirectory, rasterEvaluation, deegreeRasterCacheCleaner);
 		}
 	}
 

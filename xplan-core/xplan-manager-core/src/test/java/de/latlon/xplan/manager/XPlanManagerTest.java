@@ -24,8 +24,8 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.storage.filesystem.DeegreeRasterCacheCleaner;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.Rechtsstand;
@@ -126,7 +126,10 @@ public class XPlanManagerTest {
 		when(wmsWorkspaceWrapper.getLocation()).thenReturn(wmsWorkspaceDirectory.getAbsoluteFile());
 		RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
 		XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(rasterEvaluation);
-		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
+		DeegreeRasterCacheCleaner deegreeRasterCacheCleaner = new DeegreeRasterCacheCleaner(
+				managerConfiguration.getWorkspaceReloaderConfiguration());
+		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation,
+				deegreeRasterCacheCleaner);
 		RasterConfigManager rasterConfigManager = createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
 		ApplicationEventPublisher applicationEventPublisher = createApplicationEventPublisher();
 		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterConfigManager,
@@ -146,9 +149,11 @@ public class XPlanManagerTest {
 	}
 
 	private RasterStorage createRasterStorage(ManagerConfiguration managerConfiguration,
-			WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation) {
+			WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation,
+			DeegreeRasterCacheCleaner deegreeRasterCacheCleaner) {
 		// TODO turn into autowired field
-		return new RasterStorageContext().rasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
+		return new RasterStorageContext().rasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation,
+				deegreeRasterCacheCleaner);
 	}
 
 	private RasterEvaluation createRasterEvaluation(ManagerConfiguration managerConfiguration) {

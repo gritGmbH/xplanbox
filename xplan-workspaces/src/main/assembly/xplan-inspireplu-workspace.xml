@@ -31,7 +31,7 @@
       <outputDirectory>.</outputDirectory>
       <filtered>false</filtered>
       <includes>
-        <include>appschemas/inspireplu/PlannedLandUse.xsd</include>
+        <include>appschemas/inspireplu/**</include>
         <include>datasources/feature/inspireplu.xml</include>
         <include>datasources/feature/inspireplu_view.xml</include>
         <include>jdbc/inspireplu.xml</include>

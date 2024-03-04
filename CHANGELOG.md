@@ -2,12 +2,20 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+## Version 7.1.2 (2024-02-29)
+
+### Fehlerbehebungen
+- Fehler beim Start des XPlanInspirePluWFS aufgrund einer nicht abwärtskompatible Änderungen im Schema behoben
+- Fehler in den Liniensignaturen für BP_StrassenbegrenzungsLinie, BP_EinfahrtsbereichLinie und BP_BereichOhneEinAusfahrtLinie behoben
+- Fehler beim Löschen von Planwerken unter dem Betriebssystem Windows behoben
+- Fehlende Konfiguration _xplan-validator-workspace_ im Distributionspaket ergänzt
+
 ## Version 7.1.1 (2024-02-09)
 
 ### Fehlerbehebungen
 - Fehler bei der Installation der XPlanManagerAPI, XPlanValidatorAPI und XPlanDokumenteAPI im Tomcat behoben
 - Fehler beim Editieren eines Plans, bei dem sonstPlanArt gesetzt ist und keine Ganzzahl beinhaltet behoben
-- Fehler bei der Flächenschlussprüfung, wenn der Geltungsbereich von Bereich und PlanFeature nicht übereinstimmen behoben
+- Fehler bei der Flächenschlussprüfung behoben, wenn der Geltungsbereich von BP_Bereich und BP_Plan aus mehreren Geometrien bestehen und diese nicht übereinstimmen
 
 ## Version 7.1 (2023-12-13)
 

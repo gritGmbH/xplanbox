@@ -44,21 +44,22 @@
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                               xlink:href="../../symbols/berohneeinausflin_sym.svg"/>
               <Format>svg</Format>
+              <Fill>
+                <SvgParameter name="fill">#000000</SvgParameter>
+              </Fill>
               <Stroke>
                 <SvgParameter name="stroke">#000000</SvgParameter>
                 <SvgParameter name="stroke-opacity">1.0</SvgParameter>
                 <SvgParameter name="stroke-width">0.2</SvgParameter>
               </Stroke>
-              <Fill>
-                <SvgParameter name="fill">#000000</SvgParameter>
-              </Fill>
             </Mark>
             <Size>2.7</Size>
+            <Rotation>180</Rotation>
           </Graphic>
           <Gap>5</Gap>
         </GraphicStroke>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">0</sed:PerpendicularOffset>
+      <sed:PerpendicularOffset type="Edged">-0.7</sed:PerpendicularOffset>
     </LineSymbolizer>
   </Rule>
 </FeatureTypeStyle>

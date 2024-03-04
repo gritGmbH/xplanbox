@@ -43,6 +43,7 @@ import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.storage.filesystem.DeegreeRasterCacheCleaner;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
@@ -330,6 +331,11 @@ public class BasicSpringConfig {
 	@Bean
 	public WorkspaceReloader workspaceReloader(ManagerConfiguration managerConfiguration) {
 		return new WorkspaceReloader(managerConfiguration.getWorkspaceReloaderConfiguration());
+	}
+
+	@Bean
+	public DeegreeRasterCacheCleaner deegreeRasterCacheCleaner(ManagerConfiguration managerConfiguration) {
+		return new DeegreeRasterCacheCleaner(managerConfiguration.getWorkspaceReloaderConfiguration());
 	}
 
 	@Bean

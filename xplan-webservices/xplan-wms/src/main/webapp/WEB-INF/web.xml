@@ -158,6 +158,12 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
 
+  <servlet>
+    <servlet-name>removefromcache</servlet-name>
+    <servlet-class>de.latlon.xplan.raster.RemoveFromRasterCacheServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>getAttachment</servlet-name>
     <url-pattern>/getAttachment</url-pattern>
@@ -182,9 +188,15 @@
     <servlet-name>config</servlet-name>
     <url-pattern>/config/*</url-pattern>
   </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>planwerkwmsapi</servlet-name>
     <url-pattern>/planwerkwmsapi/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>removefromcache</servlet-name>
+    <url-pattern>/removecache/*</url-pattern>
   </servlet-mapping>
 
   <welcome-file-list>

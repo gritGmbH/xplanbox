@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.storage.config;
 
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.storage.filesystem.DeegreeRasterCacheCleaner;
 import de.latlon.xplan.manager.storage.filesystem.FilesystemStorageCleanUpManager;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import org.springframework.context.annotation.Bean;
@@ -36,8 +37,9 @@ import org.springframework.context.annotation.Profile;
 public class StorageCleanUpContext {
 
 	@Bean
-	public StorageCleanUpManager storageCleanUpManager(WmsWorkspaceWrapper wmsWorkspaceWrapper) {
-		return new FilesystemStorageCleanUpManager(wmsWorkspaceWrapper.getDataDirectory());
+	public StorageCleanUpManager storageCleanUpManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			DeegreeRasterCacheCleaner deegreeRasterCacheCleaner) {
+		return new FilesystemStorageCleanUpManager(wmsWorkspaceWrapper.getDataDirectory(), deegreeRasterCacheCleaner);
 	}
 
 }
