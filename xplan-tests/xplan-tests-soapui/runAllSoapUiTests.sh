@@ -24,7 +24,7 @@ mvn test -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project.xml -D
 
 if [ -z ${XPLAN_API_DOKUMENTE_BASE_URL+x} ];
 then
-	echo "XPlanDokumentenAPI Tests are skipped!"
+	echo "XPlanDokumenteAPI Tests are skipped!"
 else
 	mvn test -Psystem-tests -DtestFileName=xplan-api-dokumente-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_API_MANAGER_BASE_URL -DbaseUrlDokumentenApi=$XPLAN_API_DOKUMENTE_BASE_URL -Dusername=$XPLAN_API_MANAGER_USERNAME -Dpassword=$XPLAN_API_MANAGER_PASSWORD
 fi

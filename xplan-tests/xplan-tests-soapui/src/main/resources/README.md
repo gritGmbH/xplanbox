@@ -63,7 +63,7 @@ Die Ausführung des SoapUI Projekt erfolgt, wie in dem [xplan-api-manager Projek
 
 ### xplan-api-dokumente Projekt
 
-Dieses SoapUI Projekt testet die Komponente XPlanDokumentenAPI.
+Dieses SoapUI Projekt testet die Komponente XPlanDokumenteAPI.
 
 Die Ausführung des SoapUI Projekt erfolgt, wie in dem [xplan-api-manager Projekt](#xplan-api-manager-projekt) beschrieben. Es gelten auch die dort beschriebenen Hinweise.
 

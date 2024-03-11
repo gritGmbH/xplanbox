@@ -1,4 +1,4 @@
-# XPlanDokumentenAPI TestSuite
+# XPlanDokumenteAPI TestSuite
 ## Import Data TestCase
 * POST BP 6.0 importPlan
 * Property Transfer

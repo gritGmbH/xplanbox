@@ -40,7 +40,7 @@ pipeline {
             }
          }
       }
-      stage('Test XPlanDokumentenAPI') {
+      stage('Test XPlanDokumenteAPI') {
          steps {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')

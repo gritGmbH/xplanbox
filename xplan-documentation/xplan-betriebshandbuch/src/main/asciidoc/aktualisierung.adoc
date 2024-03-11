@@ -74,14 +74,15 @@ Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versione
 [cols="3*^", options="header,footer"]
 |===
 | xPlanBox Version | Änderungen an den Workspaces/ der Konfiguration? | Änderungen am Datenbankschema?
-| 6.0              | ja (<<aktualisierung-version-6.0, Details>>)  | ja (<<aktualisierung-version-6.0, Details>>)
-| 6.0.1              | ja (<<aktualisierung-version-6.0.1, Details>>)  | ja (<<aktualisierung-version-6.0.1, Details>>)
-| 7.0             | ja (<<aktualisierung-version-7.0, Details>>)  | ja (<<aktualisierung-version-7.0, Details>>)
-| 7.0.1             | ja (<<aktualisierung-version-7.0.1, Details>>)  | nein
-| 7.0.2             | ja (<<aktualisierung-version-7.0.2, Details>>)  | nein
-| 7.1             | ja (<<aktualisierung-version-7.1, Details>>)  | ja (<<aktualisierung-version-7.1, Details>>)
-| 7.1.1             | nein | nein
-| 7.1.2             | ja (<<aktualisierung-version-7.1.2, Details>>) | nein
+| 6.0   (<<aktualisierung-version-6.0, Details>>)       | ja   | ja
+| 6.0.1 (<<aktualisierung-version-6.0.1, Details>>)     | ja   | ja
+| 7.0   (<<aktualisierung-version-7.0, Details>>)       | ja   | ja
+| 7.0.1 (<<aktualisierung-version-7.0.1, Details>>)     | ja   | nein
+| 7.0.2 (<<aktualisierung-version-7.0.2, Details>>)     | ja   | nein
+| 7.1   (<<aktualisierung-version-7.1, Details>>)       | ja   | ja
+| 7.1.1 (<<aktualisierung-version-7.1.1, Details>>)     | nein | nein
+| 7.1.2 (<<aktualisierung-version-7.1.2, Details>>)     | ja   | nein
+| 7.1.3 (<<aktualisierung-version-7.1.3, Details>>)     | ja   | nein
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |===
 
@@ -313,7 +314,21 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 
 TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
-NOTE: Um das Löschen von Rasterdaten unter dem Betriebssystem Windows sicher zu stellen, muss der Workspace-Reload, wie im Kapitel <<automatischer-workspace-reload>> beschrieben, konfiguriert sein.
+NOTE: Um das Löschen von Rasterdaten unter dem Betriebssystem Windows sicherzustellen, muss der Workspace-Reload, wie im Kapitel <<automatischer-workspace-reload>> beschrieben, konfiguriert sein.
+
+[[aktualisierung-version-7.1.3]]
+=== Aktualisierung auf die Version 7.1.3
+
+Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
+
+* Austausch der Webapps:
+** _xplan-wms.war_
+** _xplan-api-manager.war_
+** _xplan-manager-web.war_
+
+TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
+
+NOTE: Um das Löschen von Rasterdaten unter dem Betriebssystem Windows sicherzustellen, muss der Workspace-Reload, wie im Kapitel <<automatischer-workspace-reload>> beschrieben, konfiguriert sein.
 
 === Troubleshooting
 

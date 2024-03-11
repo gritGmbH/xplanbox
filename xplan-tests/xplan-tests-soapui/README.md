@@ -40,7 +40,7 @@ docker run --env ... xplanbox/xplan-tests-soapui
 
 - `XPLAN_API_VALIDATOR_ENDPOINT`
 
-- `XPLAN_API_DOKUMENTE_BASE_URL` optional: XPlanDokumentenAPI Tests werden geskipped, wenn die Umgebungsvariable nicht gesetzt ist.
+- `XPLAN_API_DOKUMENTE_BASE_URL` optional: XPlanDokumenteAPI Tests werden geskipped, wenn die Umgebungsvariable nicht gesetzt ist.
 
 - `XPLAN_MANAGER_WEB_ENDPOINT`
 - `XPLAN_MANAGER_WEB_USERNAME`
@@ -86,4 +86,4 @@ Eine Notification kann nach der Ausführung der Tests zu einem Slack Chanel gesc
 
  * Um die von den SoapUI-Tests verwendeten Plänen identifizieren zu können, werden alle Pläne, die importiert werden nach folgendem Schema umbenannt: _\<NAME>\_SoapUI-\<KOMPONENTE>_. Mit folgenden Platzhaltern:
    * _\<NAME>_: Name des Plans
-   * _\<KOMPONENTE>_: Name der zu testenden Komponente, z.B.: XPlanManagerAPI, XPlanValidatorAPI, XPlanDokumentenAPI
+   * _\<KOMPONENTE>_: Name der zu testenden Komponente, z.B.: XPlanManagerAPI, XPlanValidatorAPI, XPlanDokumenteAPI

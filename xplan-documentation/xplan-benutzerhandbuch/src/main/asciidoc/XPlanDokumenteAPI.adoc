@@ -1,0 +1,21 @@
+[[xplandokumente-api]]
+=== XPlanDokumenteAPI
+
+Die REST-API der Komponente XPlanDokumenteAPI ermöglicht es, die in einem <<xplangmlfile,Plan referenzierten Dokumente>> über eine Web-API abzurufen. Zur Vereinfachung des Zugriffs auf die Begleitdokumente eines Plans stellt die xPlanBox die XPlanDokumentenAPI bereit. Wenn die optionale Komponente XPlanDokumentenAPI installiert und konfiguriert ist, dann werden alle im XPlanGML referenzierten Begleitdokumente über die URL der XPlanDokumentenAPI bereitgestellt.
+
+Die REST-API der Komponente XPlanDokumenteAPI stellt folgende Ressourcen bereit:
+
+[width="100%",cols="25%,15%,60%",options="header",]
+|===
+|Ressource |HTTP Methode |Beschreibung
+|`/` |`GET` |Beschreibung der Schnittstelle als OpenAPI 3.0 Dokument
+|`/info` |`GET` |Informationen zur Schnittstelle und aktiven Konfiguration
+|`/status` |`GET` |Status der Komponente
+|`/dokument/{planId}` |`GET` |Abfrage der Dateien zu einem Plan
+|`/dokument/{planId}/{fileName}` |`GET` |Abfrage eines Dokuments
+|`/dokument/{planId}/{fileName}` |`HEAD` |Abfrage der Metadaten zu einem Dokument
+|===
+
+Eine vollständige Beschreibung der HTTP Status-Codes und der unterstützten Inhaltstypen (media types) und Formate (Encodings) für die jeweiligen Ressourcen sind in der OpenAPI-Schnittstellenbeschreibung enthalten.
+
+NOTE: Die URL für die REST-API der Komponente XPlanDokumenteAPI setzt sich wie folgt zusammen: http://<host>:<port>/xplan-api-dokumente/xdokumente/api/v1/. Die URL für die xPlanBox-Demo lautet https://xplanbox.lat-lon.de/xdokumente/api/v1/.

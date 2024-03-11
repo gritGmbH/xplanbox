@@ -174,31 +174,33 @@ Raster-Konfigurationstyp abhängig.
 
 IMPORTANT: Dies kann nur zentral für die xPlanBox konfiguriert und nicht durch den Nutzer geändert werden. Hinweise zur Konfiguration sind im Betriebshandbuch zu finden.
 
-Unterschieden wird dabei zwischen den Konfigurationstypen _GeoTiff_ und
-__GDAL__:
+Unterschieden wird dabei zwischen den Konfigurationstypen _geotiff_ und
+__gdal__:
 
 
-*GeoTiff* - Konfigurationstyp:
+*geotiff* - Konfigurationstyp:
 
-  * Es werden ausschließlich Rasterdaten im https://www.ogc.org/standards/geotiff[GeoTiff] Format unterstützt.
+  * Es werden ausschließlich Rasterdaten im https://www.ogc.org/standards/geotiff[GeoTIFF] Format unterstützt.
 
-*GDAL* - Konfigurationstyp:
+*gdal* - Konfigurationstyp:
 
-  * Grundsätzlich können alle durch https://gdal.org/drivers/raster/index.html[GDAL] unterstützten Rasterdatenformate auch durch deegree und somit dem XPlanManager
-  verarbeitet werden.
-  * Getestet wurden bisher nur die Formate GeoTiff und PNG.
+  * Es werden zusätzlich zu GeoTIFF die Formate TIFF und PNG mit World-File unterstützt.
 
 Folgende Voraussetzung werden an die einzelnen Formate gestellt:
 
-*GeoTiff*:
+*GeoTIFF*:
 
-  * GeoTiff-Dateien liegen als gekachelte GeoTiff-Dateien vor.
-  * GeoTiff-Dateien liegen in dem Koordinatenreferenzsystem vor, welches
+  * GeoTIFF-Dateien liegen als gekachelte GeoTiff-Dateien vor.
+  * GeoTIFF-Dateien liegen in dem Koordinatenreferenzsystem vor, welches
   für den XPlanManager konfiguriert ist.
-  * GeoTiff-Dateien enthalten ihre räumliche Ausdehnung als Metatags innerhalb der Datei.
-  * Zur Optimierung der Antwortzeit beim Zugriff auf die GeoTiff-Dateien
-  wird empfohlen, in den GeoTiff-Dateien Overlays mit niedriger
+  * GeoTIFF-Dateien enthalten ihre räumliche Ausdehnung als Metatags innerhalb der Datei.
+  * Zur Optimierung der Antwortzeit beim Zugriff auf die GeoTIFF-Dateien
+  wird empfohlen, in den GeoTIFF-Dateien Overlays mit niedriger
   Auflösung hinzuzufügen.
+
+*TIFF*:
+
+* TIFF-Dateien enthalten ihre räumliche Ausdehnung in dem ausgelagerten World-File (tfw-Datei).
 
 *PNG*:
 
@@ -207,8 +209,8 @@ Folgende Voraussetzung werden an die einzelnen Formate gestellt:
   * Transparenz ist als Alphakanal je Band (RGBA) oder als "NoData Value" angegeben.
   * PNG-Dateien liegen in dem Koordinatenreferenzsystem vor, welches für
   den XPlanManager konfiguriert ist.
-  * PNG-Dateien enthalten ihre räumliche Ausdehnung in einer
-  ausgelagerten PGW-Datei (PNG World File).
+  * PNG-Dateien enthalten ihre räumliche Ausdehnung in dem
+  ausgelagerten World-File (pgw-Datei).
   * Wenn das Kommandozeilentool __XPlanManagerCLI__ verwendet wird, muss in
   der Datei _aux.xml_ das Koordinatenreferenzsystem der PNG-Datei definiert
   sein. Für den XPlanManagerWeb ist dies keine Voraussetzung, da der

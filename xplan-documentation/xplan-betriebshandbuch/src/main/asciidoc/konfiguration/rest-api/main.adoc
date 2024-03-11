@@ -1,7 +1,7 @@
 [[konfiguration-rest-api]]
 == Konfiguration der REST-Schnittstellen
 
-Die xPlanBox stellt die folgenden REST-Schnittstellen bereit: die XPlanValidatorAPI,XPlanManagerAPI und XPlanDokumentenAPI.
+Die xPlanBox stellt die folgenden REST-Schnittstellen bereit: die XPlanValidatorAPI,XPlanManagerAPI und XPlanDokumenteAPI.
 
 TIP: Die REST-Schnittstellen von XPlanValidatorAPI und XPlanManagerAPI sind über Spring Security abgesichert. Um für einen Aufruf der REST-Schnittstellen die  erfolgreiche Authentifizierung zu prüfen, muss das Spring-Profil `enableSecurity` für die Komponenten aktiviert werden.
 
@@ -119,14 +119,14 @@ documentationUrl=https://xplanbox.lat-lon.de/xPlanBox-Benutzerhandbuch/
 ----
 
 [[konfiguration-document-api]]
-=== XPlanDokumentenAPI
-Die Konfiguration der XPlanDokumentenAPI erfolgt in der Datei _<XPLANBOX_CONFIG>/dokumentenApiConfiguration.properties_.
+=== XPlanDokumenteAPI
+Die Konfiguration der XPlanDokumenteAPI erfolgt in der Datei _<XPLANBOX_CONFIG>/dokumentenApiConfiguration.properties_.
 
-Folgende Konfiguration kann für die XPlanDokumentenAPI vorgenommen werden.
+Folgende Konfiguration kann für die XPlanDokumenteAPI vorgenommen werden.
 
 ==== API URL
 
-URL der XPlanDokumentenAPI, die im OpenAPI Dokument ausgegeben wird.
+URL der XPlanDokumenteAPI, die im OpenAPI Dokument ausgegeben wird.
 Beispiel:
 
 ----
