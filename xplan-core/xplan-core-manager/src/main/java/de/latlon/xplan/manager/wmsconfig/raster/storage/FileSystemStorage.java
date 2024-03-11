@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.storage.StorageEvent;
+import de.latlon.xplan.manager.storage.filesystem.DeegreeRasterCacheCleaner;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,9 +42,13 @@ public class FileSystemStorage implements RasterStorage {
 
 	private final RasterEvaluation rasterEvaluation;
 
-	public FileSystemStorage(Path dataDirectory, RasterEvaluation rasterEvaluation) {
+	private final DeegreeRasterCacheCleaner deegreeRasterCacheCleaner;
+
+	public FileSystemStorage(Path dataDirectory, RasterEvaluation rasterEvaluation,
+			DeegreeRasterCacheCleaner deegreeRasterCacheCleaner) {
 		this.dataDirectory = dataDirectory;
 		this.rasterEvaluation = rasterEvaluation;
+		this.deegreeRasterCacheCleaner = deegreeRasterCacheCleaner;
 	}
 
 	@Override
@@ -62,6 +67,7 @@ public class FileSystemStorage implements RasterStorage {
 	@Override
 	public void deleteRasterFile(int planId, String fileName, StorageEvent storageEvent) {
 		final String rasterLayerFileName = planId + "_" + fileName;
+		deegreeRasterCacheCleaner.clearCache(rasterLayerFileName);
 		Path file = dataDirectory.resolve(rasterLayerFileName);
 		LOG.info("- Entferne Raster-Datei '" + file + "'...");
 		try {

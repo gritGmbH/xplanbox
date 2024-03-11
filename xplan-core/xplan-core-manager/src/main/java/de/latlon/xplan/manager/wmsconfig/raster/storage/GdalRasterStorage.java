@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.storage.StorageEvent;
+import de.latlon.xplan.manager.storage.filesystem.DeegreeRasterCacheCleaner;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 
@@ -38,8 +39,9 @@ public class GdalRasterStorage extends FileSystemStorage {
 
 	private GdalRasterAdapter rasterAdapter;
 
-	public GdalRasterStorage(Path dataDirectory, RasterEvaluation rasterEvaluation, GdalRasterAdapter rasterAdapter) {
-		super(dataDirectory, rasterEvaluation);
+	public GdalRasterStorage(Path dataDirectory, RasterEvaluation rasterEvaluation, GdalRasterAdapter rasterAdapter,
+			DeegreeRasterCacheCleaner deegreeRasterCacheCleaner) {
+		super(dataDirectory, rasterEvaluation, deegreeRasterCacheCleaner);
 		this.rasterAdapter = rasterAdapter;
 	}
 

@@ -45,15 +45,17 @@ public class FilesystemStorageCleanUpManager implements StorageCleanUpManager {
 
 	private final Path dataDirectory;
 
-	public FilesystemStorageCleanUpManager(Path dataDirectory) {
+	private final DeegreeRasterCacheCleaner deegreeRasterCacheCleaner;
+
+	public FilesystemStorageCleanUpManager(Path dataDirectory, DeegreeRasterCacheCleaner deegreeRasterCacheCleaner) {
 		this.dataDirectory = dataDirectory;
+		this.deegreeRasterCacheCleaner = deegreeRasterCacheCleaner;
 	}
 
 	@Override
 	public void deleteAll(String id, StorageEvent storageEvent) throws StorageException {
 		String prefix = id + "_";
-		deleteFilesWithPrefix((path, basicFileAttributes) -> path.getFileName().toString().startsWith(prefix),
-				storageEvent);
+		deleteFilesWithPrefix((path, basicFileAttributes) -> extractTileStoreId(path).startsWith(prefix), storageEvent);
 	}
 
 	private void deleteFilesWithPrefix(BiPredicate<Path, BasicFileAttributes> filenameFilter, StorageEvent storageEvent)
@@ -65,6 +67,8 @@ public class FilesystemStorageCleanUpManager implements StorageCleanUpManager {
 		for (Path file : filesToDelete) {
 			LOG.info("- Entferne Raster-Datei '" + file + "'...");
 			try {
+				String tileStoreId = extractTileStoreId(file);
+				deegreeRasterCacheCleaner.clearCache(tileStoreId);
 				byte[] bytes = Files.readAllBytes(file);
 				Files.delete(file);
 				storageEvent.addDeletedPath(file, bytes);
@@ -75,6 +79,13 @@ public class FilesystemStorageCleanUpManager implements StorageCleanUpManager {
 				throw new StorageException("File could not be removed from filesystem.", e);
 			}
 		}
+	}
+
+	private static String extractTileStoreId(Path file) {
+		String fileName = file.getFileName().toString();
+		if (fileName.contains("."))
+			return fileName.substring(0, fileName.lastIndexOf("."));
+		return fileName;
 	}
 
 	private List<Path> findFilesToDelete(BiPredicate<Path, BasicFileAttributes> filenameFilter)

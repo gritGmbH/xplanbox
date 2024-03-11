@@ -22,6 +22,7 @@
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
                   xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:sed="http://www.deegree.org/se"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se https://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
   <Name>vollflaechig</Name>
@@ -54,33 +55,6 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../../symbols/einfberlin_as.svg"/>
-              <Format>svg</Format>
-              <Fill>
-                <SvgParameter name="fill">#000000</SvgParameter>
-              </Fill>
-              <Stroke>
-                <SvgParameter name="stroke">#000000</SvgParameter>
-                <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-                <SvgParameter name="stroke-width">0.1</SvgParameter>
-              </Stroke>
-            </Mark>
-            <Size>2</Size>
-          </Graphic>
-        </GraphicStroke>
-        <SvgParameter name="deegree-graphicstroke-position-percentage">0</SvgParameter>
-      </Stroke>
-      <PerpendicularOffset type="Standard">0.9</PerpendicularOffset>
-    </LineSymbolizer>
-    <LineSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Stroke>
-        <GraphicStroke>
-          <Graphic>
-            <Mark>
-              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                               xlink:href="../../symbols/einfberlin_es.svg"/>
               <Format>svg</Format>
               <Fill>
@@ -93,11 +67,40 @@
               </Stroke>
             </Mark>
             <Size>2</Size>
+            <Rotation>180</Rotation>
+          </Graphic>
+        </GraphicStroke>
+        <SvgParameter name="deegree-graphicstroke-position-percentage">0</SvgParameter>
+      </Stroke>
+      <sed:PerpendicularOffset type="Standard">-0.9</sed:PerpendicularOffset>
+    </LineSymbolizer>
+    <LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <GraphicStroke>
+          <Graphic>
+            <Mark>
+              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                              xlink:href="../../symbols/einfberlin_as.svg"/>
+              <Format>svg</Format>
+              <Fill>
+                <SvgParameter name="fill">#000000</SvgParameter>
+              </Fill>
+              <Stroke>
+                <SvgParameter name="stroke">#000000</SvgParameter>
+                <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+                <SvgParameter name="stroke-width">0.1</SvgParameter>
+              </Stroke>
+            </Mark>
+            <Size>2</Size>
+            <Rotation>180</Rotation>
           </Graphic>
         </GraphicStroke>
         <SvgParameter name="deegree-graphicstroke-position-percentage">99.9</SvgParameter>
       </Stroke>
-      <PerpendicularOffset type="Standard">0.9</PerpendicularOffset>
+      <sed:PerpendicularOffset type="Standard">-0.9</sed:PerpendicularOffset>
     </LineSymbolizer>
   </Rule>
 </FeatureTypeStyle>

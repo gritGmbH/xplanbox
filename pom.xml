@@ -82,7 +82,7 @@
             <artifactId>license-maven-plugin</artifactId>
             <inherited>false</inherited>
             <executions>
-              <execution> <!-- generated list used by xplan-betriebshandbuch --> 
+              <execution> <!-- generated list used by xplan-betriebshandbuch -->
                 <id>aggregateLicenses</id>
                 <phase>generate-resources</phase>
                 <goals>

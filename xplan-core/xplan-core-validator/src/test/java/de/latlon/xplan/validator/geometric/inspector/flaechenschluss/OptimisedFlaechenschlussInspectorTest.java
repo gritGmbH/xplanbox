@@ -400,4 +400,51 @@ public class OptimisedFlaechenschlussInspectorTest {
 		assertThat(flaechenschlussInspector.getWarnings().size(), is(0));
 	}
 
+	@Test
+	public void testCheckFlaechenschluss_PolygonPatch_doppelt_nicht_zusammenhaengend() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_60,
+				BP_Plan);
+		readFeaturesFromGml("../../patches/BP_6-0_false_2.2.2.1_PolygonPatch_doppelt_nicht_zusammenhaengend.gml",
+				OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+	}
+
+	@Ignore
+	@Test
+	public void testCheckFlaechenschluss_PolygonPatch_nicht_zusammenhaengend_Flaechenschlussobjekt() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_60,
+				BP_Plan);
+		readFeaturesFromGml(
+				"../../patches/BP_6-0_false_2.2.2.1_PolygonPatch_nicht_zusammenhaengend_Flaechenschlussobjekt.gml",
+				OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_PolygonPatch_Ueberlappung() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_60,
+				BP_Plan);
+		readFeaturesFromGml("../../patches/BP_6-0_false_2.2.2.1_PolygonPatch_Ueberlappung.gml",
+				OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+	}
+
+	@Ignore
+	@Test
+	public void testCheckFlaechenschluss_PolygonPatch_Flaechenschlussobjekt() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_60,
+				BP_Plan);
+		readFeaturesFromGml("../../patches/BP_6-0_true_PolygonPatch_Flaechenschlussobjekt.gml",
+				OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+	}
+
 }

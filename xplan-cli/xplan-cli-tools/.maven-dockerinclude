@@ -1,2 +1,2 @@
-resynthesize.sh
+docker-entrypoint.sh
 target/xplan-cli-tools-*.tar

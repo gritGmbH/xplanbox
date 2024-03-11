@@ -22,6 +22,8 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
 
 ENV TZ=Europe/Berlin
+ENV XPLANBOX_VOLUMES=/xplanbox/xplan-volumes
+
 RUN apk --no-cache add bash
 
 ADD target/xplan-cli-tools-*.tar /tmp
@@ -29,10 +31,12 @@ ADD target/xplan-cli-tools-*.tar /tmp
 RUN mkdir /xplanbox \
     && mv /tmp/xplan-cli-tools-* /xplanbox/xplan-cli \
     && mkdir /xplanbox/xplan-cli/logs \
-    && chmod a+xw /xplanbox/xplan-cli/logs
+    && chmod a+xw /xplanbox/xplan-cli/logs \
+    && mkdir $XPLANBOX_VOLUMES \
+    && chmod a+xw $XPLANBOX_VOLUMES
 
 COPY --from=volumeInitBuilder /xplan-volume-init/ /xplan-volume-init
-COPY resynthesize.sh /xplanbox/
+COPY docker-entrypoint.sh /xplanbox/
 
-ENTRYPOINT ["/bin/bash"]
-CMD ["/xplanbox/resynthesize.sh"]
+ENTRYPOINT ["/xplanbox/docker-entrypoint.sh"]
+CMD ["help"]

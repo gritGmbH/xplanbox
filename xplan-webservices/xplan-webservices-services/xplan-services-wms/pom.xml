@@ -64,6 +64,14 @@
       <artifactId>deegree-services-config</artifactId>
     </dependency>
     <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-tilestore-geotiff</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-tilestore-gdal</artifactId>
+    </dependency>
+    <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-webservices-core</artifactId>
     </dependency>

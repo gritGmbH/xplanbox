@@ -132,6 +132,58 @@ public class GeometricValidatorImplTest {
 		assertThat(report.getBadGeometries().size(), is(0));
 	}
 
+	@Test
+	public void testValidateGeometry_PolygonPatch_doppelt_nicht_zusammenhaengend() throws Exception {
+		XPlanArchive archive = getTestArchive(getClass()
+			.getResourceAsStream("patches/BP_6-0_false_2.2.2.1_PolygonPatch_doppelt_nicht_zusammenhaengend.gml"));
+		GeometricValidatorResult report = (GeometricValidatorResult) validateGeometryAndReturnReport(archive,
+				SKIP_OPTIONS);
+
+		assertThat(report.isValid(), is(false));
+		assertThat(report.getErrors().size(), is(1));
+		assertThat(report.getWarnings().size(), is(0));
+		assertThat(report.getBadGeometries().size(), is(1));
+	}
+
+	@Test
+	public void testValidateGeometry_PolygonPatch_nicht_zusammenhaengend_Flaechenschlussobjekt() throws Exception {
+		XPlanArchive archive = getTestArchive(getClass().getResourceAsStream(
+				"patches/BP_6-0_false_2.2.2.1_PolygonPatch_nicht_zusammenhaengend_Flaechenschlussobjekt.gml"));
+		GeometricValidatorResult report = (GeometricValidatorResult) validateGeometryAndReturnReport(archive,
+				SKIP_OPTIONS);
+
+		assertThat(report.isValid(), is(false));
+		assertThat(report.getErrors().size(), is(1));
+		assertThat(report.getWarnings().size(), is(0));
+		assertThat(report.getBadGeometries().size(), is(1));
+	}
+
+	@Test
+	public void testValidateGeometry_PolygonPatch_Ueberlappung() throws Exception {
+		XPlanArchive archive = getTestArchive(
+				getClass().getResourceAsStream("patches/BP_6-0_false_2.2.2.1_PolygonPatch_Ueberlappung.gml"));
+		GeometricValidatorResult report = (GeometricValidatorResult) validateGeometryAndReturnReport(archive,
+				SKIP_OPTIONS);
+
+		assertThat(report.isValid(), is(false));
+		assertThat(report.getErrors().size(), is(1));
+		assertThat(report.getWarnings().size(), is(0));
+		assertThat(report.getBadGeometries().size(), is(1));
+	}
+
+	@Test
+	public void testValidateGeometry_PolygonPatch_Flaechenschlussobjekt() throws Exception {
+		XPlanArchive archive = getTestArchive(
+				getClass().getResourceAsStream("patches/BP_6-0_true_PolygonPatch_Flaechenschlussobjekt.gml"));
+		GeometricValidatorResult report = (GeometricValidatorResult) validateGeometryAndReturnReport(archive,
+				SKIP_OPTIONS);
+
+		assertThat(report.isValid(), is(true));
+		assertThat(report.getErrors().size(), is(0));
+		assertThat(report.getWarnings().size(), is(0));
+		assertThat(report.getBadGeometries().size(), is(0));
+	}
+
 	private XPlanArchive getTestArchive(String name) throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		return archiveCreator.createXPlanArchiveFromZip(name, getClass().getResourceAsStream("/testdata/" + name));

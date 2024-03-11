@@ -385,19 +385,20 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(GeltungsbereichFeature geltungsbereichFeature,
 			List<FeatureUnderTest> flaechenschlussFeatures, DefaultSurface flaechenschlussUnion, TestStep testStep) {
 		List<? extends SurfacePatch> patches = flaechenschlussUnion.getPatches();
-		PolygonPatch patch = (PolygonPatch) patches.get(0);
-		List<Ring> interiorRings = patch.getInteriorRings();
-		for (Ring interiorRing : interiorRings) {
-			List<FeatureUnderTest> intersectingFlaechenschlussFeatures = collectFlaechenschlussFeaturesIntersectingTheInteriorRing(
-					flaechenschlussFeatures, interiorRing);
-			LOG.debug("Analyse flaechenschluss features intersection {}", WKTWriter.write(interiorRing));
-			LOG.debug("Flaechenschluss Features: \n  " + intersectingFlaechenschlussFeatures.stream()
-				.map(flaechenschlussFeature -> flaechenschlussFeature.getFeatureId() + "("
-						+ flaechenschlussFeature.getFeatureType() + ")")
-				.collect(Collectors.joining("\n  ")));
-			List<ControlPoint> controlPointsInIntersection = collectControlPointsIntersectingTheInteriorRing(
-					interiorRing, geltungsbereichFeature, intersectingFlaechenschlussFeatures);
-			checkControlPointsAndAddFailures(controlPointsInIntersection, testStep);
+		for (SurfacePatch patch : patches) {
+			List<Ring> interiorRings = ((PolygonPatch) patch).getInteriorRings();
+			for (Ring interiorRing : interiorRings) {
+				List<FeatureUnderTest> intersectingFlaechenschlussFeatures = collectFlaechenschlussFeaturesIntersectingTheInteriorRing(
+						flaechenschlussFeatures, interiorRing);
+				LOG.debug("Analyse flaechenschluss features intersection {}", WKTWriter.write(interiorRing));
+				LOG.debug("Flaechenschluss Features: \n  " + intersectingFlaechenschlussFeatures.stream()
+					.map(flaechenschlussFeature -> flaechenschlussFeature.getFeatureId() + "("
+							+ flaechenschlussFeature.getFeatureType() + ")")
+					.collect(Collectors.joining("\n  ")));
+				List<ControlPoint> controlPointsInIntersection = collectControlPointsIntersectingTheInteriorRing(
+						interiorRing, geltungsbereichFeature, intersectingFlaechenschlussFeatures);
+				checkControlPointsAndAddFailures(controlPointsInIntersection, testStep);
+			}
 		}
 	}
 
@@ -886,19 +887,21 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private List<CurveSegment> getSegments(Surface surface) {
 		List<? extends SurfacePatch> patches = surface.getPatches();
-		if (patches.size() == 1) {
-			if (patches.get(0) instanceof PolygonPatch) {
-				PolygonPatch patch = (PolygonPatch) patches.get(0);
-				List<CurveSegment> curveSegments = new ArrayList<>();
+
+		List<CurveSegment> curveSegments = new ArrayList<>();
+		patches.forEach(p -> {
+			if (p instanceof PolygonPatch) {
+				PolygonPatch patch = (PolygonPatch) p;
 				curveSegments.addAll(patch.getExteriorRing().getCurveSegments());
 				for (Ring ir : patch.getInteriorRings()) {
 					curveSegments.addAll(ir.getCurveSegments());
 				}
-				return curveSegments;
 			}
-			throw new IllegalArgumentException(Messages.getMessage("SURFACE_IS_NON_PLANAR"));
-		}
-		throw new IllegalArgumentException(Messages.getMessage("SURFACE_MORE_THAN_ONE_PATCH"));
+			else {
+				throw new IllegalArgumentException(Messages.getMessage("SURFACE_IS_NON_PLANAR"));
+			}
+		});
+		return curveSegments;
 	}
 
 }

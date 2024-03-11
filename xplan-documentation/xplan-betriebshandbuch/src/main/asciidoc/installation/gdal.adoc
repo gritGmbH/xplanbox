@@ -31,10 +31,7 @@ http://windows.microsoft.com/de-de/windows/32-bit-and-64-bit-windows[Windows]
 entsprechen. Als Download-Format sollten die kompilierten Binaries in
 einem einzelnen ZIP-Archiv gewählt werden.
 
-NOTE: Die MSVC-Version mit der GDAL kompiliert wurde, setzt die jeweilige
-Version des Microsoft C/C++ Runtime Library (CRT) voraus. Ab der Version
-MSVC 11.0 (1700) werden Windows XP and Windows Server 2003 nicht mehr
-unterstützt. Die Version des Microsoft C/C++ Runtime Library (CRT) kann über die Windows Systemsteuerung angezeigt werden.
+NOTE: Die MSVC-Version mit der GDAL kompiliert wurde, setzt die jeweilige Version des Microsoft C/C++ Runtime Library (CRT) voraus. Welche Version des Microsoft C/C++ Runtime Library (CRT) installiert ist, kann über die Windows Systemsteuerung angezeigt werden.
 
 Das ZIP-Archiv kann an einem beliebigen Ort entpackt werden.
 
@@ -43,6 +40,7 @@ _Systemsteuerung->System und Sicherheit->System->Erweiterte Systemeinstellungen-
 müssen folgende Einstellungen vorgenommen werden:
 
 * Setzen der Umgebungsvariable `JAVA_HOME` mit der Pfadangabe zum Installationsverzeichnis des JDK, z. B.: `C:\Program Files\Java\jdk-11.0.11`
-* Setzen der Umgebungsvariable `GDAL_DATA` mit der Pfadangabe zum Verzeichnis in dem die Datei _gcs.csv_ enthalten ist, z. B.: `C:\Program Files (x86)\gdal\bin\gdal-data`
+* Setzen der Umgebungsvariable `GDAL_DATA` mit der Pfadangabe zum Verzeichnis _gdal-data_, z. B.: `C:\Program Files (x86)\gdal\bin\gdal-data`
+* Setzen der Umgebungsvariable `PROJ_LIB` mit der Pfadangabe zum Verzeichnis mit der Datei _proj.db_, z. B.: `C:\Program Files (x86)\gdal\bin\proj9\share`
 * Zur Umgebungsvariable _PATH_ müssen zwei Pfade hinzugefügt werden (Annahme: Entpacktes ZIP-Archiv von GISInternals wurde genutzt):
 `<GDAL-INSTALLATIONSORDNER>\bin;<GDAL-INSTALLATIONSORDNER>\bin\gdal\java`

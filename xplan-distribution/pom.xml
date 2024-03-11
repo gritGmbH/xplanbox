@@ -215,6 +215,13 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-workspaces</artifactId>
+      <version>${project.version}</version>
+      <classifier>xplan-validator-workspace</classifier>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <classifier>xplan-webservices-validator-wms-memory-workspace</classifier>

@@ -12,6 +12,7 @@ Die ZIP-Archive mit den deegree Workspaces (s. <<installationskomponenten>>) mü
 * _xplan-services-wfs-workspace.zip_
 * _xplan-services-wfs-syn-workspace.zip_
 * _xplan-services-wms-workspace.zip_
+* _xplan-validator-workspace.zip_ (nur erforderlich in Kombination mit dem _xplan-webservices-validator-wms-sql-workspace.zip_)
 * _xplan-webservices-validator-wms-memory-workspace.zip_ *oder* _xplan-webservices-validator-wms-sql-workspace.zip_ (siehe <<konfiguration-xplanvalidatorwms>>)
 * _xplan-webservices-inspireplu-workspace.zip_ (optional)
 
@@ -52,6 +53,7 @@ Die WAR-Archive der REST-API werden über eine weitere Tomcat-Instanz _API-Tomca
 
 TIP: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp der Instanz _Anwendungs-Tomcat_ zu installieren. Das WAR-Archiv _xplan-webpages-default.war_ muss dafür im Verzeichnis _ROOT_ entpackt werden.
 
+[[installation-webapp-properties]]
 ==== Verknüpfung von Webapp und Workspace
 
 Für die Tomcat-Instanz _Dienste-Tomcat_ muss eine _webapp.properties_ Datei angelegt werden.
@@ -63,11 +65,10 @@ Diese enthält die Verknüpfung zwischen der Webapp und dem Workspace.
 /xplan-services-wms=xplan-services-wms-workspace
 /xplan-services-wfs-syn=xplan-services-wfs-syn-workspace
 /xplan-services-wfs=xplan-services-wfs-workspace
-/xplan-webservices-validator-wms=xplan-webservices-validator-wms-sql-workspace
+/xplan-webservices-validator-wms=xplan-webservices-validator-wms-memory-workspace <1>
 /xplan-webservices-inspireplu=xplan-webservices-inspireplu-workspace
 ----
-
-Weitere Informationen zur Konfiguration des XPlanValidatorWMS sind im Kapitel <<konfiguration-xplanvalidatorwms>> zu finden.
+<1> dieser Workspace wird als Vorgabewert konfiguriert, alternativ kann der _xplan-webservices-validator-wms-sql-workspace_ verwendet werden (weitere Informationen zur Konfiguration des XPlanValidatorWMS sind im Kapitel <<konfiguration-xplanvalidatorwms>> zu finden).
 
 [[kommandozeilen-anwendungen]]
 ==== Kommandozeilen-Anwendungen
@@ -101,11 +102,11 @@ Das Datenbankschema für die Auswertung muss durch Ausführen der SQL-Skripte au
 . _02_create_tables.sql_
 . _03_create_trigger-function.sql_
 . _04_create_trigger.sql_
-. _05_grant_user.sql_ (zuvor ist die Variable $DB_USER im Skript durch den Namen des Datenbanknutzers auszutauschen, mit dem der XPlanManager und die XPlanDienste auf die XPlaNDB zugreifen, s. Abschnitt "Konfiguration der Datenbank" im Betriebshandbuch)
+. _05_grant_user.sql_ (zuvor muss die Variable `$DB_USER` im Skript durch den Namen des Datenbanknutzers ausgetauscht werden, mit dem der XPlanManager und die XPlanDienste auf die XPlanDB zugreifen (s. Abschnitt <<konfiguration-der-datenbank>>).
 
 Die Skripte erstellen eine Kopie der drei XPlanSyn-Schemas in den Schemas _xplanevaluationxplansynpre_, _xplanevaluationxplansyn_ und _xplanevaluationxplansynarchive_ sowie eine Log-Tabelle _xplanevaluation.planTableLog_.
 
-Die Log-Tabelle wird beim Importieren, Editieren und Löschen von Plänen über den XPlanManager mit einer Historie der ausgeführten Operationen auf die einzelnen Pläne gefüllt und dient als Basis für die regelmäßige Synchronisierung des XPlanSyn-Schema und des Auswerteschemas.
+Die Log-Tabelle wird beim Importieren, Editieren und Löschen von Plänen über den XPlanManager mit einer Historie der ausgeführten Operationen auf die einzelnen Pläne gefüllt und dient als Basis für die regelmäßige Synchronisierung des Auswerteschemas mit dem XPlanSyn-Schema.
 
 ===== Synchronisation des Auswerteschemas
 

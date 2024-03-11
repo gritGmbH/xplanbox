@@ -112,6 +112,8 @@ Folgende Prüfungen werden in Abhängigkeit vom Geometrietyp durchgeführt, es h
   ** Innere Ringe liegen innerhalb der vom äußeren Ring umschlossenen Fläche
   ** Schnittmenge der von zwei inneren Ringen gebildeten Flächen ist leer
   ** keine doppelten Stützpunkte (äußere und innere Ringe)
+  ** Patches sind frei von Überlappungen
+  ** Patches sind zusammenhängend
  * MultiPolygone:
   ** kein Schnitt zwischen einzelnen Polygonen
   ** alle für Polygone geltenden Prüfungen für jedes einzelne Polygon

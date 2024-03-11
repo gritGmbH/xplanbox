@@ -28,7 +28,7 @@ git fetch origin $srcBranchOrTag
 
 echo "Fetching from OpenCoDE..."
 git remote add remote-opencode git@gitlab.opencode.de:diplanung/ozgxplanung.git
-git fetch remote-opencode main
+git fetch remote-opencode
 
 echo "Preparing code drop"
 

@@ -62,7 +62,9 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -94,6 +96,8 @@ import static org.deegree.geometry.primitive.segments.CurveSegment.CurveSegmentT
  * <li>Polygon/PolygonPatch: Schnittmenge der von zwei inneren Ringen gebildeten Flächen
  * ist leer (Fehler)</li>
  * <li>MultiPolygon: Kein Schnitt zwischen einzelnen Polygonen (Fehler)</li>
+ * <li>PolygonPatches: frei von Überlappungen (Fehler)</li>
+ * <li>PolygonPatches: zusammenhängend (Fehler)</li>
  * </p>
  *
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
@@ -272,10 +276,11 @@ class XPlanGeometryInspector implements GeometryInspector {
 	private void inspect(Surface geom) throws GeometryInspectionException {
 		switch (geom.getSurfaceType()) {
 			case Surface: {
-				// nothing to do (all patches have been checked already)
+				inspect(geom.getPatches());
 				break;
 			}
 			case Polygon: {
+				inspect(geom.getPatches());
 				org.deegree.geometry.primitive.Polygon polygon = (org.deegree.geometry.primitive.Polygon) geom;
 				PolygonPatch firstOriginalPatch = polygon.getPatches().get(0);
 				inspect(firstOriginalPatch);
@@ -286,6 +291,70 @@ class XPlanGeometryInspector implements GeometryInspector {
 						format("XPlanGeometryInspector_invalid_unsupportedGeometry", geom.getSurfaceType().name()));
 				createError(msg);
 		}
+	}
+
+	private void inspect(List<? extends SurfacePatch> patches) {
+		if (patches.size() == 1)
+			return;
+		Optional<? extends SurfacePatch> nonPolygonPatch = patches.stream()
+			.filter(patch -> patch.getSurfacePatchType() != SurfacePatch.SurfacePatchType.POLYGON_PATCH)
+			.findAny();
+		if (nonPolygonPatch.isPresent()) {
+			String msg = createMessage(format("XPlanGeometryInspector_invalid_unsupportedGeometry",
+					nonPolygonPatch.get().getSurfacePatchType()));
+			createError(msg);
+			return;
+		}
+		LinkedList<org.locationtech.jts.geom.Geometry> jtsPolygonPatches = patches.stream()
+			.map(patch -> jtsParser.convertToJtsPolygon((PolygonPatch) patch))
+			.collect(Collectors.toCollection(LinkedList::new));
+
+		int numberOfPatchesBefore = jtsPolygonPatches.size();
+
+		org.locationtech.jts.geom.Geometry jtsPatch = jtsPolygonPatches.poll();
+		int numberOfPatchesAfter = jtsPolygonPatches.size();
+		while (numberOfPatchesBefore > numberOfPatchesAfter) {
+			numberOfPatchesBefore = jtsPolygonPatches.size();
+			List<org.locationtech.jts.geom.Geometry> intersectingPatches = findIntersectingPatches(jtsPolygonPatches,
+					jtsPatch);
+			jtsPolygonPatches.removeAll(intersectingPatches);
+
+			org.locationtech.jts.geom.Geometry unionWithPatch = createUnion(jtsPatch, intersectingPatches);
+			jtsPolygonPatches.add(unionWithPatch);
+			numberOfPatchesAfter = jtsPolygonPatches.size();
+		}
+		if (jtsPolygonPatches.size() > 1) {
+			String msg = createMessage(format("XPlanGeometryInspector_invalid_patches_nichtZusammenhaengend"));
+			createError(msg);
+		}
+	}
+
+	private org.locationtech.jts.geom.Geometry createUnion(org.locationtech.jts.geom.Geometry jtsPatch,
+			List<org.locationtech.jts.geom.Geometry> intersectingPatches) {
+		org.locationtech.jts.geom.Geometry unionWithPatch = jtsPatch;
+		for (org.locationtech.jts.geom.Geometry intersectingPatch : intersectingPatches) {
+			unionWithPatch = unionWithPatch.union(intersectingPatch);
+		}
+		return unionWithPatch;
+	}
+
+	private List<org.locationtech.jts.geom.Geometry> findIntersectingPatches(
+			LinkedList<org.locationtech.jts.geom.Geometry> jtsPolygonPatches,
+			org.locationtech.jts.geom.Geometry jtsPatch1) {
+		List<org.locationtech.jts.geom.Geometry> intersectingPatches = new ArrayList<>();
+		for (org.locationtech.jts.geom.Geometry jtsPatch2 : jtsPolygonPatches) {
+			if (jtsPatch1 != jtsPatch2) {
+				if (jtsPatch1.touches(jtsPatch2)) {
+					intersectingPatches.add(jtsPatch2);
+				}
+				else if (jtsPatch1.intersects(jtsPatch2)) {
+					String msg = createMessage(format("XPlanGeometryInspector_invalid_patches_ueberlappung"));
+					createError(msg);
+					intersectingPatches.add(jtsPatch2);
+				}
+			}
+		}
+		return intersectingPatches;
 	}
 
 	private void inspect(PolygonPatch patch) {

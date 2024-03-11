@@ -17,8 +17,8 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
 |xplan-services-wfs-syn.war |xplan-services-wfs-syn-workspace.zip
 |xplan-services-wfs.war |xplan-services-wfs-workspace.zip
 |xplan-services-wms.war |xplan-services-wms-workspace.zip
-|xplan-validator-web.war |xplan-validator-config.zip
-|xplan-validator-api.war |xplan-validator-config.zip
+|xplan-validator-web.war |xplan-validator-config.zip, xplan-validator-workspace.zip
+|xplan-validator-api.war |xplan-validator-config.zip, xplan-validator-workspace.zip
 |xplan-webpages-default.war |-
 |xplan-webservices-inspireplu.war |xplan-webservices-inspireplu-workspace.zip
 |xplan-webservices-validator-wms.war |xplan-webservices-validator-wms-memory-workspace.zip, xplan-webservices-validator-wms-sql-workspace.zip

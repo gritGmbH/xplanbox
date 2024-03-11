@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 echo "XPlan volume initialization..."
 
@@ -42,7 +43,7 @@ then
 fi
 
 cp -r /xplan-volume-init/xplan-docker-volumes/* $XPLANBOX_VOLUMES
-chmod -R a+w $XPLANBOX_VOLUMES
+chmod -R a+w $XPLANBOX_VOLUMES/*
 
 XPLAN_WMS_URL_PUBLIC="${XPLAN_WMS_URL_PUBLIC:-tobedefined}"
 XPLAN_VALIDATORWMS_URL_PUBLIC="${XPLAN_VALIDATORWMS_URL_PUBLIC:-tobedefined}"

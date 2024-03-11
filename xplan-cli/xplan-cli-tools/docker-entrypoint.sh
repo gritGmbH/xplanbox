@@ -1,15 +1,13 @@
-#!/bin/sh
+#!/bin/bash
+set -e
 
 echo "xplan-cli-docker initialization..."
-
-export XPLANBOX_VOLUMES=/xplanbox/xplan-volumes
 
 /xplan-volume-init/setupVolumes.sh
 
 export DEEGREE_WORKSPACE_ROOT=$XPLANBOX_VOLUMES/xplan-workspaces
 export XPLANBOX_CONFIG=$XPLANBOX_VOLUMES/xplan-manager-config
 
-echo ""
-echo "reSynthesizer..."
+echo "Execute: xpb $@"
 
-exec /xplanbox/xplan-cli/bin/xpb admin resynthesize
+exec /xplanbox/xplan-cli/bin/xpb "$@"

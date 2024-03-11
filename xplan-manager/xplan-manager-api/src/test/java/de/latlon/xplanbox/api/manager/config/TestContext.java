@@ -24,7 +24,6 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
-import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.InternalIdRetrieverConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
@@ -32,6 +31,7 @@ import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanExporter;
+import de.latlon.xplan.manager.storage.filesystem.DeegreeRasterCacheCleaner;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanEditManager;
@@ -57,8 +57,6 @@ import de.latlon.xplanbox.api.manager.v1.DefaultApi;
 import de.latlon.xplanbox.api.manager.v1.InfoApi;
 import de.latlon.xplanbox.api.manager.v1.PlanApi;
 import de.latlon.xplanbox.api.manager.v1.PlansApi;
-import liquibase.integration.spring.SpringLiquibase;
-
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.persistence.FeatureStore;
@@ -241,9 +239,10 @@ public class TestContext {
 	}
 
 	@Bean
-	public RasterStorage rasterStorage(WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation) {
+	public RasterStorage rasterStorage(WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation,
+			DeegreeRasterCacheCleaner deegreeRasterCacheCleaner) {
 		Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
-		return new FileSystemStorage(dataDirectory, rasterEvaluation);
+		return new FileSystemStorage(dataDirectory, rasterEvaluation, deegreeRasterCacheCleaner);
 	}
 
 	@Bean
@@ -357,6 +356,14 @@ public class TestContext {
 		WorkspaceReloader workspaceReloader = mock(WorkspaceReloader.class);
 		when(workspaceReloader.reloadWorkspace(1)).thenReturn(true);
 		return workspaceReloader;
+	}
+
+	@Bean
+	@Primary
+	public DeegreeRasterCacheCleaner deegreeRasterCacheCleaner() {
+		DeegreeRasterCacheCleaner deegreeRasterCacheCleaner = mock(DeegreeRasterCacheCleaner.class);
+		when(deegreeRasterCacheCleaner.clearCache("1_raster")).thenReturn(true);
+		return deegreeRasterCacheCleaner;
 	}
 
 	@PostConstruct

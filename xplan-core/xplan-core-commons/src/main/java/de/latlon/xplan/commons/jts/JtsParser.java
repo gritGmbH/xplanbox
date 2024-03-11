@@ -27,6 +27,7 @@ import org.deegree.geometry.linearization.MaxErrorCriterion;
 import org.deegree.geometry.primitive.Curve;
 import org.deegree.geometry.primitive.Point;
 import org.deegree.geometry.primitive.Ring;
+import org.deegree.geometry.primitive.patches.PolygonPatch;
 import org.deegree.geometry.primitive.segments.Arc;
 import org.deegree.geometry.primitive.segments.Circle;
 import org.deegree.geometry.primitive.segments.CurveSegment;
@@ -91,9 +92,30 @@ public class JtsParser {
 	 * types than {@link LineStringSegment}, {@link Arc} and {@link Circle}
 	 */
 	public LinearRing getJTSRing(Ring ring) {
-
 		Ring linearizedRing = (Ring) linearizer.linearize(ring, crit);
-		List<Coordinate> coordinates = new LinkedList<Coordinate>();
+		return convertToJtsRing(linearizedRing);
+	}
+
+	public Polygon getJTSPolygon(LinearRing interiorJTSRing) {
+		return jtsFactory.createPolygon(interiorJTSRing, null);
+	}
+
+	/**
+	 * Returns a JTS geometry for the given {@link PolygonPatch}.
+	 * @param polygonPatch {@link PolygonPatch}, never <code>null</code>
+	 * @return JTS geometry, never <code>null</code>
+	 */
+	public Polygon convertToJtsPolygon(PolygonPatch polygonPatch) {
+		Ring exteriorRing = polygonPatch.getExteriorRing();
+		List<Ring> interiorRings = polygonPatch.getInteriorRings();
+		LinearRing shell = convertToJtsRing(exteriorRing);
+		LinearRing[] holes = interiorRings.stream().map(ring -> convertToJtsRing(ring)).toArray(LinearRing[]::new);
+		return jtsFactory.createPolygon(shell, holes);
+
+	}
+
+	private LinearRing convertToJtsRing(Ring linearizedRing) {
+		List<Coordinate> coordinates = new LinkedList<>();
 		for (Curve member : linearizedRing.getMembers()) {
 			for (CurveSegment segment : member.getCurveSegments()) {
 				for (Point point : ((LineStringSegment) segment).getControlPoints()) {
@@ -102,10 +124,6 @@ public class JtsParser {
 			}
 		}
 		return jtsFactory.createLinearRing(coordinates.toArray(new Coordinate[coordinates.size()]));
-	}
-
-	public Polygon getJTSPolygon(LinearRing interiorJTSRing) {
-		return jtsFactory.createPolygon(interiorJTSRing, null);
 	}
 
 }

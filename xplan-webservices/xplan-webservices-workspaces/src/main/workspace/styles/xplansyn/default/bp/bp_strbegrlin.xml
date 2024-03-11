@@ -44,7 +44,7 @@
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
       </Stroke>
-      <sed:PerpendicularOffset type="Edged">0.5</sed:PerpendicularOffset>
+      <sed:PerpendicularOffset type="Edged">-0.5</sed:PerpendicularOffset>
     </LineSymbolizer>
     <LineSymbolizer uom="meter">
       <Geometry>

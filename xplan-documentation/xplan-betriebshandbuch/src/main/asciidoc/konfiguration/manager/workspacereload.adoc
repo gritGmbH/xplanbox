@@ -3,21 +3,22 @@
 
 Der XPlanManager kann nach jedem Import, jeder Änderung oder jedem
 Löschvorgang eines Planwerks automatisch einen Workspace-Reload des XPlanWMS/XPlanWerkWMS
-auslösen. Dadurch werden Änderungen an Rasterplänen sofort im WMS sichtbar.
+auslösen. Dadurch werden Änderungen an Rasterplänen sofort im XPlanWMS sichtbar.
 
-In der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ müssen folgende Felder gefüllt
-werden:
+In der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ müssen folgende Elemente gesetzt werden:
 
-.Konfigurationselemente in der managerConfiguration.properties Datei:
+.Konfigurationselemente in der _managerConfiguration.properties_ Datei:
 [source,properties]
 ----
 workspaceReloadUrls=<XPLANWMS-URLS> <1>
 workspaceReloadApiKey=<API-KEY> <2>
 workspaceReloadAction=[ALL,RELOAD,PLANWERKWMS] <3>
 ----
-<1> ein oder mehrere URLs (kommasepariert), wenn mehrere Instanzen des XPlanWMS/XPlanWerkWMS hinter einem Load-Balancer betrieben werden
+<1> Angabe ein oder mehrerer URLs (kommasepariert), z. B. wenn mehrere Instanzen des XPlanWMS/XPlanWerkWMS hinter einem Load-Balancer betrieben werden
 <2> API-Key für die Authentifizierung
 <3> definiert wie die Dienste aktualisiert werden, mit `ALL` (Vorgabewert) werden die Workspace-Konfigurationen aller Dienste neu geladen (`RELOAD`) und der XPlanWerkWMS aktualisiert (`PLANWERKWMS`), so dass einzelne XPlanWerkWMS Endpunkte entfernt werden können. Mit `RELOAD` und `PLANWERKWMS` können diese Aktualisierungen auch getrennt aufgerufen werden.
+
+CAUTION: Wenn der XPlanWMS mit deegree unter dem *Betriebssystem Windows* verwendet wird, ist die Konfiguration für den Workspace-Reload erforderlich, da ansonsten Rasterdaten nicht aus dem Workspace gelöscht werden können.
 
 .Beispiel für mehrere URLs für das Element `workspaceReloadUrls`:
 [source,properties]
