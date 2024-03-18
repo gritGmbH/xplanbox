@@ -70,13 +70,17 @@ Bei dem Hinzufügen einer Rasterbasis wird ohne Angabe des Typs ("Keine Auswahl"
 
 ==== XPlanManagerWeb - Hinzufügen von einer Datei xplan.gml über die Editorfunktion im XPlanManagerWeb resultiert in korrupten XPlanArchiv
 
-Wird ein Text, Dokument oder eine Rasterbasis mit dem Namen _xplan.gml_ über die Editorfunktion des XPlanManagerWeb hinzugefügt und gespeichert, kann dieses XPlanArchiv danach nicht mehr geöffnet werden. Beim wiederholten Aufruf der Editorfunktion zeigt das System dann den Fehler "500" an.
+Wird ein Text, Dokument oder eine Rasterbasis mit dem Namen _xplan.gml_ über die Editorfunktion des XPlanManagerWeb hinzugefügt und gespeichert, kann dieses XPlanArchiv danach nicht mehr geöffnet werden. Beim nochmaligen Aufruf der Editorfunktion zeigt das System dann den HTTP-Statusfehler "500" an.
 
 IMPORTANT: Der Fehler kann nicht in der xPlanBox behoben werden! Das XPlanArchiv muss aus der Datenhaltung entfernt, korrigiert und dann erneut über den XPlanManager importiert werden.
 
+==== XPlanDokumenteAPI - Abruf des World-Files bei GeoTIFF nicht möglich
+
+Bei Import eines Plans mit einer im XPlanGML referenzierte GeoTIFF-Datei als Rasterbasis und zusätzlich auch einem referenzierten World-File (tfw-Datei) ist die tfw-Datei nicht über die XPlanDokumenteAPI abfragbar. Wird die im exportierten XPlanGML angegebene URL aufgerufen, kann die tfw-Datei nicht abgerufen werden und ein HTTP-Statusfehler "404 - Not Found" wird von der XPlanDokumentenAPI zurückgegeben.
+
 ==== XPlanValidatorAPI - Verwendung von vollqualifizierten Pfaden im HTTP-Header "X-Filename"
 
-Wird der HTTP-Header "X-Filename" mit einem vollqualifizierten Pfad angegeben, kommt es bei der Anfrage eines Reports im Format PDF zu einem HTTP-Statusfehler 500.
+Wird der HTTP-Header "X-Filename" mit einem vollqualifizierten Pfad angegeben, kommt es bei der Anfrage eines Reports im Format PDF zu einem HTTP-Statusfehler "500".
 
 Der Fehler kann dadurch umgangen werden, dass im HTTP-Header nur der Dateiname angegeben wird. Der Fehler tritt nicht auf, wenn über den HTTP-Header "Accept" Json oder XML angefragt werden.
 

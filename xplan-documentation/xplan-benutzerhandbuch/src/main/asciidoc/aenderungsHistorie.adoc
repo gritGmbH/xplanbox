@@ -2,11 +2,20 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
+[[Aenderungshistorie-7.1.3]]
+=== Version 7.1.3
+
+==== Fehlerbehebungen
+- Fehler beim Löschen von Planwerken mit PNG-Dateien als Rasterdaten unter dem Betriebssystem Windows behoben
+
+==== Sicherheitsupdates
+- Aktualisierung von Bibliotheken mit bekannten Sicherheitsmängeln, u.a. den PostgreSQL-JDBC-Treiber
+
 [[Aenderungshistorie-7.1.2]]
 === Version 7.1.2
 
 ==== Fehlerbehebungen
-- Fehler beim Start des XPlanInspirePluWFS aufgrund einer nicht abwärtskompatible Änderungen im Schema behoben
+- Fehler beim Start des XPlanInspirePluWFS aufgrund einer nicht abwärtskompatiblen Änderung im Schema behoben
 - Fehler in den Liniensignaturen für BP_StrassenbegrenzungsLinie, BP_EinfahrtsbereichLinie und BP_BereichOhneEinAusfahrtLinie behoben
 - Fehler beim Löschen von Planwerken unter dem Betriebssystem Windows behoben
 - Fehlende Konfiguration _xplan-validator-workspace_ im Distributionspaket ergänzt

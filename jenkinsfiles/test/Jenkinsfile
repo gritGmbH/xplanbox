@@ -41,7 +41,7 @@ pipeline {
             }
          }
       }
-      stage('SoapUI-Test XPlanDokumentenAPI') {
+      stage('SoapUI-Test XPlanDokumenteAPI') {
          steps {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')

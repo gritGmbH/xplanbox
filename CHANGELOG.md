@@ -2,10 +2,18 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+## Version 7.1.3 (2024-03-08)
+
+### Fehlerbehebungen
+- Fehler beim Löschen von Planwerken mit PNG-Dateien als Rasterdaten unter dem Betriebssystem Windows behoben
+
+### Sicherheitsupdates
+- Aktualisierung von Bibliotheken mit bekannten Sicherheitsmängeln, u.a. den PostgreSQL-JDBC-Treiber 
+
 ## Version 7.1.2 (2024-02-29)
 
 ### Fehlerbehebungen
-- Fehler beim Start des XPlanInspirePluWFS aufgrund einer nicht abwärtskompatible Änderungen im Schema behoben
+- Fehler beim Start des XPlanInspirePluWFS aufgrund einer nicht abwärtskompatiblen Änderung im Schema behoben
 - Fehler in den Liniensignaturen für BP_StrassenbegrenzungsLinie, BP_EinfahrtsbereichLinie und BP_BereichOhneEinAusfahrtLinie behoben
 - Fehler beim Löschen von Planwerken unter dem Betriebssystem Windows behoben
 - Fehlende Konfiguration _xplan-validator-workspace_ im Distributionspaket ergänzt

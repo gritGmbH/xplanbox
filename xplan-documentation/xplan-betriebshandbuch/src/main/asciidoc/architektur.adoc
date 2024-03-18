@@ -12,7 +12,7 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 * <<xplanmanager-api, XPlanManagerAPI>>
 * <<xplanvalidator-web, XPlanValidatorWeb>> inkl. <<xplanvalidator-wms, XPlanValidatorWMS>>
 * <<xplanvalidator-api, XPlanValidatorAPI>>
-* <<xplandokumenten-api, XPlanDokumentenAPI>>
+* <<xplandokumente-api, XPlanDokumenteAPI>>
 * <<xplanwms, XPlanWMS, XPlanArtWMS und XPlanWerkWMS>>
 * <<xplanwfs, XPlanWFS>>
 * <<xplansynwfs, XPlanSynWFS>>
@@ -58,10 +58,10 @@ des XPlanValidatorWeb. Validierte Plänen können über den XPlanValidatorWMS in
 
 Die Komponente XPlanValidatorAPI stellt eine REST-Schnittstelle bereit, über die XPlanGML-Dokumente validiert werden können.
 
-[[xplandokumenten-api]]
-=== XPlanDokumentenAPI
+[[xplandokumente-api]]
+=== XPlanDokumenteAPI
 
-Die optionale Komponente XPlanDokumentenAPI stellt eine REST-Schnittstelle bereit, über die zu einem Plan zugehörigen Dokumente abgerufen werden können.
+Die optionale Komponente XPlanDokumenteAPI stellt eine REST-Schnittstelle bereit, über die zu einem Plan zugehörigen Dokumente abgerufen werden können.
 
 [[xplanwms]]
 === XPlanWMS, XPlanArtWMS und XPlanWerkWMS

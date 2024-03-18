@@ -32,6 +32,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
+import java.util.Set;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
@@ -55,7 +56,8 @@ public class FilesystemStorageCleanUpManager implements StorageCleanUpManager {
 	@Override
 	public void deleteAll(String id, StorageEvent storageEvent) throws StorageException {
 		String prefix = id + "_";
-		deleteFilesWithPrefix((path, basicFileAttributes) -> extractTileStoreId(path).startsWith(prefix), storageEvent);
+		deleteFilesWithPrefix((path, basicFileAttributes) -> extractTileStoreIdPrefix(path).startsWith(prefix),
+				storageEvent);
 	}
 
 	private void deleteFilesWithPrefix(BiPredicate<Path, BasicFileAttributes> filenameFilter, StorageEvent storageEvent)
@@ -64,11 +66,10 @@ public class FilesystemStorageCleanUpManager implements StorageCleanUpManager {
 			return;
 		}
 		List<Path> filesToDelete = findFilesToDelete(filenameFilter);
+		clearCaches(filesToDelete);
 		for (Path file : filesToDelete) {
 			LOG.info("- Entferne Raster-Datei '" + file + "'...");
 			try {
-				String tileStoreId = extractTileStoreId(file);
-				deegreeRasterCacheCleaner.clearCache(tileStoreId);
 				byte[] bytes = Files.readAllBytes(file);
 				Files.delete(file);
 				storageEvent.addDeletedPath(file, bytes);
@@ -81,7 +82,14 @@ public class FilesystemStorageCleanUpManager implements StorageCleanUpManager {
 		}
 	}
 
-	private static String extractTileStoreId(Path file) {
+	private void clearCaches(List<Path> filesToDelete) {
+		Set<String> tilesStoreIdPrefixes = filesToDelete.stream()
+			.map(fileToDelete -> extractTileStoreIdPrefix(fileToDelete))
+			.collect(Collectors.toSet());
+		tilesStoreIdPrefixes.forEach(tilesStoreIdPrefix -> deegreeRasterCacheCleaner.clearCache(tilesStoreIdPrefix));
+	}
+
+	private static String extractTileStoreIdPrefix(Path file) {
 		String fileName = file.getFileName().toString();
 		if (fileName.contains("."))
 			return fileName.substring(0, fileName.lastIndexOf("."));

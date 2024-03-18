@@ -19,7 +19,7 @@ folgenden Komponenten:
  * <<xplanwms,XPlanWMS>>: Standard-Kartendienst (WMS) für die Auskunft
  * <<xplanwfs,XPlanWFS>>: Standard-Datendienst (WFS) für die Auskunft (XPlanGML-konforme Datenstruktur)
  * <<xplansynwfs,XPlanSynWFS>>: Standard-Datendienst (WFS) für die Auskunft (vereinfachte Datenstruktur)
- * <<xplandokumenten-api,XPlanDokumentenAPI>>: Optionale Komponente für den Zugriff auf Dokumente aus einem <<xplanarchiv, XPlanArchiv>>
+ * <<xplandokumente-api,XPlanDokumenteAPI>>: Optionale Komponente für den Zugriff auf Dokumente aus einem <<xplanarchiv, XPlanArchiv>>
  * <<xplantransform-cli,XPlanTransformCLI>>: Kommandozeilenwerkzeug für die Transformation von Plänen
  * <<xplaninspirepluwms,XPlanInspirePluWMS>>: Optionale Komponente mit INSPIRE View Service für die Auskunft im INSPIRE Datenthema Planned Land Use (PLU)
  * <<xplaninspirepluwfs,XPlanInspirePluWFS>>: Optionale Komponente mit INSPIRE Download Service für die Auskunft im INSPIRE Datenthema Planned Land Use (PLU)
