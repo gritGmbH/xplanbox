@@ -20,6 +20,8 @@ echo "[$(date -Iseconds)] MapProxy config initialization..."
 defined_envs="$(printf '${%s} ' $(env | cut -d'=' -f1))"
 envsubst "$defined_envs" < /xplan-mapserver-docker/xplan-mapserver-config/mapserver.map > $MS_MAPFILE
 
+XPLAN_SERVICES_DEFAULT_CRS_SRID="${XPLAN_SERVICES_DEFAULT_CRS_SRID:-25832}"
+XPLAN_SERVICES_DEFAULT_CRS="${XPLAN_SERVICES_DEFAULT_CRS:-EPSG:25832}"
 XPLAN_S3_BUCKET_NAME="${XPLAN_S3_BUCKET_NAME:-tobedefined}"
 AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:-tobedefined}"
 AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:-tobedefined}"
@@ -29,6 +31,10 @@ AWS_S3_ENDPOINT="${AWS_S3_ENDPOINT}"
 ######################################
 # Update content of mapserver config #
 ######################################
+
+echo "[$(date -Iseconds)] Default CRS/srid is $XPLAN_SERVICES_DEFAULT_CRS/$XPLAN_SERVICES_DEFAULT_CRS_SRID"
+sed -i 's|EPSG:25832|'$XPLAN_SERVICES_DEFAULT_CRS'|g' $MS_MAPFILE
+sed -i 's|25832|'$XPLAN_SERVICES_DEFAULT_CRS_SRID'|g' $MS_MAPFILE
 
 if [[ -z "${spring_profiles_active##*s3img*}" ]]
 then

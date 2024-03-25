@@ -79,13 +79,15 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 	 * Plan feature is assigned
 	 */
 	public PlanFeature getPlanFeature() {
-		GeltungsbereichFeature geltungsbereichFeature = getGeltungsbereichFeature();
-		if (geltungsbereichFeature instanceof BereichFeature) {
-			return ((BereichFeature) geltungsbereichFeature).getPlanFeature();
+		BereichFeature bereichFeature = getBereichFeature();
+		if (bereichFeature == null) {
+			if (inspectorContext.getPlanFeatures().size() == 1) {
+				return inspectorContext.getPlanFeatures().values().stream().findFirst().get();
+			}
+			return null;
 		}
-		if (geltungsbereichFeature instanceof PlanFeature)
-			return (PlanFeature) geltungsbereichFeature;
-		return null;
+		String planId = bereichFeature.getPlanId();
+		return inspectorContext.getPlanFeatures().get(planId);
 	}
 
 	/**
@@ -93,10 +95,21 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 	 * no Bereich feature is assigned
 	 */
 	public BereichFeature getBereichFeature() {
-		GeltungsbereichFeature geltungsbereichFeature = getGeltungsbereichFeature();
-		if (geltungsbereichFeature instanceof BereichFeature)
-			return (BereichFeature) geltungsbereichFeature;
-		return null;
+		String bereichId = getGehortZuBereichId();
+		if (bereichId == null) {
+			if (inspectorContext.getBereichFeatures().size() > 1) {
+				return null;
+			}
+			if (inspectorContext.getBereichFeatures().size() == 1) {
+				BereichFeature singleBereichFeature = inspectorContext.getBereichFeatures()
+					.values()
+					.stream()
+					.findFirst()
+					.get();
+				return singleBereichFeature;
+			}
+		}
+		return inspectorContext.getBereichFeatures().get(bereichId);
 	}
 
 	/**

@@ -1084,7 +1084,7 @@ assert json.version != null</scriptText>
             <con:assertion type="JsonPath Match" id="0a3750ed-207e-40f8-a4c9-2d50e525f2b1" name="geometrisch">
               <con:configuration>
                 <path>$..geometrisch</path>
-                <content>[{"valid":false,"errors":["2.2.3.1: Das Objekt mit der gml id FEATURE_dc61f364-f67c-4e0f-846c-fb8da12644fe liegt vollständig außerhalb des Geltungsbereichs des Plans."],"warnings":[]}]</content>
+                <content>[{"valid":false,"errors":["2.2.3.1: Das Objekt mit der gml id FEATURE_dc61f364-f67c-4e0f-846c-fb8da12644fe liegt vollständig außerhalb des Geltungsbereichs des Plans. Stützpunkt des Objekts außerhalb des Plans: (418279.388, 5715854.865)"],"warnings":[]}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>

@@ -27,6 +27,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.validator.FeatureParserUtils.readFeaturesFromGml;
 import static de.latlon.xplan.validator.FeatureParserUtils.readFeaturesFromZip;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -113,7 +114,7 @@ public class GeltungsbereichInspectorTest {
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
-		assertThat(geltungsbereichInspector.getWarnings().size(), is(5));
+		assertThat(geltungsbereichInspector.getWarnings().size(), is(0));
 		assertThat(geltungsbereichInspector.getErrors().size(), is(0));
 	}
 
@@ -457,6 +458,77 @@ public class GeltungsbereichInspectorTest {
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
+	}
+
+	@Test
+	public void testCheck_Linie_Ausserhalb_invalide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_60);
+		readFeaturesFromGml("BPlan_6-0_Linie_ausserhalb.gml", GeltungsbereichInspector.class, geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(1));
+		String error = geltungsbereichInspector.getErrors().get(0);
+		assertThat(error, containsString("Gml_020FEBF9-58C5-48B2-8091-CCA81ABFB03A"));
+		assertThat(error, containsString("(557151.6116, 5936529.2681)"));
+
+		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getErrors().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(0));
+	}
+
+	@Test
+	public void testCheck_Polygon_Ausserhalb_invalide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_60);
+		readFeaturesFromGml("BPlan_6-0_Polygon_ausserhalb.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(1));
+		String error = geltungsbereichInspector.getErrors().get(0);
+		assertThat(error, containsString("Gml_758D6453-D193-40D3-964F-30E05A6BDB5D"));
+		assertThat(error, containsString("(557476.6925, 5936735.4001)"));
+
+		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getErrors().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(0));
+	}
+
+	@Test
+	public void testCheck_Punkt_Ausserhalb_invalide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_60);
+		readFeaturesFromGml("BPlan_6-0_Punkt_ausserhalb.gml", GeltungsbereichInspector.class, geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(1));
+		String error = geltungsbereichInspector.getErrors().get(0);
+
+		assertThat(error, containsString("Gml_86CEE2F5-F5F9-4F06-962F-33469C2ACB5D"));
+		assertThat(error, containsString("(557066.0319, 5936740.9087)"));
+
+		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getErrors().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(0));
+	}
+
+	@Test
+	public void testCheck_Punkt_Ausserhalb_Plan_invalide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_60);
+		readFeaturesFromGml("BP_5.1.gml", GeltungsbereichInspector.class, geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(1));
+		String error = geltungsbereichInspector.getErrors().get(0);
+
+		assertThat(error, containsString("FEATURE_dc61f364-f67c-4e0f-846c-fb8da12644fe"));
+		assertThat(error, containsString("(418279.388, 5715854.865)"));
+
+		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getErrors().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(0));
 	}
 
 }

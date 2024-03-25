@@ -42,6 +42,7 @@ import org.deegree.geometry.primitive.Surface;
 import org.deegree.geometry.standard.AbstractDefaultGeometry;
 import org.deegree.geometry.standard.multi.DefaultMultiGeometry;
 import org.deegree.gml.feature.FeatureInspectionException;
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.IntersectionMatrix;
 import org.locationtech.jts.geom.TopologyException;
@@ -94,7 +95,12 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 		List<String> featureIdOfInvalidFeatures = new ArrayList<>();
 		for (FeatureUnderTest featureUnderTest : geltungsbereichInspectorContext.getFeaturesUnderTest()) {
 			BereichFeature bereichFeature = featureUnderTest.getBereichFeature();
-			PlanFeature planFeature = findPlanFeature(bereichFeature, featureUnderTest);
+			PlanFeature planFeature = featureUnderTest.getPlanFeature();
+			boolean isAllowedToBeOutsidePlan = bereichFeature != null
+					&& bereichFeature.isKompensationsbereichOrOutsideGeltungsbereich();
+			if (isAllowedToBeOutsidePlan) {
+				LOG.debug("Feature with id {} is allowed to be outside of the Geltungsbereich of the plan");
+			}
 			if (bereichFeature == null && planFeature == null) {
 				warnings.add("Das Objekt mit der ID " + featureUnderTest.getFeatureId()
 						+ " kann keinem Plan oder Bereich zugeordnet werden, die Geltungsbereichspruefung fuer dieses Objekt kann nicht durchgeführt werden.");
@@ -105,7 +111,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 				try {
 					boolean isInsideBereichGeltungsbereich = isInsideGeom(featureUnderTest,
 							bereichGeltungsbereichWithBuffer);
-					boolean isInsidePlanGeltungsbereich = isInsideGeom(featureUnderTest, planGeltungsbereichWithBuffer);
+					boolean isInsidePlanGeltungsbereich = isAllowedToBeOutsidePlan
+							|| isInsideGeom(featureUnderTest, planGeltungsbereichWithBuffer);
 					if (!isInsideBereichGeltungsbereich || !isInsidePlanGeltungsbereich) {
 						featureIdOfInvalidFeatures.add(featureUnderTest.getFeatureId());
 						addInvalidGeometry(bereichFeature, planFeature, bereichGeltungsbereichWithBuffer,
@@ -149,16 +156,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 		return true;
 	}
 
-	private PlanFeature findPlanFeature(BereichFeature bereichFeature, FeatureUnderTest featureUnderTest) {
-		if (bereichFeature != null && bereichFeature.isKompensationsbereichOrOutsideGeltungsbereich()) {
-			LOG.debug("Feature with id {} is allowed to be outside of the Geltungsbereich ");
-			return null;
-		}
-		return featureUnderTest.getPlanFeature();
-	}
-
 	private Geometry retrieveGeltungsbereichWithBuffer(GeltungsbereichFeature geltungsbereichFeature) {
-		if (geltungsbereichFeature != null) {
+		if (geltungsbereichFeature != null && geltungsbereichFeature.hasGeometry()) {
 			if (geltungsbereichFeature.isGeometryValid()) {
 				return geltungsbereichFeature.getBufferedGeometry();
 			}
@@ -183,20 +182,23 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 				boolean isDisjointPlanGeom = planGeom.isDisjoint(featureGeom);
 				boolean isDisjointBereichGeom = bereichGeom.isDisjoint(featureGeom);
 				if (isDisjointPlanGeom && isDisjointBereichGeom) {
+					String pointOutside = getPointOutside(featureUnderTest);
 					String error = format("GeltungsbereichInspector_error_outOfPlanAndBereichGeltungsbereich",
-							featureUnderTest.getFeatureId());
+							featureUnderTest.getFeatureId(), pointOutside);
 					addErrorAndBadGeometry(error, featureUnderTest.getOriginalGeometry());
 				}
 				else if (isDisjointPlanGeom) {
+					String pointOutside = getPointOutside(featureUnderTest);
 					String error = format("GeltungsbereichInspector_error_outOfPlanGeltungsbereich",
-							featureUnderTest.getFeatureId());
+							featureUnderTest.getFeatureId(), pointOutside);
 					addErrorAndBadGeometry(error, featureUnderTest.getOriginalGeometry());
 					createAndAddErrorWithIntersectionPoints(null, bereichFeature, bereichGeom,
 							bufferedBereichGeltungsbereich, featureUnderTest);
 				}
 				else if (isDisjointBereichGeom) {
+					String pointOutside = getPointOutside(featureUnderTest);
 					String error = format("GeltungsbereichInspector_error_outOfBereichGeltungsbereich",
-							featureUnderTest.getFeatureId());
+							featureUnderTest.getFeatureId(), pointOutside);
 					addErrorAndBadGeometry(error, featureUnderTest.getOriginalGeometry());
 					createAndAddErrorWithIntersectionPoints(planFeature, null, planGeom, bufferedPlanGeltungsbereich,
 							featureUnderTest);
@@ -218,8 +220,9 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 				AbstractDefaultGeometry planGeom = planFeature.getOriginalGeometry();
 				boolean isDisjointPlanGeom = planGeom.isDisjoint(featureGeom);
 				if (isDisjointPlanGeom) {
+					String pointOutside = getPointOutside(featureUnderTest);
 					String error = format("GeltungsbereichInspector_error_outOfPlanGeltungsbereich",
-							featureUnderTest.getFeatureId());
+							featureUnderTest.getFeatureId(), pointOutside);
 					addErrorAndBadGeometry(error, featureUnderTest.getOriginalGeometry());
 				}
 				else {
@@ -231,8 +234,9 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 				AbstractDefaultGeometry bereichGeom = bereichFeature.getOriginalGeometry();
 				boolean isDisjointBereichGeom = bereichGeom.isDisjoint(featureGeom);
 				if (isDisjointBereichGeom) {
+					String pointOutside = getPointOutside(featureUnderTest);
 					String error = format("GeltungsbereichInspector_error_outOfBereichGeltungsbereich",
-							featureUnderTest.getFeatureId());
+							featureUnderTest.getFeatureId(), pointOutside);
 					addErrorAndBadGeometry(error, featureUnderTest.getOriginalGeometry());
 				}
 				else {
@@ -244,6 +248,12 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 		catch (TopologyException | IllegalArgumentException e) {
 			throw new InvalidGeometryException(e);
 		}
+	}
+
+	private static String getPointOutside(FeatureUnderTest featureUnderTest) {
+		Geometry jtsGeometry = featureUnderTest.getJtsGeometry();
+		Coordinate coordinate = jtsGeometry.getCoordinate();
+		return "(" + coordinate.x + ", " + coordinate.y + ")";
 	}
 
 	private void createAndAddErrorWithIntersectionPoints(PlanFeature planFeature, BereichFeature bereichFeature,

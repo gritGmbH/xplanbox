@@ -14,7 +14,7 @@ INIT_STARTED_FILE=$XPLANBOX_VOLUMES/init-start-marker.txt
 if [ -f "$MARKER_FILE" ]; then
   if [[ -n "$XPLANBOX_VOLUME_INIT" && $XPLANBOX_VOLUME_INIT = "reset" ]]; then
     echo "[$(date -Iseconds)] Reset of existing dir $XPLANBOX_VOLUMES forced ..."
-    rm $MARKER_FILE $INIT_STARTED_FILE
+    rm -f $MARKER_FILE $INIT_STARTED_FILE
     rm -rf $XPLANBOX_VOLUMES/xplan-*
   else
     echo "[$(date -Iseconds)] Init already done in $XPLANBOX_VOLUMES ($(cat $MARKER_FILE))"
