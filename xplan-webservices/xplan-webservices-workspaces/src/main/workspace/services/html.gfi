@@ -19,7 +19,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%
   -->
-<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 15.02.2024, 07:55:32 -->
+<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.03.2024, 10:57:19 -->
 <html>
   <head>
     <title>XPlanWMS Sachdatenanzeige</title>
@@ -168,7 +168,7 @@
           <?name:map propname>
         </strong>
   </td>
-  <td <?even:maybegray>>
+  <td <?even:maybegray> style="white-space: pre-line;">
     <?value:map propvalue>
   </td>
 </tr>

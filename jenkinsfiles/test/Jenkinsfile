@@ -17,7 +17,7 @@ pipeline {
       string(name: 'BASE_URL_DOKUMENTEN_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDokumentenAPI')
       string(name: 'BASE_URL_MAPSERVER', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of MapServer')
       string(name: 'BASE_URL_MAPPROXY', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of MapProxy')
-      string(name: 'SLACK_CHANNEL', defaultValue: "#testumgebung", description: 'Set slack channel')
+      string(name: 'SLACK_CHANNEL', defaultValue: "#installationen", description: 'Set slack channel')
       string(name: 'SLACK_TESTED_ENVIRONMENT', defaultValue: "https://xplanbox.lat-lon.de/", description: 'Set name of test environment which shall be printed in slack messages')
       string(name: 'SLACK_TEAM_DOMAIN', defaultValue: "xplanbox", description: 'Set slack team domain')
       string(name: 'SLACK_TOKEN_CREDENTIAL_ID', defaultValue: "slack-integration-id", description: 'Set slack token credential id')
