@@ -20,7 +20,7 @@
  */
 package de.latlon.xplan.validator.semantic.configuration.metadata;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>

@@ -20,8 +20,14 @@
  */
 package de.latlon.xplan.validator.report.pdf;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.Rectangle;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
-import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.report.ReportUtils;
 import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorReport;
@@ -33,21 +39,9 @@ import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
-import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
-import net.sf.dynamicreports.report.builder.component.ComponentBuilder;
-import net.sf.dynamicreports.report.builder.component.HorizontalListBuilder;
-import net.sf.dynamicreports.report.builder.component.MultiPageListBuilder;
-import net.sf.dynamicreports.report.builder.component.TextFieldBuilder;
-import net.sf.dynamicreports.report.builder.component.VerticalListBuilder;
-import net.sf.dynamicreports.report.builder.style.StyleBuilder;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperReport;
 
-import java.io.InputStream;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -56,25 +50,15 @@ import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
 import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
 import static de.latlon.xplan.validator.report.ReportUtils.asLabel;
 import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
-import static de.latlon.xplan.validator.report.pdf.Templates.bold14LeftStyle;
-import static de.latlon.xplan.validator.report.pdf.Templates.createFooter;
-import static de.latlon.xplan.validator.report.pdf.Templates.createTemplate;
-import static de.latlon.xplan.validator.report.pdf.Templates.root20LeftIndentStyle;
-import static de.latlon.xplan.validator.report.pdf.Templates.simpleStyle;
 import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WARNING;
-import static net.sf.dynamicreports.report.builder.DynamicReports.cmp;
-import static net.sf.dynamicreports.report.builder.DynamicReports.report;
-import static net.sf.dynamicreports.report.builder.DynamicReports.stl;
 
 /**
- * Encapsulates a {@link JasperReportBuilder} building a validation report
+ * Use OPenPDF to build a validation report
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 class ReportBuilder {
-
-	private static final String LABEL_TITLE = "ValidationReport";
 
 	private static final String LABEL_HINT = getMessage("report_pdf_hint");
 
@@ -84,26 +68,36 @@ class ReportBuilder {
 
 	private static final String LABEL_OK = getMessage("report_pdf_ok");
 
-	private static final int VERTICAL_GAP = 10;
+	private static Font FONT_TEXT = new Font(Font.HELVETICA, 10);
+
+	private static Font FONT_CHAPTER = new Font(Font.HELVETICA, 14, Font.BOLD);
 
 	/**
-	 * Creates a {@link JasperReportBuilder} with the {@link ValidatorReport}
+	 * Write pdf report to the passed {@link Document}.
 	 * @param report the validation report to serialize, never <code>null</code>
-	 * @throws ReportGenerationException if an exception occurred during writing the
-	 * report
+	 * @param document to write into, never <code>nulll</code>
 	 * @throws IllegalArgumentException if the passed report is <code>null</code>
 	 */
-	JasperReportBuilder createReport(ValidatorReport report) throws ReportGenerationException {
+	void writeReport(ValidatorReport report, Document document) {
 		checkReportParam(report);
-		try {
-			return report().setTemplate(createTemplate())
-				.title(Templates.createTitleComponent(LABEL_TITLE), createMetadataSection(report))
-				.summary(createValidationResults(report))
-				.pageFooter(createFooter());
+
+		appendMetadataSection(report, document);
+		appendPlanNames(report.getPlanNames(), document);
+		appendExternalReferenceReport(report.getExternalReferenceReport(), document);
+
+		appendSemanticValidatorResult(report.getSemanticValidatorResult(), document);
+		appendGeometricRules(report.getGeometricValidatorResult(), document);
+		appendSyntacticRules(report.getSyntacticValidatorResult(), document);
+
+		List<SemanticValidatorResult> semanticProfileValidatorResults = report.getSemanticProfileValidatorResults();
+		if (!semanticProfileValidatorResults.isEmpty()) {
+			semanticProfileValidatorResults.sort(Comparator.comparing(o -> o.getRulesMetadata().getName()));
+			for (SemanticValidatorResult profileSemanticValidatorResult : semanticProfileValidatorResults) {
+				appendHeaderAndResultOfProfile(profileSemanticValidatorResult, document);
+				appendSemanticValidatorResult(profileSemanticValidatorResult, document);
+			}
 		}
-		catch (JRException e) {
-			throw new ReportGenerationException(e);
-		}
+
 	}
 
 	private void checkReportParam(ValidatorReport report) {
@@ -111,244 +105,257 @@ class ReportBuilder {
 			throw new IllegalArgumentException("Report must not be null!");
 	}
 
-	private VerticalListBuilder createValidationResults(ValidatorReport report) {
-		VerticalListBuilder verticalList = cmp.verticalList();
+	private void appendMetadataSection(ValidatorReport report, Document document) {
+		PdfPTable table = new PdfPTable(2);
+		table.setWidths(new int[] { 25, 75 });
+		table.setTotalWidth(tableWidth(document));
+		table.setLockedWidth(true);
+		table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
+		table.getDefaultCell().setPaddingBottom(10);
+		table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
 
-		List<String> planNames = report.getPlanNames();
+		table.addCell(createTableCell("Validierungsname:", FONT_TEXT));
+		table.addCell(createTableCell(report.getValidationName(), FONT_TEXT));
+		table.addCell(createTableCell("Dateiname:", FONT_TEXT));
+		table.addCell(createTableCell(createValidLabel(report.isReportValid()), FONT_TEXT));
+		table.addCell(createTableCell("Validierungsergebnis:", FONT_TEXT));
+		table.addCell(createTableCell(report.getValidationName(), FONT_TEXT));
+		table.addCell(createTableCell("Version XPlanGML:", FONT_TEXT));
+		table.addCell(createTableCell(asLabel(report.getXPlanVersion()), FONT_TEXT));
+		table.addCell(createTableCell("Planart:", FONT_TEXT));
+		table.addCell(createTableCell(report.getXPlanType() != null ? report.getXPlanType().name() : "-", FONT_TEXT));
+
+		document.add(table);
+	}
+
+	private void appendPlanNames(List<String> planNames, Document document) {
 		if (planNames != null) {
-			verticalList = addPlanNames(verticalList, planNames);
-		}
+			appendHeader(getMessage("report_pdf_plannamen"), document);
 
-		ExternalReferenceReport externalReferenceReport = report.getExternalReferenceReport();
-		if (externalReferenceReport != null) {
-			verticalList = addExternalReferenceReport(verticalList, externalReferenceReport);
-		}
+			PdfPTable table = new PdfPTable(1);
+			table.setWidths(new int[] { 100 });
+			table.setTotalWidth(tableWidth(document));
+			table.setLockedWidth(true);
+			table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
+			table.getDefaultCell().setPaddingBottom(5);
+			table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
 
-		SemanticValidatorResult semanticValidatorResult = report.getSemanticValidatorResult();
-		if (semanticValidatorResult != null) {
-			verticalList = verticalList.add(appendHeaderAndResult(semanticValidatorResult));
-			verticalList = appendSemanticValidatorResult(verticalList, semanticValidatorResult);
-		}
-
-		GeometricValidatorResult geometricValidatorResult = report.getGeometricValidatorResult();
-		if (geometricValidatorResult != null) {
-			verticalList = verticalList.add(appendHeaderAndResult(geometricValidatorResult));
-			verticalList = appendDetailsHint(verticalList, geometricValidatorResult);
-			verticalList = verticalList.add(createGeometricRules(geometricValidatorResult));
-		}
-
-		SyntacticValidatorResult syntacticValidatorResult = report.getSyntacticValidatorResult();
-		if (syntacticValidatorResult != null) {
-			verticalList = verticalList.add(appendHeaderAndResult(syntacticValidatorResult));
-			verticalList = appendDetailsHint(verticalList, syntacticValidatorResult);
-			verticalList = verticalList.add(createSyntacticRules(syntacticValidatorResult)).add(cmp.verticalGap(10));
-		}
-		List<SemanticValidatorResult> semanticProfileValidatorResults = report.getSemanticProfileValidatorResults();
-		if (!semanticProfileValidatorResults.isEmpty()) {
-			semanticProfileValidatorResults.sort(Comparator.comparing(o -> o.getRulesMetadata().getName()));
-			for (SemanticValidatorResult profileSemanticValidatorResult : semanticProfileValidatorResults) {
-				verticalList = verticalList.add(appendHeaderAndResultOfProfile(profileSemanticValidatorResult));
-				verticalList = appendSemanticValidatorResult(verticalList, profileSemanticValidatorResult);
-			}
-		}
-
-		return verticalList;
-	}
-
-	private VerticalListBuilder appendSemanticValidatorResult(VerticalListBuilder verticalList,
-			SemanticValidatorResult profileSemanticValidatorResult) {
-		verticalList = appendDetailsHint(verticalList, profileSemanticValidatorResult);
-		verticalList = appendRulesMetadata(verticalList, profileSemanticValidatorResult);
-		verticalList = verticalList.add(appendNumberOfRules(profileSemanticValidatorResult));
-		verticalList = verticalList.add(appendNumberOfFailedRules(profileSemanticValidatorResult));
-		verticalList = verticalList.add(appendNumberOfValidRules(profileSemanticValidatorResult));
-		verticalList = verticalList.add(appendDetailsSection());
-		verticalList = verticalList.add(createSemanticRules(profileSemanticValidatorResult)).add(cmp.verticalGap(10));
-		return verticalList;
-	}
-
-	private VerticalListBuilder addPlanNames(VerticalListBuilder verticalList, List<String> planNames) {
-		ComponentBuilder<?, ?> rulesHead = cmp.text(getMessage("report_pdf_plannamen")).setStyle(bold14LeftStyle);
-		HorizontalListBuilder header = cmp.horizontalList().add(rulesHead);
-		verticalList = verticalList.add(header);
-
-		MultiPageListBuilder rules = cmp.multiPageList();
-
-		planNames.stream().sorted().forEach(planName -> {
-			StyleBuilder style = stl.style(simpleStyle).setLeftIndent(10);
-			TextFieldBuilder<String> referenceField = cmp.text(planName).setStyle(style);
-			rules.add(cmp.horizontalList().add(referenceField));
-		});
-		return verticalList.add(rules);
-	}
-
-	private VerticalListBuilder addExternalReferenceReport(VerticalListBuilder verticalList,
-			ExternalReferenceReport externalReferenceReport) {
-		ComponentBuilder<?, ?> rulesHead = cmp.text(getMessage("report_pdf_externalReferences"))
-			.setStyle(bold14LeftStyle);
-		HorizontalListBuilder header = cmp.horizontalList().add(rulesHead);
-		verticalList = verticalList.add(header);
-
-		ReportUtils.SkipCode skipCode = externalReferenceReport.getSkipCode();
-		if (skipCode != null) {
-			StyleBuilder style = stl.style(simpleStyle).setLeftIndent(10);
-			TextFieldBuilder<String> skipCodeField = cmp.text(skipCode.getMessage()).setStyle(style);
-			verticalList = verticalList.add(skipCodeField);
-		}
-		Map<String, ExternalReferenceStatus> references = externalReferenceReport.getReferencesAndStatus();
-		if (references != null && !references.isEmpty()) {
-			MultiPageListBuilder rules = cmp.multiPageList();
-			references.forEach((name, status) -> {
-				StyleBuilder style = stl.style(simpleStyle).setLeftIndent(10);
-				String nameAndStatus = String.format("%s (%s)", name, status.getLabel());
-				TextFieldBuilder<String> referenceField = cmp.text(nameAndStatus).setStyle(style);
-				rules.add(cmp.horizontalList().add(referenceField));
+			planNames.stream().sorted().forEach(planName -> {
+				table.addCell(new Paragraph(planName, FONT_TEXT));
 			});
-			verticalList = verticalList.add(rules);
+			document.add(table);
 		}
-		return verticalList;
 	}
 
-	private VerticalListBuilder appendRulesMetadata(VerticalListBuilder verticalList,
-			SemanticValidatorResult semanticValidatorResult) {
+	private void appendExternalReferenceReport(ExternalReferenceReport externalReferenceReport, Document document) {
+		if (externalReferenceReport != null) {
+			appendHeader(getMessage("report_pdf_externalReferences"), document);
+
+			PdfPTable table = new PdfPTable(1);
+			table.setWidths(new int[] { 100 });
+			table.setTotalWidth(tableWidth(document));
+			table.setLockedWidth(true);
+			table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
+			table.getDefaultCell().setPaddingBottom(5);
+			table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
+
+			ReportUtils.SkipCode skipCode = externalReferenceReport.getSkipCode();
+			if (skipCode != null) {
+				document.add(new Paragraph(skipCode.getMessage()));
+			}
+			Map<String, ExternalReferenceStatus> references = externalReferenceReport.getReferencesAndStatus();
+			if (references != null && !references.isEmpty()) {
+				references.forEach((name, status) -> {
+					String nameAndStatus = String.format("%s (%s)", name, status.getLabel());
+					table.addCell(new Paragraph(nameAndStatus, FONT_TEXT));
+				});
+			}
+			document.add(table);
+		}
+	}
+
+	private void appendSemanticValidatorResult(SemanticValidatorResult result, Document document) {
+		if (result != null) {
+			appendHeaderAndResult(result, document);
+			appendDetailsHint(result, document);
+			appendRulesMetadata(result, document);
+			appendNumberOfRules(result, document);
+			appendNumberOfFailedRules(result, document);
+			appendNumberOfValidRules(result, document);
+			appendSemanticValidatorRules(result.getRules(), document);
+		}
+	}
+
+	private void appendRulesMetadata(SemanticValidatorResult semanticValidatorResult, Document document) {
 		RulesMetadata rulesMetadata = semanticValidatorResult.getRulesMetadata();
 		if (rulesMetadata != null) {
 			if (rulesMetadata.getName() != null) {
 				String name = String.format(" Name: %s", rulesMetadata.getName());
-				verticalList = verticalList.add(addTextString(name));
+				appendText(name, document);
 			}
 			if (rulesMetadata.getDescription() != null) {
 				String description = String.format(" Beschreibung: %s", rulesMetadata.getDescription());
-				verticalList = verticalList.add(addTextString(description));
+				appendText(description, document);
 			}
 			String version = format("report_pdf_versionRules", rulesMetadata.getVersion());
-			verticalList = verticalList.add(addTextString(version));
+			appendText(version, document);
 			String source = format("report_pdf_sourceRules", rulesMetadata.getSource());
-			verticalList = verticalList.add(addTextString(source));
+			appendText(source, document);
 		}
-		return verticalList;
 	}
 
-	private ComponentBuilder<?, ?> appendNumberOfRules(SemanticValidatorResult semanticValidatorResult) {
+	private void appendNumberOfRules(SemanticValidatorResult semanticValidatorResult, Document document) {
 		int noOfRules = semanticValidatorResult.getRules().size();
 		String text = format("report_pdf_noOfCheckedRules", noOfRules);
-		return addTextString(text);
+		appendText(text, document);
 	}
 
-	private ComponentBuilder<?, ?> appendNumberOfFailedRules(SemanticValidatorResult semanticValidatorResult) {
+	private void appendNumberOfFailedRules(SemanticValidatorResult semanticValidatorResult, Document document) {
 		long noOfRules = semanticValidatorResult.getRules().stream().filter(r -> !r.isValid()).count();
 		String text = format("report_pdf_noOfInvalidRules", noOfRules);
-		return addTextString(text);
+		appendText(text, document);
 	}
 
-	private ComponentBuilder<?, ?> appendNumberOfValidRules(SemanticValidatorResult semanticValidatorResult) {
+	private void appendNumberOfValidRules(SemanticValidatorResult semanticValidatorResult, Document document) {
 		long noOfRules = semanticValidatorResult.getRules().stream().filter(r -> r.isValid()).count();
 		String text = format("report_pdf_noOfValidRules", noOfRules);
-		return addTextString(text);
+		appendText(text, document);
 	}
 
-	private ComponentBuilder<?, ?> appendDetailsSection() {
-		return addTextString(getMessage("report_pdf_details"));
+	private void appendSyntacticRules(SyntacticValidatorResult result, Document document) {
+		if (result != null) {
+			appendHeaderAndResult(result, document);
+			appendDetailsHint(result, document);
+
+			PdfPTable table = createValidationResultTable(document, 15, 75);
+			for (String message : result.getMessages()) {
+				table.addCell(new Paragraph(LABEL_HINT, FONT_TEXT));
+				table.addCell(new Paragraph(message, FONT_TEXT));
+			}
+			document.add(table);
+		}
 	}
 
-	private ComponentBuilder<?, ?> addTextString(String text) {
-		StyleBuilder detailsHintStyle = stl.style(simpleStyle).setLeftIndent(10).setTopPadding(5).setBottomPadding(5);
-		TextFieldBuilder<String> textString = cmp.text(text).setStyle(detailsHintStyle);
-		return cmp.horizontalList().add(textString);
+	private void appendGeometricRules(GeometricValidatorResult result, Document document) {
+		if (result != null) {
+			appendHeaderAndResult(result, document);
+			appendDetailsHint(result, document);
+
+			PdfPTable table = createValidationResultTable(document, 15, 75);
+			for (String message : result.getWarnings()) {
+				table.addCell(new Paragraph(LABEL_WARNING, FONT_TEXT));
+				table.addCell(new Paragraph(message, FONT_TEXT));
+			}
+			for (String message : result.getErrors()) {
+				table.addCell(new Paragraph(LABEL_ERROR, FONT_TEXT));
+				table.addCell(new Paragraph(message, FONT_TEXT));
+			}
+			document.add(table);
+		}
 	}
 
-	private MultiPageListBuilder createSemanticRules(SemanticValidatorResult result) {
-		MultiPageListBuilder rules = cmp.multiPageList();
-		appendSemanticValidatorRules(rules, result.getRules());
-		return rules;
+	private void appendHeaderAndResult(ValidatorResult result, Document document) {
+		PdfPTable table = new PdfPTable(2);
+		table.setWidths(new int[] { 75, 25 });
+		table.setTotalWidth(tableWidth(document));
+		table.setLockedWidth(true);
+		table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
+		table.getDefaultCell().setPaddingTop(7);
+		table.getDefaultCell().setPaddingBottom(5);
+		table.getDefaultCell().setBorder(Rectangle.BOTTOM);
+
+		table.addCell(new Paragraph(result.getType(), FONT_CHAPTER));
+		table.addCell(new Paragraph(getResultMessage(result), FONT_CHAPTER));
+		document.add(table);
 	}
 
-	private ComponentBuilder<?, ?> createSyntacticRules(SyntacticValidatorResult result) {
-		MultiPageListBuilder rules = cmp.multiPageList();
-		appendMessageRules(rules, LABEL_HINT, (result).getMessages());
-		return rules;
+	private void appendHeader(String header, Document document) {
+		PdfPTable table = new PdfPTable(1);
+		table.setWidths(new int[] { 100 });
+		table.setTotalWidth(tableWidth(document));
+		table.setLockedWidth(true);
+		table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
+		table.getDefaultCell().setPaddingTop(7);
+		table.getDefaultCell().setPaddingBottom(5);
+		table.getDefaultCell().setBorder(Rectangle.BOTTOM);
+
+		table.addCell(new Paragraph(header, FONT_CHAPTER));
+		document.add(table);
 	}
 
-	private ComponentBuilder<?, ?> createGeometricRules(GeometricValidatorResult result) {
-		MultiPageListBuilder rules = cmp.multiPageList();
-		appendMessageRules(rules, LABEL_WARNING, (result).getWarnings());
-		appendMessageRules(rules, LABEL_ERROR, (result).getErrors());
-		return rules;
-	}
-
-	private ComponentBuilder<?, ?> appendHeaderAndResult(ValidatorResult result) {
-		ComponentBuilder<?, ?> rulesHead = cmp.text(result.getType()).setStyle(bold14LeftStyle);
-		TextFieldBuilder<String> validString = cmp.text(getResultMessage(result))
-			.setStyle(bold14LeftStyle.setBottomBorder(stl.pen1Point()));
-		return cmp.horizontalList().add(rulesHead).add(validString);
-	}
-
-	private ComponentBuilder<?, ?> appendHeaderAndResultOfProfile(SemanticValidatorResult result) {
+	private void appendHeaderAndResultOfProfile(SemanticValidatorResult result, Document document) {
 		String text = "Profil " + result.getRulesMetadata().getName();
-		ComponentBuilder<?, ?> rulesHead = cmp.text(text).setStyle(bold14LeftStyle);
-		TextFieldBuilder<String> validString = cmp.text(getResultMessage(result))
-			.setStyle(bold14LeftStyle.setBottomBorder(stl.pen1Point()));
-		return cmp.horizontalList().add(rulesHead).add(validString);
+		document.add(new Paragraph(text, FONT_CHAPTER));
+		document.add(new Paragraph(getResultMessage(result), FONT_CHAPTER));
 	}
 
-	private VerticalListBuilder appendDetailsHint(VerticalListBuilder verticalList, ValidatorResult validatorResult) {
+	private void appendDetailsHint(ValidatorResult validatorResult, Document document) {
 		if (validatorResult != null && validatorResult.getValidatorDetail() != null) {
 			ValidatorDetail detailsHint = validatorResult.getValidatorDetail();
-			StyleBuilder detailsHintStyle = stl.style(simpleStyle)
-				.setLeftIndent(10)
-				.setTopPadding(5)
-				.setBottomPadding(5);
-			TextFieldBuilder<String> detailsString = cmp.text(detailsHint.toString()).setStyle(detailsHintStyle);
-			verticalList = verticalList.add(detailsString);
-		}
-		return verticalList;
-	}
-
-	private void appendMessageRules(MultiPageListBuilder rules, String label, List<String> messagesToWrite) {
-		for (String message : messagesToWrite) {
-			TextFieldBuilder<String> labelField = cmp.text(label).setFixedWidth(100).setStyle(root20LeftIndentStyle);
-			TextFieldBuilder<String> messageField = cmp.text(message).setStyle(simpleStyle);
-			rules.add(cmp.horizontalList().add(labelField).add(messageField));
+			appendText(detailsHint.toString(), document);
 		}
 	}
 
-	private void appendSemanticValidatorRules(MultiPageListBuilder rules, List<RuleResult> ruleResults) {
+	private void appendSemanticValidatorRules(List<RuleResult> ruleResults, Document document) {
+		appendText(getMessage("report_pdf_details"), document);
+
+		PdfPTable table = createValidationResultTable(document, 15, 15, 70);
 		for (RuleResult ruleResult : ruleResults) {
 			List<InvalidFeaturesResult> invalidFeaturesResults = ruleResult.getInvalidFeaturesResults();
 			if (invalidFeaturesResults.isEmpty()) {
-				appendSemanticValidatorRule(rules, LABEL_OK, ruleResult.getName(), ruleResult.getMessage(),
-						Collections.emptyList());
+				appendSemanticValidatorRuleResult(LABEL_OK, ruleResult.getName(), ruleResult.getMessage(),
+						Collections.emptyList(), table);
 			}
 			else {
 				for (InvalidFeaturesResult invalidRuleResult : invalidFeaturesResults) {
 					String label = WARNING.equals(invalidRuleResult.getResultType()) ? LABEL_WARNING : LABEL_ERROR;
-					appendSemanticValidatorRule(rules, label, ruleResult.getName(), invalidRuleResult.getMessage(),
-							invalidRuleResult.getGmlIds());
+					appendSemanticValidatorRuleResult(label, ruleResult.getName(), invalidRuleResult.getMessage(),
+							invalidRuleResult.getGmlIds(), table);
 				}
 			}
 		}
+		document.add(table);
 	}
 
-	private void appendSemanticValidatorRule(MultiPageListBuilder rules, String label, String name, String message,
-			List<String> gmlIds) {
-		TextFieldBuilder<String> labelField = cmp.text(label).setFixedWidth(100).setStyle(root20LeftIndentStyle);
-		TextFieldBuilder<String> nameField = cmp.text(name).setFixedWidth(60).setStyle(simpleStyle);
+	private void appendSemanticValidatorRuleResult(String label, String name, String message, List<String> gmlIds,
+			PdfPTable table) {
 		StringBuilder messageBuilder = new StringBuilder(message);
 		if (!gmlIds.isEmpty()) {
 			messageBuilder.append(getMessage("report_pdf_gmlIds"));
 			messageBuilder.append(gmlIds.stream().collect(Collectors.joining(", ")));
 		}
-		TextFieldBuilder<String> messageField = cmp.text(messageBuilder.toString()).setStyle(simpleStyle);
-		rules.add(cmp.horizontalList().add(labelField).add(nameField).add(messageField));
+		table.addCell(new Paragraph(label, FONT_TEXT));
+		table.addCell(new Paragraph(name, FONT_TEXT));
+		table.addCell(new Paragraph(messageBuilder.toString(), FONT_TEXT));
 	}
 
-	private ComponentBuilder<?, ?> createMetadataSection(ValidatorReport report) throws JRException {
-		InputStream is = PdfReportGenerator.class.getResourceAsStream("/jrxml/metadata.jrxml");
-		JasperReport jasperTitleSubreport = JasperCompileManager.compileReport(is);
-		Map<String, Object> parameters = createParams(report);
-		return cmp.verticalList()
-			.add(cmp.subreport(jasperTitleSubreport).setParameters(parameters))
-			.add(cmp.verticalGap(VERTICAL_GAP));
+	private void appendText(String text, Document document) {
+		if (text != null) {
+			Paragraph paragraph = new Paragraph(text, FONT_TEXT);
+			paragraph.setIndentationLeft(indentation(document, 10));
+			document.add(paragraph);
+		}
+	}
+
+	private PdfPTable createValidationResultTable(Document document, int... widths) {
+		PdfPTable table = new PdfPTable(widths.length);
+		table.setWidths(widths);
+		table.setTotalWidth(tableWidth(document) - 30);
+		table.setHorizontalAlignment(Element.ALIGN_RIGHT);
+		table.setSpacingBefore(5);
+		table.setLockedWidth(true);
+		table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
+		table.getDefaultCell().setPaddingBottom(5);
+		table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
+		return table;
+	}
+
+	private PdfPCell createTableCell(String text, Font font) {
+		String textToAdd = text != null ? text : "-";
+		PdfPCell cell = new PdfPCell(new Paragraph(textToAdd, font));
+		cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+		cell.setBorder(Rectangle.NO_BORDER);
+		return cell;
 	}
 
 	private String getResultMessage(ValidatorResult result) {
@@ -358,15 +365,14 @@ class ReportBuilder {
 		return createValidLabel(result.isValid());
 	}
 
-	private Map<String, Object> createParams(ValidatorReport report) {
-		String isValid = createValidLabel(report.isReportValid());
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("valName", report.getValidationName());
-		params.put("valResult", isValid);
-		params.put("date", report.getDate());
-		params.put("fileName", report.getArchiveName());
-		params.put("version", asLabel(report.getXPlanVersion()));
-		return params;
+	private float tableWidth(Document document) {
+		float width = document.getPageSize().getWidth();
+		return width - 72;
+	}
+
+	private float indentation(Document document, int indentation) {
+		float left = document.getPageSize().getLeft();
+		return left + indentation;
 	}
 
 }

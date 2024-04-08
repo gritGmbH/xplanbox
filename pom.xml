@@ -1518,41 +1518,11 @@
         <artifactId>spring-data-jpa</artifactId>
         <version>${spring-data.version}</version>
       </dependency>
-      <!-- reports -->
+      <!-- pdf report -->
       <dependency>
-        <groupId>net.sourceforge.dynamicreports</groupId>
-        <artifactId>dynamicreports-core</artifactId>
-        <version>6.12.1</version>
-        <exclusions>
-          <exclusion>
-            <groupId>net.sf.barcode4j</groupId>
-            <artifactId>barcode4j</artifactId>
-          </exclusion>
-          <exclusion>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-text</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>net.sourceforge.dynamicreports</groupId>
-        <artifactId>dynamicreports-adhoc</artifactId>
-        <version>6.12.1</version>
-      </dependency>
-      <dependency>
-        <groupId>net.sourceforge.dynamicreports</groupId>
-        <artifactId>dynamicreports-googlecharts</artifactId>
-        <version>6.12.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.jdt.core.compiler</groupId>
-        <artifactId>ecj</artifactId>
-        <version>4.6.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mybatis</groupId>
-        <artifactId>mybatis</artifactId>
-        <version>3.2.8</version>
+        <groupId>com.github.librepdf</groupId>
+        <artifactId>openpdf</artifactId>
+        <version>1.4.2</version>
       </dependency>
       <!-- rest -->
       <dependency>

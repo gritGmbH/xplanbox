@@ -26,13 +26,15 @@ import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -47,16 +49,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class ReportBuilderTest {
 
+	@Rule
+	public TemporaryFolder tmpFolder = new TemporaryFolder();
+
 	// @Ignore("Make a visibility check if the report looks like expected!")
 	@Test
 	public void testCreateReportAsPdf() throws Exception {
 		PdfReportGenerator reportBuilder = new PdfReportGenerator();
 
-		Path pdf = Files.createTempFile("report", ".pdf");
-		OutputStream os = new FileOutputStream(pdf.toFile());
+		File file = tmpFolder.newFile();
+		OutputStream os = new FileOutputStream(file);
 		reportBuilder.createPdfReport(createReport(), os);
 		os.close();
-		assertThat(Files.size(pdf), is(not(0)));
+		assertThat(Files.size(file.toPath()), is(not(0)));
 	}
 
 	@Test(expected = IllegalArgumentException.class)

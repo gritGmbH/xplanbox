@@ -237,19 +237,10 @@
       <artifactId>xplan-core-validator</artifactId>
       <exclusions>
         <exclusion>
-          <groupId>org.eclipse.jdt.core.compiler</groupId>
-          <artifactId>ecj</artifactId>
-        </exclusion>
-        <exclusion>
           <groupId>commons-logging</groupId>
           <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jdt.core.compiler</groupId>
-      <artifactId>ecj</artifactId>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -315,7 +306,7 @@
       <id>docker</id>
       <properties>
         <docker-image.skip>false</docker-image.skip>
-        <docker-contextTarFile.expectedSizeInMat10pct>94</docker-contextTarFile.expectedSizeInMat10pct>
+        <docker-contextTarFile.expectedSizeInMat10pct>82</docker-contextTarFile.expectedSizeInMat10pct>
       </properties>
       <dependencies>
         <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->

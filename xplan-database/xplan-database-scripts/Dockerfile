@@ -18,7 +18,12 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 
 ENV TZ=Europe/Berlin \
   LC_TIME=en_US \
-  LC_ALL=
+  LC_ALL= \
+  XPLAN_JDBC_URL=define-me \
+  XPLAN_DB_USER=define-me \
+  XPLAN_DB_INIT_USER=define-me \
+  XPLAN_DB_INIT_PASSWORD=define-me \
+  XPLAN_SERVICES_DEFAULT_CRS_SRID=define-me
 
 # Install PSQL (probably not really needed) 
 USER root
@@ -31,3 +36,6 @@ RUN apt-get update -y \
 USER liquibase
 
 COPY src/main/resources /liquibase/changelog
+ADD docker-entrypoint.sh /xplanbox/
+
+ENTRYPOINT [ "/xplanbox/docker-entrypoint.sh" ]

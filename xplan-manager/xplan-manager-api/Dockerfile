@@ -22,6 +22,7 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 # set environment variables
 ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree \
 	JAVA_ADDITIONAL_ARG_APP="-Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng" \
+	JAVA_ADDITIONAL_ARG_JMX_EXPORTER='-javaagent:$JMX_EXPORTER_DIR/jmx_prometheus_javaagent-0.19.0.jar=12345:$JMX_EXPORTER_DIR/jmx-exporter.config.yaml' \
 	XPLANBOX_CONFIG="/xplanbox/xplan-manager-config/"
 
 COPY ${WAR_FILE} /xplanbox/app.war

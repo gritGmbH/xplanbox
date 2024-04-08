@@ -20,10 +20,10 @@
  */
 package de.latlon.xplan.validator.report;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Encapsulates some details about the validator result.

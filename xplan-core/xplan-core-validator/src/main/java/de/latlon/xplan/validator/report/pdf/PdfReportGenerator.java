@@ -20,10 +20,11 @@
  */
 package de.latlon.xplan.validator.report.pdf;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.pdf.PdfWriter;
 import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.report.ValidatorReport;
-import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
-import net.sf.dynamicreports.report.exception.DRException;
 
 import java.io.OutputStream;
 
@@ -49,12 +50,19 @@ public class PdfReportGenerator {
 	 */
 	public void createPdfReport(ValidatorReport report, OutputStream os) throws ReportGenerationException {
 		checkParameters(report, os);
+		Document document = new Document(PageSize.A4, 36, 36, 65, 36);
 		try {
-			JasperReportBuilder print = reportBuilder.createReport(report);
-			print.toPdf(os);
+			PdfWriter writer = PdfWriter.getInstance(document, os);
+			writer.setCloseStream(false);
+			writer.setPageEvent(new HeaderAndFooterPageEventHelper(report.getValidationName(), report.getDate()));
+			document.open();
+			reportBuilder.writeReport(report, document);
 		}
-		catch (DRException e) {
+		catch (Throwable e) {
 			throw new ReportGenerationException(e);
+		}
+		finally {
+			document.close();
 		}
 	}
 

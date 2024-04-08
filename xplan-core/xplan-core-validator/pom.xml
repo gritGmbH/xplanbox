@@ -124,70 +124,8 @@
       <artifactId>commons-text</artifactId>
     </dependency>
     <dependency>
-      <groupId>net.sourceforge.dynamicreports</groupId>
-      <artifactId>dynamicreports-core</artifactId>
-      <exclusions>
-        <exclusion>
-          <artifactId>batik-xml</artifactId>
-          <groupId>org.apache.xmlgraphics</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>batik-util</artifactId>
-          <groupId>org.apache.xmlgraphics</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>batik-svg-dom</artifactId>
-          <groupId>org.apache.xmlgraphics</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>batik-script</artifactId>
-          <groupId>org.apache.xmlgraphics</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>batik-parser</artifactId>
-          <groupId>org.apache.xmlgraphics</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>batik-gvt</artifactId>
-          <groupId>org.apache.xmlgraphics</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>batik-ext</artifactId>
-          <groupId>org.apache.xmlgraphics</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>batik-dom</artifactId>
-          <groupId>org.apache.xmlgraphics</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>batik-css</artifactId>
-          <groupId>org.apache.xmlgraphics</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>batik-bridge</artifactId>
-          <groupId>org.apache.xmlgraphics</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>batik-awt-util</artifactId>
-          <groupId>org.apache.xmlgraphics</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>batik-anim</artifactId>
-          <groupId>org.apache.xmlgraphics</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>commons-logging</artifactId>
-          <groupId>commons-logging</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>net.sourceforge.dynamicreports</groupId>
-      <artifactId>dynamicreports-adhoc</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>net.sourceforge.dynamicreports</groupId>
-      <artifactId>dynamicreports-googlecharts</artifactId>
+      <groupId>com.github.librepdf</groupId>
+      <artifactId>openpdf</artifactId>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>

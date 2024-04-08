@@ -45,7 +45,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.apache.http.client.utils.URIBuilder;
-import org.jfree.util.Log;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.Valid;
@@ -94,6 +94,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * Controller class for handling access to a plan identified by it's id.
@@ -106,6 +107,8 @@ import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
 		date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
 public class PlanApi {
+
+	private static final Logger LOG = getLogger(PlanApi.class);
 
 	private final static MediaType[] MEDIA_TYPES_SEARCH = { APPLICATION_JSON_TYPE, XPLANBOX_NO_VERSION_JSON_TYPE,
 			XPLANBOX_V1_JSON_TYPE, XPLANBOX_V2_JSON_TYPE, APPLICATION_XML_TYPE, APPLICATION_ZIP_TYPE };
@@ -413,7 +416,7 @@ public class PlanApi {
 			return uriBuilder.build();
 		}
 		catch (URISyntaxException e) {
-			Log.warn("Could not create self reference: " + e.getMessage(), e);
+			LOG.warn("Could not create self reference: " + e.getMessage(), e);
 		}
 		return null;
 	}

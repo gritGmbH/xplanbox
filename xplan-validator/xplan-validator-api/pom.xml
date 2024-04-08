@@ -308,7 +308,7 @@
       <id>docker</id>
       <properties>
         <docker-image.skip>false</docker-image.skip>
-        <docker-contextTarFile.expectedSizeInMat10pct>104</docker-contextTarFile.expectedSizeInMat10pct>
+        <docker-contextTarFile.expectedSizeInMat10pct>89</docker-contextTarFile.expectedSizeInMat10pct>
       </properties>
       <dependencies>
         <dependency> <!-- to copy jmx exporter stuff from docker image  -->

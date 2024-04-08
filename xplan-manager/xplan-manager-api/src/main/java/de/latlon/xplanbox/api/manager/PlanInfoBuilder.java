@@ -33,7 +33,7 @@ import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoXplanModelData;
 import de.latlon.xplanbox.api.manager.v1.model.PlanStatusEnum;
 import org.apache.http.client.utils.URIBuilder;
-import org.jfree.util.Log;
+import org.slf4j.Logger;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -45,11 +45,14 @@ import java.util.stream.Collectors;
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.ALTERNATE;
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.PLANWERKWMS;
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.SELF;
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class PlanInfoBuilder {
+
+	private static final Logger LOG = getLogger(PlanInfoBuilder.class);
 
 	private final XPlan xPlan;
 
@@ -156,7 +159,7 @@ public class PlanInfoBuilder {
 			return uriBuilder.build();
 		}
 		catch (URISyntaxException e) {
-			Log.warn("Could not create self reference: " + e.getMessage(), e);
+			LOG.warn("Could not create self reference: " + e.getMessage(), e);
 		}
 		return null;
 	}
@@ -176,7 +179,7 @@ public class PlanInfoBuilder {
 			return planwerkWmsLink;
 		}
 		catch (URISyntaxException e) {
-			Log.warn("Could not build XPlanwerkWMS url: " + e.getMessage(), e);
+			LOG.warn("Could not build XPlanwerkWMS url: " + e.getMessage(), e);
 		}
 		return null;
 	}

@@ -20,7 +20,7 @@
  */
 package de.latlon.xplan.validator.semantic.configuration.metadata;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 

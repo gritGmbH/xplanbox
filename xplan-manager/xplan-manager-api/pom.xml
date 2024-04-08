@@ -308,7 +308,7 @@
       <id>docker</id>
       <properties>
         <docker-image.skip>false</docker-image.skip>
-        <docker-contextTarFile.expectedSizeInMat10pct>132</docker-contextTarFile.expectedSizeInMat10pct>
+        <docker-contextTarFile.expectedSizeInMat10pct>116</docker-contextTarFile.expectedSizeInMat10pct>
       </properties>
       <dependencies>
         <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
