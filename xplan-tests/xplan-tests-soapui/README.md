@@ -17,7 +17,7 @@ mvn clean test -Psystem-tests -DtestFileName=xplan-manager-api-soapui-project.xm
 ### xplan-dokumente-api-soapui-project
 
 ```
-mvn clean test -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlDokumentenApi=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
+mvn clean test -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlDokumenteApi=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
 ```
 
 ### xplan-manager-web-soapui-project

@@ -80,6 +80,7 @@ Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versione
 | 7.1.1 (<<aktualisierung-version-7.1.1, Details>>)     | nein | nein
 | 7.1.2 (<<aktualisierung-version-7.1.2, Details>>)     | ja   | nein
 | 7.1.3 (<<aktualisierung-version-7.1.3, Details>>)     | ja   | nein
+| 7.2   (<<aktualisierung-version-7.2, Details>>)     | ja   | ja
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |===
 
@@ -326,6 +327,16 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
 NOTE: Um das Löschen von Rasterdaten unter dem Betriebssystem Windows sicherzustellen, muss der Workspace-Reload, wie im Kapitel <<automatischer-workspace-reload>> beschrieben, konfiguriert sein.
+
+[[aktualisierung-version-7.2]]
+=== Aktualisierung auf die Version 7.2 der xPlanBox
+
+Für die Aktualisierung auf die Version 7.2 sind folgende Schritte auszuführen:
+
+* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+* Aktualisierung der Datenbank:
+** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_7.1_to_7.2_ im Modul _xplan-manager-workspace_
+* Umbenennung der Datei _<XPLANBOX_CONFIG>/dokumentenApiConfiguration.properties_  nach _<XPLANBOX_CONFIG>/dokumenteApiConfiguration.properties_ zur Konfiguration der <<konfiguration-document-api>>.
 
 === Troubleshooting
 

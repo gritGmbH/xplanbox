@@ -215,7 +215,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-workspaces</artifactId>
+      <artifactId>xplan-webservices-workspaces</artifactId>
       <version>${project.version}</version>
       <classifier>xplan-validator-workspace</classifier>
       <type>zip</type>

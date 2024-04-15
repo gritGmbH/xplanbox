@@ -23,6 +23,8 @@ package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.junit.Test;
 
+import java.util.List;
+
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
@@ -430,7 +432,25 @@ public class GeltungsbereichInspectorTest {
 
 		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
 		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getErrors().size(), is(1));
-		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(0));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(1));
+	}
+
+	@Test
+	public void testCheck_HoleAndIntersection() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
+		readFeaturesFromGml("Testplan_position_geltungsbereich_schnitt.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		List<String> errors = geltungsbereichInspector.getErrors();
+		assertThat(errors.size(), is(2));
+		assertThat(errors.get(0), containsString("GML_046c1737-4b09-4b0e-8271-0632eb0d62e0"));
+		assertThat(errors.get(1), containsString("GML_046c1737-4b09-4b0e-8271-0632eb0d62e0"));
+
+		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(2));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getErrors().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(1));
 	}
 
 	@Test

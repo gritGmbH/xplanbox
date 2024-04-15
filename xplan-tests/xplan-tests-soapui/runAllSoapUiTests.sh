@@ -74,7 +74,7 @@ then
 	echo "XPlanDokumenteAPI Tests are skipped!"
 else
 	waitForRightVersion $XPLAN_DOKUMENTE_API_BASE_URL/xdokumente/version.txt
-	mvn test -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_MANAGER_API_BASE_URL -DbaseUrlDokumentenApi=$XPLAN_DOKUMENTE_API_BASE_URL -Dusername=$XPLAN_MANAGER_API_USERNAME -Dpassword=$XPLAN_MANAGER_API_PASSWORD
+	mvn test -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_MANAGER_API_BASE_URL -DbaseUrlDokumenteApi=$XPLAN_DOKUMENTE_API_BASE_URL -Dusername=$XPLAN_MANAGER_API_USERNAME -Dpassword=$XPLAN_MANAGER_API_PASSWORD
 fi
 
 mvn test -Psystem-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=$XPLAN_MANAGER_WEB_BASE_URL -Dusername=$XPLAN_MANAGER_WEB_USERNAME -Dpassword=$XPLAN_MANAGER_WEB_PASSWORD

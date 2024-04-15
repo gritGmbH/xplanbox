@@ -76,7 +76,7 @@ IMPORTANT: Der Fehler kann nicht in der xPlanBox behoben werden! Das XPlanArchiv
 
 ==== XPlanDokumenteAPI - Abruf des World-Files bei GeoTIFF nicht möglich
 
-Bei Import eines Plans mit einer im XPlanGML referenzierte GeoTIFF-Datei als Rasterbasis und zusätzlich auch einem referenzierten World-File (tfw-Datei) ist die tfw-Datei nicht über die XPlanDokumenteAPI abfragbar. Wird die im exportierten XPlanGML angegebene URL aufgerufen, kann die tfw-Datei nicht abgerufen werden und ein HTTP-Statusfehler "404 - Not Found" wird von der XPlanDokumentenAPI zurückgegeben.
+Bei Import eines Plans mit einer im XPlanGML referenzierte GeoTIFF-Datei als Rasterbasis und zusätzlich auch einem referenzierten World-File (tfw-Datei) ist die tfw-Datei nicht über die XPlanDokumenteAPI abfragbar. Wird die im exportierten XPlanGML angegebene URL aufgerufen, kann die tfw-Datei nicht abgerufen werden und ein HTTP-Statusfehler "404 - Not Found" wird von der XPlanDokumenteAPI zurückgegeben.
 
 ==== XPlanValidatorAPI - Verwendung von vollqualifizierten Pfaden im HTTP-Header "X-Filename"
 

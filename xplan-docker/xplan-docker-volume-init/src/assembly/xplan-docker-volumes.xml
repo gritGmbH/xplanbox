@@ -67,9 +67,9 @@
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
-    <!--xplan-dokumenten-config-->
+    <!--xplan-dokumente-config-->
     <dependencySet>
-      <outputDirectory>/xplan-dokumenten-config</outputDirectory>
+      <outputDirectory>/xplan-dokumente-config</outputDirectory>
       <includes>
         <include>${project.groupId}:xplan-dokumente-config</include>
       </includes>

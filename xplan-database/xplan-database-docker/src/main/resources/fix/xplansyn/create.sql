@@ -18,7 +18,7 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- #L%
 ---
--- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.03.2024, 10:57:19
+-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 04.04.2024, 10:46:02
 CREATE SCHEMA xplansyn; 
 SET search_path TO xplansyn,public;
 CREATE TABLE xplansyn.xplan_bp_abgrabungsflaeche (

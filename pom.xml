@@ -21,6 +21,7 @@
     <deegree3.version>3.5.7-SNAPSHOT</deegree3.version>
     <xplanung.regeln.version>1.1.6</xplanung.regeln.version>
     <xplanung.regeln.berlin.version>0.4</xplanung.regeln.berlin.version>
+    <xplanung.regeln.brandenburg.version>0.2-SNAPSHOT</xplanung.regeln.brandenburg.version>
     <gwt.version>2.11.0</gwt.version>
     <geotools.version>29.2</geotools.version>
     <jacoco.argLine />
@@ -1638,6 +1639,11 @@
         <artifactId>regeln-berlin</artifactId>
         <version>${xplanung.regeln.berlin.version}</version>
       </dependency>
+      <dependency>
+        <groupId>de.xleitstelle.xplanung</groupId>
+        <artifactId>regeln-brandenburg</artifactId>
+        <version>${xplanung.regeln.brandenburg.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -1692,6 +1698,16 @@
     <repository>
       <id>xleitstelle-xplanung-validierungsregeln-berlin</id>
       <url>https://gitlab.opencode.de/api/v4/projects/397/packages/maven</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>xleitstelle-xplanung-validierungsregeln-brandenburg</id>
+      <url>https://gitlab.opencode.de/api/v4/projects/2484/packages/maven</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>

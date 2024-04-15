@@ -26,12 +26,12 @@ For execution against test environment use following property values:
 
 baseUrlManagerApi=https://xplanbox.lat-lon.de</con:description>
   <con:settings/>
-  <con:interface xsi:type="con:RestService" id="da31547e-ee3b-4026-a608-c310a62f70aa" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanDokumentenAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <con:interface xsi:type="con:RestService" id="da31547e-ee3b-4026-a608-c310a62f70aa" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanDokumenteAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:description>XPlanDokumenten REST API</con:description>
     <con:settings/>
     <con:definitionCache type="TEXT" rootPart=""/>
     <con:endpoints>
-      <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+      <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
       <con:endpoint>http://localhost:8092/xplan-dokumente-api/xdokumente/api/v1</con:endpoint>
       <con:endpoint>https://xplanbox.lat-lon.de/xdokumente/api/v1</con:endpoint>
     </con:endpoints>
@@ -72,7 +72,7 @@ List documents</con:description>
         </con:representation>
         <con:request name="Request 1" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
           <con:settings/>
-          <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+          <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
@@ -110,7 +110,7 @@ Show system and application configuration</con:description>
         </con:representation>
         <con:request name="Request 1" id="6fb03af2-8a96-4f90-8577-72945c5ee2cf" mediaType="application/json">
           <con:settings/>
-          <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+          <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
@@ -182,7 +182,7 @@ Download document</con:description>
         </con:representation>
         <con:request name="Request 1" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
           <con:settings/>
-          <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+          <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
@@ -390,7 +390,7 @@ Download document</con:description>
         </con:representation>
         <con:request name="Request 1" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
           <con:settings/>
-          <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+          <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
@@ -430,7 +430,7 @@ OpenAPI document</con:description>
         </con:representation>
         <con:request name="Request 1" id="c3d70b20-79d3-4474-928b-deeb1f813de1" mediaType="application/json">
           <con:settings/>
-          <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+          <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
@@ -443,8 +443,8 @@ OpenAPI document</con:description>
       </con:method>
     </con:resource>
   </con:interface>
-  <con:testSuite id="93c38a1c-7e2a-4fc9-b84d-7b26405954f7" name="XPlanDokumentenAPI TestSuite">
-    <con:description>TestSuite generated for REST Service [XPlanDokumentenAPI]</con:description>
+  <con:testSuite id="93c38a1c-7e2a-4fc9-b84d-7b26405954f7" name="XPlanDokumenteAPI TestSuite">
+    <con:description>TestSuite generated for REST Service [XPlanDokumenteAPI]</con:description>
     <con:settings/>
     <con:runType>SEQUENTIAL</con:runType>
     <con:testCase id="48db7f60-5786-44f8-9810-fd9a97d425a7" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Import Data TestCase" searchProperties="true">
@@ -505,12 +505,12 @@ OpenAPI document</con:description>
       <con:settings/>
       <con:testStep type="restrequest" name="GET XX X.X XX openAPI" id="1aeeaac4-199b-4534-af9e-e394e963c6d8">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/" methodName="openApi" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/" methodName="openApi" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET XX X.X XX openAPI" id="c3d70b20-79d3-4474-928b-deeb1f813de1" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="ed716dba-fd89-43c2-8ae7-271b19e493ba" name="Valid HTTP Status Codes">
@@ -577,12 +577,12 @@ OpenAPI document</con:description>
       </con:testStep>
       <con:testStep type="restrequest" name="GET XX X.X XX formatNotAvailable" id="f7254d73-6f1a-46c4-8e86-30660f451c74">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/" methodName="openApi" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/" methodName="openApi" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET XX X.X XX formatNotAvailable" id="c3d70b20-79d3-4474-928b-deeb1f813de1" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="formatNotAvailable" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="ed716dba-fd89-43c2-8ae7-271b19e493ba" name="Valid HTTP Status Codes">
@@ -609,12 +609,12 @@ OpenAPI document</con:description>
       <con:settings/>
       <con:testStep type="restrequest" name="GET XX X.X XX showConfig" id="5689721f-2ab3-4b9b-88ed-1416047f2abf">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/info" methodName="showConfig" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/info" methodName="showConfig" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET XX X.X XX showConfig" id="6fb03af2-8a96-4f90-8577-72945c5ee2cf" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//info</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="bd5a77c9-81f7-4bd5-827c-ef56ee3b68fe" name="Valid HTTP Status Codes">
@@ -655,12 +655,12 @@ assert json.version != null</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="GET XX X.X XX formatNotAvailable" id="6022ec49-e1d6-4268-a9fa-0d9124bc998e">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/info" methodName="showConfig" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/info" methodName="showConfig" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET XX X.X XX formatNotAvailable" id="6fb03af2-8a96-4f90-8577-72945c5ee2cf" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="formatNotAvailable" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//info</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="bd5a77c9-81f7-4bd5-827c-ef56ee3b68fe" name="Valid HTTP Status Codes">
@@ -687,12 +687,12 @@ assert json.version != null</scriptText>
       <con:settings/>
       <con:testStep type="restrequest" name="GET BP 6.0 pI getFileList" id="aed3952e-4386-44dc-b1ac-6bc29df690e6">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}" methodName="listDocuments" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}" methodName="listDocuments" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET BP 6.0 pI getFileList" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="bc6247a3-5d0d-47a5-93ea-59d65ed2d3d9" name="Valid HTTP Status Codes">
@@ -743,12 +743,12 @@ assert json.version != null</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="GET BP 6.0 pI invalidInput" id="9ebc6c07-fc50-4fa7-82ea-85246bf12832">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}" methodName="listDocuments" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}" methodName="listDocuments" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET BP 6.0 pI invalidInput" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="bc6247a3-5d0d-47a5-93ea-59d65ed2d3d9" name="Valid HTTP Status Codes">
@@ -772,12 +772,12 @@ assert json.version != null</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="GET BP 6.0 pI invalidPlanId" id="274fe0d2-53b0-4de2-bf28-2d327e1952ef">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}" methodName="listDocuments" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}" methodName="listDocuments" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET BP 6.0 pI invalidPlanId" id="681a6afa-4961-4b36-b3b3-4b3fa2a974f9" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="bc6247a3-5d0d-47a5-93ea-59d65ed2d3d9" name="Valid HTTP Status Codes">
@@ -806,12 +806,12 @@ assert json.version != null</scriptText>
       <con:settings/>
       <con:testStep type="restrequest" name="HEAD BP 6.0 pI getHeaderPDF" id="94da7e10-576e-4095-a103-baa929cbd91a">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="HEAD BP 6.0 pI getHeaderPDF" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
@@ -851,12 +851,12 @@ assert contentLength[0].toInteger() == 67450</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="HEAD BP 6.0 pI getHeaderPNG" id="e1d27938-f34e-4480-b914-c6aeed8e6c83">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="HEAD BP 6.0 pI getHeaderPNG" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
@@ -896,12 +896,12 @@ assert contentLength[0].toInteger() == 320960</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="HEAD BP 6.0 pI getHeaderPGW" id="ca531168-9f64-47db-afb0-d4c4d192f2d3">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="HEAD BP 6.0 pI getHeaderPGW" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
@@ -941,12 +941,12 @@ assert contentLength[0].toInteger() == 73</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="HEAD BP 6.0 pI invalidInput" id="9c0d1bf1-9acc-4011-995e-e28759b61022">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="HEAD BP 6.0 pI invalidInput" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
@@ -971,12 +971,12 @@ assert contentLength[0].toInteger() == 73</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="HEAD BP 6.0 pI invalidPlanId" id="8fe33ca1-580c-41c9-9166-5ce822951b8a">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="HEAD BP 6.0 pI invalidPlanId" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
@@ -1001,12 +1001,12 @@ assert contentLength[0].toInteger() == 73</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="HEAD BP 6.0 pI invalidFileName" id="388f5b27-aa27-46f2-ad8a-528e23ebf8d8">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getHeader" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="HEAD BP 6.0 pI invalidFileName" id="5f17e7fb-0b2d-42db-b32a-d5ea636607a2" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1/dokument/92/StErhVo_Eppendorf_Hoheluft-Ost.pdf</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="b86b8650-d6e4-4105-8a32-068e242e41cb" name="Valid HTTP Status Codes">
@@ -1031,12 +1031,12 @@ assert contentLength[0].toInteger() == 73</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="GET BP 6.0 pI getFilePDF" id="ed8e46ba-6735-40de-855d-d254c5d54b80">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET BP 6.0 pI getFilePDF" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//dokument//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
@@ -1083,12 +1083,12 @@ assert contentLength[0].toInteger() == 67450</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="GET BP 6.0 pI getFilePNG" id="fb40996b-8b5b-4be9-b32c-99376b7ebd70">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET BP 6.0 pI getFilePNG" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//dokument//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
@@ -1135,12 +1135,12 @@ assert contentLength[0].toInteger() == 320960</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="GET BP 6.0 pI getFilePGW" id="2b54413b-eb85-4872-8838-647fa06aac5e">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET BP 6.0 pI getFilePGW" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//dokument//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
@@ -1180,12 +1180,12 @@ assert contentLength[0].toInteger() == 73</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="GET BP 6.0 pI invalidInput" id="ff33717b-f732-4c81-8479-41018304e8b5">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET BP 6.0 pI invalidInput" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//dokument//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
@@ -1210,12 +1210,12 @@ assert contentLength[0].toInteger() == 73</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="GET BP 6.0 pI invalidPlanId" id="898c28e9-4918-49ae-877a-29be567c909a">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET BP 6.0 pI invalidPlanId" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//dokument//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
@@ -1240,12 +1240,12 @@ assert contentLength[0].toInteger() == 73</scriptText>
       </con:testStep>
       <con:testStep type="restrequest" name="GET BP 6.0 pI invalidFileName" id="5f5584ae-09dd-4533-9255-0edca820de83">
         <con:settings/>
-        <con:config service="XPlanDokumentenAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config service="XPlanDokumenteAPI" resourcePath="/dokument/{planId}/{fileName}" methodName="getDocument" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="GET BP 6.0 pI invalidFileName" id="918204b0-3bf2-4507-892d-2f10ac701581" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+            <con:endpoint>${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-dokumente-api/xdokumente/api/v1//dokument//</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="30826a66-8a41-4781-bcdd-f103d08967f3" name="Valid HTTP Status Codes">
@@ -1332,11 +1332,11 @@ assert contentLength[0].toInteger() == 73</scriptText>
     </con:properties>
   </con:testSuite>
   <con:endpointStrategy xsi:type="con:DefaultEndpointStrategy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <con:endpoint mode="COMPLEMENT" password="${#Project#password}" username="${#Project#username}">${#Project#baseUrlDokumentenApi}/xdokumente/api/v1</con:endpoint>
+    <con:endpoint mode="COMPLEMENT" password="${#Project#password}" username="${#Project#username}">${#Project#baseUrlDokumenteApi}/xdokumente/api/v1</con:endpoint>
   </con:endpointStrategy>
   <con:properties>
     <con:property>
-      <con:name>baseUrlDokumentenApi</con:name>
+      <con:name>baseUrlDokumenteApi</con:name>
       <con:value>http://localhost:8092/xplan-dokumente-api</con:value>
     </con:property>
     <con:property>

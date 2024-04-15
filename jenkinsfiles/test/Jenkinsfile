@@ -13,8 +13,8 @@ pipeline {
       string(name: 'BASE_URL_DIENSTE', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDienste')
       string(name: 'BASE_URL_INSPIRE_PLU', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of INSPIRE PLU')
       string(name: 'BASE_URL_MANAGER_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanManagerAPI')
-      string(name: 'BASE_URL_Validator_WEB', defaultValue: "https://xplanbox.lat-lon.de/xplan-validator-web", description: 'Set base URL of XPlanValidatorWeb')
-      string(name: 'BASE_URL_DOKUMENTEN_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDokumentenAPI')
+      string(name: 'BASE_URL_VALIDATOR_WEB', defaultValue: "https://xplanbox.lat-lon.de/xplan-validator-web", description: 'Set base URL of XPlanValidatorWeb')
+      string(name: 'BASE_URL_DOKUMENTE_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDokumenteAPI')
       string(name: 'BASE_URL_MAPSERVER', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of MapServer')
       string(name: 'BASE_URL_MAPPROXY', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of MapProxy')
       string(name: 'SLACK_CHANNEL', defaultValue: "#installationen", description: 'Set slack channel')
@@ -46,7 +46,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlDokumentenApi=${BASE_URL_DOKUMENTEN_API} -Dusername=$Username -Dpassword=$Password'
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlDokumenteApi=${BASE_URL_DOKUMENTE_API} -Dusername=$Username -Dpassword=$Password'
             }
          }
       }
@@ -73,7 +73,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn integration-test -pl :xplan-tests-selenium -Psystem-tests -DbaseUrlValidatorWeb=${BASE_URL_Validator_WEB} -Dusername=$Username -Dpassword=$Password'
+               sh 'mvn integration-test -pl :xplan-tests-selenium -Psystem-tests -DbaseUrlValidatorWeb=${BASE_URL_VALIDATOR_WEB} -Dusername=$Username -Dpassword=$Password'
             }
          }
       }

@@ -172,7 +172,7 @@ public class XPlanManagerTest {
 		InputStream resource = getClass().getResourceAsStream("/testdata/xplan41/BPlan001_4-1.zip");
 		FileOutputStream output = null;
 		try {
-			File resourceFile = File.createTempFile("XPlanManagerTest_", ".zip");
+			File resourceFile = Files.createTempFile("XPlanManagerTest_", ".zip").toFile();
 			output = new FileOutputStream(resourceFile);
 			return resourceFile.getAbsolutePath();
 		}

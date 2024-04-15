@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-api-dokumente - XPlanDokumentenAPI
+ * xplan-api-dokumente - XPlanDokumenteAPI
  * %%
  * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
@@ -30,17 +30,12 @@ import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.database.XPlanDbAdapter;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
-import de.latlon.xplan.manager.workspace.WorkspaceException;
-import org.deegree.commons.config.DeegreeWorkspace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLAN_MANAGER_WORKSPACE;
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -80,9 +75,9 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public DokumentenApiConfiguration dokumentenApiConfiguration(PropertiesLoader propertiesLoader)
+	public DokumenteApiConfiguration dokumenteApiConfiguration(PropertiesLoader propertiesLoader)
 			throws ConfigurationException {
-		return new DokumentenApiConfiguration(propertiesLoader);
+		return new DokumenteApiConfiguration(propertiesLoader);
 	}
 
 }

@@ -18,7 +18,7 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- #L%
 ---
--- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.03.2024, 10:57:19
+-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 04.04.2024, 10:46:02
 CREATE SCHEMA xplanvalidator; 
 SET search_path TO xplanvalidator,public;
 CREATE TABLE xplanvalidator.xplan_bp_abgrabungsflaeche (

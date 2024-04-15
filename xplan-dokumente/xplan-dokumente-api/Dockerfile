@@ -33,7 +33,7 @@ ENV JAVA_ADDITIONAL_ARG_JMX_EXPORTER='-javaagent:$JMX_EXPORTER_DIR/jmx_prometheu
 # set environment variables
 ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree \
 	JAVA_ADDITIONAL_ARG_APP="-Duser.timezone=Europe/Berlin" \
-	XPLANBOX_CONFIG="/xplanbox/xplan-dokumenten-config/"
+	XPLANBOX_CONFIG="/xplanbox/xplan-dokumente-config/"
 
 COPY ${WAR_FILE} /xplanbox/app.war
 COPY run.sh /xplanbox/

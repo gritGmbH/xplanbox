@@ -96,7 +96,7 @@ cd $XPLANBOX_VOLUMES
 
 sed -i 's|apiUrl=|apiUrl='$XPLAN_VALIDATORAPI_URL_PUBLIC'|g' xplan-validator-config/validatorApiConfiguration.properties
 sed -i 's|apiUrl=|apiUrl='$XPLAN_MANAGERAPI_URL_PUBLIC'|g' xplan-manager-config/managerApiConfiguration.properties
-sed -i 's|apiUrl=|apiUrl='$XPLAN_DOCUMENTENAPI_URL_PUBLIC'|g' xplan-dokumenten-config/dokumentenApiConfiguration.properties
+sed -i 's|apiUrl=|apiUrl='$XPLAN_DOCUMENTENAPI_URL_PUBLIC'|g' xplan-dokumente-config/dokumenteApiConfiguration.properties
 sed -i 's|wmsUrl=|wmsUrl='$XPLAN_WMS_URL_PUBLIC'/xplan-wms|g' xplan-manager-config/managerApiConfiguration.properties
 sed -i 's|workspaceReloadUrls=|workspaceReloadUrls='$XPLAN_SERVICES_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadApiKey=/workspaceReloadApiKey='$XPLAN_SERVICES_API_KEY'/g' xplan-manager-config/managerConfiguration.properties

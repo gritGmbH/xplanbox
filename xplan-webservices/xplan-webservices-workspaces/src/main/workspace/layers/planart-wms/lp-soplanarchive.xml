@@ -17,7 +17,7 @@
  
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.03.2024, 10:57:19
+  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 04.04.2024, 10:46:02
 -->
 <FeatureLayers xmlns="http://www.deegree.org/layers/feature" xmlns:l="http://www.deegree.org/layers/base" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial">
   <FeatureStoreId>xplansynarchive</FeatureStoreId>
@@ -63,10 +63,10 @@
     <d:Abstract>SO_Baubeschraenkung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_baubeschraenkung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_baubeschraenkung</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -111,10 +111,10 @@
     <d:Abstract>SO_Bauverbotszone</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_bauverbotszone</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_bauverbotszone</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -159,10 +159,10 @@
     <d:Abstract>SO_Bereich</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_bereich</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_bereich</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -207,10 +207,10 @@
     <d:Abstract>SO_Bodenschutzrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_bodenschutzrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_bodenschutzrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -255,10 +255,10 @@
     <d:Abstract>SO_Denkmalschutzrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_denkmalschutzrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_denkmalschutzrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -303,10 +303,10 @@
     <d:Abstract>SO_Forstrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_forstrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_forstrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -351,10 +351,10 @@
     <d:Abstract>SO_Gebiet</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_gebiet</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_gebiet</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -399,10 +399,10 @@
     <d:Abstract>SO_Gelaendemorphologie</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_gelaendemorphologie</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_gelaendemorphologie</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -447,10 +447,10 @@
     <d:Abstract>SO_Gewaesser</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_gewaesser</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_gewaesser</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -495,10 +495,10 @@
     <d:Abstract>SO_Grenze</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_grenze</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_grenze</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -543,10 +543,10 @@
     <d:Abstract>SO_Luftverkehrsrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_luftverkehrsrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_luftverkehrsrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -591,10 +591,10 @@
     <d:Abstract>SO_Plan</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_plan</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_plan</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -639,10 +639,10 @@
     <d:Abstract>SO_Schienenverkehrsrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_schienenverkehrsrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_schienenverkehrsrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -687,10 +687,10 @@
     <d:Abstract>SO_SchutzgebietNaturschutzrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_schutzgebietnaturschutzrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_schutzgebietnaturschutzrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -735,10 +735,10 @@
     <d:Abstract>SO_SchutzgebietSonstigesRecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_schutzgebietsonstigesrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_schutzgebietsonstigesrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -783,10 +783,10 @@
     <d:Abstract>SO_SchutzgebietWasserrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_schutzgebietwasserrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_schutzgebietwasserrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -831,10 +831,10 @@
     <d:Abstract>SO_Sichtflaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_sichtflaeche</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_sichtflaeche</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -879,10 +879,10 @@
     <d:Abstract>SO_SonstigesRecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_sonstigesrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_sonstigesrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -927,10 +927,10 @@
     <d:Abstract>SO_Strassenverkehr</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_strassenverkehr</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_strassenverkehr</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -975,10 +975,10 @@
     <d:Abstract>SO_Strassenverkehrsrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_strassenverkehrsrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_strassenverkehrsrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1023,10 +1023,10 @@
     <d:Abstract>SO_TextAbschnittFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_textabschnittflaeche</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_textabschnittflaeche</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1071,10 +1071,10 @@
     <d:Abstract>SO_Wasserrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_wasserrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_wasserrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1119,10 +1119,10 @@
     <d:Abstract>SO_Wasserwirtschaft</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_wasserwirtschaft</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_wasserwirtschaft</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1167,10 +1167,10 @@
     <d:Abstract>XP_FPO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_xp_fpo</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_xp_fpo</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1215,10 +1215,10 @@
     <d:Abstract>XP_LPO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_xp_lpo</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_xp_lpo</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1263,10 +1263,10 @@
     <d:Abstract>XP_LTO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_xp_lto</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_xp_lto</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1311,10 +1311,10 @@
     <d:Abstract>XP_PPO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_xp_ppo</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_xp_ppo</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1359,10 +1359,10 @@
     <d:Abstract>XP_PTO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/so/so_xp_pto</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/so/so_xp_pto</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
 </FeatureLayers>

@@ -52,7 +52,7 @@
         <testFileName />
         <baseUrlInspirePlu />
         <baseUrlManagerApi />
-        <baseUrlDokumentenApi />
+        <baseUrlDokumenteApi />
         <baseUrlServices />
         <baseUrlMapServer />
         <baseUrlMapProxy />
@@ -99,7 +99,7 @@
                     <projectProperty>projectDir=${basedir}/src/main/resources</projectProperty>
                     <value>baseUrlInspirePlu=${baseUrlInspirePlu}</value>
                     <value>baseUrlManagerApi=${baseUrlManagerApi}</value>
-                    <value>baseUrlDokumentenApi=${baseUrlDokumentenApi}</value>
+                    <value>baseUrlDokumenteApi=${baseUrlDokumenteApi}</value>
                     <value>baseUrlServices=${baseUrlServices}</value>
                     <value>baseUrlMapServer=${baseUrlMapServer}</value>
                     <value>baseUrlMapProxy=${baseUrlMapProxy}</value>

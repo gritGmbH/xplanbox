@@ -17,7 +17,7 @@
  
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.03.2024, 10:57:19
+  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 04.04.2024, 10:46:02
 -->
 <FeatureLayers xmlns="http://www.deegree.org/layers/feature" xmlns:l="http://www.deegree.org/layers/base" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial">
   <FeatureStoreId>xplansynarchive</FeatureStoreId>
@@ -59,10 +59,10 @@
     <d:Abstract>BP_AbgrabungsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_abgrabungsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_abgrabungsfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -103,10 +103,10 @@
     <d:Abstract>BP_AbstandsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_abstandsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_abstandsfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -147,10 +147,10 @@
     <d:Abstract>BP_AbstandsMass</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_abstandsmass</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_abstandsmass</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -191,10 +191,10 @@
     <d:Abstract>BP_AbweichungVonBaugrenze</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_abwbaugr</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_abwbaugr</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -235,10 +235,10 @@
     <d:Abstract>BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_abwueberbaubarergrundstuecksfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_abwueberbaubarergrundstuecksfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -279,10 +279,10 @@
     <d:Abstract>BP_AnpflanzungBindungErhaltung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_anpflanzbinderh</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_anpflanzbinderh</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -323,10 +323,10 @@
     <d:Abstract>BP_AufschuettungsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_aufschuettsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_aufschuettsfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -367,10 +367,10 @@
     <d:Abstract>BP_AusgleichsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_ausgleichsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_ausgleichsfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -411,10 +411,10 @@
     <d:Abstract>BP_AusgleichsMassnahme</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_ausgleichsmassn</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_ausgleichsmassn</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -455,10 +455,10 @@
     <d:Abstract>BP_BauGrenze</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_baugr</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_baugr</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -499,10 +499,10 @@
     <d:Abstract>BP_BauLinie</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_baulin</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_baulin</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -543,10 +543,10 @@
     <d:Abstract>BP_Baugebiet</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_baugeb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_baugeb</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -587,10 +587,10 @@
     <d:Abstract>BP_BaugebietsTeilFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_baugebteilfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_baugebteilfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -631,10 +631,10 @@
     <d:Abstract>BP_Bereich</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_ber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_ber</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -675,10 +675,10 @@
     <d:Abstract>BP_BereichOhneEinAusfahrtLinie</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_berohneeinausflin</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_berohneeinausflin</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -719,10 +719,10 @@
     <d:Abstract>BP_BesondererNutzungszweckFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_besnutzzweckfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_besnutzzweckfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -763,10 +763,10 @@
     <d:Abstract>BP_BodenschaetzeFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_bsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_bsfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -807,10 +807,10 @@
     <d:Abstract>BP_DenkmalschutzEinzelanlage</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_denkmscheinzanl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_denkmscheinzanl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -851,10 +851,10 @@
     <d:Abstract>BP_DenkmalschutzEnsembleFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_denkmschensfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_denkmschensfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -895,10 +895,10 @@
     <d:Abstract>BP_EinfahrtPunkt</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_einfpt</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_einfpt</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -939,10 +939,10 @@
     <d:Abstract>BP_EinfahrtsbereichLinie</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_einfberlin</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_einfberlin</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -983,10 +983,10 @@
     <d:Abstract>BP_EingriffsBereich</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_eingriffsber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_eingriffsber</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1027,10 +1027,10 @@
     <d:Abstract>BP_ErhaltungsBereichFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_erhsberfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_erhsberfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1071,10 +1071,10 @@
     <d:Abstract>BP_ErneuerbareEnergieFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_erneuerbenergiefl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_erneuerbenergiefl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1115,10 +1115,10 @@
     <d:Abstract>BP_FestsetzungNachLandesrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_festsland</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_festsland</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1159,10 +1159,10 @@
     <d:Abstract>BP_FirstRichtungsLinie</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_firstrilin</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_firstrilin</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1203,10 +1203,10 @@
     <d:Abstract>BP_FlaecheOhneFestsetzung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_flaecheohnefestsetzung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_flaecheohnefestsetzung</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1247,10 +1247,10 @@
     <d:Abstract>BP_FoerderungsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_foerderfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_foerderfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1291,10 +1291,10 @@
     <d:Abstract>BP_FreiFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_freifl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_freifl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1335,10 +1335,10 @@
     <d:Abstract>BP_GebaeudeFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gebaeudefl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gebaeudefl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1379,10 +1379,10 @@
     <d:Abstract>BP_GebaeudeStellung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gebaeudestellung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gebaeudestellung</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1423,10 +1423,10 @@
     <d:Abstract>BP_GemeinbedarfsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gembedarfsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gembedarfsfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1467,10 +1467,10 @@
     <d:Abstract>BP_GemeinschaftsanlagenFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gemanlfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gemanlfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1511,10 +1511,10 @@
     <d:Abstract>BP_GemeinschaftsanlagenZuordnung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gemanlzu</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gemanlzu</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1555,10 +1555,10 @@
     <d:Abstract>BP_GenerischesObjekt</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_genobj</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_genobj</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1599,10 +1599,10 @@
     <d:Abstract>BP_GewaesserFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gewfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gewfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1643,10 +1643,10 @@
     <d:Abstract>BP_GruenFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gruenfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gruenfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1687,10 +1687,10 @@
     <d:Abstract>BP_HoehenMass</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_hoehenmass</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_hoehenmass</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1731,10 +1731,10 @@
     <d:Abstract>BP_Immissionsschutz</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_immsschutz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_immsschutz</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1775,10 +1775,10 @@
     <d:Abstract>BP_KennzeichnungsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_kennzsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_kennzsfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1819,10 +1819,10 @@
     <d:Abstract>BP_KleintierhaltungFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_kleintierhfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_kleintierhfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1863,10 +1863,10 @@
     <d:Abstract>BP_Landwirtschaft</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_lw</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_lw</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1907,10 +1907,10 @@
     <d:Abstract>BP_LandwirtschaftsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_lwfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_lwfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1951,10 +1951,10 @@
     <d:Abstract>BP_LuftreinhalteFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_luftreinhfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_luftreinhfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1995,10 +1995,10 @@
     <d:Abstract>BP_NebenanlagenAusschlussFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_nebenanlausschlfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_nebenanlausschlfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2039,10 +2039,10 @@
     <d:Abstract>BP_NebenanlagenFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_nebenanlfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_nebenanlfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2083,10 +2083,10 @@
     <d:Abstract>BP_NichtUeberbaubareGrundstuecksflaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_nichtueberbaubgrundstsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_nichtueberbaubgrundstsfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2127,10 +2127,10 @@
     <d:Abstract>BP_NutzungsartenGrenze</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_nutzartgr</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_nutzartgr</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2171,10 +2171,10 @@
     <d:Abstract>BP_PersGruppenBestimmteFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_persgrbestfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_persgrbestfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2215,10 +2215,10 @@
     <d:Abstract>BP_Plan</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp/bp_plan_trans</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_plan</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_plan</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_plan_trans</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2259,10 +2259,10 @@
     <d:Abstract>BP_RasterplanAenderung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_rasterplanaenderung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_rasterplanaenderung</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2303,10 +2303,10 @@
     <d:Abstract>BP_RegelungVergnuegungsstaetten</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_regvergstaett</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_regvergstaett</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2347,10 +2347,10 @@
     <d:Abstract>BP_RekultivierungsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_rekultivierungsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_rekultivierungsfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2391,10 +2391,10 @@
     <d:Abstract>BP_RichtungssektorGrenze</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_richtungssektorgrenze</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_richtungssektorgrenze</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2435,10 +2435,10 @@
     <d:Abstract>BP_SchutzPflegeEntwicklungsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_schutzpflentwfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_schutzpflentwfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2479,10 +2479,10 @@
     <d:Abstract>BP_SchutzPflegeEntwicklungsMassnahme</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_schutzpflentwmassn</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_schutzpflentwmassn</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2523,10 +2523,10 @@
     <d:Abstract>BP_Schutzgebiet</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_schutzgeb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_schutzgeb</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2567,10 +2567,10 @@
     <d:Abstract>BP_Sichtflaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_sichtflaeche</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_sichtflaeche</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2611,10 +2611,10 @@
     <d:Abstract>BP_SpezielleBauweise</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_speziellebauweise</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_speziellebauweise</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2655,10 +2655,10 @@
     <d:Abstract>BP_SpielSportanlagenFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_spispoanlfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_spispoanlfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2699,10 +2699,10 @@
     <d:Abstract>BP_StrassenVerkehrsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_strverksfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_strverksfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2743,10 +2743,10 @@
     <d:Abstract>BP_StrassenbegrenzungsLinie</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_strbegrlin</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_strbegrlin</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2787,10 +2787,10 @@
     <d:Abstract>BP_Strassenkoerper</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_strkoerper</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_strkoerper</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2831,10 +2831,10 @@
     <d:Abstract>BP_TechnischeMassnahmenFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_techmassnfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_techmassnfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2875,10 +2875,10 @@
     <d:Abstract>BP_TextAbschnittFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_textabschnittflaeche</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_textabschnittflaeche</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2919,10 +2919,10 @@
     <d:Abstract>BP_TextlicheFestsetzungsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_textlfestsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_textlfestsfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2963,10 +2963,10 @@
     <d:Abstract>BP_UeberbaubareGrundstuecksFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3007,10 +3007,10 @@
     <d:Abstract>BP_UnverbindlicheVormerkung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_unverbindlvormerk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_unverbindlvormerk</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3051,10 +3051,10 @@
     <d:Abstract>BP_VerEntsorgung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_verentsorgung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_verentsorgung</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3095,10 +3095,10 @@
     <d:Abstract>BP_Veraenderungssperre</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_veraendsper</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_veraendsper</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3139,10 +3139,10 @@
     <d:Abstract>BP_VerkehrsflaecheBesondererZweckbestimmung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_verksflbeszwb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_verksflbeszwb</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3183,10 +3183,10 @@
     <d:Abstract>BP_WaldFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_waldfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_waldfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3227,10 +3227,10 @@
     <d:Abstract>BP_WasserwirtschaftsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_wwssfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_wwssfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3271,10 +3271,10 @@
     <d:Abstract>BP_Wegerecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_wegerecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_wegerecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3315,10 +3315,10 @@
     <d:Abstract>BP_WohngebaeudeFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_wohngebaeudefl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_wohngebaeudefl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3359,10 +3359,10 @@
     <d:Abstract>BP_ZentralerVersorgungsbereich</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_zentralerversorgungsbereich</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_zentralerversorgungsbereich</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3403,10 +3403,10 @@
     <d:Abstract>BP_ZusatzkontingentLaerm</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_zusatzkontingentlaerm</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_zusatzkontingentlaerm</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3447,10 +3447,10 @@
     <d:Abstract>BP_ZusatzkontingentLaermFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_zusatzkontingentlaermfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_zusatzkontingentlaermfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3491,10 +3491,10 @@
     <d:Abstract>XP_FPO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_xp_fpo</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_xp_fpo</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3535,10 +3535,10 @@
     <d:Abstract>XP_LPO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_xp_lpo</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_xp_lpo</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3579,10 +3579,10 @@
     <d:Abstract>XP_LTO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_xp_lto</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_xp_lto</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3623,10 +3623,10 @@
     <d:Abstract>XP_PPO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_xp_ppo</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_xp_ppo</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3667,10 +3667,10 @@
     <d:Abstract>XP_PTO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_xp_pto</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_xp_pto</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
 </FeatureLayers>

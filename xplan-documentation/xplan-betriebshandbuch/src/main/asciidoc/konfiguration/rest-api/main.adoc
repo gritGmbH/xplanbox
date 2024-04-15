@@ -120,7 +120,7 @@ documentationUrl=https://xplanbox.lat-lon.de/xPlanBox-Benutzerhandbuch/
 
 [[konfiguration-document-api]]
 === XPlanDokumenteAPI
-Die Konfiguration der XPlanDokumenteAPI erfolgt in der Datei _<XPLANBOX_CONFIG>/dokumentenApiConfiguration.properties_.
+Die Konfiguration der XPlanDokumenteAPI erfolgt in der Datei _<XPLANBOX_CONFIG>/dokumenteApiConfiguration.properties_.
 
 Folgende Konfiguration kann für die XPlanDokumenteAPI vorgenommen werden.
 

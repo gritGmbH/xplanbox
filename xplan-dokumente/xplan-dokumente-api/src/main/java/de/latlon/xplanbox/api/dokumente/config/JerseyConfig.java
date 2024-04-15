@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-api-dokumente - XPlanDokumentenAPI
+ * xplan-api-dokumente - XPlanDokumenteAPI
  * %%
  * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
@@ -28,10 +28,10 @@ import de.latlon.xplanbox.api.commons.exception.UnsupportedContentTypeExceptionM
 import de.latlon.xplanbox.api.commons.exception.ValidatorExceptionMapper;
 import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
 import de.latlon.xplanbox.api.commons.openapi.OpenApiFilter;
-import de.latlon.xplanbox.api.dokumente.v1.InfoApi;
-import de.latlon.xplanbox.api.dokumente.v1.StatusApi;
 import de.latlon.xplanbox.api.dokumente.v1.DefaultApi;
 import de.latlon.xplanbox.api.dokumente.v1.DokumentApi;
+import de.latlon.xplanbox.api.dokumente.v1.InfoApi;
+import de.latlon.xplanbox.api.dokumente.v1.StatusApi;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -73,7 +73,7 @@ public class JerseyConfig extends ResourceConfig {
 
 	private static final String APP_PATH = "xdokumente/api/v1";
 
-	public JerseyConfig(@Context ServletContext servletContext, DokumentenApiConfiguration apiConfiguration) {
+	public JerseyConfig(@Context ServletContext servletContext, DokumenteApiConfiguration apiConfiguration) {
 		property(ServerProperties.WADL_FEATURE_DISABLE, true);
 
 		register(new ObjectMapperContextResolver());
@@ -88,9 +88,9 @@ public class JerseyConfig extends ResourceConfig {
 		register(StringListConverterProvider.class);
 
 		OpenAPI openApi = new OpenAPI();
-		openApi.setInfo(new Info().title("XPlanDokumentenAPI")
+		openApi.setInfo(new Info().title("XPlanDokumenteAPI")
 			.version("1.0.0")
-			.description("XPlanDokumenten REST API")
+			.description("XPlanDokumente REST API")
 			.termsOfService(getTermsOfService(apiConfiguration))
 			.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));
 		addContact(openApi, apiConfiguration);
@@ -106,7 +106,7 @@ public class JerseyConfig extends ResourceConfig {
 
 		openApiResource.setOpenApiConfiguration(oasConfig);
 		register(openApiResource);
-		LOG.info("XPlanDokumentenAPI successfully initialized");
+		LOG.info("XPlanDokumenteAPI successfully initialized");
 	}
 
 	private Tag createTag(ApiConfiguration apiConfiguration) {

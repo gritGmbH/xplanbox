@@ -188,10 +188,8 @@ verschieden Styles zu wechseln, die die Darstellung der Inhalte des
 Kartendienstes beeinflussen. Dabei liegen alle Zeichenvorschriften
 (Styles) für alle Ebenen des XPlanWMS in transparenter und in
 vollflächiger Form vor. Bei GetMap-Operationen kann mittels des
-Style-Parameters zwischen beiden Darstellungen gewechselt werden. Im
-XPlanWMS ist als Default-Style die vollflächige Darstellung
-eingestellt, im XPlanWMSInAufstellung und im XPlanWMSArchiviert hingegen die
-transparente. Wenn der transparente Style ausgewählt wird, sind
+Style-Parameters zwischen beiden Darstellungen gewechselt werden.
+Wenn der transparente Style ausgewählt wird, sind
 lediglich die Planumringe sichtbar.
 
 [width="100%",cols="25%,25%,20%,25%,5%",options="header"]
@@ -203,8 +201,8 @@ lediglich die Planumringe sichtbar.
 |GFI
 |XPlanWMSInAufstellung
 |In Aufstellung
-|`transparent`
-|nur Planumring
+|`vollflaechig`
+|alle Planzeichen
 |GFI
 |XPlanWMSFestgestellt
 |Festgestellt
@@ -213,10 +211,12 @@ lediglich die Planumringe sichtbar.
 |GFI
 |XPlanWMSArchiviert
 |Archiviert
-|`transparent`
-|nur Planumring
+|`vollflaechig`
+|alle Planzeichen
 |GFI
 |===
+
+IMPORTANT: In der Version 7.2 der xPlanBox hat sich der Default-Style im XPlanWMSInAufstellung und im XPlanWMSArchiviert von `transparent` auf `vollflaechig` geändert! Es werden nun bei Verwendung des Default-Styles alle Planzeichen angezeigt.
 
 [[xplanwms-gueltigkeitszeitraum]]
 ===== Gültigkeitszeitraum

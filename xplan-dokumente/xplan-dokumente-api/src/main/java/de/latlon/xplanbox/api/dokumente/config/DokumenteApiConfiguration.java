@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-api-dokumente - XPlanDokumentenAPI
+ * xplan-api-dokumente - XPlanDokumenteAPI
  * %%
  * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
@@ -30,19 +30,19 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 7.0
  */
-public class DokumentenApiConfiguration extends ApiConfiguration {
+public class DokumenteApiConfiguration extends ApiConfiguration {
 
-	private static final Logger LOG = LoggerFactory.getLogger(DokumentenApiConfiguration.class);
+	private static final Logger LOG = LoggerFactory.getLogger(DokumenteApiConfiguration.class);
 
-	private static final String API_CONFIGURATION_PROPERTIES = "dokumentenApiConfiguration.properties";
+	private static final String API_CONFIGURATION_PROPERTIES = "dokumenteApiConfiguration.properties";
 
-	public DokumentenApiConfiguration(PropertiesLoader propertiesLoader) throws ConfigurationException {
+	public DokumenteApiConfiguration(PropertiesLoader propertiesLoader) throws ConfigurationException {
 		super(propertiesLoader, API_CONFIGURATION_PROPERTIES);
 	}
 
 	protected void logProperties() {
 		LOG.info("-------------------------------------------");
-		LOG.info("Configuration of the XPlanDokumentenApi:");
+		LOG.info("Configuration of the XPlanDokumenteApi:");
 		LOG.info("-------------------------------------------");
 		LOG.info("  API URL: {}", getApiUrl());
 		LOG.info("  Terms of Services URL: {}", getTermsOfServiceUrl());

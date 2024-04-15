@@ -1,7 +1,7 @@
 [[xplandokumente-api]]
 === XPlanDokumenteAPI
 
-Die REST-API der Komponente XPlanDokumenteAPI ermöglicht es, die in einem <<xplangmlfile,Plan referenzierten Dokumente>> über eine Web-API abzurufen. Zur Vereinfachung des Zugriffs auf die Begleitdokumente eines Plans stellt die xPlanBox die XPlanDokumentenAPI bereit. Wenn die optionale Komponente XPlanDokumentenAPI installiert und konfiguriert ist, dann werden alle im XPlanGML referenzierten Begleitdokumente über die URL der XPlanDokumentenAPI bereitgestellt.
+Die REST-API der Komponente XPlanDokumenteAPI ermöglicht es, die in einem <<xplangmlfile,Plan referenzierten Dokumente>> über eine Web-API abzurufen. Zur Vereinfachung des Zugriffs auf die Begleitdokumente eines Plans stellt die xPlanBox die XPlanDokumenteAPI bereit. Wenn die optionale Komponente XPlanDokumenteAPI installiert und konfiguriert ist, dann werden alle im XPlanGML referenzierten Begleitdokumente über die URL der XPlanDokumenteAPI bereitgestellt.
 
 Die REST-API der Komponente XPlanDokumenteAPI stellt folgende Ressourcen bereit:
 

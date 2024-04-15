@@ -19,7 +19,7 @@ pipeline {
     stage('Build') {
       steps {
         withMaven(mavenLocalRepo: '.repository', mavenSettingsConfig: 'mvn-empty-settings', options: [junitPublisher(healthScaleFactor: 1.0)], publisherStrategy: 'EXPLICIT') {
-            sh 'mvn -B -C clean install -Ddependency-check.skip=true'
+            sh 'mvn -B -C clean install -Ddependency-check.skip=true -Pdistribution'
         }
       }
     }

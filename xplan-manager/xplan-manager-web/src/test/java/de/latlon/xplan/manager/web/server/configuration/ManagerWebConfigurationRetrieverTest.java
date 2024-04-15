@@ -33,6 +33,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.Properties;
 
 import static de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader.CONFIG_SYSTEM_PROPERTY;
@@ -131,9 +132,7 @@ public class ManagerWebConfigurationRetrieverTest {
 	}
 
 	private static File createConfigDirectory() throws IOException {
-		File configDirectory = createTempFile("xplanungisk-config", "");
-		configDirectory.delete();
-		configDirectory.mkdir();
+		File configDirectory = Files.createTempDirectory("xplanungisk-config").toFile();
 		return configDirectory;
 	}
 

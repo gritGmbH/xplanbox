@@ -320,6 +320,10 @@
           <groupId>de.xleitstelle.xplanung</groupId>
           <artifactId>regeln-berlin</artifactId>
         </dependency>
+        <dependency>
+          <groupId>de.xleitstelle.xplanung</groupId>
+          <artifactId>regeln-brandenburg</artifactId>
+        </dependency>
       </dependencies>
     </profile>
   </profiles>

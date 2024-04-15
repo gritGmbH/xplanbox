@@ -252,6 +252,10 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
 	private static String getPointOutside(FeatureUnderTest featureUnderTest) {
 		Geometry jtsGeometry = featureUnderTest.getJtsGeometry();
+		return getCoordinateAsString(jtsGeometry);
+	}
+
+	private static String getCoordinateAsString(Geometry jtsGeometry) {
 		Coordinate coordinate = jtsGeometry.getCoordinate();
 		return "(" + coordinate.x + ", " + coordinate.y + ")";
 	}
@@ -276,39 +280,108 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 				addIntersectionPoints(points, differenceOutsideGeltungsbereich, intersection);
 			});
 		});
+		if (!points.isEmpty()) {
+			String error = crateErrorMessage(planFeature, bereichFeature, inGeltungsbereichFeature.getFeatureId(),
+					points);
+			BadGeometry badGeometry = addErrorAndBadGeometry(error, inGeltungsbereichFeature.getOriginalGeometry());
+			addGeometryOutsideGeltungsbereich(inGeltungsbereichFeature.getFeatureId(),
+					differencesOutsideGeltungsbereich, badGeometry);
+		}
+		// check for holes (in addition to intersections)
+		createAndAddErrorWithIntersectionPointsHoles(planFeature, bereichFeature, geltungsbereichGeom,
+				geltungsbereichWithBuffer, inGeltungsbereichFeature);
+	}
 
-		String error = crateErrorMessage(planFeature, bereichFeature, inGeltungsbereichFeature.getFeatureId(), points);
-		BadGeometry badGeometry = addErrorAndBadGeometry(error, inGeltungsbereichFeature.getOriginalGeometry());
-		addGeometryOutsideGeltungsbereich(inGeltungsbereichFeature.getFeatureId(), differencesOutsideGeltungsbereich,
-				badGeometry);
+	private void createAndAddErrorWithIntersectionPointsHoles(PlanFeature planFeature, BereichFeature bereichFeature,
+			AbstractDefaultGeometry geltungsbereichGeom, Geometry geltungsbereichWithBuffer,
+			FeatureUnderTest inGeltungsbereichFeature) {
+		AbstractDefaultGeometry featureGeom = inGeltungsbereichFeature.getOriginalGeometry();
+		List<? extends org.deegree.geometry.Geometry> featureGeomsHoles = extractInteriorRingOrPrimitive(featureGeom);
+		List<? extends org.deegree.geometry.Geometry> geltungsbereichGeomsHoles = extractInteriorRingOrPrimitive(
+				geltungsbereichGeom);
+
+		geltungsbereichGeomsHoles.forEach(currentGeltungsbereichGeomHole -> {
+			List<? extends org.deegree.geometry.Geometry> intersectingFeatureGeomHoles = findIntersectingFeatureGeomHoles(
+					currentGeltungsbereichGeomHole, featureGeomsHoles);
+			AbstractDefaultGeometry currentGeltungsbereichGeomHole1 = (AbstractDefaultGeometry) currentGeltungsbereichGeomHole;
+			if (intersectingFeatureGeomHoles.isEmpty()) {
+				String coordinateAsString = getCoordinateAsString(currentGeltungsbereichGeomHole1.getJTSGeometry());
+				String error = crateErrorMessageOverlappingHole(planFeature, bereichFeature,
+						inGeltungsbereichFeature.getFeatureId(), coordinateAsString);
+				BadGeometry badGeometry = addErrorAndBadGeometry(error, inGeltungsbereichFeature.getOriginalGeometry());
+				addGeometryOutsideGeltungsbereich(inGeltungsbereichFeature.getFeatureId(),
+						Collections.singletonList(currentGeltungsbereichGeomHole1), badGeometry);
+			}
+			else {
+				List<String> pointsHoles = new ArrayList<>();
+				List<AbstractDefaultGeometry> differencesOutsideGeltungsbereichHoles = new ArrayList<>();
+
+				intersectingFeatureGeomHoles.forEach(currentFeatureGeom -> {
+					List<AbstractDefaultGeometry> differenceOutsideGeltungsbereich = findRelevantDifferenceOutsideGeltungsbereich(
+							currentGeltungsbereichGeomHole1, geltungsbereichWithBuffer, currentFeatureGeom);
+					differencesOutsideGeltungsbereichHoles.addAll(differenceOutsideGeltungsbereich);
+					org.deegree.geometry.Geometry intersection = currentFeatureGeom
+						.getIntersection(currentGeltungsbereichGeomHole);
+					addIntersectionPoints(pointsHoles, differenceOutsideGeltungsbereich, intersection);
+				});
+				String error = crateErrorMessageIntersectingHole(planFeature, bereichFeature,
+						inGeltungsbereichFeature.getFeatureId(), pointsHoles);
+				BadGeometry badGeometry = addErrorAndBadGeometry(error, inGeltungsbereichFeature.getOriginalGeometry());
+				addGeometryOutsideGeltungsbereich(inGeltungsbereichFeature.getFeatureId(),
+						differencesOutsideGeltungsbereichHoles, badGeometry);
+			}
+		});
+	}
+
+	private List<? extends org.deegree.geometry.Geometry> findIntersectingFeatureGeomHoles(
+			org.deegree.geometry.Geometry geltungsbereichGeomHole,
+			List<? extends org.deegree.geometry.Geometry> featureGeomsHoles) {
+		return featureGeomsHoles.stream()
+			.filter(currentFeatureGeom -> geltungsbereichGeomHole.intersects(currentFeatureGeom))
+			.collect(Collectors.toList());
 	}
 
 	private String crateErrorMessage(PlanFeature planFeature, BereichFeature bereichFeature, String featureId,
 			List<String> points) {
+		String pointList = points.stream().collect(Collectors.joining(","));
 		if (planFeature != null && bereichFeature != null) {
-			if (points.isEmpty()) {
-				return format("GeltungsbereichInspector_error_nogeom_bereichAndPlan", featureId,
-						planFeature.getFeatureId(), bereichFeature.getPlanId());
-			}
-			String pointList = points.stream().collect(Collectors.joining(","));
 			return format("GeltungsbereichInspector_error_withgeom_bereichAndPlan", featureId,
 					planFeature.getFeatureId(), bereichFeature.getPlanId(), pointList);
 		}
 		if (bereichFeature != null) {
-			if (points.isEmpty()) {
-				return format("GeltungsbereichInspector_error_nogeom_bereich", featureId,
-						bereichFeature.getFeatureId());
-			}
-			String pointList = points.stream().collect(Collectors.joining(","));
 			return format("GeltungsbereichInspector_error_withgeom_bereich", featureId, bereichFeature.getFeatureId(),
 					pointList);
 		}
-		if (points.isEmpty()) {
-			return format("GeltungsbereichInspector_error_nogeom_plan", featureId, planFeature.getFeatureId());
-		}
-		String pointList = points.stream().collect(Collectors.joining(","));
 		return format("GeltungsbereichInspector_error_withgeom_plan", featureId, planFeature.getFeatureId(), pointList);
+	}
 
+	private String crateErrorMessageOverlappingHole(PlanFeature planFeature, BereichFeature bereichFeature,
+			String featureId, String point) {
+		if (planFeature != null && bereichFeature != null) {
+			return format("GeltungsbereichInspector_error_overlappingHole_bereichAndPlan", featureId,
+					planFeature.getFeatureId(), bereichFeature.getPlanId(), point);
+		}
+		if (bereichFeature != null) {
+			return format("GeltungsbereichInspector_error_overlappingHole_bereich", featureId,
+					bereichFeature.getFeatureId(), point);
+		}
+		return format("GeltungsbereichInspector_error_overlappingHole_plan", featureId, planFeature.getFeatureId(),
+				point);
+	}
+
+	private String crateErrorMessageIntersectingHole(PlanFeature planFeature, BereichFeature bereichFeature,
+			String featureId, List<String> points) {
+		String pointList = points.stream().collect(Collectors.joining(","));
+		if (planFeature != null && bereichFeature != null) {
+			return format("GeltungsbereichInspector_error_intersectingHole_bereichAndPlan", featureId,
+					planFeature.getFeatureId(), bereichFeature.getPlanId(), pointList);
+		}
+		if (bereichFeature != null) {
+			return format("GeltungsbereichInspector_error_intersectingHole_bereich", featureId,
+					bereichFeature.getFeatureId(), pointList);
+		}
+		return format("GeltungsbereichInspector_error_intersectingHole_plan", featureId, planFeature.getFeatureId(),
+				pointList);
 	}
 
 	private List<AbstractDefaultGeometry> findRelevantDifferenceOutsideGeltungsbereich(
@@ -414,6 +487,65 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 					}
 				}
 				return exteriorRingsSurface;
+			default:
+		}
+		LOG.warn("Intersection with geometries of typ {} are currently not supported.",
+				geometry.getMultiGeometryType());
+		return Collections.emptyList();
+	}
+
+	private List<? extends org.deegree.geometry.Geometry> extractInteriorRingOrPrimitive(
+			AbstractDefaultGeometry geometry) {
+		switch (geometry.getGeometryType()) {
+			case PRIMITIVE_GEOMETRY:
+				return extractInteriorRingOrPrimitive((GeometricPrimitive) geometry);
+			case MULTI_GEOMETRY:
+				return extractInteriorRingOrPrimitive((MultiGeometry<?>) geometry);
+			default:
+				return Collections.singletonList(geometry);
+		}
+	}
+
+	private List<? extends org.deegree.geometry.Geometry> extractInteriorRingOrPrimitive(GeometricPrimitive geometry) {
+		switch (geometry.getPrimitiveType()) {
+			case Surface:
+				Surface surface = (Surface) geometry;
+				switch (surface.getSurfaceType()) {
+					case Polygon:
+						Polygon polygon = (Polygon) surface;
+						return polygon.getInteriorRings();
+					default:
+				}
+			default:
+		}
+		return Collections.singletonList(geometry);
+	}
+
+	@SuppressWarnings("unchecked")
+	private List<Ring> extractInteriorRingOrPrimitive(MultiGeometry<?> geometry) {
+		switch (geometry.getMultiGeometryType()) {
+			case MULTI_CURVE:
+				return (List<Ring>) geometry;
+			case MULTI_POLYGON:
+				MultiPolygon multiPolygon = (MultiPolygon) geometry;
+				multiPolygon.stream()
+					.map(map -> map.getInteriorRings())
+					.flatMap(List::stream)
+					.collect(Collectors.toList());
+			case MULTI_SURFACE:
+				MultiSurface<?> multiSurface = (MultiSurface<?>) geometry;
+				List<Ring> interiorRingsSurface = new ArrayList<>();
+				for (Object surfaceObject : multiSurface) {
+					Surface surface = (Surface) surfaceObject;
+					if (Surface.SurfaceType.Polygon == surface.getSurfaceType()) {
+						interiorRingsSurface.addAll(((Polygon) surface).getInteriorRings());
+					}
+					else {
+						LOG.warn(
+								"Intersection with other geometry types than Polygons in a MultiSurface are currently not supported.");
+					}
+				}
+				return interiorRingsSurface;
 			default:
 		}
 		LOG.warn("Intersection with geometries of typ {} are currently not supported.",

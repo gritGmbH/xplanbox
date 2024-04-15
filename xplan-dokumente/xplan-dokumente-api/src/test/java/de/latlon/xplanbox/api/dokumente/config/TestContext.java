@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-api-dokumente - XPlanDokumentenAPI
+ * xplan-api-dokumente - XPlanDokumenteAPI
  * %%
  * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%

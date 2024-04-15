@@ -17,7 +17,7 @@
  
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.03.2024, 10:57:19
+  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 04.04.2024, 10:46:02
 -->
 <FeatureLayers xmlns="http://www.deegree.org/layers/feature" xmlns:l="http://www.deegree.org/layers/base" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial">
   <FeatureStoreId>xplansynarchive</FeatureStoreId>
@@ -59,10 +59,10 @@
     <d:Abstract>LP_Abgrenzung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_abgrenzung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_abgrenzung</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -103,10 +103,10 @@
     <d:Abstract>LP_AllgGruenflaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_allggruenfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_allggruenfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -147,10 +147,10 @@
     <d:Abstract>LP_AnpflanzungBindungErhaltung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_anpflanzbinderh</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_anpflanzbinderh</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -191,10 +191,10 @@
     <d:Abstract>LP_Ausgleich</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_ausgleich</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_ausgleich</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -235,10 +235,10 @@
     <d:Abstract>LP_Bereich</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_ber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_ber</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -279,10 +279,10 @@
     <d:Abstract>LP_BiotopverbundBiotopvernetzung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_biotopverbundbiotopvernetzung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_biotopverbundbiotopvernetzung</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -323,10 +323,10 @@
     <d:Abstract>LP_Biotopverbundflaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_biotopverbundfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_biotopverbundfl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -367,10 +367,10 @@
     <d:Abstract>LP_Bodenschutzrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_bodenschutzrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_bodenschutzrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -411,10 +411,10 @@
     <d:Abstract>LP_Denkmalschutzrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_denkmschrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_denkmschrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -455,10 +455,10 @@
     <d:Abstract>LP_Eingriffsregelung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_eingriffsregelung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_eingriffsregelung</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -499,10 +499,10 @@
     <d:Abstract>LP_ErholungFreizeit</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_erholungfreizeit</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_erholungfreizeit</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -543,10 +543,10 @@
     <d:Abstract>LP_Forstrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_forstrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_forstrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -587,10 +587,10 @@
     <d:Abstract>LP_GenerischesObjekt</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_genobj</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_genobj</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -631,10 +631,10 @@
     <d:Abstract>LP_Landschaftsbild</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_landschaftsbild</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_landschaftsbild</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -675,10 +675,10 @@
     <d:Abstract>LP_NutzungsAusschluss</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_nutzausschl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_nutzausschl</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -719,10 +719,10 @@
     <d:Abstract>LP_NutzungserfordernisRegelung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_nutzerforderregelung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_nutzerforderregelung</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -763,10 +763,10 @@
     <d:Abstract>LP_Plan</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/lp/lp_plan_trans</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_plan</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_plan</l:StyleStoreId>
+      <l:StyleStoreId>transparent/lp/lp_plan_trans</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -807,10 +807,10 @@
     <d:Abstract>LP_PlanerischeVertiefung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_planerischevertief</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_planerischevertief</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -851,10 +851,10 @@
     <d:Abstract>LP_RasterplanAenderung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_rasterplanaenderung</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_rasterplanaenderung</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -895,10 +895,10 @@
     <d:Abstract>LP_SchutzBestimmterTeileVonNaturUndLandschaft</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_schutzbestimmterteilevonnaturundlandschaft</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_schutzbestimmterteilevonnaturundlandschaft</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -939,10 +939,10 @@
     <d:Abstract>LP_SchutzPflegeEntwicklung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_schutzpflentw</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_schutzpflentw</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -983,10 +983,10 @@
     <d:Abstract>LP_SchutzobjektBundesrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_schutzobjbundesrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_schutzobjbundesrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1027,10 +1027,10 @@
     <d:Abstract>LP_SchutzobjektInternatRecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_schutzobjinterrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_schutzobjinterrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1071,10 +1071,10 @@
     <d:Abstract>LP_SonstigesRecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_sonstsrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_sonstsrecht</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1115,10 +1115,10 @@
     <d:Abstract>LP_TextAbschnittObjekt</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_textabschnittobjekt</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_textabschnittobjekt</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1159,10 +1159,10 @@
     <d:Abstract>LP_WasserrechtGemeingebrEinschraenkungNaturschutz</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrgemgebreinschrnats</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_wrgemgebreinschrnats</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1203,10 +1203,10 @@
     <d:Abstract>LP_WasserrechtSchutzgebiet</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrschutzgeb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_wrschutzgeb</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1247,10 +1247,10 @@
     <d:Abstract>LP_WasserrechtSonstige</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrsonst</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_wrsonst</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1291,10 +1291,10 @@
     <d:Abstract>LP_WasserrechtWirtschaftAbflussHochwSchutz</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrwirtschabflusshws</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_wrwirtschabflusshws</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1335,10 +1335,10 @@
     <d:Abstract>LP_ZieleErfordernisseMassnahmen</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_zieleerfordernissemassnahmen</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_zieleerfordernissemassnahmen</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1379,10 +1379,10 @@
     <d:Abstract>LP_ZuBegruenendeGrundstueckflaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_zubegruenendegrundstueckflaeche</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_zubegruenendegrundstueckflaeche</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1423,10 +1423,10 @@
     <d:Abstract>LP_Zwischennutzung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_zwischennutz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_zwischennutz</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1467,10 +1467,10 @@
     <d:Abstract>XP_FPO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_xp_fpo</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_xp_fpo</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1511,10 +1511,10 @@
     <d:Abstract>XP_LPO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_xp_lpo</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_xp_lpo</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1555,10 +1555,10 @@
     <d:Abstract>XP_LTO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_xp_lto</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_xp_lto</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1599,10 +1599,10 @@
     <d:Abstract>XP_PPO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_xp_ppo</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_xp_ppo</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1643,10 +1643,10 @@
     <d:Abstract>XP_PTO</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_xp_pto</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_xp_pto</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
 </FeatureLayers>
