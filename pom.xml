@@ -45,9 +45,9 @@
     <distribution.snapshotRepo.id>gitlab-maven</distribution.snapshotRepo.id>
     <distribution.snapshotRepo.url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</distribution.snapshotRepo.url>
     -->
-    <distribution.repo.id>xplanbox-release</distribution.repo.id>
+    <distribution.repo.id>maven-xplanbox-release</distribution.repo.id>
     <distribution.repo.url>https://maven.werne.grit.de/artifactory/xplanbox-release</distribution.repo.url>
-    <distribution.snapshotRepo.id>xplanbox-snapshot</distribution.snapshotRepo.id>
+    <distribution.snapshotRepo.id>maven-xplanbox-snapshot</distribution.snapshotRepo.id>
     <distribution.snapshotRepo.url>https://maven.werne.grit.de/artifactory/xplanbox-snapshot</distribution.snapshotRepo.url>
     <!-- * -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
