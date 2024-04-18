@@ -39,10 +39,17 @@
     <postgresql.version>42.7.2</postgresql.version>
     <owasp.version>8.4.3</owasp.version>
     <!-- project properties -->
+    <!--
     <distribution.repo.id>gitlab-maven</distribution.repo.id>
     <distribution.repo.url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</distribution.repo.url>
     <distribution.snapshotRepo.id>gitlab-maven</distribution.snapshotRepo.id>
     <distribution.snapshotRepo.url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</distribution.snapshotRepo.url>
+    -->
+    <distribution.repo.id>xplanbox-release</distribution.repo.id>
+    <distribution.repo.url>https://maven.werne.grit.de/artifactory/xplanbox-release</distribution.repo.url>
+    <distribution.snapshotRepo.id>xplanbox-snapshot</distribution.snapshotRepo.id>
+    <distribution.snapshotRepo.url>https://maven.werne.grit.de/artifactory/xplanbox-snapshot</distribution.snapshotRepo.url>
+    <!-- * -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <tests.jvm.xmx>1000m</tests.jvm.xmx>
     <build.key /> <!-- can be set by build job -->
@@ -1581,6 +1588,17 @@
       </snapshots>
     </repository>
     <repository>
+      <id>xplanbox-repos</id>
+      <url>https://maven.werne.grit.de/artifactory/xplanbox-repos</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <!--
+    <repository>
       <id>opencode-xplan-deegree</id>
       <url>https://gitlab.opencode.de/api/v4/projects/622/packages/maven</url>
       <releases>
@@ -1590,6 +1608,7 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+    -->
     <repository>
       <id>deegree</id>
       <url>https://repo.deegree.org/repository/public/</url>
@@ -1600,6 +1619,8 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+    <!-- 
+    NOTE xleitstelle-* are also included in xplanbox-repos (as remotes)
     <repository>
       <id>xleitstelle-xplanung-validierungsregeln</id>
       <url>https://gitlab.opencode.de/api/v4/projects/398/packages/maven</url>
@@ -1620,6 +1641,7 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+    -->
     <repository>
       <id>jfrog-thirdparty</id>
       <url>https://jaspersoft.jfrog.io/artifactory/third-party-ce-artifacts/</url>
