@@ -25,6 +25,12 @@ pipeline {
     }
   }
   post {
+       failure {
+         slackSend channel: '#build', message: "${env.JOB_NAME} failed, Buildnr: ${env.BUILD_NUMBER}", teamDomain: 'xplanbox', tokenCredentialId: 'slack-integration-id'
+      }
+       unstable {
+         slackSend channel: '#build', message: "${env.JOB_NAME} unstable, Buildnr: ${env.BUILD_NUMBER}", teamDomain: 'xplanbox', tokenCredentialId: 'slack-integration-id'
+      }
       always {
           cleanWs notFailBuild: true
       }

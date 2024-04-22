@@ -19,9 +19,9 @@
     <maven.version>3.8.1</maven.version>
     <!-- version properties -->
     <deegree3.version>3.5.7-SNAPSHOT</deegree3.version>
-    <xplanung.regeln.version>1.1.6</xplanung.regeln.version>
+    <xplanung.regeln.version>1.1.7-SNAPSHOT</xplanung.regeln.version>
     <xplanung.regeln.berlin.version>0.4</xplanung.regeln.berlin.version>
-    <xplanung.regeln.brandenburg.version>0.2-SNAPSHOT</xplanung.regeln.brandenburg.version>
+    <xplanung.regeln.brandenburg.version>0.2</xplanung.regeln.brandenburg.version>
     <gwt.version>2.11.0</gwt.version>
     <geotools.version>29.2</geotools.version>
     <jacoco.argLine />
@@ -429,10 +429,8 @@
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>4.7.3.5</version>
         <configuration>
           <xmlOutput>true</xmlOutput>
-          <spotbugsXmlOutput>true</spotbugsXmlOutput>
         </configuration>
       </plugin>
       <plugin>
@@ -444,6 +442,19 @@
   </reporting>
   <build>
     <plugins>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <configuration>
+          <plugins>
+            <plugin>
+              <groupId>com.h3xstream.findsecbugs</groupId>
+              <artifactId>findsecbugs-plugin</artifactId>
+              <version>1.12.0</version>
+            </plugin>
+         </plugins>
+       </configuration>
+      </plugin>
       <plugin>
         <groupId>io.spring.javaformat</groupId>
         <artifactId>spring-javaformat-maven-plugin</artifactId>
@@ -594,6 +605,11 @@
     </plugins>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>4.8.3.1</version>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>

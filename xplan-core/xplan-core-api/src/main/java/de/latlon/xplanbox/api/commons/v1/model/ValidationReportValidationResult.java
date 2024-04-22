@@ -113,7 +113,7 @@ public class ValidationReportValidationResult {
 	}
 
 	public void setProfile(List<ValidationReportValidationResultSemantischProfil> syntaktisch) {
-		this.profile = profile;
+		this.profile = syntaktisch;
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 pipeline {
   agent any
   triggers {
-    cron('H 6 * * 1') // each Monday
+    cron('H 4 * * 1') // each Monday
   }
   options {
       disableConcurrentBuilds()
@@ -14,18 +14,20 @@ pipeline {
       MAVEN_OPTS='-Djava.awt.headless=true -Xmx1000m'
   }
   stages {
-    stage('Build docker images') {
+    stage('analyze') {
       steps {
         withMaven(mavenLocalRepo: '.repository', mavenSettingsConfig: 'mvn-empty-settings', publisherStrategy: 'EXPLICIT') {
-	        sh 'mvn -B -C -Pdocker,skipAll -Ddocker-image.namePrefix=xplanbox-trivy install'
+            sh 'mvn -B -C install -PskipAll'
+            sh 'mvn -B -C spotbugs:spotbugs'
         }
       }
     }
-    stage('Trivy Image check') {
+    stage('verify') {
       steps {
-        withMaven(mavenLocalRepo: '.repository', mavenSettingsConfig: 'mvn-empty-settings', publisherStrategy: 'EXPLICIT') {
-	        sh 'mvn -B -C -Pdocker -Ddocker-image.namePrefix=xplanbox-trivy exec:exec@trivyScanForFixedIssues -fae'
-        }
+        recordIssues qualityGates: [[criticality: 'FAILURE', integerThreshold: 1, threshold: 1.0, type: 'TOTAL_HIGH']],
+            sourceCodeEncoding: 'UTF-8',
+            sourceCodeRetention: 'LAST_BUILD',
+            tools: [spotBugs(reportEncoding: 'UTF-8', useRankAsPriority: true)]
       }
     }
   }
@@ -38,7 +40,6 @@ pipeline {
       }
       always {
           cleanWs notFailBuild: true
-          sh 'docker rmi -f $(docker images --filter="reference=xplanbox-trivy/*:*" -aq) || true'
       }
   }
 }

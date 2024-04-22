@@ -143,7 +143,7 @@ public class MetadataCouplingHandler {
 					serviceMetadataUrl);
 		}
 		catch (Exception e) {
-			new DataServiceCouplingException("Could not insert in table planwerkwmsmetadata ", e);
+			throw new DataServiceCouplingException("Could not insert in table planwerkwmsmetadata ", e);
 		}
 	}
 

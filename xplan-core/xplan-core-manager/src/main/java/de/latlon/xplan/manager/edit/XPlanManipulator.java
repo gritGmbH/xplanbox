@@ -756,7 +756,7 @@ public class XPlanManipulator {
 	}
 
 	private GenericProperty createProperty(QName propName, Date value, int minOccurs, int maxOccurs) {
-		if (value == null || "".equals(value))
+		if (value == null)
 			return null;
 		org.deegree.commons.tom.datetime.Date date = new org.deegree.commons.tom.datetime.Date(value, null);
 		CustomPropertyType type = new CustomPropertyType(propName, minOccurs, maxOccurs, null, null);
