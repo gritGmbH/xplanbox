@@ -20,6 +20,7 @@
  */
 package de.latlon.xplanbox.api.dokumente.handler;
 
+import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import de.latlon.xplanbox.api.commons.exception.InvalidPlanId;
@@ -48,7 +49,7 @@ public class DocumentHandler {
 	private static final Logger LOG = LoggerFactory.getLogger(DocumentHandler.class);
 
 	@Autowired
-	private XPlanDao xPlanDao;
+	private PlanRepository planRepository;
 
 	@Autowired
 	private DocumentService documentService;
@@ -76,7 +77,7 @@ public class DocumentHandler {
 	private int checkPlanIdAndConvertIdToInt(String planId) throws InvalidPlanIdSyntax, InvalidPlanId {
 		try {
 			int planIdAsInt = Integer.parseInt(planId);
-			if (!xPlanDao.existsPlan(planIdAsInt)) {
+			if (!planRepository.existsPlanById(planIdAsInt)) {
 				throw new InvalidPlanId(planId);
 			}
 			return planIdAsInt;

@@ -26,16 +26,18 @@ import de.latlon.xplan.core.manager.db.config.JpaContext;
 import de.latlon.xplan.core.manager.db.repository.ArtefactRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanwerkWmsMetadataRepository;
-import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.database.XPlanDbAdapter;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
+
+import javax.sql.DataSource;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -58,16 +60,6 @@ public class ApplicationContext {
 
 	@Autowired
 	private ApplicationEventPublisher applicationEventPublisher;
-
-	@Bean
-	public XPlanDbAdapter xPlanDbAdapter() {
-		return new XPlanDbAdapter(null, planRepository, planwerkWmsMetadataRepository, artefactRepository);
-	}
-
-	@Bean
-	public XPlanDao xPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDbAdapter xPlanDbAdapter) {
-		return new XPlanDao(managerWorkspaceWrapper, xPlanDbAdapter, applicationEventPublisher);
-	}
 
 	@Bean
 	public PropertiesLoader propertiesLoader() {

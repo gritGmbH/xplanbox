@@ -39,9 +39,11 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
+@Deprecated
 public class XmlReportGeneratorTest {
 
 	private static final String PLAN_NAME = "PLAN_NAME";

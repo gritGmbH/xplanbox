@@ -4226,6 +4226,11 @@ exists(ogc:ServiceExceptionReport)</path>
               <con:value>true</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
+            <con:parameter>
+              <con:name>internalId</con:name>
+              <con:value>internalId_123</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
           </con:parameters>
         </con:config>
       </con:testStep>
@@ -4947,6 +4952,17 @@ if (documentUrl != null){
 
 	assert externeRef.contains(documentUrlShort)
 }</scriptText>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="internalId">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:internalId</path>
+              <content>internalId_123</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -6729,6 +6745,11 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
               <con:value>true</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
+            <con:parameter>
+              <con:name>internalId</con:name>
+              <con:value>internalId_123</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
           </con:parameters>
         </con:config>
       </con:testStep>
@@ -7120,6 +7141,18 @@ if (documentUrl != null){
 }</scriptText>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="internalId">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:internalId</path>
+              <content>internalId_123</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
             <con:password>${#Project#password}</con:password>
@@ -7255,6 +7288,18 @@ if (documentUrl != null){
 
 	assert externeRef.contains(documentUrlShort)
 }</scriptText>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="internalId">
+            <con:configuration>
+              <path>declare namespace gml='http://www.opengis.net/gml';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//gml:featureMember/xplan:BP_Plan/xplan:internalId</path>
+              <content>internalId_123</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -11181,6 +11226,11 @@ declare namespace gml='http://www.opengis.net/gml/3.2';
               <con:value>true</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
+            <con:parameter>
+              <con:name>internalId</con:name>
+              <con:value>internalId_123</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
           </con:parameters>
         </con:config>
       </con:testStep>
@@ -11289,6 +11339,18 @@ if (documentUrl != null){
 
 	assert externeRef.contains(documentUrlShort)
 }</scriptText>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="internalId">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.xplanung.de/xplangml/6/0';
+
+//wfs:member/xplan:BP_Plan/xplan:internalId</path>
+              <content>internalId_123</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -11402,6 +11464,18 @@ if (documentUrl != null){
 
 	assert externeRef.contains(documentUrlShort)
 }</scriptText>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="internalId">
+            <con:configuration>
+              <path>declare namespace gml='http://www.opengis.net/gml';
+declare namespace xplan='http://www.xplanung.de/xplangml/6/0';
+
+//gml:featureMember/xplan:BP_Plan/xplan:internalId</path>
+              <content>internalId_123</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
           <con:credentials>

@@ -40,9 +40,11 @@ import java.util.Map.Entry;
 /**
  * Creates shape files containing the bad geometries from a {@link ValidatorReport}
  *
+ * @deprecated will be removed in a future version.
  * @author Florian Bingel
  * @version $Revision: $, $Date: $
  */
+@Deprecated
 public class ShapefileGenerator {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ShapefileGenerator.class);

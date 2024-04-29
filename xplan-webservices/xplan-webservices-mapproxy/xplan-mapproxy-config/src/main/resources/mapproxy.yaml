@@ -51,11 +51,12 @@ parts:
       address: '${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_DELIVERYPOINT}'
       city: '${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_CITY}'
       postcode: '${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_POSTALCODE}'
+      state: '${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_ADMINAREA}'
       country: '${XPLAN_SERVICES_PROVIDER_CONTACT_ADDRESS_COUNTRY}'
       phone: '${XPLAN_SERVICES_PROVIDER_CONTACT_PHONE}'
       email: '${XPLAN_SERVICES_PROVIDER_CONTACT_MAIL}'
-    access_constraints: Insert license and copyright information for this service.
-    fees: 'None'
+    access_constraints: '${XPLAN_SERVICES_ACCESSCONSTRAINTS}'
+    fees: '${XPLAN_SERVICES_FEES}'
     keyword_list:
       - vocabulary: GEMET
         keywords:   [land use, land use plan]
@@ -69,6 +70,7 @@ services:
     bbox_srs: ["EPSG:4326"]
     on_source_errors: raise
     featureinfo_types: ["text", "html", "xml"]
+    max_output_pixels: [${XPLAN_SERVICES_WMS_MAXWIDTH}, ${XPLAN_SERVICES_WMS_MAXHEIGHT}]
     md:
       title: WMS Cache XPlanung
       abstract: Gecachter WMS zur Visualisierung von XPlanungsdaten

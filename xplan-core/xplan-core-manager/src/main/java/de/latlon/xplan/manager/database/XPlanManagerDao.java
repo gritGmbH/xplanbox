@@ -108,11 +108,11 @@ public class XPlanManagerDao extends XPlanDao {
 			long begin = System.currentTimeMillis();
 			int planId = xPlanDbAdapter.insert(archive, fc, planStatus, beginValidity, endValidity, sortDate,
 					internalId);
-			manipulateXPlanGml(planId, fc);
+			manipulateXPlanGml(planId, archive.getVersion(), fc, internalId);
 			byte[] xPlanGml = createXPlanGml(fc);
 			reassignFids(fc);
 			FeatureCollection synFc = createSynFeatures(fc, archive.getVersion());
-			manipulateXPlanSynGml(synFc, beginValidity, endValidity, planId, sortDate, internalId);
+			manipulateXPlanSynGml(synFc, beginValidity, endValidity, planId, sortDate);
 			List<String> fidsXPlanWfs = xPlanWfsAdapter.insert(fc, planStatus);
 			xPlanDbAdapter.update(planId, archive.getType(), synFc);
 			xPlanDbAdapter.updateFids(planId, fidsXPlanWfs);
@@ -160,7 +160,7 @@ public class XPlanManagerDao extends XPlanDao {
 			xPlanDbAdapter.update(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, sortDate, uploadedArtefacts,
 					editedArtefacts);
 			manipulateXPlanSynGml(synFc, newAdditionalPlanData.getStartDateTime(),
-					newAdditionalPlanData.getEndDateTime(), planId, sortDate, internalId);
+					newAdditionalPlanData.getEndDateTime(), planId, sortDate);
 
 			List<String> newFids = xPlanSynWfsAdapter.update(planId, oldXplan, newAdditionalPlanData, synFc, oldFids);
 			xPlanWfsAdapter.update(planId, oldXplan, newAdditionalPlanData, fc, oldFids);
@@ -188,8 +188,8 @@ public class XPlanManagerDao extends XPlanDao {
 
 		Set<String> ids = xPlanDbAdapter.selectFids(planId);
 
-		manipulateXPlanSynGml(synFc, xplanMetadata.getStartDateTime(), xplanMetadata.getEndDateTime(), planId, sortDate,
-				internalId);
+		manipulateXPlanSynGml(synFc, xplanMetadata.getStartDateTime(), xplanMetadata.getEndDateTime(), planId,
+				sortDate);
 
 		if (updateFeaturesAndBlob) {
 			List<String> newFids = xPlanWfsAdapter.update(planId, planStatus, originalFc, ids);
@@ -231,14 +231,18 @@ public class XPlanManagerDao extends XPlanDao {
 	}
 
 	private void manipulateXPlanSynGml(FeatureCollection synFc, Date beginValidity, Date endValidity, int planId,
-			Date sortDate, String internalId) {
+			Date sortDate) {
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 		featureCollectionManipulator.addAdditionalPropertiesToFeatures(synFc, schema, planId, sortDate, beginValidity,
 				endValidity);
-		featureCollectionManipulator.addInternalId(synFc, schema, internalId);
 	}
 
-	private void manipulateXPlanGml(int planId, XPlanFeatureCollection xPlanFeatureCollection) throws Exception {
+	private void manipulateXPlanGml(int planId, XPlanVersion version, XPlanFeatureCollection xPlanFeatureCollection,
+			String internalId) {
+		if (internalId != null) {
+			AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
+			featureCollectionManipulator.addInternalId(xPlanFeatureCollection.getFeatures(), schema, internalId);
+		}
 		if (attachmentUrlHandler != null) {
 			attachmentUrlHandler.replaceRelativeUrls(planId, xPlanFeatureCollection);
 		}

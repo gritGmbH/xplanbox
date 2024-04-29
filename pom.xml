@@ -36,7 +36,7 @@
     <spring-data.version>2.7.18</spring-data.version>
     <hibernate.version>5.6.15.Final</hibernate.version>
     <jackson.version>2.16.0</jackson.version>
-    <liquibase.version>4.25.0</liquibase.version>
+    <liquibase.version>4.27.0</liquibase.version>
     <postgresql.version>42.7.2</postgresql.version>
     <picocli.version>4.7.5</picocli.version>
     <owasp.version>8.4.3</owasp.version>
@@ -1041,12 +1041,6 @@
         <version>2.6</version>
         <scope>test</scope>
       </dependency>
-      <dependency>
-        <groupId>org.hsqldb</groupId>
-        <artifactId>hsqldb</artifactId>
-        <version>2.7.2</version>
-        <scope>test</scope>
-      </dependency>
       <!-- xerces -->
       <dependency>
         <groupId>xerces</groupId>
@@ -1137,6 +1131,11 @@
         <version>${geotools.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.hsqldb</groupId>
+        <artifactId>hsqldb</artifactId>
+        <version>2.7.2</version>
+      </dependency>
+      <dependency>
         <groupId>org.gdal</groupId>
         <artifactId>gdal</artifactId>
         <version>3.0.0</version>
@@ -1172,6 +1171,16 @@
         <groupId>org.liquibase.ext</groupId>
         <artifactId>liquibase-postgresql</artifactId>
         <version>${liquibase.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-commercial</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <!-- xplan-manager internal dependencies with version -->
       <dependency>
@@ -1244,6 +1253,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>xplan-core-manager-db</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>xplan-core-validator-events</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

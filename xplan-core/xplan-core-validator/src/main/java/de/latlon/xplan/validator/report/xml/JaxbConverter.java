@@ -62,9 +62,11 @@ import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WAR
 /**
  * Converts the internal used {@link ValidatorReport} instances to jaxb
  *
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
+@Deprecated
 public class JaxbConverter {
 
 	/**

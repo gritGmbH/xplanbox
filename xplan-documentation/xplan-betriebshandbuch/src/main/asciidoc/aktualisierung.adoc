@@ -337,6 +337,9 @@ Für die Aktualisierung auf die Version 7.2 sind folgende Schritte auszuführen:
 * Aktualisierung der Datenbank:
 ** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_7.1_to_7.2_ im Modul _xplan-manager-workspace_
 * Umbenennung der Datei _<XPLANBOX_CONFIG>/dokumentenApiConfiguration.properties_  nach _<XPLANBOX_CONFIG>/dokumenteApiConfiguration.properties_ zur Konfiguration der <<konfiguration-document-api>>.
+* Umstellung der Konfiguration der XPlanDokumenteAPI
+** Die Referenz auf den _xplan-manager-workspace_ kann entfernt werden
+** Konfiguration der Datenbankverbindung wie in <<konfiguration-document-api>> beschrieben
 
 === Troubleshooting
 

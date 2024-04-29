@@ -43,10 +43,29 @@
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
+      <Fill>
+        <GraphicFill>
+          <Graphic>
+            <ExternalGraphic>
+              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
+                              xlink:href="../../symbols/bauverbotszone.png"/>
+              <Format>image/png</Format>
+            </ExternalGraphic>
+            <Size>25</Size>
+          </Graphic>
+        </GraphicFill>
+      </Fill>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-width">1.0</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.75</SvgParameter>
+        <SvgParameter name="stroke-linecap">round</SvgParameter>
+        <SvgParameter name="stroke-linejoin">round</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
   </Rule>
@@ -78,6 +97,108 @@
     </LineSymbolizer>
   </Rule>
 
+  <Rule>
+    <Name>SO_Baubeschraenkung Linie Bauverbotszone</Name>
+    <Description>
+      <Title>SO: Baubeschraenkung Linie Bauverbotszone</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsCurve">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
+            <ogc:Literal>1000</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Or>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1 2</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>SO_Baubeschraenkung Linie Baubeschraenkungszone</Name>
+    <Description>
+      <Title>SO: Baubeschraenkung Linie Baubeschraenkungszone</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsCurve">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
+          <ogc:Literal>2000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
+        <SvgParameter name="stroke-dasharray">4 2</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>SO_Baubeschraenkung Linie Waldabstand</Name>
+    <Description>
+      <Title>SO: Baubeschraenkung Linie Waldabstand</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsCurve">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
+          <ogc:Literal>3000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
+        <SvgParameter name="stroke-dasharray">6 2 0.25 2</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+
   <!-- Punkt -->
   <Rule>
     <Name>SO_Baubeschraenkung Punkt</Name>
@@ -94,22 +215,19 @@
     </ogc:Filter>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
       <Graphic>
         <Mark>
-          <WellKnownName>triangle</WellKnownName>
+          <WellKnownName>circle</WellKnownName>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1</SvgParameter>
+            <SvgParameter name="fill-opacity">1.0</SvgParameter>
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">0.5</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>7</Size>
+        <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
   </Rule>

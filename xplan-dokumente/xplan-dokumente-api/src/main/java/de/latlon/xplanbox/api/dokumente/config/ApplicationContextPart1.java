@@ -20,15 +20,13 @@
  */
 package de.latlon.xplanbox.api.dokumente.config;
 
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLAN_MANAGER_WORKSPACE;
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
-
-import org.deegree.commons.config.DeegreeWorkspace;
+import de.latlon.xplan.core.manager.db.DatasourceWrapper;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.manager.workspace.WorkspaceException;
+import javax.sql.DataSource;
 
 /**
  * Simple workaround for circular dependencies in Spring beans.
@@ -37,9 +35,16 @@ import de.latlon.xplan.manager.workspace.WorkspaceException;
 public class ApplicationContextPart1 {
 
 	@Bean
-	public ManagerWorkspaceWrapper managerWorkspaceWrapper() throws WorkspaceException {
-		DeegreeWorkspace managerWorkspace = instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE);
-		return new ManagerWorkspaceWrapper(managerWorkspace);
+	public DatasourceWrapper datasourceWrapper(@Value("#{environment.XPLAN_JDBC_URL}") String jdbcUrl,
+			@Value("#{environment.XPLAN_DB_USER}") String username,
+			@Value("#{environment.XPLAN_DB_PASSWORD}") String password) {
+		DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+		dataSourceBuilder.driverClassName("org.postgresql.Driver");
+		dataSourceBuilder.url(jdbcUrl);
+		dataSourceBuilder.username(username);
+		dataSourceBuilder.password(password);
+		DataSource dataSource = dataSourceBuilder.build();
+		return new JdbcDatasourceWrapper(dataSource);
 	}
 
 }

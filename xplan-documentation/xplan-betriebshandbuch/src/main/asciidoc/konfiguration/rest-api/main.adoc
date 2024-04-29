@@ -1,7 +1,7 @@
 [[konfiguration-rest-api]]
 == Konfiguration der REST-Schnittstellen
 
-Die xPlanBox stellt die folgenden REST-Schnittstellen bereit: die XPlanValidatorAPI,XPlanManagerAPI und XPlanDokumenteAPI.
+Die xPlanBox stellt die folgenden REST-Schnittstellen bereit: die XPlanValidatorAPI, XPlanManagerAPI und XPlanDokumenteAPI.
 
 TIP: Die REST-Schnittstellen von XPlanValidatorAPI und XPlanManagerAPI sind über Spring Security abgesichert. Um für einen Aufruf der REST-Schnittstellen die  erfolgreiche Authentifizierung zu prüfen, muss das Spring-Profil `enableSecurity` für die Komponenten aktiviert werden.
 
@@ -120,6 +120,18 @@ documentationUrl=https://xplanbox.lat-lon.de/xPlanBox-Benutzerhandbuch/
 
 [[konfiguration-document-api]]
 === XPlanDokumenteAPI
+Für die XPlanDokumenteAPI müssen die Angaben für die Datenbankverbindung über Umgebungsvariablen gesetzt werden:
+
+[source,properties]
+----
+XPLAN_JDBC_URL=jdbc:postgresql://<host>:<port>/<dbname> <1>
+XPLAN_DB_USER=$DB_USER <2>
+XPLAN_DB_PASSWORD=$DB_PASSWORD <3>
+----
+<1> Vollständige JDBC-URL zur XPlanDB
+<2> Benutzername des `$DB_USER`
+<3> Passwort für den `$DB_USER`
+
 Die Konfiguration der XPlanDokumenteAPI erfolgt in der Datei _<XPLANBOX_CONFIG>/dokumenteApiConfiguration.properties_.
 
 Folgende Konfiguration kann für die XPlanDokumenteAPI vorgenommen werden.

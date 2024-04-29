@@ -20,6 +20,8 @@
  */
 package de.latlon.xplanbox.api.validator.v1;
 
+import de.latlon.core.validator.events.ValidationRequestNotifier;
+import de.latlon.core.validator.events.ValidationRequestedEvent;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.validator.ValidatorException;
@@ -91,6 +93,9 @@ public class ValidateApi {
 
 	@Autowired
 	private ValidationHandler validationHandler;
+
+	@Autowired
+	private ValidationRequestNotifier validationRequestNotifier;
 
 	@POST
 	@Consumes({ "text/xml", "application/gml+xml" })
@@ -194,6 +199,9 @@ public class ValidateApi {
 
 		ValidationSettings settings = createValidationSettings(validationName, skipGeometrisch, skipSemantisch,
 				skipFlaechenschluss, skipGeltungsbereich, skipLaufrichtung, profiles);
+
+		validationRequestNotifier.sendEvent(new ValidationRequestedEvent(settings));
+
 		ValidatorReport validatorReport = validationHandler.validate(archive, xFileName, settings);
 		if (APPLICATION_ZIP_TYPE.equals(mediaType)) {
 			java.nio.file.Path report = validationHandler.zipReports(validatorReport);

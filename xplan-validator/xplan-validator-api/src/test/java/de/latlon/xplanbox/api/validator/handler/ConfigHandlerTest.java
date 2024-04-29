@@ -28,6 +28,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -38,6 +39,7 @@ import de.latlon.xplanbox.api.validator.config.ApplicationContext;
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ApplicationContext.class })
+@ActiveProfiles("test")
 class ConfigHandlerTest {
 
 	@Autowired

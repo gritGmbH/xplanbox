@@ -45,7 +45,7 @@ maven-build:
   image: registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest
   script:
   - mvn package -Dxplan-tests.maven.deploy.skip=true -Pdocker,skipAll -pl $mvnProjects -am
-  - ci/readEnvPropsForKanikoBuilds.sh > build.env
+  - gitlab/readEnvPropsForKanikoBuilds.sh > build.env
   - find . -name docker-build.tar | xargs gzip
   - set -o pipefail; find . -name docker-build.tar.gz | grep . | xargs du -h
   rules:
@@ -110,7 +110,7 @@ maven-prepare-docker-contexts-others:
     - './xplan-webservices/xplan-webservices-services/xplan-services-docker/target/docker/**/tmp/docker-build.tar.gz'
     - './xplan-webservices/xplan-webservices-validator-wms/target/docker/**/tmp/docker-build.tar.gz'
 
-include: ci/all-kaniko-builds.gitlab-ci.yml
+include: gitlab/all-kaniko-builds.gitlab-ci.yml
 
 
 maven-deploy-release:
@@ -147,7 +147,7 @@ create-maven-build-image:
   script:
   - /kaniko/executor
     --context "${CI_PROJECT_DIR}"
-    --dockerfile "${CI_PROJECT_DIR}/ci/mvn-build-image.Dockerfile"
+    --dockerfile "${CI_PROJECT_DIR}/gitlab/mvn-build-image.Dockerfile"
     --destination "${CI_REGISTRY_IMAGE}/mvn-build-image:latest"
     --cache=true --compressed-caching=false --use-new-run --cleanup
   rules:

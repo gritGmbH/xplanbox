@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.validator.report.xml;
 
-import de.latlon.xplan.validator.report.ObjectFactory;
 import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.report.ValidationReport;
 import de.latlon.xplan.validator.report.ValidatorReport;
@@ -33,9 +32,11 @@ import java.io.OutputStream;
 /**
  * Creates XML reports from a {@link ValidatorReport}
  *
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
+@Deprecated
 public class XmlReportGenerator {
 
 	private final JaxbConverter jaxbConverter = new JaxbConverter();

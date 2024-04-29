@@ -35,8 +35,6 @@ import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.geometry.jts.Geometries;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -54,12 +52,12 @@ import static org.geotools.data.DataUtilities.createType;
 /**
  * Creates Shapefiles of different Types
  *
+ * @deprecated will be removed in a future version.
  * @author Florian Bingel
  * @version $Revision: $, $Date: $
  */
+@Deprecated
 class ShapefileBuilder {
-
-	private static final Logger LOG = LoggerFactory.getLogger(ShapefileBuilder.class);
 
 	private final SimpleFeatureType TYPE;
 

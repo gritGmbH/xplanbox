@@ -28,12 +28,14 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 import javax.annotation.PostConstruct;
 
+import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+import de.latlon.core.validator.events.ValidationRequestNotifier;
 import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.profile.SemanticProfileValidator;
@@ -64,6 +66,11 @@ public class TestContext {
 		RulesMetadata profile1 = new RulesMetadata("id1", "test1", "description1", "0.1", "unbekannt");
 		RulesMetadata profile2 = new RulesMetadata("id2", "test2", "description2", "0.2", "lokal");
 		return new SemanticProfiles().add(profile1, createValidator(profile1)).add(profile2, createValidator(profile2));
+	}
+
+	@Bean
+	public ValidationRequestNotifier validationRequestNotifier() {
+		return Mockito.mock(ValidationRequestNotifier.class);
 	}
 
 	private static SemanticProfileValidator createValidator(RulesMetadata profile) {

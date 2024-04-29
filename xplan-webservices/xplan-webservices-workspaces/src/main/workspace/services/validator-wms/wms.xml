@@ -38,4 +38,6 @@
       <wms:Format>text/html</wms:Format>
     </wms:GetFeatureInfoFormat>
   </wms:FeatureInfoFormats>
+  <wms:MaxWidth>3840</wms:MaxWidth>
+  <wms:MaxHeight>2160</wms:MaxHeight>
 </wms:deegreeWMS>

@@ -1,1 +1,0 @@
-CVE-2024-1597 # liquibase/internal/lib/postgresql.jar 42.7.1 (wait for upgrade of base image)

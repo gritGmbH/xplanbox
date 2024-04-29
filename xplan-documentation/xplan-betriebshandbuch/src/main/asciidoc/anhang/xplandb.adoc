@@ -70,7 +70,7 @@ Das Skript verwendet folgende Umgebungsvariablen, die vom Kommandozeilenwerkzeug
 - `PGPASSWORD`: Passwort des Super Users (default: _<NOT_SET>_, optional)
 - `PGHOST`: Name des Hosts (default: localhost, optional)
 - `PGPORT`: Portadresse der Datenbank (default: 5432, optional)
-- `DB_NAME`: Name der Databank (default: _xplanbox_, variable: `XPLAN_DB_NAME`, optional)
+- `DB_NAME`: Name der Datenbank (default: _xplanbox_, variable: `XPLAN_DB_NAME`, optional)
 - `DB_USER`: Name des Datenbankbenutzers (default: _xplanbox_, variable: `XPLAN_DB_USER`, optional)
 - `DB_PASSWORD`: Passwort des Datenbankbenutzers (default: _xplanbox_, variable: `XPLAN_DB_PASSWORD`, optional)
 - `DB_INIT_USER`: Name des Datenbankbenutzers zum Aufsetzen der Datenbank, Rolle erfordert erweiterte Berechtigungen (default: _initxplanbox_, variable: `XPLAN_DB_INIT_USER`, optional)

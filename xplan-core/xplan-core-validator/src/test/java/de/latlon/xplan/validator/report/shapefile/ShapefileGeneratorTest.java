@@ -51,9 +51,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
+ * @deprecated will be removed in a future version.
  * @author Florian Bingel
  * @version $Revision: $, $Date: $
  */
+@Deprecated
 public class ShapefileGeneratorTest {
 
 	@Rule

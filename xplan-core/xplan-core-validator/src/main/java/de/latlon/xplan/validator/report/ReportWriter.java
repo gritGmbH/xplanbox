@@ -112,6 +112,10 @@ public class ReportWriter {
 		}
 	}
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 **/
+	@Deprecated
 	private void addXmlEntry(ValidatorReport report, Path directoryToCreateZip, List<String> failures) {
 		String validationName = report.getValidationName();
 		Path xmlFile = directoryToCreateZip.resolve(validationName + ".xml");
@@ -187,6 +191,10 @@ public class ReportWriter {
 		}
 	}
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 **/
+	@Deprecated
 	private void addShpArtifact(ZipOutputStream zipOutputStream, Path sourceDirectory) throws IOException {
 		Path shapesDirectory = sourceDirectory.resolve(SHAPES);
 		if (Files.exists(shapesDirectory)) {

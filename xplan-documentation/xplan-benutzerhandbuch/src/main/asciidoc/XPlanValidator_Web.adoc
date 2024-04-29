@@ -253,13 +253,17 @@ Der Validierungsbericht kann in den Formaten:
 
  * HTML
  * PDF
- * XML
+ * XML (veraltet)
 
 exportiert werden.
+
+IMPORTANT: Die Ausgabe des Validierungsberichts im Format XML ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt!
 
 Geometriefehler können zusätzlich auch als Shape-Datei gespeichert werden.
 
 NOTE: Derzeit werden ausschließlich Schnittpunkte in der Shape-Datei ausgegeben, also die Punkte an denen sich die Umgrenzungslinie der betroffenen Geometrie und die des Geltungsbereichs schneiden. Linienförmige Schnittbereiche werden derzeit nicht ausgegeben.
+
+IMPORTANT: Die Ausgabe von Geometriefehlern als Shape-Datei ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt!
 
 Alle Ergebnisdateien, selektierte Reports und Geometriefehler,  werden in einer ZIP-Datei gespeichert. Der Dateiname entspricht der Bezeichnung des Validierungsdurchlaufs.
 

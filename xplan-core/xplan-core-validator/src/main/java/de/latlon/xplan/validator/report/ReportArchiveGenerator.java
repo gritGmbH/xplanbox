@@ -90,6 +90,10 @@ public class ReportArchiveGenerator {
 		zipOutStream.closeEntry();
 	}
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 **/
+	@Deprecated
 	private void addXmlEntry(ValidatorReport report, String validationName, ZipOutputStream zipOutStream)
 			throws IOException, ReportGenerationException {
 		ZipEntry xmlEntry = new ZipEntry(validationName + ".xml");
@@ -106,6 +110,10 @@ public class ReportArchiveGenerator {
 		zipOutStream.closeEntry();
 	}
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 **/
+	@Deprecated
 	private void addShapeDirectoryEntry(ValidatorReport report, String validationName, Path directoryToCreateShapes,
 			ZipOutputStream zipOutStream) throws IOException, ReportGenerationException {
 		if (shapefileGenerator.hasBadGeometry(report)) {

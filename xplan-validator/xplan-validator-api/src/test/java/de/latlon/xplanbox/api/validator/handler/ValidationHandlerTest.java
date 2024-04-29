@@ -42,6 +42,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -58,6 +59,7 @@ import de.latlon.xplanbox.api.validator.config.ApplicationContext;
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ApplicationContext.class })
+@ActiveProfiles("test")
 public class ValidationHandlerTest {
 
 	@TempDir

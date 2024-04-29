@@ -24,6 +24,7 @@
     <module>xplan-core-security</module>
     <module>xplan-core-synthesizer</module>
     <module>xplan-core-validator</module>
+    <module>xplan-core-validator-events</module>
   </modules>
 
 </project>

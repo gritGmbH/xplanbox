@@ -1,4 +1,4 @@
-<RemoteWMSLayers xmlns="http://www.deegree.org/layers/remotewms" configVersion="3.4.0">
+<RemoteWMSLayers xmlns="http://www.deegree.org/layers/remotewms">
   <RemoteWMSId>mapserver</RemoteWMSId>
 </RemoteWMSLayers>
 

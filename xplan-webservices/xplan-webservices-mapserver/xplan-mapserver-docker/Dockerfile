@@ -17,6 +17,8 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION" \
 	"maintainer"=""
 
+ENV XPLAN_SERVICES_WMS_MAXWIDTH=3840
+
 ENV TZ=Europe/Berlin
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata gettext-base
 

@@ -6,7 +6,7 @@ Die Anwendung ist Bestandteil der [DiPlanung](https://diplanung.de)-Plattform zu
 
 ## xPlanBox im OZG-Kontext
 
-Aus nicht-funktionaler Sicht liegt der Fokus der Weiterentwicklung als Bestandteil einer EfA-Lösung auf der Optimierung für eine containerisierte, Cloud-basierte Umgebung. Dazu gehört u.a., dass die Auslieferung von Rasterbildern zu Plänen über die Integration von Mapserver erfolgt, und dass Rasterbilder und Begleitdokumente, die Bestandteil eines XPlanArchivs sind, in einem Objektspeicher (aktuell unterstützt: S3-kompatibel) abgelegt werden.
+Aus nicht-funktionaler Sicht liegt der Fokus der Weiterentwicklung als Bestandteil einer EfA-Lösung auf der Optimierung für eine containerisierte, Cloud-basierte Umgebung. Dazu gehört u.a., dass die Auslieferung von Rasterbildern zu Plänen über die Integration von MapServer erfolgt, und dass Rasterbilder und Begleitdokumente, die Bestandteil eines XPlanArchivs sind, in einem Objektspeicher (aktuell unterstützt: S3-kompatibel) abgelegt werden.
 
 > **_Hinweis_**: Probleme und Fehler, die klassische Installationen oder Betriebsarten (z.B. deegree GeoTIFF/GDAL Tile Store für Rasterbilder) betreffen, können aus Kapazitätsgründen nur nachrangig bearbeitet werden. Supportanfragen können generell nicht beantwortet werden. Bitte wenden Sie sich dazu an den Hersteller.
 
@@ -75,9 +75,116 @@ mvn clean install
 
 > **_Hinweis_**: Unter dem Betriebssystem Windows kann es bei der Ausführung von Unit-Test zu Fehlern kommen. Es kann dann erforderlich sein, die Tests zu überspringen. Dazu ist die Option `-DskipTests` beim Aufruf von Maven zu ergänzen.
 
+#### Container Images erstellen
+
+Um Container Images aus dem Source Code auf Open CoDE zu bauen, sind folgende Anpassungen erforderlich. Die gebauten Container Images sind in der Container Registry verfügbar: https://gitlab.opencode.de/diplanung/ozgxplanung/container_registry/.
+
+##### Konfiguration
+
+* Property `docker-image.namePrefix` (Standardwert: `xplanbox`): erlaubt den Namen der generierten Docker Images zu ändern.
+
+##### Images mit Docker Daemon bauen
+
+```
+mvn install -P docker
+```
+
+Nach dem Build sind die Docker Images vorhanden.
+
+Beispiel:
+
+```
+$> docker images
+REPOSITORY                          TAG                    IMAGE ID       CREATED        SIZE
+xplanbox/xplan-mapserver            7.0-SNAPSHOT           efa010d2acdf   3 days ago     446MB
+xplanbox/xplan-mapserver            latest                 efa010d2acdf   3 days ago     446MB
+xplanbox/xplan-services             7.0-SNAPSHOT           5c2ec3ab6786   3 days ago     1.15GB
+xplanbox/xplan-services             latest                 5c2ec3ab6786   3 days ago     1.15GB
+xplanbox/xplan-validator-wms        7.0-SNAPSHOT           d5fc6b671fa9   3 days ago     677MB
+xplanbox/xplan-validator-wms        latest                 d5fc6b671fa9   3 days ago     677MB
+xplanbox/xplan-inspireplu           7.0-SNAPSHOT           499a240777d3   3 days ago     542MB
+...
+```
+
+##### Images mit kaniko bauen
+
+Docker in Docker funktioniert auf OpenCoDE nicht, weil dort die Gitlab Runners auf Kubernetes laufen (Stand 31.01.2023). Die Build Pipeline verwendet deswegen stattdessen [kaniko](https://github.com/GoogleContainerTools/kaniko). Der Ablauf ist wie folgt:
+
+* in der Phase `package` werden mit dem Goal [`source` von dem docker-maven-plugin](http://dmp.fabric8.io/#docker:source) die Docker Kontexte in Dateien `docker-build.tar` gespeichert
+* nach dem Maven Build werden alle `docker-build.tar` Dateien gzipped und als Artefakte temporär gespeichert
+* im nächsten Stage wird kaniko mit jedem gespeicherten Docker Kontext ausgeführt
+
+##### Anforderungen
+
+Diese Vorgehensweise bringt zusätzliche Anforderungen:
+
+* Vorbereitungen für die Docker Images (z.B. Dependencies entpacken) müssen vor der Phase `package` stattfinden, um in der Phase `package` von `docker-maven-plugin:source` verwendet zu werden
+* die `docker-build.tar` Dateien sollen so klein wie möglich gehalten werden, sonst wird die Obergrenze für die maximale Größe von Packages überschritten (`413 Request Entity Too Large`). Mit Hilfe einer [`.maven-dockerignore` Datei](http://dmp.fabric8.io/#ex-build-dockerexclude) ist es möglich zu konfigurieren, was nicht in die tar-Datei gelangen soll.
+* zur Zeit sind die gezipped `docker-build.tar` Dateien leider zu groß für OpenCoDE, um als Artefakte von einem einzelnen Job gespeichert zu werden. Als Workaround wird das Bauen in mehreren Jobs aufgeteilt, was leider mehr Konfiguration erfordert.
+
+##### Docker Maven Build Image
+
+Um den Build zu beschleunigen wird ein Build Image verwendet, das schon die meisten benötigten Maven Artefakte enthält, die für den Build benötigt werden. Dieses Image sollte regelmäßig neu erzeugt werden, so dass es synchron zu den benötigten Dependencies bleibt. Mit diesem Image ist der Maven Build ein bis zwei Minuten schneller und der OWASP-Dependency-Check mehr als sechs Minuten schneller.
+
+##### Automatische Erzeugung
+
+Das Pipeline Schedule [Create Maven Build Image](https://gitlab.opencode.de/diplanung/ozgxplanung/-/pipeline_schedules) ist konfiguriert, um einmal pro Woche zu laufen.
+
+##### Manuelle Erzeugung
+
+Das Image kann auch manuell gebaut und gepusht werden.
+
+###### Docker Image lokal bauen
+
+```
+docker build -t registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest -f ci/mvn-build-image.Dockerfile .
+```
+
+###### GitLab personal access token erstellen
+
+Auf OpenCoDE unter [User Settings / Access Tokens](https://gitlab.opencode.de/-/profile/personal_access_tokens) ein neues Personal Access Token mit `read_registry` and `write_registry` Scopes erzeugen.
+
+###### Im OpenCoDE Registry einloggen
+
+Mit Benutzernamen und dem _personal access token_ als Passwort einloggen:
+
+```
+docker login registry.opencode.de
+```
+
+###### Image pushen
+
+```
+docker push registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest
+```
+
+##### Security Check mit Trivy
+
+Issues in den Docker Images mit existierenden Fixes können mit [Trivy](https://trivy.dev/) gesucht werden:
+
+```
+mvn -Pdocker exec:exec@trivyScanForFixedIssues
+```
+
+Per Default werden nur die Issues mit der Stufe CRITICAL gesucht. Dies kann mit dem Property `trivy.severity` geändert werden, z.B. so:
+
+```
+mvn -Pdocker exec:exec@trivyScanForFixedIssues -Dtrivy.severity='CRITICAL,HIGH,MEDIUM'
+```
+
+Issues, die ignoriert werden sollen, müssen in `.trivyignore` in den jeweiligen Projekten gepflegt werden.
+
 ### Installation und Konfiguration
 
 Die Installation und Konfiguration der Anwendung ist im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc) dokumentiert.
+
+#### Logging
+
+Die xPlanBox verwendet [Apache Log4j2](https://logging.apache.org/log4j/2.x/) als Logging Framework und unterstützt die Ausgaben von Meldungen im Text- und JSON-Format. Das Ausgabeformat kann über die Umgebungsvariable `LOG4J_LAYOUT` geändert werden: 
+
+* `LOG4J_LAYOUT`:  konfiguriert das Outputformat
+    * `plain` (Standardwert): Text-Format
+    * `json`: JSON-Format
 
 #### XPlanung-Validierungsregeln einbinden
 
@@ -86,7 +193,7 @@ Die Anwendung nutzt die öffentlich verfügbaren XPlanung-Validierungsregeln des
 > **_Hinweis_**: Um eine andere Version der XPlanung-Validierungsregeln zu installieren, folgen Sie der Anleitung im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc).
 
 ----
-© 2023 lat/lon gesellschaft für raumbezogene informationssysteme mbH  
+© 2024 lat/lon gesellschaft für raumbezogene informationssysteme mbH  
 Im Ellig 1
 53343 Wachtberg  
 Tel: +49 +228 24333784  

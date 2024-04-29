@@ -1,4 +1,4 @@
-FROM liquibase/liquibase:4.26.0
+FROM liquibase/liquibase:4.27.0
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
