@@ -149,6 +149,12 @@
     <!-- Config > /conf -->
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-database-scripts</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>xplan-manager-config</artifactId>
       <version>${project.version}</version>
       <classifier>default</classifier>

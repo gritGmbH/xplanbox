@@ -79,7 +79,7 @@ Um eine spätere Trennung der Dienste (Web-Anwendungen) zu gewährleisten, wird 
 TIP: Empfohlen wird Apache Tomcat Version 9.0+.
 
 [[datenbank]]
-=== Datenbank
+=== PostgreSQL Datenbank
 
 Als Datenbanksystem ist eine https://www.postgresql.org[PostgreSQL-Datenbank] mit installierter https://postgis.net/[PostGIS-Erweiterung] erforderlich.
 

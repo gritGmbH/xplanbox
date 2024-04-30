@@ -1,5 +1,4 @@
-## SoapUI TestSuites
-
+## XPlanDB
 
 ### Docker Image
 
@@ -13,10 +12,21 @@ docker build -t xplanbox/xplan-db .
 
 Running image for the `xplanbox` database:
 ```
-docker run -it xplanbox/xplan-db
+docker run -it --env ... xplanbox/xplan-db
 ```
 
-Running image for the `inspireplu` database:
-```
-docker run -it --env DB_NAME=inspireplu xplanbox/xplan-db
-```
+Use the docker image xplan-db-updater (maven module xplan-databse-scripts) to set up the database with liquibase.
+
+#### Environment variables
+
+Used with `--env`
+
+* XPLAN_DB_NAME: Name of the database to create. Default: xplanbox
+* XPLAN_DB_USER: Name of the app user. Default: xplanbox
+* XPLAN_DB_PASSWORD: Password of the app user. Default: xplanbox
+* XPLAN_DB_INIT_USER: Name of the init user. Default: initxplanbox
+* XPLAN_DB_INIT_PASSWORD: Name of the password user. Default: initxplanbox
+
+### Deprection notice
+
+The SQL-Scripts located in `src/main/resources` are deprecated and will be removed in a future version.

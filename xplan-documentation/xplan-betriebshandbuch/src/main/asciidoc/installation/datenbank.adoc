@@ -1,27 +1,86 @@
 [[konfiguration-der-datenbank]]
 === Erstellen der Datenbank XPlanDB
+[[konfiguration-xplandb]]
+==== Vorbereitung
 
-Das Erstellen der Datenbank XPlanDB kann mit einem beliebigen Datenbankwerkzeug, wie z. B. dem Kommandozeilentool `psql` oder https://www.pgadmin.org[pgAdmin] erfolgen.
+Für das Erstellen der Datenbank XPlanDB ist ein Datenbankwerkzeug, wie z. B. https://www.pgadmin.org[pgAdmin] oder das Kommandozeilentool `psql` erforderlich.
 
-Für die Erstellung der XPlanDB müssen die folgenden Schritte ausgeführt werden:
+Die folgenden Schritte müssen ausgeführt werden:
 
 - Verbindung zum PostgreSQL-Server als Super User (Rolle _postgres_) herstellen
-- Anlegen der Datenbank und Datenbankbenutzer mit:
+- Anlegen der Datenbank und der Datenbankbenutzer `DB_INIT_USER` (1) mit Berechtigungen für DDL und DCL sowie `DB_USER` (2) mit Berechtigungen für DQL und DML:
 [source,sql]
 ----
-CREATE USER "$DB_INIT_USER" PASSWORD '$DB_INIT_PASSWORD';
-CREATE USER "$DB_USER" PASSWORD '$DB_PASSWORD';
+CREATE USER "$DB_INIT_USER" PASSWORD '$DB_INIT_PASSWORD';  <1>
+CREATE USER "$DB_USER" PASSWORD '$DB_PASSWORD';  <2>
 CREATE DATABASE "$DB_NAME" OWNER '$DB_INIT_USER';
-GRANT ALL PRIVILEGES ON DATABASE "$DB_NAME" TO "$DB_INIT_USER";
-GRANT CONNECT ON DATABASE "$DB_NAME" TO "$DB_USER";
 ----
 - Installation der PostGIS-Erweiterung für die neu erstellte Datenbank.
- .. Dazu als Super User (_postgres_) mit der neuen Database `$DB_NAME` verbinden und folgendes SQL-Statement ausführen:
+.. Dazu als Super User (_postgres_) mit der neuen Database `$DB_NAME` verbinden und folgendes SQL-Statement ausführen:
 [source,sql]
 ----
 CREATE EXTENSION IF NOT EXISTS postgis;
 ----
+
+[[konfiguration-xplandb-liquibase]]
+==== Liquibase
+
+Um die XPlanDB einzurichten ist die Installation von https://www.liquibase.com/download[Liquibase] 4.27+ erforderlich.
+Liquibase benötigt ein <<jdk>> und einen aktuellen JDBC-Treiber für die <<datenbank>>.
+
+Für die initiale Installation und auch Aktualisierungen sind folgende Schritte erforderlich:
+
+- Download und Installation von Liquibase wie in der https://docs.liquibase.com/start/install/home.html[Dokumentation] beschrieben.
+- Nach der Installation sollte der Aufruf von `liquibase --version` möglich sein:
+[source,bash]
+----
+export LIQUIBASE_HOME=/Users/admin/Downloads/liquibase-4.27.0
+$LIQUIBASE_HOME/liquibase --version
+----
+- Ausführen der Liquibase-Skripte
+[source,bash]
+----
+$LIQUIBASE_HOME/liquibase
+      --driver org.postgresql.Driver \ <1>
+      --classpath=./org/postgresql/postgresql/42.7.3/postgresql-42.7.3.jar \ <2>
+      --search-path=changelog \ <3>
+      --changelog-file=changelog_xplandb.yaml \ <4>
+      --url=$XPLAN_JDBC_URL \ <5>
+      --username=$XPLAN_DB_INIT_USER \ <6>
+      --password=$XPLAN_DB_INIT_PASSWORD \ <7>
+      update <8>
+      -Dxplan.db.user=$XPLAN_DB_USER <9>
+      -Dxplan.srid=$XPLAN_SERVICES_DEFAULT_CRS_SRID <10>
+----
+<1> ein JDBC-Treiber für PostgreSQL ist in Liquibase enthalten (optional)
+<2> Pfad zu JDBC-Treiber (optional)
+<3> Pfad zu den Liquibase Changelog-Dateien (optional)
+<4> Liquibase-Datei für die XPlanDB _changelog_xplandb.yaml_
+<5> JDBC URL, z.B. `jdbc:postgresql://localhost:5432/xplanbox`
+<6> Benutzername, `$DB_INIT_USER` aus <<konfiguration-xplandb>>
+<7> Passwort für den Benutzer, `$DB_INIT_PASSWORD` aus <<konfiguration-xplandb>>
+<8> Liquibase Kommando https://docs.liquibase.com/commands/update/update.html[Update]
+<9> Benutzername, `$DB_USER` aus <<konfiguration-xplandb>>
+<10> PostGIS SRID in dem die Daten gespeichert werden, z.B. `25832`
+
+[[konfiguration-xplandb-sql]]
+==== SQL-Skripte
+Für die initiale Installation der XPlanDB mit den bereitgestellten SQL-Skripten sind folgende Schritte erforderlich:
+
 - Das SQL-Skript _create.sql_ aus dem Verzeichnis _xplan-manager-workspace/sql_ in der neu angelegten Datenbank in der Rolle `$DB_INIT_USER` ausführen.
+
+Für die Bereitstellung von Plänen als INSPIRE PLU konforme Datensätze ist ein weiteres Datenbankschema erforderlich und es müssen zusätzlich die folgenden Schritte ausgeführt werden:
+
+. Die SQL-Skripte aus dem Verzeichnis _xplan-manager-workspace/sql/inspireplu_ in der neu angelegten Datenbank ausführen (in der genannten Reihenfolge):
+.. _01_create_inspireplu_schema.sql_
+.. _02_create_inspireplu_view.sql_
+
+NOTE: Weitere Informationen zu der Erstellung der XPlanDB im Anhang <<appendix_xplandb_skript>>.
+
+IMPORTANT: Ab Version 7.2 ist die Einrichtung der XPlanDB mit SQL-Skripten veraltet (deprecated). Die SQL-Skripte werden in zukünftigen Version der xPlanBox nicht mehr mit ausgeliefert. Die Einrichtung und Aktualisierung der XPlanDB muss dann über <<konfiguration-xplandb-liquibase,Liquibase>> erfolgen.
+
+==== Datenbankverbindungen anpassen
+
 - Anpassen der Datenbank-Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace unter Verwendung der Rolle `$DB_USER`:
  .. _<DEEGREE_WORKSPACE_ROOT>/xplan-manager-workspace/jdbc/xplan.xml_
  .. _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wfs-workspace/jdbc/xplan.xml_
@@ -29,22 +88,9 @@ CREATE EXTENSION IF NOT EXISTS postgis;
  .. _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wms-workspace/jdbc/xplan.xml_
 . Anpassen der Datenbank-Verbindungen im XPlanValidatorWMS, wenn die persistente Datenhaltung verwendet wird (siehe <<konfiguration-xplanvalidatorwms>>)
 .. _<DEEGREE_WORKSPACE_ROOT>/xplan-webservices-validator-wms-sql-workspace/jdbc/xplan.xml_
-
-NOTE: Weitere Informationen zu der Erstellung der XPlanDB im Anhang <<appendix_xplandb_skript>>.
-
-[[aufsetzen-plu-db-schema]]
-==== Erstellen der Datenbank für INSPIRE PLU
-
-Für die Bereitstellung von Plänen, die vom XPlanManager verwaltet werden, als INSPIRE PLU konforme Datensätze ist ein weiteres Datenbankschema erforderlich.
-
-Es müssen die folgenden Schritte ausgeführt werden:
-
- . Die folgenden SQL-Skripte aus dem Verzeichnis _xplan-manager-workspace/sql/inspireplu_ in der neu angelegten Datenbank ausführen (in der genannten Reihenfolge):
- .. _01_create_inspireplu_schema.sql_
- .. _02_create_inspireplu_view.sql_
- . Anpassen der Datenbank-Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace:
- .. _<DEEGREE_WORKSPACE_ROOT>/xplan-webservices-inspireplu-workspace/jdbc/inspireplu.xml_
- .. _<DEEGREE_WORKSPACE_ROOT>/xplan-manager-workspace/jdbc/inspireplu.xml_
+. Anpassen der Datenbank-Verbindungen in den XPlanDiensten und im XPlanManagerWorkspace, wenn die Bereitstellung für INSPIRE PLU erfolgen soll:
+.. _<DEEGREE_WORKSPACE_ROOT>/xplan-webservices-inspireplu-workspace/jdbc/inspireplu.xml_
+.. _<DEEGREE_WORKSPACE_ROOT>/xplan-manager-workspace/jdbc/inspireplu.xml_
 
 ==== Weiterführende Informationen zur Konfiguration des Datenbankzugriffs
 

@@ -30,6 +30,9 @@
     <fileSet>
       <directory>${basedir}/src/main/resources</directory>
       <outputDirectory>/</outputDirectory>
+      <excludes>
+        <exclude>liquibase-diff.properties</exclude>
+      </excludes>
     </fileSet>
   </fileSets>
 </assembly>

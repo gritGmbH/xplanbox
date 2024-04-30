@@ -86,6 +86,14 @@
     </dependencySet>
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>conf</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplan-database-scripts:zip:*</include>
+      </includes>
+    </dependencySet>
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>test</outputDirectory>
       <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
       <includes>

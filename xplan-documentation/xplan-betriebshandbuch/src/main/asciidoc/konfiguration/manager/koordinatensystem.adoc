@@ -44,14 +44,14 @@ rasterConfigurationCrs=EPSG:25832
 
 Als Vorgabewert für das Standard-Koordinatenreferenzsystem wird EPSG:25832 in allen Konfigurationsdateien gesetzt. Wenn das Standard-Koordinatenreferenzsystem der Datenhaltung geändert werden soll, dann ist eine Anpassung sowohl der Konfiguration für <<crs-vektordaten>> und <<crs-rasterdaten>> als auch eine Anpassung an den Konfigurationsdateien für die SQLFeatureStore und der XPlanDB erforderlich.
 
-Um die Datenhaltung der XPlanDB z. B. auf EPSG:25833 umzustellen müssen in allen SQLFeatureStore-Dateien die Angabe des `StorageCRS` und der Angabe des PostGIS `srid` wie folgt angepasst werden:
+Um die Datenhaltung der XPlanDB z. B. auf EPSG:25833 umzustellen müssen in allen SQLFeatureStore-Dateien die Angabe des `StorageCRS` und der Angabe des PostGIS SRID wie folgt angepasst werden:
 
 [source,xml]
 ----
  <StorageCRS srid="25833" dim="2D">EPSG:25833</StorageCRS>
 ----
 
-Um die notwendigen Änderungen auch an der XPlanDB vorzunehmen, müssen für alle Geometrie-Spalten der XPlanDB das PostGIS `srid` gesetzt werden.
+Um die notwendigen Änderungen auch an der XPlanDB vorzunehmen, müssen für alle Geometrie-Spalten der XPlanDB das PostGIS SRID gesetzt werden.
 
 Hier am Beispiel für das Schema `xplan60` für die Spalte `bbox` der Tabelle `feature_types`:
 ----
