@@ -9,6 +9,13 @@ defined_envs="$(printf '${%s} ' $(env | cut -d'=' -f1))"
 envsubst "$defined_envs" < /xplan-mapproxy-docker/xplan-mapproxy-config/mapproxy.yaml > /srv/mapproxy/mapproxy.yaml
 envsubst "$defined_envs" < /xplan-mapproxy-docker/xplan-mapproxy-config/seed.yaml > /srv/mapproxy/seed.yaml
 
+XPLAN_SERVICES_METADATA_URL="${XPLAN_SERVICES_METADATA_URL}"
+if [ -z "$XPLAN_SERVICES_METADATA_URL" ]
+  then
+    echo "[$(date -Iseconds)] Remove metadata configuration"
+    sed -i '/\n/!N;/\n.*metadata/{$d;N;N;N;d};P;D' /srv/mapproxy/mapproxy.yaml
+fi
+
 if [ "$executionMode" == "seed" ]
 then
 	echo "[$(date -Iseconds)] MapProxy seed..."

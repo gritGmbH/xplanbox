@@ -33,6 +33,7 @@ import de.latlon.xplanbox.api.manager.config.JerseyConfig;
 import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.exception.InvalidApiVersion;
 import de.latlon.xplanbox.api.manager.handler.PlanHandler;
+import de.latlon.xplanbox.api.manager.v1.model.Bereich;
 import de.latlon.xplanbox.api.manager.v1.model.Link;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
@@ -313,7 +314,8 @@ public class PlanApi {
 			throws Exception {
 		List<XPlan> plans = planHandler.findPlansByName(planName);
 		List<PlanInfo> planInfos = plans.stream().map(xPlan -> {
-			return new PlanInfoBuilder(xPlan, managerApiConfiguration).selfMediaType(APPLICATION_JSON)
+			List<Bereich> bereiche = planHandler.findBereiche(xPlan.getId());
+			return new PlanInfoBuilder(xPlan, bereiche, managerApiConfiguration).selfMediaType(APPLICATION_JSON)
 				.alternateMediaType(Arrays.asList(APPLICATION_XML, APPLICATION_ZIP))
 				.build();
 		}).collect(Collectors.toList());
@@ -352,7 +354,9 @@ public class PlanApi {
 
 	private PlanInfo createPlanInfo(MediaType requestedMediaType, XPlan planById) {
 		List<String> alternateMediaTypes = alternateMediaTypes(requestedMediaType);
-		return new PlanInfoBuilder(planById, managerApiConfiguration).selfMediaType(requestedMediaType.toString())
+		List<Bereich> bereiche = planHandler.findBereiche(planById.getId());
+		return new PlanInfoBuilder(planById, bereiche, managerApiConfiguration)
+			.selfMediaType(requestedMediaType.toString())
 			.alternateMediaType(alternateMediaTypes)
 			.build();
 	}

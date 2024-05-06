@@ -31,6 +31,7 @@ parts:
   cache_cfg_25832: &cache_cfg_25832
     format: image/png
     grids: [gdi_de_25832]
+    meta_size: [3, 3]
     disable_storage: ${XPLAN_MAPPROXY_CACHE_DISABLE}
     cache:
       type: s3
@@ -38,6 +39,7 @@ parts:
   cache_cfg_3857: &cache_cfg_3857
     format: image/png
     grids: [GoogleMapsCompatible]
+    meta_size: [3, 3]
     disable_storage: ${XPLAN_MAPPROXY_CACHE_DISABLE}
     cache:
       type: s3
@@ -93,12 +95,22 @@ layers:
         tile_sources: [bplan_raster_cache_25832,bplan_raster_cache_3857]
         min_res: 1.4
         max_res: 0.28
+        md:
+          metadata:
+            - url: ${XPLAN_SERVICES_METADATA_URL}
+              type: ISO19115:2003
+              format: application/xml
       - name: bplan_vektor
         title: Vektordarstellung der Bebauungspläne
         sources: [bplan_vektor_cache_25832,bplan_vektor_cache_3857]
         tile_sources: [bplan_vektor_cache_25832,bplan_vektor_cache_3857]
         min_res: 1.4
         max_res: 0.28
+        md:
+          metadata:
+            - url: ${XPLAN_SERVICES_METADATA_URL}
+              type: ISO19115:2003
+              format: application/xml
   - name: xplan_fplan
     title: XPlanung Flächennutzungspläne
     layers:
@@ -108,12 +120,22 @@ layers:
         tile_sources: [fplan_raster_cache_25832,fplan_raster_cache_3857]
         min_res: 7.0
         max_res: 1.4
+        md:
+          metadata:
+            - url: ${XPLAN_SERVICES_METADATA_URL}
+              type: ISO19115:2003
+              format: application/xml
       - name: fplan_vektor
         title: Vektordarstellung der Flächennutzungspläne
         sources: [fplan_vektor_cache_25832,fplan_vektor_cache_3857]
         tile_sources: [fplan_vektor_cache_25832,fplan_vektor_cache_3857]
         min_res: 7.0
         max_res: 1.4
+        md:
+          metadata:
+            - url: ${XPLAN_SERVICES_METADATA_URL}
+              type: ISO19115:2003
+              format: application/xml
   - name: xplan_lplan
     title: XPlanung Landschaftspläne
     layers:
@@ -123,12 +145,22 @@ layers:
         tile_sources: [lplan_raster_cache_25832,lplan_raster_cache_3857]
         min_res: 7.0
         max_res: 1.4
+        md:
+          metadata:
+            - url: ${XPLAN_SERVICES_METADATA_URL}
+              type: ISO19115:2003
+              format: application/xml
       - name: lplan_vektor
         title: Vektordarstellung der Landschaftspläne
         sources: [lplan_vektor_cache_25832,lplan_vektor_cache_3857]
         tile_sources: [lplan_vektor_cache_25832,lplan_vektor_cache_3857]
         min_res: 7.0
         max_res: 1.4
+        md:
+          metadata:
+            - url: ${XPLAN_SERVICES_METADATA_URL}
+              type: ISO19115:2003
+              format: application/xml
   - name: xplan_rplan
     title: XPlanung Regionalpläne
     layers:
@@ -138,12 +170,22 @@ layers:
         tile_sources: [rplan_raster_cache_25832,rplan_raster_cache_3857]
         min_res: 7.0
         max_res: 1.4
+        md:
+          metadata:
+            - url: ${XPLAN_SERVICES_METADATA_URL}
+              type: ISO19115:2003
+              format: application/xml
       - name: rplan_vektor
         title: Vektordarstellung der Regionalpläne
         sources: [rplan_vektor_cache_25832,rplan_vektor_cache_3857]
         tile_sources: [rplan_vektor_cache_25832,rplan_vektor_cache_3857]
         min_res: 7.0
         max_res: 1.4
+        md:
+          metadata:
+            - url: ${XPLAN_SERVICES_METADATA_URL}
+              type: ISO19115:2003
+              format: application/xml
   - name: xplan_soplan
     title: XPlanung sonstige raumbezogene Pläne
     layers:
@@ -153,12 +195,22 @@ layers:
         tile_sources: [soplan_raster_cache_25832,soplan_raster_cache_3857]
         min_res: 1.4
         max_res: 0.28
+        md:
+          metadata:
+            - url: ${XPLAN_SERVICES_METADATA_URL}
+              type: ISO19115:2003
+              format: application/xml
       - name: soplan_vektor
         title: Vektordarstellung der sonstigen raumbezogenen Pläne
         sources: [soplan_vektor_cache_25832,soplan_vektor_cache_3857]
         tile_sources: [soplan_vektor_cache_25832,soplan_vektor_cache_3857]
         min_res: 1.4
         max_res: 0.28
+        md:
+          metadata:
+            - url: ${XPLAN_SERVICES_METADATA_URL}
+              type: ISO19115:2003
+              format: application/xml
 caches:
   bplan_raster_cache_25832:
     <<: *cache_cfg_25832

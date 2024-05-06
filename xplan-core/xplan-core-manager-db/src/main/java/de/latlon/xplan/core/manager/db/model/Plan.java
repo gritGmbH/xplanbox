@@ -107,7 +107,7 @@ public class Plan {
 
 	private @Valid Geometry bbox;
 
-	@ElementCollection(fetch = FetchType.EAGER)
+	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(schema = "xplanmgr", name = "bereiche", joinColumns = @JoinColumn(name = "plan"),
 			foreignKey = @ForeignKey(name = "bereiche_plan_fkey"))
 	private @Valid Set<Bereich> bereiche;
@@ -115,7 +115,7 @@ public class Plan {
 	@OneToMany(mappedBy = "id.plan", cascade = ALL, orphanRemoval = true)
 	private @Valid Set<Artefact> artefacts;
 
-	@ElementCollection(fetch = FetchType.EAGER)
+	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(schema = "xplanmgr", name = "features", joinColumns = @JoinColumn(name = "plan"),
 			foreignKey = @ForeignKey(name = "features_plan_fkey"))
 	private @Valid Set<Feature> features;

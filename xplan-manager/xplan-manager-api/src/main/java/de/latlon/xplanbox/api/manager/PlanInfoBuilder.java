@@ -56,14 +56,17 @@ public class PlanInfoBuilder {
 
 	private final XPlan xPlan;
 
+	private final List<Bereich> bereiche;
+
 	private final ManagerApiConfiguration managerApiConfiguration;
 
 	private final List<String> alternateMediaTypes = new ArrayList<>();
 
 	private String selfMediaType;
 
-	public PlanInfoBuilder(XPlan xPlan, ManagerApiConfiguration managerApiConfiguration) {
+	public PlanInfoBuilder(XPlan xPlan, List<Bereich> bereiche, ManagerApiConfiguration managerApiConfiguration) {
 		this.xPlan = xPlan;
+		this.bereiche = bereiche;
 		this.managerApiConfiguration = managerApiConfiguration;
 	}
 
@@ -99,7 +102,7 @@ public class PlanInfoBuilder {
 			.rechtsstand(xPlan.getLegislationStatus())
 			.ags(xPlan.getGkz())
 			.gemeindeName(xPlan.getDistrict())
-			.bereiche(bereiche());
+			.bereiche(bereiche);
 	}
 
 	private PlanStatusEnum planStatus() {
@@ -108,13 +111,6 @@ public class PlanInfoBuilder {
 			return PlanStatusEnum.valueOf(planStatus.name());
 		}
 		return null;
-	}
-
-	private List<Bereich> bereiche() {
-		return xPlan.getBereiche()
-			.stream()
-			.map(b -> new Bereich().name(b.getName()).nummer(b.getNummer()))
-			.collect(Collectors.toList());
 	}
 
 	private VersionEnum version() {

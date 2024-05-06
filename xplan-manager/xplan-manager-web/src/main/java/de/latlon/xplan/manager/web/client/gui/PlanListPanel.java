@@ -42,7 +42,6 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.view.client.CellPreviewEvent;
 import com.google.gwt.view.client.CellPreviewEvent.Handler;
 import com.google.gwt.view.client.ListDataProvider;
-import de.latlon.xplanbox.core.gwt.commons.web.DisengageableButtonCell;
 import de.latlon.xplan.manager.web.client.comparator.ColumnComparator;
 import de.latlon.xplan.manager.web.client.filter.PlanFilter;
 import de.latlon.xplan.manager.web.client.gui.dialog.MapPreviewDialog;
@@ -62,6 +61,7 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
+import de.latlon.xplanbox.core.gwt.commons.web.DisengageableButtonCell;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
@@ -498,7 +498,19 @@ public class PlanListPanel extends DecoratorPanel {
 		};
 		editButtonColumn.setFieldUpdater(new FieldUpdater<XPlan, String>() {
 			public void update(int index, XPlan xplan, String value) {
-				editPlan(xplan.getVersion(), xplan.getType(), xplan.getId(), xplan.getBereiche());
+				ManagerService.Util.getService().retrieveBereiche(xplan.getId(), new MethodCallback<List<Bereich>>() {
+
+					@Override
+					public void onFailure(Method method, Throwable exception) {
+						Window.alert(exception.getMessage() + " " + method.getResponse().getStatusCode());
+					}
+
+					@Override
+					public void onSuccess(Method method, List<Bereich> bereiche) {
+						editPlan(xplan.getVersion(), xplan.getType(), xplan.getId(), bereiche);
+					}
+				});
+
 			}
 		});
 		editButtonColumn.setCellStyleNames("planListColumn editButtonColumn");

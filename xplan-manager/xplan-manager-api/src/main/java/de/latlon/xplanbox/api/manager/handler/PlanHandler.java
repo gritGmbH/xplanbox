@@ -40,6 +40,7 @@ import de.latlon.xplanbox.api.commons.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.commons.exception.InvalidPlanIdSyntax;
 import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
+import de.latlon.xplanbox.api.manager.v1.model.Bereich;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.slf4j.Logger;
@@ -152,6 +153,14 @@ public class PlanHandler {
 			plans.add(planById);
 		}
 		return plans;
+	}
+
+	public List<Bereich> findBereiche(String planId) {
+		LOG.info("Finding Bereiche of plan with dd '{}'", planId);
+		return xPlanDao.retrieveBereicheOfPlanWithId(planId)
+			.stream()
+			.map(bereich -> new Bereich().name(bereich.getName()).nummer(bereich.getNummer()))
+			.collect(Collectors.toList());
 	}
 
 	private XPlan findPlanById(int id) throws InvalidPlanId {

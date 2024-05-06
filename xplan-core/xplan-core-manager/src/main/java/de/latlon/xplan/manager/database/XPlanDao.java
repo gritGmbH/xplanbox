@@ -259,14 +259,12 @@ public class XPlanDao {
 	}
 
 	/**
-	 * Updates the bereiche of the plan.
-	 * @param plan the plan to update, never <code>null</code>
-	 * @param bereiche the bereiche, never <code>null</code>
+	 * @param planId of the plan to retrieve the bereiche
 	 * @throws Exception
 	 */
-	public void updateBereiche(XPlan plan, List<Bereich> bereiche) throws Exception {
-		int planIdAsInt = getXPlanIdAsInt(plan.getId());
-		xPlanDbAdapter.updateBereiche(planIdAsInt, bereiche);
+	public List<Bereich> retrieveBereicheOfPlanWithId(String planId) {
+		int planIdAsInt = getXPlanIdAsInt(planId);
+		return xPlanDbAdapter.selectBereiche(planIdAsInt);
 	}
 
 	/**
@@ -286,12 +284,13 @@ public class XPlanDao {
 		return xPlanDbAdapter.existsPlan(planId);
 	}
 
-	protected int getXPlanIdAsInt(String planId) throws Exception {
+	protected int getXPlanIdAsInt(String planId) {
 		try {
 			return Integer.parseInt(planId);
 		}
 		catch (NumberFormatException e) {
-			throw new Exception("Spezifizierter Wert '" + planId + "' ist keine gültige XPlan-Id (Ganzzahl).", e);
+			throw new IllegalArgumentException(
+					"Spezifizierter Wert '" + planId + "' ist keine gültige XPlan-Id (Ganzzahl).", e);
 		}
 	}
 

@@ -27,6 +27,7 @@ AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:-tobedefined}"
 AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:-tobedefined}"
 AWS_REGION="${AWS_REGION:-eu-central-1}"
 AWS_S3_ENDPOINT="${AWS_S3_ENDPOINT}"
+XPLAN_SERVICES_METADATA_URL="${XPLAN_SERVICES_METADATA_URL}"
 
 ######################################
 # Update content of mapserver config #
@@ -47,6 +48,16 @@ then
       sed -i 's|# CONFIG "AWS_S3_ENDPOINT" "s3.amazonaws.com"|CONFIG "AWS_S3_ENDPOINT" "'$AWS_S3_ENDPOINT'"|g' $MS_MAPFILE
     fi
   sed -i 's|SHAPEPATH "/etc/mapserver/data/"|SHAPEPATH "/vsis3/'$XPLAN_S3_BUCKET_NAME'/"|g' $MS_MAPFILE
+fi
+
+echo "Metadata URL: $XPLAN_SERVICES_METADATA_URL"
+if [ -z "$XPLAN_SERVICES_METADATA_URL" ]
+  then
+    echo "[$(date -Iseconds)] Remove metadata configuration"
+    sed -i '/wms_metadataurl_list/d' $MS_MAPFILE
+    sed -i '/wms_metadataurl_xml_format/d' $MS_MAPFILE
+    sed -i '/wms_metadataurl_xml_type/d' $MS_MAPFILE
+    sed -i '/wms_metadataurl_xml_href/d' $MS_MAPFILE
 fi
 
 echo "[$(date -Iseconds)] Start mapserver..."

@@ -46,6 +46,7 @@ import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanEditManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
+import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
@@ -353,6 +354,17 @@ public class XPlanManager {
 	 */
 	public XPlan getXPlanById(int planId) {
 		return xplanDao.getXPlanById(planId);
+	}
+
+	/**
+	 * Retrieve the bereiche of a {@link XPlan} by id.
+	 * @param planId id of a plan, must not be <code>null</code>
+	 * @return the bereiche of the plan with the passed id, may be <code>empty</code> but
+	 * never <code>null</code>
+	 * @throws Exception
+	 */
+	public List<Bereich> getBereicheOfPlanWithId(String planId) throws Exception {
+		return xplanDao.retrieveBereicheOfPlanWithId(planId);
 	}
 
 	/**

@@ -113,6 +113,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "BPlan Raster (Festgestellt)"
+		 "wms_metadataurl_list" "xml"
+         "wms_metadataurl_xml_format" "application/xml"
+		 "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -158,6 +162,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "BPlan Raster (In Aufstellung)"
+		 "wms_metadataurl_list" "xml"
+		 "wms_metadataurl_xml_format" "application/xml"
+		 "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -203,6 +211,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "BPlan Raster (Archiviert)"
+		 "wms_metadataurl_list" "xml"
+		 "wms_metadataurl_xml_format" "application/xml"
+		 "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -247,6 +259,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "FPlan Raster (Festgestellt)"
+	     "wms_metadataurl_list" "xml"
+		 "wms_metadataurl_xml_format" "application/xml"
+		 "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -292,6 +308,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "FPlan Raster (In Aufstellung)"
+		 "wms_metadataurl_list" "xml"
+		 "wms_metadataurl_xml_format" "application/xml"
+		 "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -337,6 +357,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "FPlan Raster (Archiviert)"
+	     "wms_metadataurl_list" "xml"
+	     "wms_metadataurl_xml_format" "application/xml"
+	     "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -381,6 +405,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "LPlan Raster (Festgestellt)"
+		 "wms_metadataurl_list" "xml"
+		 "wms_metadataurl_xml_format" "application/xml"
+		 "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -426,6 +454,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "LPlan Raster (In Aufstellung)"
+		 "wms_metadataurl_list" "xml"
+		 "wms_metadataurl_xml_format" "application/xml"
+		 "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -471,6 +503,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "LPlan Raster (Archiviert)"
+		 "wms_metadataurl_list" "xml"
+		 "wms_metadataurl_xml_format" "application/xml"
+		 "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -515,6 +551,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "RPlan Raster (Festgestellt)"
+	     "wms_metadataurl_list" "xml"
+	     "wms_metadataurl_xml_format" "application/xml"
+		 "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -560,6 +600,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "RPlan Raster (In Aufstellung)"
+		 "wms_metadataurl_list" "xml"
+		 "wms_metadataurl_xml_format" "application/xml"
+		 "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -605,6 +649,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "RPlan Raster (Archiviert)"
+	     "wms_metadataurl_list" "xml"
+	     "wms_metadataurl_xml_format" "application/xml"
+	     "wms_metadataurl_xml_type" "ISO19115:2003"
+	     "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -649,6 +697,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "SOPlan Raster (Festgestellt)"
+         "wms_metadataurl_list" "xml"
+		 "wms_metadataurl_xml_format" "application/xml"
+		 "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -694,6 +746,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "SOPlan Raster (In Aufstellung)"
+	     "wms_metadataurl_list" "xml"
+		 "wms_metadataurl_xml_format" "application/xml"
+		 "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"
@@ -739,6 +795,10 @@ MAP
 	  TILEITEM "location"
 	  METADATA
 	     "wms_title" "SOPlan Raster (Archiviert)"
+		 "wms_metadataurl_list" "xml"
+		 "wms_metadataurl_xml_format" "application/xml"
+		 "wms_metadataurl_xml_type" "ISO19115:2003"
+		 "wms_metadataurl_xml_href" "${XPLAN_SERVICES_METADATA_URL}"
 	  END
 	  PROJECTION
 	     "init=EPSG:25832"

@@ -27,6 +27,7 @@ import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.web.server.service.ManagerPlanArchiveManager;
 import de.latlon.xplan.manager.web.server.service.security.AuthorizationManager;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
+import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
@@ -363,6 +364,13 @@ public class ManagerController {
 			return true;
 		}
 		return false;
+	}
+
+	@RequestMapping(value = "/plan/{planId}/bereiche", method = GET)
+	@ResponseBody
+	public List<Bereich> retrieveBereiche(@PathVariable String planId, @Context HttpServletRequest request,
+			@Context HttpServletResponse response) throws Exception {
+		return manager.getBereicheOfPlanWithId(planId);
 	}
 
 	@RequestMapping(value = "/internalid/{id}", method = GET)

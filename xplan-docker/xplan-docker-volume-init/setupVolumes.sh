@@ -86,6 +86,7 @@ XPLAN_SERVICES_FEES="${XPLAN_SERVICES_FEES:--}"
 XPLAN_SERVICES_ACCESSCONSTRAINTS="${XPLAN_SERVICES_ACCESSCONSTRAINTS:--}"
 XPLAN_SERVICES_WMS_MAXWIDTH="${XPLAN_SERVICES_WMS_MAXWIDTH:-3840}"
 XPLAN_SERVICES_WMS_MAXHEIGHT="${XPLAN_SERVICES_WMS_MAXHEIGHT:-2160}"
+XPLAN_SERVICES_METADATA_URL="${XPLAN_SERVICES_METADATA_URL}"
 
 XPLAN_INIT_RASTERTYPE="${XPLAN_INIT_RASTERTYPE:-mapserver}"
 XPLAN_INIT_INSPIREPLU="${XPLAN_INIT_INSPIREPLU:-disabled}"
@@ -167,6 +168,13 @@ find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed 
 find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<ContactInstructions>Do not hesitate to call</ContactInstructions>|<ContactInstructions>'"$XPLAN_SERVICES_PROVIDER_CONTACTINSTRUCTIONS"'</ContactInstructions>|g' {} \;
 find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<Fees/>|<Fees>'"$XPLAN_SERVICES_FEES"'</Fees>|g' {} \;
 find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<AccessConstraints/>|<AccessConstraints>'"$XPLAN_SERVICES_ACCESSCONSTRAINTS"'</AccessConstraints>|g' {} \;
+if [ -n "$XPLAN_SERVICES_METADATA_URL" ]
+  then
+    echo "[$(date -Iseconds)] Configure metadata url $XPLAN_SERVICES_METADATA_URL"
+    find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<!--DatasetMetadata>|<DatasetMetadata>|g' {} \;
+    find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|</DatasetMetadata-->|</DatasetMetadata>|g' {} \;
+    find xplan-workspaces/xplan*-workspace/services -iname *_metadata.xml -exec sed -i 's|<MetadataUrlTemplate>http://some.url.de/csw?request=GetRecordById&amp;amp;service=CSW&amp;amp;version=2.0.2&amp;amp;outputschema=http://www.isotc211.org/2005/gmd&amp;amp;elementsetname=full&amp;amp;id=${metadataSetId}</MetadataUrlTemplate>|<MetadataUrlTemplate>'"$XPLAN_SERVICES_METADATA_URL"'</MetadataUrlTemplate>|g' {} \;
+fi
 find xplan-workspaces/xplan*-workspace/services -iname '*wms*.xml' -a ! -iname '*_metadata.xml' -exec sed -i 's|<wms:MaxWidth>3840</wms:MaxWidth>|<wms:MaxWidth>'"$XPLAN_SERVICES_WMS_MAXWIDTH"'</wms:MaxWidth>|g' {} \;
 find xplan-workspaces/xplan*-workspace/services -iname '*wms*.xml' -a ! -iname '*_metadata.xml' -exec sed -i 's|<wms:MaxHeight>2160</wms:MaxHeight>|<wms:MaxHeight>'"$XPLAN_SERVICES_WMS_MAXHEIGHT"'</wms:MaxHeight>|g' {} \;
 

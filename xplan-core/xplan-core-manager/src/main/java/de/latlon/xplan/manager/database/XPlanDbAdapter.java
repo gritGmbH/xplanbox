@@ -393,6 +393,25 @@ public class XPlanDbAdapter {
 		return null;
 	}
 
+	/**
+	 * Retrieve sortDate by the manager id from xplanmgr.plans.
+	 * @param planId the planId of the plan, never <code>null</code>
+	 * @return the sortDate of a plan (if available), otherwise <code>null</code>
+	 */
+	@Transactional(readOnly = true)
+	public List<Bereich> selectBereiche(int planId) {
+		Optional<Plan> plan = planRepository.findById(planId);
+		if (plan.isPresent()) {
+			return plan.get().getBereiche().stream().map(b -> {
+				Bereich bereich = new Bereich();
+				bereich.setName(b.getName());
+				bereich.setNummer(b.getNummer());
+				return bereich;
+			}).collect(Collectors.toList());
+		}
+		return null;
+	}
+
 	private File retrieveUploadedArtefact(String refFileName, List<File> uploadedArtefacts) {
 		if (uploadedArtefacts != null) {
 			for (File uploadedArtefact : uploadedArtefacts) {
@@ -634,13 +653,6 @@ public class XPlanDbAdapter {
 		xPlan.setDistrict(mapToDistrict(plan.getDistrict()));
 		xPlan.setInspirePublished(plan.getInspirepublished());
 		xPlan.setInternalId(plan.getInternalid());
-		List<Bereich> bereiche = plan.getBereiche().stream().map(bereich -> {
-			Bereich newBereich = new Bereich();
-			newBereich.setNummer(bereich.getNummer());
-			newBereich.setName(bereich.getName());
-			return newBereich;
-		}).collect(Collectors.toList());
-		xPlan.setBereiche(bereiche);
 		return xPlan;
 	}
 

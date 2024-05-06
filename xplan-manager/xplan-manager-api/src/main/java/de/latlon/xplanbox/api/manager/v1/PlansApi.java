@@ -25,6 +25,7 @@ import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
 import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.exception.InvalidSearch;
 import de.latlon.xplanbox.api.manager.handler.PlanHandler;
+import de.latlon.xplanbox.api.manager.v1.model.Bereich;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -83,7 +84,9 @@ public class PlansApi {
 			throw new InvalidSearch("Searching by name and id within the same request is not supported!");
 		List<XPlan> plans = searchByNameOrId(planName, planIds);
 		List<PlanInfo> planInfos = plans.stream().map(xPlan -> {
-			return new PlanInfoBuilder(xPlan, managerApiConfiguration).selfMediaType(APPLICATION_JSON).build();
+			List<Bereich> bereiche = planHandler.findBereiche(xPlan.getId());
+			return new PlanInfoBuilder(xPlan, bereiche, managerApiConfiguration).selfMediaType(APPLICATION_JSON)
+				.build();
 		}).collect(Collectors.toList());
 		return Response.ok().entity(planInfos).build();
 	}

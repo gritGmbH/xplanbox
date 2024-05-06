@@ -260,16 +260,6 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 		return hasUnresolvedReferences;
 	}
 
-	public List<Bereich> getBereiche() {
-		if (bereiche == null)
-			return Collections.emptyList();
-		return bereiche;
-	}
-
-	public void setBereiche(List<Bereich> bereiche) {
-		this.bereiche = bereiche;
-	}
-
 	@Override
 	public int compareTo(XPlan o) {
 		return (o == null || o.name == null) ? -1 : -o.name.compareTo(name);

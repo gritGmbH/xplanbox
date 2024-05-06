@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.web.client.service;
 
 import com.google.gwt.core.client.GWT;
+import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
@@ -110,6 +111,10 @@ public interface ManagerService extends RestService {
 			@QueryParam("defaultCrs") String defaultCrs, @QueryParam("makeRasterConfig") boolean makeRasterConfig,
 			@QueryParam("planStatus") PlanStatus planStatus, @QueryParam(value = "startDateTime") Date startDateTime,
 			@QueryParam(value = "endDateTime") Date endDateTime, MethodCallback<Boolean> callback);
+
+	@GET
+	@Path("/plan/{planId}/bereiche")
+	void retrieveBereiche(@PathParam("planId") String planId, MethodCallback<List<Bereich>> callback);
 
 	@GET
 	@Produces(APPLICATION_JSON)
