@@ -105,8 +105,8 @@ SELECT
   array_to_string( array_agg( DISTINCT CASE
 									 WHEN zedi.plu_dimensioningindicationvalue_plu_indicationreference is not null
 									 	THEN zedi.plu_dimensioningindicationvalue_plu_indicationreference
-									 WHEN zedi.plu_dimensioningindicationcharactervalue_plu_indicationre_13217 is not null
-									 	THEN zedi.plu_dimensioningindicationcharactervalue_plu_indicationre_13217 || ': ' || zedi.plu_dimensioningindicationcharactervalue_plu_value
+									 WHEN zedi.plu_dimensioningindicationcharactervalue_plu_indicationr_184027 is not null
+									 	THEN zedi.plu_dimensioningindicationcharactervalue_plu_indicationr_184027 || ': ' || zedi.plu_dimensioningindicationcharactervalue_plu_value
 									 WHEN zedi.plu_dimensioningindicationmeasurevalue_plu_indicationreference is not null
 									 	THEN zedi.plu_dimensioningindicationmeasurevalue_plu_indicationreference || ': ' || zedi.plu_dimensioningindicationmeasurevalue_plu_value || ' [' || zedi.plu_dimensioningindicationmeasurevalue_plu_value_attr_uom || ']'
 									 WHEN zedi.plu_dimensioningindicationintegervalue_plu_indicationreference is not null

@@ -30,6 +30,7 @@ import de.latlon.xplanbox.api.dokumente.service.DocumentHeader;
 import de.latlon.xplanbox.api.dokumente.service.DocumentHeaderWithStream;
 import de.latlon.xplanbox.api.dokumente.service.DocumentService;
 import de.latlon.xplanbox.api.dokumente.v1.model.Document;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,14 +64,16 @@ public class DocumentHandler {
 	public DocumentHeader headDocument(String planId, String fileName)
 			throws InvalidPlanIdSyntax, InvalidPlanId, InvalidDocument, StorageException {
 		int planIdAsInt = checkPlanIdAndConvertIdToInt(planId);
-		LOG.debug("Retrieve header of document with filename {} of plan with id {}.", fileName, planIdAsInt);
+		LOG.debug("Retrieve header of document with filename {} of plan with id {}.",
+				StringUtils.normalizeSpace(fileName), planIdAsInt);
 		return documentService.retrieveHeader(planIdAsInt, fileName);
 	}
 
 	public DocumentHeaderWithStream getDocument(String planId, String fileName)
 			throws InvalidPlanIdSyntax, InvalidPlanId, InvalidDocument, StorageException {
 		int planIdAsInt = checkPlanIdAndConvertIdToInt(planId);
-		LOG.debug("Retrieve document with filename {} of plan with id {}.", fileName, planIdAsInt);
+		LOG.debug("Retrieve document with filename {} of plan with id {}.", StringUtils.normalizeSpace(fileName),
+				planIdAsInt);
 		return documentService.retrieveDocumentAndHeader(planIdAsInt, fileName);
 	}
 

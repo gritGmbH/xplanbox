@@ -120,7 +120,7 @@ public class SynRulesAccessor {
 				}
 			}
 		}
-		catch (IOException e) {
+		catch (Exception e) {
 			throw new RuntimeException("Error while reading the rules file ", e);
 		}
 		finally {

@@ -27,6 +27,7 @@ import de.latlon.xplan.manager.edit.EditedArtefacts;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.deegree.feature.FeatureCollection;
 
 import javax.transaction.Transactional;
@@ -61,6 +62,7 @@ public class XPlanEditService {
 		updateDocuments(planId, uploadedArtefacts, editedArtefacts);
 	}
 
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	private void updateDocuments(int planId, List<File> uploadedArtefacts, EditedArtefacts editedArtefacts)
 			throws StorageException {
 		if (xPlanDocumentManager != null) {

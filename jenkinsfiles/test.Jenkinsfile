@@ -9,7 +9,6 @@ pipeline {
       string(name: 'CREDENTIALS_ID', defaultValue: "xplanbox.lat-lon.de", description: 'Set id of Jenkins credentials to login to environment (BASIC AUTH)')
       string(name: 'SERVICES_API_KEY', defaultValue: "xplanbox", description: 'Set ApiKey to acces /config of XPlanDienste')
       string(name: 'ENDPOINT_VALIDATOR_API', defaultValue: "https://xplanbox.lat-lon.de/xvalidator/api/v1", description: 'Set endpoint of XPlanValidatorAPI')
-      string(name: 'ENDPOINT_MANAGER_WEB', defaultValue: "https://xplanbox.lat-lon.de/xplan-manager-web", description: 'Set endpoint of XPlanManagerWeb')
       string(name: 'BASE_URL_DIENSTE', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDienste')
       string(name: 'BASE_URL_INSPIRE_PLU', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of INSPIRE PLU')
       string(name: 'BASE_URL_MANAGER_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanManagerAPI')
@@ -47,15 +46,6 @@ pipeline {
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
                sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -DbaseUrlDokumenteApi=${BASE_URL_DOKUMENTE_API} -Dusername=$Username -Dpassword=$Password'
-            }
-         }
-      }
-      stage('SoapUI-Test XPlanManagerWeb') {
-         steps {
-            withCredentials([
-               usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
-            ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=${ENDPOINT_MANAGER_WEB} -Dusername=$Username -Dpassword=$Password'
             }
          }
       }

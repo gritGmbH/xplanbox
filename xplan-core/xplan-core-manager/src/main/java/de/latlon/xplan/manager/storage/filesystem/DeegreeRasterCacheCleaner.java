@@ -2,6 +2,7 @@ package de.latlon.xplan.manager.storage.filesystem;
 
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -64,6 +65,7 @@ public class DeegreeRasterCacheCleaner {
 		return isSuccessfulForAll;
 	}
 
+	@SuppressFBWarnings(value = "HTTP_PARAMETER_POLLUTION")
 	private boolean clearCache(String url, String tileStoreId) {
 		try {
 			String clearCacheUrl = retrieveDeletePlanwerkWmsUrl(url, tileStoreId);

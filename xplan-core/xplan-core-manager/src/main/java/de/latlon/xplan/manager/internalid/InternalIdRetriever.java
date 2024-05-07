@@ -26,6 +26,7 @@ import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.db.ConnectionProvider;
 import org.deegree.db.ConnectionProviderProvider;
 import org.deegree.workspace.Workspace;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +36,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
 
@@ -103,6 +105,7 @@ public class InternalIdRetriever {
 	 * @return prepared statement
 	 * @throws SQLException
 	 */
+	@SuppressFBWarnings(value = "SQL_INJECTION_JDBC", justification = "SQL Statement is read from configuration")
 	PreparedStatement retrievePreparedStatement(String matchString, String sql, Connection conn) throws SQLException {
 		PreparedStatement ps = conn.prepareStatement(sql);
 		if (matchString != null)
@@ -134,7 +137,11 @@ public class InternalIdRetriever {
 			ps = retrievePreparedStatement(matchString, sql, conn);
 			rs = retrieveResultSet(ps);
 			Map<String, String> result = collectResultSet(rs);
-			LOG.debug("Result: {}", result);
+			LOG.debug("Result: {}",
+					result.entrySet()
+						.stream()
+						.map((e) -> "InternalId: " + e.getKey() + " InternalName: " + e.getValue())
+						.collect(Collectors.joining(",")));
 			return result;
 		}
 		catch (SQLException e) {
@@ -152,7 +159,6 @@ public class InternalIdRetriever {
 		while (rs.next()) {
 			String internalId = rs.getString(configuration.getInternalIdLabel());
 			String internalName = rs.getString(configuration.getInternalNameLabel());
-			LOG.debug("adding entry: {} with value {}", internalId, internalName);
 			map.put(internalId, internalName);
 		}
 		return map;

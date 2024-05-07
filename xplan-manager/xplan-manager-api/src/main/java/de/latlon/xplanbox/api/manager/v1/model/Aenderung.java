@@ -32,9 +32,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
-import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
-import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
 
 /**
  * Datatype for Aenderung.
@@ -48,7 +47,7 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 public class Aenderung {
 
 	@Size(max = S_LENGTH)
-	@Pattern(regexp = NAME_PATTERN)
+	@Pattern(regexp = TEXT_PATTERN)
 	private @Valid String planName;
 
 	@DecimalMin("1000")
@@ -56,7 +55,7 @@ public class Aenderung {
 	private @Valid Integer rechtscharakter;
 
 	@Size(max = S_LENGTH)
-	@Pattern(regexp = SIMPLE_NAME_PATTERN)
+	@Pattern(regexp = TEXT_PATTERN)
 	private @Valid String nummer;
 
 	/**

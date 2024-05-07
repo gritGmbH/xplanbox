@@ -23,6 +23,8 @@ package de.latlon.xplan.manager.web.shared.edit;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +37,7 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class RasterBasis {
+public class RasterBasis implements Serializable {
 
 	@Valid
 	private String featureId;

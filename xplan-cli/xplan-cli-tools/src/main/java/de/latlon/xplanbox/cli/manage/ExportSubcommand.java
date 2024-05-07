@@ -1,6 +1,7 @@
 package de.latlon.xplanbox.cli.manage;
 
 import de.latlon.xplan.manager.XPlanManager;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -68,7 +69,7 @@ public class ExportSubcommand extends ManagerSubcommand {
 
 	private File createOutputFile(String planId) {
 		File parent = target.isPresent() ? target.get() : new File(".");
-		return new File(parent, "xplan-exported-" + planId + ".zip");
+		return new File(parent, FilenameUtils.getName("xplan-exported-" + planId + ".zip"));
 	}
 
 }

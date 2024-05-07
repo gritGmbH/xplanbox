@@ -71,8 +71,8 @@ gml:featureMember
 
 Das Element `<refScan/>` kann beliebig häufig vorkommen. Das Element
 `<referenzURL/>` beinhaltet die relative Referenz auf die Rasterdatei.
-Beispiel:
 
+.Beispiel mit externer Referenz für XPlanGML 4.0 (veraltet):
 [source,xml]
 ----
 <gml:featureMember>
@@ -106,8 +106,8 @@ gml:featureMember
 
 Das Element `<refScan/>` kann beliebig häufig vorkommen. Das Element
 `<referenzURL/>` beinhaltet die relative Referenz auf die Rasterdatei.
-Beispiel:
 
+.Beispiel mit externer Referenz für XPlanGML 5.x (veraltet):
 [source,xml]
 ----
 <gml:featureMember>
@@ -139,8 +139,8 @@ gml:featureMember
 
 Das Element `<refScan/>` kann beliebig häufig vorkommen. Das Element
 `<referenzURL/>` beinhaltet die relative Referenz auf die Rasterdatei.
-Beispiel:
 
+.Beispiel mit externer Referenz für XPlanGML 6.0:
 [source,xml]
 ----
 <gml:featureMember>

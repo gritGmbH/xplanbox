@@ -35,9 +35,8 @@ import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.ChangeType;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
-import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.XP_RechtscharakterPlanaenderung;
 import static de.latlon.xplan.manager.web.client.gui.utils.ValidationUtils.areComponentsValid;
 
@@ -49,9 +48,9 @@ import static de.latlon.xplan.manager.web.client.gui.utils.ValidationUtils.areCo
  */
 public class ChangesXplanDialog extends EditDialogBox implements Validable {
 
-	private final MandatoryTextBox planName = createMandatoryTextInput(NAME_PATTERN, S_LENGTH);
+	private final MandatoryTextBox planName = createMandatoryTextInput(TEXT_PATTERN, S_LENGTH);
 
-	private final PatternTextBox number = createPatternTextInput(SIMPLE_NAME_PATTERN, S_LENGTH);
+	private final PatternTextBox number = createPatternTextInput(TEXT_PATTERN, S_LENGTH);
 
 	private final CodeListBox legalNature;
 

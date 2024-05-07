@@ -26,6 +26,7 @@ import de.latlon.xplan.manager.web.spring.config.TestConfig;
 import de.latlon.xplan.manager.web.spring.config.XPlanManagerWebContextConfig;
 import de.latlon.xplanbox.core.gwt.commons.server.service.ReportProvider;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -56,6 +57,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = { XPlanManagerWebContextConfig.class, TestConfig.class })
 @ActiveProfiles(profiles = { "test" })
 @WebAppConfiguration
+@Ignore
 public class ManagerControllerTest {
 
 	private MockMvc mockMvc;

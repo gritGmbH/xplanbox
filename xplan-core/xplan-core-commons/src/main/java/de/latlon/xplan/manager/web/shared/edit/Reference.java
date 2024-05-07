@@ -20,6 +20,8 @@
  */
 package de.latlon.xplan.manager.web.shared.edit;
 
+import java.io.Serializable;
+
 import javax.validation.Valid;
 
 /**
@@ -28,7 +30,7 @@ import javax.validation.Valid;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class Reference extends AbstractReference {
+public class Reference extends AbstractReference implements Serializable {
 
 	@Valid
 	private ReferenceType type;

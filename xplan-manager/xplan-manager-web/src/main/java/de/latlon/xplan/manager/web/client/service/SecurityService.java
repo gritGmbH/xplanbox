@@ -20,18 +20,11 @@
  */
 package de.latlon.xplan.manager.web.client.service;
 
-import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.google.gwt.user.server.rpc.XsrfProtect;
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
-import org.fusesource.restygwt.client.MethodCallback;
-import org.fusesource.restygwt.client.Resource;
-import org.fusesource.restygwt.client.RestService;
-import org.fusesource.restygwt.client.RestServiceProxy;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import de.latlon.xplan.manager.web.shared.ConfigurationException;
 
 /**
  * REST interface for security functions.
@@ -39,26 +32,10 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version $Revision: $, $Date: $
  */
-public interface SecurityService extends RestService {
+@RemoteServiceRelativePath("security")
+@XsrfProtect
+public interface SecurityService extends RemoteService {
 
-	public static class Util {
-
-		private static SecurityService instance;
-
-		public static SecurityService getService() {
-			if (instance == null) {
-				instance = GWT.create(SecurityService.class);
-			}
-			Resource resource = new Resource(GWT.getModuleBaseURL() + "rest/security");
-			((RestServiceProxy) instance).setResource(resource);
-			return instance;
-		}
-
-	}
-
-	@GET
-	@Produces(APPLICATION_JSON)
-	@Path("/authorizationInfo")
-	void retrieveAuthorizationInfo(MethodCallback<AuthorizationInfo> callback);
+	AuthorizationInfo retrieveAuthorizationInfo() throws ConfigurationException;
 
 }

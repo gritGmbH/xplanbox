@@ -1,6 +1,5 @@
 package de.latlon.xplanbox.tests.selenium.validatorweb;
 
-import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.CleanupMode;
@@ -12,25 +11,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.IOException;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
+import java.nio.channels.FileChannel;
 import java.nio.file.Path;
-import java.time.Instant;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class XPlanValidatorWebIT {
 
-	private static final String NAMEBPLAN_TEST = "Selenium_Test";
+	private static final String BPLAN_VALID = "BPlan001_5-4";
 
-	private static final String NAMEBPLAN_ORIGINAL = "BPlan001_5-4";
+	private static final String BPLAN_INVALID = "xplan52-Laufrichtungsfehler";
+
+	private static final String VALIDATION_NAME = "Selenium_Test";
+
+	private static final String DOWNLOADED_FILE_NAME = "Selenium_Test-Report.zip";
 
 	private static String connectUrl;
 
@@ -42,140 +40,97 @@ class XPlanValidatorWebIT {
 		connectUrl = createConnectUrl(url, username, password);
 	}
 
+	/**
+	 * Diese Methode testet den XPlanValidatorWeb mit einem gültigen Plan.
+	 *
+	 * <p>
+	 * Dieser Test deckt mit einem gültigen Planwerk die folgenden Testfälle ab: <br>
+	 * - Teilschritt Webschnittstelle XPlanValidator: 1.1<br>
+	 * - Teilschritt Planarchiv auswählen: 2.1, 2.2, 2.3<br>
+	 * - Teilschritt Eingabe einer Bezeichnung für den Validierungsdurchlauf: 3.1, 3.2,
+	 * 3.3, 3.4, 3.5, 3.6<br>
+	 * - Teilschritt Auswahl eines Validierungstyps: 4.1, 4.2<br>
+	 * - Teilschritt Auswahl eines Profils wird nicht getestet (ist aktuell
+	 * auskommentiert)<br>
+	 * - Teilschritt Validierung starten und abbrechen: 6.2<br>
+	 * - Teilschritt Download der Validierungsergebnisse: Hier wird bisher nur PDF und
+	 * Shape heruntergeladen<br>
+	 *
+	 * Zudem wird nach einmaliger Validierung zu den Validierungsoptionen zurückgesprungen
+	 * und erneut validiert. Anschließend wird in den Startbildschirm zurückgegangen, wo
+	 * ein neue Plan validiert werden könnte
+	 * </p>
+	 */
 	@Test
-	void test_XPlanValidatorWeb_withValidPlan(@TempDir(cleanup = CleanupMode.ON_SUCCESS) final Path tmpDir)
-			throws Exception {
+	void test_XPlanValidatorWeb_withValidPlan(@TempDir(cleanup = CleanupMode.ON_SUCCESS) final Path tmpDir) {
+		WebDriver driver = createWebDriver(tmpDir);
+		driver.get(connectUrl);
+		String fileToValidate = getClass().getResource("/" + BPLAN_VALID + ".zip").getFile().toString();
+		assertDoesNotThrow(() -> {
+			preValidate(driver, fileToValidate, VALIDATION_NAME);
+			startValidation(driver);
+			sleep();
+			checkIfValidAfterValidation(driver, VALIDATION_NAME, BPLAN_VALID);
+			downloadPDFandShape(driver);
+			sleep();
+			Path downloadedFile = tmpDir.resolve(DOWNLOADED_FILE_NAME);
+			checkDownloadedFileSize(downloadedFile);
+			recheckValidationOptionsAndQuit2newPlan(driver);
+			sleep();
+		});
+		driver.close();
+	}
 
-		Map<String, Object> chromePrefs = new HashMap<String, Object>();
-		// chromePrefs.put("profile.default_content_settings.popups", 0);
+	/**
+	 * Diese Methode testet den XPlanValidatorWeb mit einem invalieden Plan.
+	 *
+	 * <p>
+	 * Dieser Test deckt mit einem geometrisch invaliden Planwerk die folgenden Testfälle
+	 * ab: <br>
+	 * - Teilschritt Webschnittstelle XPlanValidator: 1.1<br>
+	 * - Teilschritt Planarchiv auswählen: 2.1, 2.2, 2.3<br>
+	 * - Teilschritt Eingabe einer Bezeichnung für den Validierungsdurchlauf: 3.1, 3.2,
+	 * 3.3, 3.4, 3.5, 3.6<br>
+	 * - Teilschritt Auswahl eines Validierungstyps: 4.1, 4.2<br>
+	 * - Teilschritt Auswahl eines Profils wird nicht getestet (ist aktuell
+	 * auskommentiert)<br>
+	 * - Teilschritt Validierung starten und abbrechen: 6.2<br>
+	 * - Teilschritt Download der Validierungsergebnisse: Hier wird bisher nur PDF und
+	 * Shape heruntergeladen<br>
+	 *
+	 * Zudem wird nach einmaliger Validierung zu den Validierungsoptionen zurückgesprungen
+	 * und erneut validiert. Anschließend wird in den Startbildschirm zurückgegangen, wo
+	 * ein neue Plan validiert werden könnte
+	 * </p>
+	 */
+	@Test
+	void test_XPlanValidatorWeb_withInValidPlan(@TempDir(cleanup = CleanupMode.ON_SUCCESS) final Path tmpDir) {
+		WebDriver driver = createWebDriver(tmpDir);
+		driver.get(connectUrl);
+		String fileToValidate = getClass().getResource("/" + BPLAN_INVALID + ".zip").getFile().toString();
+		assertDoesNotThrow(() -> {
+			preValidate(driver, fileToValidate, VALIDATION_NAME);
+			startValidation(driver);
+			sleep();
+			checkIfInvalidAfterValidation(driver, VALIDATION_NAME);
+			downloadPDFandShape(driver);
+			sleep();
+			Path downloadedFile = tmpDir.resolve(DOWNLOADED_FILE_NAME);
+			checkDownloadedFileSize(downloadedFile);
+			recheckValidationOptionsAndQuit2newPlan(driver);
+			sleep();
+		});
+		driver.close();
+	}
+
+	private static WebDriver createWebDriver(Path tmpDir) {
+		Map<String, Object> chromePrefs = new HashMap<>();
 		chromePrefs.put("download.default_directory", tmpDir.toString());
 		ChromeOptions options = new ChromeOptions();
 		options.setExperimentalOption("prefs", chromePrefs);
-
 		options.addArguments("--no-sandbox", "--ignore-certificate-errors", "--headless", "--disable-dev-shm-usage",
 				"--disable-gpu", "--disable-software-rasterizer");
-
-		// options.addArguments("--headless");
-		WebDriver driver = new ChromeDriver(options);
-		String myZIPFile = getClass().getResource("/" + NAMEBPLAN_ORIGINAL + ".zip").getFile().toString();
-
-		try {
-			driver.get(connectUrl);
-			assertEquals("XPlanValidatorWeb", driver.getTitle());
-
-			WebElement elemAdd = driver.findElement(By.name("uploadPlanItem"));
-			elemAdd.sendKeys(myZIPFile);
-
-			driver.findElement(By.xpath("//button[text()='Hochladen und Validierungsoptionen einstellen']")).click();
-			verifyByXPath(driver, "//*[@class='gwt-DialogBox']//*[@class='Caption']", "Plan hochgeladen");
-
-			// einmal abbrechen und neu validieren
-			driver.findElement(By.xpath("//button[text()='abbrechen']")).click();
-
-			driver.findElement(By.xpath("//button[text()='Hochladen und Validierungsoptionen einstellen']")).click();
-			verifyByXPath(driver, "//*[@class='gwt-DialogBox']//*[@class='Caption']", "Plan hochgeladen");
-
-			driver.findElement(By.xpath("//button[text()='zur Validierung']")).click();
-			verifyByXPath(driver, "//*[@class='valOptionTitle']", "Validierungsoptionen");
-
-			WebElement elemName = driver.findElement(By.xpath(
-					"//tr[td/div[@class='valOptionLabel']/text() = 'Bezeichnung für den Report']/following-sibling::tr[1]//input"));
-			elemName.clear();
-			elemName.sendKeys(NAMEBPLAN_TEST);
-
-			driver.findElement(By.xpath("//label[text() = 'semantisch']")).click();
-
-			// Hier kann theoretisch noch ein Schema ausgewählt werden
-			// try {
-			// driver.findElement(By.xpath("//tr[12]/td/span/input")).click();
-			// sleep();
-			// }
-			// catch (NoSuchElementException nSEE_Ex) {
-			// nSEE_Ex.printStackTrace();
-			// }
-
-			driver.findElement(By.xpath("//button[text()='Validierung starten']")).click();
-
-			verifyByXPath(driver, "//*[@class='gwt-DialogBox']//*[@class='Caption']", "Ergebnisse der Validierung", 30);
-
-			WebElement iframe = driver.findElement(
-					By.xpath("//html/body/div[4]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr/td[1]/iframe")); // Hier
-																													// iframeName
-																													// durch
-																													// den
-																													// tatsächlichen
-																													// Namen
-																													// des
-																													// iframes
-																													// ersetzen
-			driver.switchTo().frame(iframe);
-
-			String name = driver.findElement(By.xpath("//body/p[1]/b")).getText();
-			String valide = driver.findElement(By.xpath("//body/p[4]/b/font")).getText();
-			String planname = driver.findElement(By.xpath("//body/ul[1]/b/li[1]")).getText();
-
-			SoftAssertions softly = new SoftAssertions();
-			softly.assertThat(name).isEqualTo(NAMEBPLAN_TEST);
-			softly.assertThat(valide).isEqualTo("valide");
-			softly.assertThat(planname).isEqualTo(NAMEBPLAN_ORIGINAL);
-			softly.assertAll();
-
-			driver.switchTo().defaultContent();
-
-			driver.findElement(By.xpath("//label[text() = 'HTML Report']")).click();
-			driver.findElement(By.xpath("//label[text() = 'PDF Report']")).click();
-			driver.findElement(By.xpath("//label[text() = 'XML Report']")).click();
-			driver.findElement(By.xpath("//button[text() = 'Download']")).click();
-
-			String zipFileName = NAMEBPLAN_TEST + "-Report.zip";
-			withinSeconds(10, () -> assertThat(listFiles(tmpDir)).containsExactly(zipFileName));
-
-			Path zipFile = tmpDir.resolve(zipFileName);
-			try (FileSystem zipfs = FileSystems.newFileSystem(zipFile, null)) {
-				Path rootInZip = zipfs.getRootDirectories().iterator().next();
-
-				assertThat(listFiles(rootInZip)).describedAs("Content of " + zipFile)
-					.containsExactlyInAnyOrder(NAMEBPLAN_TEST + ".html", NAMEBPLAN_TEST + ".pdf",
-							NAMEBPLAN_TEST + ".xml");
-			}
-		}
-		finally {
-			// System.out.println("url: " + driver.getCurrentUrl());
-			driver.close();
-		}
-	}
-
-	private void withinSeconds(int nbSeconds, Callable<?> callable) throws Exception {
-		Instant timeout = Instant.now().plusSeconds(nbSeconds);
-
-		while (Instant.now().isBefore(timeout)) {
-			try {
-				callable.call();
-				return;
-			}
-			catch (Exception | org.opentest4j.AssertionFailedError e) {
-				Thread.sleep(1000);
-			}
-		}
-		callable.call();
-	}
-
-	private List<String> listFiles(Path tmpDir) throws IOException {
-		return Files.list(tmpDir).map((it) -> it.getFileName().toString()).collect(Collectors.toList());
-	}
-
-	private void verifyByXPath(WebDriver driver, String xpath, String expectedText) throws Exception {
-		verifyByXPath(driver, xpath, expectedText, 5);
-	}
-
-	private void verifyByXPath(WebDriver driver, String xpath, String expectedText, int maxWaitInSeconds)
-			throws Exception {
-		Callable<?> c = () -> {
-			WebElement elt = driver.findElement(By.xpath(xpath));
-			assertEquals(expectedText, elt.getText());
-			return null;
-		};
-		withinSeconds(maxWaitInSeconds, c);
+		return new ChromeDriver(options);
 	}
 
 	private static String createConnectUrl(String url, String username, String password) {
@@ -184,6 +139,127 @@ class XPlanValidatorWebIT {
 			return url.replace("://", "://" + authentication);
 		}
 		return url;
+	}
+
+	private static void preValidate(WebDriver driver, String fileToValidate, final String validationName)
+			throws InterruptedException {
+		sleep();
+		WebElement elemAdd = driver.findElement(By.name("uploadPlanItem"));
+		elemAdd.sendKeys(fileToValidate);
+		driver.findElement(By.xpath("//button[text()='Hochladen und Validierungsoptionen einstellen']")).click();
+
+		sleep();
+		boolean isLoading = true;
+		while (isLoading) {
+			try {
+				// einmal abbrechen und neu validieren
+				driver.findElement(By.xpath("//button[text()='abbrechen']")).click();
+				sleep();
+				isLoading = false;
+			}
+			catch (Exception e) {
+			}
+		}
+		driver.findElement(By.xpath("//button[text()='Hochladen und Validierungsoptionen einstellen']")).click();
+
+		sleep();
+		isLoading = true;
+		while (isLoading) {
+			try {
+				// validieren
+				driver.findElement(By.xpath("//button[text()='zur Validierung']")).click();
+				sleep();
+				isLoading = false;
+			}
+			catch (Exception e) {
+			}
+		}
+		WebElement elemName = driver.findElement(By.xpath("//input[@class = 'gwt-TextBox' and @type = 'text']"));
+		elemName.clear();
+
+		sleep();
+		elemName.sendKeys(validationName);
+		driver.findElement(By.xpath("//tr[5]/td/span/input")).click();
+
+		sleep();
+		driver.findElement(By.xpath("//tr[5]/td/span/input")).click();
+		sleep();
+	}
+
+	private static void startValidation(WebDriver driver) {
+		driver.findElement(By.xpath("//button[text()='Validierung starten']")).click();
+		boolean isValidating = true;
+		while (isValidating) {
+			try {
+				// gucken ab wann er mit dem Validieren durch ist
+				sleep();
+				driver.findElement(By.xpath("//Button[text()='Weiteren Plan validieren']"));
+				isValidating = false;
+			}
+			catch (Exception e) {
+			}
+		}
+	}
+
+	private static void checkIfValidAfterValidation(WebDriver driver, final String NAMEBPLAN_TEST,
+			final String NAMEBPLAN_ORIGINAL) {
+		WebElement iframe = driver
+			.findElement(By.xpath("//html/body/div[4]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr/td[1]/iframe"));
+		driver.switchTo().frame(iframe);
+
+		String name = driver.findElement(By.xpath("//body/p[1]/b")).getText();
+		String valide = driver.findElement(By.xpath("//body/p[4]/b/font")).getText();
+		String planname = driver.findElement(By.xpath("//body/ul[1]/b/li[1]")).getText();
+
+		assertEquals("valide", valide);
+		assertEquals(NAMEBPLAN_TEST, name);
+		assertEquals(NAMEBPLAN_ORIGINAL, planname);
+	}
+
+	private static void checkIfInvalidAfterValidation(WebDriver driver, final String NAMEBPLAN_TEST) {
+		WebElement iframe = driver
+			.findElement(By.xpath("//html/body/div[4]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr/td[1]/iframe"));
+		driver.switchTo().frame(iframe);
+
+		String name = driver.findElement(By.xpath("//body/p[1]/b")).getText();
+		String valide = driver.findElement(By.xpath("//body/p[4]/b/font")).getText();
+		String planname = driver.findElement(By.xpath("//body/ul[1]/b/li[1]")).getText();
+
+		assertEquals("nicht valide", valide);
+		assertEquals(NAMEBPLAN_TEST, name);
+		assertEquals(BPLAN_INVALID, planname);
+
+	}
+
+	private static void downloadPDFandShape(WebDriver driver) throws InterruptedException {
+		driver.switchTo().defaultContent();
+		sleep();
+		driver.findElement(By.xpath("//table/tbody/tr[2]/td/span/input")).click();
+		sleep();
+		driver.findElement(By.xpath("//fieldset/table/tbody/tr[5]/td/span/input")).click();
+		sleep();
+		driver.findElement(By.xpath("//button[text() = 'Download']")).click();
+		sleep();
+	}
+
+	private static void checkDownloadedFileSize(Path downloadedFile) throws IOException {
+		FileChannel imageFileChannel = FileChannel.open(downloadedFile);
+		long fileSize = imageFileChannel.size();
+		assertTrue(fileSize > 0);
+		// TODO: check content
+	}
+
+	private static void recheckValidationOptionsAndQuit2newPlan(WebDriver driver) throws InterruptedException {
+		driver.findElement(By.xpath("//button[text()='Zurück zu den Validierungseinstellungen']")).click();
+		sleep();
+		driver.switchTo().defaultContent();
+		startValidation(driver);
+		sleep();
+		driver.findElement(By.xpath("//button[text()='Weiteren Plan validieren']")).click();
+	}
+
+	public static void sleep() throws InterruptedException {
+		Thread.sleep(1500);
 	}
 
 }

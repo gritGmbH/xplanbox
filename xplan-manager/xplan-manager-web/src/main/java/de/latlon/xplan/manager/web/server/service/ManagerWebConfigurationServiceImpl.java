@@ -20,7 +20,7 @@
  */
 package de.latlon.xplan.manager.web.server.service;
 
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
 import de.latlon.xplan.manager.web.client.service.ManagerWebConfigurationService;
 import de.latlon.xplan.manager.web.server.configuration.ManagerWebConfigurationRetriever;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
@@ -31,8 +31,6 @@ import de.latlon.xplan.manager.web.shared.VectorLayerConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 
 import static java.lang.String.format;
@@ -43,7 +41,8 @@ import static java.lang.String.format;
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
  */
-public class ManagerWebConfigurationServiceImpl extends RemoteServiceServlet implements ManagerWebConfigurationService {
+public class ManagerWebConfigurationServiceImpl extends XsrfProtectedServiceServlet
+		implements ManagerWebConfigurationService {
 
 	private static final long serialVersionUID = -1687168791255687012L;
 

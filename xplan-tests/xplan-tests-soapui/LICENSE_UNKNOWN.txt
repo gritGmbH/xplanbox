@@ -10,6 +10,9 @@ Inhalt des Verzeichnisses src/main/resources:
 ├── xplan-dokumente-api
 │   └── plans
 │       └── BPlan004_6-0.zip
+├── xplan-loadtests
+│   └── plans
+│       └── BPlan004_6-0.zip
 ├── xplan-manager-api
 │   ├── attachments
 │   │   ├── invalidContentType.odt

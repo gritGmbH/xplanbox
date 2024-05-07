@@ -89,7 +89,7 @@ public class TransformApplicationRunner implements ApplicationRunner {
 				sync(managerWorkspaceWrapper, (conn) -> {
 					TransformationSynchronizer synchronizer = new TransformationSynchronizer(xPlanDao,
 							transformingValidator, outDirectory);
-					TransformAllExecutor allExecuter = new TransformAllExecutor(LOG_TABLE_NAME, synchronizer);
+					TransformAllExecutor allExecuter = new TransformAllExecutor(synchronizer);
 					allExecuter.transformAll(conn);
 				});
 				break;

@@ -22,6 +22,7 @@ package de.latlon.xplan.validator.wms.config;
 
 import de.latlon.xplan.validator.wms.storage.PlanStorage;
 import de.latlon.xplan.validator.wms.storage.WorkspacePlanStorage;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,6 +45,7 @@ public class ValidatorWmsWorkspaceContext {
 	private static final String XPLAN_GML_WMS_WORKSPACE = "xplan-webservices-validator-wms-memory-workspace";
 
 	@Bean
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	public PlanStorage planStorage() {
 		try {
 			Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);

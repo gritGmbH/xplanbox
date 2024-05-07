@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.commons.cli;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,6 +60,7 @@ public class SynchronizeAllExecutor {
 		executor.synchronize(conn);
 	}
 
+	@SuppressFBWarnings(value = "SQL_INJECTION_JDBC", justification = "logTableName is a fix value")
 	private void insertInLogTable(Connection conn) {
 		LOG.info("Copy required metadata into {}", logTableName);
 		PreparedStatement ps = null;

@@ -35,10 +35,10 @@ RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/
 	&& chmod -R a+rX /usr/local/tomcat \
 	&& chmod a+w /usr/local/tomcat/conf /usr/local/tomcat/logs /usr/local/tomcat/webapps /usr/local/tomcat/work /usr/local/tomcat/temp \
 	&& rm -rf /usr/local/tomcat/webapps/* \
-	&& cat /usr/local/tomcat/conf/server.xml | tr '\n' '|' | sed 's|<Valve [^>]*/>||g' | tr '|' '\n' > /tmp/server.xml && mv /tmp/server.xml /usr/local/tomcat/conf \
-	&& sed -i /usr/local/tomcat/conf/logging.properties -e 's/^handlers/handlers = java.util.logging.ConsoleHandler\n# handlers/'
+	&& cat /usr/local/tomcat/conf/server.xml | tr '\n' '|' | sed 's|<Valve [^>]*/>||g' | tr '|' '\n' > /tmp/server.xml && mv /tmp/server.xml /usr/local/tomcat/conf
 
 ADD setenv.sh /usr/local/tomcat/bin/
+ADD logging.properties /usr/local/tomcat/conf/
 
 EXPOSE 8080
 

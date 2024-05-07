@@ -20,11 +20,29 @@
  */
 package de.latlon.xplan.manager.web.client.gui.dialog;
 
-import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.createPlanwerkWmsUrl;
-import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.createUrl;
-import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.determineWmsUrl;
-
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.http.client.URL;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.HasRpcToken;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.rpc.XsrfToken;
+import com.google.gwt.user.client.rpc.XsrfTokenService;
+import com.google.gwt.user.client.rpc.XsrfTokenServiceAsync;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+import de.latlon.xplan.manager.web.client.service.ManagerWebConfigurationService;
+import de.latlon.xplan.manager.web.client.service.ManagerWebConfigurationServiceAsync;
+import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
+import de.latlon.xplan.manager.web.shared.PlanStatus;
+import de.latlon.xplan.manager.web.shared.RasterLayerConfiguration;
+import de.latlon.xplan.manager.web.shared.VectorLayerConfiguration;
+import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import org.gwtopenmaps.openlayers.client.Bounds;
 import org.gwtopenmaps.openlayers.client.LonLat;
 import org.gwtopenmaps.openlayers.client.Map;
@@ -38,28 +56,9 @@ import org.gwtopenmaps.openlayers.client.layer.WMS;
 import org.gwtopenmaps.openlayers.client.layer.WMSOptions;
 import org.gwtopenmaps.openlayers.client.layer.WMSParams;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
-
-import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
-import de.latlon.xplan.manager.web.client.service.ManagerWebConfigurationService;
-import de.latlon.xplan.manager.web.client.service.ManagerWebConfigurationServiceAsync;
-import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
-import de.latlon.xplan.manager.web.shared.PlanStatus;
-import de.latlon.xplan.manager.web.shared.RasterLayerConfiguration;
-import de.latlon.xplan.manager.web.shared.VectorLayerConfiguration;
-import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.createPlanwerkWmsUrl;
+import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.createUrl;
+import static de.latlon.xplan.manager.web.client.utils.WmsUrlUtils.determineWmsUrl;
 
 /**
  * PopUp window containing the preview of the plan as openlayers map.
@@ -77,9 +76,6 @@ public class MapPreviewDialog extends DialogBox {
 	private static final String URL_BUTTON_REQUESTED_WIDTH = "750";
 
 	private static final String URL_BUTTON_REQUESTED_HEIGHT = "750";
-
-	private final ManagerWebConfigurationServiceAsync configrationService = GWT
-		.create(ManagerWebConfigurationService.class);
 
 	private final XPlanWebMessages messages = GWT.create(XPlanWebMessages.class);
 
@@ -108,15 +104,29 @@ public class MapPreviewDialog extends DialogBox {
 		final SimplePanel mapPanel = new SimplePanel();
 		final SimplePanel urlButtonPanel = new SimplePanel();
 		final SimplePanel capabilitiesButtonPanel = new SimplePanel();
-		configrationService.getMapPreviewConfiguration(new AsyncCallback<MapPreviewConfiguration>() {
-			@Override
-			public void onSuccess(MapPreviewConfiguration configuration) {
-				Bounds bounds = createAndAddMap(mapPanel, configuration, planType, planStatus, bbox);
-				createAndAddUrlButton(urlButtonPanel, configuration, planType, planStatus, bounds);
-				createAndAddCapabilitiesButton(capabilitiesButtonPanel, configuration, planName, planStatus);
+
+		XsrfTokenServiceAsync xsrf = (XsrfTokenServiceAsync) GWT.create(XsrfTokenService.class);
+		((ServiceDefTarget) xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+			public void onSuccess(XsrfToken token) {
+				ManagerWebConfigurationServiceAsync configrationService = GWT
+					.create(ManagerWebConfigurationService.class);
+				((HasRpcToken) configrationService).setRpcToken(token);
+				configrationService.getMapPreviewConfiguration(new AsyncCallback<MapPreviewConfiguration>() {
+					@Override
+					public void onSuccess(MapPreviewConfiguration configuration) {
+						Bounds bounds = createAndAddMap(mapPanel, configuration, planType, planStatus, bbox);
+						createAndAddUrlButton(urlButtonPanel, configuration, planType, planStatus, bounds);
+						createAndAddCapabilitiesButton(capabilitiesButtonPanel, configuration, planName, planStatus);
+					}
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert(caught.getMessage());
+					}
+				});
 			}
 
-			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert(caught.getMessage());
 			}

@@ -30,6 +30,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import static de.latlon.xplan.commons.cli.DatabaseUtils.closeQuietly;
+import static de.latlon.xplan.transform.cli.TransformApplicationRunner.LOG_TABLE_NAME;
 
 /**
  * @deprecated will be removed in a future version.
@@ -40,19 +41,14 @@ public class TransformAllExecutor {
 
 	private static final Logger LOG = LoggerFactory.getLogger(TransformAllExecutor.class);
 
-	private final String logTableName;
-
 	private final SynchronizeExecutor executor;
 
 	/**
-	 * @param logTableName the name (including the schema) of the log table, never
-	 * <code>null</code>
 	 * @param synchronizer the {@link Synchronizer} used for the synchronization, never
 	 * <code>null</code>
 	 */
-	public TransformAllExecutor(String logTableName, Synchronizer synchronizer) {
-		this.logTableName = logTableName;
-		this.executor = new SynchronizeExecutor(logTableName, synchronizer);
+	public TransformAllExecutor(Synchronizer synchronizer) {
+		this.executor = new SynchronizeExecutor(LOG_TABLE_NAME, synchronizer);
 	}
 
 	/**
@@ -64,22 +60,22 @@ public class TransformAllExecutor {
 	}
 
 	private void insertInLogTable(Connection conn) {
-		LOG.info("Copy required metadata into {}", logTableName);
+		LOG.info("Copy required metadata into {}", LOG_TABLE_NAME);
 		PreparedStatement ps = null;
 		try {
-			ps = conn.prepareStatement("DELETE FROM " + logTableName);
-			LOG.debug("Execute delete from {}: {}", logTableName, ps);
+			ps = conn.prepareStatement("DELETE FROM " + LOG_TABLE_NAME);
+			LOG.debug("Execute delete from {}: {}", LOG_TABLE_NAME, ps);
 			ps.execute();
 
-			ps = conn.prepareStatement("INSERT INTO " + logTableName
+			ps = conn.prepareStatement("INSERT INTO " + LOG_TABLE_NAME
 					+ " (xplanmgrid, xp_version, newplanstatus, oldplanstatus, operation, datum, fids)"
 					+ " SELECT id, xp_version, planstatus, planstatus, (SELECT CASE WHEN EXISTS (SELECT fid FROM xplanmgr.features WHERE plan=id AND fid LIKE '%\\_PLAN\\_%' AND NOT EXISTS(SELECT gml_id from xplan51.gml_objects WHERE fid = gml_id) AND NOT EXISTS(SELECT gml_id from xplan51pre.gml_objects WHERE fid = gml_id) AND NOT EXISTS(SELECT gml_id from xplan51archive.gml_objects WHERE fid = gml_id)) THEN 'INSERT' ELSE 'UPDATE' END), now(), (SELECT ARRAY(SELECT fid FROM xplanmgr.features WHERE plan= id)) from xplanmgr.plans");
-			LOG.debug("Execute insert in {}: {}", logTableName, ps);
+			LOG.debug("Execute insert in {}: {}", LOG_TABLE_NAME, ps);
 			ps.execute();
 			conn.commit();
 		}
 		catch (SQLException e) {
-			LOG.error("Could not update log table {}", logTableName, e);
+			LOG.error("Could not update log table {}", LOG_TABLE_NAME, e);
 			try {
 				if (conn != null) {
 					conn.rollback();

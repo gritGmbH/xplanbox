@@ -21,6 +21,8 @@
 package de.latlon.xplan.manager.web.shared.edit;
 
 import javax.validation.Valid;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -31,7 +33,7 @@ import java.util.Date;
  * @version $Revision: $, $Date: $
  */
 @Deprecated
-public class ValidityPeriod {
+public class ValidityPeriod implements Serializable {
 
 	@Valid
 	private Date start;

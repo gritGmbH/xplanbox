@@ -24,6 +24,7 @@ import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
+import org.apache.commons.io.FilenameUtils;
 import org.gdal.osr.SpatialReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -76,7 +77,7 @@ public class GdalRasterEvaluation implements RasterEvaluation {
 	private RasterEvaluationResult evaluateRaster(ArchiveEntry zipEntry, File archiveDirectory) {
 		String entryName = zipEntry.getName();
 		LOG.info("Rasterdatei mit Namen {} gefunden.", entryName);
-		File mainRasterFile = new File(archiveDirectory, entryName);
+		File mainRasterFile = new File(archiveDirectory, FilenameUtils.getName(entryName));
 		LOG.trace("Raster was copied to {}.", mainRasterFile);
 		String rasterCrs = rasterAdapter.getRasterCrs(mainRasterFile);
 		if (rasterCrs != null) {

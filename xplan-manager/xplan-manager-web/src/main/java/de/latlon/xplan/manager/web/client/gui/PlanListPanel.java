@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -36,6 +36,12 @@ import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.cellview.client.TextHeader;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.HasRpcToken;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.rpc.XsrfToken;
+import com.google.gwt.user.client.rpc.XsrfTokenService;
+import com.google.gwt.user.client.rpc.XsrfTokenServiceAsync;
 import com.google.gwt.user.client.ui.DecoratorPanel;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -52,6 +58,8 @@ import de.latlon.xplan.manager.web.client.gui.filter.FilterPanel;
 import de.latlon.xplan.manager.web.client.i18n.DynamicXPlanWebMessages;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.client.service.ManagerService;
+import de.latlon.xplan.manager.web.client.service.ManagerServiceAsync;
+import de.latlon.xplan.manager.web.client.utils.AlertFailureCallback;
 import de.latlon.xplan.manager.web.client.utils.DateTimeUtils;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
@@ -62,8 +70,6 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import de.latlon.xplanbox.core.gwt.commons.web.DisengageableButtonCell;
-import org.fusesource.restygwt.client.Method;
-import org.fusesource.restygwt.client.MethodCallback;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -128,22 +134,34 @@ public class PlanListPanel extends DecoratorPanel {
 	 * @param doReset true if all filters should be reset, false otherwise
 	 */
 	void reload(final boolean doReset) {
-		ManagerService.Util.getService().getPlansFromManager(new MethodCallback<List<XPlan>>() {
-			@Override
-			public void onSuccess(Method method, List<XPlan> response) {
-				PlanListPanel.this.importedPlans = response;
-				if (doReset)
-					filterPanel.resetAndFilterPlanList();
-				else
-					filterPanel.doFilter();
-				ColumnSortEvent.fire(planList, planList.getColumnSortList());
+		XsrfTokenServiceAsync xsrf = (XsrfTokenServiceAsync) GWT.create(XsrfTokenService.class);
+		((ServiceDefTarget) xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+			public void onSuccess(XsrfToken token) {
+				ManagerServiceAsync managerService = GWT.create(ManagerService.class);
+				((HasRpcToken) managerService).setRpcToken(token);
+				managerService.getPlansFromManager(new AsyncCallback<List<XPlan>>() {
+					@Override
+					public void onSuccess(List<XPlan> response) {
+						PlanListPanel.this.importedPlans = response;
+						if (doReset)
+							filterPanel.resetAndFilterPlanList();
+						else
+							filterPanel.doFilter();
+						ColumnSortEvent.fire(planList, planList.getColumnSortList());
+					}
+
+					@Override
+					public void onFailure(Throwable exception) {
+						planList.setRowCount(0, true);
+						Window.alert(exception.getMessage());
+
+					}
+				});
 			}
 
-			@Override
-			public void onFailure(Method method, Throwable exception) {
-				planList.setRowCount(0, true);
-				Window.alert(exception.getMessage());
-
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
 			}
 		});
 	}
@@ -498,19 +516,30 @@ public class PlanListPanel extends DecoratorPanel {
 		};
 		editButtonColumn.setFieldUpdater(new FieldUpdater<XPlan, String>() {
 			public void update(int index, XPlan xplan, String value) {
-				ManagerService.Util.getService().retrieveBereiche(xplan.getId(), new MethodCallback<List<Bereich>>() {
+				XsrfTokenServiceAsync xsrf = (XsrfTokenServiceAsync) GWT.create(XsrfTokenService.class);
+				((ServiceDefTarget) xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+				xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+					public void onSuccess(XsrfToken token) {
+						ManagerServiceAsync managerService = GWT.create(ManagerService.class);
+						((HasRpcToken) managerService).setRpcToken(token);
+						managerService.retrieveBereiche(xplan.getId(), new AlertFailureCallback<List<Bereich>>() {
 
-					@Override
-					public void onFailure(Method method, Throwable exception) {
-						Window.alert(exception.getMessage() + " " + method.getResponse().getStatusCode());
+							@Override
+							public void onFailure(Throwable exception) {
+								Window.alert(exception.getMessage());
+							}
+
+							@Override
+							public void onSuccess(List<Bereich> bereiche) {
+								editPlan(xplan.getVersion(), xplan.getType(), xplan.getId(), bereiche);
+							}
+						});
 					}
 
-					@Override
-					public void onSuccess(Method method, List<Bereich> bereiche) {
-						editPlan(xplan.getVersion(), xplan.getType(), xplan.getId(), bereiche);
+					public void onFailure(Throwable caught) {
+						Window.alert(caught.getMessage());
 					}
 				});
-
 			}
 		});
 		editButtonColumn.setCellStyleNames("planListColumn editButtonColumn");
@@ -638,84 +667,121 @@ public class PlanListPanel extends DecoratorPanel {
 
 	private void editPlan(final String version, final String planType, final String id, List<Bereich> bereiche) {
 		final DialogBox waitDialog = createAndShowDialogBox(messages.editingStarted());
-		ManagerService.Util.getService().getPlanToEdit(id, new MethodCallback<XPlanToEdit>() {
+		XsrfTokenServiceAsync xsrf = (XsrfTokenServiceAsync) GWT.create(XsrfTokenService.class);
+		((ServiceDefTarget) xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+			public void onSuccess(XsrfToken token) {
+				ManagerServiceAsync managerService = GWT.create(ManagerService.class);
+				((HasRpcToken) managerService).setRpcToken(token);
+				managerService.getPlanToEdit(id, new AsyncCallback<XPlanToEdit>() {
 
-			@Override
-			public void onFailure(Method method, Throwable exception) {
-				if (waitDialog != null)
-					waitDialog.hide();
-				Window.alert(exception.getMessage() + " " + method.getResponse().getStatusCode());
+					@Override
+					public void onFailure(Throwable exception) {
+						if (waitDialog != null)
+							waitDialog.hide();
+						Window.alert(exception.getMessage());
+					}
+
+					@Override
+					public void onSuccess(XPlanToEdit xPlantoEdit) {
+						if (waitDialog != null)
+							waitDialog.hide();
+						try {
+							EditVersion editVersion = EditVersion.valueOf(version);
+							EditPlanType editPlanType = EditPlanType.valueOf(planType);
+							eventBus.fireEvent(
+									new EditorStartedEvent(id, bereiche, editVersion, editPlanType, xPlantoEdit));
+						}
+						catch (IllegalArgumentException e) {
+							Window.alert("Unsupported XPlan version for editing: " + version);
+						}
+					}
+				});
 			}
 
-			@Override
-			public void onSuccess(Method method, XPlanToEdit xPlantoEdit) {
-				if (waitDialog != null)
-					waitDialog.hide();
-				try {
-					EditVersion editVersion = EditVersion.valueOf(version);
-					EditPlanType editPlanType = EditPlanType.valueOf(planType);
-					eventBus.fireEvent(new EditorStartedEvent(id, bereiche, editVersion, editPlanType, xPlantoEdit));
-				}
-				catch (IllegalArgumentException e) {
-					Window.alert("Unsupported XPlan version for editing: " + version);
-				}
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
 			}
 		});
 	}
 
 	private void removePlan(String id) {
 		final DialogBox deleting = createAndShowDialogBox(messages.deletingPlan());
-		ManagerService.Util.getService().removePlanFromManager(id, new MethodCallback<Void>() {
+		XsrfTokenServiceAsync xsrf = (XsrfTokenServiceAsync) GWT.create(XsrfTokenService.class);
+		((ServiceDefTarget) xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+			public void onSuccess(XsrfToken token) {
+				ManagerServiceAsync managerService = GWT.create(ManagerService.class);
+				((HasRpcToken) managerService).setRpcToken(token);
+				managerService.removePlanFromManager(id, new AsyncCallback<Boolean>() {
 
-			@Override
-			public void onFailure(Method method, Throwable exception) {
-				reload(false);
-				if (deleting != null)
-					deleting.hide();
-				if (403 == method.getResponse().getStatusCode()) {
-					Window.alert(dynamicMessages.unauthorizedCommunity_Delete());
-				}
-				else {
-					Window.alert(exception.getMessage() + " " + method.getResponse().getStatusCode());
-				}
+					@Override
+					public void onFailure(Throwable exception) {
+						reload(false);
+						if (deleting != null)
+							deleting.hide();
+						// if (403 == method.getResponse().getStatusCode()) {
+						// Window.alert(dynamicMessages.unauthorizedCommunity_Delete());
+						// }
+						// else {
+						Window.alert(exception.getMessage());
+						// }
+					}
+
+					@Override
+					public void onSuccess(Boolean response) {
+						reload(false);
+						if (deleting != null)
+							deleting.hide();
+						Window.alert(messages.deleteSuccessful());
+					}
+				});
 			}
 
-			@Override
-			public void onSuccess(Method method, Void response) {
-				reload(false);
-				if (deleting != null)
-					deleting.hide();
-				Window.alert(messages.deleteSuccessful());
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
 			}
 		});
 	}
 
 	private void publishPlu(String id) {
 		final DialogBox publishingPlu = createAndShowDialogBox(messages.publishingPlu());
-		ManagerService.Util.getService().publishPlan(id, new MethodCallback<Boolean>() {
+		XsrfTokenServiceAsync xsrf = (XsrfTokenServiceAsync) GWT.create(XsrfTokenService.class);
+		((ServiceDefTarget) xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+			public void onSuccess(XsrfToken token) {
+				ManagerServiceAsync managerService = GWT.create(ManagerService.class);
+				((HasRpcToken) managerService).setRpcToken(token);
+				managerService.publishPlan(id, new AsyncCallback<Boolean>() {
 
-			@Override
-			public void onFailure(Method method, Throwable exception) {
-				reload(false);
-				if (publishingPlu != null)
-					publishingPlu.hide();
-				if (403 == method.getResponse().getStatusCode()) {
-					Window.alert(dynamicMessages.unauthorizedCommunity_PublishingPlu());
-				}
-				else {
-					Window.alert(exception.getMessage() + " " + method.getResponse().getStatusCode());
-				}
+					@Override
+					public void onFailure(Throwable exception) {
+						reload(false);
+						if (publishingPlu != null)
+							publishingPlu.hide();
+						// if (403 == method.getResponse().getStatusCode()) {
+						// Window.alert(dynamicMessages.unauthorizedCommunity_PublishingPlu());
+						// }
+						// else {
+						Window.alert(exception.getMessage());
+						// }
+					}
+
+					@Override
+					public void onSuccess(Boolean isSuccessful) {
+						reload(false);
+						if (publishingPlu != null)
+							publishingPlu.hide();
+						if (isSuccessful)
+							Window.alert(messages.publishingPluSuccessful());
+						else
+							Window.alert(messages.publishingPluFailed());
+					}
+				});
 			}
 
-			@Override
-			public void onSuccess(Method method, Boolean isSuccessful) {
-				reload(false);
-				if (publishingPlu != null)
-					publishingPlu.hide();
-				if (isSuccessful)
-					Window.alert(messages.publishingPluSuccessful());
-				else
-					Window.alert(messages.publishingPluFailed());
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
 			}
 		});
 	}

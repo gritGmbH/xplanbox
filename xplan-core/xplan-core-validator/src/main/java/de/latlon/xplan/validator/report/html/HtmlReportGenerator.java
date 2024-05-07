@@ -23,6 +23,7 @@ package de.latlon.xplan.validator.report.html;
 import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.xml.XmlReportGenerator;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +32,11 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Utility methods for generating reports
@@ -51,6 +56,8 @@ public class HtmlReportGenerator {
 	 * @throws ReportGenerationException if the generation of the XML report failed
 	 * @throws IllegalArgumentException if on of the parameters is <code>null</code>
 	 */
+	@SuppressFBWarnings(value = { "XXE_DTD_TRANSFORM_FACTORY", "XXE_XSLT_TRANSFORM_FACTORY", "MALICIOUS_XSLT" },
+			justification = "XML is generated, does not contain DTDs")
 	public void generateHtmlReport(ValidatorReport report, OutputStream htmlOut) throws ReportGenerationException {
 		checkParameters(report, htmlOut);
 		ByteArrayOutputStream xmlOut = writeXmlToStream(report);

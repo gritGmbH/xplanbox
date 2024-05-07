@@ -34,6 +34,7 @@ import de.latlon.xplan.manager.database.XPlanDbAdapter;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import org.deegree.commons.config.DeegreeWorkspace;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,6 +109,7 @@ public class CommonContext {
 		return new ManagerWorkspaceWrapper(managerWorkspace);
 	}
 
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	private Path etcDirectory() {
 		String path = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
 		File jarLocation = new File(path);

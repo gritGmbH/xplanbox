@@ -35,12 +35,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.junit.Test;
 import org.springframework.security.core.Authentication;
 
-import de.latlon.xplan.manager.web.server.service.rest.SecurityController;
+import de.latlon.xplan.manager.web.server.service.SecurityServiceImpl;
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.web.spring.security.DistrictGrantedAuthority;
@@ -115,8 +113,8 @@ public class AuthorizationManagerTest {
 	public void testRetrieveAuthorizationInfoWithEnabledSecurityAndWithoutAuthenticationInstanceShouldThrowException()
 			throws Exception {
 		AuthorizationManager securityManager = new AuthorizationManager(true);
-		SecurityController controllerWithEnabledSecurity = new SecurityController(securityManager);
-		controllerWithEnabledSecurity.retrieveAuthorizationInfo(mock(HttpServletResponse.class));
+		SecurityServiceImpl controllerWithEnabledSecurity = new SecurityServiceImpl(securityManager);
+		controllerWithEnabledSecurity.retrieveAuthorizationInfo();
 	}
 
 	private AuthorizationManager createSpiedAuthorizationManager(boolean isSecurityEnabled) {

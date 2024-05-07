@@ -35,17 +35,26 @@ public class TextPatternConstants {
 
 	public final static String INTERNALID_PATTERN = "^[A-Za-z0-9\\-_]*$";
 
-	public final static String NAME_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß\\s]*$";
-
-	public final static String DESCRIPTION_PATTERN = "^[A-Za-z0-9.,;:\\[\\]()–_\\-äüöÄÜÖß§\\s]*$";
-
 	public final static String URL_PATTERN = "^[A-Za-z0-9.@:%_\\+.~#?&//=\\-]*$";
 
-	public final static String TEXT_KEY_PATTERN = "^[A-Za-z0-9.()_\\-§\\s]*$";
-
-	public final static String TEXT_GESETZ_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß§\\s]*$";
-
-	public final static String TEXT_PATTERN = "^[A-Za-z0-9.,;:\\[\\]()–_\\-äüöÄÜÖß§\"„“²°\\s]*$";
+	/**
+	 * <pre>
+	 *   \u0030-\u0039 -> !, ", #, $, %, &
+	 *   \u0021-\u0026 -> (, ), *, +, comma, -, ., /
+	 *   \u0028-\u002F -> s. u.
+	 *   \u003A-\u0084 -> s. u.
+	 *   \u0086-\u009F -> s. u.
+	 *   \u00A1-\u167F -> s. u.
+	 *   \u1681-\u1FFF -> s. u.
+	 *   \u200B-\u2027 -> s. u.
+	 *   \u202A-\u202E -> s. u.
+	 *   \u2030-\u205E -> s. u.
+	 *   \u2060-\u2FFF -> s. u.
+	 *   \u3001-\uD7FF -> :,;,<,=,>,?,@,A-Z,[,\,],^,_,`,a-z,0-9,ae,ue,oe,Ae,Ue,Oe,ss
+	 *   \s -> Whitespace
+	 * </pre>
+	 */
+	public final static String TEXT_PATTERN = "^[\\u0030-\\u0039\\u0021-\\u0026\\u0028-\\u002F\\u003A-\\u0084\\u0086-\\u009F\\u00A1-\\u167F\\u1681-\\u1FFF\\u200B-\\u2027\\u202A-\\u202E\\u2030-\\u205E\\u2060-\\u2FFF\\u3001-\\uD7FF\\s]*$";
 
 	public final static int XS_LENGTH = 50;
 

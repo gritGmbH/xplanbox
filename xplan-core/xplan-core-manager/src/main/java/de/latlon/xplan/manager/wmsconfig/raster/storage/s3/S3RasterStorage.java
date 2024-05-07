@@ -28,6 +28,7 @@ import de.latlon.xplan.manager.storage.s3.S3Storage;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -50,6 +51,7 @@ public class S3RasterStorage extends S3Storage implements RasterStorage {
 	}
 
 	@Override
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	public String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive,
 			StorageEvent storageEvent) throws IOException, StorageException {
 		createBucketIfNotExists();

@@ -20,7 +20,9 @@
  */
 package de.latlon.xplan.manager.web.client.service;
 
-import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.google.gwt.user.server.rpc.XsrfProtect;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -28,124 +30,52 @@ import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
-import org.fusesource.restygwt.client.MethodCallback;
-import org.fusesource.restygwt.client.Resource;
-import org.fusesource.restygwt.client.RestService;
-import org.fusesource.restygwt.client.RestServiceProxy;
-import org.springframework.web.bind.annotation.RequestBody;
+import de.latlon.xplanbox.core.gwt.commons.shared.InvalidParameterException;
 
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-
 /**
- * REST interface of the manager to get, remove, import plans.
+ * Interface of the manager to get, remove, import plans.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public interface ManagerService extends RestService {
+@RemoteServiceRelativePath("manager")
+@XsrfProtect
+public interface ManagerService extends RemoteService {
 
-	public static class Util {
+	List<XPlan> getPlansFromManager() throws Exception;
 
-		private static ManagerService instance;
+	XPlan getPlanFromLocal();
 
-		public static ManagerService getService() {
-			if (instance == null) {
-				instance = GWT.create(ManagerService.class);
-			}
-			Resource resource = new Resource(GWT.getModuleBaseURL() + "rest/manager");
-			((RestServiceProxy) instance).setResource(resource);
-			return instance;
-		}
+	XPlanToEdit getPlanToEdit(String planId);
 
-	}
+	void editPlan(String planId, boolean updateRasterConfig, XPlanToEdit xPlanToEdit);
 
-	@GET
-	@Produces(APPLICATION_JSON)
-	@Path("/plans")
-	void getPlansFromManager(MethodCallback<List<XPlan>> callback);
+	List<RasterEvaluationResult> evaluateRaster(String planId, XPlanToEdit xPlanToEdit);
 
-	@GET
-	@Produces(APPLICATION_JSON)
-	@Path("/local/plan")
-	void getPlanFromLocal(MethodCallback<XPlan> callback);
+	Boolean removePlanFromManager(String planId);
 
-	@GET
-	@Produces(APPLICATION_JSON)
-	@Path("/edit/plan/{planId}")
-	void getPlanToEdit(@PathParam("planId") String planId, MethodCallback<XPlanToEdit> callback);
+	Boolean removePlanFromFileSystem(String planId);
 
-	@POST
-	@Path("/edit/plan/{planId}")
-	void editPlan(@PathParam("planId") String planId, @QueryParam("updateRasterConfig") boolean updateRasterConfig,
-			@RequestBody XPlanToEdit xPlanToEdit, MethodCallback<Void> callback);
+	Boolean importPlan(String planId, String internalId, String defaultCrs, boolean makeRasterConfig,
+			PlanStatus planStatus, Date startDateTime, Date endDateTime) throws InvalidParameterException;
 
-	@POST
-	@Produces(APPLICATION_JSON)
-	@Path("/edit/raster/{planId}")
-	void evaluateRaster(@PathParam("planId") String planId, @RequestBody XPlanToEdit xPlanToEdit,
-			MethodCallback<List<RasterEvaluationResult>> callback);
+	Map<String, String> retrieveMatchingInternalIds(String internalId);
 
-	@DELETE
-	@Path("/plan/{planId}")
-	void removePlanFromManager(@PathParam("planId") String planId, MethodCallback<Void> callback);
+	List<Bereich> retrieveBereiche(String planId) throws Exception;
 
-	@DELETE
-	@Path("/local/plan/{planId}")
-	void removePlanFromFileSystem(@PathParam("planId") String planId, MethodCallback<Void> callback);
-
-	@PUT
-	@Path("/plan/{planId}")
-	void importPlan(@PathParam("planId") String planId, @QueryParam("internalId") String internalId,
-			@QueryParam("defaultCrs") String defaultCrs, @QueryParam("makeRasterConfig") boolean makeRasterConfig,
-			@QueryParam("planStatus") PlanStatus planStatus, @QueryParam(value = "startDateTime") Date startDateTime,
-			@QueryParam(value = "endDateTime") Date endDateTime, MethodCallback<Boolean> callback);
-
-	@GET
-	@Path("/plan/{planId}/bereiche")
-	void retrieveBereiche(@PathParam("planId") String planId, MethodCallback<List<Bereich>> callback);
-
-	@GET
-	@Produces(APPLICATION_JSON)
-	@Path("/internalid/{internalId}")
-	void retrieveMatchingInternalIds(@PathParam("internalId") String internalId,
-			MethodCallback<Map<String, String>> callback);
-
-	@GET
-	@Produces(APPLICATION_JSON)
-	@Path("/crs/{id}")
 	@Deprecated
-	void isCrsSet(@PathParam("id") String id, MethodCallback<Boolean> callback);
+	Boolean isCrsSet(String id);
 
-	@GET
-	@Produces(APPLICATION_JSON)
-	@Path("/raster/{id}")
-	void evaluateRaster(@PathParam("id") String id, MethodCallback<List<RasterEvaluationResult>> callback);
+	List<RasterEvaluationResult> evaluateRaster(String id);
 
-	@GET
-	@Produces(APPLICATION_JSON)
-	@Path("/plannamestatus/{id}/{status}")
-	void evaluatePlanNameAndStatus(@PathParam("id") String id, @PathParam("status") PlanStatus status,
-			MethodCallback<List<PlanNameWithStatusResult>> callback);
+	List<PlanNameWithStatusResult> evaluatePlanNameAndStatus(String id, PlanStatus status);
 
-	@GET
-	@Produces(APPLICATION_JSON)
-	@Path("/legislationstatus/{id}")
-	void determineLegislationStatus(@PathParam("id") String id, MethodCallback<RechtsstandAndPlanStatus> callback);
+	RechtsstandAndPlanStatus determineLegislationStatus(String id);
 
-	@GET
-	@Path("/plu/plan/{planId}")
-	void publishPlan(@PathParam("planId") String planId, MethodCallback<Boolean> callback);
+	Boolean publishPlan(String planId);
 
 }

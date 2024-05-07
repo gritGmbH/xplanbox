@@ -5025,7 +5025,7 @@ assert actualHeader != null</scriptText>
             <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
             <con:request>{
    "aendert": [   {
-      "planName": "&lt;XSSTest>",
+      "planName": "ﬀXSSTestﬕ",
       "rechtscharakter": 1000,
       "nummer": "67409.04.000.00"
    }],
@@ -5965,7 +5965,7 @@ assert expectedHeader == actualHeader</scriptText>
             </con:settings>
             <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
             <con:request>{
-   "name": "&lt;XSSTest>",
+   "name": "ﬀXSSTestﬕ",
    "beschreibung": null,
    "planArt": 1000,
    "sonstPlanArt": "test-sonstPlanArt",

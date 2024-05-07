@@ -24,6 +24,8 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.util.XmlUtils;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -39,7 +41,6 @@ import org.deegree.gml.reference.GmlDocumentIdContext;
 import org.slf4j.Logger;
 
 import javax.xml.namespace.QName;
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.InputStream;
@@ -132,9 +133,10 @@ public class XPlanGmlParser {
 	 * @throws XMLStreamException if the plan could not be read
 	 * @throws UnknownCRSException if the CRS of a geometry in the plan is not known
 	 */
+	@SuppressFBWarnings(value = "XXE_XMLSTREAMREADER")
 	public XPlanFeatureCollection parseXPlanFeatureCollection(InputStream plan, XPlanVersion version, XPlanType type)
 			throws XMLStreamException, UnknownCRSException {
-		XMLStreamReader xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(plan);
+		XMLStreamReader xmlStreamReader = XmlUtils.createXMLInputFactory().createXMLStreamReader(plan);
 		return parseXPlanFeatureCollection(xmlStreamReader, version, type);
 	}
 
@@ -160,9 +162,10 @@ public class XPlanGmlParser {
 	 * @throws XMLStreamException if the plan could not be read
 	 * @throws UnknownCRSException if the CRS of a geometry in the plan is not known
 	 */
+	@SuppressFBWarnings(value = "XXE_XMLSTREAMREADER")
 	public FeatureCollection parseFeatureCollection(InputStream plan, XPlanVersion version)
 			throws XMLStreamException, UnknownCRSException {
-		XMLStreamReader xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(plan);
+		XMLStreamReader xmlStreamReader = XmlUtils.createXMLInputFactory().createXMLStreamReader(plan);
 		return parseFeatureCollection(xmlStreamReader, version);
 	}
 

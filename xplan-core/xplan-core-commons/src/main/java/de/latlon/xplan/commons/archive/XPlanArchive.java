@@ -22,9 +22,10 @@ package de.latlon.xplan.commons.archive;
 
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.util.XmlUtils;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.deegree.cs.coordinatesystems.ICRS;
 
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -162,9 +163,11 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 	 * @return reader, never <code>null</code>
 	 */
 	@Override
+	@SuppressFBWarnings(value = "XXE_XMLSTREAMREADER")
 	public XMLStreamReader getMainFileXmlReader() {
 		try {
-			XMLStreamReader xmlReader = XMLInputFactory.newInstance().createXMLStreamReader(getMainFileInputStream());
+			XMLStreamReader xmlReader = XmlUtils.createXMLInputFactory()
+				.createXMLStreamReader(getMainFileInputStream());
 			skipStartDocument(xmlReader);
 			return xmlReader;
 		}

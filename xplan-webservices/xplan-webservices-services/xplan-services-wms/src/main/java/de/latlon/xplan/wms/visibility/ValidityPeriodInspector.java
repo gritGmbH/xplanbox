@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.wms.visibility;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.deegree.db.ConnectionProvider;
 import org.deegree.db.ConnectionProviderProvider;
 import org.deegree.layer.metadata.LayerMetadata;
@@ -61,6 +62,7 @@ public abstract class ValidityPeriodInspector implements LayerVisibilityInspecto
 		this.schema = schema;
 	}
 
+	@SuppressFBWarnings(value = "SQL_INJECTION_JDBC", justification = "schema is a fix value")
 	public boolean isVisible(LayerMetadata layerMetadata) {
 		String layerName = layerMetadata.getName();
 		int planId = parsePlanId(layerName);

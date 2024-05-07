@@ -43,7 +43,6 @@
   <inherits name='de.latlon.xplan.validator.XPlanValidatorCore'/>
   <inherits name='de.latlon.xplanbox.core.gwt.commons.XPlanCommons'/>
   <inherits name='org.gwtopenmaps.openlayers.OpenLayers'/>
-  <inherits name='org.fusesource.restygwt.RestyGWT' />
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='de.latlon.xplan.manager.web.client.gui.ManagerWebEntryPoint'/>

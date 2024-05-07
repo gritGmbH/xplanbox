@@ -25,6 +25,7 @@ import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.storage.filesystem.DeegreeRasterCacheCleaner;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -46,6 +47,7 @@ public class GdalRasterStorage extends FileSystemStorage {
 	}
 
 	@Override
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	public String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive,
 			StorageEvent storageEvent) throws IOException {
 		String rasterFileName = super.addRasterFile(planId, entryName, archive, storageEvent);

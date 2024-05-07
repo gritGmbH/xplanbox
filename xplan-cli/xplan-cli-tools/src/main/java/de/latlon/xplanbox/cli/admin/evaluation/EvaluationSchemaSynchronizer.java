@@ -28,6 +28,7 @@ import org.apache.logging.log4j.Logger;
 import org.gdal.gdal.gdal;
 import org.gdal.ogr.Geometry;
 import org.gdal.ogr.ogr;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -134,6 +135,8 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 		}
 	}
 
+	@SuppressFBWarnings(value = { "SQL_INJECTION_JDBC", "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING" },
+			justification = "xPath, blobSchema and synTableWithSchema are fix values")
 	private void updateGeomColumn(int xPlanManagerId, Connection conn, String synSchema, String blobSchema,
 			String synTableName, String geomColumn) throws SQLException {
 		PreparedStatement ps = null;
@@ -178,6 +181,7 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 		}
 	}
 
+	@SuppressFBWarnings(value = "SQL_INJECTION_JDBC", justification = "synTableWithSchema is a fix value")
 	private int update(Connection conn, String synTableWithSchema, String geomColumn, String gmlId, String gmlGeom)
 			throws SQLException {
 		PreparedStatement ps = null;
@@ -205,6 +209,7 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 		return 0;
 	}
 
+	@SuppressFBWarnings(value = "SQL_INJECTION_JDBC", justification = "synTableWithSchema is a fix value")
 	private void insertInEvaluationTable(Connection conn, int xPlanManagerId, String synSchema, String synTableName)
 			throws SQLException {
 		String synTableWithSchema = synSchema + "." + synTableName;
@@ -225,6 +230,7 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 		}
 	}
 
+	@SuppressFBWarnings(value = "SQL_INJECTION_JDBC", justification = "synSchema and synTableName are fix values")
 	private void deleteFromEvaluationTable(Connection conn, int xPlanManagerId, String synSchema, String synTableName)
 			throws SQLException {
 		PreparedStatement ps = null;

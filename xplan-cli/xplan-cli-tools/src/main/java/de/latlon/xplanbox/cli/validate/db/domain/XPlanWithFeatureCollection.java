@@ -22,10 +22,11 @@ package de.latlon.xplanbox.cli.validate.db.domain;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
+import de.latlon.xplan.commons.util.XmlUtils;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.ByteArrayInputStream;
@@ -127,10 +128,11 @@ public class XPlanWithFeatureCollection implements SemanticValidableXPlanArchive
 	}
 
 	@Override
+	@SuppressFBWarnings(value = "XXE_XMLSTREAMREADER")
 	public XMLStreamReader getMainFileXmlReader() {
 		try {
 			GZIPInputStream is = new GZIPInputStream(new ByteArrayInputStream(data));
-			XMLStreamReader xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(is);
+			XMLStreamReader xmlStreamReader = XmlUtils.createXMLInputFactory().createXMLStreamReader(is);
 			return xmlStreamReader;
 		}
 		catch (XMLStreamException | IOException e) {

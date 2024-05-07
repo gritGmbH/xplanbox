@@ -20,13 +20,15 @@
  */
 package de.latlon.xplan.manager.web.shared;
 
+import java.io.Serializable;
+
 /**
  * Encapsulates results of the raster evaluation.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class RasterEvaluationResult {
+public class RasterEvaluationResult implements Serializable {
 
 	private String rasterName;
 

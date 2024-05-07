@@ -27,8 +27,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.URL_PATTERN;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -39,7 +39,7 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 public class Document {
 
 	@Size(max = S_LENGTH)
-	@Pattern(regexp = NAME_PATTERN)
+	@Pattern(regexp = URL_PATTERN)
 	private @Valid String fileName;
 
 	public String getFileName() {

@@ -21,6 +21,8 @@
 package de.latlon.xplan.manager.wmsconfig;
 
 import de.latlon.xplan.manager.configuration.ConfigurationException;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import org.apache.commons.io.FilenameUtils;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.xml.jaxb.JAXBUtils;
 import org.deegree.theme.persistence.standard.StandardThemeProvider;
@@ -72,6 +74,7 @@ public class WmsWorkspaceWrapper {
 	/**
 	 * @return the workspace location (must not exist!), never <code>null</code>
 	 */
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	public Path getDataDirectory() {
 		return Paths.get(getLocation().toURI()).resolve(DATA_DIRECTORY);
 	}
@@ -123,7 +126,7 @@ public class WmsWorkspaceWrapper {
 	}
 
 	private File createConfig(String type) {
-		File configFile = new File(workspace.getLocation(), format("themes/%sraster.xml", type));
+		File configFile = new File(workspace.getLocation(), format("themes/%sraster.xml", FilenameUtils.getName(type)));
 		if (!configFile.isFile() || !configFile.canRead()) {
 			throw new RuntimeException("Datei '" + configFile + "' ist nicht vorhanden.");
 		}

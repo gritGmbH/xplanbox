@@ -20,12 +20,6 @@ mvn clean test -Psystem-tests -DtestFileName=xplan-manager-api-soapui-project.xm
 mvn clean test -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -DbaseUrlDokumenteApi=https://xplanbox.lat-lon.de -Dusername=xplanbox -Dpassword='PWD'
 ```
 
-### xplan-manager-web-soapui-project
-
-```
-mvn clean test -Psystem-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xplan-manager-web -Dusername=xplanbox -Dpassword='PWD'
-```
-
 ### xplan-webservices-soapui-project
 
 ```
@@ -49,9 +43,6 @@ docker run --env ... xplanbox/xplan-tests-soapui
 - `XPLAN_MANAGER_API_BASE_URL`
 - `XPLAN_MANAGER_API_USERNAME`
 - `XPLAN_MANAGER_API_PASSWORD`
-- `XPLAN_MANAGER_WEB_ENDPOINT`
-- `XPLAN_MANAGER_WEB_PASSWORD`
-- `XPLAN_MANAGER_WEB_USERNAME`
 - `XPLAN_MAPPROXY_BASE_URL`
 - `XPLAN_MAPSERVER_BASE_URL`
 - `XPLAN_SERVICES_API_KEY`

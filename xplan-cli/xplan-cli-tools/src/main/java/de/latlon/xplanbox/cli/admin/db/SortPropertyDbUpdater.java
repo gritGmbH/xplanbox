@@ -21,6 +21,7 @@
 package de.latlon.xplanbox.cli.admin.db;
 
 import de.latlon.xplan.manager.web.shared.XPlan;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,8 @@ public class SortPropertyDbUpdater {
 		updateSortPropertyInMgrSchema(sortDate, plan);
 	}
 
+	@SuppressFBWarnings(value = "SQL_INJECTION_SPRING_JDBC",
+			justification = "schemaname and tablename are selected from database")
 	private void updateSortPropertyInSynSchema(Date sortDate, XPlan plan) throws Exception {
 		String selectSchemaAndColumnsToModify = "SELECT table_name, table_schema "
 				+ "FROM information_schema.columns WHERE table_schema like 'xplansyn%' "

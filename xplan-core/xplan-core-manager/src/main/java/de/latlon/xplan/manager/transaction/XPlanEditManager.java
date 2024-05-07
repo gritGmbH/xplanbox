@@ -32,6 +32,7 @@ import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
+import de.latlon.xplan.commons.util.XmlUtils;
 import de.latlon.xplan.manager.configuration.ConfigurationException;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
@@ -47,6 +48,7 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
@@ -54,7 +56,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.JAXBException;
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -239,12 +240,13 @@ public class XPlanEditManager extends XPlanTransactionManager {
 		return bos.toByteArray();
 	}
 
+	@SuppressFBWarnings(value = "XXE_XMLSTREAMREADER")
 	private FeatureCollection renewFeatureCollection(XPlanVersion version, FeatureCollection modifiedFeatures)
 			throws Exception {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		xPlanExporter.export(outputStream, version, modifiedFeatures, null);
 		ByteArrayInputStream originalPlan = new ByteArrayInputStream(outputStream.toByteArray());
-		XMLStreamReader originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
+		XMLStreamReader originalPlanAsXmlReader = XmlUtils.createXMLInputFactory().createXMLStreamReader(originalPlan);
 		try {
 			return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(originalPlanAsXmlReader, version);
 		}

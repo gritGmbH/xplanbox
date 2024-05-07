@@ -23,21 +23,25 @@ package de.latlon.xplan.manager.web.client.gui;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.HasRpcToken;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.rpc.XsrfToken;
+import com.google.gwt.user.client.rpc.XsrfTokenService;
+import com.google.gwt.user.client.rpc.XsrfTokenServiceAsync;
 import com.google.gwt.user.client.ui.RootPanel;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.client.service.ManagerWebConfigurationService;
 import de.latlon.xplan.manager.web.client.service.ManagerWebConfigurationServiceAsync;
 import de.latlon.xplan.manager.web.client.service.SecurityService;
+import de.latlon.xplan.manager.web.client.service.SecurityServiceAsync;
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationConfigService;
 import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationConfigServiceAsync;
 import de.latlon.xplanbox.core.gwt.commons.shared.ValidationConfig;
-import org.fusesource.restygwt.client.Defaults;
-import org.fusesource.restygwt.client.Method;
-import org.fusesource.restygwt.client.MethodCallback;
 
 /**
  * Main Web UI class.
@@ -49,64 +53,73 @@ import org.fusesource.restygwt.client.MethodCallback;
  */
 public class ManagerWebEntryPoint implements EntryPoint {
 
-	private final ManagerWebConfigurationServiceAsync configurationService = GWT
-		.create(ManagerWebConfigurationService.class);
-
-	private final ValidationConfigServiceAsync validationConfigService = GWT.create(ValidationConfigService.class);
-
 	private final XPlanWebMessages messages = GWT.create(XPlanWebMessages.class);
-
-	static {
-		// due to problems with date parsing, see:
-		// https://github.com/resty-gwt/resty-gwt/issues/53
-		Defaults.setDateFormat(null);
-	}
 
 	@Override
 	public void onModuleLoad() {
+		Cookies.setCookie("JSESSIONID", "empty");
 		createMainPanel();
 	}
 
 	private void createMainPanel() {
-		configurationService.getManagerWebConfiguration(new AsyncCallback<ManagerWebConfiguration>() {
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert(messages.loadingConfigurationFailed());
-			}
-
-			@Override
-			public void onSuccess(final ManagerWebConfiguration configuration) {
-				SecurityService.Util.getService().retrieveAuthorizationInfo(new MethodCallback<AuthorizationInfo>() {
+		XsrfTokenServiceAsync xsrf = (XsrfTokenServiceAsync) GWT.create(XsrfTokenService.class);
+		((ServiceDefTarget) xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+			public void onSuccess(XsrfToken token) {
+				ManagerWebConfigurationServiceAsync configurationService = GWT
+					.create(ManagerWebConfigurationService.class);
+				((HasRpcToken) configurationService).setRpcToken(token);
+				configurationService.getManagerWebConfiguration(new AsyncCallback<ManagerWebConfiguration>() {
 
 					@Override
-					public void onFailure(Method method, Throwable throwable) {
-						Window.alert(messages.loadingAuthorizationInfoFailed());
+					public void onFailure(Throwable caught) {
+						Window.alert(messages.loadingConfigurationFailed());
 					}
 
 					@Override
-					public void onSuccess(Method method, AuthorizationInfo authorizationInfo) {
-						validationConfigService.retrieveValidationConfig(new AsyncCallback<ValidationConfig>() {
+					public void onSuccess(final ManagerWebConfiguration configuration) {
+						SecurityServiceAsync securityService = GWT.create(SecurityService.class);
+						((HasRpcToken) securityService).setRpcToken(token);
+						securityService.retrieveAuthorizationInfo(new AsyncCallback<AuthorizationInfo>() {
+
 							@Override
 							public void onFailure(Throwable throwable) {
-								Window.alert("Profile konnten nicht abgerufen werden: " + throwable.getMessage());
-								init(new ValidationConfig());
+								Window.alert(messages.loadingAuthorizationInfoFailed());
 							}
 
 							@Override
-							public void onSuccess(ValidationConfig validationConfig) {
-								init(validationConfig);
-							}
+							public void onSuccess(AuthorizationInfo authorizationInfo) {
+								ValidationConfigServiceAsync validationConfigService = GWT
+									.create(ValidationConfigService.class);
+								((HasRpcToken) validationConfigService).setRpcToken(token);
+								validationConfigService.retrieveValidationConfig(new AsyncCallback<ValidationConfig>() {
+									@Override
+									public void onFailure(Throwable throwable) {
+										Window
+											.alert("Profile konnten nicht abgerufen werden: " + throwable.getMessage());
+										init(new ValidationConfig());
+									}
 
-							private void init(ValidationConfig validationConfig) {
-								HandlerManager eventBus = new HandlerManager(null);
-								ViewController viewController = new ViewController(eventBus, configuration,
-										validationConfig, authorizationInfo);
-								viewController.init(RootPanel.get());
+									@Override
+									public void onSuccess(ValidationConfig validationConfig) {
+										init(validationConfig);
+									}
+
+									private void init(ValidationConfig validationConfig) {
+										HandlerManager eventBus = new HandlerManager(null);
+										ViewController viewController = new ViewController(eventBus, configuration,
+												validationConfig, authorizationInfo);
+										viewController.init(RootPanel.get());
+									}
+								});
 							}
 						});
 					}
 				});
+			}
+
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
 			}
 		});
 	}

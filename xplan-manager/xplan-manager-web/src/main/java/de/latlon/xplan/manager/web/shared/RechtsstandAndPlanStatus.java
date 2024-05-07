@@ -20,10 +20,12 @@
  */
 package de.latlon.xplan.manager.web.shared;
 
+import java.io.Serializable;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class RechtsstandAndPlanStatus {
+public class RechtsstandAndPlanStatus implements Serializable {
 
 	private Rechtsstand rechtsstand;
 

@@ -23,6 +23,8 @@ package de.latlon.xplan.manager.web.server.service;
 import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplanbox.core.gwt.commons.shared.ValidationException;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import org.apache.commons.io.FilenameUtils;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
@@ -61,13 +63,14 @@ public class ManagerPlanArchiveManager {
 		return UPLOAD_FOLDER;
 	}
 
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	public File readArchiveFromFilesystem(XPlan plan) throws IOException {
 		String fileToBeValidated = determineFileNameAndFolder(plan);
 		return new File(getUploadFolder(), fileToBeValidated);
 	}
 
 	public String determineFileNameAndFolder(XPlan plan) {
-		return plan.getId() + "/" + plan.getName();
+		return plan.getId() + "/" + FilenameUtils.getName(plan.getName());
 
 	}
 
@@ -94,7 +97,7 @@ public class ManagerPlanArchiveManager {
 			throws IOException, UnsupportedContentTypeException {
 		checkAndSetSessionAttributeIfRequired(session);
 		File artefactFolder = (File) session.getAttribute(SESSION_ATTRIBUTE_ARTEFACTS_FOLDER);
-		File artefactFile = new File(artefactFolder, fileName);
+		File artefactFile = new File(artefactFolder, FilenameUtils.getName(fileName));
 		try (FileOutputStream localOutput = new FileOutputStream(artefactFile)) {
 			write(artefact, localOutput);
 		}

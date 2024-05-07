@@ -57,6 +57,7 @@ import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.deegree.commons.utils.Pair;
 import org.deegree.commons.xml.XMLParsingException;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -155,10 +156,11 @@ public class XPlanManager {
 		managerConfigurationAnalyser.checkConfiguration();
 	}
 
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	public XPlanArchive analyzeArchive(String fileName) throws IOException {
-		LOG.info("- Analyse des XPlanArchivs ('" + fileName + "')...");
+		LOG.info("- Analyse des XPlanArchivs ('{}')...", fileName);
 		XPlanArchive archive = archiveCreator.createXPlanArchive(new File(fileName));
-		LOG.info("OK. " + archive);
+		LOG.info("OK. {}", archive);
 		return archive;
 	}
 

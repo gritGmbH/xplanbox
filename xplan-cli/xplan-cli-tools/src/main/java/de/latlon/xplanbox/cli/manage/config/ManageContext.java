@@ -85,6 +85,7 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplanbox.cli.XPlanCli;
 import de.latlon.xplanbox.cli.manage.ServiceMetadataRecordCreator;
 import org.deegree.commons.config.DeegreeWorkspace;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -411,6 +412,7 @@ public class ManageContext {
 		return new SortConfiguration();
 	}
 
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	private Path etcDirectory() {
 		String path = XPlanCli.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 		File jarLocation = new File(path);

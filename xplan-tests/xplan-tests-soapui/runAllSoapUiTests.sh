@@ -3,7 +3,6 @@ set -e
 
 XPLAN_DIENSTE_BASE_URL=${XPLAN_DIENSTE_BASE_URL:-http://xplan-services}
 XPLAN_MANAGER_API_BASE_URL=${XPLAN_MANAGER_API_BASE_URL:-http://xplan-manager-api/xplan-manager-api}
-XPLAN_MANAGER_WEB_BASE_URL=${XPLAN_MANAGER_WEB_BASE_URL:-http://xplan-manager-web/xplan-manager-web}
 XPLAN_MAPPROXY_BASE_URL=${XPLAN_MAPPROXY_BASE_URL:-http://xplan-mapproxy:8080}
 XPLAN_MAPSERVER_BASE_URL=${XPLAN_MAPSERVER_BASE_URL:-http://xplan-mapserver:8080}
 XPLAN_VALIDATOR_API_BASE_URL=${XPLAN_VALIDATOR_API_BASE_URL:-http://xplan-validator-api/xplan-validator-api}
@@ -55,7 +54,6 @@ fi
 echo "Waiting for services with git revision $GIT_REVISION:"
 urlsToCheck="$XPLAN_VALIDATOR_API_BASE_URL/xvalidator/version.txt \
 $XPLAN_MANAGER_API_BASE_URL/xmanager/version.txt \
-$XPLAN_MANAGER_WEB_BASE_URL/version.txt \
 $XPLAN_DIENSTE_BASE_URL/xplan-wfs/version.txt \
 $XPLAN_DIENSTE_BASE_URL/xplan-wms/version.txt"
 
@@ -76,8 +74,6 @@ else
 	waitForRightVersion $XPLAN_DOKUMENTE_API_BASE_URL/xdokumente/version.txt
 	mvn test -Psystem-tests -DtestFileName=xplan-dokumente-api-soapui-project.xml -DbaseUrlManagerApi=$XPLAN_MANAGER_API_BASE_URL -DbaseUrlDokumenteApi=$XPLAN_DOKUMENTE_API_BASE_URL -Dusername=$XPLAN_MANAGER_API_USERNAME -Dpassword=$XPLAN_MANAGER_API_PASSWORD
 fi
-
-mvn test -Psystem-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=$XPLAN_MANAGER_WEB_BASE_URL -Dusername=$XPLAN_MANAGER_WEB_USERNAME -Dpassword=$XPLAN_MANAGER_WEB_PASSWORD
 
 mvn test -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrlServices=${XPLAN_DIENSTE_BASE_URL} -DbaseUrlInspirePlu=${XPLAN_BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${XPLAN_MANAGER_API_BASE_URL} -DbaseUrlMapServer=${XPLAN_MAPSERVER_BASE_URL} -DbaseUrlMapProxy=${XPLAN_MAPPROXY_BASE_URL} -Dusername=$XPLAN_MANAGER_API_USERNAME -Dpassword=$XPLAN_MANAGER_API_PASSWORD -DapiKey=$XPLAN_SERVICES_API_KEY
 

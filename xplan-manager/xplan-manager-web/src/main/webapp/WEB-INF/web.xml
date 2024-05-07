@@ -39,6 +39,10 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>de.latlon.xplan.manager.web.spring.config.ManagerWebSpringConfig</param-value>
   </context-param>
+  <context-param>
+    <param-name>gwt.xsrf.session_cookie_name</param-name>
+    <param-value>JSESSIONID</param-value>
+  </context-param>
 
   <!-- Bootstrap the root application context as usual using ContextLoaderListener -->
   <listener>
@@ -50,6 +54,14 @@
   <servlet>
     <servlet-name>configurationService</servlet-name>
     <servlet-class>de.latlon.xplan.manager.web.server.service.ManagerWebConfigurationServiceImpl</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>securityService</servlet-name>
+    <servlet-class>de.latlon.xplan.manager.web.server.service.SecurityServiceImpl</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>managerService</servlet-name>
+    <servlet-class>de.latlon.xplan.manager.web.server.service.ManagerServiceImpl</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>xplanValidationService</servlet-name>
@@ -72,10 +84,22 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  <servlet>
+    <servlet-name>xsrf</servlet-name>
+    <servlet-class>com.google.gwt.user.server.rpc.XsrfTokenServiceServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>configurationService</servlet-name>
     <url-pattern>/xplanmgrweb/config</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>securityService</servlet-name>
+    <url-pattern>/xplanmgrweb/security</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>managerService</servlet-name>
+    <url-pattern>/xplanmgrweb/manager</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>xplanValidationService</servlet-name>
@@ -88,6 +112,10 @@
   <servlet-mapping>
     <servlet-name>xplanmgrwebrest</servlet-name>
     <url-pattern>/xplanmgrweb/rest/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>xsrf</servlet-name>
+    <url-pattern>/xplanmgrweb/xsrf</url-pattern>
   </servlet-mapping>
 
   <!-- Default page to serve -->

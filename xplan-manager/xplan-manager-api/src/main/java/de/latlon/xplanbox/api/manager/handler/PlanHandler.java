@@ -42,6 +42,7 @@ import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.manager.v1.model.Bereich;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
+import org.apache.commons.lang3.StringUtils;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,7 +98,7 @@ public class PlanHandler {
 		if (!validatorReport.isReportValid()) {
 			throw new InvalidPlan(validatorReport, xFileName);
 		}
-		LOG.info("Plan is valid. Importing plan into storage for '{}'", planStatus);
+		LOG.info("Plan is valid. Importing plan into storage for '{}'", StringUtils.normalizeSpace(planStatus));
 		AdditionalPlanData metadata = createAdditionalPlanData(xPlanArchive, planStatus);
 		List<Integer> planIds = xPlanInsertManager.importPlan(xPlanArchive, null, false, true, internalId, metadata);
 		List<XPlan> plansById = findPlansById(planIds);
@@ -107,7 +108,7 @@ public class PlanHandler {
 	}
 
 	public StatusMessage deletePlan(String planId) throws Exception {
-		LOG.info("Deleting plan with Id {}", planId);
+		LOG.info("Deleting plan with Id {}", StringUtils.normalizeSpace(planId));
 		xPlanDeleteManager.delete(planId);
 		return new StatusMessage().message(String.format(DELETE_MSG, planId));
 	}
@@ -115,7 +116,7 @@ public class PlanHandler {
 	public StreamingOutput exportPlan(String planId) throws Exception {
 		try {
 			int planIdAsInt = checkIdAndConvertIdToInt(planId);
-			LOG.info("Exporting plan with Id '{}'", planId);
+			LOG.info("Exporting plan with Id '{}'", StringUtils.normalizeSpace(planId));
 			if (!xPlanDao.existsPlan(planIdAsInt)) {
 				throw new InvalidPlanId(planId);
 			}
@@ -128,25 +129,26 @@ public class PlanHandler {
 	}
 
 	public XPlan findPlanById(String planId) throws InvalidPlanIdSyntax, InvalidPlanId {
-		LOG.info("Finding plan by Id '{}'", planId);
+		LOG.info("Finding plan by Id '{}'", StringUtils.normalizeSpace(planId));
 		int id = checkIdAndConvertIdToInt(planId);
 		return findPlanById(id);
 	}
 
 	public List<XPlan> findPlansByName(String planName) {
-		LOG.info("Finding plan by name '{}'", planName);
+		LOG.info("Finding plan by name '{}'", StringUtils.normalizeSpace(planName));
 		return xPlanDao.getXPlanByName(planName);
 	}
 
 	public List<XPlan> findPlans(String planName) throws Exception {
-		LOG.info("Searching plan by name '{}'", planName);
+		LOG.info("Searching plan by name '{}'", StringUtils.normalizeSpace(planName));
 		if (planName != null)
 			return xPlanDao.getXPlansLikeName(planName);
 		return xPlanDao.getXPlanList();
 	}
 
 	public List<XPlan> findPlansById(List<Integer> planIds) throws Exception {
-		LOG.info("Finding plan by IDs '{}'", planIds);
+		LOG.info("Finding plan by IDs '{}'",
+				planIds.stream().map(planId -> Integer.toString(planId)).collect(Collectors.joining(",")));
 		List<XPlan> plans = new ArrayList<>();
 		for (int planId : planIds) {
 			XPlan planById = findPlanById(planId);

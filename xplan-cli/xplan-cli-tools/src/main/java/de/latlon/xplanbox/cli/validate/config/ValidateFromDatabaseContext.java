@@ -30,6 +30,7 @@ import de.latlon.xplanbox.cli.validate.db.ValidationProcessor;
 import de.latlon.xplanbox.cli.validate.db.domain.ValidationResultSummary;
 import de.latlon.xplanbox.cli.validate.db.domain.XPlanWithFeatureCollection;
 import org.apache.commons.dbcp2.BasicDataSource;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
@@ -98,6 +99,7 @@ public class ValidateFromDatabaseContext {
 
 	@Bean
 	@StepScope
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	public SemanticValidator semanticValidator(@Value("#{jobParameters[rulesDirectory]}") String rulesDirectory)
 			throws ConfigurationException {
 		try {

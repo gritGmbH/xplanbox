@@ -887,6 +887,20 @@
                                     </diffChangeLogFile>
                                 </configuration>
                             </execution>
+                            <execution>
+                                <id>inspireplu</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>diff</goal>
+                                </goals>
+                                <configuration>
+                                    <defaultSchemaName>inspireplu</defaultSchemaName>
+                                    <referenceDefaultSchemaName>inspireplu</referenceDefaultSchemaName>
+                                    <diffChangeLogFile>
+                                        ${project.basedir}/target/generated-resources/changelog_inspireplu.yaml
+                                    </diffChangeLogFile>
+                                </configuration>
+                            </execution>
                         </executions>
                     </plugin>
                 </plugins>

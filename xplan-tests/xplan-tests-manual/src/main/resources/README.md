@@ -6,7 +6,7 @@ Dieses Dokument beinhaltet Hinweise zur automatisierten Ableitung von Testpläne
 
 Beispielkonfiguration für das XPlanManagerAPI-SoapUI-Projekt:
 
->```xmlstarlet sel -N con="http://eviware.com/soapui/config" -t -m '//con:testSuite' -o '# ' -v '@name' -n -m 'con:testCase' -o '## ' -v '@name' -n -m 'con:testStep' -o '* ' -v '@name' -n xplan-api-manager-soapui-project.xml > xplan-api-manager-soapui-project-testplan.md```
+>```xmlstarlet sel -N con="http://eviware.com/soapui/config" -t -m '//con:testSuite' -o '# ' -v '@name' -n -m 'con:testCase' -o '## ' -v '@name' -n -m 'con:testStep' -o '* ' -v '@name' -n xplan-manager-api-soapui-project.xml > xplan-manager-api-soapui-project-testplan.md```
 
 Die Ausführung des Skripts muss im Verzeichnis der SoapUI-Projekte vorgenommen werden, dieses ist standardmäßig: 
 
@@ -20,17 +20,17 @@ Die aus dem Skript resultierenden Ausgabedateien werden dann in folgendem Verzei
 
 Eingabe:
 
-1. xplan-api-manager-soapui-project.xml
-2. xplan-api-validator-soapui-project.xml
+1. xplan-manager-api-soapui-project.xml
+2. xplan-validator-api-soapui-project.xml
 3. xplan-webservices-soapui-project.xml
-4. xplan-api-dokumente-soapui-project.xml
+4. xplan-dokumente-api-soapui-project.xml
 
 Ausgabe:
 
-1. xplan-api-manager-soapui-project-testplan.md
-2. xplan-api-validator-soapui-project-testplan.md
+1. xplan-manager-api-soapui-project-testplan.md
+2. xplan-validator-api-soapui-project-testplan.md
 3. xplan-webservices-soapui-project-testplan.md
-4. xplan-api-dokumente-soapui-project-testplan.md
+4. xplan-dokumente-api-soapui-project-testplan.md
 
 ---
 

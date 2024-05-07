@@ -20,6 +20,8 @@
  */
 package de.latlon.xplan.commons.cli;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,6 +56,8 @@ public class SynchronizeExecutor {
 	 * Starts the synchronization.
 	 * @param conn to the dataase with th log table, never <code>null</code>
 	 */
+	@SuppressFBWarnings(value = { "SQL_INJECTION_JDBC", "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING" },
+			justification = "logTableName is a fix value")
 	public void synchronize(Connection conn) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -114,7 +118,8 @@ public class SynchronizeExecutor {
 			if (operation != null) {
 				LOG.info(
 						"Synchronize tables in lgv syn schema for plan with id {}, operation is {}, oldplanstatus {}, newplanstatus {}",
-						xplanmgrid, operation, oldplanstatus, newplanstatus);
+						xplanmgrid, operation, StringUtils.normalizeSpace(oldplanstatus),
+						StringUtils.normalizeSpace(newplanstatus));
 				synchronizer.synchronize(conn, oldid, newid, xplanmgrid, version, oldplanstatus, newplanstatus,
 						operation);
 			}
@@ -156,6 +161,7 @@ public class SynchronizeExecutor {
 		return null;
 	}
 
+	@SuppressFBWarnings(value = "SQL_INJECTION_JDBC", justification = "logTableName is a fix value")
 	private void removePlanFromLog(Connection conn, int xplanmgrid) {
 		PreparedStatement ps = null;
 		try {

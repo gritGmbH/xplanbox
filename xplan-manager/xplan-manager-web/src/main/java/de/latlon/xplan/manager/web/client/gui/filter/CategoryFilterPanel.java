@@ -30,7 +30,6 @@ import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.filter.CategoryFilter;
 import de.latlon.xplan.manager.web.client.filter.PlanFilter;
 import de.latlon.xplan.manager.web.client.i18n.DynamicXPlanWebMessages;
-import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
@@ -44,8 +43,6 @@ import static java.util.Arrays.asList;
  */
 @Deprecated
 public class CategoryFilterPanel extends AbstractFilterPanel implements ResetableFilterPanel {
-
-	private final XPlanWebMessages messages = GWT.create(XPlanWebMessages.class);
 
 	private final DynamicXPlanWebMessages dynamicMmessages = GWT.create(DynamicXPlanWebMessages.class);
 

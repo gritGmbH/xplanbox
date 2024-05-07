@@ -20,7 +20,7 @@
  */
 package de.latlon.xplan.validator.web.server.service;
 
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
 import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import org.apache.commons.fileupload.FileItem;
@@ -49,7 +49,7 @@ import static org.apache.commons.fileupload.FileUploadBase.isMultipartContent;
  * @since 2.3
  */
 @SuppressWarnings("serial")
-public class XPlanUploadService extends RemoteServiceServlet {
+public class XPlanUploadService extends XsrfProtectedServiceServlet {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanUploadService.class);
 

@@ -20,6 +20,7 @@
  */
 package de.latlon.xplanbox.security.authentication;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.User;
@@ -46,6 +47,7 @@ public class PropertiesFileUserDetailsManager implements UserDetailsManager {
 
 	private final Map<String, String> usersAndEncryptedPasswords;
 
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	public PropertiesFileUserDetailsManager(String userPropertiesFile, PasswordEncoder passwordEncoder)
 			throws SecurityConfigurationException {
 		try (FileInputStream inputStream = new FileInputStream(userPropertiesFile)) {

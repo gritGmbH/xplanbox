@@ -36,8 +36,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
 import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
-import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_GESETZ_PATTERN;
-import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_KEY_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.XL_LENGTH;
 import static de.latlon.xplan.commons.util.TextPatternConstants.XS_LENGTH;
@@ -56,11 +54,11 @@ public class Text {
 	private String id;
 
 	@Size(max = XS_LENGTH)
-	@Pattern(regexp = TEXT_KEY_PATTERN)
+	@Pattern(regexp = TEXT_PATTERN)
 	private @Valid String schluessel;
 
 	@Size(max = S_LENGTH)
-	@Pattern(regexp = TEXT_GESETZ_PATTERN)
+	@Pattern(regexp = TEXT_PATTERN)
 	private @Valid String gesetzlicheGrundlage;
 
 	@Size(max = XL_LENGTH)

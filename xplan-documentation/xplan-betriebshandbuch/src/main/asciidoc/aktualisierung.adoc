@@ -80,7 +80,7 @@ Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versione
 | 7.1.1 (<<aktualisierung-version-7.1.1, Details>>)     | nein | nein
 | 7.1.2 (<<aktualisierung-version-7.1.2, Details>>)     | ja   | nein
 | 7.1.3 (<<aktualisierung-version-7.1.3, Details>>)     | ja   | nein
-| 7.2   (<<aktualisierung-version-7.2, Details>>)     | ja   | ja
+| 7.2   (<<aktualisierung-version-7.2, Details>>)       | ja   | ja
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |===
 
@@ -151,6 +151,7 @@ Führen Sie die zu der Version passenden SQL-Skripte aus dem entsprechenden Unte
 - von 6.0 auf 6.0.1 aus dem Verzeichnis _from_6.0_to_6.0.1/_
 - von 6.0.1 auf 7.0 aus dem Verzeichnis _from_6.0.1_to_7.0/_
 - von 7.0 auf 7.1 aus dem Verzeichnis _from_7.0_to_7.1/_
+- von 7.1 auf 7.2 aus dem Verzeichnis _from_7.1_to_7.2/_
 
 IMPORTANT: Erstellen Sie vor der Aktualisierung ein Backup der Datenbank! Und achten Sie bei der Ausführung der SQL-Skripte darauf, dass diese vollständig ausgeführt werden! Nutzen Sie für die Ausführung der SQL-Skripte das `psql`-Tool z.B. mit dem Aufruf `psql -h $PGHOST -p $PGPORT -U $PGUSER -d $PGDATABASE -f $PATH_TO_SCRIPTS/UPDATE_SCRIPT.sql`.
 
@@ -334,12 +335,15 @@ NOTE: Um das Löschen von Rasterdaten unter dem Betriebssystem Windows sicherzus
 Für die Aktualisierung auf die Version 7.2 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+** _xplan-inspireplu-workspace.zip_ - muss vollständig ausgetauscht werden!
 * Aktualisierung der Datenbank:
 ** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_7.1_to_7.2_ im Modul _xplan-manager-workspace_
 * Umbenennung der Datei _<XPLANBOX_CONFIG>/dokumentenApiConfiguration.properties_  nach _<XPLANBOX_CONFIG>/dokumenteApiConfiguration.properties_ zur Konfiguration der <<konfiguration-document-api>>.
 * Umstellung der Konfiguration der XPlanDokumenteAPI
 ** Die Referenz auf den _xplan-manager-workspace_ kann entfernt werden
 ** Konfiguration der Datenbankverbindung wie in <<konfiguration-document-api>> beschrieben
+
+NOTE: Durch die Änderungen im GML-Applikationsschema von INSPIRE PLU müssen alle Daten neu transformiert werden. Die Änderungen vom 07.02.2024 in der Version 4.0.1 im XML-Schema https://inspire.ec.europa.eu/schemas/plu/4.0/PlannedLandUse.xsd sind nicht kompatibel! Weitere Informationen dazu sind unter https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 und im Amendment 1089/2010 zu finden.
 
 === Troubleshooting
 

@@ -21,14 +21,14 @@
 package de.latlon.xplan.validator.web.server.service;
 
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplanbox.core.gwt.commons.client.service.MapPreviewConfigService;
-import de.latlon.xplanbox.core.gwt.commons.shared.MapPreviewException;
 import de.latlon.xplan.validator.web.shared.MapPreviewMetadata;
 import de.latlon.xplan.validator.wms.MapPreviewCreationException;
 import de.latlon.xplan.validator.wms.MapPreviewManager;
+import de.latlon.xplanbox.core.gwt.commons.client.service.MapPreviewConfigService;
+import de.latlon.xplanbox.core.gwt.commons.shared.MapPreviewException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ import static org.springframework.web.context.support.SpringBeanAutowiringSuppor
  * @since 3.0
  */
 @RemoteServiceRelativePath("mappreviewconfig")
-public class ValidatorMapPreviewConfigService extends RemoteServiceServlet implements MapPreviewConfigService {
+public class ValidatorMapPreviewConfigService extends XsrfProtectedServiceServlet implements MapPreviewConfigService {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ValidatorMapPreviewConfigService.class);
 

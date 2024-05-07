@@ -28,6 +28,7 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplanbox.api.commons.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.commons.exception.InvalidPlanIdSyntax;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanToEdit;
+import org.apache.commons.lang3.StringUtils;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,7 @@ public abstract class EditHandler {
 	protected XPlanManager manager;
 
 	public XPlan findPlanById(String planId) throws Exception {
-		LOG.info("Find plan by Id '{}'", planId);
+		LOG.info("Find plan by Id '{}'", StringUtils.normalizeSpace(planId));
 		try {
 			int id = Integer.parseInt(planId);
 			return findPlanById(id);

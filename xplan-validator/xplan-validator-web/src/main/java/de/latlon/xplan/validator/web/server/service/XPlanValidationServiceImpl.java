@@ -20,17 +20,17 @@
  */
 package de.latlon.xplan.validator.web.server.service;
 
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import de.latlon.xplanbox.core.gwt.commons.server.service.ValidationUtils;
+import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.report.ValidatorReport;
+import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationService;
+import de.latlon.xplanbox.core.gwt.commons.server.service.ValidationUtils;
 import de.latlon.xplanbox.core.gwt.commons.shared.InvalidParameterException;
 import de.latlon.xplanbox.core.gwt.commons.shared.ValidationException;
-import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.core.gwt.commons.shared.ValidationSummary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +54,7 @@ import static org.springframework.web.context.support.SpringBeanAutowiringSuppor
  * @version 2.3
  * @since 2.3
  */
-public class XPlanValidationServiceImpl extends RemoteServiceServlet implements ValidationService {
+public class XPlanValidationServiceImpl extends XsrfProtectedServiceServlet implements ValidationService {
 
 	private static final long serialVersionUID = -6841654850245762811L;
 

@@ -113,5 +113,3 @@ Inhalt des Verzeichnisses src/main/workspace/styles/xplansyn/symbols/:
 ├── verentsorgwasser_sym.svg
 ├── verksflbeszwb_neu.png
 └── wegerecht.svg
-
-

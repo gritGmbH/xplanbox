@@ -25,6 +25,11 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.HasRpcToken;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.rpc.XsrfToken;
+import com.google.gwt.user.client.rpc.XsrfTokenService;
+import com.google.gwt.user.client.rpc.XsrfTokenServiceAsync;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
@@ -50,8 +55,6 @@ import static de.latlon.xplanbox.core.gwt.commons.client.report.ReportDownloadFi
 class UploadFinishedDialogBox extends DialogBox {
 
 	private final ValidatorWebCommonsMessages messages = GWT.create(ValidatorWebCommonsMessages.class);
-
-	private final ValidationConfigServiceAsync validationConfigService = GWT.create(ValidationConfigService.class);
 
 	private final String fileName;
 
@@ -98,39 +101,51 @@ class UploadFinishedDialogBox extends DialogBox {
 		ClickHandler nextListener = new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				validationConfigService.retrieveValidationConfig(new AsyncCallback<ValidationConfig>() {
-					@Override
-					public void onFailure(Throwable throwable) {
-						Window.alert("Profile konnten nicht abgerufen werden: " + throwable.getMessage());
-						validate(new ValidationConfig());
-					}
-
-					@Override
-					public void onSuccess(ValidationConfig validationConfig) {
-						validate(validationConfig);
-					}
-
-					private void validate(ValidationConfig validationConfig) {
-						UploadFinishedDialogBox.this.hide();
-						ClickHandler cancelHandler = new ClickHandler() {
+				XsrfTokenServiceAsync xsrf = (XsrfTokenServiceAsync) GWT.create(XsrfTokenService.class);
+				((ServiceDefTarget) xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+				xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+					public void onSuccess(XsrfToken token) {
+						ValidationConfigServiceAsync validationConfigService = GWT
+							.create(ValidationConfigService.class);
+						((HasRpcToken) validationConfigService).setRpcToken(token);
+						validationConfigService.retrieveValidationConfig(new AsyncCallback<ValidationConfig>() {
 							@Override
-							public void onClick(ClickEvent clickEvent) {
-								xPlanValidatorWeb.resetPanelToUpload();
+							public void onFailure(Throwable throwable) {
+								Window.alert("Profile konnten nicht abgerufen werden: " + throwable.getMessage());
+								validate(new ValidationConfig());
 							}
-						};
-						ValidatorOptionsDialog xPlanValidatorSettings = new ValidatorOptionsDialog(validationConfig,
-								new ReportDownloadFinishedListener() {
-									@Override
-									public void downloadFinished(FinishStatus finishStatus) {
-										if (NEXT.equals(finishStatus))
-											xPlanValidatorWeb.resetPanelToUpload();
-									}
 
-								}, fileName, true, cancelHandler, true);
-						xPlanValidatorWeb.setPanel(xPlanValidatorSettings);
+							@Override
+							public void onSuccess(ValidationConfig validationConfig) {
+								validate(validationConfig);
+							}
+
+							private void validate(ValidationConfig validationConfig) {
+								UploadFinishedDialogBox.this.hide();
+								ClickHandler cancelHandler = new ClickHandler() {
+									@Override
+									public void onClick(ClickEvent clickEvent) {
+										xPlanValidatorWeb.resetPanelToUpload();
+									}
+								};
+								ValidatorOptionsDialog xPlanValidatorSettings = new ValidatorOptionsDialog(
+										validationConfig, new ReportDownloadFinishedListener() {
+											@Override
+											public void downloadFinished(FinishStatus finishStatus) {
+												if (NEXT.equals(finishStatus))
+													xPlanValidatorWeb.resetPanelToUpload();
+											}
+
+										}, fileName, true, cancelHandler, true);
+								xPlanValidatorWeb.setPanel(xPlanValidatorSettings);
+							}
+						});
+					}
+
+					public void onFailure(Throwable caught) {
+						Window.alert(caught.getMessage());
 					}
 				});
-
 			}
 		};
 		nextButton.addClickHandler(nextListener);

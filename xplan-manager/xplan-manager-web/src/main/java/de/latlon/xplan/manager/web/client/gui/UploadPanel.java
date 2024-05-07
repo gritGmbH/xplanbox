@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -33,6 +33,12 @@ import com.google.gwt.user.cellview.client.ColumnSortEvent;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.HasRpcToken;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.rpc.XsrfToken;
+import com.google.gwt.user.client.rpc.XsrfTokenService;
+import com.google.gwt.user.client.rpc.XsrfTokenServiceAsync;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratorPanel;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -48,20 +54,20 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.CellPreviewEvent;
 import com.google.gwt.view.client.CellPreviewEvent.Handler;
 import com.google.gwt.view.client.ListDataProvider;
-import de.latlon.xplanbox.core.gwt.commons.web.DisengageableButtonCell;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+import de.latlon.xplan.manager.web.client.service.ManagerService;
+import de.latlon.xplan.manager.web.client.service.ManagerServiceAsync;
+import de.latlon.xplan.manager.web.client.utils.AlertFailureCallback;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplanbox.core.gwt.commons.client.ValidatorOptionsDialog;
 import de.latlon.xplanbox.core.gwt.commons.client.report.ReportDownloadFinishedListener;
 import de.latlon.xplanbox.core.gwt.commons.shared.ValidationConfig;
-import org.fusesource.restygwt.client.Method;
-import org.fusesource.restygwt.client.MethodCallback;
+import de.latlon.xplanbox.core.gwt.commons.web.DisengageableButtonCell;
 
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
-import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
 import static de.latlon.xplanbox.core.gwt.commons.client.report.ReportDownloadFinishedListener.FinishStatus.NEXT;
 
 /**
@@ -403,58 +409,68 @@ public class UploadPanel extends DecoratorPanel {
 	}
 
 	private void removePlan(String id) {
-		getService().removePlanFromFileSystem(id, new MethodCallback<Void>() {
-			@Override
-			public void onFailure(Method method, Throwable caught) {
-				reload();
-				Window.alert(method.getResponse().getText());
+		XsrfTokenServiceAsync xsrf = (XsrfTokenServiceAsync) GWT.create(XsrfTokenService.class);
+		((ServiceDefTarget) xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+			public void onSuccess(XsrfToken token) {
+				ManagerServiceAsync managerService = GWT.create(ManagerService.class);
+				((HasRpcToken) managerService).setRpcToken(token);
+				managerService.removePlanFromFileSystem(id, new AsyncCallback<Boolean>() {
+					@Override
+					public void onFailure(Throwable caught) {
+						reload();
+						Window.alert(caught.getMessage());
+					}
+
+					@Override
+					public void onSuccess(Boolean result) {
+						reload();
+						if (result) {
+							Window.alert(messages.deleteSuccessful());
+						}
+					}
+				});
 			}
 
-			@Override
-			public void onSuccess(Method method, Void result) {
-				reload();
-				Window.alert(messages.deleteSuccessful());
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
 			}
 		});
 	}
 
 	private void reload() {
-		getService().getPlanFromLocal(new MethodCallback<XPlan>() {
-			@Override
-			public void onFailure(Method method, Throwable caught) {
-				uploadedPlanTable.setRowCount(0, true);
-				// required as an empty response results in a failure: "Response was NOT a
-				// valid JSON document"
-				if (isPlanDeleted(method)) {
-					updatePlanTable(null);
-				}
-				else {
-					Window.alert(method.getResponse().getStatusCode() + ": " + caught.getMessage());
-				}
+		XsrfTokenServiceAsync xsrf = (XsrfTokenServiceAsync) GWT.create(XsrfTokenService.class);
+		((ServiceDefTarget) xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+			public void onSuccess(XsrfToken token) {
+				ManagerServiceAsync managerService = GWT.create(ManagerService.class);
+				((HasRpcToken) managerService).setRpcToken(token);
+				managerService.getPlanFromLocal(new AlertFailureCallback<XPlan>() {
+
+					@Override
+					public void onSuccess(XPlan plan) {
+						updatePlanTable(plan);
+					}
+
+					private void updatePlanTable(XPlan plan) {
+						List<XPlan> list = dataProviderFileSystem.getList();
+						list.clear();
+						int newRowCount = plan != null ? 1 : 0;
+						uploadedPlanTable.setRowCount(newRowCount, true);
+						if (plan != null) {
+							list.add(plan);
+							uploadedPlanTable.setVisible(true);
+						}
+						else {
+							uploadedPlanTable.setVisible(false);
+						}
+						ColumnSortEvent.fire(uploadedPlanTable, uploadedPlanTable.getColumnSortList());
+					}
+				});
 			}
 
-			@Override
-			public void onSuccess(Method method, XPlan plan) {
-				updatePlanTable(plan);
-			}
-
-			private boolean isPlanDeleted(Method method) {
-				return method.getResponse().getStatusCode() == 404;
-			}
-
-			private void updatePlanTable(XPlan plan) {
-				List<XPlan> list = dataProviderFileSystem.getList();
-				list.clear();
-				int newRowCount = plan != null ? 1 : 0;
-				uploadedPlanTable.setRowCount(newRowCount, true);
-				if (plan != null) {
-					list.add(plan);
-					uploadedPlanTable.setVisible(true);
-				}
-				else {
-					uploadedPlanTable.setVisible(false);
-				}
-				ColumnSortEvent.fire(uploadedPlanTable, uploadedPlanTable.getColumnSortList());
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
 			}
 		});
 	}

@@ -74,9 +74,17 @@ Wird ein Text, Dokument oder eine Rasterbasis mit dem Namen _xplan.gml_ über di
 
 IMPORTANT: Der Fehler kann nicht in der xPlanBox behoben werden! Das XPlanArchiv muss aus der Datenhaltung entfernt, korrigiert und dann erneut über den XPlanManager importiert werden.
 
+==== XPlanManagerWeb - Texteingaben über Editorfunktion im XPlanManagerWeb können nicht gespeichert werden
+
+Bei der Verarbeitung von Texteingaben über die Editorfunktion werden die Zeichen und Zeichenketten aus Sicherheitsgründen von der Anwendung geprüft. Die zugelassenen Zeichen unterscheiden sich von denen, die im XML zugelassen sind und können dazu führen, dass eine Änderung an einem bereits erfolgreich validierten und importieren Plan nicht übernommen werden kann. In diesem Fall müssen allen Sonderzeichen aus der Texteingabe entfernt werden. Alternativ muss die Änderung direkt im XPlanGML vorgenommen werden und der Plan erneut importiert werden.
+
 ==== XPlanDokumenteAPI - Abruf des World-Files bei GeoTIFF nicht möglich
 
-Bei Import eines Plans mit einer im XPlanGML referenzierte GeoTIFF-Datei als Rasterbasis und zusätzlich auch einem referenzierten World-File (tfw-Datei) ist die tfw-Datei nicht über die XPlanDokumenteAPI abfragbar. Wird die im exportierten XPlanGML angegebene URL aufgerufen, kann die tfw-Datei nicht abgerufen werden und ein HTTP-Statusfehler "404 - Not Found" wird von der XPlanDokumenteAPI zurückgegeben.
+Bei Import eines Plans mit einer im XPlanGML referenzierten GeoTIFF-Datei als Rasterbasis und zusätzlich auch noch einem referenzierten World-File (tfw-Datei), dann ist die tfw-Datei nicht über die XPlanDokumenteAPI abfragbar. Wird die im exportierten XPlanGML angegebene URL aufgerufen, kann die tfw-Datei nicht abgerufen werden und ein HTTP-Statusfehler "404 - Not Found" wird von der XPlanDokumenteAPI zurückgegeben.
+
+==== XPlanDokumenteAPI/XPlanManagerAPI/XPlanManagerWeb - Import von exportierten Plänen bei aktivierter XPlanDokumenteAPI nicht möglich
+
+Wenn die XPlanDokumenteAPI aktiviert ist und ein XPlanArchiv mit Begleitdokumenten importiert wurde, dann werden die externen Referenzen von der xPlanBox automatisch angepasst. Wird das XPlanGML-Instanzdokument über den XPlanManagerAPI oder -Web wieder exportiert, dann müssen vor einem erneuten Import in die xPlanBox alle Referenzen manuell angepasst werden.
 
 ==== XPlanValidatorAPI - Verwendung von vollqualifizierten Pfaden im HTTP-Header "X-Filename"
 

@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.web.client.service;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.google.gwt.user.server.rpc.XsrfProtect;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
@@ -34,6 +35,7 @@ import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
  * @version $Revision: $, $Date: $
  */
 @RemoteServiceRelativePath("config")
+@XsrfProtect
 public interface ManagerWebConfigurationService extends RemoteService {
 
 	/**

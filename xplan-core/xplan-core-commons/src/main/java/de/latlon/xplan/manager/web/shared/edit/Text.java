@@ -25,11 +25,11 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
-import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_GESETZ_PATTERN;
-import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_KEY_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.XL_LENGTH;
 import static de.latlon.xplan.commons.util.TextPatternConstants.XS_LENGTH;
+
+import java.io.Serializable;
 
 /**
  * Encapsulates the text of a plan.
@@ -37,18 +37,18 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.XS_LENGTH;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class Text extends AbstractReference {
+public class Text extends AbstractReference implements Serializable {
 
 	@Valid
 	private String featureId;
 
 	@Size(max = XS_LENGTH)
-	@Pattern(regexp = TEXT_KEY_PATTERN)
+	@Pattern(regexp = TEXT_PATTERN)
 	@Valid
 	private String key;
 
 	@Size(max = S_LENGTH)
-	@Pattern(regexp = TEXT_GESETZ_PATTERN)
+	@Pattern(regexp = TEXT_PATTERN)
 	@Valid
 	private String basis;
 

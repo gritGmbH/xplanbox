@@ -23,6 +23,8 @@ package de.latlon.xplan.manager.web.shared.edit;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import java.io.Serializable;
 import java.util.Date;
 
 import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
@@ -34,7 +36,7 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class RasterReference extends AbstractReference {
+public class RasterReference extends AbstractReference implements Serializable {
 
 	@Valid
 	private RasterReferenceType type;

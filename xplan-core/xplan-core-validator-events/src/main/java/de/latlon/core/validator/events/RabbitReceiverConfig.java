@@ -9,21 +9,21 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
 
-@Configuration
-@Import({ RabbitConfig.class })
 /**
  * @author <a href="mailto:guillemot@lat-lon.de">Marc Guillemot</a>
  * @since 7.2
  */
+@Configuration
+@Import({ RabbitConfig.class })
 public class RabbitReceiverConfig {
 
 	@Bean
 	@Profile("rabbit")
 	SimpleMessageListenerContainer container(ConnectionFactory connectionFactory,
-			MessageListenerAdapter listenerAdapter) {
+			MessageListenerAdapter listenerAdapter, RabbitSettings rabbitSettings) {
 		SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
 		container.setConnectionFactory(connectionFactory);
-		container.setQueueNames(RabbitConfig.queueName);
+		container.setQueueNames(rabbitSettings.getInternalQueueName());
 		container.setMessageListener(listenerAdapter);
 		return container;
 	}

@@ -30,7 +30,7 @@
     <fileSet>
       <directory>${basedir}/src/main/workspace</directory>
       <includes>
-        <include>appschemas/inspireplu/PlannedLandUse.xsd</include>
+        <include>appschemas/inspireplu/**</include>
         <include>datasources/feature/*</include>
         <include>sql/*</include>
       </includes>

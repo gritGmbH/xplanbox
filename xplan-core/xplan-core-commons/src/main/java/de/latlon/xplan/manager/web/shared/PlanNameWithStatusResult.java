@@ -20,12 +20,14 @@
  */
 package de.latlon.xplan.manager.web.shared;
 
+import java.io.Serializable;
+
 /**
  * Encapsulates results of the plan name.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class PlanNameWithStatusResult {
+public class PlanNameWithStatusResult implements Serializable {
 
 	private String name;
 

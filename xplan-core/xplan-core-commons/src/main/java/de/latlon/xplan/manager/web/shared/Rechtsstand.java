@@ -20,13 +20,15 @@
  */
 package de.latlon.xplan.manager.web.shared;
 
+import java.io.Serializable;
+
 /**
  * Container for legislation status. Can be used on server and client side.
  *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version $Revision: $, $Date: $
  */
-public class Rechtsstand {
+public class Rechtsstand implements Serializable {
 
 	public static final Rechtsstand UNKNOWN_RECHTSSTAND = new Rechtsstand(-1);
 

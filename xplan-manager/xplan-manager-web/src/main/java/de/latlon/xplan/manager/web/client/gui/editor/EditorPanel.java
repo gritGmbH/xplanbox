@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -25,6 +25,12 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.HasRpcToken;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.rpc.XsrfToken;
+import com.google.gwt.user.client.rpc.XsrfTokenService;
+import com.google.gwt.user.client.rpc.XsrfTokenServiceAsync;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratorPanel;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -43,19 +49,19 @@ import de.latlon.xplan.manager.web.client.gui.editor.validityPeriod.ValidityPeri
 import de.latlon.xplan.manager.web.client.gui.event.EditorCanceledEvent;
 import de.latlon.xplan.manager.web.client.gui.event.EditorFinishedEvent;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+import de.latlon.xplan.manager.web.client.service.ManagerService;
+import de.latlon.xplan.manager.web.client.service.ManagerServiceAsync;
+import de.latlon.xplan.manager.web.client.utils.AlertFailureCallback;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
-import org.fusesource.restygwt.client.Method;
-import org.fusesource.restygwt.client.MethodCallback;
 
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.BP_Plan;
 import static de.latlon.xplan.manager.web.client.gui.utils.ValidationUtils.areComponentsValid;
-import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
 
 /**
  * Main Editor Panel with different fieldsets and buttons to submit and cancel.
@@ -176,73 +182,94 @@ public class EditorPanel extends DecoratorPanel {
 	}
 
 	private void updatePlan(XPlanToEdit xPlanToEdit, boolean updateRasterConfig, final DialogBox saveDialogBox) {
-		getService().editPlan(planId, updateRasterConfig, xPlanToEdit, new MethodCallback<Void>() {
+		XsrfTokenServiceAsync xsrf = (XsrfTokenServiceAsync) GWT.create(XsrfTokenService.class);
+		((ServiceDefTarget) xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+			public void onSuccess(XsrfToken token) {
+				ManagerServiceAsync managerService = GWT.create(ManagerService.class);
+				((HasRpcToken) managerService).setRpcToken(token);
+				managerService.editPlan(planId, updateRasterConfig, xPlanToEdit, new AsyncCallback<Void>() {
 
-			@Override
-			public void onSuccess(Method method, Void response) {
-				if (saveDialogBox != null)
-					saveDialogBox.hide();
-				eventBus.fireEvent(new EditorFinishedEvent());
+					@Override
+					public void onSuccess(Void response) {
+						if (saveDialogBox != null)
+							saveDialogBox.hide();
+						eventBus.fireEvent(new EditorFinishedEvent());
+					}
+
+					@Override
+					public void onFailure(Throwable exception) {
+						if (saveDialogBox != null)
+							saveDialogBox.hide();
+						Window.alert("Fehler beim Speichern: " + exception.getMessage());
+					}
+				});
 			}
 
-			@Override
-			public void onFailure(Method method, Throwable exception) {
-				if (saveDialogBox != null)
-					saveDialogBox.hide();
-				Window.alert("Fehler beim Speichern: " + method.getResponse().getText());
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
 			}
 		});
 	}
 
 	private void evaluateRasterAndUpdatePlan(final XPlanToEdit xPlanToEdit) {
 		final DialogBox saveDialogBox = createAndShowSaveDialogBox();
-		getService().evaluateRaster(planId, xPlanToEdit, new MethodCallback<List<RasterEvaluationResult>>() {
-			@Override
-			public void onFailure(Method method, Throwable caught) {
-				Window.alert(method.getResponse().getText());
+		XsrfTokenServiceAsync xsrf = (XsrfTokenServiceAsync) GWT.create(XsrfTokenService.class);
+		((ServiceDefTarget) xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+			public void onSuccess(XsrfToken token) {
+				ManagerServiceAsync managerService = GWT.create(ManagerService.class);
+				((HasRpcToken) managerService).setRpcToken(token);
+				managerService.evaluateRaster(planId, xPlanToEdit,
+						new AlertFailureCallback<List<RasterEvaluationResult>>() {
+
+							@Override
+							public void onSuccess(List<RasterEvaluationResult> response) {
+								boolean allRastersAreValid = checkIfAllRastersAreValid(response);
+								if (allRastersAreValid) {
+									updatePlan(xPlanToEdit, true, saveDialogBox);
+								}
+								else {
+									RasterDialog rasterDialog = new RasterDialog(response);
+									rasterDialog.addRasterHandler(createRasterHandler());
+									rasterDialog.addCancelClickedHandler(new ClickHandler() {
+										@Override
+										public void onClick(ClickEvent clickEvent) {
+											saveDialogBox.hide();
+										}
+									});
+								}
+							}
+
+							private RasterHandler createRasterHandler() {
+								return new RasterHandler() {
+									@Override
+									public void onConfirmImport() {
+										updatePlan(xPlanToEdit, false, saveDialogBox);
+									}
+
+									@Override
+									public void onConfirmForceImport() {
+										updatePlan(xPlanToEdit, true, saveDialogBox);
+									}
+								};
+							}
+
+							private boolean checkIfAllRastersAreValid(List<RasterEvaluationResult> response) {
+								for (RasterEvaluationResult rasterResult : response) {
+									if (!rasterResult.isConfiguredCrs() || !rasterResult.isSupportedImageFormat()) {
+										return false;
+									}
+								}
+								return true;
+							}
+
+						});
 			}
 
-			@Override
-			public void onSuccess(Method method, List<RasterEvaluationResult> response) {
-				boolean allRastersAreValid = checkIfAllRastersAreValid(response);
-				if (allRastersAreValid) {
-					updatePlan(xPlanToEdit, true, saveDialogBox);
-				}
-				else {
-					RasterDialog rasterDialog = new RasterDialog(response);
-					rasterDialog.addRasterHandler(createRasterHandler());
-					rasterDialog.addCancelClickedHandler(new ClickHandler() {
-						@Override
-						public void onClick(ClickEvent clickEvent) {
-							saveDialogBox.hide();
-						}
-					});
-				}
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
 			}
-
-			private RasterHandler createRasterHandler() {
-				return new RasterHandler() {
-					@Override
-					public void onConfirmImport() {
-						updatePlan(xPlanToEdit, false, saveDialogBox);
-					}
-
-					@Override
-					public void onConfirmForceImport() {
-						updatePlan(xPlanToEdit, true, saveDialogBox);
-					}
-				};
-			}
-
-			private boolean checkIfAllRastersAreValid(List<RasterEvaluationResult> response) {
-				for (RasterEvaluationResult rasterResult : response) {
-					if (!rasterResult.isConfiguredCrs() || !rasterResult.isSupportedImageFormat()) {
-						return false;
-					}
-				}
-				return true;
-			}
-
 		});
 	}
 

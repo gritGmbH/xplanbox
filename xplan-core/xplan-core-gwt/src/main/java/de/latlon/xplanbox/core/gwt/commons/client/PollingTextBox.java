@@ -20,9 +20,11 @@
  */
 package de.latlon.xplanbox.core.gwt.commons.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.TextBox;
+import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationService;
 import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationServiceAsync;
 
 /**
@@ -32,7 +34,8 @@ public class PollingTextBox extends TextBox {
 
 	private final Timer timer;
 
-	public PollingTextBox(ValidationServiceAsync validationService) {
+	public PollingTextBox() {
+		ValidationServiceAsync validationService = GWT.create(ValidationService.class);
 		timer = new Timer() {
 			@Override
 			public void run() {

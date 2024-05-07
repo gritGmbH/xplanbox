@@ -22,16 +22,19 @@ package de.latlon.xplanbox.core.gwt.commons.client.service;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.google.gwt.user.server.rpc.NoXsrfProtect;
+import com.google.gwt.user.server.rpc.XsrfProtect;
+import de.latlon.xplan.validator.ValidatorException;
+import de.latlon.xplan.validator.web.shared.ValidationSettings;
+import de.latlon.xplanbox.core.gwt.commons.shared.InvalidParameterException;
 import de.latlon.xplanbox.core.gwt.commons.shared.ValidationException;
 import de.latlon.xplanbox.core.gwt.commons.shared.ValidationSummary;
-import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplanbox.core.gwt.commons.shared.InvalidParameterException;
-import de.latlon.xplan.validator.web.shared.ValidationSettings;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
+@XsrfProtect
 @RemoteServiceRelativePath("validation")
 public interface ValidationService extends RemoteService {
 
@@ -44,6 +47,7 @@ public interface ValidationService extends RemoteService {
 	ValidationSummary validate(ValidationSettings validationSettings)
 			throws ValidationException, IllegalArgumentException, InvalidParameterException;
 
+	@NoXsrfProtect
 	boolean poll();
 
 }

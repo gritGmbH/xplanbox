@@ -700,7 +700,7 @@
                 <type name="SpatialPlanType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
                 <child name="backgroundMap" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
                 <child name="BackgroundMapValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="backgroudMapURI" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="backgroundMapURI" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>

@@ -28,11 +28,10 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
 
-import static de.latlon.xplan.commons.util.TextPatternConstants.DESCRIPTION_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.L_LENGTH;
 import static de.latlon.xplan.commons.util.TextPatternConstants.M_LENGTH;
-import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.URL_PATTERN;
 
 /**
@@ -57,7 +56,7 @@ public class Referenz {
 	private @Valid String informationssystemURL;
 
 	@Size(max = S_LENGTH)
-	@Pattern(regexp = NAME_PATTERN)
+	@Pattern(regexp = TEXT_PATTERN)
 	private @Valid String referenzName;
 
 	@Size(max = M_LENGTH)
@@ -67,7 +66,7 @@ public class Referenz {
 	private @Valid String referenzMimeType;
 
 	@Size(max = L_LENGTH)
-	@Pattern(regexp = DESCRIPTION_PATTERN)
+	@Pattern(regexp = TEXT_PATTERN)
 	private @Valid String beschreibung;
 
 	private @Valid Date datum;

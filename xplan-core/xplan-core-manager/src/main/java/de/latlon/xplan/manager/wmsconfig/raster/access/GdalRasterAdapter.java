@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.wmsconfig.raster.access;
 
 import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.gdal.gdal.Dataset;
 import org.gdal.gdal.gdal;
@@ -79,7 +80,7 @@ public class GdalRasterAdapter {
 	 */
 	public Vector<?> getReferencedFiles(XPlanArchiveContentAccess archive, String entryName) throws IOException {
 		File zipArchiveLocation = unzipArchiveInTmpDirectory(archive);
-		File entry = new File(zipArchiveLocation, entryName);
+		File entry = new File(zipArchiveLocation, FilenameUtils.getName(entryName));
 		Dataset dataset = gdal.OpenShared(entry.getAbsolutePath());
 		if (dataset != null) {
 			return dataset.GetFileList();
@@ -113,7 +114,7 @@ public class GdalRasterAdapter {
 	private void copyToTempFile(XPlanArchiveContentAccess archive, String entryName, File archiveDirectory)
 			throws IOException {
 		InputStream content = archive.retrieveInputStreamFor(entryName);
-		File writeRasterIn = new File(archiveDirectory, entryName);
+		File writeRasterIn = new File(archiveDirectory, FilenameUtils.getName(entryName));
 		OutputStream outputStream = null;
 		try {
 			outputStream = new FileOutputStream(writeRasterIn);

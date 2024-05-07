@@ -31,9 +31,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
-import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
-import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -44,11 +43,11 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 public class Bereich {
 
 	@Size(max = S_LENGTH)
-	@Pattern(regexp = SIMPLE_NAME_PATTERN)
+	@Pattern(regexp = TEXT_PATTERN)
 	private @Valid String nummer;
 
 	@Size(max = S_LENGTH)
-	@Pattern(regexp = NAME_PATTERN)
+	@Pattern(regexp = TEXT_PATTERN)
 	private @Valid String name;
 
 	public Bereich nummer(String nummer) {

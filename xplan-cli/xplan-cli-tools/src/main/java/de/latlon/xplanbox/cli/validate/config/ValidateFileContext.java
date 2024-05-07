@@ -38,6 +38,7 @@ import de.latlon.xplan.validator.semantic.profile.SemanticProfileValidator;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -100,6 +101,7 @@ public class ValidateFileContext {
 	}
 
 	@Bean
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	public Path rulesPath(ValidatorConfiguration validatorConfiguration) throws URISyntaxException {
 		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
 		if (validationRulesDirectory != null)
@@ -119,6 +121,7 @@ public class ValidateFileContext {
 		return new ConfigurationDirectoryPropertiesLoader(retrieveEtcPath(), ValidatorConfiguration.class);
 	}
 
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	private Path retrieveEtcPath() throws URISyntaxException {
 		URL jarPath = ValidateFileContext.class.getProtectionDomain().getCodeSource().getLocation();
 		return get(jarPath.toURI()).getParent().getParent().resolve("etc");

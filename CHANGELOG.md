@@ -2,6 +2,17 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+## Version 7.2 (2024-05-TT)
+
+### Erweiterungen
+
+### Sicherheitsupdates
+
+### Fehlerbehebungen
+
+### Veraltete Funktionen
+- die REST-API Teil der Komponente XPlanManagerWeb wurde entfernt, stattdessen kann die REST-API der Komponente XPlanManagerAPI verwendet werden.  
+
 ## Version 7.1.3 (2024-03-08)
 
 ### Fehlerbehebungen
@@ -89,7 +100,7 @@ Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version 
 - Prüfung der externen Referenzen bei Validierung eines Plans und Ausgabe des Ergebnisses im Validierungsbericht
 - Der Import von XPlanGML-Dateien über den XPlanManagerWeb und XPlanManagerAPI wird unterstützt; eine ZIP-Datei ist nicht mehr erforderlich
 - Der XPlanValidator kann Daten für den XPlanValidatorWMS temporär in der XPlanDB speichern
-- Konfiguration der XPlanDB mit der Angabe des `srid` für alle Geometriespalten hinzugefügt
+- Konfiguration der XPlanDB mit der Angabe des PostGIS SRID für alle Geometriespalten hinzugefügt
 - Unterstützung einer neuer StoredQuery mit Filter auf planName und eingegrenzten FeatureType im XPlanSynWFS
 - Unterstützung der StoredQuery mit Filter auf planName im XPlanSynWFS für alle Datenhaltungen
 - Absicherung der deegree REST-API über ApiKeys

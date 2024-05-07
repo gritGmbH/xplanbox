@@ -6,6 +6,7 @@ Zu diesen Dateien können keine genaueren Angaben zur Quelle und zu etwaigen Nut
 Dritte ausser zu Testzwecken der Anwendung xPlanBox ist nicht gestattet.
 
 Inhalt des Verzeichnisses src/test/resources:
+--------------------------
 ├── de
 │   └── latlon
 │       └── xplan
@@ -17,12 +18,16 @@ Inhalt des Verzeichnisses src/test/resources:
 │               │   ├── profiles-duplicateName.yaml
 │               │   ├── profiles.yaml
 │               │   ├── profile.yaml
+│               │   ├── rules
+│               │   │   ├── rules.properties
+│               │   │   └── version.properties
 │               │   └── validatorConfiguration.properties
 │               ├── geometric
 │               │   ├── curve.gml
 │               │   ├── duplicateControlPointRing.gml
 │               │   ├── geometryOrientationInvalid.gml
 │               │   ├── geometryOrientationValid.gml
+│               │   ├── identicalControlPoints.gml
 │               │   ├── inspector
 │               │   │   ├── aenderungen
 │               │   │   │   ├── aendertPlanUndAendertPlanBereich.gml
@@ -31,9 +36,9 @@ Inhalt des Verzeichnisses src/test/resources:
 │               │   │   │   ├── BPlan_6-0_4-5-2-4-Ueberlappung_valide.gml
 │               │   │   │   └── xplan60-4_5_2_4.gml
 │               │   │   ├── flaechenschluss
-│               │   │   │   ├── BP_Alles_Parmis.gfs
 │               │   │   │   ├── BP_Alles_Parmis.gml
 │               │   │   │   ├── BPlan001_5-4_Toleranz_Geltungsbereich_0008.gml
+│               │   │   │   ├── BPlan_5_4-MultipleBereicheAndPlan_OneBereichWithoutGeom.gml
 │               │   │   │   ├── BPlan_Kompensationsbereich_6-0-2.gml
 │               │   │   │   ├── BPlan_Kompensationsbereich_6-0-2_Luecke.gml
 │               │   │   │   ├── BPlan_Kompensationsbereich_6-0-2_Ueberlappung.gml
@@ -76,16 +81,37 @@ Inhalt des Verzeichnisses src/test/resources:
 │               │   │       ├── 7_Geltungsbereich-Test.gml
 │               │   │       ├── 7_Schnittpunkte_Geltungsbereich_Linie.gml
 │               │   │       ├── 8_Schnittpunkte_Geltungsbereich_Linie.gml
+│               │   │       ├── BP_5.1.gml
 │               │   │       ├── BPlan001_5-4_Sliver-Polygon.gml
 │               │   │       ├── BPlan002_5-2_Schnittpunkt_Geltungsbereich.gml
+│               │   │       ├── BPlan_6-0_Linie_ausserhalb.gml
+│               │   │       ├── BPlan_6-0_Polygon_ausserhalb.gml
+│               │   │       ├── BPlan_6-0_Punkt_ausserhalb.gml
 │               │   │       ├── BPlan_Kompensationsbereich_6-0-2_valide.gml
 │               │   │       ├── BPlan_Teilbereich_6-0-2_invalide.gml
 │               │   │       ├── HafenCity11_HafenCity14_Bereich_ohne_Geometrie.gml
+│               │   │       ├── kompensationsbereich
+│               │   │       │   ├── Bereich_1800_Bereich_mitGeltungsbereich_2_Flaechenschlussobjekte_korrekt.gml
+│               │   │       │   ├── Bereich_1800_Bereich_mitGeltungsbereich_groesser_Fehler.gml
+│               │   │       │   ├── Bereich_1800_Bereich_mitGeltungsbereich_kleiner_Fehler.gml
+│               │   │       │   ├── Bereich_1800_Bereich_mitGeltungsbereich_korrekt.gml
+│               │   │       │   ├── Bereich_1800_Bereich_mitGeltungsbereich_ohne_Flaechenschlussobjekte_korrekt.gml
+│               │   │       │   ├── Bereich_1800_Bereich_ohneGeltungsbereich_Fehler.gml
+│               │   │       │   └── Bereich_1800_Bereich_ohneGeltungsbereich_ohne_Flaechenschlussobjekte_Fehler.gml
+│               │   │       ├── outside
+│               │   │       │   ├── Bereich_2000_Bereich_mitGeltungsbereich_2_Flaechenschlussobjekte_korrekt.gml
+│               │   │       │   ├── Bereich_2000_Bereich_mitGeltungsbereich_groesser_Fehler.gml
+│               │   │       │   ├── Bereich_2000_Bereich_mitGeltungsbereich_kleiner_Fehler.gml
+│               │   │       │   ├── Bereich_2000_Bereich_mitGeltungsbereich_korrekt.gml
+│               │   │       │   ├── Bereich_2000_Bereich_mitGeltungsbereich_ohne_Flaechenschlussobjekte_korrekt.gml
+│               │   │       │   ├── Bereich_2000_Bereich_ohneGeltungsbereich_Fehler.gml
+│               │   │       │   └── Bereich_2000_Bereich_ohneGeltungsbereich_ohne_Flaechenschlussobjekte_Fehler.gml
 │               │   │       ├── SystematischeGeltungsbereichspruefung_GPundGB.jpg
 │               │   │       ├── test41-54_1-missing-gehoertZuBereich.gml
 │               │   │       ├── test41-54_1-missing-gehoertZuBereich-multipleBereiche.gml
 │               │   │       ├── Testplan_position_geltungsbereich.gml
 │               │   │       ├── Testplan_position_geltungsbereichLoch.gml
+│               │   │       ├── Testplan_position_geltungsbereich_schnitt.gml
 │               │   │       └── V4_1_ID_103_withtolerance.gml
 │               │   ├── invalidSelfintersectionDeteced.gml
 │               │   ├── multiSurface-covering.gml
@@ -93,6 +119,11 @@ Inhalt des Verzeichnisses src/test/resources:
 │               │   ├── multiSurface-intersection.gml
 │               │   ├── multiSurface-intersectionInIntersection.gml
 │               │   ├── multiSurface-touches.gml
+│               │   ├── patches
+│               │   │   ├── BP_6-0_false_2.2.2.1_PolygonPatch_doppelt_nicht_zusammenhaengend.gml
+│               │   │   ├── BP_6-0_false_2.2.2.1_PolygonPatch_nicht_zusammenhaengend_Flaechenschlussobjekt.gml
+│               │   │   ├── BP_6-0_false_2.2.2.1_PolygonPatch_Ueberlappung.gml
+│               │   │   └── BP_6-0_true_PolygonPatch_Flaechenschlussobjekt.gml
 │               │   ├── polygon-orientation-invalid.gml
 │               │   ├── polygonWithInteriorRing.gml
 │               │   ├── polygonWithInteriorRings-touching.gml

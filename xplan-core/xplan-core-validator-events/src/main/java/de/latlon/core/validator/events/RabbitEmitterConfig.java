@@ -18,11 +18,12 @@ public class RabbitEmitterConfig {
 
 	@Bean
 	@Profile("rabbit")
-	public RabbitTemplate rabbitTemplate(Jackson2JsonMessageConverter msgConverter,
-			ConnectionFactory connectionFactory) {
+	public RabbitTemplate rabbitTemplate(Jackson2JsonMessageConverter msgConverter, ConnectionFactory connectionFactory,
+			RabbitSettings rabbitSettings) {
 		RabbitTemplate template = new RabbitTemplate();
 		template.setMessageConverter(msgConverter);
 		template.setConnectionFactory(connectionFactory);
+		template.setExchange(rabbitSettings.getInternalExchangeName());
 
 		return template;
 	}

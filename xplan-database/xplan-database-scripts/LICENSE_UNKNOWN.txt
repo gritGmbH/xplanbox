@@ -6,7 +6,6 @@ Dritte ist nicht gestattet.
 
 Inhalt des Verzeichnisses src/main/resources:
 --------------------------
-xplan-resources/xplan-database-scripts/src/main/resources/
 ├── 6.0
 │   ├── changelog_schemas.yaml
 │   ├── changelog_v60.yaml
@@ -54,6 +53,10 @@ xplan-resources/xplan-database-scripts/src/main/resources/
 ├── 7.1
 │   ├── changelog_v71.yaml
 │   └── changelog_xplanvalidator.yaml
+├── 7.2
+│   ├── changelog_grant_privileges.yaml
+│   ├── changelog_inspireplu.yaml
+│   └── changelog_v72.yaml
 ├── changelog_xplandb.yaml
 ├── liquibase-diff.properties
 └── liquibase.properties

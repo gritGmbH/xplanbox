@@ -94,7 +94,7 @@ Folgende Basisdaten eines Plans können geändert werden:
  * _rechtsstand_
  * _rechtsverordnungsDatum_
 
-Alle Texteingaben werden von der Anwendung sowohl client- als auch serverseitig geprüft. Dabei sind die zugelassenen Zeichen (und Zeichenketten) limitiert und dienen dem Schutz vor Angriffen wie z. B. Cross Site Scripting (XSS) und SQL-Injection.
+NOTE: Alle Texteingaben werden von der Anwendung geprüft. Dabei sind die zugelassenen Zeichen und Zeichenketten aus Sicherheitsgründen limitiert.
 
 IMPORTANT: Das Editieren des Rechtsstands kann dazu führen, dass eine
 Zustandsänderung des Plans eintritt. Damit verbunden ist das Verschieben
@@ -116,27 +116,28 @@ unbeabsichtigt zu einer Zustandsänderung des Plans kommen kann!
 
 *Gültigkeitszeitraum*
 
- * Der Zeitraum in dem ein Plan im XPlanWMSInAufstellung angezeigt wird. Für dieses Feld gibt es keine
-Entsprechung im XPlanGML. Die Angabe des Zeitraums, wie sie beim Import
-erfolgt ist, wird beim Ändern des Zeitraums überschrieben.
+ * Der Zeitraum in dem ein Plan im XPlanWMSInAufstellung angezeigt wird. Für dieses Feld gibt es keine Entsprechung im XPlanGML. Die Angabe des Zeitraums, wie sie beim Import erfolgt ist, wird beim Ändern des Zeitraums überschrieben.
 
-IMPORTANT: Die Möglichkeit einen Gültigkeitszeitraum anzugeben ist veraltet, das Editieren des Gültigkeitszeitraum wird in zukünftigen Versionen der xPlanBox entfernt.
+IMPORTANT: Die Möglichkeit einen Gültigkeitszeitraum anzugeben ist veraltet, das Editieren des Gültigkeitszeitraums wird in zukünftigen Versionen der xPlanBox entfernt.
 
 *Änderungen*
 
-bis XPlanGML 5.4:
+Folgende Felder eines Plans können geändert werden.
+Bis XPlanGML 5.4:
 
- * aendert
- * wurdeGeaendertVon
+ * _aendert_
+ * _wurdeGeaendertVon_
 
-ab XPlanGML 6.0:
+Ab XPlanGML 6.0:
 
-* aendertPlan
-* wurdeGeaendertVonPlan
+ * _aendertPlan_
+ * _wurdeGeaendertVonPlan_
 
 *Texte*
 
- * texte
+Folgende Felder eines Plans können geändert werden:
+
+ * _texte_
 
 *Dokumente*
 
@@ -144,35 +145,34 @@ Abhängig von der XPlanGML-Version können folgende Elemente editiert werden:
 
 XPlanGML 4.1:
 
- * refBegruendung
- * refRechtsplan
- * refGruenordnungsplan
+ * _refBegruendung_
+ * _refRechtsplan_
+ * _refGruenordnungsplan_
 
 ab XPlanGML 5.0:
 
- * externeReferenz
+ * _externeReferenz_
 
 Dabei kann der Benutzer wählen, ob er eine Datei über einen vollqualifizierten Link (URL) referenziert oder zum XPlanArchiv hinzugefügt und dann relativ verlinkt.
 
 *Rasterbasis*
 
- * rasterBasis
+Folgende Felder eines Plans können geändert werden:
+
+ * _rasterBasis_
 
 Die Rasterbasis kann nur editiert werden, wenn ein Plan ein Objekt vom Typ BP|FP|LP|RP|SO_Bereich besitzt. Ist dies nicht der Fall, wird ein entsprechender Hinweis in der Oberfläche angegeben. Die Angabe einer Rasterbasis kann in diesem Fall nicht erfolgen.
 
-Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2, 5.3 und 5.4 zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über das Element `<refScan/>` unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
+Wie im Kapitel <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2, 5.3 und 5.4 noch zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über das Element `<refScan/>` unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
 
-NOTE: Werden Referenzen auf Rasterbasisdateien entfernt oder verändert, so werden die nicht mehr referenzierten Dateien aus der Datenhaltung entfernt. Änderungen führen zu einer Aktualisierung der XPlanWMS-Konfiguration. Klickt der Nutzer auf __Speichern__, wird zunächst eine Validierung der Rasterdaten
-vorgenommen. Bei invaliden Dateien bekommt der Nutzer eine
-Entscheidungsoption wie mit diesen Daten umgegangen werden soll. Stimmt das CRS der Rasterdaten nicht mit dem CRS der Rasterdatenhaltung überein, so
-erhält der Nutzer die Option, den Plan ohne Erzeugung der
-Rasterkonfiguration zu importieren.
+Klickt der Nutzer auf __Speichern__, wird zunächst eine Validierung der Rasterdaten vorgenommen. Bei invaliden Dateien bekommt der Nutzer eine Entscheidungsoption wie mit diesen Daten umgegangen werden soll. Stimmt das CRS der Rasterdaten nicht mit dem CRS der Rasterdatenhaltung überein, so erhält der Nutzer die Option, den Plan ohne Erzeugung der Rasterkonfiguration zu importieren.
 Anschließend erfolgt die Aktualisierung der Daten.
 
-Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2, 5.3 und 5.4 noch zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über das Element `<refScan/>` unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
+NOTE: Werden Referenzen auf Rasterbasisdateien entfernt oder verändert, so werden die nicht mehr referenzierten Dateien aus der Datenhaltung entfernt. Änderungen führen zu einer Aktualisierung der Konfiguration des XPlanWMS.
 
-Die ebenfalls in diesem Abschnitt editierbaren Referenzen auf Texte (refText) und Legenden (refLegende) müssen in den Versionen 5.1, 5.2, 5.3 und 5.4 über die Abschnitte `Texte` und `Dokumente` editiert werden.
+NOTE: Die ebenfalls editierbaren Referenzen auf Texte (_refText_) und Legenden (_refLegende_) müssen in den Versionen 5.1, 5.2, 5.3 und 5.4 über die Abschnitte __Texte__ und __Dokumente__ editiert werden.
 
+NOTE: Bei aktivierter <<XPlanDokumenteAPI>> werden die externen Referenzen verändert und durch Links auf Ressourcen der <<XPlanDokumenteAPI>> ersetzt. Beachten Sie die Hinweise dazu im Kapitel <<bekannte-probleme>>.
 
 [[xplanmanager-web-inspireplu]]
 ===== Bereitstellung als INSPIRE PLU Datensatz

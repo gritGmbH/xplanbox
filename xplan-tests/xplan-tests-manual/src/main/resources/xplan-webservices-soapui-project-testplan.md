@@ -109,7 +109,9 @@
 * XPlanSynWFS ListStoredQueries
 * XPlanSynWFS DescribeStoredQueries
 * XPlanSynWFS PlanId
+* XPlanSynWFS PlanIdWithSrsName
 * XPlanSynWFS PlanName
+* XPlanSynWFS PlanNameWithSrsName
 * XPlanSynWFS PlanNameAndType
 * Delete Eidelstedt4V4-with-nummer-soapui-webservices.zip
 * Cleanup Properties
@@ -124,6 +126,7 @@
 * Property Transfer
 * GetFeature 2.0.0 BP_Plan
 * GetFeature 1.1.0 BP_Plan
+* GetFeature 2.0.0 BP_Bereich IsSurfaceFilter
 * GetFeature BP_GruenFlaeche
 * GetFeature Archive
 * GetFeature BP_Plan Textsortierung_1
@@ -192,7 +195,9 @@
 * XPlanWFS ListStoredQueries
 * XPlanWFS DescribeStoredQueries
 * XPlanWFS PlanId
+* XPlanWFS PlanIdWithSrsName
 * XPlanWFS PlanName
+* XPlanWFS PlanNameWithSrsName
 * Delete Eidelstedt4V4-with-nummer-soapui-webservices.zip
 * Cleanup Properties
 ## StoredQuery-ArchivedPlan
@@ -201,6 +206,7 @@
 * XPlanWFS ListStoredQueries
 * XPlanWFS DescribeStoredQueries
 * XPlanWFS PlanName
+* XPlanWFS PlanNameWithSrsName
 * Delete Osdorf48_Test_60
 * Cleanup Properties
 ## GetFeature
@@ -221,3 +227,17 @@
 * GetCapabilities
 ## GetMap
 * GetMap
+# mapproxy-wms
+## GetCapabilities
+* GetCapabilities
+## GetMap
+* GetMap - Raster
+* GetMap - Vektor
+# mapproxy-wmts
+## GetCapabilities
+* GetCapabilities
+## GetTile
+* GetTile - bplan_raster
+* GetTile - bplan_vektor
+* REST GetTile - bplan_raster
+* REST GetTile - bplan_vektor

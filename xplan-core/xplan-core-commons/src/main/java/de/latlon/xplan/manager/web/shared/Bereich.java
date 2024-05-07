@@ -20,10 +20,12 @@
  */
 package de.latlon.xplan.manager.web.shared;
 
+import java.io.Serializable;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class Bereich {
+public class Bereich implements Serializable {
 
 	private String name;
 

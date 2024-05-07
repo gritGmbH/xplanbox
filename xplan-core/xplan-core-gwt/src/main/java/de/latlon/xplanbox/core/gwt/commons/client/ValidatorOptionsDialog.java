@@ -26,6 +26,11 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.HasRpcToken;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.rpc.XsrfToken;
+import com.google.gwt.user.client.rpc.XsrfTokenService;
+import com.google.gwt.user.client.rpc.XsrfTokenServiceAsync;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -35,6 +40,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import de.latlon.xplan.validator.web.shared.MapPreviewMetadata;
+import de.latlon.xplan.validator.web.shared.ValidationOption;
+import de.latlon.xplan.validator.web.shared.ValidationSettings;
+import de.latlon.xplan.validator.web.shared.ValidationType;
 import de.latlon.xplanbox.core.gwt.commons.client.report.ReportDialog;
 import de.latlon.xplanbox.core.gwt.commons.client.report.ReportDownloadFinishedListener;
 import de.latlon.xplanbox.core.gwt.commons.client.service.MapPreviewConfigService;
@@ -42,12 +51,8 @@ import de.latlon.xplanbox.core.gwt.commons.client.service.MapPreviewConfigServic
 import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationService;
 import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationServiceAsync;
 import de.latlon.xplanbox.core.gwt.commons.shared.ValidationConfig;
-import de.latlon.xplanbox.core.gwt.commons.shared.ValidationSummary;
-import de.latlon.xplan.validator.web.shared.MapPreviewMetadata;
-import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplanbox.core.gwt.commons.shared.ValidationProfile;
-import de.latlon.xplan.validator.web.shared.ValidationSettings;
-import de.latlon.xplan.validator.web.shared.ValidationType;
+import de.latlon.xplanbox.core.gwt.commons.shared.ValidationSummary;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -73,10 +78,6 @@ public class ValidatorOptionsDialog extends FormPanel {
 	private static final String SKIP_GELTUNGSBEREICH = "skip-geltungsbereich";
 
 	private static final String SKIP_LAUFRICHTUNG = "skip-laufrichtung";
-
-	private final ValidationServiceAsync validationService = GWT.create(ValidationService.class);
-
-	private final MapPreviewConfigServiceAsync mapPreviewConfigService = GWT.create(MapPreviewConfigService.class);
 
 	private final TextBox validationName = new TextBox();
 
@@ -288,45 +289,61 @@ public class ValidatorOptionsDialog extends FormPanel {
 		showValidatingDialogBox();
 		ValidationSettings validationSettings = createValidationSettings();
 		final ReportDialog reportDialog = new ReportDialog();
-		validationService.validate(validationSettings, new AsyncCallback<ValidationSummary>() {
+		XsrfTokenServiceAsync xsrf = (XsrfTokenServiceAsync) GWT.create(XsrfTokenService.class);
+		((ServiceDefTarget) xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+			public void onSuccess(XsrfToken token) {
+				ValidationServiceAsync validationService = GWT.create(ValidationService.class);
+				((HasRpcToken) validationService).setRpcToken(token);
+				validationService.validate(validationSettings, new AsyncCallback<ValidationSummary>() {
 
-			@Override
-			public void onSuccess(ValidationSummary validationSummary) {
-				hideValidatingDialogBox();
-				reportDialog.init(validationSummary, reportCloseButtonTitle, reportNextButtonTitle, showMapPreview);
-				reportDialog.addReportDownloadFinishedListener(reportDownloadFinishedListener);
-				reportDialog.show();
+					@Override
+					public void onSuccess(ValidationSummary validationSummary) {
+						hideValidatingDialogBox();
+						reportDialog.init(validationSummary, reportCloseButtonTitle, reportNextButtonTitle,
+								showMapPreview);
+						reportDialog.addReportDownloadFinishedListener(reportDownloadFinishedListener);
+						reportDialog.show();
+					}
+
+					@Override
+					public void onFailure(Throwable caught) {
+						hideValidatingDialogBox();
+						Window.alert("Fehler bei der Validierung: " + caught.getMessage());
+					}
+				});
+
+				MapPreviewConfigServiceAsync mapPreviewConfigService = GWT.create(MapPreviewConfigService.class);
+				((HasRpcToken) mapPreviewConfigService).setRpcToken(token);
+				mapPreviewConfigService.isMapPreviewAvailable(new AsyncCallback<Boolean>() {
+					@Override
+					public void onSuccess(Boolean isMapPreviewAvailable) {
+						if (isMapPreviewAvailable) {
+							mapPreviewConfigService.createMapPreviewConfig(new AsyncCallback<MapPreviewMetadata>() {
+
+								@Override
+								public void onSuccess(MapPreviewMetadata mapPreviewMetadata) {
+									reportDialog.setMapPreviewMetadata(mapPreviewMetadata);
+								}
+
+								@Override
+								public void onFailure(Throwable caught) {
+									Window.alert("Fehler beim Erstellen der Konfiguration der Kartenvorschau: "
+											+ caught.getMessage());
+								}
+							});
+						}
+					}
+
+					@Override
+					public void onFailure(Throwable throwable) {
+						// nothing to do
+					}
+				});
 			}
 
-			@Override
 			public void onFailure(Throwable caught) {
-				hideValidatingDialogBox();
-				Window.alert("Fehler bei der Validierung: " + caught.getMessage());
-			}
-		});
-		mapPreviewConfigService.isMapPreviewAvailable(new AsyncCallback<Boolean>() {
-			@Override
-			public void onSuccess(Boolean isMapPreviewAvailable) {
-				if (isMapPreviewAvailable) {
-					mapPreviewConfigService.createMapPreviewConfig(new AsyncCallback<MapPreviewMetadata>() {
-
-						@Override
-						public void onSuccess(MapPreviewMetadata mapPreviewMetadata) {
-							reportDialog.setMapPreviewMetadata(mapPreviewMetadata);
-						}
-
-						@Override
-						public void onFailure(Throwable caught) {
-							Window.alert("Fehler beim Erstellen der Konfiguration der Kartenvorschau: "
-									+ caught.getMessage());
-						}
-					});
-				}
-			}
-
-			@Override
-			public void onFailure(Throwable throwable) {
-				// nothing to do
+				Window.alert(caught.getMessage());
 			}
 		});
 	}
@@ -334,7 +351,7 @@ public class ValidatorOptionsDialog extends FormPanel {
 	private void showValidatingDialogBox() {
 		validating = new DialogBox(false, true);
 		validating.setText(messages.validatingStatus());
-		pollingTextBox = new PollingTextBox(validationService);
+		pollingTextBox = new PollingTextBox();
 		pollingTextBox.setReadOnly(true);
 		pollingTextBox.setValue(".");
 		validating.add(pollingTextBox);

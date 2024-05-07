@@ -25,6 +25,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
+import de.latlon.xplan.commons.util.XmlUtils;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.Change;
@@ -51,7 +52,6 @@ import org.xmlunit.matchers.HasXPathMatcher;
 import org.xmlunit.matchers.ValidationMatcher;
 
 import javax.xml.namespace.QName;
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import java.io.InputStream;
 import java.text.ParseException;
@@ -1194,7 +1194,7 @@ public class XPlanManipulatorTest {
 
 	private FeatureCollection readXPlanGml(XPlanVersion xplanVersion, String plan) throws Exception {
 		InputStream xplanGml = this.getClass().getResourceAsStream(plan);
-		XMLStreamReader reader = XMLInputFactory.newInstance().createXMLStreamReader(xplanGml);
+		XMLStreamReader reader = XmlUtils.createXMLInputFactory().createXMLStreamReader(xplanGml);
 		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(reader, xplanVersion);
 	}
 

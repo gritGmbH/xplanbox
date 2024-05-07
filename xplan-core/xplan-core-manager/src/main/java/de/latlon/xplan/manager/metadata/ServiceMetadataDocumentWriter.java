@@ -20,9 +20,10 @@
  */
 package de.latlon.xplan.manager.metadata;
 
+import de.latlon.xplan.commons.util.XmlUtils;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.deegree.commons.xml.stax.XMLStreamUtils;
 
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
@@ -44,12 +45,14 @@ public class ServiceMetadataDocumentWriter {
 		this.template = template;
 	}
 
+	@SuppressFBWarnings(value = "XXE_XMLSTREAMREADER")
 	public void writeServiceMetadataDocument(Properties properties, OutputStream out) throws XMLStreamException {
 		XMLStreamWriter xmlStreamWriter = null;
 		XMLStreamReader xmlStreamReader = null;
 		try {
 			xmlStreamWriter = XMLOutputFactory.newInstance().createXMLStreamWriter(out);
-			xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(new ByteArrayInputStream(template));
+			xmlStreamReader = XmlUtils.createXMLInputFactory()
+				.createXMLStreamReader(new ByteArrayInputStream(template));
 
 			TemplateXmlStreamWriterFilter templateWriterFilter = new TemplateXmlStreamWriterFilter(properties);
 			templateWriterFilter.setDelegate(xmlStreamWriter);

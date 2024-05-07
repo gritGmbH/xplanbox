@@ -23,13 +23,14 @@ package de.latlon.xplan.commons.archive;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.util.XPlanVersionUtils;
+import de.latlon.xplan.commons.util.XmlUtils;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.deegree.commons.utils.Pair;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
 
 import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.Location;
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
@@ -41,9 +42,6 @@ import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanType.valueOfDefaultNull;
 import static java.lang.String.format;
-import static javax.xml.XMLConstants.ACCESS_EXTERNAL_DTD;
-import static javax.xml.stream.XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES;
-import static javax.xml.stream.XMLInputFactory.SUPPORT_DTD;
 import static org.deegree.commons.xml.stax.XMLStreamUtils.skipStartDocument;
 
 /**
@@ -126,21 +124,9 @@ public class XPlanGmlReader {
 		}
 	}
 
+	@SuppressFBWarnings(value = "XXE_XMLSTREAMREADER")
 	private XMLStreamReader createReader(InputStream stream) throws XMLStreamException, FactoryConfigurationError {
-		XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-		xmlInputFactory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
-		xmlInputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
-		// This disables DTDs entirely for that factory
-		xmlInputFactory.setProperty(SUPPORT_DTD, false);
-		// This causes XMLStreamException to be thrown if external DTDs are accessed.
-		// ACCESS_EXTERNAL_DTD is not supported by woodstox, see
-		// https://github.com/FasterXML/woodstox/issues/50
-		if (xmlInputFactory.isPropertySupported(ACCESS_EXTERNAL_DTD)) {
-			xmlInputFactory.setProperty(ACCESS_EXTERNAL_DTD, "");
-		}
-		// disable external entities
-		xmlInputFactory.setProperty(IS_SUPPORTING_EXTERNAL_ENTITIES, false);
-		XMLStreamReader xmlReader = xmlInputFactory.createXMLStreamReader(stream);
+		XMLStreamReader xmlReader = XmlUtils.createXMLInputFactory().createXMLStreamReader(stream);
 		skipStartDocument(xmlReader);
 		return xmlReader;
 	}

@@ -21,7 +21,7 @@ class RabbitValidationRequestNotifier implements ValidationRequestNotifier {
 
 	public void sendEvent(ValidationRequestedEvent event) {
 		LOG.info("Sending message: " + event);
-		rabbitTemplate.convertAndSend(RabbitConfig.topicExchangeName, "foo.bar.baz", event);
+		rabbitTemplate.convertAndSend("foo.bar.baz", event);
 	}
 
 }

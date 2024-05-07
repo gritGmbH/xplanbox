@@ -37,6 +37,7 @@ import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.transform.cli.TransformingValidator;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -134,6 +135,7 @@ public class ApplicationContext {
 		return new ManagerWorkspaceWrapper(managerWorkspace);
 	}
 
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	private Path etcDirectory() {
 		String path = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
 		File jarLocation = new File(path);

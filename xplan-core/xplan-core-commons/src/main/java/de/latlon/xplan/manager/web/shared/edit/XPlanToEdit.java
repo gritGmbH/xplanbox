@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.web.shared.edit;
 
 import javax.validation.Valid;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ import java.util.List;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class XPlanToEdit {
+public class XPlanToEdit implements Serializable {
 
 	@Valid
 	private BaseData baseData;
@@ -39,16 +40,16 @@ public class XPlanToEdit {
 	private ValidityPeriod validityPeriod;
 
 	@Valid
-	private List<Change> changes;
+	private List<Change> changes = new ArrayList<Change>();
 
 	@Valid
-	private List<Text> texts;
+	private List<Text> texts = new ArrayList<Text>();
 
 	@Valid
-	private List<Reference> references;
+	private List<Reference> references = new ArrayList<Reference>();
 
 	@Valid
-	private List<RasterBasis> rasterBasis;
+	private List<RasterBasis> rasterBasis = new ArrayList<RasterBasis>();
 
 	private boolean hasBereich = false;
 
@@ -95,8 +96,6 @@ public class XPlanToEdit {
 	 * @return the changes, never <code>null</code>
 	 */
 	public List<Change> getChanges() {
-		if (changes == null)
-			changes = new ArrayList<Change>();
 		return changes;
 	}
 
@@ -104,7 +103,12 @@ public class XPlanToEdit {
 	 * @param changes the changes to set, may be <code>null</code>
 	 */
 	public void setChanges(List<Change> changes) {
-		this.changes = changes;
+		if (changes != null) {
+			this.changes = new ArrayList<Change>(changes);
+		}
+		else {
+			this.changes = new ArrayList<Change>();
+		}
 	}
 
 	/**
@@ -119,8 +123,6 @@ public class XPlanToEdit {
 	 * @return the text, never <code>null</code>
 	 */
 	public List<Text> getTexts() {
-		if (texts == null)
-			texts = new ArrayList<Text>();
 		return texts;
 	}
 
@@ -128,7 +130,12 @@ public class XPlanToEdit {
 	 * @param texts the text to set, may be <code>null</code>
 	 */
 	public void setTexts(List<Text> texts) {
-		this.texts = texts;
+		if (texts != null) {
+			this.texts = new ArrayList<Text>(texts);
+		}
+		else {
+			this.texts = new ArrayList<Text>();
+		}
 	}
 
 	/**
@@ -143,8 +150,6 @@ public class XPlanToEdit {
 	 * @return the references, never <code>null</code>
 	 */
 	public List<Reference> getReferences() {
-		if (references == null)
-			references = new ArrayList<Reference>();
 		return references;
 	}
 
@@ -152,7 +157,12 @@ public class XPlanToEdit {
 	 * @param references the references to set, may be <code>null</code>
 	 */
 	public void setReferences(List<Reference> references) {
-		this.references = references;
+		if (references != null) {
+			this.references = new ArrayList<Reference>(references);
+		}
+		else {
+			this.references = new ArrayList<Reference>();
+		}
 	}
 
 	/**
@@ -168,17 +178,14 @@ public class XPlanToEdit {
 	 * added)
 	 */
 	public void addRasterBasis(RasterBasis rasterBasis) {
-		if (rasterBasis != null) {
+		if (rasterBasis != null)
 			getRasterBasis().add(rasterBasis);
-		}
 	}
 
 	/**
 	 * @return all rasterBasis, may be empty but never <code>null</code>
 	 */
 	public List<RasterBasis> getRasterBasis() {
-		if (rasterBasis == null)
-			this.rasterBasis = new ArrayList<>();
 		return rasterBasis;
 	}
 
@@ -186,7 +193,12 @@ public class XPlanToEdit {
 	 * @param rasterBasis the rasterBasis to set, may be <code>null</code>
 	 */
 	public void setRasterBasis(List<RasterBasis> rasterBasis) {
-		this.rasterBasis = rasterBasis;
+		if (rasterBasis != null) {
+			this.rasterBasis = new ArrayList<RasterBasis>(rasterBasis);
+		}
+		else {
+			this.rasterBasis = new ArrayList<RasterBasis>();
+		}
 	}
 
 	/**

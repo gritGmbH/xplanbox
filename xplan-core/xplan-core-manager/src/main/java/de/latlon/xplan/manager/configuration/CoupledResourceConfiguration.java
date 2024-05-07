@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.configuration;
 
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -207,6 +208,7 @@ public class CoupledResourceConfiguration {
 
 	}
 
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	private static Path getDirectoryToStoreMetadata(Properties properties) {
 		String directoryToStoreMetadata = properties.getProperty("directoryToStoreMetadata");
 		if (directoryToStoreMetadata != null)

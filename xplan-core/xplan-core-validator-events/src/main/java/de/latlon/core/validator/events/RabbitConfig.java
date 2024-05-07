@@ -9,26 +9,27 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-@Configuration
-@Profile("rabbit")
 /**
  * @author <a href="mailto:guillemot@lat-lon.de">Marc Guillemot</a>
  * @since 7.2
  */
+@Configuration
+@Profile("rabbit")
 public class RabbitConfig {
 
-	static final String topicExchangeName = "xplanbox-exchange";
-
-	static final String queueName = "xplanbox-queue";
-
 	@Bean
-	Queue queue() {
-		return new Queue(queueName, true);
+	RabbitSettings rabbitSettings() {
+		return new RabbitSettings();
 	}
 
 	@Bean
-	TopicExchange exchange() {
-		return new TopicExchange(topicExchangeName);
+	Queue queue(RabbitSettings rabbitSettings) {
+		return new Queue(rabbitSettings.getInternalQueueName(), true);
+	}
+
+	@Bean
+	TopicExchange exchange(RabbitSettings rabbitSettings) {
+		return new TopicExchange(rabbitSettings.getInternalExchangeName());
 	}
 
 	@Bean

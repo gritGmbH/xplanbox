@@ -26,6 +26,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import org.apache.commons.lang3.StringUtils;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -108,6 +109,7 @@ public class ValidatorConfigurationParser {
 		}
 	}
 
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	private Path createReportDirectory(Properties properties) throws IOException {
 		String validationReportDirectory = properties.getProperty(VALIDATION_REPORT_DIRECTORY);
 		if (validationReportDirectory == null || validationReportDirectory.isEmpty())
@@ -116,6 +118,7 @@ public class ValidatorConfigurationParser {
 			return Paths.get(validationReportDirectory);
 	}
 
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	private Path createRulesDirectory(Properties properties) {
 		String validationRulesDirectory = properties.getProperty(VALIDATION_RULES_DIRECTORY);
 		if (validationRulesDirectory != null && !validationRulesDirectory.isEmpty())

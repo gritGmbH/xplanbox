@@ -20,7 +20,8 @@
  */
 package de.latlon.xplan.job.validator.memory;
 
-import org.apache.commons.io.IOUtils;
+import de.latlon.xplan.commons.util.XmlUtils;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.persistence.FeatureStore;
@@ -38,7 +39,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.File;
@@ -70,6 +70,7 @@ public class GmlImportJob implements Job {
 	private DeegreeWorkspace workspace;
 
 	@Override
+	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	public void execute(final JobExecutionContext jobExecutionContext) throws JobExecutionException {
 		File workspaceLocation = workspace.getLocation();
 		Path path = Paths.get(workspaceLocation.toURI()).resolve("data");
@@ -103,13 +104,14 @@ public class GmlImportJob implements Job {
 		return insertedFids;
 	}
 
+	@SuppressFBWarnings(value = "XXE_XMLSTREAMREADER")
 	private List<String> importGml(Path p, DeegreeWorkspace workspace) {
 		LOG.info("Insert {}", p);
 		XMLStreamReader xmlStreamReader = null;
 		GMLStreamReader gmlStreamReader = null;
 		FeatureStoreTransaction ta = null;
 		try (InputStream inputStream = Files.newInputStream(p)) {
-			xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(inputStream);
+			xmlStreamReader = XmlUtils.createXMLInputFactory().createXMLStreamReader(inputStream);
 			gmlStreamReader = GMLInputFactory.createGMLStreamReader(GML_32, xmlStreamReader);
 			FeatureCollection fc = gmlStreamReader.readFeatureCollection();
 			FeatureStore fs = workspace.getNewWorkspace().getResource(FeatureStoreProvider.class, MEMORY_FEATURESTORE);
