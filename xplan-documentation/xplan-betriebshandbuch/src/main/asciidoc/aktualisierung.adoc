@@ -337,11 +337,14 @@ Für die Aktualisierung auf die Version 7.2 sind folgende Schritte auszuführen:
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 ** _xplan-inspireplu-workspace.zip_ - muss vollständig ausgetauscht werden!
 * Aktualisierung der Datenbank:
+** Ersetzen der Variable _${xplan.db.user}_ in den Zeilen 6478, 6480 und 6482 durch den Benutzernamen des `$DB_USER` (_XPLAN_DB_USER_) im Skript _migrate.sql_ im Verzeichnis _sql/update/from_7.1_to_7.2_ im Modul _xplan-manager-workspace_
 ** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_7.1_to_7.2_ im Modul _xplan-manager-workspace_
 * Umbenennung der Datei _<XPLANBOX_CONFIG>/dokumentenApiConfiguration.properties_  nach _<XPLANBOX_CONFIG>/dokumenteApiConfiguration.properties_ zur Konfiguration der <<konfiguration-document-api>>.
 * Umstellung der Konfiguration der XPlanDokumenteAPI
 ** Die Referenz auf den _xplan-manager-workspace_ kann entfernt werden
 ** Konfiguration der Datenbankverbindung wie in <<konfiguration-document-api>> beschrieben
+
+NOTE: Die Webanwendungen mit den REST-APIs sowie die der XPlanDienste und deren Workspace-Konfigurationen wurden umbenannt. Die neuen Dateinamen sind im Kapitel <<installationskomponenten>> aufgeführt.
 
 NOTE: Durch die Änderungen im GML-Applikationsschema von INSPIRE PLU müssen alle Daten neu transformiert werden. Die Änderungen vom 07.02.2024 in der Version 4.0.1 im XML-Schema https://inspire.ec.europa.eu/schemas/plu/4.0/PlannedLandUse.xsd sind nicht kompatibel! Weitere Informationen dazu sind unter https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 und im Amendment 1089/2010 zu finden.
 

@@ -466,24 +466,20 @@
 ### Ausführung der automatisierten SoapUI-Tests
 
 #### Testschritt 2:
-- **Aktion**: Der Benutzer führt das SoapUI-Projekt xplan-api-validator-soapui-project.xml in SoapUI aus.
+- **Aktion**: Der Benutzer führt das SoapUI-Projekt xplan-validator-api-soapui-project.xml in SoapUI aus.
 - **Erwartetes Ergebnis**: XPlanValidatorAPI TestSuite: Alle Tests werden erfolgreich bestanden. Profiles TestSuite: Alle Test werden bestanden, wenn mindestens ein Profil aktiviert ist.
 
 #### Testschritt 1:
-- **Aktion**: Der Benutzer führt das SoapUI-Projekt xplan-api-manager-soapui-project.xml in SoapUI aus.
+- **Aktion**: Der Benutzer führt das SoapUI-Projekt xplan-manager-api-soapui-project.xml in SoapUI aus.
 - **Erwartetes Ergebnis**: XPlanManagerAPI TestSuite: Alle Tests werden erfolgreich bestanden. Profiles TestSuite: Alle Test werden bestanden, wenn mindestens ein Profil aktiviert ist. Codelists TestSuite: Alle Tests werden  bestanden, wenn die angegeben Codeliste konfiguriert ist.
 
 #### Testschritt 5:
-- **Aktion**: Der Benutzer führt das SoapUI-Projekt xplan-api-dokumente-soapui-project.xml in SoapUI aus
+- **Aktion**: Der Benutzer führt das SoapUI-Projekt xplan-dokumente-api-soapui-project.xml in SoapUI aus
 - **Erwartetes Ergebnis**: Alle Tests werden erfolgreich bestanden.
 
 #### Testschritt 3:
 - **Aktion**: Der Benutzer führt das SoapUI-Projekt xplan-webservices-soapui-project.xml in SoapUI aus.
 - **Erwartetes Ergebnis**: xplan-wms: Alle Tests werden erfolgreich bestanden, Ausnahme: RESTAPI wird nur bestanden, wenn /config des xplan-wms erreichbar ist.  xplansyn-wfs, xplan-wfs: Alle Tests werden erfolgreich bestanden. xplan-inspireplu: Tests werden nur bestanden, wenn XPlanInspirePLU erreichbar ist. mapserver-wms, mapproxy-wms, mapproxy-wmts: Alle Tests werden erfolgreich bestanden.
-
-#### Testschritt 4:
-- **Aktion**: Der Benutzer führt das SoapUI-Projekt xplan-manager-web-soapui-project.xml in SoapUI aus.
-- **Erwartetes Ergebnis**: Alle Tests werden erfolgreich bestanden.
 
 ## Komponente XPlanManagerWeb
 
@@ -809,4 +805,525 @@ Der Benutzer wählt klickt den Button Ok.
 #### Testschritt 5:
 - **Aktion**: Der Benutzer wählt Alle Pläne anzeigen
 - **Erwartetes Ergebnis**: Die zuvor gesetzten Auswahlkriterien werden zurückgesetzt, und es werden alle Pläne angezeigt.
+
+## Komponente XPlanTransformCLI (deprecated mit xPlanBox Version 7.1)
+
+### Hilfe aufrufen
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanTransformCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-transform-cli-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer führt mit dem Befehl in [2] die Hilfe aus.
+- **Erwartetes Ergebnis**: Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanTransformCLI.
+
+## Komponente XPlanTransformCLI (deprecated mit xPlanBox Version 7.1)
+
+### Eingabeparameter
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer führt den Befehl [1] aus.
+- **Erwartetes Ergebnis**: Alle in der Datenbasis enthaltenen Pläne werden transformiert und daraufhin validiert, anschließend wird das Ergebnis in einer CSV-Datei zusammengefasst. Es erfolgt keine Übertragung der transformierten Pläne in die Datenbasis.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer führt den Befehl [2] aus.
+- **Erwartetes Ergebnis**: Alle in der Datenbasis enthaltenen Pläne werden transformiert und in die Datenbasis übertragen.
+
+#### Testschritt 3:
+- **Aktion**: Der Benutzer führt den Befehl [3] aus.
+- **Erwartetes Ergebnis**: Alle in der Tabelle "xplanmgr.transformToolPlanTableLog" enthaltenen Pläne werden transformiert, die validen Pläne werden draufhin in die Datenbasis übertragen.
+
+#### Testschritt 4:
+- **Aktion**: Der Benutzer führt den Befehl [4] aus.
+- **Erwartetes Ergebnis**: Ergebnis aus Schritt 01; der Output wird in das aufgeführte Verzeichnis ausgegeben.
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Die Ausgabe gibt Auskunft über die verfügbaren 
+
+'commands' des XPlanCLI:
+
+help:      
+- Display help information about the specified command.
+validate:
+- Validate a plan or all plans in a database
+manage: 
+- Manage plans
+admin:
+- Administrate xPlanBox
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI - Command 'validate'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe des Command 'validate' mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Die Ausgabe gibt Auskunft über die verfügbaren 
+
+'subcommands' des Command 'validate':
+
+help:      
+- Display help information about the specified command.
+file:
+- Validate a XPlanArchive or XPlanGML file.
+db: 
+- Validate XPlanGML in xPlanBox database.
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI - Command 'validate' - Subcommand 'file'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe des Subcommand 'file' von Command 'validate' mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Die Ausgabe gibt Auskunft über die Nutzung des Subcommand 'file':
+
+Usage: xpb validate file -f=&lt;file&gt; [-n=&lt;validationName&gt;] [-o=&lt;option&gt;[,&lt;option&gt;...]]... [-t=&lt;type&gt;[,&lt;type&gt;...]]... [COMMAND]
+&nbsp;
+Validate a XPlanArchive or XPlanGML file.
+  -f, --file=&lt;file&gt;
+  -n, --name=&lt;validationName&gt;
+  -o, --option=&lt;option&gt;[,&lt;option&gt;...]
+validation options, possible values are: skip-flaechenschluss, skip-geltungsbereich, skip-laufrichtung
+  -t, --type=&lt;type&gt;[,&lt;type&gt;...]
+values: syntax, geometric, semantic
+
+## Komponente XPlanCLI
+
+### Ausführung (Validierungsart) - XPlanCLI - Command 'validate' - Subcommand 'file'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer führt den Befehl [2] mit einem validen Planwerk aus.
+- **Erwartetes Ergebnis**: Der Benutzer erhält eine Validierungsausgabe, dass das XPlan-Dokument valide ist.
+
+#### Testschritt 3:
+- **Aktion**: Der Benutzer führt den Befehl [2] mit einem invaliden Planwerk aus.
+- **Erwartetes Ergebnis**: Der Benutzer erhält eine Validierungsausgabe, dass das XPlan-Dokument invalide ist.
+
+#### Testschritt 4:
+- **Aktion**: Der Benutzer führt den Befehl [3] mit einem validen Planwerk aus.
+- **Erwartetes Ergebnis**: Der Benutzer erhält eine Validierungsausgabe, dass das XPlan-Dokument syntaktisch valide ist.
+
+#### Testschritt 5:
+- **Aktion**: Der Benutzer führt den Befehl [3] mit einem syntaktisch invaliden Planwerk aus.
+- **Erwartetes Ergebnis**: Der Benutzer erhält eine Validierungsausgabe, dass das XPlan-Dokument syntaktisch invalide ist.
+
+#### Testschritt 6:
+- **Aktion**: Der Benutzer führt den Befehl [4] mit einem validen Planwerk aus.
+- **Erwartetes Ergebnis**: Der Benutzer erhält eine Validierungsausgabe, dass das XPlan-Dokument geometrisch valide ist.
+
+#### Testschritt 7:
+- **Aktion**: Der Benutzer führt den Befehl [4] mit einem geometrisch invaliden Planwerk aus.
+- **Erwartetes Ergebnis**: Der Benutzer erhält eine Validierungsausgabe, dass das XPlan-Dokument geometrisch invalide ist.
+
+#### Testschritt 8:
+- **Aktion**: Der Benutzer führt den Befehl [5] mit einem validen Planwerk aus.
+- **Erwartetes Ergebnis**: Der Benutzer erhält eine Validierungsausgabe, dass das XPlan-Dokument semantisch valide ist.
+
+#### Testschritt 9:
+- **Aktion**: Der Benutzer führt den Befehl [5] mit einem semantisch invaliden Planwerk aus.
+- **Erwartetes Ergebnis**: Der Benutzer erhält eine Validierungsausgabe, dass das XPlan-Dokument semantisch invalide ist.
+
+## Komponente XPlanCLI
+
+### Ausführung (Validierungsoptionen) - XPlanCLI - Command 'validate' - Subcommand 'file'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer führt den Befehl [2] aus.
+- **Erwartetes Ergebnis**: Der Benutzer erhält eine Validierungsausgabe. Die geometrische Überprüfung der Flächenschlussbedingung wird übersprungen.
+
+#### Testschritt 3:
+- **Aktion**: Der Benutzer führt den Befehl [3] aus.
+- **Erwartetes Ergebnis**: Der Benutzer erhält eine Validierungsausgabe. Die geometrische Überprüfung des Geltungsbereich wird übersprungen.
+
+#### Testschritt 4:
+- **Aktion**: Der Benutzer führt den Befehl [4] aus.
+- **Erwartetes Ergebnis**: Der Benutzer erhält eine Validierungsausgabe. Die geometrische Überprüfung der Laufrichtung wird übersprungen.
+
+## Komponente XPlanCLI
+
+### Ablage der Validierungsergebnisse - XPlanCLI - Command 'validate' - Subcommand 'file'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-validator-cli-$VERSION/etc/.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer überprüft, ob in der Datei [2] das Verzeichnis [3] für die erstellten Validierungsergebnisse angegeben ist.
+- **Erwartetes Ergebnis**: Ein Verzeichnis ist nicht gesetzt, daher befinden sich die Validierungsergebnisse unter [4].
+
+#### Testschritt 3:
+- **Aktion**: Der Benutzer wechselt in das Temp-Verzeichnis mit Hilfe des Befehls [4].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-validator-cli-$VERSION/tmp/.
+
+#### Testschritt 4:
+- **Aktion**: Der Benutzer überprüft, ob das Validierungsergebnis als Archiv (HTML, XML und PDF) dort abgelegt worden ist.
+- **Erwartetes Ergebnis**: Das Validierungsergebnis wurde als Archiv angelegt.
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI - Command 'validate' - Subcommand 'db'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe des Subcommand 'db' von Command 'validate' mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Die Ausgabe gibt Auskunft über die Nutzung des Subcommand 'file':
+&nbsp;
+Usage: xpb validate db [-d=&lt;database&gt;] [-h=&lt;host&gt;] [-p=&lt;port&gt;] [-P=&lt;password&gt;] [-r=&lt;rules&gt;] [-u=&lt;user&gt;] [COMMAND]
+
+&nbsp;Validate XPlanGML in xPlanBox database.
+  -d, --database=&lt;database&gt;   name of the xplanbox database (default: xplanbox)
+  -h, --host=&lt;host&gt;   hostname of the database server (default: localhost)
+  -p, --port=&lt;port&gt;   port of the database server (default: 5432)
+  -P, --password=&lt;password&gt;   database user password
+  -r, --rules=&lt;rules&gt;   directory containing the rules
+  -u, --user=&lt;user&gt;   database user (default: postgres)
+
+## Komponente XPlanCLI
+
+### Ausführung - XPlanCLI - Command 'validate' - Subcommand 'db'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer führt den Befehl [2] aus.
+- **Erwartetes Ergebnis**: Alle in der Datenhaltung enthaltenen Planwerke werden validiert, anschließend wird das Ergebnis der Validierung in einer CSV-Datei zusammengefasst. Die erstellte CSV-Datei liegt unter /tmp.
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI - Command 'manage'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe des Command 'validate' mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Die Ausgabe gibt Auskunft über die verfügbaren 
+
+'subcommands' des Command 'validate':
+
+help:      
+- Display help information about the specified command.
+list:
+- List all plans that are available in the data storage.
+import: 
+- Import a single or multiple XPlanArchive(s) or XPlanGML file(s).
+export:
+- Export a single or multiple plan(s).
+delete:
+- Delete a single or multiple plan(s).
+create-metadata:
+- Create service metadata records.
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI - Command 'manage' - Subcommand 'import'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe des Subcommand 'import' von Command 'manage' mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Usage: xpb manage import [-ov] [-c=&lt;crs&gt;] [--config=&lt;config&gt;][--workspace=&lt;workspace&gt;] -f=&lt;files&gt;[, &lt;files&gt;...][-f=&lt;files&gt;[, &lt;files&gt;...]]... [COMMAND]
+&nbsp;
+Import a single or multiple XPlanArchive(s) or XPlanGML file(s).
+  -c, --crs=&lt;crs&gt;
+       --config=&lt;config&gt;   Path to the XPLANBOX_CONFIG directory.
+  -f, --file=&lt;files&gt;[, &lt;files&gt;...]   File(s) to import.
+  -o, --force   Force import, ignores invalid or unknown raster format or CRS (default: false).
+  -v, --verbose   Print the system log (default: false)
+       --workspace=&lt;workspace&gt;   Path to the DEEGREE_WORKSPACE_ROOT directory.
+
+## Komponente XPlanCLI
+
+### Ausführung - XPlanCLI - Command 'manage' - Subcommand 'import'
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer importiert mit dem Befehl [2] ein Planwerk in die Datenhaltung der xPlanBox.
+- **Erwartetes Ergebnis**: Das Planwerk wird in die Datenhaltung der xPlanBox importiert, je nach Konfiguration auch mit Geometriefehlern (unter Nutzung von [--force]).
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI - Command 'manage' - Subcommand 'list'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe des Subcommand 'list' von Command 'manage' mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Usage: xpb manage list [-v] [--config=&lt;config&gt;] [--workspace=&lt;workspace&gt;] [COMMAND]
+&nbsp;
+List all plans that are available in the data storage.
+       --config=&lt;config&gt;   Path to the XPLANBOX_CONFIG directory.
+  -v, --verbose   Print the system log (default: false)
+       --workspace=&lt;workspace&gt;   Path to the DEEGREE_WORKSPACE_ROOT directory.
+
+#### Testschritt 3:
+- **Aktion**: Der Benutzer ruft mit dem Befehl [3] eine Auflistung der in der Datenhaltung vorliegenden Planwerke auf und überprüft somit, ob das durch Subcommand 'import'
+importierte Planwerk vorhanden ist.
+- **Erwartetes Ergebnis**: Die in der Datenhaltung der xPlanBox vorliegenden Planwerke werden aufgelistet und das durch Subcommand 'import'  importierte Planwerk wird angezeigt.
+
+## Komponente XPlanCLI
+
+### Ausführung - XPlanCLI - Command 'manage' - Subcommand 'list'
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer ruft mit dem Befehl [2] eine Auflistung der in der Datenhaltung vorliegenden Planwerke auf und überprüft somit, ob das durch Subcommand 'import'
+importierte Planwerk vorhanden ist.
+- **Erwartetes Ergebnis**: Die in der Datenhaltung der xPlanBox vorliegenden Planwerke werden aufgelistet und das durch Subcommand 'import'  importierte Planwerk wird angezeigt.
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI - Command 'manage' - Subcommand 'export'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe des Subcommand 'export' von Command 'manage' mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Usage: xpb manage export [-v] [--config=&lt;config&gt;] [-t=&lt;target&gt;] [--workspace=&lt;workspace&gt;] -i=&lt;ids&gt;[,&lt;ids&gt;...] [-i=&lt;ids&gt; [,&lt;ids&gt;...]]... [COMMAND]
+&nbsp;
+Export a single or multiple plan(s).
+      --config=&lt;config&gt;   Path to the XPLANBOX_CONFIG directory.
+  -i, --id=&lt;ids&gt;[,&lt;ids&gt;...]   Die ID des Plans der exportiert werden soll.
+  -t, --target=&lt;target&gt;   Angabe des Verzeichnis in dem die exportierten XPlanArchive abgelegt werden sollen.
+  -v, --verbose   Print the system log (default: false)
+       --workspace=&lt;workspace&gt;   Path to the DEEGREE_WORKSPACE_ROOT directory.
+
+## Komponente XPlanCLI
+
+### Ausführung - XPlanCLI - Command 'manage' - Subcommand 'export'
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer exportiert ein Planwerk mit Hilfe des Befehls in [2] aus der Datenhaltung der xPlanBox.
+- **Erwartetes Ergebnis**: Das Planwerk wird erfolgreich exportiert und im angegebenen Verzeichnis angezeigt.
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI - Command 'manage' - Subcommand 'delete'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe des Subcommand 'delete' von Command 'manage' mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Usage: xpb manage delete [-v] [--config=&lt;config&gt;] [--workspace=&lt;workspace&gt;]
+                         -i=&lt;ids&gt;[,&lt;ids&gt;...] [-i=&lt;ids&gt;[,&lt;ids&gt;...]]... [COMMAND]
+
+Delete a single or multiple plan(s).
+      --config=&lt;config&gt;   Path to the XPLANBOX_CONFIG directory.
+  -i, --id=&lt;ids&gt;[,&lt;ids&gt;...]  Die ID des Plans der geloescht werden soll.
+  -v, --verbose  Print the system log (default: false)
+      --workspace=&lt;workspace&gt;  Path to the DEEGREE_WORKSPACE_ROOT directory.
+
+## Komponente XPlanCLI
+
+### Ausführung - XPlanCLI - Command 'manage' - Subcommand 'delete'
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer löscht mit dem Befehl [2] ein Planwerk aus der Datenhaltung der xPlanBox.
+- **Erwartetes Ergebnis**: Das Planwerk wird aus der Datenhaltung der xPlanBox gelöscht, geprüft werden kann dies mit erneuter Ausführung des Subcommand 'list'.
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI - Command 'admin'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe des Command 'validate' mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Die Ausgabe gibt Auskunft über die verfügbaren 
+
+'subcommands' des Command 'admin':
+
+help:      
+- Display help information about the specified command.
+district-update:
+- Update column district of table xplanmgr.plans.
+evaluation-db-update: 
+- EvaluationSchemaSynchronizer
+resynthesize:
+- Reads the XPlanGML data and updates the re-synthesized data in the xplansyn schema.
+sortdate-update:
+- Update sort date.
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI - Command 'admin' - Subcommand 'district-update'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe des Subcommand 'district-update' von Command 'admin' mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Usage: xpb admin district-update [-v] [--config=&lt;config&gt;] [--workspace=&lt;workspace&gt;] [COMMAND]
+
+Update column district of table xplanmgr.plans.
+      --config=&lt;config&gt;   Path to the XPLANBOX_CONFIG directory.
+  -v, --verbose   Print the system log (default: false)
+      --workspace=&lt;workspace&gt;   Path to the DEEGREE_WORKSPACE_ROOT directory.
+
+## Komponente XPlanCLI
+
+### Ausführung - XPlanCLI - Command 'admin' - Subcommand 'district-update'
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer führt den Befehl [2] aus.
+- **Erwartetes Ergebnis**: Aktualisiert die Spalte 'district' der Tabelle 'xplanmgr.plans'.
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI - Command 'admin' - Subcommand 'evaluation-db-update'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe des Subcommand 'evaluation-db-update' von Command 'admin' mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Usage: xpb admin evaluation-db-update [-d=&lt;database&gt;] [-h=&lt;host&gt;] [-p=&lt;port&gt;] [-P=&lt;password&gt;] [-t=&lt;type&gt;] [-u=&lt;user&gt;] [COMMAND]
+&nbsp;
+EvaluationSchemaSynchronizer
+  -d, --database=&lt;database&gt;   name of the xplanbox database (default: xplanbox)
+  -h, --host=&lt;host&gt;   hostname of the database server (default: localhost)
+  -p, --port=&lt;port&gt;   port of the database server (default: 5432)
+  -P, --password=&lt;password&gt;   database user password
+  -t, --type=&lt;type&gt;   one of 'ALL' or 'SYNC' (default: SYNC); 'SYNC' synchronizes plans logged in xplanevaluation. planTableLog, 'ALL' synchronizes all available plans.
+  -u, --user=&lt;user&gt;   database user
+
+## Komponente XPlanCLI
+
+### Ausführung - XPlanCLI - Command 'admin' - Subcommand 'evaluation-db-update'
+
+#### Testschritt 3:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer führt den Befehl [2] aus.
+- **Erwartetes Ergebnis**: Alle in der Datenbasis enthaltenen Planwerke werden aus dem XPlanSyn-Schema in das Auswerteschema der xPlanBox überführt.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer importiert ein neues Planwerk in die Datenhaltung der xPlanBox und führt anschließend den Befehl [3] aus.
+- **Erwartetes Ergebnis**: Alle in der Datenbasis enthaltenen Planwerke, die seit der letzten Ausführung des XPlanAuswerteschemaCLI verändert oder hinzugefügt wurden, werden mit dem Auswerteschmema synchronisiert und überführt.
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI - Command 'admin' - Subcommand 'resynthesize'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe des Subcommand 'resynthesize' von Command 'admin' mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Usage: xpb admin resynthesize [-v] [--config=&lt;config&gt;] [--workspace=&lt;workspace&gt;] [-i=&lt;ids&gt;[,&lt;ids&gt;...]]... [COMMAND]
+
+&nbsp;Reads the XPlanGML data and updates the re-synthesized data in the xplansyn schema.
+      --config=&lt;config&gt;   Path to the XPLANBOX_CONFIG directory.
+  -i, --id=&lt;ids&gt;[,&lt;ids&gt;...]   The ID of a plan in the XPlanManager of the plan to re-synthesize. If missing all plans are re-synthesized.
+  -v, --verbose   Print the system log (default: false)
+      --workspace=&lt;workspace&gt;   Path to the DEEGREE_WORKSPACE_ROOT directory.
+
+#### Testschritt 3:
+- **Aktion**: Der Benutzer führt den Befehl [3] aus.
+- **Erwartetes Ergebnis**: Liest die XPlanGMLs und speichert die resynthetisierten Planwerke im Schema 'xplansyn'.
+
+## Komponente XPlanCLI
+
+### Ausführung - XPlanCLI - Command 'admin' - Subcommand 'resynthesize'
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer führt den Befehl [2] aus.
+- **Erwartetes Ergebnis**: Liest die XPlanGMLs und speichert die resynthetisierten Planwerke im Schema 'xplansyn'.
+
+## Komponente XPlanCLI
+
+### Hilfe aufrufen - XPlanCLI - Command 'admin' - Subcommand 'sortdate-update'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer ruft die Hilfe des Subcommand 'sortdate-update' von Command 'admin' mit dem Befehl in [2] auf.
+- **Erwartetes Ergebnis**: Usage: xpb admin sortdate-update [-v] [--config=&lt;config&gt;] [--workspace=&lt;workspace&gt;] [COMMAND]
+
+Update sort date.
+      --config=&lt;config&gt;   Path to the XPLANBOX_CONFIG directory.
+  -v, --verbose   Print the system log (default: false)
+      --workspace=&lt;workspace&gt;   Path to the DEEGREE_WORKSPACE_ROOT directory.
+
+## Komponente XPlanCLI
+
+### Ausführung - XPlanCLI - Command 'admin' - Subcommand 'sortdate-update'
+
+#### Testschritt 1:
+- **Aktion**: Der Benutzer wechselt in das Verzeichnis des XPlanCLI mit Hilfe des Befehls [1].
+- **Erwartetes Ergebnis**: Der Benutzer befindet sich in dem Verzeichnis ~/xplan-cli-tools-$VERSION/bin.
+
+#### Testschritt 2:
+- **Aktion**: Der Benutzer führt den Befehl [2] aus.
+- **Erwartetes Ergebnis**: Aktualisiert die Spalte 'sortDateUpdate' der Tabelle 'xplanmgr.plans'.
 

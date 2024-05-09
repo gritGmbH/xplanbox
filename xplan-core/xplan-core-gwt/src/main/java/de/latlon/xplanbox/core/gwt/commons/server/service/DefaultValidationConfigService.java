@@ -1,8 +1,8 @@
 /*-
  * #%L
- * xplan-validator-web - Modul zur Gruppierung aller Webapps
+ * xplan-core-gwt - Modul zur Gruppierung von GWT Komponenten
  * %%
- * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+ * Copyright (C) 2008 - 2024 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by

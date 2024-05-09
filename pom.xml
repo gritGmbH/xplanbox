@@ -4,7 +4,7 @@
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
   <packaging>pom</packaging>
-  <version>7.2-SNAPSHOT</version>
+  <version>7.2-RC1</version>
   <name>xPlanBox</name>
   <description>Software zur Verwaltung von XPlanGML Daten</description>
   <inceptionYear>2008</inceptionYear>
@@ -181,11 +181,11 @@
                     <exclude>*/appschemas/XPlanGML_5_3/**</exclude>
                     <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
                     <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
-                    <exclude>*/xplan-database-scripts/src/main/resource/**/*.yaml</exclude>
-                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-dokumente-api/**</exclude>
-                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-manager-api/**</exclude>
-                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-validator-api/**</exclude>
-                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-webservices/**</exclude>
+                    <exclude>*/xplan-database-scripts/src/main/resources/**/*.yaml</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resources/xplan-dokumente-api/**</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resources/xplan-manager-api/**</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resources/xplan-validator-api/**</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resources/xplan-webservices/**</exclude>
                     <exclude>*/xplan-webservices-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
                     <exclude>**/*.json</exclude>
                     <exclude>**./.properties</exclude>
@@ -252,7 +252,7 @@
         <docker-image.name>${project.artifactId}</docker-image.name>
         <trivy.severity>CRITICAL</trivy.severity>
         <!-- expected file size in M/MiB as reported with 'ls -shl' -->
-        <docker-contextTarFile.expectedSizeInMat10pct></docker-contextTarFile.expectedSizeInMat10pct>
+        <docker-contextTarFile.expectedSizeInMat10pct />
       </properties>
       <modules>
         <module>xplan-docker</module>
@@ -354,21 +354,20 @@
               <scripts>
                 <script><![CDATA[
   def tarFileName = '${project.build.directory}/docker/${docker-image.namePrefix}/${docker-image.name}/tmp/docker-build.tar'
-  def tarFile = new File(tarFileName)
+  def tarFile = new File(tarFileName.replace(':', '/'))
   assert tarFile.exists()
   def sizeInM = (int) (tarFile.length() / (1024 * 1024))
   def configuredExpectedSize = '${docker-contextTarFile.expectedSizeInMat10pct}'
   int expectedSize = configuredExpectedSize ? configuredExpectedSize as int : 1
   def pct = ((int) (1000 * sizeInM / expectedSize)) / 10
-  if ((pct >= 90 && pct <= 110) || (sizeInM + expectedSize) < 2) {
-      log.info("Context tar file ok (" + pct + "% from configured expectation)")
+  if ((pct >= 90 && pct <= 110) || (sizeInM + expectedSize) < 2) { log.info("Context tar file ok (" + pct + "% from configured expectation)")
   }
   else {
       throw new RuntimeException("Docker tar file outside expectations: " + sizeInM + "M/MiB (" + pct + "%): " + tarFile.absolutePath)
   }
              ]]></script>
               </scripts>
-              <skipScriptExecution>${docker-image.skip}</skipScriptExecution>
+              <skipScriptExecution>${docker-image.skip-sources}</skipScriptExecution>
             </configuration>
             <dependencies>
               <dependency>
@@ -1019,7 +1018,7 @@
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-dbcp2</artifactId>
-        <version>2.12.0</version>
+        <version>2.9.0</version>
         <exclusions>
           <exclusion>
             <groupId>commons-logging</groupId>
@@ -1688,7 +1687,7 @@
     <connection>scm:git:git@bitbucket.org:latlon/xplanbox.git</connection>
     <developerConnection>scm:git:git@bitbucket.org:latlon/xplanbox.git</developerConnection>
     <url>https://bitbucket.org/latlon/xplanbox</url>
-    <tag>HEAD</tag>
+    <tag>xplanbox-7.2-RC1</tag>
   </scm>
 
   <repositories>
