@@ -530,7 +530,7 @@
         <version>${owasp.version}</version>
         <configuration>
           <formats>HTML,XML</formats>
-          <cveValidForHours>24</cveValidForHours>
+          <nvdValidForHours>24</nvdValidForHours>
           <failBuildOnCVSS>10</failBuildOnCVSS>
           <knownExploitedEnabled>false</knownExploitedEnabled>
         </configuration>

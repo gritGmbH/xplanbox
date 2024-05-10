@@ -69,40 +69,6 @@
           </webResources>
         </configuration>
       </plugin>
-      <!-- duplicate
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>enforce-ban-duplicate-classes</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <banDuplicateClasses>
-                  <ignoreClasses>
-                    <ignoreClass>javax.activation.*</ignoreClass>
-                    <ignoreClass>javax.xml.stream.*</ignoreClass>
-                    <ignoreClass>org.apache.commons.logging.*</ignoreClass>
-                    <ignoreClass>org.w3c.dom.*</ignoreClass>
-                    <ignoreClass>org.eclipse.jdt.*</ignoreClass>
-                  </ignoreClasses>
-                  <scopes>
-                    <scope>compile</scope>
-                    <scope>provided</scope>
-                  </scopes>
-                  <findAllDuplicates>true</findAllDuplicates>
-                  <ignoreWhenIdentical>true</ignoreWhenIdentical>
-                </banDuplicateClasses>
-              </rules>
-              <fail>true</fail>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      -->
     </plugins>
   </build>
 
