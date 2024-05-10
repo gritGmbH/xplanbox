@@ -4,7 +4,7 @@
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
   <packaging>pom</packaging>
-  <version>7.2-RC1</version>
+  <version>7.2-SNAPSHOT</version>
   <name>xPlanBox</name>
   <description>Software zur Verwaltung von XPlanGML Daten</description>
   <inceptionYear>2008</inceptionYear>
@@ -360,8 +360,7 @@
   def configuredExpectedSize = '${docker-contextTarFile.expectedSizeInMat10pct}'
   int expectedSize = configuredExpectedSize ? configuredExpectedSize as int : 1
   def pct = ((int) (1000 * sizeInM / expectedSize)) / 10
-  if ((pct >= 90 && pct <= 110) || (sizeInM + expectedSize) < 2) { log.info("Context tar file ok (" + pct + "% from configured expectation)") } else {
-      throw new RuntimeException("Docker tar file outside expectations: " + sizeInM + "M/MiB (" + pct + "%): " + tarFile.absolutePath)
+  if ((pct >= 90 && pct <= 110) || (sizeInM + expectedSize) < 2) { log.info("Context tar file ok (" + pct + "% from configured expectation)") } else { throw new RuntimeException("Docker tar file outside expectations: " + sizeInM + "M/MiB (" + pct + "%): " + tarFile.absolutePath)
   }
              ]]></script>
               </scripts>
@@ -1685,7 +1684,7 @@
     <connection>scm:git:git@bitbucket.org:latlon/xplanbox.git</connection>
     <developerConnection>scm:git:git@bitbucket.org:latlon/xplanbox.git</developerConnection>
     <url>https://bitbucket.org/latlon/xplanbox</url>
-    <tag>xplanbox-7.2-RC1</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <repositories>
