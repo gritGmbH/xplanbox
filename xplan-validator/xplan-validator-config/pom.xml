@@ -7,7 +7,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-validator</artifactId>
-    <version>7.2-SNAPSHOT</version>
+    <version>7.2</version>
   </parent>
 
   <build>

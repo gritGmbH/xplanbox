@@ -1,25 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
-  #%L
-  xplan-validator-core - XPlan Validator Core Komponente
-  %%
-  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU Affero General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%
-  -->
-
 <xplan:XPlanAuszug xmlns:wfs="http://www.opengis.net/wfs" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" gml:id="Gml_1D2E333D-11AE-4292-94A9-BCE311CC4816" xsi:schemaLocation="http://www.xplanung.de/xplangml/6/0 http://www.xplanungwiki.de/upload/XPlanGML/6.0/Schema/XPlanung-Operationen.xsd" xmlns:xplan="http://www.xplanung.de/xplangml/6/0">
   <!-- Testplan 6.0 
   BP_UeberbaubareGrundstuecksFlaeche gml:id="Gml_93284040-8E0F-440C-A9CD-43B8CE37A8AE überlappt BP_BaugebietsTeilFlaeche gml:id="Gml_C0EE7EFD-A811-4E1D-98B4-782540EF8AB7, in der ebenfalls das Attribut Z belegt ist, um 0,03mm -> Kein Verstoß gegen 4.5.2.4

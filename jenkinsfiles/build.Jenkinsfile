@@ -8,7 +8,7 @@ pipeline {
     jdk 'openjdk11'
   }
   environment {
-      MAVEN_OPTS='-Djava.awt.headless=true -Xmx1000m'
+      MAVEN_OPTS='-Djava.awt.headless=true -Xmx1250m'
   }
   stages {
     stage('Preparation') {

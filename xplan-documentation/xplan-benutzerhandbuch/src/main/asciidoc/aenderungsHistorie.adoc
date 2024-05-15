@@ -5,14 +5,52 @@
 [[Aenderungshistorie-7.2]]
 === Version 7.2
 
+Neben Fehlerbehebungen sowie Erweiterungen und Verbesserungen an den Komponenten der xPlanBox wird für die Einrichtung und Aktualisierung des Datenbankschemas der XPlanDB ab der Version 7.2 das Werkzeug Liquibase eingesetzt. Bitte beachten Sie dazu die Hinweise im Betriebshandbuch, Abschnitt Installation.
+
 ==== Erweiterungen
+- Ausgabe einer Koordinate für Geometrien außerhalb des Geltungsbereichs bei der Geltungsbereichsprüfung
+- Ausgabe von Fehlern bei Überdeckung eines Lochs und weiteren Fehlern bei der Geltungsbereichsprüfung
+- XPlanWFS berücksichtigt Query-Parameter _srsName_ bei StoredQuery
+- Optimierung der Initialisierung der XPlanDokumenteAPI
+- Umstellung der Default-Styles für die XPlanWMSInAufstellung und XPlanWMSArchiviert-Dienste
+- Verbesserungen an Zeichenvorschriften für SO- und LP-Objekte
+- Integration des Validierungsprofils für Brandenburg in XPlanValidator und XPlanManager
+- Zusammenfassung der Kommandozeilenwerkzeuge (CLIs) zum XPlanCLI
+- Entfernen der Validierungsregeln für XPlanGML 3.0
+- Umfang der erlaubten Zeichen bei der Texteingabe in der Editorfunktion des XPlanManagerWeb erweitert
+- Aktualisierung auf INSPIRE PLU Schema 2024.1 (nicht abwärtskompatibel)
+- Anzeige von Zeilenumbrüchen in der HTML-Ausgabe der XPlanWMS GetFeatureInfo-Anfrage
+- Konfiguration von MaxWidth und MaxHeight in den Capabilities des XPlanWMS, XPlanMapServer und XPlanMapProxy ermöglicht
+- Verknüpfung der Layer-Metadaten in den Capabilities der XPlanServices, XPlanMapServer und XPlanMapProxy
+- Konfiguration des ServiceProviders für XPlanMapServer  über Umgebungsvariablen ermöglicht
+- Konfiguration des Koordinatenreferenzsystems für XPlanMapServer Container Image über Umgebungsvariablen ermöglicht
 
 ==== Sicherheitsupdates
+- Aktualisierung von Bibliotheken mit bekannten Sicherheitsmängeln
+- Absicherung des XPlanManagerWeb gegen Cross-Site Request Forgery (CSRF, XSRF) umgesetzt
 
 ==== Fehlerbehebungen
+- Dauer der initialen Ladezeit der Planliste im XPlanManagerWeb verkürzt
+- Korrektur der Geltungsbereichsprüfung bei Kompensationsbereichen
+- Validierung von Geometrien vom Typ PolygonPatches ermöglicht
+- Element für Geltungsbereich im XPlanSynWFS als optional deklariert
+- Anfrage mit Geometriefilter `IsPoint`, `IsCurve` und `IsSurface` an XPlanWFS und XPlanSynWFS für leere Geometrien führt nicht zu Fehler
+- Speicherung der internalId im XPlanGML
+- Korrektur der Erzeugung von Shape-Dateien bei ausgewählten Koordinatenreferenzsystemen behoben
+
+==== Entfernte Funktionen
+
+Die folgenden Funktionen wurde in dieser Version entfernt:
+
+- REST-API der Komponente XPlanManagerWeb wurde entfernt, stattdessen kann die REST-API der Komponente XPlanManagerAPI verwendet werden.
 
 ==== Veraltete Funktionen
-- die REST-API Teil der Komponente XPlanManagerWeb wurde entfernt, stattdessen kann die REST-API der Komponente XPlanManagerAPI verwendet werden.
+
+Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version der xPlanBox entfernt:
+
+- Ausgabe von Shape-Dateien als Teil des Validierungsreports ist veraltet (deprecated)
+- Ausgabe von XML-Dateien als Teil des Validierungsreports ist veraltet (deprecated)
+- Aufsetzen der XPlanDB mit SQL-Skripten ist veraltet  (deprecated)
 
 [[Aenderungshistorie-7.1.3]]
 === Version 7.1.3
@@ -62,7 +100,7 @@
 Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version der xPlanBox entfernt:
 
 - Setzen eines Gültigkeitszeitraums beim Import eines Planwerk über den XPlanManagerWeb ist veraltet (deprecated)
-- Konfigurationsoptionen `defaultCRS` und `chooseCrs` zur Auswahl eines Koordinatenreferenzsystems für die Vektordaten eines Planwerks sind veraltet (deprecated)
+- Konfigurationsoptionen _defaultCRS_ und _chooseCrs_ zur Auswahl eines Koordinatenreferenzsystems für die Vektordaten eines Planwerks sind veraltet (deprecated)
 - XPlanTransformCLI zur Transformation von XPlanGML 4.1 nach XPlanGML 5.1 ist veraltet (deprecated)
 
 [[Aenderungshistorie-7.0.2]]
@@ -83,12 +121,12 @@ Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version 
 - Aktualisierung der Validierungsregeln auf v1.1.5
 - Das Validierungsprofil Berlin ist in den Komponenten XPlanValidator und XPlanManager enthalten und kann aktiviert werden
 - Einführung der Datei _xqueryregeln.txt_ für Validierungsregeln und Profile
-- Verbesserung der Konfigurierbarkeit des MapServer-Container-Images
-- OCI-Labels für alle Container-Images hinzugefügt
+- Verbesserung der Konfigurierbarkeit des XPlanMapServer Container Images
+- OCI-Labels für alle Container Images hinzugefügt
 
 ==== Fehlerbehebungen
 - Fehler bei der Ausführung des XPlanValidator unter Windows behoben
-- Fehler bei der Ausführung in Container-Images auf Basis von Bitnami/Tomcat behoben
+- Fehler bei der Ausführung in Container Images auf Basis von Bitnami/Tomcat behoben
 - Fehler im Editiermodus des XPlanManagerWeb für XPlanGML 6.0 behoben
 - Korrekturen in den Zeichenvorschriften für den XPlanWMS vorgenommen
 - Fehlermeldung im XPlanValidator bei der Validierung von XPlanArchiven (ZIP-Datei) verbessert
@@ -97,6 +135,7 @@ Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version 
 
 [[Aenderungshistorie-7.0]]
 === Version 7.0
+
 Neben der Aktualisierung auf die aktuelle deegree webservices Version 3.5.0 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 7.0 der xPlanBox kann der XPlanWMS als MapServer-Instanz konfiguriert und ein AWS S3-kompatibler Objektspeicher genutzt werden. Mit der Version 7.0 wurde die Ausgabe von Log-Meldungen in separate Log-Dateien je xPlanBox-Komponente aus den mitgelieferten Logging-Konfiguration entfernt. Bitte beachten Sie dazu die Hinweise im Betriebshandbuch, Kapitel Logging.
 
 ==== Erweiterungen
@@ -180,8 +219,8 @@ Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neb
 - Unterstützung für XPlanGML 6.0 in allen Komponenten der xPlanBox
 - Unterstützung von Profilen mit zusätzlichen Validierungsregeln für den XPlanValidator
 - Neuer Dienst XPlanArtWMS eingeführt, für jede spezifische Planklasse ein eigener WMS
-- Verfahren kann nicht mehr über die Editierfunktion im XPlanManagerWeb für XPlanGML 6.0 geändert werden
-- Im XPlanManagerWeb können über die Editierfunktion nun auch Flächennutzungspläne, Regionalpläne, Landschaftspläne und Sonstigen Pläne geändert werden
+- Verfahren kann nicht mehr über die Editorfunktion im XPlanManagerWeb für XPlanGML 6.0 geändert werden
+- Im XPlanManagerWeb können über die Editorfunktion nun auch Flächennutzungspläne, Regionalpläne, Landschaftspläne und Sonstigen Pläne geändert werden
 - Versionierung des Datenbankschemas mit Liquibase
 - Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.1
 - Aktualisierung der Validierungsregeln auf v1.0 für XPlanGML Version 6.0.1
@@ -196,7 +235,7 @@ Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neb
 - Verbesserung der Fehlermeldung beim Import eines XPlanArchiv mit mehreren Instanzdokumenten und Referenzierung über verbundenerPlan@xlink:href
 - Verbessern der Fehlermeldung beim Editieren eines Plans ohne Bereich
 - Unterstützung von XPlanGML 3.0 aus allen Komponenten entfernt
-- Konfigurationsparameter `defaultBboxIn4326` entfernt
+- Konfigurationsparameter _defaultBboxIn4326_ entfernt
 - Hinzufügen der Tabelle _planslog_ in der XPlanDB
 - Aktualisierung auf deegree 3.5
 - Aktualisierung auf JTS 1.19.0

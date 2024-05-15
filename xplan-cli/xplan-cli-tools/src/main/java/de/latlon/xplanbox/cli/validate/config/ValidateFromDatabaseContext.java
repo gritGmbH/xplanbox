@@ -29,8 +29,8 @@ import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplanbox.cli.validate.db.ValidationProcessor;
 import de.latlon.xplanbox.cli.validate.db.domain.ValidationResultSummary;
 import de.latlon.xplanbox.cli.validate.db.domain.XPlanWithFeatureCollection;
-import org.apache.commons.dbcp2.BasicDataSource;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
@@ -60,6 +60,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -101,10 +103,9 @@ public class ValidateFromDatabaseContext {
 	@StepScope
 	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
 	public SemanticValidator semanticValidator(@Value("#{jobParameters[rulesDirectory]}") String rulesDirectory)
-			throws ConfigurationException {
+			throws ConfigurationException, URISyntaxException {
 		try {
-			LOG.info("Rules are read from: {}", rulesDirectory);
-			Path rulesPath = get(rulesDirectory);
+			Path rulesPath = getSemanticValidator(rulesDirectory);
 			SemanticRulesConfiguration semanticRulesConfiguration = new SemanticRulesMainConfiguration(rulesPath);
 			XQuerySemanticValidatorConfigurationRetriever semanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
 					semanticRulesConfiguration);
@@ -192,6 +193,16 @@ public class ValidateFromDatabaseContext {
 	@Bean
 	public Job job(Step step) {
 		return jobBuilderFactory.get("validateFromDatabaseJob").incrementer(new RunIdIncrementer()).start(step).build();
+	}
+
+	private Path getSemanticValidator(String rulesDirectory) throws URISyntaxException {
+		if (rulesDirectory == null) {
+			LOG.info("Rules from etc/rules are used");
+			URL pathToRules = ValidateFileContext.class.getProtectionDomain().getCodeSource().getLocation();
+			return get(pathToRules.toURI()).getParent().getParent().resolve("etc/rules");
+		}
+		LOG.info("Rules are read from: {}", rulesDirectory);
+		return get(rulesDirectory);
 	}
 
 	private BasicDataSource createDataSource(String jdbcurl, String user, String password) {

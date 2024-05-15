@@ -275,7 +275,7 @@ public class XPlanManager {
 
 	/**
 	 * @param pathToArchive the absolute path to the XPlanArchive to evaluate.
-	 * @param status the selected status, never <code>null</code>
+	 * @param status the selected status, may be <code>null</code>
 	 * @return the result of the evaluation, never <code>null</code>
 	 * @throws IOException
 	 * @throws XMLStreamException
