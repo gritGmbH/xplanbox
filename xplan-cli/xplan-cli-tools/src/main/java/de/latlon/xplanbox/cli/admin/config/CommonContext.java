@@ -31,10 +31,11 @@ import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDbAdapter;
+import de.latlon.xplan.manager.storage.filesystem.DeegreeRasterCacheCleaner;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
-import org.deegree.commons.config.DeegreeWorkspace;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import org.deegree.commons.config.DeegreeWorkspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,6 +108,11 @@ public class CommonContext {
 			throws WorkspaceException {
 		DeegreeWorkspace managerWorkspace = instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE, workspaceRoot);
 		return new ManagerWorkspaceWrapper(managerWorkspace);
+	}
+
+	@Bean
+	public DeegreeRasterCacheCleaner deegreeRasterCacheCleaner(ManagerConfiguration managerConfiguration) {
+		return new DeegreeRasterCacheCleaner(managerConfiguration.getWorkspaceReloaderConfiguration());
 	}
 
 	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")

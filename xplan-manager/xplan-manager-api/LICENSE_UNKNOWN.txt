@@ -1,0 +1,37 @@
+Hinweis:
+========
+
+Die Testdaten im Verzeichnis src/test/resources werden zu Testzwecken verwendet.
+Zu diesen Dateien können keine genaueren Angaben zur Quelle und zu etwaigen Nutzungsrechten angegeben werden. Eine Weitergabe an
+Dritte ausser zu Testzwecken der Anwendung xPlanBox ist nicht gestattet.
+
+Inhalt des Verzeichnisses src/test/resources:
+--------------------------
+├── bplanraster.xml
+├── bplan_valid_41.zip
+├── create-schema.sql
+├── de
+│   └── latlon
+│       └── xplanbox
+│           └── api
+│               └── manager
+│                   └── v1
+│                       ├── aenderungen.json
+│                       ├── basisdatenmodel_invalidBeschreibungAndName.json
+│                       ├── basisdatenmodel.json
+│                       ├── datei.pdf
+│                       ├── dokumentmodel.json
+│                       ├── georeferenz.txt
+│                       ├── gueltigkeit.json
+│                       ├── rasterbasismodel.json
+│                       ├── rasterbasismodel_missingbereichnummer.json
+│                       └── textmodel.json
+├── fplanraster.xml
+├── log4j2-test.yaml
+├── lplanraster.xml
+├── rplanraster.xml
+├── soplanraster.xml
+├── xplan51-edited.gml
+├── xplan51.gml
+├── xplan51_ohneBereich.gml
+└── xplan.gml

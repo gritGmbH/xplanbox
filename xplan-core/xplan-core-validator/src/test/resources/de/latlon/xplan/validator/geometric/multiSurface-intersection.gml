@@ -1,23 +1,3 @@
-<!--
-  #%L
-  xplan-validator-core - XPlan Validator Core Komponente
-  %%
-  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU Affero General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%
-  -->
   <gml:MultiSurface xmlns:gml="http://www.opengis.net/gml/3.2"  srsName="EPSG:25832" gml:id="GML_48d90d78-aa4a-44cc-939b-3562757993c6">
     <gml:surfaceMember>
       <gml:Polygon srsName="EPSG:25832" gml:id="GML_98a2ecff-1ec0-48e0-ad1f-fec708543420">

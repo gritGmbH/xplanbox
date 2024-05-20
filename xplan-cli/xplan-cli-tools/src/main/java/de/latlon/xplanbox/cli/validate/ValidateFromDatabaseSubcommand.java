@@ -89,7 +89,7 @@ public class ValidateFromDatabaseSubcommand implements Callable<Integer> {
 		jobParams.put("jdbcurl", new JobParameter(createJdbcUrl()));
 		jobParams.put("user", new JobParameter(user));
 		jobParams.put("password", new JobParameter(password));
-		jobParams.put("rulesDirectory", new JobParameter(rules.getAbsolutePath()));
+		jobParams.put("rulesDirectory", new JobParameter(rules != null ? rules.getAbsolutePath() : null));
 		return jobParams;
 	}
 

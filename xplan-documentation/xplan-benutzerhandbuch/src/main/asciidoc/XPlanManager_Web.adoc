@@ -165,7 +165,7 @@ Die Rasterbasis kann nur editiert werden, wenn ein Plan ein Objekt vom Typ BP|FP
 
 Wie im Kapitel <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2, 5.3 und 5.4 noch zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über das Element `<refScan/>` unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
 
-Klickt der Nutzer auf __Speichern__, wird zunächst eine Validierung der Rasterdaten vorgenommen. Bei invaliden Dateien bekommt der Nutzer eine Entscheidungsoption wie mit diesen Daten umgegangen werden soll. Stimmt das CRS der Rasterdaten nicht mit dem CRS der Rasterdatenhaltung überein, so erhält der Nutzer die Option, den Plan ohne Erzeugung der Rasterkonfiguration zu importieren.
+Klickt der Nutzer auf __Speichern__, wird zunächst eine Validierung der Rasterdaten vorgenommen. Bei invaliden Dateien bekommt der Nutzer eine Entscheidungsoption, wie mit diesen Daten umgegangen werden soll. Stimmt das CRS der Rasterdaten nicht mit dem CRS der Rasterdatenhaltung überein, so erhält der Nutzer die Option, den Plan ohne Erzeugung der Rasterkonfiguration zu importieren.
 Anschließend erfolgt die Aktualisierung der Daten.
 
 NOTE: Werden Referenzen auf Rasterbasisdateien entfernt oder verändert, so werden die nicht mehr referenzierten Dateien aus der Datenhaltung entfernt. Änderungen führen zu einer Aktualisierung der Konfiguration des XPlanWMS.

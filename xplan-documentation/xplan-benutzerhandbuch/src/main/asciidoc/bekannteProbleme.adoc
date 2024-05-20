@@ -78,6 +78,10 @@ IMPORTANT: Der Fehler kann nicht in der xPlanBox behoben werden! Das XPlanArchiv
 
 Bei der Verarbeitung von Texteingaben über die Editorfunktion werden die Zeichen und Zeichenketten aus Sicherheitsgründen von der Anwendung geprüft. Die zugelassenen Zeichen unterscheiden sich von denen, die im XML zugelassen sind und können dazu führen, dass eine Änderung an einem bereits erfolgreich validierten und importieren Plan nicht übernommen werden kann. In diesem Fall müssen allen Sonderzeichen aus der Texteingabe entfernt werden. Alternativ muss die Änderung direkt im XPlanGML vorgenommen werden und der Plan erneut importiert werden.
 
+==== XPlanManagerWeb - Überspringen des Imports von Rasterdaten
+
+Wird beim Import eines Plans mit Rasterdaten die Option "Weiter ohne Rasterdaten" im Dialog "Analyse der Rasterdaten" ausgewählt, kann es in Folge zu Fehlern im XPlanMapServer und XPlanMapProxy kommen.
+
 ==== XPlanDokumenteAPI - Abruf des World-Files bei GeoTIFF nicht möglich
 
 Bei Import eines Plans mit einer im XPlanGML referenzierten GeoTIFF-Datei als Rasterbasis und zusätzlich auch noch einem referenzierten World-File (tfw-Datei), dann ist die tfw-Datei nicht über die XPlanDokumenteAPI abfragbar. Wird die im exportierten XPlanGML angegebene URL aufgerufen, kann die tfw-Datei nicht abgerufen werden und ein HTTP-Statusfehler "404 - Not Found" wird von der XPlanDokumenteAPI zurückgegeben.

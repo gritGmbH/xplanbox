@@ -20,6 +20,8 @@
  */
 package de.latlon.xplanbox.cli.config;
 
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.storage.filesystem.DeegreeRasterCacheCleaner;
 import de.latlon.xplanbox.cli.admin.config.DistrictUpdateContext;
 import de.latlon.xplanbox.cli.admin.config.CommonContext;
 import de.latlon.xplanbox.cli.admin.config.ReSynthesizerContext;
@@ -28,6 +30,7 @@ import de.latlon.xplanbox.cli.admin.db.SortPropertyDbUpdater;
 import de.latlon.xplanbox.cli.manage.config.ManageContext;
 import de.latlon.xplanbox.cli.validate.config.ValidateFileContext;
 import de.latlon.xplanbox.cli.validate.config.ValidateFromDatabaseContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;

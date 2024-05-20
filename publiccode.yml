@@ -12,16 +12,16 @@ dependsOn:
     - name: OSGeo deegree webservices (with XPlanung patch)
       optional: false
       version: '3.5'
-      versionMax: '3.5.3'
+      versionMax: '3.5.7'
       versionMin: '3.5.0'
     - name: XPlanung-Validierungsregeln
       optional: false
-      version: '1.0'
-      versionMax: '1.1.6'
-      versionMin: '1.0'
+      version: '1.1'
+      versionMax: '1.1.7'
+      versionMin: '1.1'
     - name: PostgreSQL Datenbank mit PostGIS-Erweiterung
       optional: false
-      version: '12.0'
+      version: '14.0'
       versionMax: '14.0'
       versionMin: '12.0'
 description:
@@ -67,9 +67,9 @@ maintenance:
 name: ozgxplanung
 platforms:
   - web
-releaseDate: '2023-10-26'
+releaseDate: '2024-05-14'
 softwareType: standalone/depends
-softwareVersion: 7.0
+softwareVersion: 7.2
 url: 'https://gitlab.opencode.de/diplanung/ozgxplanung.git'
 usedBy:
   - XLeitstelle, Hamburg

@@ -311,10 +311,8 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 		HttpSession session = getThreadLocalRequest().getSession();
 		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
-			if ("null".equals(status))
-				status = null;
 			String fileToBeImported = retrieveFileToBeImported(plan);
-			return manager.evaluatePlanNameAndStatus(fileToBeImported, status.toString());
+			return manager.evaluatePlanNameAndStatus(fileToBeImported, status != null ? status.toString() : null);
 		}
 		catch (Exception e) {
 			LOG.error("evaulatePlanNameAndStats failed", e);
