@@ -7,7 +7,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-manager</artifactId>
-    <version>7.2</version>
+    <version>7.2.1</version>
   </parent>
 
   <build>

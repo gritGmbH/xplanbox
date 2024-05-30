@@ -20,10 +20,14 @@
  */
 package de.latlon.xplan.manager.web.shared;
 
+import org.junit.jupiter.api.Test;
+
+import static de.latlon.xplan.commons.XPlanType.BP_Plan;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -33,7 +37,7 @@ class PlanStatusTest {
 
 	@Test
 	void testFindByMessage() {
-		PlanStatus planStatus = PlanStatus.FESTGESTELLT;
+		PlanStatus planStatus = FESTGESTELLT;
 		PlanStatus foundPlanStatus = PlanStatus.findByMessage(planStatus.getMessage());
 
 		assertThat(foundPlanStatus).isEqualTo(planStatus);
@@ -47,6 +51,30 @@ class PlanStatusTest {
 	@Test
 	void testFindByMessageNullMessage() {
 		assertThrows(IllegalArgumentException.class, () -> PlanStatus.findByMessage(null));
+	}
+
+	@Test
+	void testFindByLegislationStatusCode_BPPlan_45000() {
+		PlanStatus planStatus = PlanStatus.findByLegislationStatusCode(BP_Plan.name(), 45000);
+		assertThat(planStatus).isEqualTo(FESTGESTELLT);
+	}
+
+	@Test
+	void testFindByLegislationStatusCode_BPlan_45001() {
+		PlanStatus planStatus = PlanStatus.findByLegislationStatusCode(BP_Plan.name(), 45001);
+		assertThat(planStatus).isEqualTo(FESTGESTELLT);
+	}
+
+	@Test
+	void testFindByLegislationStatusCode_BPlan_5000() {
+		PlanStatus planStatus = PlanStatus.findByLegislationStatusCode(BP_Plan.name(), 5000);
+		assertThat(planStatus).isEqualTo(ARCHIVIERT);
+	}
+
+	@Test
+	void testFindByLegislationStatusCode_BPlan_1000() {
+		PlanStatus planStatus = PlanStatus.findByLegislationStatusCode(BP_Plan.name(), 1000);
+		assertThat(planStatus).isEqualTo(IN_AUFSTELLUNG);
 	}
 
 }

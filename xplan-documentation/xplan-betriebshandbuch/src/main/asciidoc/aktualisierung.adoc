@@ -65,22 +65,18 @@ Folgende Tabelle listet auf, bei welchen xPlanBox Versionen die Datenhaltung bet
 
 In der Tabelle sind nur Versionen aufgelistet, die auch Änderungen an der Datenhaltung enthalten. Anhand der Übersicht lässt sich ableiten, welche Schritte bei einer Aktualisierung ausgeführt werden müssen. Die Schritt-für-Schritt-Anleitung zur Aktualisierung der jeweiligen Versionen sind in den nachfolgenden Kapiteln enthalten.
 
-Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versionen zusammen mit der aktuellen Liefereinheit bereitgestellt. Bei Fragen zur Aktualisierung von früheren Versionen (6.0 und älter), wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].
+Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versionen zusammen mit der aktuellen Liefereinheit bereitgestellt. Bei Fragen zur Aktualisierung von früheren Versionen (7.0 und älter), wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].
 
 .Überblick über die Datenhaltung betreffenden Änderungen (ab Version 6.0)
 [cols="3*^", options="header,footer"]
 |===
 | xPlanBox Version | Änderungen an den Workspaces/ der Konfiguration? | Änderungen am Datenbankschema?
-| 6.0   (<<aktualisierung-version-6.0, Details>>)       | ja   | ja
-| 6.0.1 (<<aktualisierung-version-6.0.1, Details>>)     | ja   | ja
-| 7.0   (<<aktualisierung-version-7.0, Details>>)       | ja   | ja
-| 7.0.1 (<<aktualisierung-version-7.0.1, Details>>)     | ja   | nein
-| 7.0.2 (<<aktualisierung-version-7.0.2, Details>>)     | ja   | nein
 | 7.1   (<<aktualisierung-version-7.1, Details>>)       | ja   | ja
 | 7.1.1 (<<aktualisierung-version-7.1.1, Details>>)     | nein | nein
 | 7.1.2 (<<aktualisierung-version-7.1.2, Details>>)     | ja   | nein
 | 7.1.3 (<<aktualisierung-version-7.1.3, Details>>)     | ja   | nein
 | 7.2   (<<aktualisierung-version-7.2, Details>>)       | ja   | ja
+| 7.2.1 (<<aktualisierung-version-7.2.1, Details>>)     | nein | nein
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |===
 
@@ -148,8 +144,6 @@ SQL-Skript durchgeführt werden. Für die Aktualisierungen der XPlanDB liegen di
 
 Führen Sie die zu der Version passenden SQL-Skripte aus dem entsprechenden Unterordner aus:
 
-- von 6.0 auf 6.0.1 aus dem Verzeichnis _from_6.0_to_6.0.1/_
-- von 6.0.1 auf 7.0 aus dem Verzeichnis _from_6.0.1_to_7.0/_
 - von 7.0 auf 7.1 aus dem Verzeichnis _from_7.0_to_7.1/_
 - von 7.1 auf 7.2 aus dem Verzeichnis _from_7.1_to_7.2/_
 
@@ -169,111 +163,6 @@ Zur Aktualisierung der Daten stehen Kommandozeilenwerkzeuge im XPlanUpdateDataCL
 . _reSynthesizer_
 
 Weitere Informationen zu den Tools stehen im Kapitel <<kommandozeilen-anwendungen>>.
-
-[[aktualisierung-version-6.0]]
-=== Aktualisierung auf die Version 6.0 der xPlanBox
-
-Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neben der Aktualisierung auf deegree webservices Version 3.5 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 6.0 ist mindestens PostgreSQL Version 12 mit der PostGIS-Erweiterung 3.1 erforderlich.
-
-IMPORTANT: Mit der Version 6.0 der xPlanBox wird XPlanGML 3 nicht mehr unterstützt! Vor der Aktualisierung müssen alle Pläne in der Version XPlanGML 3 heruntergeladen und gelöscht werden. Heruntergeladene Pläne müssen manuell in eine höhere Version überführt und nach der Aktualisierung wieder über den XPlanManager importiert werden.
-
-Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
-
-* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
-** Anpassung der Konfigurationsdateien _xplan.xml_, _vfdb.xml_ und _inspireplu.xml_ im Unterverzeichnis _jdbc/_ für alle deegree Workspaces mit folgenden Änderungen:
-*** den Wert für die Eigenschaft `driverClassName` von `org.apache.commons.dbcp.BasicDataSource` auf `org.apache.commons.dbcp2.BasicDataSource` ändern.
-*** die Eigenschaft `maxActive` umbenennen in `maxTotal`
-*** die Eigenschaft `maxWait` umbenennen in `maxWaitMillis`
-*** die Eigenschaft `removeAbandoned` ersetzen entweder durch `removeAbandonedOnBorrow` (empfohlen) oder `removeAbandonedOnMaintenance` (weitere Informationen unter https://commons.apache.org/proper/commons-dbcp/configuration.html[Apache DBCP Konfigurationsoptionen])
-* Aktualisierung der Datenbank:
-** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_5.0.2_to_6.0_ im Modul _xplan-manager-workspace_
-** Ausführen des Skripts _databasechangelog_v60.sql_ im Verzeichnis _sql/changelog_ im Modul _xplan-manager-workspace_
-** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ aus XPlanUpdateDataCLI zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten ist erforderlich. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** Installation des Kommandozeilenwerkzeugs <<xplanclitools,XPlanCLI>> und dem <<xplanevaluationschema,Auswerteschemas>> (optional)
-
-[[aktualisierung-version-6.0.1]]
-=== Aktualisierung auf die Version 6.0.1 der xPlanBox
-
-Mit der Version 6.0.1 der xPlanBox ist unter anderem die Umsetzung der Bugfix Version XPlanGML 6.0.2 erfolgt. Von den Änderungen betroffen sind alle Komponenten der xPlanBox.
-
-Für die Aktualisierung auf die Version 6.0.1 sind folgende Schritte auszuführen:
-
-* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
-* Aktualisierung der Datenbank:
-** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_6.0_to_6.0.1_ im Modul _xplan-manager-workspace_
-** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ aus XPlanUpdateDataCLI zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten ist erforderlich. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-
-[[aktualisierung-version-6.0.2]]
-=== Aktualisierung auf die Version 6.0.2
-
-Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
-
-* Austausch der Webapps:
-** _xplan-validator-api.war_
-** _xplan-manager-api.war_
-** _xplan-validator-web.war_
-** _xplan-manager-web.war_
-
-TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
-
-[[aktualisierung-version-6.0.3]]
-=== Aktualisierung auf die Version 6.0.3
-
-Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
-
-* Austausch der Webapps:
-** _xplan-validator-api.war_
-** _xplan-manager-api.war_
-** _xplan-validator-web.war_
-** _xplan-manager-web.war_
-
-TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
-
-[[aktualisierung-version-7.0]]
-=== Aktualisierung auf die Version 7.0 der xPlanBox
-
-Mit der Version 7.0 der xPlanBox erfolgte eine Anpassung der Werkseinstellungen für das Logging. Für die Anwendungen XPlanManagerWeb, XPlanManagerAPI, XPlanValidatorWeb und XPlanValidatorAPI sowie alle XPlanDienste werden keine Log-Dateien mehr geschrieben. Alle Log-Ausgaben werden nur noch in die Standardausgabe (stdout) geschrieben. Um das Logging so anzupassen, dass die Log-Ausgaben zusätzlich auch in Log-Dateien geschrieben werden, müssen Anpassungen an der Konfiguration vorgenommen werden. Beispiele dafür sind im Kapitel <<logging>> zu finden.
-
-Für die Aktualisierung auf die Version 7.0 sind folgende Schritte auszuführen:
-
-* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
-** Es wird empfohlen zur Absicherung der REST-Schnittstellen der XPlanDienste von der Authentifizierung über einen Tomcat-Nutzer auf API-Key umzustellen. Details dazu finden sich im Abschnitt <<dienste-tomcat>>. Soll weiterhin die Absicherung über einen konfigurierten Tomcat-Nutzer erfolgen, muss in der Datei _<DEEGREE_WORKSPACE_ROOT>/config.apikey_ ein `*` eingetragen werden, um die Absicherung zu deaktivieren.
-** Im _xplan-manager-workspace_ muss eine neue Konfigurationsdatei für einen `JpaConnectionProvider` im Unterverzeichnis _jdbc/_ angelegt werden. Die Datei muss mit der bereits vorhandenen Konfigurationsdatei für den `DataSourceConnectionProvider` über die Ressourcen-ID verknüpft werden. Vorlagen befinden sich in dem bereitgestellten Workspace _xplan-manager-workspace_.
-* Aktualisierung der Datenbank:
-** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_6.0.1_to_7.0_ im Modul _xplan-manager-workspace_
-*** vor Ausführung des Skripts muss die Variable `${xplan.srid}` mit dem verwendeten CRS ausgetauscht werden. Die Datei _migrate_25832.sql_ beinhaltet bereits die Ersetzung durch den CRS Code `25832` und kann ohne Änderungen ausgeführt werden.
-* Ausführen der Kommandozeilenwerkzeuge __artefactsTableUpdate__ und __reSynthesizer__ aus XPlanUpdateDataCLI zur Aktualisierung der XPlanDB ist erforderlich. Der Aufruf der Tools mit `--help` liefert Hinweise zu deren Verwendung.
-
-IMPORTANT: Mit der Version 7.0 der xPlanBox ist die Kartenvorschau im XPlanValidator nicht mehr standardmäßig aktiviert. Hinweise zur Konfiguration der Kartenvorschau sind im Abschnitt <<kartenvorschau-validator>> beschrieben.
-
-[[aktualisierung-version-7.0.1]]
-=== Aktualisierung auf die Version 7.0.1
-
-Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
-
-* Austausch der Webapps:
-** _xplan-validator-api.war_
-** _xplan-manager-api.war_
-** _xplan-validator-web.war_
-** _xplan-manager-web.war_
-* Aktualisierung des Workspace und der Konfigurationen (s. <<teilweise-aktualisierung>>) für:
-** _xplan-services-wms-workspace_
-
-TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
-
-[[aktualisierung-version-7.0.2]]
-=== Aktualisierung auf die Version 7.0.2
-
-Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
-
-* Austausch der Webapps:
-** _xplan-validator-api.war_
-** _xplan-manager-api.war_
-** _xplan-validator-web.war_
-** _xplan-manager-web.war_
-* Austausch der ZIP-Datei mit dem XPlanUpdateDataCLI und Ausführung des Kommandozeilenwerkzeugs __artefactsTableUpdate__ zur Aktualisierung der XPlanDB, wenn dieses bei der Installation der Version 7.0 oder 7.0.1 nicht erfolgreich ausgeführt werden konnte.
-
-TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
 [[aktualisierung-version-7.1]]
 === Aktualisierung auf die Version 7.1 der xPlanBox
@@ -337,7 +226,7 @@ Für die Aktualisierung auf die Version 7.2 sind folgende Schritte auszuführen:
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 ** _xplan-inspireplu-workspace.zip_ - muss vollständig ausgetauscht werden!
 * Aktualisierung der Datenbank:
-** Ersetzen der Variable _${xplan.db.user}_ in den Zeilen 6478, 6480 und 6482 durch den Benutzernamen des `$DB_USER` (_XPLAN_DB_USER_) im Skript _migrate.sql_ im Verzeichnis _sql/update/from_7.1_to_7.2_ im Modul _xplan-manager-workspace_
+** Ersetzen der Variable _${xplan.db.user}_ durch den Benutzernamen des `$DB_USER` (_XPLAN_DB_USER_) in allen Zeilen des Skript _migrate.sql_ im Verzeichnis _sql/update/from_7.1_to_7.2_ im Modul _xplan-manager-workspace_
 ** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_7.1_to_7.2_ im Modul _xplan-manager-workspace_
 * Umbenennung der Datei _<XPLANBOX_CONFIG>/dokumentenApiConfiguration.properties_  nach _<XPLANBOX_CONFIG>/dokumenteApiConfiguration.properties_ zur Konfiguration der <<konfiguration-document-api>>.
 * Umstellung der Konfiguration der XPlanDokumenteAPI
@@ -346,7 +235,24 @@ Für die Aktualisierung auf die Version 7.2 sind folgende Schritte auszuführen:
 
 NOTE: Die Webanwendungen mit den REST-APIs sowie die der XPlanDienste und deren Workspace-Konfigurationen wurden umbenannt. Die neuen Dateinamen sind im Kapitel <<installationskomponenten>> aufgeführt.
 
-NOTE: Durch die Änderungen im GML-Applikationsschema von INSPIRE PLU müssen alle Daten neu transformiert werden. Die Änderungen vom 07.02.2024 in der Version 4.0.1 im XML-Schema https://inspire.ec.europa.eu/schemas/plu/4.0/PlannedLandUse.xsd sind nicht kompatibel! Weitere Informationen dazu sind unter https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 und im Amendment 1089/2010 zu finden.
+NOTE: Durch die Änderungen im GML-Applikationsschema von INSPIRE PLU müssen alle Daten neu transformiert werden. Die Änderungen vom 07.02.2024 in der Version 4.0.1 im XML-Schema https://inspire.ec.europa.eu/schemas/plu/4.0/PlannedLandUse.xsd sind nicht abwärtskompatibel! Weitere Informationen dazu sind unter https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 und im Amendment 1089/2010 zu finden.
+
+[[aktualisierung-version-7.2.1]]
+=== Aktualisierung auf die Version 7.2.1
+
+Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
+
+* Austausch der Webapps:
+** _xplan-manager-api.war_
+** _xplan-manager-web.war_
+** _xplan-services-wfs.war_
+** _xplan-services-wfs-syn.war_
+** _xplan-services-wms.war_
+** _xplan-validator-web.war_
+** _xplan-webservices-inspireplu.war_
+** _xplan-webservices-validator-wms.war_
+
+TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
 === Troubleshooting
 

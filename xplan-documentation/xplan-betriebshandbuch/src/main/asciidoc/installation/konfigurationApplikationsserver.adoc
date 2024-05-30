@@ -85,18 +85,7 @@ export CATALINA_OPTS='-DXPLANBOX_CONFIG=/opt/xplanbox/xplan-manager-config -DDEE
 IMPORTANT: Der _API-Tomcat_ muss mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch Setzen der Umgebungsvariable: `export JAVA_OPTS='-Xmx4096m'` erfolgen.
 
-==== Absicherung des Tomcat und der Webanwendungen
+==== Absicherung der Tomcat-Instanzen
 
-Wenn die xPlanBox in einer produktiven Umgebung betrieben wird, sollte der Apache Tomcat abgesichert werden. Dazu sind die allgemeinen Empfehlungen aus der https://tomcat.apache.org/tomcat-9.0-doc/security-howto.html[Dokumentation von Apache Tomcat zum Thema Sicherheit] zu beachten.
+Wenn die xPlanBox in einer produktiven Umgebung betrieben wird, sollten die Apache Tomcat-Instanzen abgesichert werden. Dazu sind die allgemeinen Empfehlungen aus der https://tomcat.apache.org/tomcat-9.0-doc/security-howto.html[Dokumentation von Apache Tomcat zum Thema Sicherheit] zu beachten.
 
-Zusätzlich sollte die xPlanBox wie folgt konfiguriert sein:
-
-. die deegree webservice console (Kontextpfad _/console_) für die Dienste _xplan-services-wms_, _xplan-services-wfs_, _xplan-services-wfs-syn_ und _xplan-webservices-inspireplu_ im _Dienste-Tomcat_ ist durch ein Kennwort geschützt (Datei _console.pw_ im deegree Workspace).
-. die deegree REST-Schnittstelle (Kontextpfad _/config_) für die Dienste _xplan-services-wms_, _xplan-services-wfs_, _xplan-services-wfs-syn_ und _xplan-webservices-inspireplu_ ist durch einen API-Key abgesichert (Datei _config.apikey_ im Workspace-Verzeichnis, siehe Kapitel <<dienste-tomcat>>).
-. zusätzlich wird die Einschränkung des Zugriffs auf die deegree webservice console und deegree REST-Schnittstelle auf IP-Adressbereiche bzw. Domänen empfohlen (Datei _context.xml_ innerhalb der Webanwendungen).
-. die Tomcat-Instanzen werden hinter einem Proxy (z. B. Apache httpd oder nginx) betrieben.
-. der Zugriff auf den XPlanManagerWeb ist durch Benutzername und Kennwort abgesichert (siehe Kapitel <<security>>).
-. die Komponente XPlanManagerAPI ist ebenfalls über Benutzername und Kennwort abgesichert.
-. die über den XPlanManagerAPI/-Web sowie XPlanValidatorAPI/-Web hochgeladenen Dateien sollten vorher durch einen Proxy mit Virenscanner auf Viren und Malware geprüft werden.
-
-CAUTION: Der Betrieb der xPlanBox *ohne* die Umsetzung dieser Maßnahmen kann die IT-Sicherheit der Anwendung gefährden!

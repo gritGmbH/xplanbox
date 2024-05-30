@@ -142,13 +142,14 @@ kaniko:xplan-manager-web:
     - maven-prepare-docker-contexts-web-apps
     - kaniko:xplan-docker-tomcat-gdal
 
-kaniko:xplan-root:
+kaniko:xplan-manager-web-hale:
   extends: .kaniko:build
   variables:
-    dockerImageName: xplan-root
-    tarGzFile: xplan-documentation/xplan-webpages/target/docker/xplanbox/xplan-webpages/tmp/docker-build.tar.gz
+    dockerImageName: xplan-manager-web-hale
+    tarGzFile: xplan-manager/xplan-manager-web/target/docker/xplanbox/xplan-manager-web-hale/tmp/docker-build.tar.gz
   needs:
     - maven-prepare-docker-contexts-web-apps
+    - kaniko:xplan-docker-tomcat-gdal
     
 kaniko:xplan-services:
   extends: .kaniko:build

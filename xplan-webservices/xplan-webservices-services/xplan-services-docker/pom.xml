@@ -7,13 +7,13 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-webservices-services</artifactId>
-    <version>7.2</version>
+    <version>7.2.1</version>
   </parent>
   
   <properties>
     <docker-image.skip>false</docker-image.skip>
     <docker-image.name>xplan-services</docker-image.name>
-    <docker-contextTarFile.expectedSizeInMat10pct>202</docker-contextTarFile.expectedSizeInMat10pct>
+    <docker-contextTarFile.expectedSizeInMat10pct>216</docker-contextTarFile.expectedSizeInMat10pct>
   </properties>
 
   <build>

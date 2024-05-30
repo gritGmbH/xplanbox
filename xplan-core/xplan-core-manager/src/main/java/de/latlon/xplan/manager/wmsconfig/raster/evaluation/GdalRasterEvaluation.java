@@ -35,8 +35,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
+@Deprecated
 public class GdalRasterEvaluation implements RasterEvaluation {
 
 	private static final Logger LOG = LoggerFactory.getLogger(GdalRasterEvaluation.class);

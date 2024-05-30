@@ -78,6 +78,10 @@ IMPORTANT: Der Fehler kann nicht in der xPlanBox behoben werden! Das XPlanArchiv
 
 Bei der Verarbeitung von Texteingaben über die Editorfunktion werden die Zeichen und Zeichenketten aus Sicherheitsgründen von der Anwendung geprüft. Die zugelassenen Zeichen unterscheiden sich von denen, die im XML zugelassen sind und können dazu führen, dass eine Änderung an einem bereits erfolgreich validierten und importieren Plan nicht übernommen werden kann. In diesem Fall müssen allen Sonderzeichen aus der Texteingabe entfernt werden. Alternativ muss die Änderung direkt im XPlanGML vorgenommen werden und der Plan erneut importiert werden.
 
+==== XPlanManagerWeb - Hinzufügen einer weiteren Datei mit gleichem Namen über die Editorfunktion führt zu Fehler beim Abspeichern
+
+Wird ein XPlanArchiv mit Begleitdokumenten oder Rasterdaten importiert und über die Editorfunktion eine weitere Datei mit bereits verwendetem Dateinamen hinzugefügt, dann kommt es beim Abspeichern zu einer Fehlermeldung.
+
 ==== XPlanManagerWeb - Überspringen des Imports von Rasterdaten
 
 Wird beim Import eines Plans mit Rasterdaten die Option "Weiter ohne Rasterdaten" im Dialog "Analyse der Rasterdaten" ausgewählt, kann es in Folge zu Fehlern im XPlanMapServer und XPlanMapProxy kommen.
