@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.web.client.service;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.google.gwt.user.server.rpc.XsrfProtect;
+import de.latlon.xplan.manager.web.server.service.ManagerServiceImplException;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -50,32 +51,36 @@ public interface ManagerService extends RemoteService {
 
 	XPlan getPlanFromLocal();
 
-	XPlanToEdit getPlanToEdit(String planId);
+	XPlanToEdit getPlanToEdit(String planId) throws ManagerServiceImplException;
 
-	void editPlan(String planId, boolean updateRasterConfig, XPlanToEdit xPlanToEdit);
+	void editPlan(String planId, boolean updateRasterConfig, XPlanToEdit xPlanToEdit)
+			throws ManagerServiceImplException;
 
-	List<RasterEvaluationResult> evaluateRaster(String planId, XPlanToEdit xPlanToEdit);
+	List<RasterEvaluationResult> evaluateRaster(String planId, XPlanToEdit xPlanToEdit)
+			throws ManagerServiceImplException;
 
-	Boolean removePlanFromManager(String planId);
+	Boolean removePlanFromManager(String planId) throws ManagerServiceImplException;
 
 	Boolean removePlanFromFileSystem(String planId);
 
 	Boolean importPlan(String planId, String internalId, String defaultCrs, boolean makeRasterConfig,
-			PlanStatus planStatus, Date startDateTime, Date endDateTime) throws InvalidParameterException;
+			PlanStatus planStatus, Date startDateTime, Date endDateTime)
+			throws InvalidParameterException, ManagerServiceImplException;
 
-	Map<String, String> retrieveMatchingInternalIds(String internalId);
+	Map<String, String> retrieveMatchingInternalIds(String internalId) throws ManagerServiceImplException;
 
 	List<Bereich> retrieveBereiche(String planId) throws Exception;
 
 	@Deprecated
-	Boolean isCrsSet(String id);
+	Boolean isCrsSet(String id) throws ManagerServiceImplException;
 
-	List<RasterEvaluationResult> evaluateRaster(String id);
+	List<RasterEvaluationResult> evaluateRaster(String id) throws ManagerServiceImplException;
 
-	List<PlanNameWithStatusResult> evaluatePlanNameAndStatus(String id, PlanStatus status);
+	List<PlanNameWithStatusResult> evaluatePlanNameAndStatus(String id, PlanStatus status)
+			throws ManagerServiceImplException;
 
-	RechtsstandAndPlanStatus determineLegislationStatus(String id);
+	RechtsstandAndPlanStatus determineLegislationStatus(String id) throws ManagerServiceImplException;
 
-	Boolean publishPlan(String planId);
+	Boolean publishPlan(String planId) throws ManagerServiceImplException;
 
 }

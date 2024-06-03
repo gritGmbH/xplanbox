@@ -1,7 +1,7 @@
 pipeline {
   agent any
   triggers {
-    cron('H 6 * * 1') // each Monday
+    cron('H 4 * * 1') // each Monday
   }
   options {
       disableConcurrentBuilds()

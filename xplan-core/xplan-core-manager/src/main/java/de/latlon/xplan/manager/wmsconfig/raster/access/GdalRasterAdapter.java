@@ -41,8 +41,10 @@ import java.util.Vector;
 import static org.apache.commons.io.IOUtils.close;
 
 /**
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
+@Deprecated
 public class GdalRasterAdapter {
 
 	private static final Logger LOG = LoggerFactory.getLogger(GdalRasterAdapter.class);

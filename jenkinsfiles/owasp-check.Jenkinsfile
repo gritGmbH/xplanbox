@@ -1,7 +1,7 @@
 pipeline {
   agent any
   triggers {
-    cron('H 4 * * 1') // each Monday
+    cron('H 2 * * 1') // each Monday
   }
   tools {
     maven 'maven-3.9'

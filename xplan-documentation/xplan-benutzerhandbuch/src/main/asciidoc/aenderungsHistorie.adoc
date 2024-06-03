@@ -2,6 +2,20 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
+[[Aenderungshistorie-7.2.1]]
+=== Version 7.2.1
+
+==== Fehlerbehebungen
+- Fehler bei der Initialisierung der XPlanDienste behoben
+- Unvollständige Anzeige von Fehlermeldungen im XPlanManagerWeb behoben
+- Zuordnung von Bebauungsplänen in der XPlanGML-Version 6.0 mit dem Rechtsstand _45000_ (Teilweise aufgehoben) oder _45001_ (Teilweise außer Kraft) zum Planstatus 'Festgestellt' anstelle von 'Archiviert' korrigiert
+
+==== Veraltete Funktionen
+
+Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version der xPlanBox entfernt:
+
+- Nutzung von XPlanWMS mit GDAL ist veraltet (deprecated)
+
 [[Aenderungshistorie-7.2]]
 === Version 7.2
 
@@ -16,9 +30,8 @@ Neben Fehlerbehebungen sowie Erweiterungen und Verbesserungen an den Komponenten
 - Verbesserungen an Zeichenvorschriften für SO- und LP-Objekte
 - Integration des Validierungsprofils für Brandenburg in XPlanValidator und XPlanManager
 - Zusammenfassung der Kommandozeilenwerkzeuge (CLIs) zum XPlanCLI
-- Entfernen der Validierungsregeln für XPlanGML 3.0
 - Umfang der erlaubten Zeichen bei der Texteingabe in der Editorfunktion des XPlanManagerWeb erweitert
-- Aktualisierung auf INSPIRE PLU Schema 2024.1 (nicht abwärtskompatibel)
+- Aktualisierung auf INSPIRE PLU Schema 2024.1 (enthält nicht abwärtskompatible Änderungen)
 - Anzeige von Zeilenumbrüchen in der HTML-Ausgabe der XPlanWMS GetFeatureInfo-Anfrage
 - Konfiguration von MaxWidth und MaxHeight in den Capabilities des XPlanWMS, XPlanMapServer und XPlanMapProxy ermöglicht
 - Verknüpfung der Layer-Metadaten in den Capabilities der XPlanServices, XPlanMapServer und XPlanMapProxy
@@ -43,6 +56,7 @@ Neben Fehlerbehebungen sowie Erweiterungen und Verbesserungen an den Komponenten
 Die folgenden Funktionen wurde in dieser Version entfernt:
 
 - REST-API der Komponente XPlanManagerWeb wurde entfernt, stattdessen kann die REST-API der Komponente XPlanManagerAPI verwendet werden.
+- Entfernen der Validierungsregeln für XPlanGML 3.0
 
 ==== Veraltete Funktionen
 
@@ -223,7 +237,7 @@ Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neb
 - Im XPlanManagerWeb können über die Editorfunktion nun auch Flächennutzungspläne, Regionalpläne, Landschaftspläne und Sonstigen Pläne geändert werden
 - Versionierung des Datenbankschemas mit Liquibase
 - Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.1
-- Aktualisierung der Validierungsregeln auf v1.0 für XPlanGML Version 6.0.1
+- Aktualisierung der Validierungsregeln auf v1.0 für XPlanGML-Version 6.0.1
 - Datei _VERSION.txt_ durch _version.properties_ für Standard-Validierungsregeln ersetzt
 - Validierung eines XPlanGML mit `xsi:type` ermöglicht
 - Verbesserungen am XPlanSyn-Schema

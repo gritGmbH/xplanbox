@@ -6,7 +6,7 @@ muss in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ die folgen
 
 [source,properties]
 ----
-# must be gdal, geotiff or mapserver, default is gdal
+# must be gdal (deprecated), geotiff or mapserver, default is gdal
 rasterConfigurationType=mapserver
 ----
 

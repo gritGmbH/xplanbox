@@ -90,14 +90,6 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 	@Autowired
 	private InternalIdRetriever internalIdRetriever;
 
-	static class ManagerServiceImplException extends RuntimeException {
-
-		ManagerServiceImplException(Exception e) {
-			super(e.getMessage());
-		}
-
-	}
-
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -107,7 +99,8 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 			.autowireBean(this);
 	}
 
-	public List<XPlan> getPlansFromManager() {
+	@Override
+	public List<XPlan> getPlansFromManager() throws ManagerServiceImplException {
 		getThreadLocalResponse().addHeader("Expires", "-1");
 		LOG.info("Retrieve all plans.");
 		List<XPlan> xPlanList;
@@ -121,6 +114,7 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 		return xPlanList;
 	}
 
+	@Override
 	public XPlan getPlanFromLocal() {
 		getThreadLocalResponse().addHeader("Expires", "-1");
 		LOG.info("Retrieve plan from session.");
@@ -129,7 +123,8 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 		return xPlan;
 	}
 
-	public XPlanToEdit getPlanToEdit(String planId) {
+	@Override
+	public XPlanToEdit getPlanToEdit(String planId) throws ManagerServiceImplException {
 		getThreadLocalResponse().addHeader("Expires", "-1");
 		LOG.info("Retrieve plan with id {} to edit.", StringUtils.normalizeSpace(planId));
 		try {
@@ -149,7 +144,9 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 		}
 	}
 
-	public void editPlan(String planId, boolean updateRasterConfig, @Valid XPlanToEdit xPlanToEdit) {
+	@Override
+	public void editPlan(String planId, boolean updateRasterConfig, @Valid XPlanToEdit xPlanToEdit)
+			throws ManagerServiceImplException {
 		getThreadLocalResponse().addHeader("Expires", "-1");
 		LOG.info("Try to edit plan with id {}.", StringUtils.normalizeSpace(planId));
 		try {
@@ -172,7 +169,9 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 		}
 	}
 
-	public List<RasterEvaluationResult> evaluateRaster(String id, XPlanToEdit xPlanToEdit) {
+	@Override
+	public List<RasterEvaluationResult> evaluateRaster(String id, XPlanToEdit xPlanToEdit)
+			throws ManagerServiceImplException {
 		getThreadLocalResponse().addHeader("Expires", "-1");
 		LOG.info("Evaluate uploaded raster of plan with id {}.", StringUtils.normalizeSpace(id));
 		try {
@@ -186,7 +185,8 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 		}
 	}
 
-	public Boolean removePlanFromManager(String planId) {
+	@Override
+	public Boolean removePlanFromManager(String planId) throws ManagerServiceImplException {
 		LOG.info("Try to remove plan with id {}.", planId);
 		if (planId == null)
 			return false;
@@ -205,6 +205,7 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 		return false;
 	}
 
+	@Override
 	public Boolean removePlanFromFileSystem(String planId) {
 		LOG.info("Try to remove local plan.");
 		HttpSession session = getThreadLocalRequest().getSession();
@@ -218,8 +219,10 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 		return false;
 	}
 
+	@Override
 	public Boolean importPlan(String planId, String internalId, String defaultCrs, boolean makeRasterConfig,
-			PlanStatus planStatus, Date startDateTime, Date endDateTime) throws InvalidParameterException {
+			PlanStatus planStatus, Date startDateTime, Date endDateTime)
+			throws InvalidParameterException, ManagerServiceImplException {
 		checkInternalId(internalId);
 		getThreadLocalResponse().addHeader("Expires", "-1");
 		LOG.info("Try to import plan with id {}", StringUtils.normalizeSpace(planId));
@@ -246,11 +249,13 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 		return false;
 	}
 
+	@Override
 	public List<Bereich> retrieveBereiche(String planId) throws Exception {
 		return manager.getBereicheOfPlanWithId(planId);
 	}
 
-	public Map<String, String> retrieveMatchingInternalIds(String id) {
+	@Override
+	public Map<String, String> retrieveMatchingInternalIds(String id) throws ManagerServiceImplException {
 		getThreadLocalResponse().addHeader("Expires", "-1");
 		LOG.info("Retrieve internal id of plan with id {}.", StringUtils.normalizeSpace(id));
 		HttpSession session = getThreadLocalRequest().getSession();
@@ -274,7 +279,8 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 	@RequestMapping(value = "/crs/{id}", method = GET)
 	@ResponseBody
 	@Deprecated
-	public Boolean isCrsSet(String id) {
+	@Override
+	public Boolean isCrsSet(String id) throws ManagerServiceImplException {
 		getThreadLocalResponse().addHeader("Expires", "-1");
 		LOG.info("Retrieve crs of plan with id {}.", StringUtils.normalizeSpace(id));
 		HttpSession session = getThreadLocalRequest().getSession();
@@ -289,7 +295,8 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 		}
 	}
 
-	public List<RasterEvaluationResult> evaluateRaster(String id) {
+	@Override
+	public List<RasterEvaluationResult> evaluateRaster(String id) throws ManagerServiceImplException {
 
 		getThreadLocalResponse().addHeader("Expires", "-1");
 		LOG.info("Evaluate raster of with id {}.", StringUtils.normalizeSpace(id));
@@ -305,7 +312,9 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 		}
 	}
 
-	public List<PlanNameWithStatusResult> evaluatePlanNameAndStatus(String id, PlanStatus status) {
+	@Override
+	public List<PlanNameWithStatusResult> evaluatePlanNameAndStatus(String id, PlanStatus status)
+			throws ManagerServiceImplException {
 		getThreadLocalResponse().addHeader("Expires", "-1");
 		LOG.info("Evaluate name of plan with id {}.", StringUtils.normalizeSpace(id));
 		HttpSession session = getThreadLocalRequest().getSession();
@@ -320,7 +329,8 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 		}
 	}
 
-	public RechtsstandAndPlanStatus determineLegislationStatus(String id) {
+	@Override
+	public RechtsstandAndPlanStatus determineLegislationStatus(String id) throws ManagerServiceImplException {
 		getThreadLocalResponse().addHeader("Expires", "-1");
 		LOG.info("Evaluate legislation status of plan with id {}.", StringUtils.normalizeSpace(id));
 		HttpSession session = getThreadLocalRequest().getSession();
@@ -336,7 +346,8 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 		}
 	}
 
-	public Boolean publishPlan(String planId) {
+	@Override
+	public Boolean publishPlan(String planId) throws ManagerServiceImplException {
 		getThreadLocalResponse().addHeader("Expires", "-1");
 		LOG.info("Publish plan with id {} as INSPIRE dataset.", StringUtils.normalizeSpace(planId));
 		if (planId == null)

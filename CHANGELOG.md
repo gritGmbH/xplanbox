@@ -2,9 +2,56 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+## Version 7.2.1 (2024-05-29)
+
+### Fehlerbehebungen
+- Fehler bei der Initialisierung der XPlanDienste behoben
+- Unvollständige Anzeige von Fehlermeldungen im XPlanManagerWeb behoben
+- Zuordnung von Bebauungsplänen in der XPlanGML-Version 6.0 mit dem Rechtsstand _45000_ (Teilweise aufgehoben) oder _45001_ (Teilweise außer Kraft) zum Planstatus 'Festgestellt' anstelle von 'Archiviert' korrigiert
+
+### Veraltete Funktionen
+
+Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version der xPlanBox entfernt:
+
+- Nutzung von XPlanWMS mit GDAL ist veraltet (deprecated)
+
 ## Version 7.2 (2024-05-14)
 
-Neben Fehlerbehebungen sowie Erweiterungen und Verbesserungen an den Komponenten der xPlanBox wird für die Einrichtung und Aktualisierung des Datenbankschemas der XPlanDB ab der Version 7.2 das Werkzeug Liquibase eingesetzt. Bitte beachten Sie dazu die Hinweise im Betriebshandbuch, Abschnitt Installation.
+Neben Fehlerbehebungen sowie Erweiterungen und Verbesserungen an den Komponenten der xPlanBox wurden alle Kommandozeilenwerkzeuge zu einem Tool zusammengefasst. Auch wird für die Einrichtung und Aktualisierung des Datenbankschemas der XPlanDB ab der Version 7.2 das Werkzeug Liquibase eingesetzt. Bitte beachten Sie dazu die Hinweise im Betriebshandbuch, Abschnitt Installation.
+
+Folgende Webmodule wurden umbenannt:
+
+| Alt                   | Neu                               |
+|-----------------------|-----------------------------------|
+| `xplan-api-dokumente` | `xplan-dokumente-api`             |
+| `xplan-api-manager`   | `xplan-manager-api`               |
+| `xplan-api-validator` | `xplan-validator-api`             |
+| `xplansyn-wfs`        | `xplan-services-wfs-syn`          |
+| `xplan-wfs`           | `xplan-services-wfs`              |
+| `xplan-wms`           | `xplan-services-wms`              |
+| `xplan-inspireplu`    | `xplan-webservices-inspireplu`    |
+| `xplan-validator-wms` | `xplan-webservices-validator-wms` |
+
+Folgende Container Images wurden umbenannt:
+
+| Alt                    | Neu                                |
+|------------------------|------------------------------------|
+| `xplan-inspireplu`     | `xplan-webservices-inspireplu`     |
+| `xplan-root`           | `xplan-webpages`                   |
+| `xplan-validator-wms`  | `xplan-webservices-validator-wms`  |
+
+Folgende Workspace und Konfigurationsordner wurden umbenannt:
+
+| Alt                   | Neu                             |
+|-----------------------|---------------------------------|
+| `xplan-dokumenten-config` | `xplan-dokumente-config`      |
+| `xplan-workspaces-xplan-inspireplu-workspace` | `xplan-webservices-inspireplu-workspace`      |
+| `xplan-workspaces-xplan-manager-workspace` | `xplan-manager-workspace`      |
+| `xplan-workspaces-xplan-wfs-workspace` | `xplan-services-wfs-workspace` |
+| `xplan-workspaces-xplansyn-wfs-workspace` | `xplan-services-wfs-syn-workspace`      |
+| `xplan-workspaces-xplansyn-wms-workspace` | `xplan-services-wms-workspace`      |
+| `xplan-workspaces-xplan-validator-wms-memory-workspace` | `xplan-webservices-validator-wms-memory-workspace` |
+| `xplan-workspaces-xplan-validator-wms-sql-workspace` | `xplan-webservices-validator-wms-sql-workspace` |
 
 ### Erweiterungen
 - Ausgabe einer Koordinate für Geometrien außerhalb des Geltungsbereichs bei der Geltungsbereichsprüfung
@@ -15,9 +62,8 @@ Neben Fehlerbehebungen sowie Erweiterungen und Verbesserungen an den Komponenten
 - Verbesserungen an Zeichenvorschriften für SO- und LP-Objekte
 - Integration des Validierungsprofils für Brandenburg in XPlanValidator und XPlanManager
 - Zusammenfassung der Kommandozeilenwerkzeuge (CLIs) zum XPlanCLI
-- Entfernen der Validierungsregeln für XPlanGML 3.0
 - Umfang der erlaubten Zeichen bei der Texteingabe in der Editorfunktion des XPlanManagerWeb erweitert
-- Aktualisierung auf INSPIRE PLU Schema 2024.1 (nicht abwärtskompatibel)
+- Aktualisierung auf INSPIRE PLU Schema 2024.1 (enthält nicht abwärtskompatible Änderungen)
 - Anzeige von Zeilenumbrüchen in der HTML-Ausgabe der XPlanWMS GetFeatureInfo-Anfrage
 - Konfiguration von MaxWidth und MaxHeight in den Capabilities des XPlanWMS, XPlanMapServer und XPlanMapProxy ermöglicht
 - Verknüpfung der Layer-Metadaten in den Capabilities der XPlanServices, XPlanMapServer und XPlanMapProxy
@@ -42,6 +88,7 @@ Neben Fehlerbehebungen sowie Erweiterungen und Verbesserungen an den Komponenten
 Die folgenden Funktionen wurde in dieser Version entfernt:
 
 - REST-API der Komponente XPlanManagerWeb wurde entfernt, stattdessen kann die REST-API der Komponente XPlanManagerAPI verwendet werden.
+- Entfernen der Validierungsregeln für XPlanGML 3.0
 
 ### Veraltete Funktionen
 

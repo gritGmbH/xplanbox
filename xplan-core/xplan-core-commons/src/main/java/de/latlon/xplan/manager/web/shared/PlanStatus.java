@@ -76,7 +76,8 @@ public enum PlanStatus {
 			return FESTGESTELLT;
 		switch (type) {
 			case "BP_Plan":
-				if (legislationStatusCode >= 3000 && legislationStatusCode < 5000)
+				if ((legislationStatusCode >= 3000 && legislationStatusCode < 5000) || legislationStatusCode == 45000
+						|| legislationStatusCode == 45001)
 					return FESTGESTELLT;
 				if (legislationStatusCode >= 5000)
 					return ARCHIVIERT;

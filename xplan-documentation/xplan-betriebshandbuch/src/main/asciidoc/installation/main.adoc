@@ -22,3 +22,5 @@ include::mapserver.adoc[]
 include::mapproxy.adoc[]
 
 include::startApplikationsserver.adoc[]
+
+include::postinstallation.adoc[]

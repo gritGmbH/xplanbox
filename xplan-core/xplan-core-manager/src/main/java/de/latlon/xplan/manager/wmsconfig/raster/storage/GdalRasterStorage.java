@@ -34,8 +34,10 @@ import java.nio.file.Paths;
 import java.util.Vector;
 
 /**
+ * @deprecated will be removed in a future version.
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
+@Deprecated
 public class GdalRasterStorage extends FileSystemStorage {
 
 	private GdalRasterAdapter rasterAdapter;

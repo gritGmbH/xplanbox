@@ -1,0 +1,15 @@
+[[post-install]]
+=== Überblick der Post-Install-Schritte
+
+Nach Abschluss der Installation sollten folgende Aktionen ausgeführt werden:
+
+. Absicherung der deegree webservice console (Ressource _/console_) für die Webapps _xplan-services-wms_, _xplan-services-wfs_, _xplan-services-wfs-syn_ und _xplan-webservices-inspireplu_ im _Dienste-Tomcat_ durch ein Kennwort (Datei _console.pw_ im deegree Workspace).
+. Absicherung der deegree REST-Schnittstelle (Ressource _/config_) für die Webapps _xplan-services-wms_, _xplan-services-wfs_, _xplan-services-wfs-syn_ und _xplan-webservices-inspireplu_ durch einen API-Key (Datei _config.apikey_ im Workspace-Verzeichnis, siehe Kapitel <<dienste-tomcat>>).
+. Absicherung des Zugriffs auf die deegree webservice console und deegree REST-Schnittstelle auf IP-Adressbereiche bzw. Domänen (Tomcat-Konfigurationsdatei _context.xml_ innerhalb der Webapps).
+. Betriebs der Tomcat-Instanzen hinter einem Proxy z. B. Apache httpd oder nginx.
+. Absicherung des Zugriffs auf den XPlanManagerWeb durch Benutzername und Kennwort (siehe Kapitel <<security>>).
+. Absicherung der Komponente XPlanManagerAPI ebenfalls über Benutzername und Kennwort.
+. Prüfung der über den XPlanManagerAPI/-Web sowie XPlanValidatorAPI/-Web hochgeladenen Dateien auf Viren und Malware durch einen Proxy mit Virenscannerfunktion.
+. Festlegung einer Obergrenze für die maximale Dateigröße auf Netzwerkebene, um den Upload von beliebig großen Dateien zu verhindern.
+
+CAUTION: Der Betrieb der xPlanBox *ohne* die Umsetzung dieser Maßnahmen kann die IT-Sicherheit der Anwendung gefährden!

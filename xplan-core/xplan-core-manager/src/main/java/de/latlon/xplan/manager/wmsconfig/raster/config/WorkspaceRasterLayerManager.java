@@ -150,6 +150,10 @@ public class WorkspaceRasterLayerManager {
 		});
 	}
 
+	/**
+	 * @deprecated will be removed in a future version.
+	 */
+	@Deprecated
 	private void createGdalConfiguration(String rasterId, String rasterFileName, double minScaleDenominator,
 			double maxScaleDenominator) throws JAXBException, IOException {
 		createGdalConfiguration();
