@@ -29,14 +29,11 @@ import com.google.gwt.user.client.rpc.XsrfToken;
 import com.google.gwt.user.client.rpc.XsrfTokenService;
 import com.google.gwt.user.client.rpc.XsrfTokenServiceAsync;
 import com.google.gwt.user.client.ui.DialogBox;
-import de.latlon.xplan.manager.web.client.gui.dialog.CrsDialog;
-import de.latlon.xplan.manager.web.client.gui.dialog.InternalIdDialog;
 import de.latlon.xplan.manager.web.client.gui.dialog.LegislationStatusDialog;
 import de.latlon.xplan.manager.web.client.gui.dialog.NextSubmittedHandler;
 import de.latlon.xplan.manager.web.client.gui.dialog.PlanNameAndStatusDialogBox;
 import de.latlon.xplan.manager.web.client.gui.dialog.RasterDialog;
 import de.latlon.xplan.manager.web.client.gui.dialog.RasterHandler;
-import de.latlon.xplan.manager.web.client.gui.dialog.ValidityPeriodDialog;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.client.service.ManagerService;
 import de.latlon.xplan.manager.web.client.service.ManagerServiceAsync;
@@ -47,7 +44,6 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,96 +77,10 @@ public class ImportWizardCreator {
 	 * @param hasMultipleXPlanElements
 	 */
 	public void importPlan(final String id, final boolean hasMultipleXPlanElements) {
-		selectValidityPeriodAndImportPlan(id, hasMultipleXPlanElements);
+		selectLegislationStatusAndImportPlan(id, hasMultipleXPlanElements);
 	}
 
-	private void selectValidityPeriodAndImportPlan(final String id, final boolean hasMultipleXPlanElements) {
-		if (configuration.isValidityPeriodActivated() && !hasMultipleXPlanElements) {
-			final ValidityPeriodDialog dialog = new ValidityPeriodDialog();
-			dialog.addNextSubmittedHandler(new NextSubmittedHandler() {
-				@Override
-				public void onNextSubmitted() {
-					try {
-						if (dialog.isValid()) {
-							Date startDateTime = dialog.retrieveStartDateTime();
-							Date endDateTime = dialog.retrieveEndDateTime();
-							dialog.hide();
-							selectInternalIdAndImportPlan(id, hasMultipleXPlanElements, startDateTime, endDateTime);
-						}
-						else {
-							Window.alert(MESSAGES.editInvalidInput());
-						}
-					}
-					catch (Exception e) {
-						Window.alert(e.getMessage());
-					}
-				}
-			});
-			dialog.setWidth("500px");
-			dialog.center();
-			dialog.show();
-		}
-		else {
-			selectInternalIdAndImportPlan(id, hasMultipleXPlanElements, null, null);
-		}
-	}
-
-	private void selectInternalIdAndImportPlan(final String id, final boolean hasMultipleXPlanElements,
-			final Date startDateTime, final Date endDateTime) {
-		if (configuration.getInternalIdActivated() && !hasMultipleXPlanElements) {
-			XsrfTokenServiceAsync xsrf = createTokenService();
-			xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
-				public void onSuccess(XsrfToken token) {
-					ManagerServiceAsync managerService = createManagerService(token);
-					managerService.retrieveMatchingInternalIds(id, new AlertFailureCallback<Map<String, String>>() {
-
-						@Override
-						public void onSuccess(Map<String, String> result) {
-							if (result.size() == 0) {
-								Window.alert(MESSAGES.noMatchingInternalIdFound());
-							}
-							else {
-								InternalIdDialog internalIdDialog = new InternalIdDialog(result);
-								NextSubmittedHandler nextSubmittedHandler = createNextSubmittedHandler(
-										internalIdDialog);
-								internalIdDialog.addNextSubmittedHandler(nextSubmittedHandler);
-								internalIdDialog.center();
-								internalIdDialog.show();
-							}
-						}
-
-						private NextSubmittedHandler createNextSubmittedHandler(
-								final InternalIdDialog internalIdDialog) {
-							return new NextSubmittedHandler() {
-								@Override
-								public void onNextSubmitted() {
-									String internalId = internalIdDialog.retrieveSelectedInternalId();
-									if (internalId != null) {
-										internalIdDialog.hide();
-										selectLegislationStatusAndImportPlan(id, hasMultipleXPlanElements, internalId,
-												startDateTime, endDateTime);
-									}
-									else {
-										Window.alert(MESSAGES.noInternalIdSelected());
-									}
-								}
-							};
-						}
-					});
-				}
-
-				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());
-				}
-			});
-		}
-		else {
-			selectLegislationStatusAndImportPlan(id, hasMultipleXPlanElements, null, startDateTime, endDateTime);
-		}
-	}
-
-	private void selectLegislationStatusAndImportPlan(final String id, final boolean hasMultipleXPlanElements,
-			final String internalId, final Date startDateTime, final Date endDateTime) {
+	private void selectLegislationStatusAndImportPlan(final String id, final boolean hasMultipleXPlanElements) {
 		if (configuration.isLegislationStatusActivated() && !hasMultipleXPlanElements) {
 			XsrfTokenServiceAsync xsrf = createTokenService();
 			xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
@@ -196,7 +106,7 @@ public class ImportWizardCreator {
 								public void onNextSubmitted() {
 									PlanStatus planStatus = legislationStatusDialog.retrieveSelectedLegislationStatus();
 									legislationStatusDialog.hide();
-									checkCrsAndImportPlan(id, internalId, planStatus, startDateTime, endDateTime);
+									evaluateRasterAndImportPlan(id, planStatus);
 								}
 							};
 						}
@@ -209,58 +119,11 @@ public class ImportWizardCreator {
 			});
 		}
 		else {
-			checkCrsAndImportPlan(id, internalId, null, startDateTime, endDateTime);
+			evaluateRasterAndImportPlan(id, null);
 		}
 	}
 
-	private void checkCrsAndImportPlan(final String id, final String internalId, final PlanStatus planStatus,
-			final Date startDateTime, final Date endDateTime) {
-		XsrfTokenServiceAsync xsrf = createTokenService();
-		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
-			public void onSuccess(XsrfToken token) {
-				ManagerServiceAsync managerService = createManagerService(token);
-				managerService.isCrsSet(id, new AlertFailureCallback<Boolean>() {
-
-					@Override
-					public void onSuccess(Boolean isCrsSet) {
-						if (isCrsSet)
-							evaluateRasterAndImportPlan(id, internalId, null, planStatus, startDateTime, endDateTime);
-						else {
-							CrsDialog crsWizard = new CrsDialog(configuration);
-							NextSubmittedHandler nextSubmittedHandler = createNextSubmittedHandler(crsWizard);
-							crsWizard.addNextSubmittedHandler(nextSubmittedHandler);
-							crsWizard.center();
-							crsWizard.show();
-						}
-					}
-
-					private NextSubmittedHandler createNextSubmittedHandler(final CrsDialog crsDialog) {
-						return new NextSubmittedHandler() {
-							@Override
-							public void onNextSubmitted() {
-								String crs = crsDialog.retrieveSelectedCrs();
-								if (crs != null) {
-									crsDialog.hide();
-									evaluateRasterAndImportPlan(id, internalId, crs, planStatus, startDateTime,
-											endDateTime);
-								}
-								else {
-									Window.alert(MESSAGES.crsDialogNoCrsChosen());
-								}
-							}
-						};
-					}
-				});
-			}
-
-			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());
-			}
-		});
-	}
-
-	private void evaluateRasterAndImportPlan(final String id, final String internalId, final String defaultCrs,
-			final PlanStatus planStatus, final Date startDateTime, final Date endDateTime) {
+	private void evaluateRasterAndImportPlan(final String id, final PlanStatus planStatus) {
 		XsrfTokenServiceAsync xsrf = createTokenService();
 		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
 			public void onSuccess(XsrfToken token) {
@@ -271,8 +134,7 @@ public class ImportWizardCreator {
 					public void onSuccess(List<RasterEvaluationResult> response) {
 						boolean allRastersAreValid = checkIfAllRastersAreValid(response);
 						if (allRastersAreValid) {
-							evaluatePlanNameAndStatusAndImportPlan(id, internalId, defaultCrs, true, planStatus,
-									startDateTime, endDateTime);
+							evaluatePlanNameAndStatusAndImportPlan(id, true, planStatus);
 						}
 						else {
 							RasterDialog rasterDialog = new RasterDialog(response);
@@ -284,14 +146,12 @@ public class ImportWizardCreator {
 						return new RasterHandler() {
 							@Override
 							public void onConfirmImport() {
-								evaluatePlanNameAndStatusAndImportPlan(id, internalId, defaultCrs, false, planStatus,
-										startDateTime, endDateTime);
+								evaluatePlanNameAndStatusAndImportPlan(id, false, planStatus);
 							}
 
 							@Override
 							public void onConfirmForceImport() {
-								evaluatePlanNameAndStatusAndImportPlan(id, internalId, defaultCrs, true, planStatus,
-										startDateTime, endDateTime);
+								evaluatePlanNameAndStatusAndImportPlan(id, true, planStatus);
 							}
 						};
 					}
@@ -314,9 +174,8 @@ public class ImportWizardCreator {
 		});
 	}
 
-	private void evaluatePlanNameAndStatusAndImportPlan(final String id, final String internalId,
-			final String defaultCrs, final boolean makeRasterConfig, final PlanStatus planStatus,
-			final Date startDateTime, final Date endDateTime) {
+	private void evaluatePlanNameAndStatusAndImportPlan(final String id, final boolean makeRasterConfig,
+			final PlanStatus planStatus) {
 		XsrfTokenServiceAsync xsrf = createTokenService();
 		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
 			public void onSuccess(XsrfToken token) {
@@ -329,8 +188,7 @@ public class ImportWizardCreator {
 								Map<String, PlanStatus> alreadyInserted = collectAlreadInsertedPlans(
 										planNameWithStatusResults);
 								if (alreadyInserted.size() == 0) {
-									importPlan(id, internalId, defaultCrs, makeRasterConfig, planStatus, startDateTime,
-											endDateTime);
+									importPlan(id, makeRasterConfig, planStatus);
 								}
 								else {
 									PlanNameAndStatusDialogBox planNameAndStatusDialogBox = new PlanNameAndStatusDialogBox(
@@ -362,8 +220,7 @@ public class ImportWizardCreator {
 									@Override
 									public void onNextSubmitted() {
 										planNameAndStatusDialogBox.hide();
-										importPlan(id, internalId, defaultCrs, makeRasterConfig, planStatus,
-												startDateTime, endDateTime);
+										importPlan(id, makeRasterConfig, planStatus);
 									}
 								};
 							}
@@ -376,34 +233,32 @@ public class ImportWizardCreator {
 		});
 	}
 
-	private void importPlan(String id, String internalId, String defaultCrs, boolean makeRasterConfig,
-			PlanStatus planStatus, Date startDateTime, Date endDateTime) {
+	private void importPlan(String id, boolean makeRasterConfig, PlanStatus planStatus) {
 		final DialogBox loading = createAndShowImportingDialogBox();
 		XsrfTokenServiceAsync xsrf = createTokenService();
 		xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
 			public void onSuccess(XsrfToken token) {
 				ManagerServiceAsync managerService = createManagerService(token);
-				managerService.importPlan(id, internalId, defaultCrs, makeRasterConfig, planStatus, startDateTime,
-						endDateTime, new AsyncCallback<Boolean>() {
-							@Override
-							public void onFailure(Throwable caught) {
-								if (loading != null)
-									loading.hide();
+				managerService.importPlan(id, makeRasterConfig, planStatus, new AsyncCallback<Boolean>() {
+					@Override
+					public void onFailure(Throwable caught) {
+						if (loading != null)
+							loading.hide();
 
-								// if (403 == method.getResponse().getStatusCode()) {
-								// Window.alert(DYNAMIC_MESSAGES.unauthorizedCommunity_Import());
-								// }
-								Window.alert(caught.getMessage());
-							}
+						// if (403 == method.getResponse().getStatusCode()) {
+						// Window.alert(DYNAMIC_MESSAGES.unauthorizedCommunity_Import());
+						// }
+						Window.alert(caught.getMessage());
+					}
 
-							@Override
-							public void onSuccess(Boolean result) {
-								planListPanel.reload(true);
-								if (loading != null)
-									loading.hide();
-								Window.alert(MESSAGES.loadSuccessful());
-							}
-						});
+					@Override
+					public void onSuccess(Boolean result) {
+						planListPanel.reload(true);
+						if (loading != null)
+							loading.hide();
+						Window.alert(MESSAGES.loadSuccessful());
+					}
+				});
 			}
 
 			public void onFailure(Throwable caught) {

@@ -1,0 +1,111 @@
+[[security]]
+=== Absicherung des XPlanManagerWeb
+
+Der Zugriff auf die Komponente XPlanManagerWeb kann mittels Spring Security über BASIC-Authentication abgesichert werden.
+
+Dabei stehen folgende Konfigurationsvarianten zur Verfügung:
+
+1. Datei-basierte Benutzerverwaltung (siehe <<simple_security>>)
+2. Datenbank-basierte Benutzerverwaltung (siehe <<database_security>>)
+
+[[enable_security]]
+==== Absicherung aktivieren
+
+Um die Absicherung des XPlanManagerWeb zu aktivieren, muss folgende Änderung in dem Deployment-Deskriptor _WEB-INF/web.xml_
+der Webanwendung _xplan-manager-web.war_ vorgenommen werden.
+
+Der Spring Security Servlet-Filter muss hinzugefügt werden:
+
+[source,xml]
+----
+<filter>
+  <filter-name>springSecurityFilterChain</filter-name>
+  <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+</filter>
+<filter-mapping>
+  <filter-name>springSecurityFilterChain</filter-name>
+  <url-pattern>/*</url-pattern>
+</filter-mapping>
+----
+
+NOTE: Diese Konfiguration ist für beide Varianten erforderlich! Wenn der Servlet-Filter aktiviert ist, muss zusätzlich noch eine der beiden Varianten konfiguriert werden. Wie die Absicherung deaktiviert werden kann, ist in <<disable_security>> beschrieben.
+
+Weitere Informationen zur Absicherung mit Spring Security sind Online in der Referenzdokumentation von Spring Security zu finden:
+
+* https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html5/#ns-getting-started[Servlet-Filter von Spring Security]
+* https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html5/#jc-authentication[Authentifizierung mit Spring Security]
+
+==== Rollenbasierter Zugriff
+
+Hat sich ein Benutzer erfolgreich am XPlanManager angemeldet, dann wird über ein rollenbasiertes Berechtigungskonzept entschieden, welche Funktionen der Benutzer im XPlanManager ausführen darf.
+Dabei werden folgende drei Rollen vom XPlanManager ausgewertet:
+
+- _SUPERUSER_: Hat alle Berechtigungen (Schreib- und Leseberechtigung) für alle Pläne
+- _EDITOR_: Hat alle Berechtigungen (Schreib- und Leseberechtigung) für die Pläne einer Organisationseinheit (z.B. einer Kommune oder eines Bezirks)
+- _USER_: Hat nur Leseberechtigung für alle Pläne
+
+[[simple_security]]
+==== Einfache Absicherung mit Spring Security
+
+Steht keine Datenbank mit Benutzerinformationen zur Verfügung, dann kann die Absicherung über einen UserService von Spring Security erfolgen,
+dessen Konfiguration aus der Konfigurationsdatei _security-simple.xml_ ausgelesen wird.
+
+Die Vorgabewerte für die beiden vorkonfigurierten Benutzer "admin" (Rolle _SUPERUSER_) und "guest" (Rolle _USER_) sind in der Konfigurationsdatei _WEB-INF/classes/security.properties_ gesetzt.
+
+Um die Absicherung zu aktivieren ist neben der Konfiguration des Spring Security Servlet-Filter wie oben in <<enable_security>> beschrieben folgende
+Anpassungen im Deployment-Deskriptor _WEB-INF/web.xml_ notwendig:
+
+Austauschen der Konfiguration:
+
+[source,xml]
+----
+<context-param>
+  <param-name>contextConfigLocation</param-name>
+  <param-value>de.latlon.xplan.manager.web.spring.config.ManagerWebSpringConfig</param-value>
+</context-param>
+----
+durch:
+
+[source,xml]
+----
+<context-param>
+  <param-name>contextConfigLocation</param-name>
+  <param-value>de.latlon.xplan.manager.web.spring.config.ManagerWebSpringConfigWithSimpleSecurity</param-value>
+</context-param>
+----
+
+[[database_security]]
+==== Absicherung mit Datenbank
+
+Wie bei der einfachen Absicherung wird als Datenquelle für die Benutzerinformationen ein UserService von Spring Security verwendet. Der Unterschied ist,
+dass statt einer Datei eine Datenbank verwendet wird. Auch hier muss zuerst der Spring Security Servlet-Filter (siehe <<enable_security>>) und die Konfiguration (siehe <<simple_security>>) aktiviert werden.
+
+In der Datei _security-simple.xml_ muss statt dem Datei-basierten der Datenbank-basierte UserService konfiguriert werden.
+
+Austauschen der Konfiguration:
+
+[source,xml]
+----
+<security:user-service>
+        <security:user name="${simple.user.username}" password="${simple.user.password}" authorities="ROLE_XPLAN_SUPERUSER" />
+        <security:user name="${simple.guest.username}" password="${simple.guest.password}" authorities="ROLE_XPLAN_USER" />
+</security:user-service>
+----
+durch:
+
+[source,xml]
+----
+<security:jdbc-user-service data-source-ref="dataSource"/>
+----
+
+NOTE: Die Datenbankverbindung mit dem Bezeichner _datasource_ muss zusätzlich in der Datei _security-simple.xml_ ergänzt werden. Weitere Informationen und Beispiele sind in
+der Referenzdokumentation von Spring Security zu finden.
+
+Die Konfiguration eines UserService mit allen Optionen ist auch in der Referenzdokumentation von Spring Security beschrieben:
+
+* https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html5/#core-services-jdbc-user-service[Datenbank UserService]
+
+[[disable_security]]
+==== Absicherung deaktivieren
+
+Um die Absicherung zu deaktivieren, muss der im Abschnitt <<enable_security>> genannte Servlet-Filter aus der Datei _web.xml_ entfernt und die Spring Konfiguration `de.latlon.xplan.manager.web.spring.config.ManagerWebSpringConfig` eingebunden werden.

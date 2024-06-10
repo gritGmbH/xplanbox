@@ -24,7 +24,7 @@ import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplanbox.api.commons.ValidationReportBuilder;
 import de.latlon.xplanbox.api.commons.exception.XPlanApiException;
 
-import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import static jakarta.ws.rs.core.Response.Status.BAD_REQUEST;
 
 ;
 

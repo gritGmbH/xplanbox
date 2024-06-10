@@ -22,7 +22,7 @@ package de.latlon.xplan.manager.configuration;
 
 import java.io.IOException;
 
-import javax.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBException;
 
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 

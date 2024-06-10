@@ -22,8 +22,6 @@ package de.latlon.xplan.validator.report;
 
 import de.latlon.xplan.validator.report.html.HtmlReportGenerator;
 import de.latlon.xplan.validator.report.pdf.PdfReportGenerator;
-import de.latlon.xplan.validator.report.shapefile.ShapefileGenerator;
-import de.latlon.xplan.validator.report.xml.XmlReportGenerator;
 import de.latlon.xplan.validator.web.shared.ArtifactType;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -33,11 +31,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
-import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -55,17 +51,11 @@ public class ReportWriter {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ReportWriter.class);
 
-	private static final String SHAPES = "shapes";
-
 	public static final String ERROR_LOG_FILENAME = "error.log";
-
-	private final XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
 
 	private final PdfReportGenerator pdfGenerator = new PdfReportGenerator();
 
 	private final HtmlReportGenerator htmlGenerator = new HtmlReportGenerator();
-
-	private final ShapefileGenerator shapefileGenerator = new ShapefileGenerator();
 
 	/**
 	 * Writes all artefacts (XML, HTML and PDF as well as shp) into the passed directory.
@@ -76,10 +66,8 @@ public class ReportWriter {
 	 */
 	public void writeArtefacts(ValidatorReport report, Path targetDirectory) {
 		List<String> failures = new ArrayList<>();
-		addXmlEntry(report, targetDirectory, failures);
 		addHtmlEntry(report, targetDirectory, failures);
 		addPdfEntry(report, targetDirectory, failures);
-		addShapeDirectoryEntry(report, targetDirectory, failures);
 
 		addFailureLog(failures, targetDirectory);
 	}
@@ -112,42 +100,11 @@ public class ReportWriter {
 		}
 	}
 
-	/**
-	 * @deprecated will be removed in a future version.
-	 **/
-	@Deprecated
-	private void addXmlEntry(ValidatorReport report, Path directoryToCreateZip, List<String> failures) {
-		String validationName = report.getValidationName();
-		Path xmlFile = directoryToCreateZip.resolve(validationName + ".xml");
-		try (OutputStream outputStream = Files.newOutputStream(xmlFile)) {
-			xmlReportGenerator.generateXmlReport(report, outputStream);
-		}
-		catch (Exception e) {
-			failures.add(e.getMessage());
-			LOG.error("XML Entry of the validtion report could not be created.", e);
-		}
-
-	}
-
 	private void addHtmlEntry(ValidatorReport report, Path directoryToCreateZip, List<String> failures) {
 		String validationName = report.getValidationName();
 		Path htmlFile = directoryToCreateZip.resolve(validationName + ".html");
 		try (OutputStream outputStream = Files.newOutputStream(htmlFile)) {
 			htmlGenerator.generateHtmlReport(report, outputStream);
-		}
-		catch (Exception e) {
-			failures.add(e.getMessage());
-		}
-	}
-
-	private void addShapeDirectoryEntry(ValidatorReport report, Path directoryToCreateZip, List<String> failures) {
-		String validationName = report.getValidationName();
-		try {
-			if (shapefileGenerator.hasBadGeometry(report)) {
-				Path directoryToCreateShapes = directoryToCreateZip.resolve("shapes");
-				Files.createDirectory(directoryToCreateShapes);
-				shapefileGenerator.generateReport(report, validationName, directoryToCreateShapes);
-			}
 		}
 		catch (Exception e) {
 			failures.add(e.getMessage());
@@ -170,11 +127,7 @@ public class ReportWriter {
 	private void addZipEntry(ArtifactType artifactType, String validationName, ZipOutputStream zipOutputStream,
 			Path sourceDirectory) throws IOException {
 		switch (artifactType) {
-			case SHP:
-				addShpArtifact(zipOutputStream, sourceDirectory);
-				break;
 			case HTML:
-			case XML:
 			case PDF:
 				addSimpleArtifact(artifactType, validationName, zipOutputStream, sourceDirectory);
 				break;
@@ -188,26 +141,6 @@ public class ReportWriter {
 		Path artifactFile = retrieveArtifactFile(sourceDirectory, validationName, artifactType);
 		if (Files.exists(artifactFile)) {
 			addArtifact(zipOutputStream, artifactFile);
-		}
-	}
-
-	/**
-	 * @deprecated will be removed in a future version.
-	 **/
-	@Deprecated
-	private void addShpArtifact(ZipOutputStream zipOutputStream, Path sourceDirectory) throws IOException {
-		Path shapesDirectory = sourceDirectory.resolve(SHAPES);
-		if (Files.exists(shapesDirectory)) {
-			addDirToArchive(zipOutputStream, shapesDirectory);
-		}
-	}
-
-	private void addDirToArchive(ZipOutputStream zipOutputStream, Path shapeDirectory) throws IOException {
-		DirectoryStream<Path> paths = Files.newDirectoryStream(shapeDirectory);
-		Iterator<Path> pathIterator = paths.iterator();
-		while (pathIterator.hasNext()) {
-			Path file = pathIterator.next();
-			addArtifact(zipOutputStream, file);
 		}
 	}
 

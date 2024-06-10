@@ -3,29 +3,6 @@
 
 Die von der xPlanBox unterstützten Koordinatenreferenzsysteme können wie folgt konfiguriert werden.
 
-[[crs-vektordaten]]
-==== Vektordaten
-
-Für den Dialog beim Import eines Plans über den XPlanManagerWeb kann die Anzeige des Standard-Koordinatenreferenzsystems über die nachfolgenden Konfigurationen in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ angepasst werden.
-
-Das Standard-Koordinatenreferenzsystem kann über den Schlüssel
-_defaultCrs_ konfiguriert werden:
-
-[source,properties]
-----
-defaultCrs=EPSG:25832
-----
-
-Damit der Benutzer ein weiteres Koordinatenreferenzsystem aus einer Liste auswählen kann, muss dieses konfiguriert werden. Die zusätzlich unterstützten Koordinatenreferenzsysteme können über den Schlüssel
-_chooseCrs_ konfiguriert werden:
-
-[source,properties]
-----
-chooseCrs=EPSG:4326,EPSG:25833,EPSG:31466,EPSG:31467,EPSG:31468,EPSG:31469
-----
-
-IMPORTANT: Die Konfiguration des Koordinatenreferenzsystems der Vektordaten ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt. Das Koordinatenreferenzsystem der Vektordaten muss gemäß der Konformitätsregel 2.1.3 Koordinaten-Referenzsysteme (CRS) im XPlanGML gesetzt sein.
-
 [[crs-rasterdaten]]
 ==== Rasterdaten
 
@@ -42,7 +19,7 @@ rasterConfigurationCrs=EPSG:25832
 [[crs-featurestore]]
 ==== Ändern des Koordinatenreferenzsystems
 
-Als Vorgabewert für das Standard-Koordinatenreferenzsystem wird EPSG:25832 in allen Konfigurationsdateien gesetzt. Wenn das Standard-Koordinatenreferenzsystem der Datenhaltung geändert werden soll, dann ist eine Anpassung sowohl der Konfiguration für <<crs-vektordaten>> und <<crs-rasterdaten>> als auch eine Anpassung an den Konfigurationsdateien für die SQLFeatureStore und der XPlanDB erforderlich.
+Als Vorgabewert für das Standard-Koordinatenreferenzsystem wird EPSG:25832 in allen Konfigurationsdateien gesetzt. Wenn das Standard-Koordinatenreferenzsystem der Datenhaltung geändert werden soll, dann ist eine Anpassung der Konfiguration für <<crs-rasterdaten>> als auch eine Anpassung an den Konfigurationsdateien für die SQLFeatureStore und der XPlanDB erforderlich.
 
 Um die Datenhaltung der XPlanDB z. B. auf EPSG:25833 umzustellen müssen in allen SQLFeatureStore-Dateien die Angabe des `StorageCRS` und der Angabe des PostGIS SRID wie folgt angepasst werden:
 

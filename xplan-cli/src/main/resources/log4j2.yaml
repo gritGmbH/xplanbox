@@ -1,0 +1,72 @@
+###
+# #%L
+# xplan-cli - Kommandozeilenwerkzeuge fuer die xPlanBox
+# %%
+# Copyright (C) 2008 - 2024 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+# %%
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# #L%
+###
+Configuration:
+  name: XPlanCliTools
+  status: warn
+  Properties:
+    Property:
+      - name: log.file
+        value: xplan-cli.log
+      - name: log.path
+        value: ${sys:basedir:-.}/logs
+  Appenders:
+    Console:
+      name: STDOUT
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d %p %C{1.} [%t] %m%n"
+    RollingFile:
+      name: RollingFile_Appender
+      fileName: ${log.path}/${log.file}
+      filePattern: ${log.path}/${log.file}.%d{yyyy-MM-dd-hh-mm}
+      PatternLayout:
+        pattern: "%d %p %C{1.} [%t] %m%n"
+      Policies:
+        SizeBasedTriggeringPolicy:
+          size: 100 MB
+      DefaultRollOverStrategy:
+        max: 2
+  Loggers:
+    Root:
+      AppenderRef:
+        - ref: STDOUT
+          level: info
+        - ref: RollingFile_Appender
+          level: info
+    Logger:
+      - name: de.latlon.xplan
+        level: info
+      - name: de.latlon.xplanbox
+        level: info
+      - name: org.deegree
+        level: warn
+      - name: org.springframework
+        level: error
+      - name: org.reflections
+        level: fatal
+      - name: org.deegree.geometry.standard.AbstractDefaultGeometry
+        level: warn
+      - name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
+        level: warn
+      - name: org.deegree.gml.schema.GMLSchemaInfoSet
+        level: error
+      - name: org.hibernate
+        level: warn

@@ -1,5 +1,5 @@
 FROM ubuntu:focal
-ARG TOMCAT_VERSION="9.0.87"
+ARG TOMCAT_VERSION="10.1.24"
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
@@ -25,10 +25,10 @@ RUN apt update && apt -y install apt-transport-https unzip wget
 
 
 # install jdk
-RUN DEBIAN_FRONTEND=noninteractive apt -y install openjdk-11-jdk
+RUN DEBIAN_FRONTEND=noninteractive apt -y install openjdk-17-jdk
 
 # install tomcat and allow non-root usage
-RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz --quiet -O /tmp/tomcat.tar.gz \
+RUN wget https://archive.apache.org/dist/tomcat/tomcat-10/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz --quiet -O /tmp/tomcat.tar.gz \
 	&& tar xfz /tmp/tomcat.tar.gz --directory /usr/local \
 	&& mv /usr/local/apache-tomcat-${TOMCAT_VERSION} /usr/local/tomcat \
 	&& rm /tmp/tomcat.tar.gz \

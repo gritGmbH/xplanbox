@@ -21,7 +21,6 @@
 package de.latlon.xplan.manager.config;
 
 import de.latlon.xplan.commons.configuration.SortConfiguration;
-import de.latlon.xplan.manager.configuration.InternalIdRetrieverConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
@@ -50,8 +49,6 @@ public class CoreTestContext {
 		when(mockedConfiguration.getRasterConfigurationType()).thenReturn(gdal);
 		when(mockedConfiguration.getRasterConfigurationCrs()).thenReturn("EPSG:25832");
 		when(mockedConfiguration.getSortConfiguration()).thenReturn(new SortConfiguration());
-		when(mockedConfiguration.getInternalIdRetrieverConfiguration())
-			.thenReturn(new InternalIdRetrieverConfiguration());
 		return mockedConfiguration;
 	}
 

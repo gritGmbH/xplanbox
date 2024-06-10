@@ -114,12 +114,6 @@ dem Zustand des Plans, falls dieser beim Import geändert wurde. Beim
 Abspeichern von Änderungen ist somit Vorsicht geboten, da es so
 unbeabsichtigt zu einer Zustandsänderung des Plans kommen kann!
 
-*Gültigkeitszeitraum*
-
- * Der Zeitraum in dem ein Plan im XPlanWMSInAufstellung angezeigt wird. Für dieses Feld gibt es keine Entsprechung im XPlanGML. Die Angabe des Zeitraums, wie sie beim Import erfolgt ist, wird beim Ändern des Zeitraums überschrieben.
-
-IMPORTANT: Die Möglichkeit einen Gültigkeitszeitraum anzugeben ist veraltet, das Editieren des Gültigkeitszeitraums wird in zukünftigen Versionen der xPlanBox entfernt.
-
 *Änderungen*
 
 Folgende Felder eines Plans können geändert werden.

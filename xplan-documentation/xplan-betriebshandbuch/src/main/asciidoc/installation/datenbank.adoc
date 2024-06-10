@@ -22,6 +22,8 @@ CREATE DATABASE "$DB_NAME" OWNER '$DB_INIT_USER';
 CREATE EXTENSION IF NOT EXISTS postgis;
 ----
 
+NOTE: Weitere Informationen zu der Erstellung der XPlanDB im Anhang <<appendix_xplandb_skript>>.
+
 [[konfiguration-xplandb-liquibase]]
 ==== Liquibase
 
@@ -62,22 +64,6 @@ $LIQUIBASE_HOME/liquibase
 <8> Liquibase Kommando https://docs.liquibase.com/commands/update/update.html[Update]
 <9> Benutzername, `$DB_USER` aus <<konfiguration-xplandb>>
 <10> PostGIS SRID in dem die Daten gespeichert werden, z.B. `25832`
-
-[[konfiguration-xplandb-sql]]
-==== SQL-Skripte
-Für die initiale Installation der XPlanDB mit den bereitgestellten SQL-Skripten sind folgende Schritte erforderlich:
-
-- Das SQL-Skript _create.sql_ aus dem Verzeichnis _xplan-manager-workspace/sql_ in der neu angelegten Datenbank in der Rolle `$DB_INIT_USER` ausführen.
-
-Für die Bereitstellung von Plänen als INSPIRE PLU konforme Datensätze ist ein weiteres Datenbankschema erforderlich und es müssen zusätzlich die folgenden Schritte ausgeführt werden:
-
-. Die SQL-Skripte aus dem Verzeichnis _xplan-manager-workspace/sql/inspireplu_ in der neu angelegten Datenbank ausführen (in der genannten Reihenfolge):
-.. _01_create_inspireplu_schema.sql_
-.. _02_create_inspireplu_view.sql_
-
-NOTE: Weitere Informationen zu der Erstellung der XPlanDB im Anhang <<appendix_xplandb_skript>>.
-
-IMPORTANT: Ab Version 7.2 ist die Einrichtung der XPlanDB mit SQL-Skripten veraltet (deprecated). Die SQL-Skripte werden in zukünftigen Version der xPlanBox nicht mehr mit ausgeliefert. Die Einrichtung und Aktualisierung der XPlanDB muss dann über <<konfiguration-xplandb-liquibase,Liquibase>> erfolgen.
 
 ==== Datenbankverbindungen anpassen
 

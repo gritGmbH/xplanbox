@@ -8,7 +8,7 @@ pipeline {
   }
   tools {
     maven 'maven-3.9'
-    jdk 'openjdk11'
+    jdk 'temurin-jdk17'
   }
   environment {
       MAVEN_OPTS='-Djava.awt.headless=true -Xmx1250m'

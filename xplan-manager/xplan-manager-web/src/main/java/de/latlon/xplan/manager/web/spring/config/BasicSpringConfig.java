@@ -30,7 +30,6 @@ import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanwerkWmsMetadataRepository;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
 import de.latlon.xplan.inspire.plu.transformation.hale.HaleCliInspirePluTransformator;
-import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
@@ -39,7 +38,6 @@ import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
-import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
@@ -88,7 +86,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -170,8 +167,8 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public XPlanDbAdapter xPlanDbAdapter(CategoryMapper categoryMapper) {
-		return new XPlanDbAdapter(categoryMapper, planRepository, planwerkWmsMetadataRepository, artefactRepository);
+	public XPlanDbAdapter xPlanDbAdapter() {
+		return new XPlanDbAdapter(planRepository, planwerkWmsMetadataRepository, artefactRepository);
 	}
 
 	@Bean
@@ -289,11 +286,6 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public InternalIdRetriever internalIdRetriever(ManagerConfiguration managerConfiguration) {
-		return new InternalIdRetriever(managerConfiguration.getInternalIdRetrieverConfiguration());
-	}
-
-	@Bean
 	public ReportArchiveGenerator reportArchiveGenerator(ValidatorConfiguration validatorConfiguration) {
 		return new ReportArchiveGenerator(validatorConfiguration);
 	}
@@ -312,13 +304,8 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public XPlanArchiveCreator archiveCreator(CategoryMapper categoryMapper) {
-		return new XPlanArchiveCreator(categoryMapper);
-	}
-
-	@Bean
-	public CategoryMapper categoryMapper(ManagerConfiguration managerConfiguration) {
-		return new CategoryMapper(managerConfiguration);
+	public XPlanArchiveCreator archiveCreator() {
+		return new XPlanArchiveCreator();
 	}
 
 	@Bean
@@ -341,11 +328,6 @@ public class BasicSpringConfig {
 	@Bean
 	public ReportProvider reportProvider() {
 		return new ManagerReportProvider();
-	}
-
-	@Bean
-	public CommonsMultipartResolver multipartResolver() {
-		return new CommonsMultipartResolver();
 	}
 
 	@Bean

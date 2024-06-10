@@ -24,13 +24,13 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.edit.EditedArtefacts;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
+import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.deegree.feature.FeatureCollection;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -56,8 +56,8 @@ public class XPlanEditService {
 	@Transactional(rollbackOn = Exception.class)
 	public void update(XPlan oldXplan, List<File> uploadedArtefacts, int planId, byte[] xPlanGml,
 			EditedArtefacts editedArtefacts, XPlanFeatureCollection modifiedPlanFc, FeatureCollection synFc,
-			AdditionalPlanData xPlanMetadata, Date sortDate, String internalId) throws Exception {
-		xplanDao.update(oldXplan, xPlanMetadata, modifiedPlanFc, synFc, xPlanGml, sortDate, uploadedArtefacts,
+			PlanStatus targetPlanStatus, Date sortDate, String internalId) throws Exception {
+		xplanDao.update(oldXplan, targetPlanStatus, modifiedPlanFc, synFc, xPlanGml, sortDate, uploadedArtefacts,
 				editedArtefacts, internalId);
 		updateDocuments(planId, uploadedArtefacts, editedArtefacts);
 	}

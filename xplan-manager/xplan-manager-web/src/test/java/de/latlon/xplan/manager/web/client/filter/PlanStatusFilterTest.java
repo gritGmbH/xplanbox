@@ -20,16 +20,14 @@
  */
 package de.latlon.xplan.manager.web.client.filter;
 
+import de.latlon.xplan.manager.web.shared.PlanStatus;
+import de.latlon.xplan.manager.web.shared.XPlan;
+import org.junit.Test;
+
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.Test;
-
-import de.latlon.xplan.manager.web.shared.PlanStatus;
-import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -79,9 +77,7 @@ public class PlanStatusFilterTest {
 
 	private XPlan createPlan(PlanStatus planStatus) {
 		XPlan xPlan = new XPlan("name", "id", "type");
-		AdditionalPlanData xplanMetadata = new AdditionalPlanData();
-		xplanMetadata.setPlanStatus(planStatus);
-		xPlan.setXplanMetadata(xplanMetadata);
+		xPlan.setPlanStatus(planStatus);
 		return xPlan;
 	}
 

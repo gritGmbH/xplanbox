@@ -7,7 +7,7 @@ Datenunabhängige Aktualisierungsschritte:
 
 * Stoppen aller Tomcat-Instanzen
 * <<austausch-der-web-archive, Austausch der Web-Archive in den Tomcat-Instanzen>>
-* <<austausch-der-commandline-tools, Austausch der Kommandozeilenwerkzeuge>>
+* <<austausch-commandline-tool, Austausch des Kommandozeilenwerkzeugs>>
 
 Aktualisierungsschritte, die die Datenhaltung betreffen:
 
@@ -49,14 +49,13 @@ NOTE: Falls die Hintergrundkarte der Kartenvorschau im XPlanValidatorWeb angepas
 
 Es müssen alle Tomcat-Instanzen neu gestartet werden. Der Neustart muss nach der Aktualisierung der Workspaces erfolgen (s. <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>>).
 
-[[austausch-der-commandline-tools]]
-=== Austausch der Kommandozeilenwerkzeuge
+[[austausch-commandline-tool]]
+=== Austausch des Kommandozeilenwerkzeugs
 
-Die ZIP-Archive mit den <<kommandozeilen-anwendungen,Kommandozeilenwerkzeugen>> müssen entpackt werden:
+Das ZIP-Archiv mit dem <<kommandozeilen-anwendung,Kommandozeilenwerkzeug>> muss entpackt werden:
 
 ----
-unzip ${WORK_DIR}/bin/xplan-cli-tools.zip
-unzip ${WORK_DIR}/bin/xplan-transform-cli.zip
+unzip ${WORK_DIR}/bin/xplan-cli.zip
 ----
 
 === Übersicht über die Datenhaltung betreffende Änderungen
@@ -158,11 +157,11 @@ NOTE: Manuelle Änderungen an den Datenbank-Schemata können die fehlerfreie und
 
 IMPORTANT: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in die XPlanDB importierten Daten beibehalten werden sollen. Wenn dies nicht notwendig ist, kann die Datenbank XPlanDB neu aufgesetzt werden (siehe Kapitel <<konfiguration-der-datenbank>>).
 
-Zur Aktualisierung der Daten stehen Kommandozeilenwerkzeuge im XPlanUpdateDataCLI zur Verfügung. Nach einer Aktualisierung der xPlanBox muss folgendes Tool ausgeführt werden:
+Zur Aktualisierung der Daten steht das <<kommandozeilen-anwendung, Kommandozeilenwerkzeug XPlanCLI>> zur Verfügung. Nach einer Aktualisierung der xPlanBox muss folgendes Kommando ausgeführt werden:
 
-. _reSynthesizer_
+. _xpb admin resynthesize_
 
-Weitere Informationen zu den Tools stehen im Kapitel <<kommandozeilen-anwendungen>>.
+Weitere Informationen zum Kommandozeilenwerkzeug sind im Abschnitt <<kommandozeilen-anwendung>> beschrieben.
 
 [[aktualisierung-version-7.1]]
 === Aktualisierung auf die Version 7.1 der xPlanBox
@@ -258,7 +257,7 @@ TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert w
 
 Bei unerwartetem Verhalten der xPlanBox nach einer Aktualisierung können folgende Aktionen helfen:
 
-* Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ aus XPlanUpdateDataCLI zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten.
+* Ausführen des <<kommandozeilen-anwendung, Kommandozeilenwerkzeugs XPlanCLI>> mit dem Kommando _xpb admin resynthesize_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten.
 * Löschen des Verzeichnisses _<CATALINA_HOME>/work/_ des Tomcat-Servers. Der Tomcat-Server muss zuvor gestoppt und anschließend neu gestartet werden.
 * Reload der Workspaces der XPlanDienste.
 * Löschen des Browser-Caches.

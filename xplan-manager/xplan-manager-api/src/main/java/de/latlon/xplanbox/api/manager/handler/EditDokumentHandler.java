@@ -30,7 +30,7 @@ import de.latlon.xplanbox.api.manager.v1.model.Dokument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;

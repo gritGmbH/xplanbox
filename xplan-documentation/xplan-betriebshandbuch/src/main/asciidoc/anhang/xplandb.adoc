@@ -63,7 +63,7 @@ NOTE: Die Tabelle `planslog` beinhaltet eine Historie jedes Plans ab dem Zeitpun
 [[appendix_xplandb_skript]]
 === Skript zur automatisierten Erstellung der XPlanDB
 
-Die XPlanDB kann mit Hilfe des Bash-Skripts `setup_db.sh` (Datei liegt im https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/main/xplan-resources/xplan-sql-scripts/setup_db.sh[Open CoDE GitLab-Repository]) aufgesetzt werden.
+Die XPlanDB kann mit Hilfe des Bash-Skripts `setup_db.sh` (Datei liegt im https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/main/xplan-database/xplan-database-docker/setup_db.sh[Open CoDE GitLab-Repository]) aufgesetzt werden.
 Das Skript verwendet folgende Umgebungsvariablen, die vom Kommandozeilenwerkzeug `psql` ausgelesen werden (siehe https://www.postgresql.org/docs/current/libpq-envars.html[PostgreSQL Dokumentation]):
 
 - `PGUSER`: Name des Datenbankbenutzers mit Super User Rolle (default: _postgres_, required)

@@ -8,7 +8,7 @@ pipeline {
   }
   tools {
     maven 'maven-3.9'
-    jdk 'openjdk11'
+    jdk 'temurin-jdk17'
   }
   stages {
     stage('Build with code coverage') {

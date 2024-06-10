@@ -53,18 +53,6 @@ public class FeatureCollectionManipulator {
 	private static final String XPLAN_MGR_PLAN_ID_PROP_NAME = "xplanMgrPlanId";
 
 	/**
-	 * @deprecated will be removed in a future version.
-	 */
-	@Deprecated
-	private static final String START_DATE_TIME_PROP_NAME = "gueltigkeitBeginn";
-
-	/**
-	 * @deprecated will be removed in a future version.
-	 */
-	@Deprecated
-	private static final String END_DATE_TIME_PROP_NAME = "gueltigkeitEnde";
-
-	/**
 	 * Adds the internalId property to following feature types: BP_Plan, FP_Plan, LP_Plan,
 	 * RP_Plan, SO_Plan.
 	 * @param featureCollection feature collection that is manipulated, not
@@ -90,8 +78,6 @@ public class FeatureCollectionManipulator {
 	 * <ul>
 	 * <li>the id of the plan in the manager (as property xplanMgrPlanId)</li>
 	 * <li>the date used by the wms to sort by (as property wmsSortDate)</li>
-	 * <li>the begin and end date of the validity period (as properties gueltigkeitBeginn
-	 * and gueltigkeitEnde)</li>
 	 * </ul>
 	 * @param featureCollectionToModify {@link FeatureCollection} encapsulation a plan,
 	 * never <code>null</code>
@@ -99,18 +85,15 @@ public class FeatureCollectionManipulator {
 	 * @param planId the id of the plan to add to all features, never <code>null</code>
 	 * @param wmsSortDate the date to add to each sortable feature, may be
 	 * <code>null</code>
-	 * @param beginValidity the begin of the validity, may be <code>null</code>
-	 * @param beginValidity the endo of the validity, may be <code>null</code>
 	 */
 	public void addAdditionalPropertiesToFeatures(FeatureCollection featureCollectionToModify,
-			AppSchema applicationSchema, int planId, Date wmsSortDate, Date beginValidity, Date endValidity) {
+			AppSchema applicationSchema, int planId, Date wmsSortDate) {
 		Iterator<Feature> featureCollectionIterator = featureCollectionToModify.iterator();
 		while (featureCollectionIterator.hasNext()) {
 			Feature feature = featureCollectionIterator.next();
 			FeatureType featureType = applicationSchema.getFeatureType(feature.getName());
 			addMgrPlanIdProperty(planId, feature, featureType);
 			addWmsSortDatePropertyToFeature(wmsSortDate, feature, featureType);
-			addStartAndEndDateTimeProperty(beginValidity, endValidity, feature, featureType);
 		}
 	}
 
@@ -148,18 +131,6 @@ public class FeatureCollectionManipulator {
 	private void addWmsSortDatePropertyToFeature(Date releaseDate, Feature feature, FeatureType featureType) {
 		if (releaseDate != null && isSortableFeature(featureType))
 			addDateProperty(feature, featureType, WMS_SORT_DATE_PROP_NAME, releaseDate);
-	}
-
-	/**
-	 * @deprecated will be removed in a future version.
-	 */
-	@Deprecated
-	private void addStartAndEndDateTimeProperty(Date beginValidity, Date endValidity, Feature feature,
-			FeatureType featureType) {
-		if (beginValidity != null)
-			addDateProperty(feature, featureType, START_DATE_TIME_PROP_NAME, beginValidity);
-		if (endValidity != null)
-			addDateProperty(feature, featureType, END_DATE_TIME_PROP_NAME, endValidity);
 	}
 
 	private void addDateProperty(Feature feature, FeatureType featureType, String datePropName, Date dateValue) {

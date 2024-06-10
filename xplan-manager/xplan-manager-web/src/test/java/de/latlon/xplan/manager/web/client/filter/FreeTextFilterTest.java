@@ -155,17 +155,6 @@ public class FreeTextFilterTest {
 		assertThat(matching, is(false));
 	}
 
-	@Ignore("Test currently fails as a gwt client class (here DateTimeFormat) cannot be used.")
-	@Test
-	public void testIsMatchingWithUnsearchableColumnShouldReturnFalse() throws Exception {
-		FreeTextFilter freeTextFilter = new FreeTextFilter("category");
-
-		XPlan plan = createPlan();
-		boolean matching = freeTextFilter.isMatching(plan);
-
-		assertThat(matching, is(false));
-	}
-
 	@Test
 	public void testIsMatchingInColumnlegislationShouldReturnTrue() throws Exception {
 		FreeTextFilter freeTextFilter = new FreeTextFilter(LEGISLATIONSTATUS, "leg*StaT");
@@ -188,7 +177,6 @@ public class FreeTextFilterTest {
 
 	private XPlan createPlan() {
 		XPlan xPlan = new XPlan("name", "id", "type");
-		xPlan.setDistrict("category");
 		xPlan.setLegislationStatus("legislationStatus");
 		xPlan.setAdditionalType("additionalType");
 		return xPlan;

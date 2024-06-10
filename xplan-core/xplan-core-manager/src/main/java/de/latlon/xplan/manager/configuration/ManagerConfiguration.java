@@ -34,10 +34,8 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -52,8 +50,6 @@ import static de.latlon.xplan.manager.workspace.WorkspaceReloadAction.ALL;
  * @version $Revision: $, $Date: $
  */
 public class ManagerConfiguration {
-
-	static final String CATEGORIES_TO_PARTS_KEY = "categoriesToParts";
 
 	static final String RASTER_CONFIG_CRS = "rasterConfigurationCrs";
 
@@ -79,8 +75,6 @@ public class ManagerConfiguration {
 
 	private static final String MANAGER_CONFIGURATION = "managerConfiguration.properties";
 
-	private final Map<String, List<String>> categoriesToParts = new HashMap<>();
-
 	private final SortConfiguration sortConfiguration = new SortConfiguration();
 
 	private final Map<String, String> environmentVariables;
@@ -94,9 +88,6 @@ public class ManagerConfiguration {
 	private double rasterLayerMaxScaleDenominator = Double.NaN;
 
 	private WorkspaceReloaderConfiguration workspaceReloaderConfiguration = new WorkspaceReloaderConfiguration();
-
-	@Deprecated
-	private InternalIdRetrieverConfiguration internalIdRetrieverConfiguration = new InternalIdRetrieverConfiguration();
 
 	private SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = new SemanticConformityLinkConfiguration();
 
@@ -118,16 +109,6 @@ public class ManagerConfiguration {
 		loadProperties(propertiesLoader);
 		verifyConfiguration();
 		logConfiguration();
-	}
-
-	/**
-	 * Retrieves the category mappings (category assigned to a list of parts).
-	 * @return the category mapping, may be empty but never <code>null</code>
-	 * @deprecated method will be removed in a future version.
-	 */
-	@Deprecated
-	public Map<String, List<String>> getCategoryMapping() {
-		return categoriesToParts;
 	}
 
 	/**
@@ -168,15 +149,6 @@ public class ManagerConfiguration {
 	 */
 	public WorkspaceReloaderConfiguration getWorkspaceReloaderConfiguration() {
 		return workspaceReloaderConfiguration;
-	}
-
-	/**
-	 * @deprecated InternalIdRetrieverConfiguration will be removed in a future version.
-	 * @return the {@link InternalIdRetrieverConfiguration}, never <code>null</code>
-	 */
-	@Deprecated
-	public InternalIdRetrieverConfiguration getInternalIdRetrieverConfiguration() {
-		return internalIdRetrieverConfiguration;
 	}
 
 	/**
@@ -235,11 +207,6 @@ public class ManagerConfiguration {
 		if (propertiesLoader != null) {
 			Properties loadProperties = propertiesLoader.loadProperties(MANAGER_CONFIGURATION);
 			if (loadProperties != null) {
-				String categoriesToPartsProperty = loadProperties.getProperty(CATEGORIES_TO_PARTS_KEY);
-				if (categoriesToPartsProperty != null && !"".equals(categoriesToPartsProperty)) {
-					String[] categoriesWithParts = categoriesToPartsProperty.split(";");
-					parseCategories(categoriesWithParts);
-				}
 				rasterConfigurationCrs = parseRasterConfigurationCrs(loadProperties, RASTER_CONFIG_CRS);
 				rasterConfigurationType = parseRasterConfigurationType(loadProperties);
 				rasterLayerMinScaleDenominator = parseScaleDenominator(loadProperties,
@@ -247,7 +214,6 @@ public class ManagerConfiguration {
 				rasterLayerMaxScaleDenominator = parseScaleDenominator(loadProperties,
 						RASTER_LAYER_SCALE_DENOMINATOR_MAX);
 				workspaceReloaderConfiguration = parseWorkspaceReloaderConfiguration(loadProperties);
-				internalIdRetrieverConfiguration = parseInternalIdRetrieverConfiguration(loadProperties);
 				parseSortConfiguration(loadProperties);
 				parseSemanticConformityLinkConfiguration(loadProperties);
 				pathToHaleCli = loadProperties.getProperty(PATH_TO_HALE_CLI);
@@ -294,14 +260,6 @@ public class ManagerConfiguration {
 			LOG.info("   - user/password used for authentication: {}/{}", workspaceReloaderConfiguration.getUser(),
 					replaceWithX(workspaceReloaderConfiguration.getPassword()));
 		LOG.info("-------------------------------------------");
-		LOG.info("  InternalIdRetriever");
-		LOG.info("   - workspace: {}", internalIdRetrieverConfiguration.getWorkspaceName());
-		LOG.info("   - jdbc connection id: {}", internalIdRetrieverConfiguration.getJdbcConnectionId());
-		LOG.info("   - internalId label: {}", internalIdRetrieverConfiguration.getInternalIdLabel());
-		LOG.info("   - internalName label: {}", internalIdRetrieverConfiguration.getInternalNameLabel());
-		LOG.info("   - SQL Matching Ids: {}", internalIdRetrieverConfiguration.getSelectMatchingIdsSql());
-		LOG.info("   - SQL All: {}", internalIdRetrieverConfiguration.getSelectAllSql());
-		LOG.info("-------------------------------------------");
 		LOG.info("  path to HALE CLI: {}", pathToHaleCli);
 		LOG.info("  path to HALE project: {}", pathToHaleProjectDirectory);
 		LOG.info("-------------------------------------------");
@@ -320,22 +278,6 @@ public class ManagerConfiguration {
 		LOG.info("Additional environment variables (contains only the variables available via manager configuration)");
 		environmentVariables.entrySet().forEach(entry -> LOG.info("   - {}: {}", entry.getKey(), entry.getValue()));
 		LOG.info("-------------------------------------------");
-	}
-
-	private void parseCategories(String[] categoriesWithParts) throws ConfigurationException {
-		for (String categoryWithParts : categoriesWithParts) {
-			String categoryName = parseCategoryName(categoryWithParts);
-			List<String> partsAsList = parseParts(categoryWithParts);
-			categoriesToParts.put(categoryName, partsAsList);
-		}
-	}
-
-	private String parseCategoryName(String categoryWithParts) throws ConfigurationException {
-		if (categoryWithParts.contains("(")) {
-			int indexOfCategoryEnd = categoryWithParts.indexOf("(");
-			return categoryWithParts.substring(0, indexOfCategoryEnd);
-		}
-		throw new ConfigurationException("Categories was not correctly configured!");
 	}
 
 	private String parseRasterConfigurationCrs(Properties loadProperties, String rasterConfigCrs) {
@@ -358,22 +300,6 @@ public class ManagerConfiguration {
 		return gdal;
 	}
 
-	private List<String> parseParts(String categoryWithParts) {
-		int indexOfPartsBegin = categoryWithParts.indexOf("(") + 1;
-		int indexOfPartsEnd = categoryWithParts.indexOf(")");
-		String allParts = categoryWithParts.substring(indexOfPartsBegin, indexOfPartsEnd);
-		String[] parts = allParts.split(",");
-		return cleanupParts(parts);
-	}
-
-	private List<String> cleanupParts(String[] parts) {
-		List<String> partsAsList = new ArrayList<>();
-		for (String part : parts) {
-			partsAsList.add(part.trim());
-		}
-		return partsAsList;
-	}
-
 	private WorkspaceReloaderConfiguration parseWorkspaceReloaderConfiguration(Properties loadProperties) {
 		String urls = loadProperties.getProperty(WORKSPACE_RELOAD_URLS);
 		String apiKey = loadProperties.getProperty(WORKSPACE_RELOAD_API_KEY);
@@ -392,29 +318,6 @@ public class ManagerConfiguration {
 		if (workspaceReloadAction == null)
 			return ALL;
 		return WorkspaceReloadAction.valueOf(workspaceReloadAction);
-	}
-
-	private InternalIdRetrieverConfiguration parseInternalIdRetrieverConfiguration(Properties properties) {
-		InternalIdRetrieverConfiguration internalIdRetrieverConfiguration = new InternalIdRetrieverConfiguration();
-		String workspaceName = properties.getProperty("workspaceName");
-		if (workspaceName != null)
-			internalIdRetrieverConfiguration.setWorkspaceName(workspaceName);
-		String jdbcConnectionId = properties.getProperty("jdbcConnectionId");
-		if (jdbcConnectionId != null)
-			internalIdRetrieverConfiguration.setJdbcConnectionId(jdbcConnectionId);
-		String internalIdLabel = properties.getProperty("internalIdLabel");
-		if (internalIdLabel != null)
-			internalIdRetrieverConfiguration.setInternalIdLabel(internalIdLabel);
-		String internalNameLabel = properties.getProperty("internalNameLabel");
-		if (internalNameLabel != null)
-			internalIdRetrieverConfiguration.setInternalNameLabel(internalNameLabel);
-		String selectMatchingIdsSql = properties.getProperty("selectMatchingIdsSql");
-		if (selectMatchingIdsSql != null)
-			internalIdRetrieverConfiguration.setSelectMatchingIdsSql(selectMatchingIdsSql);
-		String selectAllIdsSql = properties.getProperty("selectAllIdsSql");
-		if (selectAllIdsSql != null)
-			internalIdRetrieverConfiguration.setSelectAllSql(selectAllIdsSql);
-		return internalIdRetrieverConfiguration;
 	}
 
 	private void parseSortConfiguration(Properties properties) {

@@ -11,5 +11,3 @@ Globale Parameter sind:
 include::XPlanValidator_CLI.adoc[]
 
 include::XPlanManager_CLI.adoc[]
-
-include::XPlanTransform_CLI.adoc[]

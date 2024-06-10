@@ -20,7 +20,14 @@
  */
 package de.latlon.xplan.manager.web.server.service;
 
-import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.ws.rs.core.Context;
+
+import com.google.gwt.user.server.rpc.jakarta.XsrfProtectedServiceServlet;
 import de.latlon.xplan.manager.web.client.service.SecurityService;
 import de.latlon.xplan.manager.web.server.service.security.AuthorizationManager;
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
@@ -29,9 +36,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 
 /**
  * Service implementation for security functions.

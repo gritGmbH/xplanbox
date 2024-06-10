@@ -22,8 +22,8 @@ package de.latlon.xplanbox.api.dokumente.v1;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Application;
+import jakarta.ws.rs.core.Response;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;

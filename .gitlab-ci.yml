@@ -78,10 +78,10 @@ maven-prepare-docker-contexts-apis-and-inspire-plu:
 maven-prepare-docker-contexts-cli:
   extends: .maven-prepare-docker-contexts
   variables:
-    mvnProjects: ':xplan-benutzerhandbuch,:xplan-betriebshandbuch,:xplan-cli-tools,:xplan-database-docker,:xplan-webpages'
+    mvnProjects: ':xplan-benutzerhandbuch,:xplan-betriebshandbuch,:xplan-cli,:xplan-database-docker,:xplan-webpages'
   artifacts:
     paths: # 2024.02.02: ~371M
-    - './xplan-cli/xplan-cli-tools/target/docker/**/docker-build.tar.gz'
+    - './xplan-cli/target/docker/**/docker-build.tar.gz'
     - './xplan-documentation/**/target/docker/**/docker-build.tar.gz'
     - './xplan-database/xplan-database-docker/target/docker/**/docker-build.tar.gz'
 

@@ -45,7 +45,6 @@ import de.latlon.xplan.manager.web.client.gui.editor.change.ChangesXplanPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.raster.RasterBasisPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.reference.ReferencesPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.text.TextsPanel;
-import de.latlon.xplan.manager.web.client.gui.editor.validityPeriod.ValidityPeriodPanel;
 import de.latlon.xplan.manager.web.client.gui.event.EditorCanceledEvent;
 import de.latlon.xplan.manager.web.client.gui.event.EditorFinishedEvent;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
@@ -60,7 +59,6 @@ import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.BP_Plan;
 import static de.latlon.xplan.manager.web.client.gui.utils.ValidationUtils.areComponentsValid;
 
 /**
@@ -73,13 +71,9 @@ public class EditorPanel extends DecoratorPanel {
 
 	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);
 
-	private EditPlanType planType;
-
 	private final HandlerManager eventBus;
 
 	private final BaseDataPanel baseDataPanel;
-
-	private final ValidityPeriodPanel validityPeriodPanel = new ValidityPeriodPanel();
 
 	private final AbstractEditorSubPanelWithTable<Change> changesPanel;
 
@@ -92,7 +86,6 @@ public class EditorPanel extends DecoratorPanel {
 	private String planId;
 
 	public EditorPanel(EditVersion version, EditPlanType planType, List<Bereich> bereiche, HandlerManager eventBus) {
-		this.planType = planType;
 		this.eventBus = eventBus;
 		baseDataPanel = new BaseDataPanel(version, planType);
 		changesPanel = new ChangesXplanPanel(version, planType);
@@ -107,7 +100,6 @@ public class EditorPanel extends DecoratorPanel {
 	void setXPlanToEdit(String planId, XPlanToEdit xPlantoEdit) {
 		this.planId = planId;
 		baseDataPanel.setBaseData(xPlantoEdit.getBaseData());
-		validityPeriodPanel.setValidityPeriod(xPlantoEdit.getValidityPeriod());
 		changesPanel.setValues(xPlantoEdit.getChanges());
 		textsPanel.setValues(xPlantoEdit.getTexts());
 		referencesPanel.setValues(xPlantoEdit.getReferences());
@@ -139,7 +131,6 @@ public class EditorPanel extends DecoratorPanel {
 		xPlanToEdit.setChanges(changesPanel.getValues());
 		xPlanToEdit.setTexts(textsPanel.getValues());
 		xPlanToEdit.setReferences(referencesPanel.getValues());
-		xPlanToEdit.setValidityPeriod(validityPeriodPanel.retrieveValidityPeriodToEdit());
 		xPlanToEdit.setRasterBasis(rasterBasisPanel.retrieveRasterBasis());
 		return xPlanToEdit;
 	}
@@ -170,9 +161,6 @@ public class EditorPanel extends DecoratorPanel {
 		panel.setSpacing(10);
 		panel.setHorizontalAlignment(ALIGN_CENTER);
 		panel.add(baseDataPanel);
-		if (BP_Plan.equals(planType)) {
-			panel.add(validityPeriodPanel);
-		}
 		panel.add(changesPanel);
 		panel.add(textsPanel);
 		panel.add(referencesPanel);
@@ -274,7 +262,7 @@ public class EditorPanel extends DecoratorPanel {
 	}
 
 	private boolean isValid() {
-		return areComponentsValid(baseDataPanel, validityPeriodPanel, rasterBasisPanel);
+		return areComponentsValid(baseDataPanel, rasterBasisPanel);
 	}
 
 	private DialogBox createAndShowSaveDialogBox() {

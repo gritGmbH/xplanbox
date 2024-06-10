@@ -33,7 +33,6 @@ import java.util.List;
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveBereiche;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -87,30 +86,6 @@ class FeatureCollectionUtilsTest {
 		String legislationStatus = retrieveRechtsstand(fc, BP_Plan);
 
 		assertThat(legislationStatus).isNull();
-	}
-
-	@Test
-	void testRetrieveDistrictWithXPlan41ShouldReturnDistrict() throws Exception {
-		FeatureCollection fc = getMainFileAsFeatureCollection("xplan41/Eidelstedt_4_V4.zip");
-		String district = retrieveDistrict(fc, BP_Plan);
-
-		assertThat(district).isEqualTo("Bezirk Eimsbüttel Ortsteil 320");
-	}
-
-	@Test
-	void testRetrieveDistrictWithXPlan41WithMissingDistrictNameShouldReturnNull() throws Exception {
-		FeatureCollection fc = getMainFileAsFeatureCollection("xplan41/BP2070.zip");
-		String district = retrieveDistrict(fc, BP_Plan);
-
-		assertThat(district).isNull();
-	}
-
-	@Test
-	void testRetrieveDistrictWithXPlan51WithMultipleDistricts() throws Exception {
-		FeatureCollection fc = getMainFileAsFeatureCollection("xplan51/BP2070_mehrererOrtsteile.zip");
-		String district = retrieveDistrict(fc, BP_Plan);
-
-		assertThat(district).isEqualTo("309");
 	}
 
 	@Test

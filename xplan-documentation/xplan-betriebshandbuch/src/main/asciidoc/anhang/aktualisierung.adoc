@@ -35,7 +35,6 @@ Die Zuordnung der Anwendungskomponenten zu den jeweiligen Konfigurationen ist im
   ** _Anwendungs-Tomcat/webapps/xplan-manager-web/XPlanMgrWeb.css_ kopieren
   ** _Anwendungs-Tomcat/webapps/xplan-manager-web/WEB-INF/web.xml_ anpassen der Konfiguration, wenn der XPlanManagerWeb abgesichert ist (siehe Kapitel <<security>>)
   ** _Anwendungs-Tomcat/webapps/xplan-manager-web/WEB-INF/classes/security.properties_ anpassen
-  ** _Anwendungs-Tomcat/webapps/xplan-manager-web/WEB-INF/classes/security-configuration.xml_ kopieren
 * [ ] Folgende Dateien für XPlanValidator sichern und zurückspielen, bzw. vergleichen und anpassen:
   ** _Anwendungs-Tomcat/webapps/xplan-validator-web/index.html_ anpassen
   ** _Anwendungs-Tomcat/webapps/xplan-validator-web/XPlanValidator.jpg_ kopieren

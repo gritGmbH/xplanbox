@@ -9351,13 +9351,6 @@ if (jdbcUrl == ""){
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="Simple Contains" id="dc6c4f1b-0f10-4eec-bd86-ac75d6ea08a8" name="start- contains">
-              <con:configuration>
-                <token>2021-11-09</token>
-                <ignoreCase>false</ignoreCase>
-                <useRegEx>false</useRegEx>
-              </con:configuration>
-            </con:assertion>
             <con:credentials>
               <con:username>${#Project#username}</con:username>
               <con:password>${#Project#password}</con:password>
@@ -9385,22 +9378,6 @@ if (jdbcUrl == ""){
             <con:assertion type="Valid HTTP Status Codes" id="43f3167c-bc2d-4166-89b9-0f94ef121a95" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="5f3a4893-7453-4a04-9893-bb1376db503c" name="start" disabled="true">
-              <con:configuration>
-                <path>$.start</path>
-                <content>2021-11-09T00:00:00.000+00:00</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="Simple Contains" id="7f861255-4416-4da1-8ea2-ac64c583c72c" name="start - contains">
-              <con:configuration>
-                <token>2021-11-09</token>
-                <ignoreCase>false</ignoreCase>
-                <useRegEx>false</useRegEx>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9435,15 +9412,6 @@ if (jdbcUrl == ""){
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="d800035e-41b6-4e0b-9f17-54f6eba2095f" name="JsonPath Match">
-              <con:configuration>
-                <path>$.start</path>
-                <content>null</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
             <con:credentials>
               <con:username>${#Project#username}</con:username>
               <con:password>${#Project#password}</con:password>
@@ -9471,15 +9439,6 @@ if (jdbcUrl == ""){
             <con:assertion type="Valid HTTP Status Codes" id="43f3167c-bc2d-4166-89b9-0f94ef121a95" name="Valid HTTP Status Codes">
               <con:configuration>
                 <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Match" id="5f3a4893-7453-4a04-9893-bb1376db503c" name="JsonPath Match">
-              <con:configuration>
-                <path>$.start</path>
-                <content>null</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
             <con:credentials>

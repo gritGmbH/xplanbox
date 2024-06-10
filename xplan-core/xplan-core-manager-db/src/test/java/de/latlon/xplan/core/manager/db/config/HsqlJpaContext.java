@@ -63,6 +63,12 @@ public class HsqlJpaContext {
 
 	@Bean
 	public HibernateJpaVendorAdapter jpaVendorAdapter(@Value("${hibernate.dialect}") String hibernateDialect) {
+		System.out.println("---");
+		System.out.println(getClass().getClassLoader()
+			.getResource("org/springframework/orm/jpa/vendor/HibernateJpaVendorAdapter.class"));
+		System.out.println(getClass().getClassLoader()
+			.getResource("org/springframework/orm/jpa/vendor/HibernateJpaDialect.class"));
+
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		vendorAdapter.setGenerateDdl(true);
 		vendorAdapter.setShowSql(true);

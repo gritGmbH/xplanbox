@@ -21,8 +21,7 @@
 package de.latlon.xplan.manager.web.shared.edit;
 
 import java.io.Serializable;
-
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * Encapsulates a reference of a plan.

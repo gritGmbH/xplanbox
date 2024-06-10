@@ -36,20 +36,6 @@
     <wms:ThemeId>lplanpreraster</wms:ThemeId>
     <wms:ThemeId>rplanpreraster</wms:ThemeId>
     <wms:ThemeId>soplanpreraster</wms:ThemeId>
-    <!--Deprecated: The VisibilityInspector will be removed in a future version. -->
-    <wms:VisibilityInspector>
-      <wms:JavaClass>de.latlon.xplan.wms.visibility.PreValidityPeriodInspector</wms:JavaClass>
-      <wms:CategoryLayerIdentifier>BP_Planraster</wms:CategoryLayerIdentifier>
-      <wms:CategoryLayerIdentifier>bplanraster_sortiert</wms:CategoryLayerIdentifier>
-      <wms:CategoryLayerIdentifier>FP_Planraster</wms:CategoryLayerIdentifier>
-      <wms:CategoryLayerIdentifier>fplanraster_sortiert</wms:CategoryLayerIdentifier>
-      <wms:CategoryLayerIdentifier>LP_Planraster</wms:CategoryLayerIdentifier>
-      <wms:CategoryLayerIdentifier>lplanraster_sortiert</wms:CategoryLayerIdentifier>
-      <wms:CategoryLayerIdentifier>RP_Planraster</wms:CategoryLayerIdentifier>
-      <wms:CategoryLayerIdentifier>rplanraster_sortiert</wms:CategoryLayerIdentifier>
-      <wms:CategoryLayerIdentifier>SO_Planraster</wms:CategoryLayerIdentifier>
-      <wms:CategoryLayerIdentifier>soplanraster_sortiert</wms:CategoryLayerIdentifier>
-    </wms:VisibilityInspector>
   </wms:ServiceConfiguration>
   <wms:FeatureInfoFormats>
     <wms:GetFeatureInfoFormat>

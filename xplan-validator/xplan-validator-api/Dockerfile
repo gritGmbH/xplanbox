@@ -3,7 +3,7 @@ ARG XPLANBOX_IMAGE_NAME_PREFIX=xplanbox
 
 FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat:$XPLANBOX_VERSION as builder
 
-FROM eclipse-temurin:11.0.21_9-jre-alpine
+FROM eclipse-temurin:17.0.11_9-jre-alpine
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
@@ -28,7 +28,9 @@ ENV JMX_EXPORTER_DIR=/xplanbox/prometheus
 RUN mkdir -p $JMX_EXPORTER_DIR
 COPY --from=builder $JMX_EXPORTER_DIR $JMX_EXPORTER_DIR
 
-ENV JAVA_ADDITIONAL_ARG_JMX_EXPORTER='-javaagent:$JMX_EXPORTER_DIR/jmx_prometheus_javaagent-0.19.0.jar=12345:$JMX_EXPORTER_DIR/jmx-exporter.config.yaml'
+ENV JAVA_ADDITIONAL_ARG_JAVA17_EXPORTS="--add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED" \
+    JAVA_ADDITIONAL_ARG_JMX_EXPORTER='-javaagent:$JMX_EXPORTER_DIR/jmx_prometheus_javaagent-0.19.0.jar=12345:$JMX_EXPORTER_DIR/jmx-exporter.config.yaml'
+    
 
 # set environment variables
 ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree \

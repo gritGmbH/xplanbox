@@ -14,17 +14,15 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>jaxb2-maven-plugin</artifactId>
+        <groupId>org.jvnet.jaxb</groupId>
+        <artifactId>jaxb-maven-plugin</artifactId>
         <configuration>
-          <xjbSources>
-            <xjbSource>${project.basedir}/src/xjc/bindings.xjc</xjbSource>
-          </xjbSources>
-          <sources>
-            <source>${project.basedir}/src/main/resources/schemas</source>
-          </sources>
+        <!-- 
+			<bindingDirectory>${project.basedir}/src/xjc</bindingDirectory>
+			<schemaDirectory>${project.basedir}/src/main/resources/schemas</schemaDirectory>
           <outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
-          <packageName>de.latlon.xplan.validator.report</packageName>
+          -->
+          <generatePackage>de.latlon.xplan.validator.report</generatePackage>
         </configuration>
       </plugin>
     </plugins>
@@ -105,15 +103,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-slf4j-impl</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.geotools</groupId>
-      <artifactId>gt-epsg-hsql</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.geotools</groupId>
-      <artifactId>gt-shapefile</artifactId>
+      <artifactId>log4j-slf4j2-impl</artifactId>
     </dependency>
     <dependency>
       <groupId>org.locationtech.jts</groupId>

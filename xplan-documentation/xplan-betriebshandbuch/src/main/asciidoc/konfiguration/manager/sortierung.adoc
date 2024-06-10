@@ -59,5 +59,4 @@ die Version/den Typ keine Zuordnung gefunden werden. Das Datumsfeld
 bleibt leer.
 
 IMPORTANT: Eine Änderung dieser Konfiguration während des laufenden
-Betriebs führt zu unterschiedlichen Grundlagen der Sortierung. Über das
-Tool `sortDateUpdate` des XPlanUpdateDataCLI kann die Änderung für bereits importierte Daten nachgezogen werden. Der Aufruf des XPlanUpdateDataCLI ist im Kapitel <<kommandozeilen-anwendungen>> beschrieben.
+Betriebs führt zu unterschiedlichen Grundlagen der Sortierung. Über das <<kommandozeilen-anwendung, Kommandozeilenwerkzeug XPlanCLI>> kann mit dem Kommando `admin sortdate-update` die Änderung für bereits importierte Daten nachgezogen werden.

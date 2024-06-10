@@ -34,10 +34,10 @@ import org.deegree.tile.tilematrixset.geotiff.jaxb.GeoTIFFTileMatrixSetConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.PropertyException;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -48,7 +48,7 @@ import java.util.function.BiPredicate;
 import java.util.stream.Stream;
 
 import static java.lang.Boolean.TRUE;
-import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
+import static jakarta.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
 
 /**
  * Creates/deletes configuration and data files for raster layers in the WMS workspace.

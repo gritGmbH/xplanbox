@@ -11,29 +11,9 @@
     <version>8.0-SNAPSHOT</version>
   </parent>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>sql-scripts</id>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/assembly.xml</descriptor>
-              </descriptors>
-              <appendAssemblyId>false</appendAssemblyId>
-            </configuration>
-            <phase>package</phase>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+  <properties>
+    <gpg.skip>true</gpg.skip>
+  </properties>
 
   <profiles>
     <profile>
@@ -41,7 +21,7 @@
       <properties>
         <docker-image.skip>false</docker-image.skip>
         <docker-image.name>xplan-db</docker-image.name>
-        <docker-contextTarFile.expectedSizeInMat10pct>18</docker-contextTarFile.expectedSizeInMat10pct>
+        <docker-contextTarFile.expectedSizeInMat10pct>2</docker-contextTarFile.expectedSizeInMat10pct>
       </properties>
     </profile>
   </profiles>

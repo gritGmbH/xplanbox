@@ -29,9 +29,7 @@ import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Async interface for {@link ManagerService}.
@@ -52,15 +50,9 @@ public interface ManagerServiceAsync {
 
 	void removePlanFromFileSystem(String planId, AsyncCallback<Boolean> callback);
 
-	void importPlan(String planId, String internalId, String defaultCrs, boolean makeRasterConfig,
-			PlanStatus planStatus, Date startDateTime, Date endDateTime, AsyncCallback<Boolean> callback);
+	void importPlan(String planId, boolean makeRasterConfig, PlanStatus planStatus, AsyncCallback<Boolean> callback);
 
 	void retrieveBereiche(String id, AsyncCallback<List<Bereich>> alertFailureCallback);
-
-	void retrieveMatchingInternalIds(String internalId, AsyncCallback<Map<String, String>> callback);
-
-	@Deprecated
-	void isCrsSet(String id, AsyncCallback<Boolean> callback);
 
 	void evaluateRaster(String id, AsyncCallback<List<RasterEvaluationResult>> callback);
 

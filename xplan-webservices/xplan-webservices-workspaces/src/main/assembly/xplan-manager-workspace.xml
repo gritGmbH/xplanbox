@@ -55,13 +55,5 @@
       <unpack>true</unpack>
       <outputDirectory>/</outputDirectory>
     </dependencySet>
-    <dependencySet>
-      <useProjectArtifact>false</useProjectArtifact>
-      <includes>
-        <include>de.latlon.product.xplanbox:xplan-database-docker</include>
-      </includes>
-      <unpack>true</unpack>
-      <outputDirectory>/sql</outputDirectory>
-    </dependencySet>
   </dependencySets>
 </assembly>

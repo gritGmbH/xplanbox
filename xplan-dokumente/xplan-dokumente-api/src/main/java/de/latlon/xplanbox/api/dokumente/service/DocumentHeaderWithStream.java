@@ -20,7 +20,7 @@
  */
 package de.latlon.xplanbox.api.dokumente.service;
 
-import javax.ws.rs.core.StreamingOutput;
+import jakarta.ws.rs.core.StreamingOutput;
 
 /**
  * Encapsulated the header information of a document and the document itself.

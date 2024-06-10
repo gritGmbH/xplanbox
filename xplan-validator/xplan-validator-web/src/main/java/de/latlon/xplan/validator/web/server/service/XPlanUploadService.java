@@ -20,26 +20,27 @@
  */
 package de.latlon.xplan.validator.web.server.service;
 
-import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
+import com.google.gwt.user.server.rpc.jakarta.XsrfProtectedServiceServlet;
 import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.fileupload.servlet.ServletRequestContext;
+import org.apache.commons.fileupload2.core.FileItem;
+import org.apache.commons.fileupload2.core.FileUploadException;
+import org.apache.commons.fileupload2.core.AbstractFileUpload;
+import org.apache.commons.fileupload2.core.DiskFileItem;
+import org.apache.commons.fileupload2.core.DiskFileItemFactory;
+import org.apache.commons.fileupload2.jakarta.servlet6.JakartaServletFileUpload;
+import org.apache.commons.fileupload2.jakarta.servlet6.JakartaServletRequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
 import static java.lang.String.format;
 import static java.util.UUID.randomUUID;
-import static org.apache.commons.fileupload.FileUploadBase.isMultipartContent;
 
 /**
  * Stores an uploaded zip file into a tmp directory.
@@ -54,7 +55,7 @@ public class XPlanUploadService extends XsrfProtectedServiceServlet {
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanUploadService.class);
 
 	private static final ResourceBundle bundle = ResourceBundle
-		.getBundle("de.latlon.xplan.validator.web.client.XPlanValidatorWebMessages");
+		.getBundle("de.latlon.xplanbox.core.gwt.commons.client.ValidatorWebCommonsMessages");
 
 	private static final int FIRST = 0;
 
@@ -64,7 +65,7 @@ public class XPlanUploadService extends XsrfProtectedServiceServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		LOG.trace("Handling request {} in {}", request.getRequestURI(), this.getClass());
-		boolean isMultiPart = isMultipartContent(new ServletRequestContext(request));
+		boolean isMultiPart = AbstractFileUpload.isMultipartContent(new JakartaServletRequestContext(request));
 		if (!isMultiPart)
 			super.service(request, response);
 		else {
@@ -74,7 +75,8 @@ public class XPlanUploadService extends XsrfProtectedServiceServlet {
 	}
 
 	private void handleMultiPart(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		ServletFileUpload upload = new ServletFileUpload(new DiskFileItemFactory());
+		JakartaServletFileUpload<DiskFileItem, DiskFileItemFactory> upload = new JakartaServletFileUpload<>(
+				DiskFileItemFactory.builder().get());
 		try {
 			FileItem uploadedFileItem = retrieveFirstUploadedFile(request, upload);
 			if (checkUploadConditions(uploadedFileItem)) {
@@ -101,8 +103,8 @@ public class XPlanUploadService extends XsrfProtectedServiceServlet {
 		}
 	}
 
-	private FileItem retrieveFirstUploadedFile(HttpServletRequest request, ServletFileUpload upload)
-			throws FileUploadException {
+	private FileItem retrieveFirstUploadedFile(HttpServletRequest request,
+			JakartaServletFileUpload<DiskFileItem, DiskFileItemFactory> upload) throws FileUploadException {
 		return upload.parseRequest(request).get(FIRST);
 	}
 

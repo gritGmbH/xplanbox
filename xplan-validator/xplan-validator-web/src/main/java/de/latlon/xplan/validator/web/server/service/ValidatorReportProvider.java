@@ -25,7 +25,7 @@ import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.web.shared.ArtifactType;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;

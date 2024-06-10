@@ -29,3 +29,5 @@ databaseChangeLog:
       file: 7.1/changelog_v71.yaml
   - include:
      file: 7.2/changelog_v72.yaml
+  - include:
+      file: 8.0/changelog_v80.yaml

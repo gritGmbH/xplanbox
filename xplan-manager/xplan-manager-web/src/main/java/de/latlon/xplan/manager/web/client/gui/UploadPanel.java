@@ -295,7 +295,7 @@ public class UploadPanel extends DecoratorPanel {
 		vPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		vPanel.getElement().setId("fileUploadPanel");
 		final FormPanel form = new FormPanel();
-		form.setAction(GWT.getHostPageBaseURL() + GWT.getModuleName() + "/rest/manager/plan/");
+		form.setAction(GWT.getHostPageBaseURL() + GWT.getModuleName() + "/rest/manager/plan");
 		form.setEncoding(FormPanel.ENCODING_MULTIPART);
 		form.setMethod(FormPanel.METHOD_POST);
 

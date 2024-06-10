@@ -21,18 +21,18 @@
 package de.latlon.xplan.core.manager.db.config;
 
 import de.latlon.xplan.core.manager.db.DatasourceWrapper;
-import org.springframework.beans.factory.annotation.Value;
+
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
@@ -42,7 +42,6 @@ import java.sql.SQLException;
  */
 @Configuration
 @EnableJpaRepositories(basePackages = "de.latlon.xplan.core.manager.db.repository")
-@PropertySource("classpath:/jpa.properties")
 @EnableTransactionManagement
 @ComponentScan("de.latlon.xplan.core.manager.db.listener")
 public class JpaContext {
@@ -65,9 +64,8 @@ public class JpaContext {
 	}
 
 	@Bean
-	public HibernateJpaVendorAdapter jpaVendorAdapter(@Value("${hibernate.dialect}") String hibernateDialect) {
+	public HibernateJpaVendorAdapter jpaVendorAdapter() {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		vendorAdapter.setDatabasePlatform(hibernateDialect);
 		return vendorAdapter;
 	}
 

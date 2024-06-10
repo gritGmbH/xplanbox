@@ -109,10 +109,6 @@ sed -i 's/workspaceReloadAction=ALL/workspaceReloadAction='$XPLAN_MANAGER_WORKSP
 sed -i 's/pathToHaleCli=/pathToHaleCli=\/hale\/bin\/hale/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's|http://localhost:8080|'$XPLAN_WMS_URL_PUBLIC'|g' xplan-manager-config/managerWebConfiguration.properties
 sed -i 's|rasterConfigurationCrs=EPSG:25832|rasterConfigurationCrs='$XPLAN_SERVICES_DEFAULT_CRS'|g' xplan-manager-config/managerConfiguration.properties
-sed -i 's|defaultCrs=EPSG:25832|defaultCrs='$XPLAN_SERVICES_DEFAULT_CRS'|g' xplan-manager-config/managerWebConfiguration.properties
-chooseCrs=$( echo "$XPLAN_SERVICES_QUERY_CRS" | sed 's/^[ \t]*//;s/[ \t]*$//;s/[ ]/,/g' )
-chooseCrs=$XPLAN_SERVICES_DEFAULT_CRS','$chooseCrs
-sed -i 's|chooseCrs=EPSG:4326,EPSG:25833,EPSG:31466,EPSG:31467,EPSG:31468,EPSG:31469|chooseCrs='$chooseCrs'|g' xplan-manager-config/managerWebConfiguration.properties
 
 if [ $XPLAN_INIT_INSPIREPLU = "enabled" ]
 then

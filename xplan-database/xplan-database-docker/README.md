@@ -15,7 +15,7 @@ Running image for the `xplanbox` database:
 docker run -it --env ... xplanbox/xplan-db
 ```
 
-Use the docker image xplan-db-updater (maven module xplan-databse-scripts) to set up the database with liquibase.
+Use the docker image xplan-db-updater (maven module xplan-database-scripts) to set up the database with liquibase.
 
 #### Environment variables
 
@@ -26,7 +26,3 @@ Used with `--env`
 * XPLAN_DB_PASSWORD: Password of the app user. Default: xplanbox
 * XPLAN_DB_INIT_USER: Name of the init user. Default: initxplanbox
 * XPLAN_DB_INIT_PASSWORD: Name of the password user. Default: initxplanbox
-
-### Deprection notice
-
-The SQL-Scripts located in `src/main/resources` are deprecated and will be removed in a future version.

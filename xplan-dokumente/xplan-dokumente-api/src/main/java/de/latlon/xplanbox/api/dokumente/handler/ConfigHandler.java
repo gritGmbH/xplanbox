@@ -24,7 +24,7 @@ import de.latlon.xplanbox.api.dokumente.v1.model.SystemConfig;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 import static org.slf4j.LoggerFactory.getLogger;
 

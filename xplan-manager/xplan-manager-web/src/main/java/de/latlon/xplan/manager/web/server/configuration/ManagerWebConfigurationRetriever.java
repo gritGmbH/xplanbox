@@ -68,18 +68,12 @@ public class ManagerWebConfigurationRetriever {
 
 	private ManagerWebConfiguration createManagerWebConfigurationFromProperties(Properties props)
 			throws ConfigurationException {
-		boolean internalIdActivated = parseActivateInternalIdDialog(props);
 		boolean legislationStatusActivated = parseActivateLegislationStatusDialog(props);
-		boolean validityPeriodActivated = parseActivateValidityPeriodDialog(props);
 		boolean editorActivated = parseActivateEditor(props);
 		boolean publishingInspirePluActivated = parseActivatePublishingInspirePlu(props);
 
-		String defaultCrs = retrieveMandatoryPropertyValue(props, "defaultCrs");
-		String[] chooseCrs = parseChooseCrs(props);
-		String[] categoryFilterValues = parseCategoryFilterValues(props);
 		String[] hiddenColumns = parseHiddenColumns(props);
-		return new ManagerWebConfiguration(internalIdActivated, legislationStatusActivated, validityPeriodActivated,
-				editorActivated, publishingInspirePluActivated, defaultCrs, chooseCrs, categoryFilterValues,
+		return new ManagerWebConfiguration(legislationStatusActivated, editorActivated, publishingInspirePluActivated,
 				hiddenColumns);
 	}
 
@@ -123,16 +117,8 @@ public class ManagerWebConfigurationRetriever {
 				soRasterLayer);
 	}
 
-	private boolean parseActivateInternalIdDialog(Properties props) throws ConfigurationException {
-		return "true".equals(retrieveMandatoryPropertyValue(props, "activateInternalIdDialog"));
-	}
-
 	private boolean parseActivateLegislationStatusDialog(Properties props) throws ConfigurationException {
 		return "true".equals(props.getProperty("activateLegislationStatusDialog"));
-	}
-
-	private boolean parseActivateValidityPeriodDialog(Properties props) throws ConfigurationException {
-		return "true".equals(props.getProperty("activateValidityPeriodDialog"));
 	}
 
 	private boolean parseActivateEditor(Properties props) throws ConfigurationException {
@@ -143,14 +129,6 @@ public class ManagerWebConfigurationRetriever {
 		return "true".equals(props.getProperty("activatePublishingInspirePlu"));
 	}
 
-	private String[] parseChooseCrs(Properties props) throws ConfigurationException {
-		return parseAsArray(props, "chooseCrs");
-	}
-
-	private String[] parseCategoryFilterValues(Properties props) throws ConfigurationException {
-		return parseAsArray(props, "categoryFilterValues");
-	}
-
 	private String[] parseHiddenColumns(Properties props) throws ConfigurationException {
 		if (props.containsKey("hiddenColumns"))
 			return parseAsArray(props, "hiddenColumns");
@@ -158,8 +136,8 @@ public class ManagerWebConfigurationRetriever {
 	}
 
 	private String[] parseAsArray(Properties props, String key) throws ConfigurationException {
-		String chooseCrs = retrieveMandatoryPropertyValue(props, key);
-		return chooseCrs.split(",");
+		String propertyValue = retrieveMandatoryPropertyValue(props, key);
+		return propertyValue.split(",");
 	}
 
 	private XPlanEnvelope parseMaxExtent(Properties props) throws ConfigurationException {

@@ -12,15 +12,14 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>jaxb2-maven-plugin</artifactId>
+        <groupId>org.jvnet.jaxb</groupId>
+        <artifactId>jaxb-maven-plugin</artifactId>
         <configuration>
-          <sources>
-            <source>${project.basedir}/src/main/resources/META-INF/schemas/connectionprovider/jpa/datasource.xsd
-            </source>
-          </sources>
-          <outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
-          <packageName>de.latlon.xplan.connectionprovider.jpa.jaxb</packageName>
+	        <schemaIncludes>
+	          <include>**/*xsd</include>
+	        </schemaIncludes>
+	        <schemaDirectory>src/main/resources/META-INF/schemas/</schemaDirectory>
+          <generatePackage>de.latlon.xplan.connectionprovider.jpa.jaxb</generatePackage>
         </configuration>
       </plugin>
     </plugins>
@@ -30,7 +29,6 @@
     <dependency>
       <groupId>de.latlon</groupId>
       <artifactId>deegree-connectionprovider-datasource</artifactId>
-      <version>${deegree3.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>

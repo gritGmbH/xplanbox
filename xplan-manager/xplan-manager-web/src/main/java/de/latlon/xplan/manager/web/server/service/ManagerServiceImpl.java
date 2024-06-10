@@ -20,13 +20,11 @@
  */
 package de.latlon.xplan.manager.web.server.service;
 
-import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
+import com.google.gwt.user.server.rpc.jakarta.XsrfProtectedServiceServlet;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.manager.XPlanManager;
-import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.web.client.service.ManagerService;
 import de.latlon.xplan.manager.web.server.service.security.AuthorizationManager;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -35,34 +33,22 @@ import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
-import de.latlon.xplanbox.core.gwt.commons.shared.InvalidParameterException;
 import org.apache.commons.lang3.StringUtils;
 import org.deegree.commons.utils.Pair;
-import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.cs.persistence.CRSManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import java.io.File;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static de.latlon.xplan.commons.util.TextPatternConstants.INTERNALID_PATTERN;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * REST-Interface for plan management.
@@ -86,9 +72,6 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 
 	@Autowired
 	private XPlanManager manager;
-
-	@Autowired
-	private InternalIdRetriever internalIdRetriever;
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -220,10 +203,8 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 	}
 
 	@Override
-	public Boolean importPlan(String planId, String internalId, String defaultCrs, boolean makeRasterConfig,
-			PlanStatus planStatus, Date startDateTime, Date endDateTime)
-			throws InvalidParameterException, ManagerServiceImplException {
-		checkInternalId(internalId);
+	public Boolean importPlan(String planId, boolean makeRasterConfig, PlanStatus planStatus)
+			throws ManagerServiceImplException {
 		getThreadLocalResponse().addHeader("Expires", "-1");
 		LOG.info("Try to import plan with id {}", StringUtils.normalizeSpace(planId));
 		HttpSession session = getThreadLocalRequest().getSession();
@@ -234,11 +215,7 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 			try {
 				String fileToBeImported = retrieveFileToBeImported(plan);
 				XPlanArchive archive = manager.analyzeArchive(fileToBeImported);
-				ICRS crs = null;
-				if (defaultCrs != null)
-					crs = CRSManager.getCRSRef(defaultCrs);
-				AdditionalPlanData xPlanMetadata = new AdditionalPlanData(planStatus, startDateTime, endDateTime);
-				manager.importPlan(archive, crs, false, makeRasterConfig, internalId, xPlanMetadata);
+				manager.importPlan(archive, false, makeRasterConfig, planStatus);
 			}
 			catch (Exception e) {
 				LOG.error("importPlan failed", e);
@@ -252,47 +229,6 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 	@Override
 	public List<Bereich> retrieveBereiche(String planId) throws Exception {
 		return manager.getBereicheOfPlanWithId(planId);
-	}
-
-	@Override
-	public Map<String, String> retrieveMatchingInternalIds(String id) throws ManagerServiceImplException {
-		getThreadLocalResponse().addHeader("Expires", "-1");
-		LOG.info("Retrieve internal id of plan with id {}.", StringUtils.normalizeSpace(id));
-		HttpSession session = getThreadLocalRequest().getSession();
-		XPlan plan = archiveManager.retrievePlanFromSession(session);
-		try {
-			String fileToBeImported = retrieveFileToBeImported(plan);
-			String planName = manager.retrievePlanName(fileToBeImported);
-			Map<String, String> matchingInternalIds = internalIdRetriever.getMatchingInternalIds(planName);
-			if (!matchingInternalIds.isEmpty())
-				return matchingInternalIds;
-			if (authorizationManager.isSuperUser())
-				return internalIdRetriever.getAllInternalIds();
-			return Collections.emptyMap();
-		}
-		catch (Exception e) {
-			LOG.error("retrieveMatchingInternalIds failed", e);
-			throw new ManagerServiceImplException(e);
-		}
-	}
-
-	@RequestMapping(value = "/crs/{id}", method = GET)
-	@ResponseBody
-	@Deprecated
-	@Override
-	public Boolean isCrsSet(String id) throws ManagerServiceImplException {
-		getThreadLocalResponse().addHeader("Expires", "-1");
-		LOG.info("Retrieve crs of plan with id {}.", StringUtils.normalizeSpace(id));
-		HttpSession session = getThreadLocalRequest().getSession();
-		XPlan plan = archiveManager.retrievePlanFromSession(session);
-		try {
-			String fileToBeImported = retrieveFileToBeImported(plan);
-			return manager.isCrsSet(fileToBeImported);
-		}
-		catch (Exception e) {
-			LOG.error("isCrsSet failed", e);
-			throw new ManagerServiceImplException(e);
-		}
 	}
 
 	@Override
@@ -370,17 +306,6 @@ public class ManagerServiceImpl extends XsrfProtectedServiceServlet implements M
 	private String retrieveFileToBeImported(XPlan xPlan) {
 		String fileName = archiveManager.determineFileNameAndFolder(xPlan);
 		return archiveManager.getUploadFolder() + "/" + fileName;
-	}
-
-	private void checkInternalId(String internalIdToCheck) throws InvalidParameterException {
-		if (internalIdToCheck == null)
-			return;
-		Pattern pattern = Pattern.compile(INTERNALID_PATTERN);
-		Matcher matcher = pattern.matcher(internalIdToCheck);
-		if (!matcher.matches()) {
-			throw new InvalidParameterException("InternalId does not match expected patter " + INTERNALID_PATTERN
-					+ " but was " + internalIdToCheck);
-		}
 	}
 
 }

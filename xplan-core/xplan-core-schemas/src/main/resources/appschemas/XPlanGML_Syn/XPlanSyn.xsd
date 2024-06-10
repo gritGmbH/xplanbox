@@ -1,5 +1,5 @@
 <!-- #%L
- xplan-core-schemas - Ressourcen fuer XPlan Schemas
+ xplanbox-syn - Automatisiert erzeugte Konfiguration
  %%
  Copyright (C) 2008 - 2024 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  %%
@@ -16,7 +16,7 @@
  You should have received a copy of the GNU Affero General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  #L%-->
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.04.2024, 14:50:38-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 23.05.2024, 11:03:01-->
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.deegree.org/xplanung/1/0" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <element name="BP_AbgrabungsFlaeche" substitutionGroup="gml:AbstractFeature">
@@ -31,8 +31,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -91,8 +89,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -152,8 +148,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -222,8 +216,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -274,8 +266,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -327,8 +317,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -404,8 +392,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -464,8 +450,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -531,8 +515,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -601,8 +583,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -663,8 +643,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -725,8 +703,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -879,8 +855,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1061,8 +1035,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="nummer" minOccurs="0" type="integer"/>
             <element name="name" minOccurs="0" type="string"/>
@@ -1112,8 +1084,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1172,8 +1142,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1318,8 +1286,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1378,8 +1344,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1430,8 +1394,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1483,8 +1445,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1547,8 +1507,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1607,8 +1565,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1666,8 +1622,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1727,8 +1681,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1779,8 +1731,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1842,8 +1792,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1900,8 +1848,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -1953,8 +1899,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -2012,8 +1956,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -2072,8 +2014,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -2131,8 +2071,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -2184,8 +2122,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -2364,8 +2300,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -2447,8 +2381,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -2510,8 +2442,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -2582,8 +2512,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -2645,8 +2573,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -2803,8 +2729,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -2865,8 +2789,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -2940,8 +2862,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3005,8 +2925,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3064,8 +2982,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3142,8 +3058,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3201,8 +3115,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3252,8 +3164,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3314,8 +3224,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3396,8 +3304,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3451,8 +3357,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3513,8 +3417,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3572,8 +3474,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="name" minOccurs="0" type="string"/>
             <element name="nummer" minOccurs="0" type="string"/>
@@ -3674,8 +3574,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="nameAenderung" minOccurs="0" type="string"/>
             <element name="nummerAenderung" minOccurs="0" type="integer"/>
@@ -3713,8 +3611,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3774,8 +3670,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3833,8 +3727,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3887,8 +3779,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -3955,8 +3845,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -4026,8 +3914,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -4081,8 +3967,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -4141,8 +4025,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -4213,8 +4095,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -4347,8 +4227,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -4472,8 +4350,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -4532,8 +4408,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -4596,8 +4470,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -4652,8 +4524,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="schluessel" minOccurs="0" type="string"/>
             <element name="gesetzlicheGrundlage" minOccurs="0" type="string"/>
@@ -4678,8 +4548,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -4730,8 +4598,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -4789,8 +4655,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -4959,8 +4823,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -5022,8 +4884,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -5176,8 +5036,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -5242,8 +5100,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -5375,8 +5231,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -5452,8 +5306,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -5515,8 +5367,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -5584,8 +5434,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -5744,8 +5592,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -5797,8 +5643,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -5853,8 +5697,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -5908,8 +5750,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -5966,8 +5806,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6014,8 +5852,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6075,8 +5911,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6133,8 +5967,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6181,8 +6013,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6243,8 +6073,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6316,8 +6144,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="nummer" minOccurs="0" type="integer"/>
             <element name="name" minOccurs="0" type="string"/>
@@ -6365,8 +6191,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6423,8 +6247,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6472,8 +6294,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6526,8 +6346,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6574,8 +6392,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6672,8 +6488,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6737,8 +6551,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6798,8 +6610,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6896,8 +6706,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -6950,8 +6758,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7013,8 +6819,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7070,8 +6874,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7140,8 +6942,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7197,8 +6997,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7251,8 +7049,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="name" minOccurs="0" type="string"/>
             <element name="nummer" minOccurs="0" type="string"/>
@@ -7339,8 +7135,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7409,8 +7203,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="nameAenderung" minOccurs="0" type="string"/>
             <element name="nummerAenderung" minOccurs="0" type="integer"/>
@@ -7448,8 +7240,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7512,8 +7302,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7580,8 +7368,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7645,8 +7431,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="schluessel" minOccurs="0" type="string"/>
             <element name="gesetzlicheGrundlage" minOccurs="0" type="string"/>
@@ -7671,8 +7455,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7718,8 +7500,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7772,8 +7552,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7830,8 +7608,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7915,8 +7691,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -7970,8 +7744,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8042,8 +7814,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8103,8 +7873,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8159,8 +7927,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8210,8 +7976,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8261,8 +8025,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8329,8 +8091,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8387,8 +8147,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="nummer" minOccurs="0" type="integer"/>
             <element name="name" minOccurs="0" type="string"/>
@@ -8427,8 +8185,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8491,8 +8247,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8545,8 +8299,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8603,8 +8355,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8649,8 +8399,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8707,8 +8455,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8773,8 +8519,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8831,8 +8575,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8895,8 +8637,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -8951,8 +8691,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9009,8 +8747,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9069,8 +8805,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="name" minOccurs="0" type="string"/>
             <element name="nummer" minOccurs="0" type="string"/>
@@ -9156,8 +8890,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9211,8 +8943,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="nameAenderung" minOccurs="0" type="string"/>
             <element name="nummerAenderung" minOccurs="0" type="integer"/>
@@ -9249,8 +8979,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9317,8 +9045,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9378,8 +9104,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9425,8 +9149,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9484,8 +9206,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
           </sequence>
         </extension>
@@ -9504,8 +9224,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9562,8 +9280,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="schluessel" minOccurs="0" type="string"/>
             <element name="gesetzlicheGrundlage" minOccurs="0" type="string"/>
@@ -9590,8 +9306,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9642,8 +9356,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9693,8 +9405,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9749,8 +9459,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9808,8 +9516,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9864,8 +9570,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9922,8 +9626,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -9990,8 +9692,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10043,8 +9743,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10101,8 +9799,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10164,8 +9860,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="nummer" minOccurs="0" type="integer"/>
             <element name="name" minOccurs="0" type="string"/>
@@ -10209,8 +9903,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10272,8 +9964,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10329,8 +10019,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10394,8 +10082,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10462,8 +10148,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10523,8 +10207,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10580,8 +10262,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10643,8 +10323,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10698,8 +10376,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10745,8 +10421,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10801,8 +10475,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10849,8 +10521,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10912,8 +10582,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -10974,8 +10642,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11039,8 +10705,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11102,8 +10766,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11159,8 +10821,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11216,8 +10876,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11279,8 +10937,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11340,8 +10996,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11387,8 +11041,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11444,8 +11096,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11499,8 +11149,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11545,8 +11193,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11608,8 +11254,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="legendenBezeichnung" minOccurs="0" type="string"/>
             <element name="reflegendenBild" minOccurs="0" type="string"/>
@@ -11631,8 +11275,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11691,8 +11333,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11754,8 +11394,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11820,8 +11458,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="name" minOccurs="0" type="string"/>
             <element name="nummer" minOccurs="0" type="string"/>
@@ -11902,8 +11538,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -11956,8 +11590,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12013,8 +11645,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="nameAenderung" minOccurs="0" type="string"/>
             <element name="nummerAenderung" minOccurs="0" type="integer"/>
@@ -12052,8 +11682,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12115,8 +11743,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12184,8 +11810,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12233,8 +11857,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12295,8 +11917,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12350,8 +11970,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12410,8 +12028,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12469,8 +12085,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12515,8 +12129,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12570,8 +12182,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12617,8 +12227,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12672,8 +12280,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12733,8 +12339,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12794,8 +12398,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12851,8 +12453,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -12913,8 +12513,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="schluessel" minOccurs="0" type="string"/>
             <element name="gesetzlicheGrundlage" minOccurs="0" type="string"/>
@@ -12939,8 +12537,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13005,8 +12601,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13052,8 +12646,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13117,8 +12709,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13177,8 +12767,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13238,8 +12826,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13285,8 +12871,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13342,8 +12926,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13407,8 +12989,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13475,8 +13055,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13531,8 +13109,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="nummer" minOccurs="0" type="integer"/>
             <element name="name" minOccurs="0" type="string"/>
@@ -13571,8 +13147,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13645,8 +13219,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13719,8 +13291,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13796,8 +13366,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13873,8 +13441,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -13940,8 +13506,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -14007,8 +13571,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -14074,8 +13636,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -14137,8 +13697,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -14212,8 +13770,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -14274,8 +13830,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="name" minOccurs="0" type="string"/>
             <element name="nummer" minOccurs="0" type="string"/>
@@ -14339,8 +13893,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="nameAenderung" minOccurs="0" type="string"/>
             <element name="nummerAenderung" minOccurs="0" type="integer"/>
@@ -14369,8 +13921,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -14444,8 +13994,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -14506,8 +14054,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -14568,8 +14114,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -14643,8 +14187,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -14707,8 +14249,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -14780,8 +14320,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -14912,8 +14450,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -14972,8 +14508,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="schluessel" minOccurs="0" type="string"/>
             <element name="gesetzlicheGrundlage" minOccurs="0" type="string"/>
@@ -14998,8 +14532,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -15055,8 +14587,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -15129,8 +14659,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="uuid" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -15193,8 +14721,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="schluessel" minOccurs="0" type="string"/>
             <element name="text" minOccurs="0" type="string"/>
@@ -15216,8 +14742,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="stylesheetId" minOccurs="0" type="string"/>
             <element name="darstellungsprioritaet" minOccurs="0" type="integer"/>
@@ -15243,8 +14767,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="stylesheetId" minOccurs="0" type="string"/>
             <element name="darstellungsprioritaet" minOccurs="0" type="integer"/>
@@ -15270,8 +14792,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="stylesheetId" minOccurs="0" type="string"/>
             <element name="darstellungsprioritaet" minOccurs="0" type="integer"/>
@@ -15307,8 +14827,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="darstellungsprioritaet" minOccurs="0" type="integer"/>
             <element name="art" minOccurs="0" type="string"/>
@@ -15349,8 +14867,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="stylesheetId" minOccurs="0" type="string"/>
             <element name="darstellungsprioritaet" minOccurs="0" type="integer"/>
@@ -15381,8 +14897,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="stylesheetId" minOccurs="0" type="string"/>
             <element name="darstellungsprioritaet" minOccurs="0" type="integer"/>
@@ -15420,8 +14934,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="darstellungsprioritaet" minOccurs="0" type="integer"/>
             <element name="art" minOccurs="0" type="string"/>
@@ -15447,8 +14959,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="refScan" minOccurs="0" type="string"/>
             <element name="refText" minOccurs="0" type="string"/>
@@ -15470,8 +14980,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="refScan" minOccurs="0" type="string"/>
             <element name="refText" minOccurs="0" type="string"/>
@@ -15493,8 +15001,6 @@
             <element name="xpPlanType" minOccurs="0" type="string"/>
             <element name="xpPlanName" minOccurs="0" type="string"/>
             <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
             <element name="wmsSortDate" minOccurs="0" type="date"/>
             <element name="schluessel" minOccurs="0" type="string"/>
             <element name="gesetzlicheGrundlage" minOccurs="0" type="string"/>

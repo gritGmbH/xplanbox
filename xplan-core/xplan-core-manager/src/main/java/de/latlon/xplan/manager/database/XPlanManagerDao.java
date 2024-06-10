@@ -29,7 +29,6 @@ import de.latlon.xplan.manager.edit.EditedArtefacts;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.AttachmentUrlHandler;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import org.deegree.feature.FeatureCollection;
@@ -94,25 +93,22 @@ public class XPlanManagerDao extends XPlanDao {
 	 * @param fc features of the main GML document from the archive, must not be
 	 * <code>null</code>
 	 * @param planStatus the status of the plan, may be <code>null</code>
-	 * @param beginValidity the start of the validity, may be <code>null</code>
-	 * @param beginValidity the end of the validity, may be <code>null</code>
 	 * <code>null</code>
 	 * @param internalId
 	 * @return database id of the plan
 	 */
 	@Transactional(propagation = Propagation.MANDATORY)
-	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, PlanStatus planStatus, Date beginValidity,
-			Date endValidity, Date sortDate, String internalId) throws Exception {
+	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, PlanStatus planStatus, Date sortDate,
+			String internalId) throws Exception {
 		try {
 			LOG.info("Insert XPlan");
 			long begin = System.currentTimeMillis();
-			int planId = xPlanDbAdapter.insert(archive, fc, planStatus, beginValidity, endValidity, sortDate,
-					internalId);
+			int planId = xPlanDbAdapter.insert(archive, fc, planStatus, sortDate, internalId);
 			manipulateXPlanGml(planId, archive.getVersion(), fc, internalId);
 			byte[] xPlanGml = createXPlanGml(fc);
 			reassignFids(fc);
 			FeatureCollection synFc = createSynFeatures(fc, archive.getVersion());
-			manipulateXPlanSynGml(synFc, beginValidity, endValidity, planId, sortDate);
+			manipulateXPlanSynGml(synFc, planId, sortDate);
 			List<String> fidsXPlanWfs = xPlanWfsAdapter.insert(fc, planStatus);
 			xPlanDbAdapter.update(planId, archive.getType(), synFc);
 			xPlanDbAdapter.updateFids(planId, fidsXPlanWfs);
@@ -120,7 +116,7 @@ public class XPlanManagerDao extends XPlanDao {
 			xPlanDbAdapter.insertArtefacts(planId, fc, archive, xPlanGml);
 
 			long elapsed = System.currentTimeMillis() - begin;
-			LOG.info("OK [" + elapsed + " ms].");
+			LOG.info("OK [{} ms].", elapsed);
 			return planId;
 		}
 		catch (AmbiguousBereichNummernException e) {
@@ -147,9 +143,9 @@ public class XPlanManagerDao extends XPlanDao {
 	 * @param internalId of the plan, may be <code>null</code>
 	 * @throws Exception
 	 */
-	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
-			FeatureCollection synFc, byte[] planArtefact, Date sortDate, List<File> uploadedArtefacts,
-			EditedArtefacts editedArtefacts, String internalId) throws Exception {
+	public void update(XPlan oldXplan, PlanStatus targetPlanStatus, XPlanFeatureCollection fc, FeatureCollection synFc,
+			byte[] planArtefact, Date sortDate, List<File> uploadedArtefacts, EditedArtefacts editedArtefacts,
+			String internalId) throws Exception {
 		try {
 			LOG.info("Update XPlan {}", oldXplan.getId());
 			long begin = System.currentTimeMillis();
@@ -157,13 +153,12 @@ public class XPlanManagerDao extends XPlanDao {
 			int planId = getXPlanIdAsInt(oldXplan.getId());
 			Set<String> oldFids = xPlanDbAdapter.selectFids(planId);
 
-			xPlanDbAdapter.update(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, sortDate, uploadedArtefacts,
+			xPlanDbAdapter.update(oldXplan, targetPlanStatus, fc, synFc, planArtefact, sortDate, uploadedArtefacts,
 					editedArtefacts);
-			manipulateXPlanSynGml(synFc, newAdditionalPlanData.getStartDateTime(),
-					newAdditionalPlanData.getEndDateTime(), planId, sortDate);
+			manipulateXPlanSynGml(synFc, planId, sortDate);
 
-			List<String> newFids = xPlanSynWfsAdapter.update(planId, oldXplan, newAdditionalPlanData, synFc, oldFids);
-			xPlanWfsAdapter.update(planId, oldXplan, newAdditionalPlanData, fc, oldFids);
+			List<String> newFids = xPlanSynWfsAdapter.update(planId, oldXplan, targetPlanStatus, synFc, oldFids);
+			xPlanWfsAdapter.update(planId, oldXplan, targetPlanStatus, fc, oldFids);
 			xPlanDbAdapter.updateFids(planId, newFids);
 
 			long elapsed = System.currentTimeMillis() - begin;
@@ -183,13 +178,11 @@ public class XPlanManagerDao extends XPlanDao {
 	public void updateXPlanSynFeatureCollection(XPlan xplan, FeatureCollection synFc, XPlanFeatureCollection originalFc,
 			Date sortDate, String internalId, boolean updateFeaturesAndBlob) throws Exception {
 		int planId = getXPlanIdAsInt(xplan.getId());
-		AdditionalPlanData xplanMetadata = xplan.getXplanMetadata();
-		PlanStatus planStatus = xplanMetadata.getPlanStatus();
+		PlanStatus planStatus = xplan.getPlanStatus();
 
 		Set<String> ids = xPlanDbAdapter.selectFids(planId);
 
-		manipulateXPlanSynGml(synFc, xplanMetadata.getStartDateTime(), xplanMetadata.getEndDateTime(), planId,
-				sortDate);
+		manipulateXPlanSynGml(synFc, planId, sortDate);
 
 		if (updateFeaturesAndBlob) {
 			List<String> newFids = xPlanWfsAdapter.update(planId, planStatus, originalFc, ids);
@@ -230,11 +223,9 @@ public class XPlanManagerDao extends XPlanDao {
 		return synFc;
 	}
 
-	private void manipulateXPlanSynGml(FeatureCollection synFc, Date beginValidity, Date endValidity, int planId,
-			Date sortDate) {
+	private void manipulateXPlanSynGml(FeatureCollection synFc, int planId, Date sortDate) {
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
-		featureCollectionManipulator.addAdditionalPropertiesToFeatures(synFc, schema, planId, sortDate, beginValidity,
-				endValidity);
+		featureCollectionManipulator.addAdditionalPropertiesToFeatures(synFc, schema, planId, sortDate);
 	}
 
 	private void manipulateXPlanGml(int planId, XPlanVersion version, XPlanFeatureCollection xPlanFeatureCollection,

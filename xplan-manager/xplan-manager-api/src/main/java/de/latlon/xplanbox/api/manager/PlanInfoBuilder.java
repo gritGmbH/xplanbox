@@ -101,13 +101,12 @@ public class PlanInfoBuilder {
 			.inkrafttretensDatum(xPlan.getReleaseDate())
 			.rechtsstand(xPlan.getLegislationStatus())
 			.ags(xPlan.getGkz())
-			.gemeindeName(xPlan.getDistrict())
 			.bereiche(bereiche);
 	}
 
 	private PlanStatusEnum planStatus() {
-		if (xPlan.getXplanMetadata() != null && xPlan.getXplanMetadata().getPlanStatus() != null) {
-			PlanStatus planStatus = xPlan.getXplanMetadata().getPlanStatus();
+		if (xPlan.getPlanStatus() != null) {
+			PlanStatus planStatus = xPlan.getPlanStatus();
 			return PlanStatusEnum.valueOf(planStatus.name());
 		}
 		return null;
@@ -192,8 +191,8 @@ public class PlanInfoBuilder {
 	}
 
 	private String detectService() {
-		if (xPlan.getXplanMetadata() != null)
-			switch (xPlan.getXplanMetadata().getPlanStatus()) {
+		if (xPlan.getPlanStatus() != null)
+			switch (xPlan.getPlanStatus()) {
 				case ARCHIVIERT:
 					return "planwerkwmsarchive";
 				case IN_AUFSTELLUNG:

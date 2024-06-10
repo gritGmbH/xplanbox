@@ -34,6 +34,8 @@ import de.latlon.xplan.validator.web.shared.ArtifactType;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
+import jakarta.inject.Singleton;
+
 import org.apache.http.client.utils.URIBuilder;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.slf4j.Logger;
@@ -41,7 +43,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Singleton;
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -56,7 +57,6 @@ import java.util.List;
 import java.util.UUID;
 
 import static de.latlon.xplan.validator.web.shared.ArtifactType.PDF;
-import static de.latlon.xplan.validator.web.shared.ArtifactType.SHP;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -99,7 +99,7 @@ public class ValidationHandler {
 		LOG.debug("Create zip report in directory {} with validationName {}", workDir, validationName);
 
 		reportWriter.writeArtefacts(validatorReport, workDir);
-		List<ArtifactType> artifacts = Arrays.asList(PDF, SHP);
+		List<ArtifactType> artifacts = Arrays.asList(PDF);
 
 		Path zipArchive = workDir.resolve(validationName + ".zip");
 		try (OutputStream zipOutput = Files.newOutputStream(zipArchive)) {

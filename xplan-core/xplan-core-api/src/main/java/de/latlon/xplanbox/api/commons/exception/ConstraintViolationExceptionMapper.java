@@ -20,10 +20,10 @@
  */
 package de.latlon.xplanbox.api.commons.exception;
 
-import javax.validation.ConstraintViolationException;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
 
 import static de.latlon.xplanbox.api.commons.exception.StatusCodes.UNPROCESSABLE_CONTENT;
 

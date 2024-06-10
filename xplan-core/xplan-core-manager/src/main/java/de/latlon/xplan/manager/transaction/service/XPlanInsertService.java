@@ -27,13 +27,12 @@ import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.manager.database.XPlanManagerDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.transaction.PlanImportData;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -65,10 +64,9 @@ public class XPlanInsertService {
 		XPlanArchive archive = planToImport.getxPlanArchive();
 		XPlanFeatureCollection xPlanFeatureCollection = planToImport.getxPlanFC();
 		PlanStatus planStatus = planToImport.getPlanStatus();
-		AdditionalPlanData xPlanMetadata = planToImport.getxPlanMetadata();
 		ExternalReferenceInfo externalReferenceInfo = parseExternalReferencesInfo(archive, xPlanFeatureCollection);
-		int planId = xplanDao.insert(archive, xPlanFeatureCollection, planStatus, xPlanMetadata.getStartDateTime(),
-				xPlanMetadata.getEndDateTime(), planToImport.getSortDate(), planToImport.getInternalId());
+		int planId = xplanDao.insert(archive, xPlanFeatureCollection, planStatus, planToImport.getSortDate(),
+				planToImport.getInternalId());
 		insertDocuments(planId, externalReferenceInfo, archive);
 		LOG.info("XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId);
 		planToImport.setPlanId(planId);

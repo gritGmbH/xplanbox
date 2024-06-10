@@ -1,5 +1,5 @@
 <!-- #%L
-  xplan-webservices-workspaces - Modul zur Gruppierung aller Workspaces
+  xplanbox-syn - Automatisiert erzeugte Konfiguration
   %%
   Copyright (C) 2008 - 2024 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
@@ -7,16 +7,16 @@
   it under the terms of the GNU Affero General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-   
+ 
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-   
+ 
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.04.2024, 14:50:38-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 23.05.2024, 11:03:01-->
 <SQLFeatureStore xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql https://schemas.deegree.org/core/3.5/datasource/feature/sql/sql.xsd" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2">
   <JDBCConnId>xplan</JDBCConnId>
   <StorageCRS srid="25832" dim="2D">EPSG:25832</StorageCRS>
@@ -33,8 +33,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -89,8 +87,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -146,8 +142,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -212,8 +206,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -260,8 +252,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -309,8 +299,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -382,8 +370,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -438,8 +424,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -501,8 +485,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -567,8 +549,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -625,8 +605,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -683,8 +661,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -833,8 +809,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1011,8 +985,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:nummer" mapping="xplan_nummer"/>
     <Primitive path="xplan:name" mapping="xplan_name"/>
@@ -1058,8 +1030,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1114,8 +1084,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1256,8 +1224,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1312,8 +1278,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1360,8 +1324,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1409,8 +1371,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1469,8 +1429,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1525,8 +1483,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1580,8 +1536,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1637,8 +1591,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1685,8 +1637,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1744,8 +1694,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1798,8 +1746,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1847,8 +1793,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1902,8 +1846,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -1958,8 +1900,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -2013,8 +1953,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -2062,8 +2000,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -2238,8 +2174,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -2317,8 +2251,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -2376,8 +2308,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -2444,8 +2374,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -2503,8 +2431,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -2657,8 +2583,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -2715,8 +2639,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -2786,8 +2708,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -2847,8 +2767,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -2902,8 +2820,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -2976,8 +2892,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3031,8 +2945,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3078,8 +2990,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3136,8 +3046,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3214,8 +3122,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3265,8 +3171,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3323,8 +3227,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3378,8 +3280,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:name" mapping="xplan_name"/>
     <Primitive path="xplan:nummer" mapping="xplan_nummer"/>
@@ -3476,8 +3376,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:nameAenderung" mapping="xplan_nameaenderung"/>
     <Primitive path="xplan:nummerAenderung" mapping="xplan_nummeraenderung"/>
@@ -3511,8 +3409,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3568,8 +3464,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3623,8 +3517,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3673,8 +3565,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3737,8 +3627,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3804,8 +3692,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3855,8 +3741,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3911,8 +3795,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -3979,8 +3861,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -4109,8 +3989,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -4230,8 +4108,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -4286,8 +4162,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -4346,8 +4220,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -4398,8 +4270,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:schluessel" mapping="xplan_schluessel"/>
     <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage"/>
@@ -4420,8 +4290,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -4468,8 +4336,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -4523,8 +4389,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -4689,8 +4553,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -4748,8 +4610,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -4898,8 +4758,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -4960,8 +4818,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5089,8 +4945,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5162,8 +5016,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5221,8 +5073,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5286,8 +5136,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5442,8 +5290,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5491,8 +5337,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5543,8 +5387,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5594,8 +5436,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5648,8 +5488,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5692,8 +5530,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5749,8 +5585,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5803,8 +5637,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5847,8 +5679,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5905,8 +5735,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -5974,8 +5802,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:nummer" mapping="xplan_nummer"/>
     <Primitive path="xplan:name" mapping="xplan_name"/>
@@ -6019,8 +5845,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6073,8 +5897,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6118,8 +5940,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6168,8 +5988,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6212,8 +6030,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6306,8 +6122,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6367,8 +6181,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6424,8 +6236,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6518,8 +6328,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6568,8 +6376,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6627,8 +6433,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6680,8 +6484,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6746,8 +6548,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6799,8 +6599,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6849,8 +6647,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:name" mapping="xplan_name"/>
     <Primitive path="xplan:nummer" mapping="xplan_nummer"/>
@@ -6933,8 +6729,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -6999,8 +6793,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:nameAenderung" mapping="xplan_nameaenderung"/>
     <Primitive path="xplan:nummerAenderung" mapping="xplan_nummeraenderung"/>
@@ -7034,8 +6826,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7094,8 +6884,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7158,8 +6946,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7219,8 +7005,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:schluessel" mapping="xplan_schluessel"/>
     <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage"/>
@@ -7241,8 +7025,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7284,8 +7066,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7334,8 +7114,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7388,8 +7166,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7469,8 +7245,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7520,8 +7294,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7588,8 +7360,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7645,8 +7415,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7697,8 +7465,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7744,8 +7510,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7791,8 +7555,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7855,8 +7617,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -7909,8 +7669,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:nummer" mapping="xplan_nummer"/>
     <Primitive path="xplan:name" mapping="xplan_name"/>
@@ -7945,8 +7703,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8005,8 +7761,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8055,8 +7809,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8109,8 +7861,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8151,8 +7901,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8205,8 +7953,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8267,8 +8013,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8321,8 +8065,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8381,8 +8123,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8433,8 +8173,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8487,8 +8225,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8543,8 +8279,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:name" mapping="xplan_name"/>
     <Primitive path="xplan:nummer" mapping="xplan_nummer"/>
@@ -8626,8 +8360,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8677,8 +8409,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:nameAenderung" mapping="xplan_nameaenderung"/>
     <Primitive path="xplan:nummerAenderung" mapping="xplan_nummeraenderung"/>
@@ -8711,8 +8441,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8775,8 +8503,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8832,8 +8558,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8875,8 +8599,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -8930,8 +8652,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:LP_SonstigesRecht" table="xplanvalidator.xplan_lp_sonstigesrecht">
@@ -8946,8 +8666,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9000,8 +8718,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:schluessel" mapping="xplan_schluessel"/>
     <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage"/>
@@ -9024,8 +8740,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9072,8 +8786,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9119,8 +8831,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9171,8 +8881,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9226,8 +8934,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9278,8 +8984,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9332,8 +9036,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9396,8 +9098,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9445,8 +9145,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9499,8 +9197,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9558,8 +9254,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:nummer" mapping="xplan_nummer"/>
     <Primitive path="xplan:name" mapping="xplan_name"/>
@@ -9599,8 +9293,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9658,8 +9350,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9711,8 +9401,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9772,8 +9460,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9836,8 +9522,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9893,8 +9577,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -9946,8 +9628,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10005,8 +9685,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10056,8 +9734,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10099,8 +9775,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10151,8 +9825,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10195,8 +9867,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10254,8 +9924,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10312,8 +9980,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10373,8 +10039,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10432,8 +10096,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10485,8 +10147,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10538,8 +10198,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10597,8 +10255,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10654,8 +10310,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10697,8 +10351,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10750,8 +10402,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10801,8 +10451,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10843,8 +10491,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10902,8 +10548,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:legendenBezeichnung" mapping="xplan_legendenbezeichnung"/>
     <Primitive path="xplan:reflegendenBild" mapping="xplan_reflegendenbild"/>
@@ -10921,8 +10565,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -10977,8 +10619,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11036,8 +10676,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11098,8 +10736,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:name" mapping="xplan_name"/>
     <Primitive path="xplan:nummer" mapping="xplan_nummer"/>
@@ -11176,8 +10812,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11226,8 +10860,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11279,8 +10911,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:nameAenderung" mapping="xplan_nameaenderung"/>
     <Primitive path="xplan:nummerAenderung" mapping="xplan_nummeraenderung"/>
@@ -11314,8 +10944,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11373,8 +11001,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11438,8 +11064,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11483,8 +11107,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11541,8 +11163,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11592,8 +11212,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11648,8 +11266,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11703,8 +11319,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11745,8 +11359,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11796,8 +11408,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11839,8 +11449,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11890,8 +11498,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -11947,8 +11553,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12004,8 +11608,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12057,8 +11659,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12115,8 +11715,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:schluessel" mapping="xplan_schluessel"/>
     <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage"/>
@@ -12137,8 +11735,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12199,8 +11795,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12242,8 +11836,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12303,8 +11895,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12359,8 +11949,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12416,8 +12004,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12459,8 +12045,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12512,8 +12096,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12573,8 +12155,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12637,8 +12217,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12689,8 +12267,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:nummer" mapping="xplan_nummer"/>
     <Primitive path="xplan:name" mapping="xplan_name"/>
@@ -12725,8 +12301,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12795,8 +12369,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12865,8 +12437,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -12938,8 +12508,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13011,8 +12579,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13074,8 +12640,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13137,8 +12701,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13200,8 +12762,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13259,8 +12819,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13330,8 +12888,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13388,8 +12944,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:name" mapping="xplan_name"/>
     <Primitive path="xplan:nummer" mapping="xplan_nummer"/>
@@ -13449,8 +13003,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:nameAenderung" mapping="xplan_nameaenderung"/>
     <Primitive path="xplan:nummerAenderung" mapping="xplan_nummeraenderung"/>
@@ -13475,8 +13027,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13546,8 +13096,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13604,8 +13152,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13662,8 +13208,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13733,8 +13277,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13793,8 +13335,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13862,8 +13402,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -13990,8 +13528,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -14046,8 +13582,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:schluessel" mapping="xplan_schluessel"/>
     <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage"/>
@@ -14068,8 +13602,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -14121,8 +13653,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -14191,8 +13721,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -14251,8 +13779,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:schluessel" mapping="xplan_schluessel"/>
     <Primitive path="xplan:text" mapping="xplan_text"/>
@@ -14270,8 +13796,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
     <Primitive path="xplan:darstellungsprioritaet" mapping="xplan_darstellungsprioritaet"/>
@@ -14293,8 +13817,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
     <Primitive path="xplan:darstellungsprioritaet" mapping="xplan_darstellungsprioritaet"/>
@@ -14316,8 +13838,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
     <Primitive path="xplan:darstellungsprioritaet" mapping="xplan_darstellungsprioritaet"/>
@@ -14349,8 +13869,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:darstellungsprioritaet" mapping="xplan_darstellungsprioritaet"/>
     <Primitive path="xplan:art" mapping="xplan_art"/>
@@ -14387,8 +13905,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
     <Primitive path="xplan:darstellungsprioritaet" mapping="xplan_darstellungsprioritaet"/>
@@ -14415,8 +13931,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
     <Primitive path="xplan:darstellungsprioritaet" mapping="xplan_darstellungsprioritaet"/>
@@ -14450,8 +13964,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:darstellungsprioritaet" mapping="xplan_darstellungsprioritaet"/>
     <Primitive path="xplan:art" mapping="xplan_art"/>
@@ -14473,8 +13985,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:refScan" mapping="xplan_refscan"/>
     <Primitive path="xplan:refText" mapping="xplan_reftext"/>
@@ -14492,8 +14002,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:refScan" mapping="xplan_refscan"/>
     <Primitive path="xplan:refText" mapping="xplan_reftext"/>
@@ -14511,8 +14019,6 @@
     <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
     <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
     <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
     <Primitive path="xplan:schluessel" mapping="xplan_schluessel"/>
     <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage"/>

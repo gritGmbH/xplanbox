@@ -4934,7 +4934,7 @@ exists(//xplanung:externeReferenz[text()[contains(.,'Test_Auskr.gml | Satzung')]
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="GroovyScriptAssertion" id="35b77ae3-fb40-4c5c-935f-5e6cf6710b0b" name="documentUrl">
+          <con:assertion type="GroovyScriptAssertion" id="35b77ae3-fb40-4c5c-935f-5e6cf6710b0b" name="documentUrl" disabled="true">
             <con:configuration>
               <scriptText>import groovy.xml.XmlSlurper
 
@@ -4951,6 +4951,23 @@ if (documentUrl != null){
 	def externeRef = xml.'gml:featureMember'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
 
 	assert externeRef.contains(documentUrlShort)
+}</scriptText>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="GroovyScriptAssertion" id="0b2f16a0-2c17-48e3-8ecd-3ba7b66d8692" name="documentUrl_Java17">
+            <con:configuration>
+              <scriptText>def response = context.expand('${GetFeatureInfo-xml BP_Blan#Response}')
+
+def matcher = (response =~ /&lt;xplan:externeReferenz>[.*? | Satzung]&lt;/)
+def url = matcher ? matcher[0][1] : null
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert url.contains(documentUrlShort)
 }</scriptText>
             </con:configuration>
           </con:assertion>
@@ -7121,7 +7138,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="GroovyScriptAssertion" id="4bfc5b0c-1486-4629-b2a7-25f9641a3cc5" name="documentUrl">
+          <con:assertion type="GroovyScriptAssertion" id="4bfc5b0c-1486-4629-b2a7-25f9641a3cc5" name="documentUrl" disabled="true">
             <con:configuration>
               <scriptText>import groovy.xml.XmlSlurper
 
@@ -7138,6 +7155,23 @@ if (documentUrl != null){
 	def externeRef = xml.'wfs:member'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
 
 	assert externeRef.contains(documentUrlShort)
+}</scriptText>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="GroovyScriptAssertion" id="2267ec71-6800-4a95-aa77-305d2c1bc8b5" name="documentUrl_Java17">
+            <con:configuration>
+              <scriptText>def response = context.expand('${GetFeature 2.0.0 BP_Blan#Response}')
+
+def matcher = (response =~ /&lt;xplan:externeReferenz>[.*? | Verordnung]&lt;/)
+def url = matcher ? matcher[0][1] : null
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert url.contains(documentUrlShort)
 }</scriptText>
             </con:configuration>
           </con:assertion>
@@ -7270,7 +7304,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="GroovyScriptAssertion" id="4bfc5b0c-1486-4629-b2a7-25f9641a3cc5" name="documentUrl">
+          <con:assertion type="GroovyScriptAssertion" id="4bfc5b0c-1486-4629-b2a7-25f9641a3cc5" name="documentUrl" disabled="true">
             <con:configuration>
               <scriptText>import groovy.xml.XmlSlurper
 
@@ -7287,6 +7321,23 @@ if (documentUrl != null){
 	def externeRef = xml.'wfs:member'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
 
 	assert externeRef.contains(documentUrlShort)
+}</scriptText>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="GroovyScriptAssertion" id="6b86c478-06b3-4718-865b-8549b950fae8" name="documentUrl_Java17">
+            <con:configuration>
+              <scriptText>def response = context.expand('${GetFeature 1.1.0 BP_Blan#Response}')
+
+def matcher = (response =~ /&lt;xplan:externeReferenz>[.*? | Verordnung]&lt;/)
+def url = matcher ? matcher[0][1] : null
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert url.contains(documentUrlShort)
 }</scriptText>
             </con:configuration>
           </con:assertion>
@@ -11321,7 +11372,7 @@ declare namespace xplan='http://www.xplanung.de/xplangml/6/0';
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="GroovyScriptAssertion" id="f959778f-ba7c-4d2a-af4d-921efecb229b" name="documentUrl">
+          <con:assertion type="GroovyScriptAssertion" id="f959778f-ba7c-4d2a-af4d-921efecb229b" name="documentUrl" disabled="true">
             <con:configuration>
               <scriptText>import groovy.xml.XmlSlurper
 
@@ -11338,6 +11389,23 @@ if (documentUrl != null){
 	def externeRef = xml.'wfs:member'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
 
 	assert externeRef.contains(documentUrlShort)
+}</scriptText>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="GroovyScriptAssertion" id="f959778f-ba7c-4d2a-af4d-921efecb229b" name="documentUrl_Java17">
+            <con:configuration>
+              <scriptText>def response = context.expand('${GetFeature 2.0.0 BP_Blan#Response}')
+
+def matcher = (response =~ /&lt;xplan:referenzURL>.*?&lt;/)
+def url = matcher ? matcher[0][1] : null
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert url.contains(documentUrlShort)
 }</scriptText>
             </con:configuration>
           </con:assertion>
@@ -11446,7 +11514,7 @@ declare namespace xplan='http://www.xplanung.de/xplangml/6/0';
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="GroovyScriptAssertion" id="f959778f-ba7c-4d2a-af4d-921efecb229b" name="documentUrl">
+          <con:assertion type="GroovyScriptAssertion" id="f959778f-ba7c-4d2a-af4d-921efecb229b" name="documentUrl" disabled="true">
             <con:configuration>
               <scriptText>import groovy.xml.XmlSlurper
 
@@ -11463,6 +11531,23 @@ if (documentUrl != null){
 	def externeRef = xml.'wfs:member'.'xplan:BP_Plan'.'xplan:externeReferenz'.text()
 
 	assert externeRef.contains(documentUrlShort)
+}</scriptText>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="GroovyScriptAssertion" id="f959778f-ba7c-4d2a-af4d-921efecb229b" name="documentUrl_Java17">
+            <con:configuration>
+              <scriptText>def response = context.expand('${GetFeatureInfo 1.1.0 BP_Blan#Response}')
+
+def matcher = (response =~ /&lt;xplan:referenzURL>.*?&lt;/)
+def url = matcher ? matcher[0][1] : null
+
+def documentUrl = context.testCase.testSuite.getPropertyValue("documentUrl")
+
+if (documentUrl != null){
+	def index = documentUrl.indexOf("{")
+	def documentUrlShort = documentUrl.substring(0,index)
+
+	assert url.contains(documentUrlShort)
 }</scriptText>
             </con:configuration>
           </con:assertion>

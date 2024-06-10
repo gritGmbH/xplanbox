@@ -23,8 +23,6 @@ package de.latlon.xplan.validator.report;
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
 import de.latlon.xplan.validator.report.html.HtmlReportGenerator;
 import de.latlon.xplan.validator.report.pdf.PdfReportGenerator;
-import de.latlon.xplan.validator.report.shapefile.ShapefileGenerator;
-import de.latlon.xplan.validator.report.xml.XmlReportGenerator;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -40,13 +38,9 @@ import java.util.zip.ZipOutputStream;
  */
 public class ReportArchiveGenerator {
 
-	private final XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
-
 	private final PdfReportGenerator pdfGenerator = new PdfReportGenerator();
 
 	private final HtmlReportGenerator htmlGenerator = new HtmlReportGenerator();
-
-	private final ShapefileGenerator shapefileGenerator = new ShapefileGenerator();
 
 	private final ValidatorConfiguration validatorConfiguration;
 
@@ -71,10 +65,8 @@ public class ReportArchiveGenerator {
 		Path outputFile = validationReportDirectory.resolve(validationName + ".zip");
 		try (OutputStream fileOutStream = Files.newOutputStream(outputFile);
 				ZipOutputStream zipOutStream = new ZipOutputStream(fileOutStream)) {
-			addXmlEntry(report, validationName, zipOutStream);
 			addHtmlEntry(report, validationName, zipOutStream);
 			addPdfEntry(report, validationName, zipOutStream);
-			addShapeDirectoryEntry(report, validationName, validationReportDirectory, zipOutStream);
 			return validationReportDirectory;
 		}
 		catch (IOException e) {
@@ -90,37 +82,12 @@ public class ReportArchiveGenerator {
 		zipOutStream.closeEntry();
 	}
 
-	/**
-	 * @deprecated will be removed in a future version.
-	 **/
-	@Deprecated
-	private void addXmlEntry(ValidatorReport report, String validationName, ZipOutputStream zipOutStream)
-			throws IOException, ReportGenerationException {
-		ZipEntry xmlEntry = new ZipEntry(validationName + ".xml");
-		zipOutStream.putNextEntry(xmlEntry);
-		xmlReportGenerator.generateXmlReport(report, zipOutStream);
-		zipOutStream.closeEntry();
-	}
-
 	private void addHtmlEntry(ValidatorReport report, String validationName, ZipOutputStream zipOutStream)
 			throws IOException, ReportGenerationException {
-		ZipEntry xmlEntry = new ZipEntry(validationName + ".html");
-		zipOutStream.putNextEntry(xmlEntry);
+		ZipEntry htmlEntry = new ZipEntry(validationName + ".html");
+		zipOutStream.putNextEntry(htmlEntry);
 		htmlGenerator.generateHtmlReport(report, zipOutStream);
 		zipOutStream.closeEntry();
-	}
-
-	/**
-	 * @deprecated will be removed in a future version.
-	 **/
-	@Deprecated
-	private void addShapeDirectoryEntry(ValidatorReport report, String validationName, Path directoryToCreateShapes,
-			ZipOutputStream zipOutStream) throws IOException, ReportGenerationException {
-		if (shapefileGenerator.hasBadGeometry(report)) {
-			shapefileGenerator.generateReport(report, validationName, directoryToCreateShapes);
-			ReportUtils.writeShapefilesToZipOS(directoryToCreateShapes.toFile(), zipOutStream);
-			ReportUtils.deleteShapefiles(directoryToCreateShapes.toFile());
-		}
 	}
 
 	private void checkParameters(ValidatorConfiguration validatorConfiguration) {

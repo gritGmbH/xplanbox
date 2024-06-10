@@ -22,9 +22,9 @@ package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
 
@@ -39,7 +39,7 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.URL_PATTERN;
  *
  * @since 4.4
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
 		date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 public class Referenz {
 

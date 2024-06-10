@@ -23,7 +23,6 @@ package de.latlon.xplan.commons.archive;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,7 +37,6 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -116,7 +114,6 @@ class XPlanArchiveCreatorTest {
 		XPlanArchive archive = getTestArchive("xplan41/Eidelstedt_4_V4-Eimsbuettel.zip");
 
 		assertEquals(XPLAN_41, archive.getVersion());
-		assertEquals("Eimsbüttel", archive.getDistricts().get(0));
 	}
 
 	@Test
@@ -124,7 +121,6 @@ class XPlanArchiveCreatorTest {
 		XPlanArchive archive = getTestArchiveWithMapper("xplan41/Eidelstedt_4_V4-Eimsbuettel.zip");
 
 		assertEquals(XPLAN_41, archive.getVersion());
-		assertEquals("Eimsbüttel", archive.getDistricts().get(0));
 	}
 
 	@Test
@@ -139,7 +135,6 @@ class XPlanArchiveCreatorTest {
 	void testCreateXPlanArchive_41_SOPlan() throws IOException, UnknownCRSException {
 		XPlanArchive archive = getTestArchive("xplan41/Erhaltung.zip");
 		assertEquals(XPLAN_41, archive.getVersion());
-		assertEquals(0, archive.getDistricts().size());
 		assertEquals(SO_Plan, archive.getType());
 		assertEquals(CRSManager.lookup("EPSG:25832"), archive.getCrs());
 	}
@@ -152,17 +147,16 @@ class XPlanArchiveCreatorTest {
 
 	@Test
 	void testCreateXPlanArchive_51_GmlFile() throws IOException {
-		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		InputStream gmlAsStream = getClass().getResourceAsStream("/testdata/xplan51/BPlan001_5-1.gml");
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("BPlan001_5-1.gml", gmlAsStream);
 		assertEquals(XPLAN_51, archive.getVersion());
-		assertEquals(null, archive.getDistricts().get(0));
 		assertEquals(BP_Plan, archive.getType());
 	}
 
 	@Test
 	void testCreateXPlanArchive_withVerbundenerPlan() throws IOException {
-		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
 			.getResourceAsStream("../feature/xplan-multipleInstances-withVerbundenerPlan.gml");
 		XPlanArchive archive = archiveCreator
@@ -174,7 +168,7 @@ class XPlanArchiveCreatorTest {
 
 	@Test
 	void testCreateXPlanArchive_WfsCollection() throws IOException {
-		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
 			.getResourceAsStream("V4_1_ID_103-asWfsFeatureCollection.gml");
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103-asWfsFeatureCollection.gml",
@@ -184,7 +178,7 @@ class XPlanArchiveCreatorTest {
 
 	@Test
 	void testCreateXPlanArchive_NoXPlanGml() {
-		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
 			.getResourceAsStream("V4_1_ID_103-noXPlanGmlCollection.gml");
 		assertThrows(IllegalArgumentException.class,
@@ -193,7 +187,7 @@ class XPlanArchiveCreatorTest {
 
 	@Test
 	void testCreateXPlanArchive_withEntity() {
-		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		InputStream zipAsStream = XPlanArchiveCreatorTest.class
 			.getResourceAsStream("Blankenese29_Test_60_withEntity.zip");
 		assertThrows(IllegalArgumentException.class,
@@ -206,16 +200,8 @@ class XPlanArchiveCreatorTest {
 	}
 
 	private XPlanArchive getTestArchiveWithMapper(String name) throws IOException {
-		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		return archiveCreator.createXPlanArchiveFromZip(name, getClass().getResourceAsStream("/testdata/" + name));
-	}
-
-	private LocalCenterToDistrictMapper mockMapper() {
-		LocalCenterToDistrictMapper mock = Mockito.mock(LocalCenterToDistrictMapper.class);
-		when(mock.mapToDistrict("Eimsbüttel")).thenReturn("Eimsbüttel");
-		when(mock.mapToDistrict("Finkenwerder")).thenReturn("Hamburg-Mitte");
-		when(mock.mapToDistrict(null)).thenReturn(null);
-		return mock;
 	}
 
 }

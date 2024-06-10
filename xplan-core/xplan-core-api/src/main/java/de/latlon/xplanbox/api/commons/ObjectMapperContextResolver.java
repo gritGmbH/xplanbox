@@ -22,7 +22,7 @@ package de.latlon.xplanbox.api.commons;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import javax.ws.rs.ext.ContextResolver;
+import jakarta.ws.rs.ext.ContextResolver;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 

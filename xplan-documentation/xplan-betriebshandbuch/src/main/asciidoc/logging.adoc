@@ -1,22 +1,15 @@
 [[logging]]
 == Logging
 
-Die Anwendungen XPlanManagerWeb, XPlanManagerApi, XPlanValidatorWeb und XPlanValidatorApi, sowie alle XPlanDienste und Kommandozeilenwerkzeuge schreiben Log-Ausgaben standardmäßig nach
+Die Anwendungen XPlanManagerWeb, XPlanManagerApi, XPlanValidatorWeb und XPlanValidatorApi, sowie alle XPlanDienste und das Kommandozeilenwerkzeug schreiben Log-Ausgaben standardmäßig nach
 Standard-Out. Für die Web-Anwendungen und die Webservices ist dies die Logging-Datei des
-Java Applikationsserver (Apache Tomcat: _catalina.out_) und bei den Kommandozeilenwerkzeugen die Konsole.
+Java Applikationsserver (Apache Tomcat: _catalina.out_) und beim Kommandozeilenwerkzeug die Konsole.
 Nach Standard-Out werden Informationen, Warnungen und Fehler geschrieben.
 
 === Protokolldateien der Komponenten
 
-Zusätzlich wird eine Log-Datei für alle Kommandozeilenwerkzeuge in einer entsprechend benannten Datei im Log-Verzeichnis des Tomcat-Servers _logs_ geschrieben.
+Zusätzlich wird eine Log-Datei für das Kommandozeilenwerkzeug in einer entsprechend benannten Datei im Log-Verzeichnis des Tomcat-Servers _logs/xplan-cli.log_ geschrieben.
 In die Log-Dateien werden Informationen, Warnungen und Fehler geschrieben.
-
-[width="88%",cols="35%,65%",options="header"]
-|===
-|Anwendung |Log-Datei
-|XPlanCLI |./xplan-validatedb-cli.log
-|XPlanTransformCLI |./xplan-cli-tools.log
-|===
 
 NOTE: Ab der xPlanBox Version 7.0 ist die Ausgabe in Log-Dateien deaktiviert. Für die Konfiguration kann das Beispiel für die Ausgabe über einen `RollingFile`-Appender im folgenden Kapitel <<logging-konfiguration>> verwendet werden.
 
@@ -34,7 +27,7 @@ In den Anwendungen werden für die Nachrichten verschiedenen Protokollebenen (Lo
 [[logging-konfiguration]]
 === Konfiguration
 
-Die Konfiguration des verwendeten Apache Log4j-Frameworks erfolgt über die Konfigurationsdatei `log4j2.yaml`. Diese Datei ist in allen Komponenten enthalten und liegt in den Webapps im Verzeichnis `WEB-INF/classes` und bei den Kommandozeilenwerkzeugen im Verzeichnis `etc/`.
+Die Konfiguration des verwendeten Apache Log4j-Frameworks erfolgt über die Konfigurationsdatei `log4j2.yaml`. Diese Datei ist in allen Komponenten enthalten und liegt in den Webapps im Verzeichnis `WEB-INF/classes` und beim Kommandozeilenwerkzeug im Verzeichnis `etc/`.
 
 Der Aufbau einer Log4j-Konfigurationsdatei ist in mehrere Abschnitte aufgeteilt.
 Die verschiedenen Protokollausgabekanäle werden im Abschnitt `Appenders` definiert:

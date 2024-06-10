@@ -1,6 +1,6 @@
 # image used for builds: pre-fill dependencies to speed up maven builds
 
-FROM maven:3.9.3-eclipse-temurin-11
+FROM maven:3.9.6-eclipse-temurin-17
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?

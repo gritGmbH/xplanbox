@@ -45,9 +45,9 @@ import org.glassfish.jersey.server.ServerProperties;
 import org.slf4j.Logger;
 import org.springframework.context.annotation.Configuration;
 
-import javax.servlet.ServletContext;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Context;
+import jakarta.servlet.ServletContext;
+import jakarta.ws.rs.ApplicationPath;
+import jakarta.ws.rs.core.Context;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;

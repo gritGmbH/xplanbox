@@ -27,21 +27,17 @@ import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import org.junit.Test;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
-import static de.latlon.xplan.manager.configuration.ManagerConfiguration.CATEGORIES_TO_PARTS_KEY;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.RASTER_CONFIG_CRS;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.RASTER_LAYER_SCALE_DENOMINATOR_MAX;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.RASTER_LAYER_SCALE_DENOMINATOR_MIN;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.WORKSPACE_RELOAD_PASSWORD;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.WORKSPACE_RELOAD_URLS;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.WORKSPACE_RELOAD_USER;
-import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -56,42 +52,12 @@ import static org.mockito.Mockito.when;
 public class ManagerConfigurationTest {
 
 	@Test
-	public void testGetCategoryMapping() throws Exception {
-		ManagerConfiguration managerConfiguration = new ManagerConfiguration(mockPropertiesLoader());
-
-		@Deprecated
-		Map<String, List<String>> categoryMapping = managerConfiguration.getCategoryMapping();
-		List<String> cat1Parts = categoryMapping.get("Cat1");
-		List<String> cat2Parts = categoryMapping.get("Cat2");
-
-		assertThat(categoryMapping.size(), is(2));
-
-		assertThat(cat1Parts.size(), is(3));
-		assertThat(cat2Parts.size(), is(2));
-
-		assertThat(cat1Parts, hasItem("A"));
-		assertThat(cat1Parts, hasItem("B"));
-		assertThat(cat1Parts, hasItem("C D"));
-
-		assertThat(cat2Parts, hasItem("1"));
-		assertThat(cat2Parts, hasItem("7"));
-	}
-
-	@Test
 	public void testGetRasterConfigurationCrs() throws Exception {
 		ManagerConfiguration managerConfiguration = new ManagerConfiguration(mockPropertiesLoader());
 
 		String rasterConfigurationCrs = managerConfiguration.getRasterConfigurationCrs();
 
 		assertThat(rasterConfigurationCrs, is("epsg:4326"));
-	}
-
-	@Test
-	public void testGetCategoryMappingWithLoaderReturningNull() throws Exception {
-		ManagerConfiguration managerConfiguration = new ManagerConfiguration(mockPropertiesLoaderReturningNull());
-
-		Map<String, List<String>> categoryMapping = managerConfiguration.getCategoryMapping();
-		assertThat(categoryMapping.size(), is(0));
 	}
 
 	@Test
@@ -175,7 +141,6 @@ public class ManagerConfigurationTest {
 			throws ConfigurationException {
 		PropertiesLoader propertiesLoader = mock(PropertiesLoader.class);
 		Properties properties = new Properties();
-		properties.put(CATEGORIES_TO_PARTS_KEY, "Cat1(A,B,C D);Cat2(1 , 7)");
 		properties.put(RASTER_CONFIG_CRS, "epsg:4326");
 		properties.put("wmsSortDate_BP_Plan_XPLAN_50", "BP_Plan,rechtsverordnungsDatum");
 		properties.put("linkSemanticConformity_XPLAN_50", "http://link.de/to.pdf");
@@ -187,12 +152,6 @@ public class ManagerConfigurationTest {
 		if (!Double.isNaN(maxScaleDenominator))
 			properties.put(RASTER_LAYER_SCALE_DENOMINATOR_MAX, Double.toString(maxScaleDenominator));
 		when(propertiesLoader.loadProperties(anyString())).thenReturn(properties);
-		return propertiesLoader;
-	}
-
-	private PropertiesLoader mockPropertiesLoaderReturningNull() throws ConfigurationException {
-		PropertiesLoader propertiesLoader = mock(PropertiesLoader.class);
-		when(propertiesLoader.loadProperties(anyString())).thenReturn(null);
 		return propertiesLoader;
 	}
 

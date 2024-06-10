@@ -21,12 +21,11 @@
 package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import de.latlon.xplan.manager.web.shared.edit.ValidityPeriod;
 
-import javax.validation.Valid;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.validation.Valid;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 import java.util.Objects;
 
@@ -38,7 +37,7 @@ import java.util.Objects;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
 		date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 @Deprecated
 public class Zeitraum {
@@ -46,14 +45,6 @@ public class Zeitraum {
 	private @Valid Date start;
 
 	private @Valid Date ende;
-
-	public static Zeitraum fromValidityPeriod(ValidityPeriod validityPeriod) {
-		return new Zeitraum().start(validityPeriod.getStart()).ende(validityPeriod.getEnd());
-	}
-
-	public ValidityPeriod toValidityPeriod() {
-		return new ValidityPeriod(start, ende);
-	}
 
 	/**
 	 *

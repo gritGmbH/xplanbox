@@ -1,4 +1,4 @@
-FROM bitnami/tomcat:9.0.87-debian-12-r0
+FROM bitnami/tomcat:10.1.24-debian-12-r0
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?

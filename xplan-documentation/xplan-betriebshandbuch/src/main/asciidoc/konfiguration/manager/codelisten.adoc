@@ -33,14 +33,14 @@ Aufbau der Regel:
 
 Erläuterungen:
 
-* <XPATH_XPLANSYN>: XPath-Ausdruck im XPlanSyn-Schema, für den der übersetze Code eingetragen werden soll.
+* <XPATH_XPLANSYN>: XPath-Ausdruck im XPlanSyn-Schema, für den der übersetzte Code eingetragen werden soll.
 * <PROPERTY_XPLAN_GML>: Property im XPlanGML-Schema.
 * <CODELIST_DATEI>: Relativer Pfad zur Codelist-Datei.
 * <CODELIST_NAME>: Optionale Angabe des Namens der Codeliste. Wird nur benötigt, wenn die mit <CODELIST_DATEI> angegebene Datei mehr als eine Codeliste enthält.
 
 Änderungen an den Regel-Dateien sowie Codelist-Dateien werden erst nach einem Neustart des XPlanManagers wirksam.
 Sie gelten für den Import von Plänen und werden auch beim Editieren verwenden.
-Codes aus bereits importierten Plänen werden nicht neu übersetzt, für diese ist der Aufruf des <<kommandozeilen-anwendungen, Kommandozeilenwerkzeugs reSynthesizer>> erforderlich.
+Codes aus bereits importierten Plänen werden nicht neu übersetzt, für diese ist der Aufruf des <<kommandozeilen-anwendung, Kommandozeilenwerkzeugs XPlanCLI>> mit dem Kommando `admin resynthesize` erforderlich.
 
 ==== Übersetzung von Codelisten für komplexe Zweckbestimmungen
 

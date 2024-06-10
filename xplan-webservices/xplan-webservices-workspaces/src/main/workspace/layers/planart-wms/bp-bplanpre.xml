@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!-- 
  #%L
-  xplan-webservices-workspaces - Modul zur Gruppierung aller Workspaces
+  xplanbox-syn - Automatisiert erzeugte Konfiguration
   %%
   Copyright (C) 2008 - 2024 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
@@ -9,15 +9,15 @@
   it under the terms of the GNU Affero General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-   
+ 
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-   
+ 
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.04.2024, 14:50:38
+  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 23.05.2024, 11:03:01
 -->
 <FeatureLayers xmlns="http://www.deegree.org/layers/feature" xmlns:l="http://www.deegree.org/layers/base" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial">
   <FeatureStoreId>xplansynpre</FeatureStoreId>
@@ -25,30 +25,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_AbgrabungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -73,30 +53,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_AbstandsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -121,30 +81,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_AbstandsMass</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -169,30 +109,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_AbweichungVonBaugrenze</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -217,30 +137,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -265,30 +165,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_AnpflanzungBindungErhaltung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -313,30 +193,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_AufschuettungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -361,30 +221,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_AusgleichsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -409,30 +249,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_AusgleichsMassnahme</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -457,30 +277,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_BauGrenze</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -505,30 +305,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_BauLinie</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -553,30 +333,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_Baugebiet</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -601,30 +361,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_BaugebietsTeilFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -649,30 +389,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_Bereich</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -697,30 +417,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_BereichOhneEinAusfahrtLinie</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -745,30 +445,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_BesondererNutzungszweckFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -793,30 +473,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_BodenschaetzeFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -841,30 +501,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_DenkmalschutzEinzelanlage</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -889,30 +529,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_DenkmalschutzEnsembleFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -937,30 +557,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_EinfahrtPunkt</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -985,30 +585,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_EinfahrtsbereichLinie</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1033,30 +613,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_EingriffsBereich</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1081,30 +641,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_ErhaltungsBereichFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1129,30 +669,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_ErneuerbareEnergieFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1177,30 +697,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_FestsetzungNachLandesrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1225,30 +725,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_FirstRichtungsLinie</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1273,30 +753,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_FlaecheOhneFestsetzung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1321,30 +781,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_FoerderungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1369,30 +809,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_FreiFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1417,30 +837,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_GebaeudeFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1465,30 +865,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_GebaeudeStellung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1513,30 +893,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_GemeinbedarfsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1561,30 +921,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_GemeinschaftsanlagenFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1609,30 +949,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_GemeinschaftsanlagenZuordnung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1657,30 +977,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_GenerischesObjekt</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1705,30 +1005,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_GewaesserFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1753,30 +1033,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_GruenFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1801,30 +1061,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_HoehenMass</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1849,30 +1089,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_Immissionsschutz</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1897,30 +1117,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_KennzeichnungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1945,30 +1145,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_KleintierhaltungFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -1993,30 +1173,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_Landwirtschaft</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2041,30 +1201,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_LandwirtschaftsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2089,30 +1229,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_LuftreinhalteFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2137,30 +1257,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_NebenanlagenAusschlussFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2185,30 +1285,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_NebenanlagenFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2233,30 +1313,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_NichtUeberbaubareGrundstuecksflaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2281,30 +1341,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_NutzungsartenGrenze</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2329,30 +1369,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_PersGruppenBestimmteFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2377,30 +1397,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_Plan</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2425,30 +1425,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_RasterplanAenderung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2473,30 +1453,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_RegelungVergnuegungsstaetten</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2521,30 +1481,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_RekultivierungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2569,30 +1509,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_RichtungssektorGrenze</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2617,30 +1537,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_SchutzPflegeEntwicklungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2665,30 +1565,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_SchutzPflegeEntwicklungsMassnahme</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2713,30 +1593,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_Schutzgebiet</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2761,30 +1621,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_Sichtflaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2809,30 +1649,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_SpezielleBauweise</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2857,30 +1677,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_SpielSportanlagenFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2905,30 +1705,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_StrassenVerkehrsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -2953,30 +1733,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_StrassenbegrenzungsLinie</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3001,30 +1761,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_Strassenkoerper</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3049,30 +1789,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_TechnischeMassnahmenFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3097,30 +1817,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_TextAbschnittFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3145,30 +1845,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_TextlicheFestsetzungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3193,30 +1873,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_UeberbaubareGrundstuecksFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3241,30 +1901,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_UnverbindlicheVormerkung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3289,30 +1929,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_VerEntsorgung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3337,30 +1957,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_Veraenderungssperre</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3385,30 +1985,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_VerkehrsflaecheBesondererZweckbestimmung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3433,30 +2013,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_WaldFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3481,30 +2041,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_WasserwirtschaftsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3529,30 +2069,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_Wegerecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3577,30 +2097,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_WohngebaeudeFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3625,30 +2125,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_ZentralerVersorgungsbereich</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3673,30 +2153,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_ZusatzkontingentLaerm</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3721,30 +2181,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_ZusatzkontingentLaermFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3769,30 +2209,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:XP_FPO</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3817,30 +2237,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:XP_LPO</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3865,30 +2265,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:XP_LTO</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3913,30 +2293,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:XP_PPO</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">
@@ -3961,30 +2321,10 @@
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:XP_PTO</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-            <ogc:Literal>BP_Plan</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:Filter>
     </Filter>
     <SortBy reverseFeatureInfo="true">

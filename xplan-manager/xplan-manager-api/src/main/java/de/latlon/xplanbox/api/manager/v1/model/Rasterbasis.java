@@ -25,11 +25,11 @@ import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
 import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
 import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
@@ -43,7 +43,7 @@ import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
 		date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 public class Rasterbasis extends Referenz {
 

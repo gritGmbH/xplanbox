@@ -256,8 +256,6 @@ class XPlanValidatorWebIT {
 		sleep();
 		driver.findElement(By.xpath("//table/tbody/tr[2]/td/span/input")).click();
 		sleep();
-		driver.findElement(By.xpath("//fieldset/table/tbody/tr[5]/td/span/input")).click();
-		sleep();
 		driver.findElement(By.xpath("//button[text() = 'Download']")).click();
 		sleep();
 	}
@@ -279,7 +277,7 @@ class XPlanValidatorWebIT {
 	}
 
 	public static void sleep() throws InterruptedException {
-		Thread.sleep(1500);
+		Thread.sleep(1000);
 	}
 
 }

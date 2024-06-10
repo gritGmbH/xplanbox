@@ -21,7 +21,6 @@
 package de.latlon.xplan.manager.database;
 
 import de.latlon.xplan.core.manager.db.listener.CleanupSqlFeatureStoreEvent;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import org.deegree.feature.FeatureCollection;
@@ -77,16 +76,15 @@ public class XPlanSynWfsAdapter {
 		LOG.info("OK");
 	}
 
-	public List<String> update(int planId, XPlan oldXPlan, AdditionalPlanData newXPlanMetadata, FeatureCollection synFc,
+	public List<String> update(int planId, XPlan oldXPlan, PlanStatus targetPlanStatus, FeatureCollection synFc,
 			Set<String> oldFids) throws Exception {
-		PlanStatus oldPlanStatus = oldXPlan.getXplanMetadata().getPlanStatus();
-		PlanStatus newPlanStatus = newXPlanMetadata.getPlanStatus();
-		boolean sameSourceAndTarget = oldPlanStatus == newPlanStatus;
+		PlanStatus oldPlanStatus = oldXPlan.getPlanStatus();
+		boolean sameSourceAndTarget = oldPlanStatus == targetPlanStatus;
 		if (sameSourceAndTarget) {
 			return update(planId, oldPlanStatus, synFc, oldFids);
 		}
 		else {
-			return update(planId, synFc, oldFids, oldPlanStatus, newPlanStatus);
+			return update(planId, synFc, oldFids, oldPlanStatus, targetPlanStatus);
 		}
 	}
 

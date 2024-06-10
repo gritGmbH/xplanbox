@@ -24,27 +24,27 @@ import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import org.locationtech.jts.geom.Geometry;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 
-import static javax.persistence.CascadeType.ALL;
+import static jakarta.persistence.CascadeType.ALL;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -95,13 +95,7 @@ public class Plan {
 
 	private @Valid String planstatus;
 
-	private @Valid String district;
-
 	private @Valid Date wmssortdate;
-
-	private @Valid Date gueltigkeitbeginn;
-
-	private @Valid Date gueltigkeitende;
 
 	private @Valid Boolean inspirepublished = false;
 
@@ -284,19 +278,6 @@ public class Plan {
 		return this;
 	}
 
-	public String getDistrict() {
-		return district;
-	}
-
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-
-	public Plan district(String district) {
-		this.district = district;
-		return this;
-	}
-
 	public Date getWmssortdate() {
 		return wmssortdate;
 	}
@@ -307,56 +288,6 @@ public class Plan {
 
 	public Plan wmssortdate(Date wmssortdate) {
 		this.wmssortdate = wmssortdate;
-		return this;
-	}
-
-	/**
-	 * @deprecated will be removed in a future version.
-	 */
-	@Deprecated
-	public Date getGueltigkeitbeginn() {
-		return gueltigkeitbeginn;
-	}
-
-	/**
-	 * @deprecated will be removed in a future version.
-	 */
-	@Deprecated
-	public void setGueltigkeitbeginn(Date gueltigkeitbeginn) {
-		this.gueltigkeitbeginn = gueltigkeitbeginn;
-	}
-
-	/**
-	 * @deprecated will be removed in a future version.
-	 */
-	@Deprecated
-	public Plan gueltigkeitbeginn(Date gueltigkeitbeginn) {
-		this.gueltigkeitbeginn = gueltigkeitbeginn;
-		return this;
-	}
-
-	/**
-	 * @deprecated will be removed in a future version.
-	 */
-	@Deprecated
-	public Date getGueltigkeitende() {
-		return gueltigkeitende;
-	}
-
-	/**
-	 * @deprecated will be removed in a future version.
-	 */
-	@Deprecated
-	public void setGueltigkeitende(Date gueltigkeitende) {
-		this.gueltigkeitende = gueltigkeitende;
-	}
-
-	/**
-	 * @deprecated will be removed in a future version.
-	 */
-	@Deprecated
-	public Plan gueltigkeitende(Date gueltigkeitende) {
-		this.gueltigkeitende = gueltigkeitende;
 		return this;
 	}
 
@@ -431,10 +362,8 @@ public class Plan {
 				+ ", name='" + name + '\'' + ", nummer='" + nummer + '\'' + ", internalid='" + internalid + '\''
 				+ ", gkz='" + gkz + '\'' + ", hasRaster=" + hasRaster + ", rechtsstand='" + rechtsstand + '\''
 				+ ", releaseDate=" + releaseDate + ", sonstPlanArt='" + sonstPlanArt + '\'' + ", planstatus='"
-				+ planstatus + '\'' + ", district='" + district + '\'' + ", wmssortdate=" + wmssortdate
-				+ ", gueltigkeitbeginn=" + gueltigkeitbeginn + ", gueltigkeitende=" + gueltigkeitende
-				+ ", inspirepublished=" + inspirepublished + ", bereiche=" + bereiche + ", artefacts=" + artefacts
-				+ ", features=" + features + '}';
+				+ planstatus + ", wmssortdate=" + wmssortdate + ", inspirepublished=" + inspirepublished + ", bereiche="
+				+ bereiche + ", artefacts=" + artefacts + ", features=" + features + '}';
 	}
 
 }

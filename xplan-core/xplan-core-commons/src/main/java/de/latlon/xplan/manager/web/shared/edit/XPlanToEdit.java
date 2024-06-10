@@ -20,7 +20,7 @@
  */
 package de.latlon.xplan.manager.web.shared.edit;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +35,6 @@ public class XPlanToEdit implements Serializable {
 
 	@Valid
 	private BaseData baseData;
-
-	@Valid
-	private ValidityPeriod validityPeriod;
 
 	@Valid
 	private List<Change> changes = new ArrayList<Change>();
@@ -70,26 +67,6 @@ public class XPlanToEdit implements Serializable {
 	 */
 	public void setBaseData(BaseData baseData) {
 		this.baseData = baseData;
-	}
-
-	/**
-	 * @deprecated will be removed in a future version.
-	 * @return the validityPeriod, never <code>null</code>
-	 */
-	@Deprecated
-	public ValidityPeriod getValidityPeriod() {
-		if (this.validityPeriod == null)
-			this.validityPeriod = new ValidityPeriod();
-		return validityPeriod;
-	}
-
-	/**
-	 * @deprecated will be removed in a future version.
-	 * @param validityPeriod the validityPeriod to set, may be <code>null</code>
-	 */
-	@Deprecated
-	public void setValidityPeriod(ValidityPeriod validityPeriod) {
-		this.validityPeriod = validityPeriod;
 	}
 
 	/**
@@ -219,9 +196,8 @@ public class XPlanToEdit implements Serializable {
 
 	@Override
 	public String toString() {
-		return "XPlanToEdit {baseData=" + baseData + ", validityPeriod=" + validityPeriod + ", changes=" + changes
-				+ ", texts=" + texts + ", references=" + references + ", rasterBasis=" + rasterBasis + ", hasBereich="
-				+ hasBereich + "}";
+		return "XPlanToEdit {baseData=" + baseData + ", changes=" + changes + ", texts=" + texts + ", references="
+				+ references + ", rasterBasis=" + rasterBasis + ", hasBereich=" + hasBereich + "}";
 	}
 
 }

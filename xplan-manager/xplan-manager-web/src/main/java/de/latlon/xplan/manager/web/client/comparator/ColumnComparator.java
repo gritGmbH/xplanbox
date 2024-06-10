@@ -20,14 +20,13 @@
  */
 package de.latlon.xplan.manager.web.client.comparator;
 
-import static java.lang.Integer.parseInt;
+import de.latlon.xplan.manager.web.client.gui.PlanListColumnType;
+import de.latlon.xplan.manager.web.shared.XPlan;
 
 import java.util.Comparator;
 import java.util.Date;
 
-import de.latlon.xplan.manager.web.client.gui.PlanListColumnType;
-import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
+import static java.lang.Integer.parseInt;
 
 /**
  * Compares different columns (name, id, type, additional type, legislation status,
@@ -106,9 +105,8 @@ public class ColumnComparator implements Comparator<XPlan> {
 	}
 
 	private String retrievePlanStatus(XPlan plan) {
-		AdditionalPlanData xPlanMetadata = plan.getXplanMetadata();
-		if (xPlanMetadata != null && xPlanMetadata.getPlanStatus() != null)
-			return xPlanMetadata.getPlanStatus().getMessage();
+		if (plan.getPlanStatus() != null)
+			return plan.getPlanStatus().getMessage();
 		return null;
 	}
 

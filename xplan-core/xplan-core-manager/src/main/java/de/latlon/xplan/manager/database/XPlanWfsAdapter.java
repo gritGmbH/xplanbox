@@ -23,7 +23,6 @@ package de.latlon.xplan.manager.database;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.core.manager.db.listener.CleanupSqlFeatureStoreEvent;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import org.deegree.feature.FeatureCollection;
@@ -86,16 +85,15 @@ public class XPlanWfsAdapter {
 		return xplanFs.query(query).toCollection();
 	}
 
-	public List<String> update(int planId, XPlan oldXPlan, AdditionalPlanData newXPlanMetadata,
-			XPlanFeatureCollection fc, Set<String> oldFids) throws Exception {
-		PlanStatus oldPlanStatus = oldXPlan.getXplanMetadata().getPlanStatus();
-		PlanStatus newPlanStatus = newXPlanMetadata.getPlanStatus();
-		boolean sameSourceAndTarget = oldPlanStatus == newPlanStatus;
+	public List<String> update(int planId, XPlan oldXPlan, PlanStatus targetPlanStatus, XPlanFeatureCollection fc,
+			Set<String> oldFids) throws Exception {
+		PlanStatus oldPlanStatus = oldXPlan.getPlanStatus();
+		boolean sameSourceAndTarget = oldPlanStatus == targetPlanStatus;
 		if (sameSourceAndTarget) {
 			return update(planId, oldPlanStatus, fc, oldFids);
 		}
 		else {
-			return update(planId, fc, oldFids, oldPlanStatus, newPlanStatus);
+			return update(planId, fc, oldFids, oldPlanStatus, targetPlanStatus);
 		}
 	}
 

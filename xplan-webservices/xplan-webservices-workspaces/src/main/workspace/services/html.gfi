@@ -1,7 +1,7 @@
 <?template start>
 <!--
   #%L
-  xplan-webservices-workspaces - Modul zur Gruppierung aller Workspaces
+  xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
   Copyright (C) 2008 - 2024 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
@@ -19,7 +19,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%
   -->
-<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.04.2024, 14:50:38 -->
+<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 23.05.2024, 11:03:01 -->
 <html>
   <head>
     <title>XPlanWMS Sachdatenanzeige</title>

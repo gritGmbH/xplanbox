@@ -20,28 +20,24 @@
  */
 package de.latlon.xplan.manager.web.server.service.security;
 
-import static de.latlon.xplan.manager.web.spring.security.XPlanAuthorizationRole.ROLE_SUPERUSER;
-import static de.latlon.xplan.manager.web.spring.security.XPlanAuthorizationRole.ROLE_USER;
-import static java.util.Collections.singletonList;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
+import de.latlon.xplan.manager.web.server.service.SecurityServiceImpl;
+import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
+import de.latlon.xplan.manager.web.shared.ConfigurationException;
+import org.junit.Test;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Test;
-import org.springframework.security.core.Authentication;
-
-import de.latlon.xplan.manager.web.server.service.SecurityServiceImpl;
-import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
-import de.latlon.xplan.manager.web.shared.ConfigurationException;
-import de.latlon.xplan.manager.web.spring.security.DistrictGrantedAuthority;
+import static de.latlon.xplan.manager.web.spring.security.XPlanAuthorizationRole.ROLE_SUPERUSER;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -50,62 +46,38 @@ import de.latlon.xplan.manager.web.spring.security.DistrictGrantedAuthority;
 public class AuthorizationManagerTest {
 
 	@Test
-	public void testCreateAuthorizationInfoFromAuthentication_WithEnabledSecurityShouldReturnDistricts()
-			throws Exception {
-		AuthorizationManager managerWithEnabledSecurity = createSpiedAuthorizationManager(true,
-				createAuthoritiesWithoutSuperUser());
-		AuthorizationInfo authorizationInfo = managerWithEnabledSecurity.createAuthorizationInfoFromAuthentication();
-		List<String> districts = authorizationInfo.getAuthorizedDistricts();
-
-		assertTrue(districts.contains("district1"));
-		assertTrue(districts.contains("district2"));
-		assertTrue(districts.contains("district3"));
-		assertThat(districts.size(), is(3));
-		assertThat(authorizationInfo.isSuperUser(), is(false));
-	}
-
-	@Test
 	public void testCreateAuthorizationInfoFromAuthentication_WithEnabledSecurityShouldReturnSuperUser()
 			throws Exception {
-		AuthorizationManager managerWithEnabledSecurity = createSpiedAuthorizationManager(true,
-				createAuthoritiesWithSuperUser());
+		AuthorizationManager managerWithEnabledSecurity = createSecurityManager(true, createAuthoritiesWithSuperUser());
 		AuthorizationInfo authorizationInfo = managerWithEnabledSecurity.createAuthorizationInfoFromAuthentication();
-		List<String> districts = authorizationInfo.getAuthorizedDistricts();
 
-		assertTrue(districts.contains("district1"));
-		assertTrue(districts.contains("district2"));
-		assertTrue(districts.contains("district3"));
-		assertThat(districts.size(), is(3));
 		assertThat(authorizationInfo.isSuperUser(), is(true));
 	}
 
 	@Test
 	public void testCreateAuthorizationInfoFromAuthentication_WithDisabledSecurityShouldReturnSuperUserPermissions()
 			throws Exception {
-		AuthorizationManager managerWithEnabledSecurity = createSpiedAuthorizationManager(false);
+		AuthorizationManager managerWithEnabledSecurity = createSecurityManager(false);
 		AuthorizationInfo authorizationInfo = managerWithEnabledSecurity.createAuthorizationInfoFromAuthentication();
 
-		assertThat(authorizationInfo.getAuthorizedDistricts().size(), is(0));
 		assertThat(authorizationInfo.isSuperUser(), is(false));
 	}
 
 	@Test
 	public void testIsSuperUser_WithEnabledSecurityFromNotSuperUser() throws Exception {
-		AuthorizationManager managerWithEnabledSecurity = createSpiedAuthorizationManager(true,
-				createAuthoritiesWithoutSuperUser());
+		AuthorizationManager managerWithEnabledSecurity = createSecurityManager(true);
 		assertThat(managerWithEnabledSecurity.isSuperUser(), is(false));
 	}
 
 	@Test
 	public void testIsSuperUser_WithEnabledSecurityFromSuperUser() throws Exception {
-		AuthorizationManager managerWithEnabledSecurity = createSpiedAuthorizationManager(true,
-				createAuthoritiesWithSuperUser());
+		AuthorizationManager managerWithEnabledSecurity = createSecurityManager(true, createAuthoritiesWithSuperUser());
 		assertThat(managerWithEnabledSecurity.isSuperUser(), is(true));
 	}
 
 	@Test
 	public void testIsSuperUser_WithDisabledSecurity() throws Exception {
-		AuthorizationManager managerWithEnabledSecurity = createSpiedAuthorizationManager(false);
+		AuthorizationManager managerWithEnabledSecurity = createSecurityManager(false);
 		assertThat(managerWithEnabledSecurity.isSuperUser(), is(true));
 	}
 
@@ -117,15 +89,12 @@ public class AuthorizationManagerTest {
 		controllerWithEnabledSecurity.retrieveAuthorizationInfo();
 	}
 
-	private AuthorizationManager createSpiedAuthorizationManager(boolean isSecurityEnabled) {
-		AuthorizationManager securityManager = spy(new AuthorizationManager(isSecurityEnabled));
-		Authentication authentication = mock(Authentication.class);
-		when(securityManager.retrieveAuthentication()).thenReturn(authentication);
-		return securityManager;
+	private AuthorizationManager createSecurityManager(boolean isSecurityEnabled) {
+		return createSecurityManager(isSecurityEnabled, Collections.emptyList());
 	}
 
-	private AuthorizationManager createSpiedAuthorizationManager(boolean isSecurityEnabled,
-			List<DistrictGrantedAuthority> authorities) {
+	private AuthorizationManager createSecurityManager(boolean isSecurityEnabled,
+			List<SimpleGrantedAuthority> authorities) {
 		AuthorizationManager securityManager = spy(new AuthorizationManager(isSecurityEnabled));
 		Authentication authentication = mock(Authentication.class);
 		when(securityManager.retrieveAuthentication()).thenReturn(authentication);
@@ -133,23 +102,9 @@ public class AuthorizationManagerTest {
 		return securityManager;
 	}
 
-	private List<DistrictGrantedAuthority> createAuthoritiesWithoutSuperUser() {
-		List<String> districts = new ArrayList<String>();
-		districts.add("district1");
-		districts.add("district2");
-		DistrictGrantedAuthority authority1 = new DistrictGrantedAuthority(ROLE_USER.toString(), districts);
-		DistrictGrantedAuthority authority2 = new DistrictGrantedAuthority(ROLE_USER.toString(),
-				singletonList("district3"));
-		List<DistrictGrantedAuthority> authorities = new ArrayList<DistrictGrantedAuthority>();
-		authorities.add(authority1);
-		authorities.add(authority2);
-		return authorities;
-	}
-
-	private List<DistrictGrantedAuthority> createAuthoritiesWithSuperUser() {
-		List<DistrictGrantedAuthority> authorities = createAuthoritiesWithoutSuperUser();
-		DistrictGrantedAuthority authority = new DistrictGrantedAuthority(ROLE_SUPERUSER.toString(),
-				Collections.<String>emptyList());
+	private List<SimpleGrantedAuthority> createAuthoritiesWithSuperUser() {
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		SimpleGrantedAuthority authority = new SimpleGrantedAuthority(ROLE_SUPERUSER.toString());
 		authorities.add(authority);
 		return authorities;
 	}

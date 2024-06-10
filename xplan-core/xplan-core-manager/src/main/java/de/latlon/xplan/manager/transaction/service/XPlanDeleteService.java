@@ -26,7 +26,7 @@ import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.springframework.context.ApplicationEventPublisher;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>

@@ -22,11 +22,11 @@ package de.latlon.xplanbox.api.manager.exception;
 
 import de.latlon.xplan.manager.transaction.UnsupportPlanException;
 
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
 
-import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import static jakarta.ws.rs.core.Response.Status.BAD_REQUEST;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>

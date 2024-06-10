@@ -16,10 +16,6 @@ Für den Fall, dass Sie einen Fehler in der xPlanBox finden, erstellen Sie bitte
 
 IMPORTANT: Die Unterstützung von Microsoft Internet Explorer 9/10/11 ist mit Version 4.2 der xPlanBox abgekündigt worden. Bitte nutzen Sie einen anderen Browser wie z. B. https://www.microsoft.com/de-de/edge[Microsoft Edge], https://www.mozilla.org/de/firefox[Firefox] oder https://www.google.com/intl/de_de/chrome/[Google Chrome].
 
-==== XPlanValidator - Darstellung von geometrischen Fehlern in einer Shape-Datei
-
-Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) im Validierungsbericht des XPlanValidator ausgegeben, Multigeometrien werden nicht dargestellt. In die Shape-Datei können nur Geometrien geschrieben werden, wenn diese auch gerendert werden können.
-
 ==== XPlanValidator - Anzeige der Zeilennummern im Validierungsbericht
 
 Die Ausgabe der Zeilennummer bei semantischen Validierungsfehlern, kann je nach Formatierung des XML-Dokuments von der Zeile des verursachenden Elements abweichen.
@@ -42,10 +38,6 @@ manuell aus der Request URL entfernt werden (Wert des Parameters "LAYERS").
 Dies gilt für jede einzelne Planart: Für die URL für BPläne muss z. B.
 mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens
 ein FPlan mit Rasterdaten.
-
-==== XPlanWMS - Darstellung von Plänen mit Gültigkeitszeitraum
-
-Wenn beim Import eines Plans über den XPlanManager ein Gültigkeitszeitraum angegeben wird, werden derzeit keine Vektordaten bei GetMap-Anfragen an den XPlanWMS angezeigt. Dies gilt für alle XPlanWMS unabhängig vom Planstatus.
 
 ==== XPlanManagerWeb - Anzeige der Pläne auf der letzten Seite
 

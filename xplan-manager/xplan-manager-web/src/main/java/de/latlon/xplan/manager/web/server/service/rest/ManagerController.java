@@ -25,6 +25,11 @@ import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.web.server.service.ManagerPlanArchiveManager;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.ws.rs.core.Context;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +43,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.ws.rs.core.Context;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -101,7 +102,7 @@ public class ManagerController {
                          @Context HttpServletResponse response ) {
         // @formatter:on
 		response.addHeader("Expires", "-1");
-		LOG.info("Retrieve all plans.");
+		LOG.info("Retrieve plan " + planId);
 		try {
 			XPlan requestedPlan = retrieveRequestedPlan(response, planId);
 			if (requestedPlan != null) {
@@ -171,6 +172,7 @@ public class ManagerController {
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	@ResponseBody
 	public String handleAllExceptions(Exception e) {
+		LOG.error("handleAllExceptions", e);
 		return e.getMessage();
 	}
 
@@ -185,6 +187,7 @@ public class ManagerController {
 	@ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE)
 	@ResponseBody
 	public String handleUnsupportedContentTypeExceptions(UnsupportedContentTypeException e) {
+		LOG.info("UnsupportedContentTypeException", e.getMessage());
 		return e.getMessage();
 	}
 

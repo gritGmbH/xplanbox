@@ -20,6 +20,9 @@
  */
 package de.latlon.xplanbox.api.validator;
 
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -45,6 +48,12 @@ public class SpringBootApp extends SpringBootServletInitializer {
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(SpringBootApp.class);
+	}
+
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException {
+		// TODO Auto-generated method stub
+
 	}
 
 }

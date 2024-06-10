@@ -218,16 +218,6 @@ lediglich die Planumringe sichtbar.
 
 IMPORTANT: In der Version 7.2 der xPlanBox hat sich der Default-Style im XPlanWMSInAufstellung und im XPlanWMSArchiviert von `transparent` auf `vollflaechig` geändert! Es werden nun bei Verwendung des Default-Styles alle Planzeichen angezeigt.
 
-[[xplanwms-gueltigkeitszeitraum]]
-===== Gültigkeitszeitraum
-
-Der Gültigkeitszeitraum bestimmt die Sichtbarkeit der Inhalte eines Plans bei Aufruf des XPlanWMSInAufstellung über die GetMap-Operation. Der Gültigkeitszeitraum eines Plans kann beim Import über den XPlanManagerWeb als Zeitspanne angegeben werden.
-Wird der XPlanWMSInAufstellung innerhalb des gewählten Zeitraums angefragt, so werden die Plandaten, sowohl Vektor- als auch Rasterdaten, angezeigt. Liegt der Zeitpunkt der GetMap-Anfrage an den XPlanWMSInAufstellung ausserhalb des Zeitraums, so werden keine Plandaten angezeigt.
-
-NOTE: Ausnahme: Die Sichtbarkeit der Layer, die den Geltungsbereich darstellen, werden nicht über den Gültigkeitszeitraum verändert und werden immer angezeigt.
-
-IMPORTANT: Die Möglichkeit einen Gültigkeitszeitraum anzugeben ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt.
-
 [[xplanwms-getfeatureinfo]]
 ==== GetFeatureInfo
 

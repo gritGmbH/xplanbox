@@ -42,8 +42,7 @@
       <outputDirectory>bin</outputDirectory>
       <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
       <includes>
-        <include>de.latlon.product.xplanbox:xplan-cli-tools:zip:*</include>
-        <include>de.latlon.product.xplanbox:xplan-transform-cli:zip:*</include>
+        <include>de.latlon.product.xplanbox:xplan-cli:zip:*</include>
       </includes>
     </dependencySet>
     <dependencySet>

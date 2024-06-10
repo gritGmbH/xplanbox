@@ -2,7 +2,7 @@ pipeline {
    agent any
    tools {
       maven 'maven-3.9'
-      jdk 'openjdk11'
+      jdk 'temurin-jdk17'
    }
    parameters {
       string(name: 'BRANCH', defaultValue: "main", description: 'Set branch')

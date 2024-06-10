@@ -30,17 +30,15 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import de.latlon.xplanbox.core.gwt.commons.shared.ValidationSummary;
-import de.latlon.xplanbox.core.gwt.commons.client.ValidatorWebCommonsMessages;
 import de.latlon.xplan.validator.web.shared.ArtifactType;
+import de.latlon.xplanbox.core.gwt.commons.client.ValidatorWebCommonsMessages;
+import de.latlon.xplanbox.core.gwt.commons.shared.ValidationSummary;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
 import static de.latlon.xplan.validator.web.shared.ArtifactType.PDF;
-import static de.latlon.xplan.validator.web.shared.ArtifactType.SHP;
-import static de.latlon.xplan.validator.web.shared.ArtifactType.XML;
 
 /**
  * Encapulates the download options.
@@ -54,11 +52,7 @@ public class ReportDownloadPanel extends CaptionPanel {
 
 	private final CheckBox htmlCheckBox = new CheckBox(messages.reportDownloadHtml());
 
-	private final CheckBox xmlCheckBox = new CheckBox(messages.reportDownloadXml());
-
 	private final CheckBox pdfCheckBox = new CheckBox(messages.reportDownloadPdf());
-
-	private final CheckBox shpCheckBox = new CheckBox(messages.reportDownloadShp());
 
 	private final ReportUrlBuilder urlBuilder = new ReportUrlBuilder();
 
@@ -76,11 +70,8 @@ public class ReportDownloadPanel extends CaptionPanel {
 
 		mainPanel.add(htmlCheckBox);
 		mainPanel.add(pdfCheckBox);
-		mainPanel.add(xmlCheckBox);
 
 		mainPanel.add(createGeometryErrorSeperator());
-
-		mainPanel.add(shpCheckBox);
 
 		mainPanel.add(createDownloadButton());
 
@@ -115,12 +106,8 @@ public class ReportDownloadPanel extends CaptionPanel {
 		List<ArtifactType> selectedArtifacts = new ArrayList<ArtifactType>();
 		if (htmlCheckBox.getValue())
 			selectedArtifacts.add(HTML);
-		if (xmlCheckBox.getValue())
-			selectedArtifacts.add(XML);
 		if (pdfCheckBox.getValue())
 			selectedArtifacts.add(PDF);
-		if (shpCheckBox.getValue())
-			selectedArtifacts.add(SHP);
 		return selectedArtifacts;
 	}
 

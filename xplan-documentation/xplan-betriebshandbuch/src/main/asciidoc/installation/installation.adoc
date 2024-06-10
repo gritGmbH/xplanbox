@@ -70,23 +70,22 @@ Diese enthält die Verknüpfung zwischen der Webapp und dem Workspace.
 ----
 <1> dieser Workspace wird als Vorgabewert konfiguriert, alternativ kann der _xplan-webservices-validator-wms-sql-workspace_ verwendet werden (weitere Informationen zur Konfiguration des XPlanValidatorWMS sind im Kapitel <<konfiguration-xplanvalidatorwms>> zu finden).
 
-[[kommandozeilen-anwendungen]]
-==== Kommandozeilen-Anwendungen
+[[kommandozeilen-anwendung]]
+==== Kommandozeilen-Anwendung
 
-Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an beliebiger Stelle entpackt werden. Im jeweiligen _bin/_ Verzeichnis des Kommandozeilenwerkzeugs befindet sich das Ausführungsskript.
+Die Kommandozeilenkomponent (s. <<installationskomponenten>>) kann an beliebiger Stelle entpackt werden. Im _bin/_ Verzeichnis des Kommandozeilenwerkzeugs befindet sich das Ausführungsskript.
 
-TIP: Um die Kommandozeilenwerkzeuge von einem beliebigen Ort aufrufen zu können, empfiehlt es sich, die Pfade in die `PATH` Variable mit aufzunehmen.
+TIP: Um das Kommandozeilenwerkzeug von einem beliebigen Ort aufrufen zu können, empfiehlt es sich, die Pfade in die `PATH` Variable mit aufzunehmen.
 
-IMPORTANT: Je nach Kommandozeilenwerkzeug müssen über Umgebungsvariablen wie z. B. `DEEGREE_WORKSPACE_ROOT` der Pfad zum deegree Workspace und mit `LD_LIBRARY_PATH` der Pfad zum Installationsverzeichnis von GDAL gesetzt werden (siehe auch <<installation-gdal>>).
+IMPORTANT: Je nach Kommando des Kommandozeilenwerkzeugs müssen über Umgebungsvariablen wie z. B. `DEEGREE_WORKSPACE_ROOT` der Pfad zum deegree Workspace und mit `LD_LIBRARY_PATH` der Pfad zum Installationsverzeichnis von GDAL gesetzt werden (siehe auch <<installation-gdal>>).
 
-Folgende Kommandos sind Teil der XPlanCLI Tools:
+Folgende Kommandos sind Teil des XPlanCLI Kommandozeilenwerkzeugs:
 
 * Kommando `validate`: _xpb validate_ - Beschreibung der Funktionalität im Kapitel "XPlanCLI Tools" des XPlanBenutzerhandbuchs.
 ** Subkommando `db`: _xpb validate db_ - ermöglicht die **semantische** Validierung von bereits in die <<XPlanDB>> importierten Plänen. Der Aufruf des Kommandos mit `help` liefert Hinweise zur Verwendung.
 * Kommando `manage`: _xpb manage_ - Beschreibung der Funktionalität im Kapitel "XPlanCLI Tools" des XPlanBenutzerhandbuchs.
 ** Subkommando `create-metadata`: _xpb manage create-metadata_ - Erzeugt Dienst-Metadaten für den <<xplanwms, XPlanWerkWMS>>.
 * Kommando `admin`: _xpb admin_ - mit folgenden Subkommandos, die für die <<aktualisierung,Aktualisierung>> des Datenbestands in der <<xplandb>> verwendet werden können.
-** Subkommando `district-update`:  _xpb admin district-update_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen. Der Aufruf des Tools mit `help` liefert Hinweise zur Verwendung.
 ** Subkommando `resynthesize`: _xpb admin resynthesize_ - ermöglicht die Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `help` liefert Hinweise zur Verwendung.
 ** Subkommando `sortdate-update`: _xpb admin sortDateUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Sortierfelder und die Sortierung der Rasterdaten in der Themes Konfiguration, sofern deegree für die Bereitstellung der Rasterdaten verwendet wird. Der Aufruf des Tools mit `help` liefert Hinweise zur Verwendung.
 ** Subkommando `evaluation-db-update`: _xpb admin evaluation-db-update_ - das Kommando erzeugt ein weiteres Datenbankschema für die Auswertung und kann die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas synchronisieren. Das Auswerteschema unterscheidet sich zum XPlanSyn-Schema dadurch, dass die GML-Geometrien (wie z.B. Kreisbögen) aus dem XPlanGML zusätzlich zu den https://www.ogc.org/standards/sfa[Simple Features Geometrien] abgelegt sind.

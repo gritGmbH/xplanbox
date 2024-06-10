@@ -148,12 +148,6 @@
       <artifactId>xplan-core-schemas</artifactId>
       <type>zip</type>
     </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-database-docker</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-    </dependency>
   </dependencies>
 
 </project>

@@ -29,7 +29,7 @@ import org.deegree.theme.persistence.standard.StandardThemeProvider;
 import org.deegree.theme.persistence.standard.jaxb.ThemeType;
 import org.deegree.theme.persistence.standard.jaxb.Themes;
 
-import javax.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

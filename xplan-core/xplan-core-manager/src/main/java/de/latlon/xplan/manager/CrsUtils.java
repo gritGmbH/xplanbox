@@ -29,47 +29,30 @@ import org.slf4j.Logger;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class CrsUtils {
+public final class CrsUtils {
 
-	public static ICRS determineActiveCrs(ICRS defaultCRS, XPlanArchive archive, Logger log) throws Exception {
-		log.info("- Überprüfung des räumlichen Bezugssystems...");
-		return determineCrs(defaultCRS, archive, log);
+	private CrsUtils() {
 	}
 
-	private static ICRS determineCrs(ICRS defaultCRS, XPlanArchive archive, Logger log) throws Exception {
-		ICRS crs = defaultCRS;
-		if (archive.getCrs() != null) {
-			crs = archive.getCrs();
+	public static ICRS determineActiveCrs(XPlanArchive archive, Logger log) throws Exception {
+		log.info("- Überprüfung des räumlichen Bezugssystems...");
+		ICRS archiveCrs = archive.getCrs();
+		if (archiveCrs != null) {
 			try {
 				// called to force an UnknownCRSException
-				CRSManager.lookup(crs.getName());
-				log.info("OK, " + crs.getAlias());
-				crs = archive.getCrs();
+				CRSManager.lookup(archiveCrs.getName());
+				log.info("OK, " + archiveCrs.getAlias());
+				return archiveCrs;
 			}
 			catch (UnknownCRSException e) {
-				if (defaultCRS != null) {
-					log.info("OK");
-					log.info("Das im Dokument verwendete CRS '" + archive.getCrs().getName()
-							+ "' ist unbekannt. Verwende benutzerspezifiziertes CRS '" + crs.getName() + "'.");
-				}
-				else {
-					throw new Exception("Fehler: Das im Dokument verwendete CRS '" + archive.getCrs().getName()
-							+ "' ist unbekannt. Hinweis: Sie können das CRS als weiteren "
-							+ "Kommandozeilen-Parameter übergeben.");
-				}
+				throw new Exception(
+						"Fehler: Das im Dokument verwendete CRS '" + archiveCrs.getName() + "' ist unbekannt.");
 			}
 		}
 		else {
-			if (defaultCRS == null) {
-				throw new Exception(
-						"Fehler: Das Dokument enthält keine CRS-Informationen. Hinweis: Sie können das CRS als weiteren "
-								+ "Kommandozeilen-Parameter übergeben.");
-			}
-			else {
-				log.info("OK. Keine CRS-Informationen, verwende " + defaultCRS.getName());
-			}
+			throw new Exception("Fehler: Das Dokument enthält keine CRS-Informationen.");
+
 		}
-		return crs;
 	}
 
 }

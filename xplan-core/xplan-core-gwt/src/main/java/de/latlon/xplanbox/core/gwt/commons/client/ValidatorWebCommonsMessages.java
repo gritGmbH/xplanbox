@@ -28,27 +28,23 @@ import com.google.gwt.i18n.client.Messages;
  */
 public interface ValidatorWebCommonsMessages extends Messages {
 
-	String validationPopupCancel();
-
-	String validationPopupSave();
-
 	String validationPopupClose();
 
 	String validationOptionsOpen();
 
-	String validationSettingsTitle();
-
 	String uploadLabel();
-
-	String uploadHint();
 
 	String errorTitle();
 
 	String fileNameMustEndWithZip();
 
+	String fileNameInvalidCharacters();
+
 	String uploadingFile();
 
 	String uploadFailed();
+
+	String uploadSecurityException();
 
 	String uploadSucessTitle();
 
@@ -82,12 +78,6 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
 	String uploadFinishedCancelButton();
 
-	String loadedPlan();
-
-	String planIsValid();
-
-	String planIsNotValid();
-
 	String correctValidationName();
 
 	String correctValidationType();
@@ -100,13 +90,7 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
 	String reportDownloadHtml();
 
-	String reportDownloadXml();
-
 	String reportDownloadPdf();
-
-	String reportDownloadShp();
-
-	String reportDownloadPng();
 
 	String reportDownloadGeometryErrors();
 
@@ -123,5 +107,7 @@ public interface ValidatorWebCommonsMessages extends Messages {
 	String mapPreviewNotAvailableButton();
 
 	String mapPreviewDialogTitle(String planName);
+
+	String openUserManual();
 
 }

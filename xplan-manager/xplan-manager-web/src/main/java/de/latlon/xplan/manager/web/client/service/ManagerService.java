@@ -31,11 +31,8 @@ import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
-import de.latlon.xplanbox.core.gwt.commons.shared.InvalidParameterException;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Interface of the manager to get, remove, import plans.
@@ -63,16 +60,10 @@ public interface ManagerService extends RemoteService {
 
 	Boolean removePlanFromFileSystem(String planId);
 
-	Boolean importPlan(String planId, String internalId, String defaultCrs, boolean makeRasterConfig,
-			PlanStatus planStatus, Date startDateTime, Date endDateTime)
-			throws InvalidParameterException, ManagerServiceImplException;
-
-	Map<String, String> retrieveMatchingInternalIds(String internalId) throws ManagerServiceImplException;
+	Boolean importPlan(String planId, boolean makeRasterConfig, PlanStatus planStatus)
+			throws ManagerServiceImplException;
 
 	List<Bereich> retrieveBereiche(String planId) throws Exception;
-
-	@Deprecated
-	Boolean isCrsSet(String id) throws ManagerServiceImplException;
 
 	List<RasterEvaluationResult> evaluateRaster(String id) throws ManagerServiceImplException;
 

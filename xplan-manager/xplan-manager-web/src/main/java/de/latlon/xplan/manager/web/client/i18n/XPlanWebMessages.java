@@ -58,8 +58,6 @@ public interface XPlanWebMessages extends Messages {
 
 	String loadSuccessful();
 
-	String loadFailed();
-
 	String loadNotPossible();
 
 	String validate();
@@ -94,29 +92,13 @@ public interface XPlanWebMessages extends Messages {
 
 	String fileNameInvalidCharacters();
 
-	String getPlansFailed();
-
 	String downloadPlan();
-
-	String downloadPlanFailed();
 
 	String deletePlan();
 
 	String deleteSuccessful();
 
-	String deleteFailed();
-
-	String editPlanFailed();
-
-	String editPlanAbortedAsNoPlanMatchedId();
-
-	String getPlanToEditFailed();
-
-	String getPlanToEditAbortedAsNoPlanMatchedId();
-
 	String mapPreviewDialogTitle(String planName);
-
-	String errorTitle();
 
 	String urlButton();
 
@@ -127,12 +109,6 @@ public interface XPlanWebMessages extends Messages {
 	String cancelButton();
 
 	String nextButton();
-
-	String configurationException(String message);
-
-	String missingFileName();
-
-	String loadedPlan(String p0, String p1);
 
 	String reportCloseButtonTitle();
 
@@ -148,29 +124,7 @@ public interface XPlanWebMessages extends Messages {
 
 	String editingSaving();
 
-	String retrieveMatchingInternalIdsFailed();
-
-	String noMatchingInternalIdFound();
-
-	String noInternalIdSelected();
-
-	String internalIdDialogBoxTitle();
-
-	String checkingIfCrsIsSetFailed();
-
-	String crsDialogHeader();
-
-	String crsDialogDescription();
-
-	String crsDialogDefaultCrs();
-
-	String crsDialogSelectCrs();
-
-	String crsDialogNoCrsChosen();
-
 	String legislationStatusDialogTitle();
-
-	String legislationStatusDialogButtonText();
 
 	String legislationStatusDialogText(String translatedLegislationStatus);
 
@@ -188,53 +142,19 @@ public interface XPlanWebMessages extends Messages {
 
 	String legislationStatusDialogArchiviertSelectedOption();
 
-	String validityPeriodDialogTitle();
-
-	String validityPeriodDialogDescription();
-
-	String validityPeriodDialogTimeTooltip();
-
-	String validityPeriodDialogStartDateTime();
-
-	String validityPeriodDialogEndDateTime();
-
-	String validityPeriodDialogTypeStart();
-
-	String validityPeriodDialogTypeEnd();
-
-	String validityPeriodDialogStartNotBeforeEnd();
-
-	String validityPeriodDialogValidationFailures();
-
 	String legislationStatus();
 
 	String releaseDate();
 
 	String importDate();
 
-	String ade();
-
 	String planStatus();
-
-	String validityStatus();
-
-	String validityTooltip(String startDateTime, String endDateTime);
-
-	String validityTooltipLimitByStartDate(String startDateTime);
-
-	String validityTooltipLimitByEndDate(String startDateTime);
-
-	String validityTooltipUnlimited();
 
 	String filterPlanStatusLabel();
 
 	String filterPlanStatusTooltip();
 
 	String filterPlanStatusSelectionAll();
-
-	String categoryTab();
-
-	String searchTab();
 
 	String searchButton();
 
@@ -286,8 +206,6 @@ public interface XPlanWebMessages extends Messages {
 
 	String editButtonTooltipPermissionDenied();
 
-	String editButtonTooltipIncorrectPlanType();
-
 	String editButtonTooltipIncorrectVersion();
 
 	String editSaveButton();
@@ -316,19 +234,13 @@ public interface XPlanWebMessages extends Messages {
 
 	String editCaptionBasedataPlanType();
 
-	String editCaptionBasedataOtherPlanType();
-
 	String editCaptionBasedataMethod();
 
 	String editCaptionBasedataLegislationStatus();
 
 	String editCaptionBasedataRegulationDate();
 
-	String editCaptionValidityPeriod();
-
 	String editCaptionChanges();
-
-	String editCaptionChangesText();
 
 	String editCaptionChangesPlanName();
 
@@ -354,8 +266,6 @@ public interface XPlanWebMessages extends Messages {
 
 	String editCaptionTextsRechtscharakter();
 
-	String editCaptionTextsGeoReference();
-
 	String editCaptionTextsTextOrUrl();
 
 	String editCaptionTextsDokumentOrLink();
@@ -368,8 +278,6 @@ public interface XPlanWebMessages extends Messages {
 
 	String editCaptionReferencesReferenceLink();
 
-	String editCaptionReferencesGeoReference();
-
 	String editCaptionReferencesType();
 
 	String editCaptionNewReference();
@@ -378,19 +286,13 @@ public interface XPlanWebMessages extends Messages {
 
 	String editCaptionRasterBasisReference();
 
-	String editCaptionRasterBasisReferenceLink();
-
 	String editCaptionRasterBasisGeoReference();
-
-	String editCaptionRasterBasisGeoReferenceLink();
 
 	String editCaptionRasterBasisType();
 
 	String editHintRasterBasisType();
 
 	String editCaptionRasterBasisBereichNummer();
-
-	String editHintRasterBasisBereichNummer();
 
 	String editCaptionRasterBasisGeorefMimeType();
 
@@ -434,8 +336,6 @@ public interface XPlanWebMessages extends Messages {
 
 	String editCaptionReferencesGreenStructursReferenceAlreadyExists();
 
-	String editCaptionReferencesReasonReferenceAlreadyExists();
-
 	String editCaptionRasterBasisDialogEdit();
 
 	String editCaptionRasterBasisDialogNew();
@@ -445,8 +345,6 @@ public interface XPlanWebMessages extends Messages {
 	String editCaptionReferencesRemoveFileTooltip();
 
 	String editCaptionReferenceUrlOrFile();
-
-	String editUnsupportedPropertyRefType();
 
 	String publishPlu();
 

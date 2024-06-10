@@ -20,9 +20,6 @@
  */
 package de.latlon.xplan.manager.web.client.gui.filter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -30,11 +27,13 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Widget;
-
 import de.latlon.xplan.manager.web.client.filter.PlanFilter;
 import de.latlon.xplan.manager.web.client.gui.PlanListPanel;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * GUI component containing the filter tab panel of the plan list.
@@ -86,15 +85,12 @@ public class FilterPanel extends HorizontalPanel implements FilterExecutor {
 		setWidth("100%");
 		setVerticalAlignment(ALIGN_BOTTOM);
 
-		CategoryFilterPanel categoryFilterPanel = new CategoryFilterPanel(this, configuration);
-		addResetableFilterPanel(categoryFilterPanel);
 		PlanStatusFilterPanel planStatusFilterPanel = new PlanStatusFilterPanel(this);
 		addResetableFilterPanel(planStatusFilterPanel);
 		SearchFilterPanel searchFilterPanel = new SearchFilterPanel(this, configuration);
 		addResetableFilterPanel(searchFilterPanel);
 
 		Widget resetButton = createResetButtonWidget();
-		add(categoryFilterPanel);
 		add(planStatusFilterPanel);
 		add(searchFilterPanel);
 		add(resetButton);

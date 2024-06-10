@@ -25,7 +25,6 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.manager.XPlanManager;
-import de.latlon.xplan.manager.configuration.InternalIdRetrieverConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.PlanNotFoundException;
@@ -38,7 +37,6 @@ import de.latlon.xplan.manager.transaction.XPlanEditManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.transaction.service.XPlanDeleteService;
 import de.latlon.xplan.manager.transaction.service.XPlanEditService;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
@@ -58,7 +56,6 @@ import de.latlon.xplanbox.api.manager.v1.InfoApi;
 import de.latlon.xplanbox.api.manager.v1.PlanApi;
 import de.latlon.xplanbox.api.manager.v1.PlansApi;
 import org.deegree.commons.config.DeegreeWorkspace;
-import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.persistence.FeatureStore;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
@@ -73,7 +70,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -146,8 +143,7 @@ public class TestContext {
 	@Primary
 	public XPlanInsertManager xPlanInsertManager() throws Exception {
 		XPlanInsertManager xplanInsertManager = mock(XPlanInsertManager.class);
-		when(xplanInsertManager.importPlan(any(), nullable(ICRS.class), anyBoolean(), anyBoolean(),
-				nullable(String.class), any()))
+		when(xplanInsertManager.importPlan(any(), anyBoolean(), anyBoolean(), nullable(String.class), any()))
 			.thenReturn(Collections.singletonList(123));
 		return xplanInsertManager;
 	}
@@ -306,9 +302,9 @@ public class TestContext {
 		XPlan mockPlan_5 = new XPlan("lplan_51", "5", "LP_Plan", "XPLAN_51");
 		XPlan mockPlan_6 = new XPlan("soplan_40", "6", "SO_Plan", "XPLAN_40");
 		XPlan mockPlan_7 = new XPlan("bplan_51", "7", "BP_Plan", "XPLAN_51");
-		mockPlan_123.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
-		mockPlan_2.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
-		mockPlan_3.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
+		mockPlan_123.setPlanStatus(FESTGESTELLT);
+		mockPlan_2.setPlanStatus(FESTGESTELLT);
+		mockPlan_3.setPlanStatus(FESTGESTELLT);
 		when(xplanDao.getXPlanById(1)).thenReturn(mockPlan_1);
 		when(xplanDao.getXPlanById(123)).thenReturn(mockPlan_123);
 		when(xplanDao.getXPlanById(2)).thenReturn(mockPlan_2);
@@ -345,8 +341,6 @@ public class TestContext {
 		when(mockedConfiguration.getRasterConfigurationType()).thenReturn(gdal);
 		when(mockedConfiguration.getRasterConfigurationCrs()).thenReturn("EPSG:25832");
 		when(mockedConfiguration.getSortConfiguration()).thenReturn(new SortConfiguration());
-		when(mockedConfiguration.getInternalIdRetrieverConfiguration())
-			.thenReturn(new InternalIdRetrieverConfiguration());
 		return mockedConfiguration;
 	}
 

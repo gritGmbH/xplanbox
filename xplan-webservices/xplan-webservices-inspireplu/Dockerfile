@@ -1,4 +1,7 @@
-FROM tomcat:9.0.83-jdk11-temurin-jammy
+ARG XPLANBOX_VERSION=latest
+ARG XPLANBOX_IMAGE_NAME_PREFIX=xplanbox
+
+FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat:$XPLANBOX_VERSION
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
@@ -16,18 +19,20 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.vendor"="lat/lon GmbH" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
 
-ENV TZ=Europe/Berlin \
-  LC_TIME=en_US \
-  LC_ALL=
-
 # set environment variables
-ENV TOMCAT_ADDITIONAL_ARG_APP="-Dlog4j2.configurationFile=classpath:/log4j2.yaml -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin"
+ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree \
+    TOMCAT_ADDITIONAL_ARG_APP="-Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin" \
+    TOMCAT_ADDITIONAL_ARG_JAVA17_EXPORTS="--add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED"
+
+USER root
 
 # configure tomcat
-ADD web.xml /usr/local/tomcat/conf/web.xml
+ADD web.xml /opt/bitnami/tomcat/conf/web.xml
 
-RUN mkdir /usr/local/tomcat/webapps/$WEB_CONTEXT
-ADD target/exploded-webapp /usr/local/tomcat/webapps/$WEB_CONTEXT
+RUN mkdir /opt/bitnami/tomcat/webapps/$WEB_CONTEXT
+ADD target/exploded-webapp /opt/bitnami/tomcat/webapps/$WEB_CONTEXT
+
+USER 1001
 
 # run tomcat
-CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
+CMD ["/opt/bitnami/tomcat/bin/catalina.sh", "run"]

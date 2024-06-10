@@ -120,9 +120,6 @@ public class SynRulesAccessor {
 				}
 			}
 		}
-		catch (Exception e) {
-			throw new RuntimeException("Error while reading the rules file ", e);
-		}
 		finally {
 			closeQuietly(is, null);
 		}

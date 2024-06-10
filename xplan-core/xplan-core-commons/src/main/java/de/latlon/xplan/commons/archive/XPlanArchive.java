@@ -63,26 +63,23 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
 	private final ICRS crs;
 
-	private final List<String> districts;
-
 	private boolean hasVerbundenerPlanBereich;
 
 	private final boolean hasMultipleXPlanElements;
 
 	XPlanArchive(List<ZipEntryWithContent> zipEntries, String fileName, XPlanVersion version, XPlanType type, ICRS crs,
-			List<String> districts, boolean hasVerbundenerPlanBereich, boolean hasMultipleXPlanElements) {
-		this(zipEntries, null, fileName, version, type, crs, districts, hasVerbundenerPlanBereich,
-				hasMultipleXPlanElements);
+			boolean hasVerbundenerPlanBereich, boolean hasMultipleXPlanElements) {
+		this(zipEntries, null, fileName, version, type, crs, hasVerbundenerPlanBereich, hasMultipleXPlanElements);
 	}
 
 	public XPlanArchive(MainZipEntry mainEntry, String fileName, XPlanVersion version, XPlanType type, ICRS crs,
-			List<String> districts, boolean hasVerbundenerPlanBereich, boolean hasMultipleXPlanElements) {
-		this(Collections.singletonList(mainEntry), mainEntry, fileName, version, type, crs, districts,
-				hasVerbundenerPlanBereich, hasMultipleXPlanElements);
+			boolean hasVerbundenerPlanBereich, boolean hasMultipleXPlanElements) {
+		this(Collections.singletonList(mainEntry), mainEntry, fileName, version, type, crs, hasVerbundenerPlanBereich,
+				hasMultipleXPlanElements);
 	}
 
 	private XPlanArchive(List<ZipEntryWithContent> zipEntries, MainZipEntry mainEntry, String fileName,
-			XPlanVersion version, XPlanType type, ICRS crs, List<String> districts, boolean hasVerbundenerPlanBereich,
+			XPlanVersion version, XPlanType type, ICRS crs, boolean hasVerbundenerPlanBereich,
 			boolean hasMultipleXPlanElements) {
 		this.zipFileEntries = zipEntries;
 		this.mainEntry = mainEntry;
@@ -90,7 +87,6 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 		this.version = version;
 		this.type = type;
 		this.crs = crs;
-		this.districts = districts;
 		this.hasVerbundenerPlanBereich = hasVerbundenerPlanBereich;
 		this.hasMultipleXPlanElements = hasMultipleXPlanElements;
 	}
@@ -118,14 +114,6 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 	 */
 	public ICRS getCrs() {
 		return crs;
-	}
-
-	/**
-	 * Returns the district
-	 * @return district, can be <code>null</code>
-	 */
-	public List<String> getDistricts() {
-		return districts;
 	}
 
 	/**

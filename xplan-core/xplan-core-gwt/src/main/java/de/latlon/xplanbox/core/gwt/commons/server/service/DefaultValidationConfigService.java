@@ -21,7 +21,7 @@
 package de.latlon.xplanbox.core.gwt.commons.server.service;
 
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.google.gwt.user.server.rpc.jakarta.RemoteServiceServlet;
 import de.latlon.xplanbox.core.gwt.commons.shared.ValidationConfig;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.profile.SemanticProfiles;
@@ -29,8 +29,8 @@ import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationConfigServic
 import de.latlon.xplanbox.core.gwt.commons.shared.ValidationProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
 
 import static org.springframework.web.context.support.SpringBeanAutowiringSupport.processInjectionBasedOnServletContext;
 

@@ -38,7 +38,6 @@ import javax.xml.stream.XMLStreamWriter;
 import javax.xml.stream.events.XMLEvent;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanType.valueOfDefaultNull;
 import static java.lang.String.format;
@@ -58,8 +57,6 @@ public class XPlanGmlReader {
 	private XPlanType type;
 
 	private ICRS crs;
-
-	private List<String> districts;
 
 	private boolean hasMultipleXPlanElements = false;
 
@@ -84,7 +81,7 @@ public class XPlanGmlReader {
 		finally {
 			closeQuietly(reader);
 		}
-		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, crs, districts, hasVerbundenerPlanBereich,
+		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, crs, hasVerbundenerPlanBereich,
 				hasMultipleXPlanElements);
 		return new Pair<>(new MainZipEntry(bos.toByteArray(), entry.getName()), archiveMetadata);
 	}
@@ -109,16 +106,13 @@ public class XPlanGmlReader {
 		finally {
 			closeQuietly(reader);
 		}
-		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, crs, districts, hasVerbundenerPlanBereich,
+		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, crs, hasVerbundenerPlanBereich,
 				hasMultipleXPlanElements);
 		return new Pair<>(new MainZipEntry(bos.toByteArray(), name), archiveMetadata);
 	}
 
 	private void copy(XMLStreamReader reader, XMLStreamWriter writer) throws XMLStreamException {
-		XPlanGmlWriterFilter filter = new XPlanGmlWriterFilter();
-		filter.setDelegate(writer);
-		writeAll(reader, filter);
-		this.districts = filter.getDistricts();
+		writeAll(reader, writer);
 		if (version == null) {
 			throw new IllegalArgumentException("Could not determine version of the XPlanGML");
 		}

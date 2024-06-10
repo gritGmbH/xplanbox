@@ -20,11 +20,11 @@
  */
 package de.latlon.xplanbox.api.manager.v1;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Application;
+import jakarta.ws.rs.core.Response;
 
 import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;

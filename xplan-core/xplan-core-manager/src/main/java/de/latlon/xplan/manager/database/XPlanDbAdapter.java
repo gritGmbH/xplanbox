@@ -36,10 +36,8 @@ import de.latlon.xplan.core.manager.db.model.PlanwerkWmsMetadata;
 import de.latlon.xplan.core.manager.db.repository.ArtefactRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanwerkWmsMetadataRepository;
-import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.edit.EditedArtefact;
 import de.latlon.xplan.manager.edit.EditedArtefacts;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
@@ -76,7 +74,6 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalTypeWert;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstandWert;
 import static de.latlon.xplan.commons.util.MimeTypeDetector.getArtefactMimeType;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.RASTERBASIS;
@@ -95,8 +92,6 @@ public class XPlanDbAdapter {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanDbAdapter.class);
 
-	private final CategoryMapper categoryMapper;
-
 	private final PlanRepository planRepository;
 
 	private final PlanwerkWmsMetadataRepository planwerkWmsMetadataRepository;
@@ -104,24 +99,22 @@ public class XPlanDbAdapter {
 	private final ArtefactRepository artefactRepository;
 
 	/**
-	 * @param categoryMapper may be <code>null</code>
 	 * @param planRepository never <code>null</code>
 	 * @param planwerkWmsMetadataRepository never <code>null</code>
 	 * @param artefactRepository never <code>null</code>
 	 */
-	public XPlanDbAdapter(CategoryMapper categoryMapper, PlanRepository planRepository,
-			PlanwerkWmsMetadataRepository planwerkWmsMetadataRepository, ArtefactRepository artefactRepository) {
-		this.categoryMapper = categoryMapper;
+	public XPlanDbAdapter(PlanRepository planRepository, PlanwerkWmsMetadataRepository planwerkWmsMetadataRepository,
+			ArtefactRepository artefactRepository) {
 		this.planRepository = planRepository;
 		this.planwerkWmsMetadataRepository = planwerkWmsMetadataRepository;
 		this.artefactRepository = artefactRepository;
 	}
 
 	@Transactional(propagation = Propagation.MANDATORY)
-	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, PlanStatus planStatus, Date beginValidity,
-			Date endValidity, Date sortDate, String internalId) throws Exception {
+	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, PlanStatus planStatus, Date sortDate,
+			String internalId) throws Exception {
 		LOG.info("Insert XPlan in XPlanDB");
-		Plan plan = createPlan(archive, fc, planStatus, beginValidity, endValidity, sortDate, internalId);
+		Plan plan = createPlan(archive, fc, planStatus, sortDate, internalId);
 		Plan savedPlan = planRepository.save(plan);
 		return savedPlan.getId();
 	}
@@ -168,7 +161,7 @@ public class XPlanDbAdapter {
 	/**
 	 * @param oldXplan the {@link XPlan} describing the plan before update, never
 	 * <code>null</code>
-	 * @param newAdditionalPlanData of the {@link XPlan} with the updated values, never
+	 * @param targetPlanStatus target plan status of the {@link XPlan} may be
 	 * <code>null</code>
 	 * @param fc the edited feature collection, never <code>null</code>
 	 * @param synFc the edited feature collection with synthesized features, never
@@ -181,14 +174,14 @@ public class XPlanDbAdapter {
 	 * @throws Exception
 	 */
 	@Transactional(propagation = Propagation.MANDATORY)
-	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
-			FeatureCollection synFc, byte[] planArtefact, Date sortDate, List<File> uploadedArtefacts,
-			EditedArtefacts editedArtefacts) throws Exception {
+	public void update(XPlan oldXplan, PlanStatus targetPlanStatus, XPlanFeatureCollection fc, FeatureCollection synFc,
+			byte[] planArtefact, Date sortDate, List<File> uploadedArtefacts, EditedArtefacts editedArtefacts)
+			throws Exception {
 		int planId = Integer.parseInt(oldXplan.getId());
 		LOG.info("- Aktualisierung der XPlan-Artefakte von Plan mit ID '{}'", planId);
 		Plan plan = getRequiredPlanById(planId);
-		updatePlan(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, sortDate, uploadedArtefacts,
-				editedArtefacts, planId, plan);
+		updatePlan(oldXplan, targetPlanStatus, fc, synFc, planArtefact, sortDate, uploadedArtefacts, editedArtefacts,
+				planId, plan);
 		planRepository.save(plan);
 	}
 
@@ -207,32 +200,6 @@ public class XPlanDbAdapter {
 		Plan plan = getRequiredPlanById(planId);
 		Set<Feature> newFeatures = createFeatures(fids);
 		plan.features(newFeatures);
-		planRepository.save(plan);
-	}
-
-	/**
-	 * Updates the district column of the table xplanmgr.plans.
-	 * @param planId id of the plan to update, never <code>null</code>
-	 * @param district the new district, may be <code>null</code>
-	 * @throws Exception
-	 */
-	@Transactional(rollbackFor = Exception.class)
-	public void updateDistrict(int planId, String district) throws Exception {
-		Plan plan = getRequiredPlanById(planId);
-		plan.setDistrict(district);
-		planRepository.save(plan);
-	}
-
-	/**
-	 * Updates the district column of the table xplanmgr.plans.
-	 * @param planId id of the plan to update, never <code>null</code>
-	 * @param bereiche the bereiche, never <code>null</code>
-	 * @throws Exception
-	 */
-	@Transactional
-	public void updateBereiche(int planId, List<Bereich> bereiche) throws Exception {
-		Plan plan = getRequiredPlanById(planId);
-		plan.setBereiche(createBereiche(bereiche));
 		planRepository.save(plan);
 	}
 
@@ -447,11 +414,11 @@ public class XPlanDbAdapter {
 		return null;
 	}
 
-	private AdditionalPlanData createXPlanMetadata(String planStatus, Date startDateTime, Date endDateTime) {
+	private PlanStatus createPlanStatus(String planStatus) {
 		PlanStatus planStatusAsEnum = null;
 		if (planStatus != null)
 			planStatusAsEnum = PlanStatus.findByMessage(planStatus);
-		return new AdditionalPlanData(planStatusAsEnum, startDateTime, endDateTime);
+		return planStatusAsEnum;
 	}
 
 	private ArtefactType detectArtefactType(XPlanFeatureCollection xPlanFeatureCollection,
@@ -508,8 +475,8 @@ public class XPlanDbAdapter {
 		return optionalPlan.get();
 	}
 
-	private Plan createPlan(XPlanArchive archive, XPlanFeatureCollection fc, PlanStatus planStatus, Date beginValidity,
-			Date endValidity, Date sortDate, String internalId) throws ParseException {
+	private Plan createPlan(XPlanArchive archive, XPlanFeatureCollection fc, PlanStatus planStatus, Date sortDate,
+			String internalId) throws ParseException {
 		String wktFromBboxIn4326 = createWktFromBboxIn4326(fc);
 		org.locationtech.jts.geom.Geometry bbox = new org.locationtech.jts.io.WKTReader().read(wktFromBboxIn4326);
 		Plan plan = new Plan().importDate(new Date(System.currentTimeMillis()))
@@ -521,10 +488,7 @@ public class XPlanDbAdapter {
 			.hasRaster(fc.getHasRaster())
 			.releaseDate(fc.getPlanReleaseDate())
 			.planstatus(retrievePlanStatusMessage(planStatus))
-			.district(retrieveDistrict(fc.getFeatures(), archive.getType()))
 			.wmssortdate(sortDate)
-			.gueltigkeitbeginn(beginValidity)
-			.gueltigkeitende(endValidity)
 			.internalid(internalId)
 			.bbox(bbox);
 		return plan;
@@ -580,7 +544,7 @@ public class XPlanDbAdapter {
 		return createZipArtefact(is);
 	}
 
-	private void updatePlan(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
+	private void updatePlan(XPlan oldXplan, PlanStatus targetPlanStatus, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, Date sortDate, List<File> uploadedArtefacts,
 			EditedArtefacts editedArtefacts, int planId, Plan plan) throws Exception {
 		XPlanType type = XPlanType.valueOf(oldXplan.getType());
@@ -588,9 +552,7 @@ public class XPlanDbAdapter {
 			.rechtsstand(retrieveRechtsstandWert(synFc, type))
 			.sonstPlanArt(retrieveAdditionalTypeWert(synFc, type))
 			.wmssortdate(sortDate)
-			.gueltigkeitbeginn(newAdditionalPlanData.getStartDateTime())
-			.gueltigkeitende(newAdditionalPlanData.getEndDateTime())
-			.planstatus(retrievePlanStatusMessage(newAdditionalPlanData.getPlanStatus()));
+			.planstatus(retrievePlanStatusMessage(targetPlanStatus));
 
 		Set<Artefact> planArtefacts = plan.getArtefacts();
 		Optional<Integer> optionalNum = planArtefacts.stream()
@@ -648,19 +610,10 @@ public class XPlanDbAdapter {
 		XPlanEnvelope bbox = convertToXPlanEnvelope(plan);
 
 		xPlan.setBbox(bbox);
-		xPlan.setXplanMetadata(
-				createXPlanMetadata(plan.getPlanstatus(), plan.getGueltigkeitbeginn(), plan.getGueltigkeitende()));
-		xPlan.setDistrict(mapToDistrict(plan.getDistrict()));
+		xPlan.setPlanStatus(createPlanStatus(plan.getPlanstatus()));
 		xPlan.setInspirePublished(plan.getInspirepublished());
 		xPlan.setInternalId(plan.getInternalid());
 		return xPlan;
-	}
-
-	private String mapToDistrict(String districtFromPlan) {
-		if (categoryMapper != null) {
-			return categoryMapper.mapToCategory(districtFromPlan);
-		}
-		return null;
 	}
 
 	private XPlanEnvelope convertToXPlanEnvelope(Plan plan) {

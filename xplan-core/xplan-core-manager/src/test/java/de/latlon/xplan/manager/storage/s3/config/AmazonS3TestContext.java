@@ -20,7 +20,7 @@
  */
 package de.latlon.xplan.manager.storage.s3.config;
 
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PreDestroy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

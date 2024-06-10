@@ -38,6 +38,7 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import de.latlon.xplanbox.core.gwt.commons.client.ValidatorWebCommonsMessages;
 import de.latlon.xplanbox.core.gwt.commons.web.CloseableDialogBox;
 
 /**
@@ -49,7 +50,7 @@ import de.latlon.xplanbox.core.gwt.commons.web.CloseableDialogBox;
  */
 public class XPlanValidatorWeb implements EntryPoint {
 
-	private final XPlanValidatorWebMessages messages = GWT.create(XPlanValidatorWebMessages.class);
+	private final ValidatorWebCommonsMessages messages = GWT.create(ValidatorWebCommonsMessages.class);
 
 	private DialogBox uploading;
 

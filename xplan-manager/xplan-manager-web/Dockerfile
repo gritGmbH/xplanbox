@@ -21,6 +21,7 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 
 # set environment variables
 ENV TOMCAT_ADDITIONAL_ARG_APP="-Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng -Duser.timezone=Europe/Berlin" \
+    TOMCAT_ADDITIONAL_ARG_JAVA17_EXPORTS="--add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED" \
 	XPLANBOX_CONFIG="/xplanbox/xplan-manager-config/"
 
 # add xplan-manager-web directly unpacked

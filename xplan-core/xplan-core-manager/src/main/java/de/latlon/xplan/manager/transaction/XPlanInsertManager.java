@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -34,7 +34,6 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.service.XPlanInsertService;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -74,25 +73,22 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 
 	/**
 	 * @param archive to import, never <code>null</code>
-	 * @param defaultCRS the default crs, may be <code>null</code> if no default crs
-	 * should be set
 	 * @param force should import be forced?
 	 * @param makeRasterConfig <code>true</code> if the configuration of raster files
 	 * should be created, <code>false</code> otherwise
 	 * @param internalId is added to the feature collection of the plan, if
 	 * <code>null</code>, internalId property is not added to the feature collection
-	 * @param xPlanMetadata containing some metadata about the xplan, never
-	 * <code>null</code>
+	 * @param planStatus the PlanStatus, may be <code>null</code>
 	 * @throws Exception
 	 * @return the id of the plan, never <code>null</code>
 	 */
-	public List<Integer> importPlan(XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeRasterConfig,
-			String internalId, AdditionalPlanData xPlanMetadata) throws Exception {
+	public List<Integer> importPlan(XPlanArchive archive, boolean force, boolean makeRasterConfig, String internalId,
+			PlanStatus planStatus) throws Exception {
 		checkArchive(archive);
-		LOG.info("- Importiere Plan " + archive);
-		ICRS crs = CrsUtils.determineActiveCrs(defaultCRS, archive, LOG);
+		LOG.info("- Importiere Plan {}", archive);
+		ICRS crs = CrsUtils.determineActiveCrs(archive, LOG);
 		XPlanFeatureCollections xPlanInstances = readAndValidateMainDocument(archive, crs, force);
-		List<PlanImportData> importedPlansData = importPlans(archive, internalId, xPlanMetadata, crs, xPlanInstances);
+		List<PlanImportData> importedPlansData = importPlans(archive, internalId, planStatus, crs, xPlanInstances);
 		startCreationOfDataServicesCoupling(importedPlansData, crs);
 		createRasterConfigurations(importedPlansData, makeRasterConfig);
 		reloadWorkspace(importedPlansData);
@@ -101,44 +97,43 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			.collect(Collectors.toList());
 	}
 
-	private List<PlanImportData> importPlans(XPlanArchive archive, String internalId, AdditionalPlanData xPlanMetadata,
+	private List<PlanImportData> importPlans(XPlanArchive archive, String internalId, PlanStatus selectedPlanStatus,
 			ICRS crs, XPlanFeatureCollections xPlanInstances) throws Exception {
 		boolean gmlWithMultipleInstances = xPlanInstances.getxPlanGmlInstances().size() > 1;
 		if (gmlWithMultipleInstances) {
-			List<PlanImportData> plansToImport = importGmlWithMultipleInstances(archive, internalId, xPlanMetadata, crs,
-					xPlanInstances);
+			List<PlanImportData> plansToImport = importGmlWithMultipleInstances(archive, internalId, selectedPlanStatus,
+					crs, xPlanInstances);
 			return xPlanInsertService.importPlans(plansToImport);
 		}
 		else {
 			XPlanFeatureCollection xPlanInstance = xPlanInstances.getxPlanGmlInstances().get(0);
-			PlanImportData planToImport = importGmlWithSingleInstance(archive, internalId, xPlanMetadata, crs,
+			PlanImportData planToImport = importGmlWithSingleInstance(archive, internalId, selectedPlanStatus, crs,
 					xPlanInstance);
 			return xPlanInsertService.importPlans(Collections.singletonList(planToImport));
 		}
 	}
 
 	private PlanImportData importGmlWithSingleInstance(XPlanArchive archive, String internalId,
-			AdditionalPlanData xPlanMetadata, ICRS crs, XPlanFeatureCollection xPlanInstance) {
-		PlanStatus selectedPlanStatus = xPlanMetadata.getPlanStatus();
+			PlanStatus selectedPlanStatus, ICRS crs, XPlanFeatureCollection xPlanInstance) {
 		Date sortDate = sortPropertyReader.readSortDate(archive.getType(), archive.getVersion(),
 				xPlanInstance.getFeatures());
-		return new PlanImportData(archive, selectedPlanStatus, xPlanMetadata, sortDate, crs, xPlanInstance, internalId);
+		return new PlanImportData(archive, selectedPlanStatus, sortDate, crs, xPlanInstance, internalId);
 	}
 
 	private List<PlanImportData> importGmlWithMultipleInstances(XPlanArchive archive, String internalId,
-			AdditionalPlanData xPlanMetadata, ICRS crs, XPlanFeatureCollections xPlanInstances) {
-		if (internalId != null || xPlanMetadata.getPlanStatus() != null) {
+			PlanStatus selectedPlanStatus, ICRS crs, XPlanFeatureCollections xPlanInstances) {
+		if (internalId != null || selectedPlanStatus != null) {
 			LOG.warn(
 					"XPlanGML contains multiple plan instances, internalId ({}) and selected planStatus ({}) are ignored.",
-					internalId, xPlanMetadata.getPlanStatus());
+					internalId, selectedPlanStatus);
 		}
 		List<PlanImportData> plansImportData = new ArrayList<>();
 		for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
 			PlanStatus planStatusFromPlan = detectPlanStatus(archive.getType(), xPlanInstance);
 			Date sortDate = sortPropertyReader.readSortDate(archive.getType(), archive.getVersion(),
 					xPlanInstance.getFeatures());
-			PlanImportData planImportData = new PlanImportData(archive, planStatusFromPlan, xPlanMetadata, sortDate,
-					crs, xPlanInstance);
+			PlanImportData planImportData = new PlanImportData(archive, planStatusFromPlan, sortDate, crs,
+					xPlanInstance);
 
 			plansImportData.add(planImportData);
 		}
@@ -162,7 +157,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 						force);
 				LOG.info("- Überprüfung der externen Referenzen...");
 				long elapsed = System.currentTimeMillis() - begin;
-				LOG.info("OK [" + elapsed + " ms]");
+				LOG.info("OK [{} ms]", elapsed);
 			}
 			return xPlanInstances;
 		}
@@ -204,11 +199,11 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 
 		long elapsed = System.currentTimeMillis() - begin;
 		if (result.isValid()) {
-			LOG.info("OK [" + elapsed + " ms].");
+			LOG.info("OK [{} ms].", elapsed);
 		}
 		else {
 			List<String> messages = result.getMessages();
-			LOG.info(messages.size() + " Problem(e) gefunden [" + elapsed + " ms]");
+			LOG.info("{} Problem(e) gefunden [{} ms]", messages.size(), elapsed);
 			for (String message : messages) {
 				LOG.info(message);
 			}

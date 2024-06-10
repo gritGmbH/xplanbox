@@ -35,7 +35,7 @@ import org.deegree.commons.utils.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;

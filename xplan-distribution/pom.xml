@@ -68,13 +68,7 @@
     <!-- CLI > /bin -->
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-cli-tools</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-transform-cli</artifactId>
+      <artifactId>xplan-cli</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>

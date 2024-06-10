@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.web.server.configuration;
 
-import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.MapPreviewConfiguration;
 import de.latlon.xplan.manager.web.shared.RasterLayerConfiguration;
@@ -37,7 +36,6 @@ import java.nio.file.Files;
 import java.util.Properties;
 
 import static de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader.CONFIG_SYSTEM_PROPERTY;
-import static java.io.File.createTempFile;
 import static org.apache.commons.io.IOUtils.copy;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -73,8 +71,7 @@ public class ManagerWebConfigurationRetrieverTest {
 		ManagerWebConfiguration configuration = new ManagerWebConfigurationRetriever().setupManagerWebConfiguration();
 
 		Properties properties = loadPropertiesFromOriginalFile();
-		assertThat(configuration.getCrsDialogDefaultCrs(), is(properties.getProperty("defaultCrs")));
-		assertThat(configuration.getInternalIdActivated(), is(false));
+		assertThat(configuration.isEditorActivated(), is(Boolean.valueOf(properties.getProperty("activateEditor"))));
 	}
 
 	@Test

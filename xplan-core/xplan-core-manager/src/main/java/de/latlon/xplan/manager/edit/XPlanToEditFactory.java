@@ -22,7 +22,6 @@ package de.latlon.xplan.manager.edit;
 
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
@@ -36,7 +35,6 @@ import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
-import de.latlon.xplan.manager.web.shared.edit.ValidityPeriod;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.datetime.Temporal;
@@ -90,7 +88,7 @@ public class XPlanToEditFactory {
 	 */
 	public XPlanToEdit createXPlanToEdit(XPlanVersion version, XPlanType type, FeatureCollection featureCollection)
 			throws EditException {
-		return createXPlanToEdit(version.name(), type.name(), null, featureCollection);
+		return createXPlanToEdit(version.name(), type.name(), featureCollection);
 	}
 
 	/**
@@ -100,11 +98,11 @@ public class XPlanToEditFactory {
 	 * @return the xPlanToEdit, never <code>null</code>
 	 */
 	public XPlanToEdit createXPlanToEdit(XPlan xPlan, FeatureCollection featureCollection) throws EditException {
-		return createXPlanToEdit(xPlan.getVersion(), xPlan.getType(), xPlan.getXplanMetadata(), featureCollection);
+		return createXPlanToEdit(xPlan.getVersion(), xPlan.getType(), featureCollection);
 	}
 
-	private XPlanToEdit createXPlanToEdit(String version, String type, AdditionalPlanData additionalPlanData,
-			FeatureCollection featureCollection) throws EditException {
+	private XPlanToEdit createXPlanToEdit(String version, String type, FeatureCollection featureCollection)
+			throws EditException {
 		Iterator<Feature> iterator = featureCollection.iterator();
 		XPlanToEdit xPlanToEdit = new XPlanToEdit();
 		while (iterator.hasNext()) {
@@ -118,21 +116,7 @@ public class XPlanToEditFactory {
 				parseBereich(feature, xPlanToEdit, version);
 			}
 		}
-		setValidityPeriod(additionalPlanData, xPlanToEdit);
 		return xPlanToEdit;
-	}
-
-	/**
-	 * @deprecated will be removed in a future version.
-	 */
-	@Deprecated
-	private void setValidityPeriod(AdditionalPlanData additionalPlanData, XPlanToEdit xPlanToEdit) {
-		if (additionalPlanData != null) {
-			additionalPlanData.getStartDateTime();
-			ValidityPeriod validityPeriod = xPlanToEdit.getValidityPeriod();
-			validityPeriod.setStart(additionalPlanData.getStartDateTime());
-			validityPeriod.setEnd(additionalPlanData.getEndDateTime());
-		}
 	}
 
 	private void parsePlan(String version, String type, Feature feature, XPlanToEdit xPlanToEdit) throws EditException {

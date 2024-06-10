@@ -23,7 +23,6 @@ package de.latlon.xplan.manager.web.shared;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -69,11 +68,9 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
 	private XPlanEnvelope bbox;
 
-	private String district;
-
 	private String internalId;
 
-	private AdditionalPlanData xplanMetadata;
+	private PlanStatus planStatus;
 
 	private boolean hasMultipleXPlanElements;
 
@@ -212,20 +209,12 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 		this.additionalType = additionalType;
 	}
 
-	public String getDistrict() {
-		return district;
+	public PlanStatus getPlanStatus() {
+		return planStatus;
 	}
 
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-
-	public AdditionalPlanData getXplanMetadata() {
-		return xplanMetadata;
-	}
-
-	public void setXplanMetadata(AdditionalPlanData xplanMetadata) {
-		this.xplanMetadata = xplanMetadata;
+	public void setPlanStatus(PlanStatus planStatus) {
+		this.planStatus = planStatus;
 	}
 
 	public Boolean isInspirePublished() {

@@ -20,7 +20,7 @@
  */
 package de.latlon.xplan.manager.web.server.service;
 
-import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
+import com.google.gwt.user.server.rpc.jakarta.XsrfProtectedServiceServlet;
 import de.latlon.xplan.manager.web.client.service.ManagerWebConfigurationService;
 import de.latlon.xplan.manager.web.server.configuration.ManagerWebConfigurationRetriever;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
@@ -30,8 +30,6 @@ import de.latlon.xplan.manager.web.shared.RasterLayerConfiguration;
 import de.latlon.xplan.manager.web.shared.VectorLayerConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Arrays;
 
 import static java.lang.String.format;
 
@@ -92,18 +90,8 @@ public class ManagerWebConfigurationServiceImpl extends XsrfProtectedServiceServ
 		LOG.info("-------------------------------------------");
 		LOG.info("Configuration of the XPlanManagerWeb");
 		LOG.info("-------------------------------------------");
-		LOG.info("internal id dialog");
-		LOG.info("   - is activated: {}", configuration.getInternalIdActivated());
-		LOG.info("-------------------------------------------");
 		LOG.info("legislation status dialog");
 		LOG.info("   - is activated: {}", configuration.isLegislationStatusActivated());
-		LOG.info("-------------------------------------------");
-		LOG.info("validity period dialog");
-		LOG.info("   - is activated: {}", configuration.isValidityPeriodActivated());
-		LOG.info("-------------------------------------------");
-		LOG.info("crs dialog");
-		LOG.info("   - default crs: {}", configuration.getCrsDialogDefaultCrs());
-		LOG.info("   - choose crs: {}", Arrays.toString(configuration.getCrsDialogChooseCrs()));
 		LOG.info("-------------------------------------------");
 	}
 

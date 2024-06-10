@@ -99,8 +99,8 @@ Wird kein `type` Parameter gewählt, werden alle Validierungsarten durchgeführt
 Beispiel für eine Ausgabe:
 
 ----
-Configuration directory is /xplan-cli-tools/etc
-Configuration is read from file /xplan-cli-tools/etc/validatorConfiguration.properties
+Configuration directory is /xplan-cli/etc
+Configuration is read from file /xplan-cli/etc/validatorConfiguration.properties
 -------------------------------------------
 [main] Configuration of the XPlanValidator:
 -------------------------------------------

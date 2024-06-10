@@ -22,11 +22,11 @@ package de.latlon.xplanbox.api.commons.exception;
 
 import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
 
-import static javax.ws.rs.core.Response.Status.UNSUPPORTED_MEDIA_TYPE;
+import static jakarta.ws.rs.core.Response.Status.UNSUPPORTED_MEDIA_TYPE;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>

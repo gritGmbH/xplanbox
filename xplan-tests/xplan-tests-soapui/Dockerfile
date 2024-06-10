@@ -1,5 +1,5 @@
-# latest 3.9-eclipse-temurin-11-alpine on 06.02.24
-FROM maven@sha256:22ee597e032ce843bc6d09db72c80223f582102aa2d7f22a65b5104ca33eb4ec
+# latest 3.9.6-eclipse-temurin-17-alpine on 14.05.24
+FROM maven@sha256:ffddac7b04101358048f872fba9d978b2a1f9647955d158c1e565233cb95577d
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?

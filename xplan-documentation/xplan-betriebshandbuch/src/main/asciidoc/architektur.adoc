@@ -130,9 +130,6 @@ Bereitstellung importierter Pläne im INSPIRE Datenthema Planned Land Use (PLU).
 === XPlanCLI Tools
 
 Das Kommandozeilenwerkzeug XPlanCLI unterstützt mehrere Kommandos zur Validierung und Verwaltung von Planwerken, sowie Kommandos zur Erstellung eines Auswerteschemas oder Generierung von Metadaten.
-Das XPlanTransformCLI ermöglicht es, bereits in die <<XPlanDB>> importierte Pläne in eine aktuellere XPlanGML-Version zu transformieren.
-
-IMPORTANT: Das XPlanTransformCLI ist veraltet und wird in zukünftigen Versionen der xPlanBox entfernt.
 
 [[xplanresources]]
 === XPlanRessourcen

@@ -20,13 +20,8 @@
  */
 package de.latlon.xplan.manager.web.server.service.security;
 
-import static de.latlon.xplan.manager.web.spring.security.XPlanAuthorizationRole.ROLE_EDITOR;
-import static de.latlon.xplan.manager.web.spring.security.XPlanAuthorizationRole.ROLE_SUPERUSER;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
+import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
+import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -34,9 +29,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
-import de.latlon.xplan.manager.web.shared.ConfigurationException;
-import de.latlon.xplan.manager.web.spring.security.DistrictGrantedAuthority;
+import java.util.Collection;
+
+import static de.latlon.xplan.manager.web.spring.security.XPlanAuthorizationRole.ROLE_EDITOR;
+import static de.latlon.xplan.manager.web.spring.security.XPlanAuthorizationRole.ROLE_SUPERUSER;
 
 /**
  * Manages authorization aspects of the current user.
@@ -72,7 +68,6 @@ public class AuthorizationManager {
 	 * found
 	 */
 	public AuthorizationInfo createAuthorizationInfoFromAuthentication() throws ConfigurationException {
-		List<String> districts = new ArrayList<>();
 		boolean isSuperUser = false;
 		boolean isEditor = false;
 
@@ -82,9 +77,6 @@ public class AuthorizationManager {
 			for (GrantedAuthority grantedAuthority : authorities) {
 				isSuperUser = checkSuperUser(isSuperUser, grantedAuthority);
 				isEditor = checkEditor(isEditor, grantedAuthority);
-				if (grantedAuthority instanceof DistrictGrantedAuthority) {
-					addDistricts(districts, (DistrictGrantedAuthority) grantedAuthority);
-				}
 			}
 		}
 		else {
@@ -92,7 +84,7 @@ public class AuthorizationManager {
 			LOG.warn(message);
 			throw new ConfigurationException(message);
 		}
-		return new AuthorizationInfo(districts, isSuperUser, isEditor);
+		return new AuthorizationInfo(isSuperUser, isEditor);
 	}
 
 	public boolean isSuperUser() throws ConfigurationException {
@@ -125,11 +117,6 @@ public class AuthorizationManager {
 
 	private Collection<? extends GrantedAuthority> retrieveAuthorities(Authentication authentication) {
 		return authentication.getAuthorities();
-	}
-
-	private void addDistricts(List<String> districts, DistrictGrantedAuthority grantedAuthority) {
-		List<String> authorityDistricts = grantedAuthority.getDistricts();
-		districts.addAll(authorityDistricts);
 	}
 
 	private boolean checkSuperUser(boolean isSuperUser, GrantedAuthority grantedAuthority) {

@@ -50,9 +50,14 @@ import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import static de.latlon.xplan.validator.report.ReportUtils.asLabel;
 import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
@@ -76,8 +81,7 @@ public class JaxbConverter {
 	 * @return the converted {@link JaxbConverter} instance, never <code>null</code>
 	 */
 	public ValidationReport convertValidationReport(ValidatorReport report) {
-		ObjectFactory objectFactory = new ObjectFactory();
-		ValidationReport validationReportType = objectFactory.createValidationReport();
+		ValidationReport validationReportType = new ValidationReport();
 		validationReportType.setDate(toCalendar(report.getDate()));
 		validationReportType.setName(report.getValidationName());
 		validationReportType.setFileName(report.getArchiveName());
@@ -104,7 +108,7 @@ public class JaxbConverter {
 			ExternalReferenceType reference = new ExternalReferenceType();
 			reference.setValue(name);
 			reference.setStatus(de.latlon.xplan.validator.report.ExternalReferenceStatus.valueOf(status.name()));
-			externalReferencesType.getExternalReferences().add(reference);
+			externalReferencesType.getExternalReference().add(reference);
 		});
 		return externalReferencesType;
 	}
@@ -127,7 +131,7 @@ public class JaxbConverter {
 	private PlanType convertPlanType(ValidatorReport report) {
 		ObjectFactory objectFactory = new ObjectFactory();
 		PlanType pt = objectFactory.createPlanType();
-		pt.getNames().addAll(report.getPlanNames().stream().sorted().collect(Collectors.toList()));
+		pt.getName().addAll(report.getPlanNames().stream().sorted().collect(Collectors.toList()));
 		pt.setVersion(asLabel(report.getXPlanVersion()));
 		return pt;
 	}
@@ -141,10 +145,10 @@ public class JaxbConverter {
 		}
 		else {
 			WarningsType warningsXml = objectFactory.createWarningsType();
-			warningsXml.getWarnings().addAll(result.getWarnings());
+			warningsXml.getWarning().addAll(result.getWarnings());
 
 			ErrorsType errorsXml = objectFactory.createErrorsType();
-			errorsXml.getErrors().addAll(result.getErrors());
+			errorsXml.getError().addAll(result.getErrors());
 
 			geomType.setWarnings(warningsXml);
 			geomType.setErrors(errorsXml);
@@ -166,7 +170,7 @@ public class JaxbConverter {
 		semanticProfileValidatorResults.sort(Comparator.comparing(o -> o.getRulesMetadata().getName()));
 		semanticProfileValidatorResults.forEach(semanticValidatorResult -> {
 			SemType semType = convertToSemType(semanticValidatorResult);
-			validationType.getProfiles().add(semType);
+			validationType.getProfile().add(semType);
 		});
 	}
 
@@ -189,7 +193,7 @@ public class JaxbConverter {
 		}
 		else {
 			RulesType rulesXML = objectFactory.createRulesType();
-			List<RuleType> rulesListXML = rulesXML.getRules();
+			List<RuleType> rulesListXML = rulesXML.getRule();
 			for (RuleResult rule : result.getRules()) {
 				RuleType ruleXML = objectFactory.createRuleType();
 				ruleXML.setName(rule.getName());
@@ -228,7 +232,7 @@ public class JaxbConverter {
 			InvalidFeaturesResult invalidFeaturesResult) {
 		InvalidFeaturesType invalidFeaturesType = objectFactory.createInvalidFeaturesType();
 		invalidFeaturesType.setMessage(invalidFeaturesResult.getMessage());
-		invalidFeaturesType.getGmlids().addAll(invalidFeaturesResult.getGmlIds());
+		invalidFeaturesType.getGmlid().addAll(invalidFeaturesResult.getGmlIds());
 		return invalidFeaturesType;
 	}
 
@@ -237,7 +241,7 @@ public class JaxbConverter {
 		SynType synType = objectFactory.createSynType();
 
 		MessagesType messagesXml = objectFactory.createMessagesType();
-		messagesXml.getMessages().addAll(result.getMessages());
+		messagesXml.getMessage().addAll(result.getMessages());
 
 		synType.setMessages(messagesXml);
 		synType.setResult(createValidLabel(result.isValid()));
@@ -247,12 +251,18 @@ public class JaxbConverter {
 		val.setSyn(synType);
 	}
 
-	private Calendar toCalendar(Date date) {
+	private XMLGregorianCalendar toCalendar(Date date) {
 		if (date == null)
 			return null;
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		return cal;
+
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.setTime(date);
+		try {
+			return DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+		}
+		catch (DatatypeConfigurationException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }

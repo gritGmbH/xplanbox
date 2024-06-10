@@ -22,7 +22,7 @@ package de.latlon.xplanbox.api.dokumente.exception;
 
 import de.latlon.xplanbox.api.commons.exception.XPlanApiException;
 
-import static javax.ws.rs.core.Response.Status.NOT_FOUND;
+import static jakarta.ws.rs.core.Response.Status.NOT_FOUND;
 
 /**
  * Indicates that a document is not available.

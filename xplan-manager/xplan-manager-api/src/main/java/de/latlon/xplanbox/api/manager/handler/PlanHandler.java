@@ -30,7 +30,6 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.XPlanValidator;
@@ -48,8 +47,8 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Singleton;
-import javax.ws.rs.core.StreamingOutput;
+import jakarta.inject.Singleton;
+import jakarta.ws.rs.core.StreamingOutput;
 import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,8 +98,8 @@ public class PlanHandler {
 			throw new InvalidPlan(validatorReport, xFileName);
 		}
 		LOG.info("Plan is valid. Importing plan into storage for '{}'", StringUtils.normalizeSpace(planStatus));
-		AdditionalPlanData metadata = createAdditionalPlanData(xPlanArchive, planStatus);
-		List<Integer> planIds = xPlanInsertManager.importPlan(xPlanArchive, null, false, true, internalId, metadata);
+		PlanStatus targetPlanStatus = determineTargetPlanStatus(xPlanArchive, planStatus);
+		List<Integer> planIds = xPlanInsertManager.importPlan(xPlanArchive, false, true, internalId, targetPlanStatus);
 		List<XPlan> plansById = findPlansById(planIds);
 		LOG.info("Plan successfully imported. Ids: {}",
 				plansById.stream().map(plan -> plan.getId()).collect(Collectors.joining(",")));
@@ -173,24 +172,18 @@ public class PlanHandler {
 		return xPlanById;
 	}
 
-	private AdditionalPlanData createAdditionalPlanData(XPlanArchive xPlanArchive, String requestedPlanStatus)
+	private PlanStatus determineTargetPlanStatus(XPlanArchive xPlanArchive, String requestedPlanStatus)
 			throws UnsupportedParameterValue, XMLStreamException, UnknownCRSException {
-		AdditionalPlanData metadata = new AdditionalPlanData();
-		PlanStatus planStatus;
 		if (requestedPlanStatus == null) {
 			PlanStatus planStatusFromPlan = determinePlanStatusByRechtsstand(xPlanArchive);
-			planStatus = PlanStatus.valueOf(planStatusFromPlan.name());
+			return PlanStatus.valueOf(planStatusFromPlan.name());
 		}
-		else {
-			try {
-				planStatus = PlanStatus.valueOf(requestedPlanStatus);
-			}
-			catch (IllegalArgumentException e) {
-				throw new UnsupportedParameterValue("planStatus", requestedPlanStatus);
-			}
+		try {
+			return PlanStatus.valueOf(requestedPlanStatus);
 		}
-		metadata.setPlanStatus(planStatus);
-		return metadata;
+		catch (IllegalArgumentException e) {
+			throw new UnsupportedParameterValue("planStatus", requestedPlanStatus);
+		}
 	}
 
 	private PlanStatus determinePlanStatusByRechtsstand(XPlanArchive xPlanArchive)

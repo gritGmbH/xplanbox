@@ -22,13 +22,13 @@ package de.latlon.xplanbox.api.manager.validation;
 
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 
-import javax.validation.Constraint;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-import javax.validation.ConstraintViolation;
-import javax.validation.Payload;
-import javax.validation.Validation;
-import javax.validation.ValidatorFactory;
+import jakarta.validation.Constraint;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Payload;
+import jakarta.validation.Validation;
+import jakarta.validation.ValidatorFactory;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -73,7 +73,7 @@ public @interface ModelValidator {
 		public boolean isValid(FormDataBodyPart formDataBodyPart, ConstraintValidatorContext context) {
 			Object model = formDataBodyPart.getValueAs(classToValidate);
 			ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-			javax.validation.Validator validator = factory.getValidator();
+			jakarta.validation.Validator validator = factory.getValidator();
 			Set<ConstraintViolation<Object>> validate = validator.validate(model);
 			if (!validate.isEmpty()) {
 				context.disableDefaultConstraintViolation();

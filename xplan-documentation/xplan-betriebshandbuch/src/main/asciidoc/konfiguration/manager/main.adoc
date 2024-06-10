@@ -5,23 +5,17 @@ In den nachfolgenden Kapiteln wird die Konfiguration des XPlanManagerWeb erläut
 
 include::planliste.adoc[]
 
-include::kategorien.adoc[]
-
 include::kartenvorschau.adoc[]
-
-include::gueltigkeitszeitraum.adoc[]
 
 include::planstatus.adoc[]
 
 include::koordinatensystem.adoc[]
 
-include::verfahrensdatenbank.adoc[]
-
 include::codelisten.adoc[]
 
 include::editor.adoc[]
 
-include::ldap.adoc[]
+include::absicherung.adoc[]
 
 include::workspacereload.adoc[]
 

@@ -26,7 +26,7 @@ import de.latlon.xplanbox.api.manager.exception.InvalidTextId;
 import de.latlon.xplanbox.api.manager.v1.model.Text;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;

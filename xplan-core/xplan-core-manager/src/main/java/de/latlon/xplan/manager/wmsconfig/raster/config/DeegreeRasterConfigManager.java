@@ -28,7 +28,7 @@ import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;

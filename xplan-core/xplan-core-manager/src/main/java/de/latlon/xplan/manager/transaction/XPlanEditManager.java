@@ -42,7 +42,6 @@ import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.service.XPlanEditService;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
@@ -55,7 +54,8 @@ import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBException;
+import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -119,7 +119,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 		String oldPlanName = oldXplan.getName();
 		XPlanVersion version = XPlanVersion.valueOf(oldXplan.getVersion());
 		XPlanType type = XPlanType.valueOf(oldXplan.getType());
-		PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
+		PlanStatus oldPlanStatus = oldXplan.getPlanStatus();
 		AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(version);
 		try (InputStream originalPlan = xplanDao.retrieveXPlanArtefact(planId)) {
 			XPlanFeatureCollection originalPlanFC = XPlanGmlParserBuilder.newBuilder()
@@ -154,15 +154,13 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			Date oldSortDate = xplanDao.retrieveSortDate(planId);
 
 			// TODO: Validation required?
-			PlanStatus newPlanStatus = detectNewPlanStatus(type, xPlanToEdit, oldLegislationStatus, oldPlanStatus);
-			AdditionalPlanData xPlanMetadata = new AdditionalPlanData(newPlanStatus,
-					xPlanToEdit.getValidityPeriod().getStart(), xPlanToEdit.getValidityPeriod().getEnd());
+			PlanStatus targetPlanStatus = detectNewPlanStatus(type, xPlanToEdit, oldLegislationStatus, oldPlanStatus);
 			Date sortDate = sortPropertyReader.readSortDate(type, version, modifiedFeatures);
 			xPlanEditService.update(oldXplan, uploadedArtefacts, planId, xPlanGml, editedArtefacts, modifiedPlanFc,
-					synFc, xPlanMetadata, sortDate, internalId);
+					synFc, targetPlanStatus, sortDate, internalId);
 			startCreationIfPlanNameHasChanged(planId, type, modifiedPlanFc, oldPlanName, oldDescription);
 			updateRasterConfiguration(planId, makeRasterConfig, uploadedArtefacts, type, oldPlanStatus, editedArtefacts,
-					newPlanStatus, sortDate, oldSortDate);
+					targetPlanStatus, sortDate, oldSortDate);
 			LOG.info("XPlanGML wurde erfolgreich editiert. ID: {}", planId);
 		}
 	}

@@ -22,7 +22,6 @@ package de.latlon.xplan.manager.transaction;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import org.deegree.cs.coordinatesystems.ICRS;
 
@@ -38,8 +37,6 @@ public class PlanImportData {
 
 	private final PlanStatus planStatus;
 
-	private final AdditionalPlanData xPlanMetadata;
-
 	private final Date sortDate;
 
 	private final ICRS crs;
@@ -50,16 +47,15 @@ public class PlanImportData {
 
 	private int planId;
 
-	public PlanImportData(XPlanArchive xPlanArchive, PlanStatus planStatus, AdditionalPlanData xPlanMetadata,
-			Date sortDate, ICRS crs, XPlanFeatureCollection xPlanFc) {
-		this(xPlanArchive, planStatus, xPlanMetadata, sortDate, crs, xPlanFc, null);
+	public PlanImportData(XPlanArchive xPlanArchive, PlanStatus planStatus, Date sortDate, ICRS crs,
+			XPlanFeatureCollection xPlanFc) {
+		this(xPlanArchive, planStatus, sortDate, crs, xPlanFc, null);
 	}
 
-	public PlanImportData(XPlanArchive xPlanArchive, PlanStatus planStatus, AdditionalPlanData xPlanMetadata,
-			Date sortDate, ICRS crs, XPlanFeatureCollection xPlanFc, String internalId) {
+	public PlanImportData(XPlanArchive xPlanArchive, PlanStatus planStatus, Date sortDate, ICRS crs,
+			XPlanFeatureCollection xPlanFc, String internalId) {
 		this.xPlanArchive = xPlanArchive;
 		this.planStatus = planStatus;
-		this.xPlanMetadata = xPlanMetadata;
 		this.sortDate = sortDate;
 		this.crs = crs;
 		this.xPlanFC = xPlanFc;
@@ -72,10 +68,6 @@ public class PlanImportData {
 
 	public PlanStatus getPlanStatus() {
 		return planStatus;
-	}
-
-	public AdditionalPlanData getxPlanMetadata() {
-		return xPlanMetadata;
 	}
 
 	public Date getSortDate() {

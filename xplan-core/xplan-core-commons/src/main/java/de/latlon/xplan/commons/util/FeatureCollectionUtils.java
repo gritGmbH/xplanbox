@@ -22,9 +22,6 @@ package de.latlon.xplan.commons.util;
 
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.manager.web.shared.Bereich;
-import org.deegree.commons.tom.ElementNode;
-import org.deegree.commons.tom.TypedObjectNode;
-import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
@@ -35,7 +32,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
-import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
 
 /**
  * Contains utilities for deegree {@link org.deegree.feature.FeatureCollection}s.
@@ -122,22 +118,6 @@ public class FeatureCollectionUtils {
 	}
 
 	/**
-	 * Retrieves the district ("ortsteilName") of a XPlan-FeatureCollection.
-	 * @param fc XPlan-FeatureCollection, never <code>null</code>
-	 * @param type XPlan-Type, never <code>null</code>
-	 * @return district value or <code>null</code> if no value was found
-	 */
-	public static String retrieveDistrict(FeatureCollection fc, XPlanType type) {
-		Feature planFeature = findPlanFeature(fc, type);
-		String ns = planFeature.getName().getNamespaceURI();
-		TypedObjectNode municipality = getPropertyValue(planFeature, new QName(ns, "gemeinde"));
-		if (municipality != null && municipality instanceof ElementNode) {
-			return scanMunicipalityChildren(ns, (ElementNode) municipality);
-		}
-		return null;
-	}
-
-	/**
 	 * Retrieves the value of XX_Plan/beschreibung of the {@link FeatureCollection}.
 	 * @param fc XPlan-FeatureCollection, never <code>null</code>
 	 * @param type XPlan-Type, never <code>null</code>
@@ -204,33 +184,6 @@ public class FeatureCollectionUtils {
 			}
 		}
 		return bereiche;
-	}
-
-	private static String scanMunicipalityChildren(String ns, ElementNode municipality) {
-		String district = null;
-		for (TypedObjectNode municipalityChild : municipality.getChildren()) {
-			if (municipalityChild instanceof ElementNode) {
-				ElementNode municipalityElement = (ElementNode) municipalityChild;
-				if (new QName(ns, "ortsteilName").equals(municipalityElement.getName())) {
-					district = retrieveDistrictName(municipalityElement);
-				}
-			}
-		}
-		return district;
-	}
-
-	private static String retrieveDistrictName(ElementNode municipalityElement) {
-		TypedObjectNode districtName = municipalityElement.getChildren().get(0);
-		if (districtName instanceof PrimitiveValue) {
-			PrimitiveValue value = (PrimitiveValue) districtName;
-			String district = value.getAsText();
-			if (district.contains(",")) {
-				String[] split = district.split(",");
-				return split[0].trim();
-			}
-			return district;
-		}
-		return null;
 	}
 
 	private static String retrievePlanProperty(FeatureCollection fc, XPlanType type, String propertyName) {

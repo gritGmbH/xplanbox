@@ -21,10 +21,8 @@
 package de.latlon.xplan.manager.web.client.gui;
 
 import com.google.gwt.cell.client.ButtonCell;
-import com.google.gwt.cell.client.Cell;
 import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.cell.client.FieldUpdater;
-import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -60,8 +58,6 @@ import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.client.service.ManagerService;
 import de.latlon.xplan.manager.web.client.service.ManagerServiceAsync;
 import de.latlon.xplan.manager.web.client.utils.AlertFailureCallback;
-import de.latlon.xplan.manager.web.client.utils.DateTimeUtils;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
@@ -78,7 +74,6 @@ import java.util.List;
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADDITIONALTYPE;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.COMMUNITY;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ID;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.LEGISLATIONSTATUS;
@@ -87,7 +82,6 @@ import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NUMBER;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.PLANSTATUS;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.RELEASEDATE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.TYPE;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.VALIDITIYPERIOD;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.VERSION;
 import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getImportDateFormat;
 import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getReleaseDateFormat;
@@ -240,8 +234,6 @@ public class PlanListPanel extends DecoratorPanel {
 			addIdColumn(columnSortHandler, planList);
 		if (configuration.isColumnVisible(NUMBER))
 			addNumberColumn(columnSortHandler, planList);
-		if (configuration.isColumnVisible(COMMUNITY))
-			addCommunityColumn(columnSortHandler, planList);
 		if (configuration.isColumnVisible(VERSION))
 			addVersionColumn(columnSortHandler, planList);
 		if (configuration.isColumnVisible(TYPE))
@@ -256,8 +248,6 @@ public class PlanListPanel extends DecoratorPanel {
 			addImportDateColumn(columnSortHandler, planList);
 		if (configuration.isColumnVisible(PLANSTATUS))
 			addPlanStatusColumn(columnSortHandler, planList);
-		if (configuration.isColumnVisible(VALIDITIYPERIOD))
-			addValidityPeriodColumn(columnSortHandler, planList);
 
 		TextHeader actionHeader = new TextHeader(messages.actions());
 		actionHeader.setHeaderStyleNames("actionHeaderStyle");
@@ -314,19 +304,6 @@ public class PlanListPanel extends DecoratorPanel {
 		numberColumn.setCellStyleNames("planListColumn numberColumn");
 		columnSortHandler.setComparator(numberColumn, new ColumnComparator(NUMBER));
 		xPlanTable.addColumn(numberColumn, messages.numberColumn());
-	}
-
-	private void addCommunityColumn(ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable) {
-		TextColumn<XPlan> communityColumn = new TextColumn<XPlan>() {
-			@Override
-			public String getValue(XPlan object) {
-				return object.getDistrict();
-			}
-		};
-		communityColumn.setSortable(true);
-		communityColumn.setCellStyleNames("planListColumn communityColumn");
-		columnSortHandler.setComparator(communityColumn, new ColumnComparator(COMMUNITY));
-		xPlanTable.addColumn(communityColumn, dynamicMessages.communityColumn());
 	}
 
 	private void addVersionColumn(ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable) {
@@ -419,9 +396,8 @@ public class PlanListPanel extends DecoratorPanel {
 		TextColumn<XPlan> planStatusColumn = new TextColumn<XPlan>() {
 			@Override
 			public String getValue(XPlan object) {
-				AdditionalPlanData xPlanMetadata = object.getXplanMetadata();
-				if (xPlanMetadata != null && xPlanMetadata.getPlanStatus() != null)
-					return xPlanMetadata.getPlanStatus().getMessage();
+				if (object.getPlanStatus() != null)
+					return object.getPlanStatus().getMessage();
 				return null;
 			}
 		};
@@ -429,53 +405,6 @@ public class PlanListPanel extends DecoratorPanel {
 		planStatusColumn.setCellStyleNames("planListColumn planStatusColumn");
 		columnSortHandler.setComparator(planStatusColumn, new ColumnComparator(PLANSTATUS));
 		xPlanTable.addColumn(planStatusColumn, messages.planStatus());
-	}
-
-	private void addValidityPeriodColumn(ColumnSortEvent.ListHandler<XPlan> columnSortHandler,
-			final CellTable<XPlan> xPlanTable) {
-		TextCell validatedButtonCell = new TextCell();
-		final Column<XPlan, String> validityStatusColumn = new Column<XPlan, String>(validatedButtonCell) {
-			@Override
-			public String getValue(XPlan object) {
-				return " ";
-			}
-
-			@Override
-			public String getCellStyleNames(Cell.Context context, XPlan object) {
-				AdditionalPlanData xplanMetadata = object.getXplanMetadata();
-				if (xplanMetadata != null) {
-					if (isValid(xplanMetadata))
-						return "cellButton buttonValid";
-					else
-						return "cellButton buttonNotValid";
-				}
-				return "cellButton buttonNotValidated";
-			}
-
-			private Boolean isValid(AdditionalPlanData xplanMetadata) {
-				Date startDateTime = xplanMetadata.getStartDateTime();
-				Date endDateTime = xplanMetadata.getEndDateTime();
-				return DateTimeUtils.isCurrentDateTimeBetween(startDateTime, endDateTime);
-			}
-		};
-		validityStatusColumn.setCellStyleNames("planListColumn validityStatusColumn");
-		addToolTip(xPlanTable, validityStatusColumn, new TooltipCreator() {
-			@Override
-			public String createTooltip(CellPreviewEvent<XPlan> event) {
-				AdditionalPlanData xplanMetadata = event.getValue().getXplanMetadata();
-				Date startDateTime = xplanMetadata.getStartDateTime();
-				Date endDateTime = xplanMetadata.getEndDateTime();
-				DateTimeFormat dateFormat = DateTimeUtils.getValidityDateFormat();
-				if (startDateTime != null && endDateTime != null)
-					return messages.validityTooltip(dateFormat.format(startDateTime), dateFormat.format(endDateTime));
-				if (startDateTime != null && endDateTime == null)
-					return messages.validityTooltipLimitByStartDate(dateFormat.format(startDateTime));
-				if (startDateTime == null && endDateTime != null)
-					return messages.validityTooltipLimitByEndDate(dateFormat.format(endDateTime));
-				return messages.validityTooltipUnlimited();
-			}
-		});
-		xPlanTable.addColumn(validityStatusColumn, messages.validityStatus());
 	}
 
 	private void addRemoveColumn(final CellTable<XPlan> xPlanTable, TextHeader columnHeader) {
@@ -569,8 +498,7 @@ public class PlanListPanel extends DecoratorPanel {
 			public void update(int index, XPlan xplan, String value) {
 				String planName = xplan.getName();
 				String planType = xplan.getType();
-				PlanStatus planStatus = xplan.getXplanMetadata() != null ? xplan.getXplanMetadata().getPlanStatus()
-						: null;
+				PlanStatus planStatus = xplan.getPlanStatus();
 				XPlanEnvelope bbox = xplan.getBbox();
 				MapPreviewDialog mapPreview = new MapPreviewDialog(planName, planType, planStatus, bbox);
 				mapPreview.show();
@@ -838,19 +766,15 @@ public class PlanListPanel extends DecoratorPanel {
 	}
 
 	private boolean isPublishingPluPermitted(XPlan xPlan) {
-		return authorizationInfo.isSuperUser() || isOwner(xPlan);
+		return authorizationInfo.isSuperUser();
 	}
 
 	private boolean isDeletingPermitted(XPlan xPlan) {
-		return authorizationInfo.isSuperUser() || isOwner(xPlan);
+		return authorizationInfo.isSuperUser();
 	}
 
 	private boolean isEditingPermitted(XPlan xPlan) {
-		return authorizationInfo.isSuperUser() || (isOwner(xPlan) && authorizationInfo.isEditor());
-	}
-
-	private boolean isOwner(XPlan plan) {
-		return authorizationInfo.getAuthorizedDistricts().contains(plan.getDistrict());
+		return authorizationInfo.isSuperUser();
 	}
 
 	private interface TooltipCreator {

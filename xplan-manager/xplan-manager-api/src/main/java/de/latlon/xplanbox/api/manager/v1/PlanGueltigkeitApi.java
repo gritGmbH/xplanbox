@@ -30,13 +30,13 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.validation.Valid;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
 
 /**
  * Controller class for handling access to the gueltigkeit resource of a plan.
@@ -62,7 +62,8 @@ public class PlanGueltigkeitApi {
 							description = "Unsupported plan version or planID is not a valid int value"),
 					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
 					@ApiResponse(responseCode = "406", description = "Requested format is not available"), },
-			description = "deprecated: Gueltigkeitszeitraum will be removed in a future version.", deprecated = true)
+			description = "deprecated: Gueltigkeitszeitraum will be removed in a future version. Since 8.0 the functionality is removed! Gueltigkeitszeitraum is no longer stored.",
+			deprecated = true)
 	public Zeitraum getGueltigkeit(@PathParam("planId") @Parameter(example = "123") String planId) throws Exception {
 		return editGueltigkeitHandler.retrieveGueltigkeit(planId);
 	}
@@ -81,7 +82,8 @@ public class PlanGueltigkeitApi {
 					@ApiResponse(responseCode = "422", description = "Request body contains invalid content") },
 			requestBody = @RequestBody(content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Zeitraum.class)) }),
-			description = "deprecated: Gueltigkeitszeitraum will be removed in a future version.", deprecated = true)
+			description = "deprecated: Gueltigkeitszeitraum will be removed in a future version. Since 8.0 the functionality is removed! Gueltigkeitszeitraum is no longer stored.",
+			deprecated = true)
 	public Zeitraum replaceGueltigkeit(@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 			example = "123") String planId, @Valid Zeitraum zeitraum) throws Exception {
 		return editGueltigkeitHandler.replaceGueltigkeit(planId, zeitraum);

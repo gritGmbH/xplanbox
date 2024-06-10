@@ -47,6 +47,7 @@ public class SecurityContext {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SecurityContext.class);
 
+	@SuppressWarnings("removal")
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		LOG.info("Configure security.");

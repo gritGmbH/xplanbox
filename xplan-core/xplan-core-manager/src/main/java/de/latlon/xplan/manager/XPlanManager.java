@@ -45,7 +45,6 @@ import de.latlon.xplan.manager.transaction.UnsupportPlanException;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanEditManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -60,9 +59,7 @@ import de.latlon.xplan.manager.workspace.WorkspaceException;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.deegree.commons.utils.Pair;
 import org.deegree.commons.xml.XMLParsingException;
-import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -167,70 +164,29 @@ public class XPlanManager {
 	/**
 	 * Import a plan into the managed database
 	 * @param archiveFileName the file name of the archive, never <code>null</code>
-	 * @param defaultCRS the default crs, may be <code>null</code> if no default crs
-	 * should be set
 	 * @param force should import be forced?
 	 * @param makeRasterConfig <code>true</code> if the configuration of raster files
 	 * should be created, <code>false</code> otherwise
-	 * @param internalId is added to the feature collection of the plan, if
-	 * <code>null</code>, internalId property is not added to the feature collection
 	 */
-	public void importPlan(String archiveFileName, ICRS defaultCRS, boolean force, boolean makeRasterConfig,
-			String internalId) throws Exception {
+	public void importPlan(String archiveFileName, boolean force, boolean makeRasterConfig) throws Exception {
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		if (archive.hasMultipleXPlanElements())
 			throw new UnsupportPlanException("Das XPlanGML enthält mehrere XP_Plan-Elemente.");
-		xPlanInsertManager.importPlan(archive, defaultCRS, force, makeRasterConfig, internalId,
-				new AdditionalPlanData());
+		xPlanInsertManager.importPlan(archive, force, makeRasterConfig, null, null);
 	}
 
 	/**
 	 * Import a plan into the managed database
 	 * @param archive to import, never <code>null</code>
-	 * @param defaultCRS the default crs, may be <code>null</code> if no default crs
-	 * should be set
 	 * @param force should import be forced?
 	 * @param makeRasterConfig <code>true</code> if the configuration of raster files
 	 * should be created, <code>false</code> otherwise
-	 * @param internalId is added to the feature collection of the plan, if
-	 * <code>null</code>, internalId property is not added to the feature collection
-	 * @param xPlanMetadata containing some metadata about the xplan, never
-	 * <code>null</code>
+	 * @param planStatus the PlanStatus, may be <code>null</code>
 	 */
-	@PreAuthorize("hasPermission(#archive, 'hasDistrictPermission') or hasRole('ROLE_XPLAN_SUPERUSER')")
-	public void importPlan(XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeRasterConfig,
-			String internalId, AdditionalPlanData xPlanMetadata) throws Exception {
-		xPlanInsertManager.importPlan(archive, defaultCRS, force, makeRasterConfig, internalId, xPlanMetadata);
-	}
-
-	/**
-	 * Retrieves plan name.
-	 * @param archiveFileName the file name of the archive, never <code>null</code>
-	 * @return plan name
-	 * @throws Exception
-	 */
-	public String retrievePlanName(String archiveFileName) throws Exception {
-		XPlanArchive archive = analyzeArchive(archiveFileName);
-		ICRS crs = CrsUtils.determineActiveCrs(CRSManager.getCRSRef("EPSG:4326"), archive, LOG);
-		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder()
-			.withSkipResolveReferences(true)
-			.withDefaultCrs(crs)
-			.build()
-			.parseXPlanFeatureCollection(archive);
-		return fc.getPlanName();
-	}
-
-	/**
-	 * Check if the crs is set in target file.
-	 * @deprecated will be removed in a future version
-	 * @param archiveFileName path to the file
-	 * @return true if crs is set, false if crs is not set
-	 * @throws IOException
-	 */
-	@Deprecated
-	public boolean isCrsSet(String archiveFileName) throws IOException {
-		XPlanArchive archive = analyzeArchive(archiveFileName);
-		return archive.getCrs() != null;
+	@PreAuthorize("hasRole('ROLE_XPLAN_SUPERUSER')")
+	public void importPlan(XPlanArchive archive, boolean force, boolean makeRasterConfig, PlanStatus planStatus)
+			throws Exception {
+		xPlanInsertManager.importPlan(archive, force, makeRasterConfig, null, planStatus);
 	}
 
 	/**
@@ -375,7 +331,7 @@ public class XPlanManager {
 	 * @return the {@link XPlanToEdit}, <code>null</code> if not found
 	 * @throws Exception
 	 */
-	@PreAuthorize("(hasPermission(#plan, 'hasDistrictPermission') and hasRole('ROLE_XPLAN_EDITOR')) or hasRole('ROLE_XPLAN_SUPERUSER')")
+	@PreAuthorize("hasRole('ROLE_XPLAN_EDITOR') or hasRole('ROLE_XPLAN_SUPERUSER')")
 	public XPlanToEdit getXPlanToEdit(XPlan plan) throws Exception {
 		InputStream originalPlan = null;
 		try {
@@ -403,7 +359,7 @@ public class XPlanManager {
 	 * never <code>null</code>
 	 * @throws Exception
 	 */
-	@PreAuthorize("(hasPermission(#oldXplan, 'hasDistrictPermission') and hasRole('ROLE_XPLAN_EDITOR')) or hasRole('ROLE_XPLAN_SUPERUSER')")
+	@PreAuthorize("hasRole('ROLE_XPLAN_EDITOR') or hasRole('ROLE_XPLAN_SUPERUSER')")
 	public void editPlan(XPlan oldXplan, XPlanToEdit xPlanToEdit, boolean makeRasterConfig,
 			List<File> uploadedArtefacts) throws Exception {
 		xPlanEditManager.editPlan(oldXplan, xPlanToEdit, makeRasterConfig, uploadedArtefacts);
@@ -413,7 +369,7 @@ public class XPlanManager {
 	 * @param plan plan to delete
 	 * @throws Exception
 	 */
-	@PreAuthorize("hasPermission(#plan, 'hasDistrictPermission') or hasRole('ROLE_XPLAN_SUPERUSER')")
+	@PreAuthorize("hasRole('ROLE_XPLAN_SUPERUSER')")
 	public void delete(XPlan plan) throws Exception {
 		String planId = plan.getId();
 		delete(planId);
@@ -432,7 +388,7 @@ public class XPlanManager {
 	 * INSPIRE Download Service for PLU.
 	 * @param plan plan to transform and publish
 	 */
-	@PreAuthorize("hasPermission(#plan, 'hasDistrictPermission') or hasRole('ROLE_XPLAN_SUPERUSER')")
+	@PreAuthorize("hasRole('ROLE_XPLAN_SUPERUSER')")
 	public void publishPlu(XPlan plan) throws Exception {
 		if (inspirePluPublisher == null) {
 			LOG.warn("Transformation and publishing INSPIRE PLU datasets is not supported");

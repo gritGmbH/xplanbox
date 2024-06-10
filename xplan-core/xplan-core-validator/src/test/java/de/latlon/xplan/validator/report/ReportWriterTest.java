@@ -84,8 +84,6 @@ public class ReportWriterTest {
 
 		assertThat(targetDirectory, containsFile(VALIDATION_NAME + ".html"));
 		assertThat(targetDirectory, containsFile(VALIDATION_NAME + ".pdf"));
-		assertThat(targetDirectory, containsFile(VALIDATION_NAME + ".xml"));
-		assertThat(targetDirectory, containsDirectory("shapes"));
 	}
 
 	@Test

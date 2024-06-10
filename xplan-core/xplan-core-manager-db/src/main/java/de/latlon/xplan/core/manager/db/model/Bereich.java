@@ -20,8 +20,8 @@
  */
 package de.latlon.xplan.core.manager.db.model;
 
-import javax.persistence.Embeddable;
-import javax.validation.Valid;
+import jakarta.persistence.Embeddable;
+import jakarta.validation.Valid;
 import java.util.Objects;
 
 /**

@@ -1,0 +1,3954 @@
+databaseChangeLog:
+- changeSet:
+    id: 1716463869494-1
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_abgrabungsflaeche
+- changeSet:
+    id: 1716463869494-2
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_abstandsflaeche
+- changeSet:
+    id: 1716463869494-3
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_abstandsmass
+- changeSet:
+    id: 1716463869494-4
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_abweichungvonbaugrenze
+- changeSet:
+    id: 1716463869494-5
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche
+- changeSet:
+    id: 1716463869494-6
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_anpflanzungbindungerhaltung
+- changeSet:
+    id: 1716463869494-7
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_aufschuettungsflaeche
+- changeSet:
+    id: 1716463869494-8
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_ausgleichsflaeche
+- changeSet:
+    id: 1716463869494-9
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_ausgleichsmassnahme
+- changeSet:
+    id: 1716463869494-10
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_baugebiet
+- changeSet:
+    id: 1716463869494-11
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_baugebietsteilflaeche
+- changeSet:
+    id: 1716463869494-12
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_baugrenze
+- changeSet:
+    id: 1716463869494-13
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_baulinie
+- changeSet:
+    id: 1716463869494-14
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_bereich
+- changeSet:
+    id: 1716463869494-15
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_bereichohneeinausfahrtlinie
+- changeSet:
+    id: 1716463869494-16
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_besonderernutzungszweckflaeche
+- changeSet:
+    id: 1716463869494-17
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_bodenschaetzeflaeche
+- changeSet:
+    id: 1716463869494-18
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_denkmalschutzeinzelanlage
+- changeSet:
+    id: 1716463869494-19
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_denkmalschutzensembleflaeche
+- changeSet:
+    id: 1716463869494-20
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_einfahrtpunkt
+- changeSet:
+    id: 1716463869494-21
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_einfahrtsbereichlinie
+- changeSet:
+    id: 1716463869494-22
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_eingriffsbereich
+- changeSet:
+    id: 1716463869494-23
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_erhaltungsbereichflaeche
+- changeSet:
+    id: 1716463869494-24
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_erneuerbareenergieflaeche
+- changeSet:
+    id: 1716463869494-25
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_festsetzungnachlandesrecht
+- changeSet:
+    id: 1716463869494-26
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_firstrichtungslinie
+- changeSet:
+    id: 1716463869494-27
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_flaecheohnefestsetzung
+- changeSet:
+    id: 1716463869494-28
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_foerderungsflaeche
+- changeSet:
+    id: 1716463869494-29
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_freiflaeche
+- changeSet:
+    id: 1716463869494-30
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gebaeudeflaeche
+- changeSet:
+    id: 1716463869494-31
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gebaeudestellung
+- changeSet:
+    id: 1716463869494-32
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gemeinbedarfsflaeche
+- changeSet:
+    id: 1716463869494-33
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gemeinschaftsanlagenflaeche
+- changeSet:
+    id: 1716463869494-34
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gemeinschaftsanlagenzuordnung
+- changeSet:
+    id: 1716463869494-35
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_generischesobjekt
+- changeSet:
+    id: 1716463869494-36
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gewaesserflaeche
+- changeSet:
+    id: 1716463869494-37
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gruenflaeche
+- changeSet:
+    id: 1716463869494-38
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_hoehenmass
+- changeSet:
+    id: 1716463869494-39
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_immissionsschutz
+- changeSet:
+    id: 1716463869494-40
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_kennzeichnungsflaeche
+- changeSet:
+    id: 1716463869494-41
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_kleintierhaltungflaeche
+- changeSet:
+    id: 1716463869494-42
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_landwirtschaft
+- changeSet:
+    id: 1716463869494-43
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_landwirtschaftsflaeche
+- changeSet:
+    id: 1716463869494-44
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_luftreinhalteflaeche
+- changeSet:
+    id: 1716463869494-45
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_nebenanlagenausschlussflaeche
+- changeSet:
+    id: 1716463869494-46
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_nebenanlagenflaeche
+- changeSet:
+    id: 1716463869494-47
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_nichtueberbaubaregrundstuecksflaeche
+- changeSet:
+    id: 1716463869494-48
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_nutzungsartengrenze
+- changeSet:
+    id: 1716463869494-49
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_persgruppenbestimmteflaeche
+- changeSet:
+    id: 1716463869494-50
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_plan
+- changeSet:
+    id: 1716463869494-51
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_rasterplanaenderung
+- changeSet:
+    id: 1716463869494-52
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_regelungvergnuegungsstaetten
+- changeSet:
+    id: 1716463869494-53
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_rekultivierungsflaeche
+- changeSet:
+    id: 1716463869494-54
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_richtungssektorgrenze
+- changeSet:
+    id: 1716463869494-55
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_schutzgebiet
+- changeSet:
+    id: 1716463869494-56
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_schutzpflegeentwicklungsflaeche
+- changeSet:
+    id: 1716463869494-57
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_schutzpflegeentwicklungsmassnahme
+- changeSet:
+    id: 1716463869494-58
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_sichtflaeche
+- changeSet:
+    id: 1716463869494-59
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_speziellebauweise
+- changeSet:
+    id: 1716463869494-60
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_spielsportanlagenflaeche
+- changeSet:
+    id: 1716463869494-61
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_strassenbegrenzungslinie
+- changeSet:
+    id: 1716463869494-62
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_strassenkoerper
+- changeSet:
+    id: 1716463869494-63
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_strassenverkehrsflaeche
+- changeSet:
+    id: 1716463869494-64
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_technischemassnahmenflaeche
+- changeSet:
+    id: 1716463869494-65
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_textabschnitt
+- changeSet:
+    id: 1716463869494-66
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_textabschnittflaeche
+- changeSet:
+    id: 1716463869494-67
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_textlichefestsetzungsflaeche
+- changeSet:
+    id: 1716463869494-68
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_ueberbaubaregrundstuecksflaeche
+- changeSet:
+    id: 1716463869494-69
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_unverbindlichevormerkung
+- changeSet:
+    id: 1716463869494-70
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_veraenderungssperre
+- changeSet:
+    id: 1716463869494-71
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_verentsorgung
+- changeSet:
+    id: 1716463869494-72
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_verkehrsflaechebesondererzweckbestimmung
+- changeSet:
+    id: 1716463869494-73
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_waldflaeche
+- changeSet:
+    id: 1716463869494-74
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_wasserwirtschaftsflaeche
+- changeSet:
+    id: 1716463869494-75
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_wegerecht
+- changeSet:
+    id: 1716463869494-76
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_wohngebaeudeflaeche
+- changeSet:
+    id: 1716463869494-77
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_zentralerversorgungsbereich
+- changeSet:
+    id: 1716463869494-78
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_zusatzkontingentlaerm
+- changeSet:
+    id: 1716463869494-79
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_bp_zusatzkontingentlaermflaeche
+- changeSet:
+    id: 1716463869494-80
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_abgrabung
+- changeSet:
+    id: 1716463869494-81
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_abgrabungsflaeche
+- changeSet:
+    id: 1716463869494-82
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_anpassungklimawandel
+- changeSet:
+    id: 1716463869494-83
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_aufschuettung
+- changeSet:
+    id: 1716463869494-84
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_aufschuettungsflaeche
+- changeSet:
+    id: 1716463869494-85
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_ausgleichsflaeche
+- changeSet:
+    id: 1716463869494-86
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_bebauungsflaeche
+- changeSet:
+    id: 1716463869494-87
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_bereich
+- changeSet:
+    id: 1716463869494-88
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_bodenschaetze
+- changeSet:
+    id: 1716463869494-89
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_bodenschaetzeflaeche
+- changeSet:
+    id: 1716463869494-90
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_darstellungnachlandesrecht
+- changeSet:
+    id: 1716463869494-91
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_flaecheohnedarstellung
+- changeSet:
+    id: 1716463869494-92
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_gemeinbedarf
+- changeSet:
+    id: 1716463869494-93
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_generischesobjekt
+- changeSet:
+    id: 1716463869494-94
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_gewaesser
+- changeSet:
+    id: 1716463869494-95
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_gruen
+- changeSet:
+    id: 1716463869494-96
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_keinezentrabwasserbeseitigungflaeche
+- changeSet:
+    id: 1716463869494-97
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_kennzeichnung
+- changeSet:
+    id: 1716463869494-98
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_landwirtschaft
+- changeSet:
+    id: 1716463869494-99
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_landwirtschaftsflaeche
+- changeSet:
+    id: 1716463869494-100
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_nutzungsbeschraenkung
+- changeSet:
+    id: 1716463869494-101
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_nutzungsbeschraenkungsflaeche
+- changeSet:
+    id: 1716463869494-102
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_plan
+- changeSet:
+    id: 1716463869494-103
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_privilegiertesvorhaben
+- changeSet:
+    id: 1716463869494-104
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_rasterplanaenderung
+- changeSet:
+    id: 1716463869494-105
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_schutzpflegeentwicklung
+- changeSet:
+    id: 1716463869494-106
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_spielsportanlage
+- changeSet:
+    id: 1716463869494-107
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_strassenverkehr
+- changeSet:
+    id: 1716463869494-108
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_textabschnitt
+- changeSet:
+    id: 1716463869494-109
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_textabschnittflaeche
+- changeSet:
+    id: 1716463869494-110
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_textlichedarstellungsflaeche
+- changeSet:
+    id: 1716463869494-111
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_unverbindlichevormerkung
+- changeSet:
+    id: 1716463869494-112
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_verentsorgung
+- changeSet:
+    id: 1716463869494-113
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_vorbehalteflaeche
+- changeSet:
+    id: 1716463869494-114
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_waldflaeche
+- changeSet:
+    id: 1716463869494-115
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_wasserwirtschaft
+- changeSet:
+    id: 1716463869494-116
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_fp_zentralerversorgungsbereich
+- changeSet:
+    id: 1716463869494-117
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_abgrenzung
+- changeSet:
+    id: 1716463869494-118
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_allggruenflaeche
+- changeSet:
+    id: 1716463869494-119
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_anpflanzungbindungerhaltung
+- changeSet:
+    id: 1716463869494-120
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_ausgleich
+- changeSet:
+    id: 1716463869494-121
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_bereich
+- changeSet:
+    id: 1716463869494-122
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_biotopverbundbiotopvernetzung
+- changeSet:
+    id: 1716463869494-123
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_biotopverbundflaeche
+- changeSet:
+    id: 1716463869494-124
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_bodenschutzrecht
+- changeSet:
+    id: 1716463869494-125
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_denkmalschutzrecht
+- changeSet:
+    id: 1716463869494-126
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_eingriffsregelung
+- changeSet:
+    id: 1716463869494-127
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_erholungfreizeit
+- changeSet:
+    id: 1716463869494-128
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_forstrecht
+- changeSet:
+    id: 1716463869494-129
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_generischesobjekt
+- changeSet:
+    id: 1716463869494-130
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_landschaftsbild
+- changeSet:
+    id: 1716463869494-131
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_nutzungsausschluss
+- changeSet:
+    id: 1716463869494-132
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_nutzungserfordernisregelung
+- changeSet:
+    id: 1716463869494-133
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_plan
+- changeSet:
+    id: 1716463869494-134
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_planerischevertiefung
+- changeSet:
+    id: 1716463869494-135
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_rasterplanaenderung
+- changeSet:
+    id: 1716463869494-136
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_schutzbestimmterteilevonnaturundlandschaft
+- changeSet:
+    id: 1716463869494-137
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_schutzobjektbundesrecht
+- changeSet:
+    id: 1716463869494-138
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_schutzobjektinternatrecht
+- changeSet:
+    id: 1716463869494-139
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_schutzpflegeentwicklung
+- changeSet:
+    id: 1716463869494-140
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_sonstigeabgrenzuung
+- changeSet:
+    id: 1716463869494-141
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_sonstigesrecht
+- changeSet:
+    id: 1716463869494-142
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_textabschnitt
+- changeSet:
+    id: 1716463869494-143
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_textabschnittobjekt
+- changeSet:
+    id: 1716463869494-144
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_textlichefestsetzungsflaeche
+- changeSet:
+    id: 1716463869494-145
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz
+- changeSet:
+    id: 1716463869494-146
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_wasserrechtschutzgebiet
+- changeSet:
+    id: 1716463869494-147
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_wasserrechtsonstige
+- changeSet:
+    id: 1716463869494-148
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_wasserrechtwirtschaftabflusshochwschutz
+- changeSet:
+    id: 1716463869494-149
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_zieleerfordernissemassnahmen
+- changeSet:
+    id: 1716463869494-150
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_zubegruenendegrundstueckflaeche
+- changeSet:
+    id: 1716463869494-151
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_lp_zwischennutzung
+- changeSet:
+    id: 1716463869494-152
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_achse
+- changeSet:
+    id: 1716463869494-153
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_bereich
+- changeSet:
+    id: 1716463869494-154
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_bodenschutz
+- changeSet:
+    id: 1716463869494-155
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_einzelhandel
+- changeSet:
+    id: 1716463869494-156
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_energieversorgung
+- changeSet:
+    id: 1716463869494-157
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_entsorgung
+- changeSet:
+    id: 1716463869494-158
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_erholung
+- changeSet:
+    id: 1716463869494-159
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_erneuerbareenergie
+- changeSet:
+    id: 1716463869494-160
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_forstwirtschaft
+- changeSet:
+    id: 1716463869494-161
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_freiraum
+- changeSet:
+    id: 1716463869494-162
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_freizeiterholung
+- changeSet:
+    id: 1716463869494-163
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_funktionszuweisung
+- changeSet:
+    id: 1716463869494-164
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_gemeindefunktionsiedlungsentwicklung
+- changeSet:
+    id: 1716463869494-165
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_generischesobjekt
+- changeSet:
+    id: 1716463869494-166
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_gewaesser
+- changeSet:
+    id: 1716463869494-167
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_grenze
+- changeSet:
+    id: 1716463869494-168
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_gruenzuggruenzaesur
+- changeSet:
+    id: 1716463869494-169
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_hochwasserschutz
+- changeSet:
+    id: 1716463869494-170
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_industriegewerbe
+- changeSet:
+    id: 1716463869494-171
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_klimaschutz
+- changeSet:
+    id: 1716463869494-172
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_kommunikation
+- changeSet:
+    id: 1716463869494-173
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_kulturellessachgut
+- changeSet:
+    id: 1716463869494-174
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_kulturlandschaft
+- changeSet:
+    id: 1716463869494-175
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_laermschutzbauschutz
+- changeSet:
+    id: 1716463869494-176
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_laermschutzbereich
+- changeSet:
+    id: 1716463869494-177
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_landwirtschaft
+- changeSet:
+    id: 1716463869494-178
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_legendenobjekt
+- changeSet:
+    id: 1716463869494-179
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_luftverkehr
+- changeSet:
+    id: 1716463869494-180
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_naturlandschaft
+- changeSet:
+    id: 1716463869494-181
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_naturschutzrechtlichesschutzgebiet
+- changeSet:
+    id: 1716463869494-182
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_plan
+- changeSet:
+    id: 1716463869494-183
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_planungsraum
+- changeSet:
+    id: 1716463869494-184
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_radwegwanderweg
+- changeSet:
+    id: 1716463869494-185
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_rasterplanaenderung
+- changeSet:
+    id: 1716463869494-186
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_raumkategorie
+- changeSet:
+    id: 1716463869494-187
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_rohstoff
+- changeSet:
+    id: 1716463869494-188
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_rohstoffsicherung
+- changeSet:
+    id: 1716463869494-189
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_schienenverkehr
+- changeSet:
+    id: 1716463869494-190
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_siedlung
+- changeSet:
+    id: 1716463869494-191
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sonstigeinfrastruktur
+- changeSet:
+    id: 1716463869494-192
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sonstigerfreiraumschutz
+- changeSet:
+    id: 1716463869494-193
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sonstigerfreiraumstruktur
+- changeSet:
+    id: 1716463869494-194
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sonstigersiedlungsbereich
+- changeSet:
+    id: 1716463869494-195
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sonstigesiedlungsstruktur
+- changeSet:
+    id: 1716463869494-196
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sonstverkehr
+- changeSet:
+    id: 1716463869494-197
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sozialeinfrastruktur
+- changeSet:
+    id: 1716463869494-198
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sperrgebiet
+- changeSet:
+    id: 1716463869494-199
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sportanlage
+- changeSet:
+    id: 1716463869494-200
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_strassenverkehr
+- changeSet:
+    id: 1716463869494-201
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_textabschnitt
+- changeSet:
+    id: 1716463869494-202
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_verkehr
+- changeSet:
+    id: 1716463869494-203
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_vorbhochwasserschutz
+- changeSet:
+    id: 1716463869494-204
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_wasserschutz
+- changeSet:
+    id: 1716463869494-205
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_wasserverkehr
+- changeSet:
+    id: 1716463869494-206
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_wasserwirtschaft
+- changeSet:
+    id: 1716463869494-207
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_windenergienutzung
+- changeSet:
+    id: 1716463869494-208
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_wohnensiedlung
+- changeSet:
+    id: 1716463869494-209
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_rp_zentralerort
+- changeSet:
+    id: 1716463869494-210
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1716463869494-211
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_bauverbotszone
+- changeSet:
+    id: 1716463869494-212
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_bereich
+- changeSet:
+    id: 1716463869494-213
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1716463869494-214
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1716463869494-215
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1716463869494-216
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1716463869494-217
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1716463869494-218
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1716463869494-219
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1716463869494-220
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1716463869494-221
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1716463869494-222
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1716463869494-223
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_plan
+- changeSet:
+    id: 1716463869494-224
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_rasterplanaenderung
+- changeSet:
+    id: 1716463869494-225
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1716463869494-226
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietnaturschutzrecht
+- changeSet:
+    id: 1716463869494-227
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietsonstigesrecht
+- changeSet:
+    id: 1716463869494-228
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1716463869494-229
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1716463869494-230
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1716463869494-231
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1716463869494-232
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehrsrecht
+- changeSet:
+    id: 1716463869494-233
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnitt
+- changeSet:
+    id: 1716463869494-234
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1716463869494-235
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1716463869494-236
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1716463869494-237
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_xp_begruendungabschnitt
+- changeSet:
+    id: 1716463869494-238
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_xp_fpo
+- changeSet:
+    id: 1716463869494-239
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_xp_lpo
+- changeSet:
+    id: 1716463869494-240
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_xp_lto
+- changeSet:
+    id: 1716463869494-241
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_xp_nutzungsschablone
+- changeSet:
+    id: 1716463869494-242
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_xp_ppo
+- changeSet:
+    id: 1716463869494-243
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_xp_praesentationsobjekt
+- changeSet:
+    id: 1716463869494-244
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_xp_pto
+- changeSet:
+    id: 1716463869494-245
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_xp_rasterdarstellung
+- changeSet:
+    id: 1716463869494-246
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_xp_rasterplanbasis
+- changeSet:
+    id: 1716463869494-247
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitbeginn
+        schemaName: xplansynarchive
+        tableName: xplan_xp_textabschnitt
+- changeSet:
+    id: 1716463869494-248
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_abgrabungsflaeche
+- changeSet:
+    id: 1716463869494-249
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_abstandsflaeche
+- changeSet:
+    id: 1716463869494-250
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_abstandsmass
+- changeSet:
+    id: 1716463869494-251
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_abweichungvonbaugrenze
+- changeSet:
+    id: 1716463869494-252
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche
+- changeSet:
+    id: 1716463869494-253
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_anpflanzungbindungerhaltung
+- changeSet:
+    id: 1716463869494-254
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_aufschuettungsflaeche
+- changeSet:
+    id: 1716463869494-255
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_ausgleichsflaeche
+- changeSet:
+    id: 1716463869494-256
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_ausgleichsmassnahme
+- changeSet:
+    id: 1716463869494-257
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_baugebiet
+- changeSet:
+    id: 1716463869494-258
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_baugebietsteilflaeche
+- changeSet:
+    id: 1716463869494-259
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_baugrenze
+- changeSet:
+    id: 1716463869494-260
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_baulinie
+- changeSet:
+    id: 1716463869494-261
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_bereich
+- changeSet:
+    id: 1716463869494-262
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_bereichohneeinausfahrtlinie
+- changeSet:
+    id: 1716463869494-263
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_besonderernutzungszweckflaeche
+- changeSet:
+    id: 1716463869494-264
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_bodenschaetzeflaeche
+- changeSet:
+    id: 1716463869494-265
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_denkmalschutzeinzelanlage
+- changeSet:
+    id: 1716463869494-266
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_denkmalschutzensembleflaeche
+- changeSet:
+    id: 1716463869494-267
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_einfahrtpunkt
+- changeSet:
+    id: 1716463869494-268
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_einfahrtsbereichlinie
+- changeSet:
+    id: 1716463869494-269
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_eingriffsbereich
+- changeSet:
+    id: 1716463869494-270
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_erhaltungsbereichflaeche
+- changeSet:
+    id: 1716463869494-271
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_erneuerbareenergieflaeche
+- changeSet:
+    id: 1716463869494-272
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_festsetzungnachlandesrecht
+- changeSet:
+    id: 1716463869494-273
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_firstrichtungslinie
+- changeSet:
+    id: 1716463869494-274
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_flaecheohnefestsetzung
+- changeSet:
+    id: 1716463869494-275
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_foerderungsflaeche
+- changeSet:
+    id: 1716463869494-276
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_freiflaeche
+- changeSet:
+    id: 1716463869494-277
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gebaeudeflaeche
+- changeSet:
+    id: 1716463869494-278
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gebaeudestellung
+- changeSet:
+    id: 1716463869494-279
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gemeinbedarfsflaeche
+- changeSet:
+    id: 1716463869494-280
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gemeinschaftsanlagenflaeche
+- changeSet:
+    id: 1716463869494-281
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gemeinschaftsanlagenzuordnung
+- changeSet:
+    id: 1716463869494-282
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_generischesobjekt
+- changeSet:
+    id: 1716463869494-283
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gewaesserflaeche
+- changeSet:
+    id: 1716463869494-284
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_gruenflaeche
+- changeSet:
+    id: 1716463869494-285
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_hoehenmass
+- changeSet:
+    id: 1716463869494-286
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_immissionsschutz
+- changeSet:
+    id: 1716463869494-287
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_kennzeichnungsflaeche
+- changeSet:
+    id: 1716463869494-288
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_kleintierhaltungflaeche
+- changeSet:
+    id: 1716463869494-289
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_landwirtschaft
+- changeSet:
+    id: 1716463869494-290
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_landwirtschaftsflaeche
+- changeSet:
+    id: 1716463869494-291
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_luftreinhalteflaeche
+- changeSet:
+    id: 1716463869494-292
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_nebenanlagenausschlussflaeche
+- changeSet:
+    id: 1716463869494-293
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_nebenanlagenflaeche
+- changeSet:
+    id: 1716463869494-294
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_nichtueberbaubaregrundstuecksflaeche
+- changeSet:
+    id: 1716463869494-295
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_nutzungsartengrenze
+- changeSet:
+    id: 1716463869494-296
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_persgruppenbestimmteflaeche
+- changeSet:
+    id: 1716463869494-297
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_plan
+- changeSet:
+    id: 1716463869494-298
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_rasterplanaenderung
+- changeSet:
+    id: 1716463869494-299
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_regelungvergnuegungsstaetten
+- changeSet:
+    id: 1716463869494-300
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_rekultivierungsflaeche
+- changeSet:
+    id: 1716463869494-301
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_richtungssektorgrenze
+- changeSet:
+    id: 1716463869494-302
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_schutzgebiet
+- changeSet:
+    id: 1716463869494-303
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_schutzpflegeentwicklungsflaeche
+- changeSet:
+    id: 1716463869494-304
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_schutzpflegeentwicklungsmassnahme
+- changeSet:
+    id: 1716463869494-305
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_sichtflaeche
+- changeSet:
+    id: 1716463869494-306
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_speziellebauweise
+- changeSet:
+    id: 1716463869494-307
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_spielsportanlagenflaeche
+- changeSet:
+    id: 1716463869494-308
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_strassenbegrenzungslinie
+- changeSet:
+    id: 1716463869494-309
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_strassenkoerper
+- changeSet:
+    id: 1716463869494-310
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_strassenverkehrsflaeche
+- changeSet:
+    id: 1716463869494-311
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_technischemassnahmenflaeche
+- changeSet:
+    id: 1716463869494-312
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_textabschnitt
+- changeSet:
+    id: 1716463869494-313
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_textabschnittflaeche
+- changeSet:
+    id: 1716463869494-314
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_textlichefestsetzungsflaeche
+- changeSet:
+    id: 1716463869494-315
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_ueberbaubaregrundstuecksflaeche
+- changeSet:
+    id: 1716463869494-316
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_unverbindlichevormerkung
+- changeSet:
+    id: 1716463869494-317
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_veraenderungssperre
+- changeSet:
+    id: 1716463869494-318
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_verentsorgung
+- changeSet:
+    id: 1716463869494-319
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_verkehrsflaechebesondererzweckbestimmung
+- changeSet:
+    id: 1716463869494-320
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_waldflaeche
+- changeSet:
+    id: 1716463869494-321
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_wasserwirtschaftsflaeche
+- changeSet:
+    id: 1716463869494-322
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_wegerecht
+- changeSet:
+    id: 1716463869494-323
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_wohngebaeudeflaeche
+- changeSet:
+    id: 1716463869494-324
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_zentralerversorgungsbereich
+- changeSet:
+    id: 1716463869494-325
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_zusatzkontingentlaerm
+- changeSet:
+    id: 1716463869494-326
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_bp_zusatzkontingentlaermflaeche
+- changeSet:
+    id: 1716463869494-327
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_abgrabung
+- changeSet:
+    id: 1716463869494-328
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_abgrabungsflaeche
+- changeSet:
+    id: 1716463869494-329
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_anpassungklimawandel
+- changeSet:
+    id: 1716463869494-330
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_aufschuettung
+- changeSet:
+    id: 1716463869494-331
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_aufschuettungsflaeche
+- changeSet:
+    id: 1716463869494-332
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_ausgleichsflaeche
+- changeSet:
+    id: 1716463869494-333
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_bebauungsflaeche
+- changeSet:
+    id: 1716463869494-334
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_bereich
+- changeSet:
+    id: 1716463869494-335
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_bodenschaetze
+- changeSet:
+    id: 1716463869494-336
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_bodenschaetzeflaeche
+- changeSet:
+    id: 1716463869494-337
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_darstellungnachlandesrecht
+- changeSet:
+    id: 1716463869494-338
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_flaecheohnedarstellung
+- changeSet:
+    id: 1716463869494-339
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_gemeinbedarf
+- changeSet:
+    id: 1716463869494-340
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_generischesobjekt
+- changeSet:
+    id: 1716463869494-341
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_gewaesser
+- changeSet:
+    id: 1716463869494-342
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_gruen
+- changeSet:
+    id: 1716463869494-343
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_keinezentrabwasserbeseitigungflaeche
+- changeSet:
+    id: 1716463869494-344
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_kennzeichnung
+- changeSet:
+    id: 1716463869494-345
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_landwirtschaft
+- changeSet:
+    id: 1716463869494-346
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_landwirtschaftsflaeche
+- changeSet:
+    id: 1716463869494-347
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_nutzungsbeschraenkung
+- changeSet:
+    id: 1716463869494-348
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_nutzungsbeschraenkungsflaeche
+- changeSet:
+    id: 1716463869494-349
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_plan
+- changeSet:
+    id: 1716463869494-350
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_privilegiertesvorhaben
+- changeSet:
+    id: 1716463869494-351
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_rasterplanaenderung
+- changeSet:
+    id: 1716463869494-352
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_schutzpflegeentwicklung
+- changeSet:
+    id: 1716463869494-353
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_spielsportanlage
+- changeSet:
+    id: 1716463869494-354
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_strassenverkehr
+- changeSet:
+    id: 1716463869494-355
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_textabschnitt
+- changeSet:
+    id: 1716463869494-356
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_textabschnittflaeche
+- changeSet:
+    id: 1716463869494-357
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_textlichedarstellungsflaeche
+- changeSet:
+    id: 1716463869494-358
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_unverbindlichevormerkung
+- changeSet:
+    id: 1716463869494-359
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_verentsorgung
+- changeSet:
+    id: 1716463869494-360
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_vorbehalteflaeche
+- changeSet:
+    id: 1716463869494-361
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_waldflaeche
+- changeSet:
+    id: 1716463869494-362
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_wasserwirtschaft
+- changeSet:
+    id: 1716463869494-363
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_fp_zentralerversorgungsbereich
+- changeSet:
+    id: 1716463869494-364
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_abgrenzung
+- changeSet:
+    id: 1716463869494-365
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_allggruenflaeche
+- changeSet:
+    id: 1716463869494-366
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_anpflanzungbindungerhaltung
+- changeSet:
+    id: 1716463869494-367
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_ausgleich
+- changeSet:
+    id: 1716463869494-368
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_bereich
+- changeSet:
+    id: 1716463869494-369
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_biotopverbundbiotopvernetzung
+- changeSet:
+    id: 1716463869494-370
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_biotopverbundflaeche
+- changeSet:
+    id: 1716463869494-371
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_bodenschutzrecht
+- changeSet:
+    id: 1716463869494-372
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_denkmalschutzrecht
+- changeSet:
+    id: 1716463869494-373
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_eingriffsregelung
+- changeSet:
+    id: 1716463869494-374
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_erholungfreizeit
+- changeSet:
+    id: 1716463869494-375
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_forstrecht
+- changeSet:
+    id: 1716463869494-376
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_generischesobjekt
+- changeSet:
+    id: 1716463869494-377
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_landschaftsbild
+- changeSet:
+    id: 1716463869494-378
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_nutzungsausschluss
+- changeSet:
+    id: 1716463869494-379
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_nutzungserfordernisregelung
+- changeSet:
+    id: 1716463869494-380
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_plan
+- changeSet:
+    id: 1716463869494-381
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_planerischevertiefung
+- changeSet:
+    id: 1716463869494-382
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_rasterplanaenderung
+- changeSet:
+    id: 1716463869494-383
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_schutzbestimmterteilevonnaturundlandschaft
+- changeSet:
+    id: 1716463869494-384
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_schutzobjektbundesrecht
+- changeSet:
+    id: 1716463869494-385
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_schutzobjektinternatrecht
+- changeSet:
+    id: 1716463869494-386
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_schutzpflegeentwicklung
+- changeSet:
+    id: 1716463869494-387
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_sonstigeabgrenzuung
+- changeSet:
+    id: 1716463869494-388
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_sonstigesrecht
+- changeSet:
+    id: 1716463869494-389
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_textabschnitt
+- changeSet:
+    id: 1716463869494-390
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_textabschnittobjekt
+- changeSet:
+    id: 1716463869494-391
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_textlichefestsetzungsflaeche
+- changeSet:
+    id: 1716463869494-392
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz
+- changeSet:
+    id: 1716463869494-393
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_wasserrechtschutzgebiet
+- changeSet:
+    id: 1716463869494-394
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_wasserrechtsonstige
+- changeSet:
+    id: 1716463869494-395
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_wasserrechtwirtschaftabflusshochwschutz
+- changeSet:
+    id: 1716463869494-396
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_zieleerfordernissemassnahmen
+- changeSet:
+    id: 1716463869494-397
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_zubegruenendegrundstueckflaeche
+- changeSet:
+    id: 1716463869494-398
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_lp_zwischennutzung
+- changeSet:
+    id: 1716463869494-399
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_achse
+- changeSet:
+    id: 1716463869494-400
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_bereich
+- changeSet:
+    id: 1716463869494-401
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_bodenschutz
+- changeSet:
+    id: 1716463869494-402
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_einzelhandel
+- changeSet:
+    id: 1716463869494-403
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_energieversorgung
+- changeSet:
+    id: 1716463869494-404
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_entsorgung
+- changeSet:
+    id: 1716463869494-405
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_erholung
+- changeSet:
+    id: 1716463869494-406
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_erneuerbareenergie
+- changeSet:
+    id: 1716463869494-407
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_forstwirtschaft
+- changeSet:
+    id: 1716463869494-408
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_freiraum
+- changeSet:
+    id: 1716463869494-409
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_freizeiterholung
+- changeSet:
+    id: 1716463869494-410
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_funktionszuweisung
+- changeSet:
+    id: 1716463869494-411
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_gemeindefunktionsiedlungsentwicklung
+- changeSet:
+    id: 1716463869494-412
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_generischesobjekt
+- changeSet:
+    id: 1716463869494-413
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_gewaesser
+- changeSet:
+    id: 1716463869494-414
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_grenze
+- changeSet:
+    id: 1716463869494-415
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_gruenzuggruenzaesur
+- changeSet:
+    id: 1716463869494-416
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_hochwasserschutz
+- changeSet:
+    id: 1716463869494-417
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_industriegewerbe
+- changeSet:
+    id: 1716463869494-418
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_klimaschutz
+- changeSet:
+    id: 1716463869494-419
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_kommunikation
+- changeSet:
+    id: 1716463869494-420
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_kulturellessachgut
+- changeSet:
+    id: 1716463869494-421
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_kulturlandschaft
+- changeSet:
+    id: 1716463869494-422
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_laermschutzbauschutz
+- changeSet:
+    id: 1716463869494-423
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_laermschutzbereich
+- changeSet:
+    id: 1716463869494-424
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_landwirtschaft
+- changeSet:
+    id: 1716463869494-425
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_legendenobjekt
+- changeSet:
+    id: 1716463869494-426
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_luftverkehr
+- changeSet:
+    id: 1716463869494-427
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_naturlandschaft
+- changeSet:
+    id: 1716463869494-428
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_naturschutzrechtlichesschutzgebiet
+- changeSet:
+    id: 1716463869494-429
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_plan
+- changeSet:
+    id: 1716463869494-430
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_planungsraum
+- changeSet:
+    id: 1716463869494-431
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_radwegwanderweg
+- changeSet:
+    id: 1716463869494-432
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_rasterplanaenderung
+- changeSet:
+    id: 1716463869494-433
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_raumkategorie
+- changeSet:
+    id: 1716463869494-434
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_rohstoff
+- changeSet:
+    id: 1716463869494-435
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_rohstoffsicherung
+- changeSet:
+    id: 1716463869494-436
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_schienenverkehr
+- changeSet:
+    id: 1716463869494-437
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_siedlung
+- changeSet:
+    id: 1716463869494-438
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sonstigeinfrastruktur
+- changeSet:
+    id: 1716463869494-439
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sonstigerfreiraumschutz
+- changeSet:
+    id: 1716463869494-440
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sonstigerfreiraumstruktur
+- changeSet:
+    id: 1716463869494-441
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sonstigersiedlungsbereich
+- changeSet:
+    id: 1716463869494-442
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sonstigesiedlungsstruktur
+- changeSet:
+    id: 1716463869494-443
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sonstverkehr
+- changeSet:
+    id: 1716463869494-444
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sozialeinfrastruktur
+- changeSet:
+    id: 1716463869494-445
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sperrgebiet
+- changeSet:
+    id: 1716463869494-446
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_sportanlage
+- changeSet:
+    id: 1716463869494-447
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_strassenverkehr
+- changeSet:
+    id: 1716463869494-448
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_textabschnitt
+- changeSet:
+    id: 1716463869494-449
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_verkehr
+- changeSet:
+    id: 1716463869494-450
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_vorbhochwasserschutz
+- changeSet:
+    id: 1716463869494-451
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_wasserschutz
+- changeSet:
+    id: 1716463869494-452
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_wasserverkehr
+- changeSet:
+    id: 1716463869494-453
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_wasserwirtschaft
+- changeSet:
+    id: 1716463869494-454
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_windenergienutzung
+- changeSet:
+    id: 1716463869494-455
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_wohnensiedlung
+- changeSet:
+    id: 1716463869494-456
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_rp_zentralerort
+- changeSet:
+    id: 1716463869494-457
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_baubeschraenkung
+- changeSet:
+    id: 1716463869494-458
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_bauverbotszone
+- changeSet:
+    id: 1716463869494-459
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_bereich
+- changeSet:
+    id: 1716463869494-460
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_bodenschutzrecht
+- changeSet:
+    id: 1716463869494-461
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_denkmalschutzrecht
+- changeSet:
+    id: 1716463869494-462
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_forstrecht
+- changeSet:
+    id: 1716463869494-463
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_gebiet
+- changeSet:
+    id: 1716463869494-464
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_gelaendemorphologie
+- changeSet:
+    id: 1716463869494-465
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_gewaesser
+- changeSet:
+    id: 1716463869494-466
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_grenze
+- changeSet:
+    id: 1716463869494-467
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_linienobjekt
+- changeSet:
+    id: 1716463869494-468
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_luftverkehrsrecht
+- changeSet:
+    id: 1716463869494-469
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_objekt
+- changeSet:
+    id: 1716463869494-470
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_plan
+- changeSet:
+    id: 1716463869494-471
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_rasterplanaenderung
+- changeSet:
+    id: 1716463869494-472
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_schienenverkehrsrecht
+- changeSet:
+    id: 1716463869494-473
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietnaturschutzrecht
+- changeSet:
+    id: 1716463869494-474
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietsonstigesrecht
+- changeSet:
+    id: 1716463869494-475
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_schutzgebietwasserrecht
+- changeSet:
+    id: 1716463869494-476
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_sichtflaeche
+- changeSet:
+    id: 1716463869494-477
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_sonstigesrecht
+- changeSet:
+    id: 1716463869494-478
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehr
+- changeSet:
+    id: 1716463869494-479
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_strassenverkehrsrecht
+- changeSet:
+    id: 1716463869494-480
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnitt
+- changeSet:
+    id: 1716463869494-481
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_textabschnittflaeche
+- changeSet:
+    id: 1716463869494-482
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserrecht
+- changeSet:
+    id: 1716463869494-483
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_so_wasserwirtschaft
+- changeSet:
+    id: 1716463869494-484
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_xp_begruendungabschnitt
+- changeSet:
+    id: 1716463869494-485
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_xp_fpo
+- changeSet:
+    id: 1716463869494-486
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_xp_lpo
+- changeSet:
+    id: 1716463869494-487
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_xp_lto
+- changeSet:
+    id: 1716463869494-488
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_xp_nutzungsschablone
+- changeSet:
+    id: 1716463869494-489
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_xp_ppo
+- changeSet:
+    id: 1716463869494-490
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_xp_praesentationsobjekt
+- changeSet:
+    id: 1716463869494-491
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_xp_pto
+- changeSet:
+    id: 1716463869494-492
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_xp_rasterdarstellung
+- changeSet:
+    id: 1716463869494-493
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_xp_rasterplanbasis
+- changeSet:
+    id: 1716463869494-494
+    author: lyn (generated)
+    changes:
+    - dropColumn:
+        columnName: xplan_gueltigkeitende
+        schemaName: xplansynarchive
+        tableName: xplan_xp_textabschnitt
+

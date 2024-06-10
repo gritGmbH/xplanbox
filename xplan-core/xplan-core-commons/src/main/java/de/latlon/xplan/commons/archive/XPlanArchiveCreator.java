@@ -32,7 +32,6 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -47,16 +46,6 @@ import static java.lang.String.format;
 public class XPlanArchiveCreator {
 
 	public static final String MAIN_FILE = "xplan.gml";
-
-	private final LocalCenterToDistrictMapper localCenterToDistrictMapper;
-
-	public XPlanArchiveCreator() {
-		this(null);
-	}
-
-	public XPlanArchiveCreator(LocalCenterToDistrictMapper localCenterToDistrictMapper) {
-		this.localCenterToDistrictMapper = localCenterToDistrictMapper;
-	}
 
 	/**
 	 * Creates a new {@link XPlanArchive} instance from the given file.
@@ -93,9 +82,8 @@ public class XPlanArchiveCreator {
 			List<ZipEntryWithContent> zipEntries = new ArrayList<>();
 			Pair<MainZipEntry, ArchiveMetadata> mainEntry = readEntries(inputStream, zipEntries);
 			ArchiveMetadata archiveMetadata = mainEntry.getSecond();
-			List<String> districts = mapDistricts(archiveMetadata);
 			return new XPlanArchive(zipEntries, name, archiveMetadata.getVersion(), archiveMetadata.getType(),
-					archiveMetadata.getCrs(), districts, archiveMetadata.hasVerbundenerPlanBereich(),
+					archiveMetadata.getCrs(), archiveMetadata.hasVerbundenerPlanBereich(),
 					archiveMetadata.hasMultipleXPlanElements());
 		}
 		catch (XMLStreamException | FactoryConfigurationError e) {
@@ -130,9 +118,8 @@ public class XPlanArchiveCreator {
 		try {
 			Pair<MainZipEntry, ArchiveMetadata> mainEntry = xPlanGmlReader.createZipEntry(name, inputStream);
 			ArchiveMetadata archiveMetadata = mainEntry.getSecond();
-			List<String> districts = mapDistricts(archiveMetadata);
 			return new XPlanArchive(mainEntry.first, name, archiveMetadata.getVersion(), archiveMetadata.getType(),
-					archiveMetadata.getCrs(), districts, archiveMetadata.hasVerbundenerPlanBereich(),
+					archiveMetadata.getCrs(), archiveMetadata.hasVerbundenerPlanBereich(),
 					archiveMetadata.hasMultipleXPlanElements());
 		}
 		catch (XMLStreamException e) {
@@ -143,15 +130,6 @@ public class XPlanArchiveCreator {
 		finally {
 			inputStream.close();
 		}
-	}
-
-	private List<String> mapDistricts(ArchiveMetadata archiveMetadata) {
-		List<String> districts = archiveMetadata.getDistricts();
-		if (localCenterToDistrictMapper == null)
-			return districts;
-		return districts.stream()
-			.map(district -> localCenterToDistrictMapper.mapToDistrict(district))
-			.collect(Collectors.toList());
 	}
 
 	private Pair<MainZipEntry, ArchiveMetadata> readEntries(InputStream inputStream,
