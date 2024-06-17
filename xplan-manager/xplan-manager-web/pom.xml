@@ -21,6 +21,12 @@
       <plugin>
         <groupId>net.ltgt.gwt.maven</groupId>
         <artifactId>gwt-maven-plugin</artifactId>
+        <configuration>
+		  <jvmArgs>
+            <jvmArg>-Xmx500M</jvmArg>
+            <jvmArg>--add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED</jvmArg>
+		  </jvmArgs>
+		</configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

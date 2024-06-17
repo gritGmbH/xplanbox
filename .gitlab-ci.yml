@@ -160,7 +160,7 @@ dependency-check:
 #  image: maven:3.8.6-jdk-11
   image: registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest
   script:
-  - 'mvn org.owasp:dependency-check-maven:aggregate -Ddependency-check.skip=false -Dformats=JUNIT'
+  - 'mvn org.owasp:dependency-check-maven:aggregate -Ddependency-check.skip=false'
   artifacts:
     when: always
     paths:

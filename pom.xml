@@ -525,7 +525,7 @@
         <artifactId>dependency-check-maven</artifactId>
         <version>${owasp.version}</version>
         <configuration>
-          <formats>HTML,XML</formats>
+          <formats>HTML,JUNIT,XML</formats>
           <nvdValidForHours>24</nvdValidForHours>
           <failBuildOnCVSS>10</failBuildOnCVSS>
           <knownExploitedEnabled>false</knownExploitedEnabled>
@@ -651,7 +651,9 @@
           <extensions>true</extensions>
           <configuration>
             <moduleName>${gwt.moduleName}</moduleName>
-            <jvmArgs>-Xmx500M</jvmArgs>
+            <jvmArgs>
+			  <jvmArg>-Xmx500M</jvmArg>
+			</jvmArgs>
           </configuration>
           <executions>
             <execution>
