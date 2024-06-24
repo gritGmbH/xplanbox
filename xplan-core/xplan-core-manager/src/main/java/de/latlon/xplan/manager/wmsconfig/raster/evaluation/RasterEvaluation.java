@@ -20,19 +20,18 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster.evaluation;
 
-import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
+import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public interface RasterEvaluation {
 
-	List<RasterEvaluationResult> evaluate(XPlanArchiveContentAccess archive, List<ArchiveEntry> rasterplanZipEntries)
+	RasterEvaluationResult evaluate(XPlanArchiveContentAccess archive, ExternalReference rasterplanZipEntry)
 			throws IOException;
 
 	boolean isSupportedFile(String fileName);

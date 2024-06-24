@@ -35,7 +35,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
+import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationSource.geotiff;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -46,7 +46,7 @@ public class CoreTestContext {
 	@Primary
 	public ManagerConfiguration managerConfiguration() {
 		ManagerConfiguration mockedConfiguration = mock(ManagerConfiguration.class);
-		when(mockedConfiguration.getRasterConfigurationType()).thenReturn(gdal);
+		when(mockedConfiguration.getRasterConfigurationType()).thenReturn(geotiff);
 		when(mockedConfiguration.getRasterConfigurationCrs()).thenReturn("EPSG:25832");
 		when(mockedConfiguration.getSortConfiguration()).thenReturn(new SortConfiguration());
 		return mockedConfiguration;

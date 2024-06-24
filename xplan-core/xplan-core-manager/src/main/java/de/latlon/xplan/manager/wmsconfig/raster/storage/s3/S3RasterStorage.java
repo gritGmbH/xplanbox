@@ -25,15 +25,9 @@ import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.storage.s3.S3Object;
 import de.latlon.xplan.manager.storage.s3.S3Storage;
-import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Vector;
 
 /**
  * {@link RasterStorage} implementation storing and deleting raster files in a S3 bucket.
@@ -43,30 +37,20 @@ import java.util.Vector;
  */
 public class S3RasterStorage extends S3Storage implements RasterStorage {
 
-	private final GdalRasterAdapter rasterAdapter;
-
-	public S3RasterStorage(GdalRasterAdapter rasterAdapter, AmazonS3 client, String bucketName) {
+	public S3RasterStorage(AmazonS3 client, String bucketName) {
 		super(client, bucketName);
-		this.rasterAdapter = rasterAdapter;
 	}
 
 	@Override
 	@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN")
-	public String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive,
-			StorageEvent storageEvent) throws IOException, StorageException {
+	public String addRasterFile(int planId, String referenceEntryName, String georefEntryName,
+			XPlanArchiveContentAccess archive, StorageEvent storageEvent) throws StorageException {
 		createBucketIfNotExists();
-		String objectKey = insertObject(planId, entryName, archive);
+		String objectKey = insertObject(planId, referenceEntryName, archive);
 		storageEvent.addInsertedKey(objectKey);
-		Vector<?> referencedFiles = rasterAdapter.getReferencedFiles(archive, entryName);
-		if (referencedFiles != null) {
-			for (Object referencedFile : referencedFiles) {
-				Path file = Paths.get(referencedFile.toString());
-				String newObjectKey = createKey(planId, file.getFileName().toString());
-				if (!newObjectKey.equals(objectKey)) {
-					insertObject(newObjectKey, file);
-					storageEvent.addInsertedKey(newObjectKey);
-				}
-			}
+		if (georefEntryName != null) {
+			String georefObjectKey = insertObject(planId, georefEntryName, archive);
+			storageEvent.addInsertedKey(georefObjectKey);
 		}
 		return objectKey;
 	}

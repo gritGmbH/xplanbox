@@ -36,7 +36,6 @@ import java.util.Set;
 
 import static de.latlon.xplan.manager.edit.ArtefactType.NONRASTER;
 import static de.latlon.xplan.manager.edit.ArtefactType.RASTER;
-import static de.latlon.xplan.manager.edit.ArtefactType.RASTER_GEOREFERENCE;
 import static de.latlon.xplan.manager.edit.EditType.ADDED;
 import static de.latlon.xplan.manager.edit.EditType.REMOVED;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
@@ -143,7 +142,7 @@ public class ExternalReferenceUtils {
 		List<ExternalReference> externalRefsOriginal = externalReferencesOriginal.getRasterPlanBaseAndUpdateScans();
 		List<ExternalReference> externalRefModified = externalReferencesModified.getRasterPlanBaseAndUpdateScans();
 		return collectRemovedRefFileNames(attachmentUrlHandler, planId, originalFileNames, externalRefsOriginal,
-				externalRefModified, RASTER, RASTER_GEOREFERENCE);
+				externalRefModified, RASTER);
 	}
 
 	private static Set<EditedArtefact> collectRemovedNonRasterRefFileNames(AttachmentUrlHandler attachmentUrlHandler,
@@ -152,7 +151,7 @@ public class ExternalReferenceUtils {
 		List<ExternalReference> externalRefsOriginal = externalReferencesOriginal.getNonRasterRefs();
 		List<ExternalReference> externalRefModified = externalReferencesModified.getNonRasterRefs();
 		return collectRemovedRefFileNames(attachmentUrlHandler, planId, originalFileNames, externalRefsOriginal,
-				externalRefModified, NONRASTER, NONRASTER);
+				externalRefModified, NONRASTER);
 	}
 
 	private static List<EditedArtefact> collectAddedRasterRefFileNames(AttachmentUrlHandler attachmentUrlHandler,
@@ -161,7 +160,7 @@ public class ExternalReferenceUtils {
 		List<ExternalReference> externalRefsOriginal = externalReferencesOriginal.getRasterPlanBaseAndUpdateScans();
 		List<ExternalReference> externalRefsModified = externalReferencesModified.getRasterPlanBaseAndUpdateScans();
 		return collectAddedRefFileNames(attachmentUrlHandler, planId, uploadedFileNames, externalRefsModified,
-				externalRefsOriginal, RASTER, RASTER_GEOREFERENCE);
+				externalRefsOriginal, RASTER);
 	}
 
 	private static List<EditedArtefact> collectAddedNonRasterRefFileNames(AttachmentUrlHandler attachmentUrlHandler,
@@ -170,50 +169,62 @@ public class ExternalReferenceUtils {
 		List<ExternalReference> externalRefsOriginal = externalReferencesOriginal.getNonRasterRefs();
 		List<ExternalReference> externalRefsModified = externalReferencesModified.getNonRasterRefs();
 		return collectAddedRefFileNames(attachmentUrlHandler, planId, uploadedFileNames, externalRefsModified,
-				externalRefsOriginal, NONRASTER, NONRASTER);
+				externalRefsOriginal, NONRASTER);
 	}
 
 	private static List<EditedArtefact> collectAddedRefFileNames(AttachmentUrlHandler attachmentUrlHandler,
 			String planId, List<String> uploadedFileNames, List<ExternalReference> externalRefsModified,
-			List<ExternalReference> externalRefsOriginal, ArtefactType referenceType, ArtefactType georeferenceType) {
+			List<ExternalReference> externalRefsOriginal, ArtefactType referenceType) {
 		List<EditedArtefact> addedRefs = new ArrayList<>();
 		for (ExternalReference externalRefModified : externalRefsModified) {
 			String ref = externalRefModified.getReferenzUrl();
-			String fileNameRef = findOriginalFileName(attachmentUrlHandler, planId, uploadedFileNames, ref);
-			if (ref != null && !isReferenced(ref, externalRefsOriginal)
-					&& wasUploadedFileName(fileNameRef, uploadedFileNames)) {
-				addedRefs.add(new EditedArtefact(fileNameRef, referenceType, ADDED));
-			}
 			String georef = externalRefModified.getGeoRefUrl();
-			String fileNameGeoRef = findOriginalFileName(attachmentUrlHandler, planId, uploadedFileNames, georef);
-			if (georef != null && !isReferenced(georef, externalRefsOriginal)
-					&& wasUploadedFileName(fileNameGeoRef, uploadedFileNames))
-				addedRefs.add(new EditedArtefact(fileNameGeoRef, georeferenceType, ADDED));
+			String fileNameRef = getFileNameIfUploaded(attachmentUrlHandler, planId, uploadedFileNames,
+					externalRefsOriginal, ref);
+			String fileNameGeoRef = getFileNameIfUploaded(attachmentUrlHandler, planId, uploadedFileNames,
+					externalRefsOriginal, georef);
+			if (fileNameRef != null) {
+				addedRefs.add(new EditedArtefact(fileNameRef, fileNameGeoRef, referenceType, ADDED));
+			}
 		}
 		return addedRefs;
 	}
 
+	private static String getFileNameIfUploaded(AttachmentUrlHandler attachmentUrlHandler, String planId,
+			List<String> uploadedFileNames, List<ExternalReference> externalRefsOriginal, String ref) {
+		String fileName = findOriginalFileName(attachmentUrlHandler, planId, uploadedFileNames, ref);
+		if (ref != null && !isReferenced(ref, externalRefsOriginal) && wasUploadedFileName(fileName, uploadedFileNames))
+			return fileName;
+		return null;
+	}
+
 	private static Set<EditedArtefact> collectRemovedRefFileNames(AttachmentUrlHandler attachmentUrlHandler,
 			String planId, List<String> originalFileNames, List<ExternalReference> externalRefsOriginal,
-			List<ExternalReference> externalRefModified, ArtefactType referenceType, ArtefactType georeferenceType) {
+			List<ExternalReference> externalRefModified, ArtefactType referenceType) {
 		Set<EditedArtefact> removedRefs = new HashSet<>();
 		for (ExternalReference externalRefOriginal : externalRefsOriginal) {
 			String ref = externalRefOriginal.getReferenzUrl();
-			if (ref != null && !isReferenced(ref, externalRefModified)) {
-				String originalFileName = findOriginalFileName(attachmentUrlHandler, planId, originalFileNames, ref);
-				if (isNonHttpReference(originalFileName)) {
-					removedRefs.add(new EditedArtefact(originalFileName, referenceType, REMOVED));
-				}
-			}
 			String georef = externalRefOriginal.getGeoRefUrl();
-			if (georef != null && !isReferenced(georef, externalRefModified)) {
-				String originalFileName = findOriginalFileName(attachmentUrlHandler, planId, originalFileNames, georef);
-				if (isNonHttpReference(originalFileName)) {
-					removedRefs.add(new EditedArtefact(originalFileName, georeferenceType, REMOVED));
-				}
+			String fileNameRef = getOriginalFileNameIfRemoved(attachmentUrlHandler, planId, originalFileNames,
+					externalRefModified, ref);
+			String fileNameGeoRef = getOriginalFileNameIfRemoved(attachmentUrlHandler, planId, originalFileNames,
+					externalRefModified, georef);
+			if (fileNameRef != null) {
+				removedRefs.add(new EditedArtefact(fileNameRef, fileNameGeoRef, referenceType, REMOVED));
 			}
 		}
 		return removedRefs;
+	}
+
+	private static String getOriginalFileNameIfRemoved(AttachmentUrlHandler attachmentUrlHandler, String planId,
+			List<String> originalFileNames, List<ExternalReference> externalRefModified, String ref) {
+		if (ref != null && !isReferenced(ref, externalRefModified)) {
+			String originalFileName = findOriginalFileName(attachmentUrlHandler, planId, originalFileNames, ref);
+			if (isNonHttpReference(originalFileName)) {
+				return originalFileName;
+			}
+		}
+		return null;
 	}
 
 	private static String findOriginalFileName(AttachmentUrlHandler attachmentUrlHandler, String planId,

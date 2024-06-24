@@ -56,7 +56,6 @@
         <include>themes/rplan*</include>
         <include>themes/soplan*</include>
         <include>themes/planart-wms/**</include>
-        <include>gdal.ignore</include>
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>

@@ -28,6 +28,7 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.edit.RasterReference;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
@@ -99,11 +100,11 @@ public abstract class XPlanTransactionManager {
 	}
 
 	protected List<String> createRasterConfiguration(XPlanArchiveContentAccess archive,
-			List<String> rasterRefsFileNamesToAdd, int planId, XPlanType type, PlanStatus planStatus,
+			List<RasterReference> rasterRefsToAdd, int planId, XPlanType type, PlanStatus planStatus,
 			PlanStatus newPlanStatus, Date sortDate) {
 		int moreRecentPlanId = xplanDao.getPlanIdOfMoreRecentRasterPlan(sortDate);
-		return xPlanRasterManager.updateWmsWorkspaceWithRasterLayers(archive, rasterRefsFileNamesToAdd, planId,
-				moreRecentPlanId, type, planStatus, newPlanStatus, sortDate);
+		return xPlanRasterManager.updateWmsWorkspaceWithRasterLayers(archive, rasterRefsToAdd, planId, moreRecentPlanId,
+				type, planStatus, newPlanStatus, sortDate);
 	}
 
 	protected void startCreationOfDataServicesCoupling(int planId, XPlanFeatureCollection featureCollection, ICRS crs) {

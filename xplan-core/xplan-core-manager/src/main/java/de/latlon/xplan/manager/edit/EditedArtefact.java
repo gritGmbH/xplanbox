@@ -28,12 +28,15 @@ public class EditedArtefact {
 
 	private String fileName;
 
+	private String georefFileName;
+
 	private ArtefactType artefactType;
 
 	private EditType editType;
 
-	public EditedArtefact(String fileName, ArtefactType artefactType, EditType editType) {
+	public EditedArtefact(String fileName, String georefFileName, ArtefactType artefactType, EditType editType) {
 		this.fileName = fileName;
+		this.georefFileName = georefFileName;
 		this.artefactType = artefactType;
 		this.editType = editType;
 	}
@@ -43,6 +46,13 @@ public class EditedArtefact {
 	 */
 	public String getFileName() {
 		return fileName;
+	}
+
+	/**
+	 * @return the fileName of the georef, may be <code>null</code>
+	 */
+	public String getGeorefFileName() {
+		return georefFileName;
 	}
 
 	/**

@@ -194,22 +194,9 @@ echo $XPLAN_SERVICES_API_KEY >> xplan-workspaces/config.apikey
 
 # Rastertype
 echo "[$(date -Iseconds)] Configured rastertype: $XPLAN_INIT_RASTERTYPE"
-if [ $XPLAN_INIT_RASTERTYPE = "gdal" ]
-then
-  echo "[$(date -Iseconds)] Configure rastertype gdal"
-  sed -i 's/rasterConfigurationType=geotiff/rasterConfigurationType=gdal/g' xplan-manager-config/managerConfiguration.properties
-  mv xplan-workspaces/xplan-services-wms-workspace/gdal.ignore xplan-workspaces/xplan-services-wms-workspace/gdal.xml
-  mv xplan-workspaces/xplan-services-wms-workspace/datasources/tile/dummy.ignore xplan-workspaces/xplan-services-wms-workspace/datasources/tile/dummy.xml
-  mv xplan-workspaces/xplan-services-wms-workspace/datasources/tile/tilematrixset/dummy.ignore xplan-workspaces/xplan-services-wms-workspace/datasources/tile/tilematrixset/dummy.xml
-  mv xplan-workspaces/xplan-services-wms-workspace/layers/dummyrasterlayer.ignore xplan-workspaces/xplan-services-wms-workspace/layers/dummyrasterlayer.xml
-  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/<!--<LayerStoreId>dummyrasterlayer/<LayerStoreId>dummyrasterlayer/g' {} \;
-  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/dummyrasterlayer<\/LayerStoreId>-->/dummyrasterlayer<\/LayerStoreId>/g' {} \;
-elif [ $XPLAN_INIT_RASTERTYPE = "geotiff" ]
+if [ $XPLAN_INIT_RASTERTYPE = "geotiff" ]
 then
   echo "[$(date -Iseconds)] Configure rastertype geotiff"
-  rm xplan-workspaces/xplan-services-wms-workspace/datasources/tile/dummy.ignore
-  rm xplan-workspaces/xplan-services-wms-workspace/datasources/tile/tilematrixset/dummy.ignore
-  rm xplan-workspaces/xplan-services-wms-workspace/layers/dummyrasterlayer.ignore
 else
   echo "[$(date -Iseconds)] Configure rastertype mapserver"
   sed -i 's/rasterConfigurationType=geotiff/rasterConfigurationType=mapserver/g' xplan-manager-config/managerConfiguration.properties

@@ -42,7 +42,7 @@ und müssen vollständig mit den Referenzen im Dokument übereinstimmen!
 [[referenzierung-von-rasterdaten-im-xplangml]]
 ===== Referenzierung von Rasterdaten im XPlanGML
 
-Die Rasterdaten müssen mit in dem XPlanArchiv enthalten sein und neben der Datei __xplan.gml__ liegen.
+Die Rasterdaten müssen mit in dem XPlanArchiv enthalten sein und im Basisverzeichnis neben der Datei __xplan.gml__ liegen.
 
 Innerhalb des XPlanGML müssen die Rasterdateien wie folgt referenziert
 sein:
@@ -174,25 +174,15 @@ Raster-Konfigurationstyp abhängig.
 
 IMPORTANT: Dies kann nur zentral für die xPlanBox konfiguriert und nicht durch den Nutzer geändert werden. Hinweise zur Konfiguration sind im Betriebshandbuch zu finden.
 
-Unterschieden wird dabei zwischen den Konfigurationstypen _geotiff_ und
-__gdal__:
-
-
-*geotiff* - Konfigurationstyp:
-
-  * Es werden ausschließlich Rasterdaten im https://www.ogc.org/standards/geotiff[GeoTIFF] Format unterstützt.
-
-*gdal* - Konfigurationstyp:
-
-  * Es werden zusätzlich zu GeoTIFF die Formate TIFF und PNG mit World-File unterstützt.
+Unterschieden wird dabei zwischen Rasterdatenformaten mit oder ohne World-File.
 
 Folgende Voraussetzung werden an die einzelnen Formate gestellt:
 
 *GeoTIFF*:
 
+  * Rasterdaten liegen im Format https://www.ogc.org/standards/geotiff[GeoTIFF] vor.
   * GeoTIFF-Dateien liegen als gekachelte GeoTiff-Dateien vor.
-  * GeoTIFF-Dateien liegen in dem Koordinatenreferenzsystem vor, welches
-  für den XPlanManager konfiguriert ist.
+  * GeoTIFF-Dateien liegen in dem Koordinatenreferenzsystem vor, welches für den XPlanManager konfiguriert ist.
   * GeoTIFF-Dateien enthalten ihre räumliche Ausdehnung als Metatags innerhalb der Datei.
   * Zur Optimierung der Antwortzeit beim Zugriff auf die GeoTIFF-Dateien
   wird empfohlen, in den GeoTIFF-Dateien Overlays mit niedriger
@@ -200,7 +190,8 @@ Folgende Voraussetzung werden an die einzelnen Formate gestellt:
 
 *TIFF*:
 
-* TIFF-Dateien enthalten ihre räumliche Ausdehnung in dem ausgelagerten World-File (tfw-Datei).
+  * TIFF-Dateien enthalten ihre räumliche Ausdehnung in dem ausgelagerten World-File (tfw-Datei).
+  * TIFF-Dateien liegen in dem Koordinatenreferenzsystem vor, welches für den XPlanManager konfiguriert ist.
 
 *PNG*:
 
@@ -216,21 +207,6 @@ Folgende Voraussetzung werden an die einzelnen Formate gestellt:
   sein. Für den XPlanManagerWeb ist dies keine Voraussetzung, da der
   Fachadministrator beim Import der Daten das Koordinatenreferenzsystem der
   PNG-Datei über einen Dialog bestätigen kann.
-
-[[anlegen-von-deegree-konfigurationsstrukturen-fuer-rasterdaten]]
-==== Anlegen von deegree Konfigurationsstrukturen für Rasterdaten
-
-Beim Import von XPlanArchiven mit Rasterdaten werden Konfigurationsdateien für den XPlanWMS automatisch angelegt, die eine Darstellung im XPlanWMS ermöglichen.
-
-Für jede importierte Rasterdatei werden folgende Konfigurationen
-angelegt:
-
-* eine Konfigurationsdatei für einen GeoTiffTileStore oder
-GDALTileStore,
-* eine Konfigurationsdatei für einen TileLayer und
-* in der Ebenenbaum-Konfiguration wird ein neuer Layer in die
-Kategorieebene eingefügt, die die Rasterpläne nach Datum sortiert
-beinhaltet.
 
 [[sortierung-textabschnitte]]
 ===== Sortierung von Textabschnitten

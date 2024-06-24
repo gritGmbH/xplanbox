@@ -20,35 +20,29 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster.config;
 
-import de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType;
-import org.deegree.commons.gdal.jaxb.GDALSettings;
-import org.deegree.commons.gdal.jaxb.GDALSettings.GDALOption;
+import de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationSource;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
 import org.deegree.commons.metadata.description.jaxb.LanguageStringType;
 import org.deegree.layer.persistence.base.jaxb.ScaleDenominatorsType;
 import org.deegree.layer.persistence.tile.jaxb.TileLayerType;
 import org.deegree.layer.persistence.tile.jaxb.TileLayers;
-import org.deegree.tile.persistence.gdal.jaxb.GdalTileStoreJaxb;
 import org.deegree.tile.persistence.geotiff.jaxb.GeoTIFFTileStoreJAXB;
-import org.deegree.tile.tilematrixset.gdal.jaxb.GdalTileMatrixSetConfig;
 import org.deegree.tile.tilematrixset.geotiff.jaxb.GeoTIFFTileMatrixSetConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.PropertyException;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.function.BiPredicate;
 import java.util.stream.Stream;
 
-import static java.lang.Boolean.TRUE;
 import static jakarta.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
+import static java.lang.Boolean.TRUE;
 
 /**
  * Creates/deletes configuration and data files for raster layers in the WMS workspace.
@@ -62,7 +56,7 @@ public class WorkspaceRasterLayerManager {
 
 	private final Path wmsWorkspace;
 
-	private final RasterConfigurationType tileStoreType;
+	private final RasterConfigurationSource tileStoreType;
 
 	private final String rasterConfigurationCrs;
 
@@ -72,7 +66,7 @@ public class WorkspaceRasterLayerManager {
 	 * @param tileStoreType the type of the tile store to create, never <code>null</code>
 	 * @param rasterConfigurationCrs the crs of the configuration, never <code>null</code>
 	 */
-	public WorkspaceRasterLayerManager(File wmsWorkspace, RasterConfigurationType tileStoreType,
+	public WorkspaceRasterLayerManager(File wmsWorkspace, RasterConfigurationSource tileStoreType,
 			String rasterConfigurationCrs) {
 		this.wmsWorkspace = wmsWorkspace.toPath();
 		this.tileStoreType = tileStoreType;
@@ -84,9 +78,6 @@ public class WorkspaceRasterLayerManager {
 		switch (tileStoreType) {
 			case geotiff:
 				createGeotiffConfiguration(rasterId, rasterFileName, minScaleDenominator, maxScaleDenominator);
-				break;
-			default:
-				createGdalConfiguration(rasterId, rasterFileName, minScaleDenominator, maxScaleDenominator);
 				break;
 		}
 	}
@@ -150,18 +141,6 @@ public class WorkspaceRasterLayerManager {
 		});
 	}
 
-	/**
-	 * @deprecated will be removed in a future version.
-	 */
-	@Deprecated
-	private void createGdalConfiguration(String rasterId, String rasterFileName, double minScaleDenominator,
-			double maxScaleDenominator) throws JAXBException, IOException {
-		createGdalConfiguration();
-		createGdalTileMatrixSetConfig(rasterId, rasterFileName);
-		createGdalTileStoreConfig(rasterId, rasterFileName);
-		createTileLayerConfig(rasterId, minScaleDenominator, maxScaleDenominator);
-	}
-
 	private void createGeotiffConfiguration(String rasterId, String rasterFileName, double minScaleDenominator,
 			double maxScaleDenominator) throws JAXBException, IOException {
 		createGeotiffTileMatrixSetConfig(rasterId, rasterFileName);
@@ -213,17 +192,6 @@ public class WorkspaceRasterLayerManager {
 		marshallConfig(cfg, "org.deegree.tile.tilematrixset.geotiff.jaxb", tilematrixsetFile);
 	}
 
-	private void createGdalTileMatrixSetConfig(String rasterId, String rasterFileName)
-			throws JAXBException, IOException {
-		GdalTileMatrixSetConfig cfg = new GdalTileMatrixSetConfig();
-		cfg.setStorageCRS(rasterConfigurationCrs);
-		cfg.setFile("../../../data/" + rasterFileName);
-		Path tilematrixsetDir = wmsWorkspace.resolve("datasources/tile/tilematrixset/");
-		createDirectory(tilematrixsetDir);
-		Path tilematrixsetFile = tilematrixsetDir.resolve(rasterId + ".xml");
-		marshallConfig(cfg, "org.deegree.tile.tilematrixset.gdal.jaxb", tilematrixsetFile);
-	}
-
 	private void createGeotiffTileStoreConfig(String rasterId, String rasterFileName) throws JAXBException {
 		GeoTIFFTileStoreJAXB cfg = new GeoTIFFTileStoreJAXB();
 		GeoTIFFTileStoreJAXB.TileDataSet tds = new GeoTIFFTileStoreJAXB.TileDataSet();
@@ -233,29 +201,6 @@ public class WorkspaceRasterLayerManager {
 		cfg.getTileDataSet().add(tds);
 		Path file = wmsWorkspace.resolve("datasources/tile/" + rasterId + ".xml");
 		marshallConfig(cfg, "org.deegree.tile.persistence.geotiff.jaxb", file);
-	}
-
-	private void createGdalTileStoreConfig(String rasterId, String rasterFileName)
-			throws JAXBException, PropertyException {
-		GdalTileStoreJaxb cfg = new GdalTileStoreJaxb();
-		GdalTileStoreJaxb.TileDataSet tds = new GdalTileStoreJaxb.TileDataSet();
-		tds.setIdentifier(rasterId);
-		tds.setFile("../../data/" + rasterFileName);
-		tds.setTileMatrixSetId(rasterId);
-		cfg.getTileDataSet().add(tds);
-		Path file = wmsWorkspace.resolve("datasources/tile/" + rasterId + ".xml");
-		marshallConfig(cfg, "org.deegree.tile.persistence.gdal.jaxb", file);
-	}
-
-	private void createGdalConfiguration() throws JAXBException {
-		GDALSettings gdalSettings = new GDALSettings();
-		gdalSettings.setOpenDatasets(BigInteger.valueOf(10));
-		GDALOption gdalOption = new GDALOption();
-		gdalOption.setName("gdalSettings.getGDALOption()");
-		gdalOption.setValue("1000");
-		gdalSettings.getGDALOption().add(gdalOption);
-		Path file = wmsWorkspace.resolve("gdal.xml");
-		marshallConfig(gdalSettings, "org.deegree.commons.gdal.jaxb", file);
 	}
 
 	private void createDirectory(Path directoryToCreate) throws IOException {

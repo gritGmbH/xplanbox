@@ -84,7 +84,6 @@ NOTE: Diese Schritte sind nur erforderlich, wenn nur der der XPlanValidator inst
 
 * [ ] Konfiguration im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wms-workspace/_ aktualisiert:
   ** _<BACKUP_CONFIG>/xplan-services-wms-workspace/jdbc/_ kopiert
-  ** _<BACKUP_CONFIG>/xplan-services-wms-workspace/gdal.xml_ kopiert, wenn GDAL genutzt wird (siehe <<installation-gdal>> und <<konfiguration-gdal>>)
   ** _<BACKUP_CONFIG>/xplan-services-wms-workspace/services/html.gfi_ kopiert
   ** _<BACKUP_CONFIG>/xplan-services-wms-workspace/data/_ zurückkopiert
   ** _<BACKUP_CONFIG>/xplan-services-wms-workspace/datasources/tile_ zurückkopiert

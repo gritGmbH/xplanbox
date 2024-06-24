@@ -81,14 +81,14 @@ public class ManagerSystemConfig extends SystemConfig {
 	}
 
 	/**
-	 * Typ der Rasterdatenhaltung: gdal oder tiff
+	 * Typ der Rasterdatenhaltung: geotiff of mapserver
 	 **/
 	public ManagerSystemConfig rasterType(String rasterType) {
 		this.rasterType = rasterType;
 		return this;
 	}
 
-	@Schema(example = "gdal", description = "Typ der Rasterdatenhaltung: gdal oder tiff")
+	@Schema(example = "geotiff", description = "Typ der Rasterdatenhaltung: geotiff or mapserver")
 	@JsonProperty("rasterType")
 	public String getRasterType() {
 		return rasterType;
@@ -189,7 +189,7 @@ public class ManagerSystemConfig extends SystemConfig {
 	}
 
 	/**
-	 * Typ der Rasterdatenhaltung: gdal oder tiff
+	 * URL ueber die alle Anlagen zu einem Plan heruntergeladen werden koennen
 	 **/
 	public ManagerSystemConfig documentUrl(String documentUrl) {
 		this.documentUrl = documentUrl;

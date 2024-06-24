@@ -15,7 +15,6 @@ MapServer 8.0 kann über den Paketmanager der Linux-Distribution installiert wer
 [[installation-mapserver-windows]]
 ==== Windows
 
-MapServer 8.0 für Windows kann bei http://www.gisinternals.com/[GISInternals]
-heruntergeladen werden. Weitere Information zur Auswahl des passenden Pakets und Installation sind im Kapitel <<installation-gdal-windows>> zu finden.
+MapServer 8.0 für Windows kann bei http://www.gisinternals.com/[GISInternals] heruntergeladen werden.
 
 

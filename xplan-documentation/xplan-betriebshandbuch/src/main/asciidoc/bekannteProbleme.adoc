@@ -39,24 +39,6 @@ Wenn die erzeugten deegree Konfigurationsdateien für Layer und Themes leere XML
 - Zusätzlich muss sichergestellt sein, dass im Java Classpath des Prozesses, der den XPlanManagerCLI aufruft, keine anderen JAXP (SAX/DOM) Implementierungen vorhanden sind als die Dateien _Saxon-HE-9.9.x.jar_ und _xalan-2.7.2.jar_.
 - Eine Umgehung des Fehlers ist möglich, wenn die leeren XML-Namensraum-Attribute manuell entfernt werden. Dann ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
 
-[[troubleshooting-managercli-gdal]]
-=== XPlanManagerCLI - Fehler aufgrund fehlender Installation von GDAL
-
-==== Problembeschreibung
-
-Tritt bei Aufruf des XPlanManagerCLI der Fehler `java.lang.UnsatisfiedLinkError: no gdalalljni in java.library.path` auf, dann ist eine Nutzung des XPlanManagerCLI nicht möglich. Dieser Fehler tritt auch dann auf, wenn in der Konfigurationsdatei _managerconfiguration.properties_ das Rasterdatenformat GeoTIFF für die Datenhaltung des XPlanWMS über den Eintrag `rasterConfigurationType=geotiff` gesetzt ist.
-
-==== Lösungsansätze
-
-* Ist das Rasterdatenformat *GeoTIFF* für die Datenhaltung des XPlanWMS über den Eintrag `rasterConfigurationType=geotiff` konfiguriert, müssen folgenden Dateien aus dem _<DEEGREE_WORKSPACE_ROOT>/xplan-services-wms-workspace/_ gelöscht werden:
-
-** _datasources/tile/dummy.ignore_
-** _datasources/tile/tilematrixset/dummy.ignore_
-** _layers/dummyrasterlayer.ignore_
-** _gdal.ignore_
-
-* Ist das Rasterdatenformat *GDAL* für die Datenhaltung des XPlanWMS über den Eintrag `rasterConfigurationType=gdal` konfiguriert, muss die Installation und Konfiguration der GDAL-Bibliothek wie im Abschnitt <<installation-gdal>> beschrieben erfolgen.
-
 [[troubleshooting-resources]]
 === Kapazitätsbezogene Einschränkungen
 

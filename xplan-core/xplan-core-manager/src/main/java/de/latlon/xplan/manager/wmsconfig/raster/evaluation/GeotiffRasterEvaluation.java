@@ -22,13 +22,13 @@ package de.latlon.xplan.manager.wmsconfig.raster.evaluation;
 
 import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
+import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
+import de.latlon.xplan.manager.wmsconfig.raster.RasterUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -44,19 +44,15 @@ public class GeotiffRasterEvaluation implements RasterEvaluation {
 	}
 
 	@Override
-	public List<RasterEvaluationResult> evaluate(XPlanArchiveContentAccess archive,
-			List<ArchiveEntry> rasterplanZipEntries) throws IOException {
-		List<RasterEvaluationResult> results = new ArrayList<>();
-		for (ArchiveEntry entry : rasterplanZipEntries) {
-			String entryName = entry.getName();
-			String lowerCaseEntryName = entryName.toLowerCase();
-			boolean supportedImageFormat = false;
-			if (lowerCaseEntryName.endsWith("tif") || lowerCaseEntryName.endsWith("tiff"))
-				supportedImageFormat = true;
-			results.add(new RasterEvaluationResult(entryName, null, configuredRasterCrs, false, true,
-					supportedImageFormat));
-		}
-		return results;
+	public RasterEvaluationResult evaluate(XPlanArchiveContentAccess archive, ExternalReference rasterplanZipEntry)
+			throws IOException {
+		ArchiveEntry entry = RasterUtils.findRasterplanZipEntry(archive, rasterplanZipEntry.getReferenzUrl());
+		String entryName = entry.getName();
+		String lowerCaseEntryName = entryName.toLowerCase();
+		boolean supportedImageFormat = false;
+		if (lowerCaseEntryName.endsWith("tif") || lowerCaseEntryName.endsWith("tiff"))
+			supportedImageFormat = true;
+		return new RasterEvaluationResult(entryName, null, configuredRasterCrs, false, true, supportedImageFormat);
 	}
 
 	@Override

@@ -13,8 +13,6 @@ include::installation.adoc[]
 
 include::konfigurationApplikationsserver.adoc[]
 
-include::gdal.adoc[]
-
 include::hale-cli.adoc[]
 
 include::mapserver.adoc[]

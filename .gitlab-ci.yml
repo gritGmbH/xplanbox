@@ -98,7 +98,7 @@ maven-prepare-docker-contexts-web-apps:
 maven-prepare-docker-contexts-others:
   extends: .maven-prepare-docker-contexts
   variables:
-    mvnProjects: ':xplan-docker-tomcat,:xplan-docker-tomcat-gdal,:xplan-database-scripts,:xplan-mapproxy-docker,:xplan-mapserver-docker,:xplan-webservices-validator-wms,:xplan-services-docker,:xplan-tests-soapui,:xplan-tests-selenium'
+    mvnProjects: ':xplan-docker-tomcat,:xplan-database-scripts,:xplan-mapproxy-docker,:xplan-mapserver-docker,:xplan-webservices-validator-wms,:xplan-services-docker,:xplan-tests-soapui,:xplan-tests-selenium'
   artifacts:
     paths: # 2024.02.02: ~432M
     - './xplan-docker/**/target/docker/**/tmp/docker-build.tar.gz'

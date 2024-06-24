@@ -27,7 +27,6 @@ import de.latlon.xplan.manager.storage.s3.S3Object;
 import de.latlon.xplan.manager.storage.s3.config.AmazonS3TestContext;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.S3RasterStorageTestContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,8 +57,7 @@ import static org.mockito.Mockito.verify;
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(
-		classes = { AmazonS3RasterStorageContext.class, S3RasterStorageTestContext.class, AmazonS3TestContext.class })
+@ContextConfiguration(classes = { AmazonS3RasterStorageContext.class, AmazonS3TestContext.class })
 @ActiveProfiles({ "s3img", "mock" })
 @TestPropertySource("classpath:s3Mock.properties")
 public class S3RasterStorageTestManual {
@@ -75,7 +73,7 @@ public class S3RasterStorageTestManual {
 				inputStream);
 
 		StorageEvent storageEvent = mock(StorageEvent.class);
-		String key = s3RasterStorage.addRasterFile(1, "Blankenese29.png", archive, storageEvent);
+		String key = s3RasterStorage.addRasterFile(1, "Blankenese29.png", null, archive, storageEvent);
 
 		assertThat(key, is("1_Blankenese29.png"));
 		verify(storageEvent).addInsertedKey(eq("1_Blankenese29.png"));
@@ -97,7 +95,7 @@ public class S3RasterStorageTestManual {
 				inputStream);
 
 		StorageEvent storageEvent = mock(StorageEvent.class);
-		s3RasterStorage.addRasterFile(1, "Blankenese29.png", archive, storageEvent);
+		s3RasterStorage.addRasterFile(1, "Blankenese29.png", null, archive, storageEvent);
 	}
 
 }

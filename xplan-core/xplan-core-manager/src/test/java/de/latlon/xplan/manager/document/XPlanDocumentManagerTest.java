@@ -84,8 +84,8 @@ public class XPlanDocumentManagerTest {
 		String referenceToAdd = "test.png";
 		String referenceToRemove = "removed.png";
 		Path uploadedArtefact = createMockedPath(referenceToAdd);
-		EditedArtefact documentToAdd = new EditedArtefact(referenceToAdd, NONRASTER, ADDED);
-		EditedArtefact documentToRemove = new EditedArtefact(referenceToRemove, NONRASTER, REMOVED);
+		EditedArtefact documentToAdd = new EditedArtefact(referenceToAdd, null, NONRASTER, ADDED);
+		EditedArtefact documentToRemove = new EditedArtefact(referenceToRemove, null, NONRASTER, REMOVED);
 
 		EditedArtefacts editedArtefacts = new EditedArtefacts(Arrays.asList(documentToAdd, documentToRemove));
 		xPlanDocumentManager.updateDocuments(1, Collections.singletonList(uploadedArtefact), editedArtefacts);

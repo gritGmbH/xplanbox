@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -26,7 +26,7 @@ import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
-import de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType;
+import de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationSource;
 import de.latlon.xplan.manager.workspace.WorkspaceReloadAction;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import org.slf4j.Logger;
@@ -40,7 +40,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
+import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationSource.geotiff;
 import static de.latlon.xplan.manager.workspace.WorkspaceReloadAction.ALL;
 
 /**
@@ -81,7 +81,7 @@ public class ManagerConfiguration {
 
 	private String rasterConfigurationCrs;
 
-	private RasterConfigurationType rasterConfigurationType = gdal;
+	private RasterConfigurationSource rasterConfigurationType = geotiff;
 
 	private double rasterLayerMinScaleDenominator = Double.NaN;
 
@@ -119,10 +119,10 @@ public class ManagerConfiguration {
 	}
 
 	/**
-	 * @return the type to use in the raster configuration (gdal, geotiff or mapserver),
-	 * never <code>null</code>
+	 * @return the type to use in the raster configuration (geotiff or mapserver), never
+	 * <code>null</code>
 	 */
-	public RasterConfigurationType getRasterConfigurationType() {
+	public RasterConfigurationSource getRasterConfigurationType() {
 		return rasterConfigurationType;
 	}
 
@@ -288,16 +288,16 @@ public class ManagerConfiguration {
 		return null;
 	}
 
-	private RasterConfigurationType parseRasterConfigurationType(Properties loadProperties) {
+	private RasterConfigurationSource parseRasterConfigurationType(Properties loadProperties) {
 		String rasterConfigTypePropertyValue = loadProperties.getProperty(RASTER_CONFIG_TYPE);
 		if (rasterConfigTypePropertyValue != null) {
 			try {
-				return RasterConfigurationType.valueOf(rasterConfigTypePropertyValue);
+				return RasterConfigurationSource.valueOf(rasterConfigTypePropertyValue);
 			}
 			catch (IllegalArgumentException e) {
 			}
 		}
-		return gdal;
+		return geotiff;
 	}
 
 	private WorkspaceReloaderConfiguration parseWorkspaceReloaderConfiguration(Properties loadProperties) {

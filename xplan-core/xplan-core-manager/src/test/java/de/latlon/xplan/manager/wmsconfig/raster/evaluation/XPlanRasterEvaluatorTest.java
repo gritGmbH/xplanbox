@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -35,10 +35,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter.isGdalSuccessfullInitialized;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assume.assumeTrue;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -50,8 +48,6 @@ import static org.mockito.Mockito.when;
 public class XPlanRasterEvaluatorTest {
 
 	private static final String CONFIGURED_CRS = "epsg:4326";
-
-	private static final String REF = "reference/XPlanRasterManagerTest";
 
 	private static final String TIFF_EPSG4269_NAME = "XPlanRasterManagerTest_epsg4269.tiff";
 
@@ -67,13 +63,15 @@ public class XPlanRasterEvaluatorTest {
 
 	private static final String TXT_NAME = "XPlanRasterManagerTest.txt";
 
+	@Ignore("media type detected for dem30_geotiff_tiled.tiff by Apache Tika is application/octet-stream, which is not supported in XPlanArchives")
 	@Test
-	public void testEvaluateRasterdataGdalWithTiffEpsg4269() throws Exception {
-		assumeTrue(isGdalSuccessfullInitialized());
-
-		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterEvaluation(CONFIGURED_CRS));
-		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffEpsg4269(),
-				mockFeatureCollection());
+	public void testEvaluateRasterdataMapserverWithTiffEpsg4269() throws Exception {
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(
+				new MapserverRasterEvaluation(CONFIGURED_CRS));
+		XPlanArchive xPlanArchive = mockArchive(TIFF_EPSG4269_NAME, "dem30_geotiff_tiled.tiff");
+		XPlanFeatureCollection planFeatureCollection = mockFeatureCollection(TIFF_EPSG4269_NAME);
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(xPlanArchive,
+				planFeatureCollection);
 		RasterEvaluationResult result = results.get(0);
 
 		assertThat(result.getRasterName(), is(TIFF_EPSG4269_NAME));
@@ -83,12 +81,13 @@ public class XPlanRasterEvaluatorTest {
 	}
 
 	@Test
-	public void testEvaluateRasterdataGdalWithTiffEpsg4326() throws Exception {
-		assumeTrue(isGdalSuccessfullInitialized());
-
-		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterEvaluation(CONFIGURED_CRS));
-		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffEpsg4326(),
-				mockFeatureCollection());
+	public void testEvaluateRasterdataMapserverWithTiffEpsg4326() throws Exception {
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(
+				new MapserverRasterEvaluation(CONFIGURED_CRS));
+		XPlanArchive xPlanArchive = mockArchive(TIFF_EPSG4326_NAME, "dem30_geotiff_tiled_epsg4326.tiff");
+		XPlanFeatureCollection planFeatureCollection = mockFeatureCollection(TIFF_EPSG4326_NAME);
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(xPlanArchive,
+				planFeatureCollection);
 		RasterEvaluationResult result = results.get(0);
 
 		assertThat(result.getRasterName(), is(TIFF_EPSG4326_NAME));
@@ -98,12 +97,13 @@ public class XPlanRasterEvaluatorTest {
 	}
 
 	@Test
-	public void testEvaluateRasterdataGdalWithTiffNoCrs() throws Exception {
-		assumeTrue(isGdalSuccessfullInitialized());
-
-		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterEvaluation(CONFIGURED_CRS));
-		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffNoCrs(),
-				mockFeatureCollection());
+	public void testEvaluateRasterdataMapserverWithTiffNoCrs() throws Exception {
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(
+				new MapserverRasterEvaluation(CONFIGURED_CRS));
+		XPlanArchive xPlanArchive = mockArchive(TIFF_NO_CRS_NAME, "dem30.tiff");
+		XPlanFeatureCollection planFeatureCollection = mockFeatureCollection(TIFF_NO_CRS_NAME);
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(xPlanArchive,
+				planFeatureCollection);
 		RasterEvaluationResult result = results.get(0);
 
 		assertThat(result.getRasterName(), is(TIFF_NO_CRS_NAME));
@@ -113,12 +113,12 @@ public class XPlanRasterEvaluatorTest {
 	}
 
 	@Test
-	public void testEvaluateRasterdataGdalWithTxt() throws Exception {
-		assumeTrue(isGdalSuccessfullInitialized());
-
-		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterEvaluation("EPSG:25832"));
-		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTxt(),
-				mockFeatureCollection());
+	public void testEvaluateRasterdataMapserverWithTxt() throws Exception {
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new MapserverRasterEvaluation("EPSG:25832"));
+		XPlanArchive xPlanArchive = mockArchive(TXT_NAME, "test.txt");
+		XPlanFeatureCollection planFeatureCollection = mockFeatureCollection(TXT_NAME);
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(xPlanArchive,
+				planFeatureCollection);
 		RasterEvaluationResult result = results.get(0);
 
 		assertThat(result.getRasterName(), is(TXT_NAME));
@@ -127,14 +127,14 @@ public class XPlanRasterEvaluatorTest {
 		assertThat(result.isSupportedImageFormat(), is(false));
 	}
 
-	@Ignore
 	@Test
-	public void testEvaluateRasterdataGdalWithPng25833() throws Exception {
-		assumeTrue(isGdalSuccessfullInitialized());
-
-		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterEvaluation(CONFIGURED_CRS));
-		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithPngEpsg25833(),
-				mockFeatureCollection());
+	public void testEvaluateRasterdataMapserverWithPng25833() throws Exception {
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(
+				new MapserverRasterEvaluation(CONFIGURED_CRS));
+		XPlanArchive archive = mockArchiveWithPngEpsg25833(PNG_EPSG25833_NAME, PNG_EPSG25833_AUX_NAME);
+		XPlanFeatureCollection planFeatureCollection = mockFeatureCollection(PNG_EPSG25833_NAME,
+				PNG_EPSG25833_AUX_NAME);
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(archive, planFeatureCollection);
 		RasterEvaluationResult result = results.get(0);
 
 		assertThat(result.getRasterName(), is(PNG_EPSG25833_NAME));
@@ -146,9 +146,10 @@ public class XPlanRasterEvaluatorTest {
 	@Test
 	public void testEvaluateRasterdataGeotiffWithTiff() throws Exception {
 		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GeotiffRasterEvaluation(CONFIGURED_CRS));
-
-		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffNoCrs(),
-				mockFeatureCollection());
+		XPlanArchive xPlanArchive = mockArchive(TIFF_NO_CRS_NAME, "dem30.tiff");
+		XPlanFeatureCollection planFeatureCollection = mockFeatureCollection(TIFF_NO_CRS_NAME);
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(xPlanArchive,
+				planFeatureCollection);
 
 		RasterEvaluationResult result = results.get(0);
 
@@ -161,9 +162,10 @@ public class XPlanRasterEvaluatorTest {
 	@Test
 	public void testEvaluateRasterdataGeotiffWithPng() throws Exception {
 		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GeotiffRasterEvaluation(CONFIGURED_CRS));
-
-		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithPngNoCrs(),
-				mockFeatureCollection());
+		XPlanArchive xPlanArchive = mockArchive(PNG_NO_CRS_NAME, "png_nocrs.png");
+		XPlanFeatureCollection planFeatureCollection = mockFeatureCollection(PNG_NO_CRS_NAME);
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(xPlanArchive,
+				planFeatureCollection);
 
 		RasterEvaluationResult result = results.get(0);
 
@@ -173,44 +175,36 @@ public class XPlanRasterEvaluatorTest {
 		assertThat(result.isSupportedImageFormat(), is(false));
 	}
 
-	private XPlanArchive mockArchiveWithTiffEpsg4269() {
-		return mockArchive(TIFF_EPSG4269_NAME, "dem30_geotiff_tiled.tiff");
-	}
-
-	private XPlanArchive mockArchiveWithTiffNoCrs() {
-		return mockArchive(TIFF_NO_CRS_NAME, "dem30.tiff");
-	}
-
-	private XPlanArchive mockArchiveWithPngNoCrs() {
-		return mockArchive(PNG_NO_CRS_NAME, "png_nocrs.png");
-	}
-
-	private XPlanArchive mockArchiveWithTiffEpsg4326() {
-		return mockArchive(TIFF_EPSG4326_NAME, "dem30_geotiff_tiled_epsg4326.tiff");
-	}
-
-	private XPlanArchive mockArchiveWithTxt() {
-		return mockArchive(TXT_NAME, "test.txt");
-	}
-
 	private XPlanArchive mockArchive(String entryName, String resourceName) {
 		XPlanArchive mockedArchive = mock(XPlanArchive.class);
 		ZipEntryWithContent mockedEntry = mockZipEntry(mockedArchive, entryName, resourceName);
-		when(mockedArchive.getEntry(REF)).thenReturn(mockedEntry);
+		when(mockedArchive.getEntry(entryName)).thenReturn(mockedEntry);
+		when(mockedArchive.retrieveInputStreamFor(entryName))
+			.thenReturn(XPlanRasterEvaluatorTest.class.getResourceAsStream(resourceName))
+			.thenReturn(XPlanRasterEvaluatorTest.class.getResourceAsStream(resourceName));
 
 		List<ArchiveEntry> zipFileEntries = Collections.singletonList(mockedEntry);
 		doReturn(zipFileEntries).when(mockedArchive).getZipFileEntries();
 		return mockedArchive;
 	}
 
-	private XPlanArchive mockArchiveWithPngEpsg25833() {
+	private XPlanArchive mockArchiveWithPngEpsg25833(String entryNamePng, String entryNameAux) {
 		XPlanArchive mockedArchive = mock(XPlanArchive.class);
 
-		ZipEntryWithContent mockedPngEntry = mockZipEntry(mockedArchive, PNG_EPSG25833_NAME, "png_25833.png");
-		ZipEntryWithContent mockedAuxEntry = mockZipEntry(mockedArchive, PNG_EPSG25833_AUX_NAME,
-				"png_25833.png.aux.xml");
+		String resourceNamePng = "png_25833.png";
+		String resourceNameAux = "png_25833.png.aux.xml";
+		ZipEntryWithContent mockedPngEntry = mockZipEntry(mockedArchive, entryNamePng, resourceNamePng);
+		ZipEntryWithContent mockedAuxEntry = mockZipEntry(mockedArchive, entryNameAux, resourceNameAux);
 
-		when(mockedArchive.getEntry(REF)).thenReturn(mockedPngEntry);
+		when(mockedArchive.getEntry(entryNamePng)).thenReturn(mockedPngEntry);
+		when(mockedArchive.retrieveInputStreamFor(entryNamePng))
+			.thenReturn(XPlanRasterEvaluatorTest.class.getResourceAsStream(resourceNamePng))
+			.thenReturn(XPlanRasterEvaluatorTest.class.getResourceAsStream(resourceNamePng));
+
+		when(mockedArchive.getEntry(entryNameAux)).thenReturn(mockedPngEntry);
+		when(mockedArchive.retrieveInputStreamFor(entryNameAux))
+			.thenReturn(XPlanRasterEvaluatorTest.class.getResourceAsStream(resourceNameAux))
+			.thenReturn(XPlanRasterEvaluatorTest.class.getResourceAsStream(resourceNameAux));
 
 		List<ArchiveEntry> zipFileEntries = Arrays.asList(mockedPngEntry, mockedAuxEntry);
 		doReturn(zipFileEntries).when(mockedArchive).getZipFileEntries();
@@ -225,12 +219,17 @@ public class XPlanRasterEvaluatorTest {
 		return mockedEntry;
 	}
 
-	private XPlanFeatureCollection mockFeatureCollection() {
+	private XPlanFeatureCollection mockFeatureCollection(String referenzUrl) {
+		return mockFeatureCollection(referenzUrl, null);
+	}
+
+	private XPlanFeatureCollection mockFeatureCollection(String referenzUrl, String georeferenzUrl) {
 		XPlanFeatureCollection mockedFeatureCollection = mock(XPlanFeatureCollection.class);
 		ExternalReferenceInfo mockedExternalReferenceInfo = mock(ExternalReferenceInfo.class);
 
 		ExternalReference mockedExternalReference = mock(ExternalReference.class);
-		when(mockedExternalReference.getReferenzUrl()).thenReturn(REF);
+		when(mockedExternalReference.getReferenzUrl()).thenReturn(referenzUrl);
+		when(mockedExternalReference.getGeoRefUrl()).thenReturn(georeferenzUrl);
 
 		List<ExternalReference> externalReferences = Collections.singletonList(mockedExternalReference);
 		when(mockedExternalReferenceInfo.getRasterPlanBaseScans()).thenReturn(externalReferences);

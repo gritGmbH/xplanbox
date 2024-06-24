@@ -89,7 +89,7 @@ import java.util.List;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
-import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
+import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationSource.geotiff;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -338,7 +338,7 @@ public class TestContext {
 	@Primary
 	public ManagerConfiguration managerConfiguration() {
 		ManagerConfiguration mockedConfiguration = mock(ManagerConfiguration.class);
-		when(mockedConfiguration.getRasterConfigurationType()).thenReturn(gdal);
+		when(mockedConfiguration.getRasterConfigurationType()).thenReturn(geotiff);
 		when(mockedConfiguration.getRasterConfigurationCrs()).thenReturn("EPSG:25832");
 		when(mockedConfiguration.getSortConfiguration()).thenReturn(new SortConfiguration());
 		return mockedConfiguration;

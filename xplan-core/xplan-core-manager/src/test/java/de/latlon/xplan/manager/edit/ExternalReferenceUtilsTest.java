@@ -39,7 +39,6 @@ import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.edit.ArtefactType.NONRASTER;
 import static de.latlon.xplan.manager.edit.ArtefactType.RASTER;
-import static de.latlon.xplan.manager.edit.ArtefactType.RASTER_GEOREFERENCE;
 import static de.latlon.xplan.manager.edit.EditType.ADDED;
 import static de.latlon.xplan.manager.edit.EditType.REMOVED;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectEditedArtefacts;
@@ -114,11 +113,11 @@ public class ExternalReferenceUtilsTest {
 		EditedArtefacts editedArtefacts = collectEditedArtefacts(null, "1", externalRefsModified, externalRefsOriginal,
 				originalFileNames, uploadedFileNames);
 
-		List<String> removedRaster = editedArtefacts.getFileNames(REMOVED, RASTER, RASTER_GEOREFERENCE);
+		List<String> removedRaster = editedArtefacts.getFileNames(REMOVED, RASTER);
 		assertThat(removedRaster.size(), is(2));
 		assertThat(removedRaster, hasItems("F.png", "F.pgw"));
 
-		List<String> addedRaster = editedArtefacts.getFileNames(ADDED, RASTER, RASTER_GEOREFERENCE);
+		List<String> addedRaster = editedArtefacts.getFileNames(ADDED, RASTER);
 		assertThat(addedRaster.size(), is(2));
 		assertThat(addedRaster, hasItems("C.png", "C.pgw"));
 

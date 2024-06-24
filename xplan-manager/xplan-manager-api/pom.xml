@@ -312,7 +312,7 @@
     <dependency>
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
-      <version>2.7.2</version>
+      <version>2.7.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -331,7 +331,7 @@
       <dependencies>
         <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
           <groupId>de.latlon.product.xplanbox</groupId>
-          <artifactId>xplan-docker-tomcat-gdal</artifactId>
+          <artifactId>xplan-docker-tomcat</artifactId>
           <version>${project.version}</version>
           <type>pom</type>
         </dependency>

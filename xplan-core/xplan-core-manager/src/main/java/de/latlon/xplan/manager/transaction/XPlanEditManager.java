@@ -37,6 +37,7 @@ import de.latlon.xplan.manager.configuration.ConfigurationException;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.edit.EditedArtefacts;
+import de.latlon.xplan.manager.edit.RasterReference;
 import de.latlon.xplan.manager.edit.XPlanManipulator;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
@@ -72,7 +73,6 @@ import java.util.stream.Collectors;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanName;
 import static de.latlon.xplan.manager.edit.ArtefactType.RASTER;
-import static de.latlon.xplan.manager.edit.ArtefactType.RASTER_GEOREFERENCE;
 import static de.latlon.xplan.manager.edit.EditType.ADDED;
 import static de.latlon.xplan.manager.edit.EditType.REMOVED;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectEditedArtefacts;
@@ -174,12 +174,18 @@ public class XPlanEditManager extends XPlanTransactionManager {
 	private void updateRasterConfiguration(int planId, boolean makeRasterConfig, List<File> uploadedArtefacts,
 			XPlanType type, PlanStatus oldPlanStatus, EditedArtefacts editedArtefacts, PlanStatus newPlanStatus,
 			Date sortDate, Date oldSortDate) throws JAXBException, IOException, ConfigurationException {
-		List<String> removedRefFileNames = editedArtefacts.getFileNames(REMOVED, RASTER, RASTER_GEOREFERENCE);
+		List<String> removedRefFileNames = editedArtefacts.getFileNames(REMOVED, RASTER);
 		xPlanRasterManager.removeRasterLayers(planId, removedRefFileNames);
 		if (makeRasterConfig) {
 			XPlanArchiveContentAccess archive = new XPlanPartArchive(uploadedArtefacts);
-			List<String> addedRefFileNames = editedArtefacts.getFileNames(ADDED, RASTER);
-			createRasterConfiguration(archive, addedRefFileNames, planId, type, oldPlanStatus, newPlanStatus, sortDate);
+			List<RasterReference> addedRasterReferences = editedArtefacts.getEditedArtefacts(ADDED)
+				.stream()
+				.filter(editedArtefact -> editedArtefact.getArtefactType() == RASTER)
+				.map(editedArtefact -> new RasterReference(editedArtefact.getFileName(),
+						editedArtefact.getGeorefFileName()))
+				.collect(Collectors.toList());
+			createRasterConfiguration(archive, addedRasterReferences, planId, type, oldPlanStatus, newPlanStatus,
+					sortDate);
 			if (sortDateHasChanged(sortDate, oldSortDate)) {
 				int moreRecentPlanId = xplanDao.getPlanIdOfMoreRecentRasterPlan(sortDate);
 				xPlanRasterManager.updateSortOrderOfRasterLayers(planId, moreRecentPlanId, oldPlanStatus, newPlanStatus,

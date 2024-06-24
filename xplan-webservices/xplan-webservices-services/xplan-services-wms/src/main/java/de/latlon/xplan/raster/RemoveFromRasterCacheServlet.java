@@ -9,7 +9,6 @@ import org.deegree.tile.TileDataSet;
 import org.deegree.tile.persistence.GenericTileStore;
 import org.deegree.tile.persistence.TileStore;
 import org.deegree.tile.persistence.TileStoreProvider;
-import org.deegree.tile.persistence.gdal.GdalTileDataLevel;
 import org.deegree.tile.persistence.geotiff.GeoTIFFTileDataLevel;
 import org.deegree.workspace.ResourceIdentifier;
 import org.slf4j.Logger;
@@ -80,16 +79,8 @@ public class RemoveFromRasterCacheServlet extends HttpServlet {
 		TileDataSet tileDataSet = tileStore.getTileDataSet(tileStoreId);
 		List<TileDataLevel> tileDataLevels = tileDataSet.getTileDataLevels();
 		tileDataLevels.forEach(tileDataLevel -> {
-			try {
-				if (tileDataLevel instanceof GeoTIFFTileDataLevel) {
-					((GeoTIFFTileDataLevel) tileDataLevel).clearPool();
-				}
-				else if (tileDataLevel instanceof GdalTileDataLevel) {
-					((GdalTileDataLevel) tileDataLevel).clearPool();
-				}
-			}
-			catch (IOException e) {
-				LOG.error("Pool could not be cleared!", e);
+			if (tileDataLevel instanceof GeoTIFFTileDataLevel) {
+				((GeoTIFFTileDataLevel) tileDataLevel).clearPool();
 			}
 		});
 	}

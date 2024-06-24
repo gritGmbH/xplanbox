@@ -48,13 +48,11 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.List;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
-import static de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter.isGdalSuccessfullInitialized;
+import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationSource.mapserver;
 import static org.apache.commons.io.IOUtils.close;
 import static org.apache.commons.io.IOUtils.copy;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assume.assumeTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -92,8 +90,6 @@ public class XPlanManagerTest {
 
 	@Test
 	public void testEvaluateRasterdata() throws Exception {
-		assumeTrue(isGdalSuccessfullInitialized());
-
 		XPlanManager xPlanManager = createXPlanManager();
 		String pathToArchive = copyPlan();
 
@@ -127,7 +123,7 @@ public class XPlanManagerTest {
 		XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(rasterEvaluation);
 		DeegreeRasterCacheCleaner deegreeRasterCacheCleaner = new DeegreeRasterCacheCleaner(
 				managerConfiguration.getWorkspaceReloaderConfiguration());
-		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation,
+		RasterStorage rasterStorage = createRasterStorage(wmsWorkspaceWrapper, rasterEvaluation,
 				deegreeRasterCacheCleaner);
 		RasterConfigManager rasterConfigManager = createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
 		ApplicationEventPublisher applicationEventPublisher = createApplicationEventPublisher();
@@ -147,11 +143,10 @@ public class XPlanManagerTest {
 		return new RasterStorageContext().rasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
 	}
 
-	private RasterStorage createRasterStorage(ManagerConfiguration managerConfiguration,
-			WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation,
-			DeegreeRasterCacheCleaner deegreeRasterCacheCleaner) {
+	private RasterStorage createRasterStorage(WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			RasterEvaluation rasterEvaluation, DeegreeRasterCacheCleaner deegreeRasterCacheCleaner) {
 		// TODO turn into autowired field
-		return new RasterStorageContext().rasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation,
+		return new RasterStorageContext().rasterStorage(wmsWorkspaceWrapper, rasterEvaluation,
 				deegreeRasterCacheCleaner);
 	}
 
@@ -162,7 +157,7 @@ public class XPlanManagerTest {
 
 	private ManagerConfiguration mockManagerConfig() {
 		ManagerConfiguration mockedConfiguration = mock(ManagerConfiguration.class);
-		when(mockedConfiguration.getRasterConfigurationType()).thenReturn(gdal);
+		when(mockedConfiguration.getRasterConfigurationType()).thenReturn(mapserver);
 		when(mockedConfiguration.getRasterConfigurationCrs()).thenReturn(CONFIGURED_CRS);
 		when(mockedConfiguration.getSortConfiguration()).thenReturn(new SortConfiguration());
 		return mockedConfiguration;

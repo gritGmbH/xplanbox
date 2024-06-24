@@ -24,7 +24,7 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 ENV TZ=Europe/Berlin
 ENV XPLANBOX_VOLUMES=/xplanbox/xplan-volumes
 
-RUN apk --no-cache add bash
+RUN apk --no-cache add bash gdal gdal-tools python3 py3-pip
 
 ADD target/xplan-cli-*.tar /tmp
 

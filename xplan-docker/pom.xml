@@ -13,7 +13,6 @@
 
   <modules>
     <module>xplan-docker-tomcat</module>
-    <module>xplan-docker-tomcat-gdal</module>
     <module>xplan-docker-volume-init</module>
   </modules>
 

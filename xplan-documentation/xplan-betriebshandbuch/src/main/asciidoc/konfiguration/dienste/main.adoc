@@ -7,4 +7,6 @@ include::bbox_cache.adoc[]
 
 include::html_gfi.adoc[]
 
+include::rasterdaten.adoc[]
+
 include::mapserver.adoc[]

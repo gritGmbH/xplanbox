@@ -1,5 +1,5 @@
 [[automatischer-workspace-reload]]
-=== Automatischer Workspace-Reload
+==== Automatischer Workspace-Reload
 
 Der XPlanManager kann nach jedem Import, jeder Änderung oder jedem
 Löschvorgang eines Planwerks automatisch einen Workspace-Reload des XPlanWMS/XPlanWerkWMS

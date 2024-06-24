@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster.evaluation;
 
-import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.reference.ExternalReference;
@@ -31,8 +30,6 @@ import de.latlon.xplan.manager.workspace.WorkspaceException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static de.latlon.xplan.manager.wmsconfig.raster.RasterUtils.findRasterplanZipEntries;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -77,17 +74,12 @@ public class XPlanRasterEvaluator {
 			ExternalReferenceInfo externalReferencesToEvaluate) throws IOException {
 		List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferencesToEvaluate
 			.getRasterPlanBaseAndUpdateScans();
-		List<String> scanFiles = collectRasterScanFiles(rasterPlanBaseAndUpdateScans);
-		List<ArchiveEntry> rasterplanZipEntries = findRasterplanZipEntries(archive, scanFiles);
-		return rasterEvaluation.evaluate(archive, rasterplanZipEntries);
-	}
-
-	private List<String> collectRasterScanFiles(List<ExternalReference> externalReferenceInfo) {
-		List<String> scanFiles = new ArrayList<>();
-		for (ExternalReference externalRef : externalReferenceInfo) {
-			scanFiles.add(externalRef.getReferenzUrl());
+		List<RasterEvaluationResult> results = new ArrayList<>();
+		for (ExternalReference rasterPlanBaseAndUpdateScan : rasterPlanBaseAndUpdateScans) {
+			RasterEvaluationResult evaluate = rasterEvaluation.evaluate(archive, rasterPlanBaseAndUpdateScan);
+			results.add(evaluate);
 		}
-		return scanFiles;
+		return results;
 	}
 
 }

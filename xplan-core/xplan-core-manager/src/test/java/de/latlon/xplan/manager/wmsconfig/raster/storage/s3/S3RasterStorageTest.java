@@ -29,7 +29,6 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.storage.StorageEvent;
-import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -39,6 +38,7 @@ import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -46,6 +46,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -59,16 +60,18 @@ public class S3RasterStorageTest {
 	@Test
 	public void testAddRasterFile() throws IOException, StorageException {
 		AmazonS3 client = spy(AmazonS3.class);
-		S3RasterStorage s3RasterStorage = createS2RasterStorage(client);
+		S3RasterStorage s3RasterStorage = new S3RasterStorage(client, BUCKET_NAME);
 		XPlanArchiveContentAccess archive = mockArchive();
 
 		StorageEvent storageEvent = mock(StorageEvent.class);
-		String key = s3RasterStorage.addRasterFile(1, "test.png", archive, storageEvent);
-
+		String key = s3RasterStorage.addRasterFile(1, "test.png", "test.png.aux.xml", archive, storageEvent);
+		ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
 		assertThat(key, is("1_test.png"));
 		verify(client).doesBucketExistV2(eq(BUCKET_NAME));
-		verify(client).putObject(eq(BUCKET_NAME), eq("1_test.png"), nullable(InputStream.class),
+		verify(client, times(2)).putObject(eq(BUCKET_NAME), captor.capture(), nullable(InputStream.class),
 				any(ObjectMetadata.class));
+		assertThat(captor.getAllValues(), hasItems("1_test.png", "1_test.png.aux.xml"));
+
 		verify(storageEvent).addInsertedKey(eq("1_test.png"));
 	}
 
@@ -90,7 +93,7 @@ public class S3RasterStorageTest {
 		when(objectToDelete.getKey()).thenReturn("1_test.png");
 		List<S3ObjectSummary> objectSummaries = Collections.singletonList(objectToDelete);
 		when(objectListing.getObjectSummaries()).thenReturn(objectSummaries);
-		S3RasterStorage s3RasterStorage = createS2RasterStorage(client);
+		S3RasterStorage s3RasterStorage = new S3RasterStorage(client, BUCKET_NAME);
 
 		StorageEvent storageEvent = mock(StorageEvent.class);
 		s3RasterStorage.deleteRasterFile(1, "test.png", storageEvent);
@@ -102,21 +105,17 @@ public class S3RasterStorageTest {
 		assertThat(argument.getValue().getS3Metadata().getKey(), is("1_test.png"));
 	}
 
-	private S3RasterStorage createS2RasterStorage(AmazonS3 client) {
-		GdalRasterAdapter rasterAdapter = mockGdalRasterAdapter();
-		return new S3RasterStorage(rasterAdapter, client, BUCKET_NAME);
-	}
-
-	private GdalRasterAdapter mockGdalRasterAdapter() {
-		return mock(GdalRasterAdapter.class);
-	}
-
 	private XPlanArchiveContentAccess mockArchive() {
 		XPlanArchiveContentAccess mock = mock(XPlanArchiveContentAccess.class);
-		ArchiveEntry entry = mock(ArchiveEntry.class);
-		when(entry.getContentLength()).thenReturn(90l);
-		when(entry.getContentType()).thenReturn("image/png");
-		when(mock.getEntry("test.png")).thenReturn(entry);
+		ArchiveEntry referenceEntry = mock(ArchiveEntry.class);
+		when(referenceEntry.getContentLength()).thenReturn(90l);
+		when(referenceEntry.getContentType()).thenReturn("image/png");
+		when(mock.getEntry("test.png")).thenReturn(referenceEntry);
+
+		ArchiveEntry georefEntry = mock(ArchiveEntry.class);
+		when(georefEntry.getContentLength()).thenReturn(10l);
+		when(georefEntry.getContentType()).thenReturn("application/xml");
+		when(mock.getEntry("test.png.aux.xml")).thenReturn(georefEntry);
 		return mock;
 	}
 

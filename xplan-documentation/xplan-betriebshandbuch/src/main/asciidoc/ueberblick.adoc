@@ -64,10 +64,10 @@ angepasst werden.
 [[jdk]]
 === Java SE
 
-Als Java SE wird sowohl https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot[AdoptOpenJDK 11]
-als auch https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html[Amazon Corretto 11] unterstützt.
+Als Java SE wird sowohl https://adoptium.net/?variant=openjdk17&jvmVariant=hotspot[AdoptOpenJDK 17]
+als auch https://docs.aws.amazon.com/corretto/latest/corretto-17-ug/downloads-list.html[Amazon Corretto 17] unterstützt.
 
-TIP: Empfohlen wird AdoptOpenJDK/Eclipse Temurin 11.0+.
+TIP: Empfohlen wird AdoptOpenJDK/Eclipse Temurin 17.0+.
 
 [[java-applikationsserver]]
 === Java Applikationsserver
@@ -85,20 +85,10 @@ Als Datenbanksystem ist eine https://www.postgresql.org[PostgreSQL-Datenbank] mi
 
 TIP: Empfohlen wird PostgreSQL 14+ mit PostGIS 3.4+.
 
-[[gdal]]
-=== GDAL
-
-Optional kann die https://gdal.org/[GDAL-Bibliothek] installiert werden. Wenn teilvektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTIFF vorliegen, die mit der xPlanBox verwaltet werden sollen, dann ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen ausschliesslich im GeoTIFF-Format vor, wird GDAL nicht benötigt.
-Weitere Informationen zur Installation von GDAL befinden sich im Abschnitt <<installation-gdal>>.
-
-IMPORTANT: Unterstützt wird GDAL 3.0+.
-
-IMPORTANT: Ab Version 7.2 ist die Nutzung des XPlanWMS mit GDAL veraltet (deprecated). Stattdessen kann der <<mapserver>> für die Bereitstellung von Rasterdaten verwendet werden.
-
 [[mapserver]]
 === MapServer
 
-Optional kann https://mapserver.org[MapServer] installiert werden. Wenn für die Bereitstellung von Rasterdaten MapServer verwendet werden soll, dann muss die Software zusammen mit <<gdal,GDAL>> installiert werden. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-mapserver>>.
+Optional kann https://mapserver.org[MapServer] installiert werden. Wenn Rasterdaten in den Formate TIFF oder PNG mit World-File vorliegen ist die Installation verpflichtend. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-mapserver>>.
 
 IMPORTANT: Unterstützt wird MapServer 8.0.0.
 

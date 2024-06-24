@@ -26,11 +26,11 @@ import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
-import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.CrsUtils;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.edit.RasterReference;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.service.XPlanInsertService;
@@ -171,19 +171,17 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		if (makeRasterConfig) {
 			for (PlanImportData importedPlanData : importedPlansData) {
 				XPlanArchive archive = importedPlanData.getxPlanArchive();
-				List<String> rasterRefsFileNamesToAdd = collectRasterScanFiles(importedPlanData.getxPlanFC());
-				createRasterConfiguration(archive, rasterRefsFileNamesToAdd, importedPlanData.getPlanId(),
-						archive.getType(), importedPlanData.getPlanStatus(), null, importedPlanData.getSortDate());
+				List<RasterReference> rasterPlanBaseScans = importedPlanData.getxPlanFC()
+					.getExternalReferenceInfo()
+					.getRasterPlanBaseScans()
+					.stream()
+					.map(externalReference -> new RasterReference(externalReference.getReferenzUrl(),
+							externalReference.getGeoRefUrl()))
+					.collect(Collectors.toList());
+				createRasterConfiguration(archive, rasterPlanBaseScans, importedPlanData.getPlanId(), archive.getType(),
+						importedPlanData.getPlanStatus(), null, importedPlanData.getSortDate());
 			}
 		}
-	}
-
-	private List<String> collectRasterScanFiles(XPlanFeatureCollection fc) {
-		List<String> scanFiles = new ArrayList<>();
-		for (ExternalReference externalRef : fc.getExternalReferenceInfo().getRasterPlanBaseScans()) {
-			scanFiles.add(externalRef.getReferenzUrl());
-		}
-		return scanFiles;
 	}
 
 	private void performSchemaValidation(XPlanArchive archive) throws UnsupportPlanException {

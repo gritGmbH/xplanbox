@@ -18,26 +18,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config;
-
-import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-
-import static org.mockito.Mockito.mock;
+package de.latlon.xplan.manager.wmsconfig.raster;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
- * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
-@Configuration
-public class S3RasterStorageTestContext {
+public enum RasterConfigurationSource {
 
-	@Bean
-	@Primary
-	public GdalRasterAdapter rasterAdapter() {
-		return mock(GdalRasterAdapter.class);
-	}
+	geotiff, mapserver
 
 }

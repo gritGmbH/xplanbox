@@ -1,0 +1,14 @@
+[[konfiguration-xplanwms-geotiff]]
+==== Konfigurationsdateien für Rasterdaten
+
+Beim Import von XPlanArchiven mit Rasterdaten werden automatisch Konfigurationsdateien für den XPlanWMS angelegt, die eine Darstellung im XPlanWMS ermöglichen.
+
+Für jede importierte Rasterdatei werden bei Verwendung des Konfigurationstyp _geotiff_ folgende Konfigurationen angelegt:
+
+* eine Konfigurationsdatei für einen GeoTiffTileStore
+* eine Konfigurationsdatei für einen TileLayer
+* in der Ebenenbaum-Konfiguration wird ein neuer Layer in die Kategorieebene eingefügt, die die Rasterpläne nach Datum sortiert beinhaltet.
+
+Weitere Informationen zur Konfiguration des XPlanManager im Abschnitt <<konfiguration-manager-geotiff>>.
+
+Wird der Konfigurationstyp _mapserver_ verwendet, erfolgt die Bereitstellung der Rasterdaten über den MapServer. Weitere Informationen zur Konfiguration des XPlanWMS mit MapServer sind im folgenden Abschnitt <<konfiguration-xplanwms-mapserver>> dokumentiert.

@@ -1,7 +1,7 @@
 ARG XPLANBOX_VERSION=latest
 ARG XPLANBOX_IMAGE_NAME_PREFIX=xplanbox
 
-FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat-gdal:$XPLANBOX_VERSION
+FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat:$XPLANBOX_VERSION
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?
@@ -20,16 +20,19 @@ LABEL "org.opencontainers.image.created"="$BUILD_DATE" \
 	"org.opencontainers.image.version"="$XPLANBOX_VERSION"
 
 # set environment variables
-ENV TOMCAT_ADDITIONAL_ARG_APP="-Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng -Duser.timezone=Europe/Berlin" \
+ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree \
+    TOMCAT_ADDITIONAL_ARG_APP="-Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng -Duser.timezone=Europe/Berlin" \
     TOMCAT_ADDITIONAL_ARG_JAVA17_EXPORTS="--add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED" \
 	XPLANBOX_CONFIG="/xplanbox/xplan-manager-config/"
 
+USER root
+
 # add xplan-manager-web directly unpacked
-COPY target/xplan-manager-web-*.war /tmp/
-RUN mkdir /usr/local/tomcat/webapps/$WEB_CONTEXT \
-	&& cd /usr/local/tomcat/webapps/$WEB_CONTEXT \
+ADD target/xplan-manager-web-*.war /tmp/
+RUN mkdir /opt/bitnami/tomcat/webapps/$WEB_CONTEXT \
+	&& cd /opt/bitnami/tomcat/webapps/$WEB_CONTEXT \
 	&& jar xf /tmp/xplan-manager-web-*.war \
 	&& rm /tmp/xplan-manager-web-*.war
 
-# run tomcat
-CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
+
+USER 1001

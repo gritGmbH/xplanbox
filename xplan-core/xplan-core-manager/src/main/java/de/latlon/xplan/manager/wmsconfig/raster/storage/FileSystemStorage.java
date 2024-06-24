@@ -52,16 +52,15 @@ public class FileSystemStorage implements RasterStorage {
 	}
 
 	@Override
-	public String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive,
-			StorageEvent storageEvent) throws IOException {
-		if (rasterEvaluation.isSupportedFile(entryName)) {
-			String rasterFileName = createFileName(planId, entryName);
-			Path target = createTargetFile(rasterFileName);
-			Files.copy(archive.retrieveInputStreamFor(entryName), target);
-			storageEvent.addStoredPath(target);
+	public String addRasterFile(int planId, String referenceEntryName, String georefEntryName,
+			XPlanArchiveContentAccess archive, StorageEvent storageEvent) throws IOException {
+		if (rasterEvaluation.isSupportedFile(referenceEntryName)) {
+			String rasterFileName = copyFile(planId, referenceEntryName, archive, storageEvent);
+			if (georefEntryName != null)
+				copyFile(planId, georefEntryName, archive, storageEvent);
 			return rasterFileName;
 		}
-		return null;
+		throw new IllegalArgumentException("Raster format of file " + referenceEntryName + " is not supported.");
 	}
 
 	@Override
@@ -80,6 +79,15 @@ public class FileSystemStorage implements RasterStorage {
 			LOG.error("Fehler: " + e.getMessage());
 			LOG.debug("Fehler: ", e);
 		}
+	}
+
+	private String copyFile(int planId, String refrenceEntryName, XPlanArchiveContentAccess archive,
+			StorageEvent storageEvent) throws IOException {
+		String rasterFileName = createFileName(planId, refrenceEntryName);
+		Path target = createTargetFile(rasterFileName);
+		Files.copy(archive.retrieveInputStreamFor(refrenceEntryName), target);
+		storageEvent.addStoredPath(target);
+		return rasterFileName;
 	}
 
 	protected String createFileName(int planId, String fileName) {

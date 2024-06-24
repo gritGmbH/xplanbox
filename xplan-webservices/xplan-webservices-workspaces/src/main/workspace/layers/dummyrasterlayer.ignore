@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<tl:TileLayers xmlns="http://www.deegree.org/layers/base" xmlns:d="http://www.deegree.org/metadata/description" xmlns:ns3="http://www.deegree.org/metadata/spatial" xmlns:tl="http://www.deegree.org/layers/tile">
-    <tl:TileLayer>
-        <Name>dummyraster</Name>
-        <d:Title>dummyraster</d:Title>
-        <ns3:CRS>EPSG:25832</ns3:CRS>
-        <tl:TileDataSet tileStoreId="dummy">dummy</tl:TileDataSet>
-    </tl:TileLayer>
-</tl:TileLayers>

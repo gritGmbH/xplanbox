@@ -31,8 +31,8 @@ import java.io.IOException;
  */
 public interface RasterStorage {
 
-	String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive, StorageEvent storageEvent)
-			throws IOException, StorageException;
+	String addRasterFile(int planId, String entryName, String entryNameGeoref, XPlanArchiveContentAccess archive,
+			StorageEvent storageEvent) throws IOException, StorageException;
 
 	void deleteRasterFile(int planId, String fileName, StorageEvent storageEvent) throws IOException, StorageException;
 

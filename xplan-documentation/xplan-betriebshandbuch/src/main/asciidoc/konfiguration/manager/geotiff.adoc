@@ -1,0 +1,13 @@
+[[konfiguration-manager-geotiff]]
+=== GeoTIFF
+
+Damit beim Import von Rasterdaten eine Konfiguration für den XPlanWMS erzeugt wird,
+muss in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ die folgende Option aktiviert sein:
+
+[source,properties]
+----
+# must be geotiff or mapserver, default is geotiff
+rasterConfigurationType=geotiff
+----
+
+Die Konfiguration des XPlanWMS ist im Abschnitt <<konfiguration-xplanwms-geotiff>> beschrieben. Wird der Konfigurationstyp _geotiff_ verwendet, dann wird zusätzlich noch die Konfiguration des <<automatischer-workspace-reload,automatischen Workspace-Reload>> empfohlen.

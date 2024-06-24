@@ -55,7 +55,7 @@ Die Dokumentation zur Anwendung liegt im Asciidoc-Format vor und sowohl das Benu
 
 ### Entwicklerdokumentation
 
-Für die Erstellung der ausführbaren Binärdateien ist ein [JDK 11](https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot) und das Werkzeug [Apache Maven 3.9](https://maven.apache.org/) erforderlich.
+Für die Erstellung der ausführbaren Binärdateien ist ein [JDK 17](https://adoptium.net/?variant=openjdk17&jvmVariant=hotspot) und das Werkzeug [Apache Maven 3.9](https://maven.apache.org/) erforderlich.
 
 #### Installation und Konfiguration von Maven. 
 
@@ -128,7 +128,7 @@ Um den Build zu beschleunigen wird ein Build Image verwendet, das schon die meis
 
 ##### Automatische Erzeugung
 
-Das Pipeline Schedule [Create Maven Build Image](https://gitlab.opencode.de/diplanung/ozgxplanung/-/pipeline_schedules) ist konfiguriert, um einmal pro Woche zu laufen.
+Das Pipeline Schedule [Create Maven Build Image](https://gitlab.opencode.de/diplanung/ozgxplanung/-/pipeline_schedules) (Login erforderlich) ist konfiguriert, um einmal pro Woche zu laufen.
 
 ##### Manuelle Erzeugung
 

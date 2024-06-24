@@ -8,25 +8,28 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplanbox.cli.admin.evaluation;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.gdal.gdal.gdal;
-import org.gdal.ogr.Geometry;
-import org.gdal.ogr.ogr;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,15 +49,6 @@ import static de.latlon.xplanbox.cli.admin.evaluation.UpdateUtils.detectXPath;
 public class EvaluationSchemaSynchronizer implements Synchronizer {
 
 	private static final Logger LOG = LogManager.getLogger(EvaluationSchemaSynchronizer.class);
-
-	static {
-		try {
-			gdal.AllRegister();
-		}
-		catch (Exception e) {
-			LOG.error("Registration of GDAL JNI adapter failed: " + e.getMessage(), e);
-		}
-	}
 
 	public void synchronize(Connection conn, int oldid, int newid, int xPlanManagerId, String planVersion,
 			String oldPlanStatus, String newPlanStatus, Operation operation) throws SynchronizationException {
@@ -184,26 +178,43 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			Geometry geom = ogr.CreateGeometryFromGML(gmlGeom);
-			if (geom != null) {
+			if (gmlGeom != null && !gmlGeom.isEmpty()) {
 				StringBuffer updateGeomColumn = new StringBuffer();
 				updateGeomColumn.append("UPDATE xplanevaluation").append(synTableWithSchema);
 				updateGeomColumn.append(" SET ")
 					.append(geomColumn)
-					.append(" = ST_GeomFromWKB( ? ) WHERE xplan_gmlid = ?");
+					.append(" = ST_GeomFromEWKT( ? ) WHERE xplan_gmlid = ?");
 				ps = conn.prepareStatement(updateGeomColumn.toString());
-				byte[] geomBytes = geom.ExportToWkb();
-				ps.setBytes(1, geomBytes);
+				String geomBytes = gmlToWkt(gmlGeom);
+				ps.setString(1, geomBytes);
 				ps.setString(2, gmlId);
 				LOG.debug("Execute update geom column: {}", ps);
 
 				return ps.executeUpdate();
 			}
 		}
+		catch (IOException e) {
+			LOG.error("Column xplanevaluation{}.{} with xplan_gmlid='{}' could not be updated: {}", synTableWithSchema,
+					geomColumn, gmlId, e.getMessage());
+		}
 		finally {
 			closeQuietly(ps, rs);
 		}
 		return 0;
+	}
+
+	private String gmlToWkt(String gml) throws IOException {
+		Path tempFile = Files.createTempFile("ess", ".gml");
+		Files.writeString(tempFile, gml);
+		URL pathToScript = getClass().getResource("gmlToWkt.py");
+		ProcessBuilder processBuilder = new ProcessBuilder("python3", pathToScript.getPath(), tempFile.toString());
+		processBuilder.redirectErrorStream(true);
+
+		Process process = processBuilder.start();
+		InputStream inputStream = process.getInputStream();
+		String gmlAsWkt = IOUtils.toString(inputStream, "UTF-8");
+		Files.delete(tempFile);
+		return gmlAsWkt;
 	}
 
 	@SuppressFBWarnings(value = "SQL_INJECTION_JDBC", justification = "synTableWithSchema is a fix value")

@@ -21,9 +21,9 @@
 package de.latlon.xplan.manager.wmsconfig.raster;
 
 import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.configuration.ConfigurationException;
+import de.latlon.xplan.manager.edit.RasterReference;
 import de.latlon.xplan.manager.storage.StorageEvent;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
@@ -42,7 +42,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.RasterUtils.findRasterplanZipEntries;
+import static de.latlon.xplan.manager.wmsconfig.raster.RasterUtils.findRasterplanZipEntry;
 
 /**
  * An instance of XPlanRasterManager provides the service methods to manage raster files
@@ -114,7 +114,7 @@ public class XPlanRasterManager {
 	 * Creates one raster layer for each referenced raster. Sorts the raster layer after
 	 * the plan with the moreRecentPlanId or at the end.
 	 * @param archive containing the rasterdata to evaluate, never <code>null</code>
-	 * @param rasterRefsFileNamesToAdd list of refrences to add, never <code>null</code>
+	 * @param rasterRefsToAdd list of refrences to add, never <code>null</code>
 	 * @param planId the id of the plan, never <code>null</code>
 	 * @param moreRecentPlanId the id of the plan with release date immediate before the
 	 * release date of the plan (if the plan has one), if <code>null</code> the plan will
@@ -128,7 +128,7 @@ public class XPlanRasterManager {
 	 * layer was created, but never <code>null</code>
 	 */
 	public List<String> updateWmsWorkspaceWithRasterLayers(XPlanArchiveContentAccess archive,
-			List<String> rasterRefsFileNamesToAdd, int planId, int moreRecentPlanId, XPlanType type,
+			List<RasterReference> rasterRefsToAdd, int planId, int moreRecentPlanId, XPlanType type,
 			PlanStatus planStatus, PlanStatus newPlanStatus, Date sortDate) {
 		long begin = System.currentTimeMillis();
 
@@ -140,10 +140,9 @@ public class XPlanRasterManager {
 		LOG.info("- Erzeugen/Einsortieren der Rasterkonfigurationen (nach Datum: {} )...", sortDateAsString);
 		StorageEvent storageEvent = new StorageEvent();
 		try {
-			logScanFiles(begin, rasterRefsFileNamesToAdd);
-			List<ArchiveEntry> rasterplanEntries = findRasterplanZipEntries(archive, rasterRefsFileNamesToAdd);
+			logScanFiles(begin, rasterRefsToAdd);
 
-			List<String> rasterIds = copyRasterfilesAndCreateConfig(archive, rasterplanEntries, planId, storageEvent);
+			List<String> rasterIds = copyRasterfilesAndCreateConfig(archive, rasterRefsToAdd, planId, storageEvent);
 			rasterConfigManager.insertRasterLayers(planId, moreRecentPlanId, type, planStatus, newPlanStatus, rasterIds,
 					sortDate);
 			return rasterIds;
@@ -192,13 +191,16 @@ public class XPlanRasterManager {
 	}
 
 	private List<String> copyRasterfilesAndCreateConfig(XPlanArchiveContentAccess archive,
-			List<ArchiveEntry> rasterplanEntries, int planId, StorageEvent storageEvent)
+			List<RasterReference> rasterRefsToAdd, int planId, StorageEvent storageEvent)
 			throws IOException, JAXBException, StorageException {
 		List<String> rasterIds = new ArrayList<>();
-		for (ArchiveEntry entry : rasterplanEntries) {
-			String entryName = entry.getName();
+		for (RasterReference rasterRef : rasterRefsToAdd) {
+			String entryName = findRasterplanZipEntry(archive, rasterRef.getReferenzUrl()).getName();
+			String entryNameGeoref = rasterRef.getGeoRefUrl() != null
+					? findRasterplanZipEntry(archive, rasterRef.getGeoRefUrl()).getName() : null;
 			LOG.debug("Raster data entry {} ", entryName);
-			String rasterFileName = rasterStorage.addRasterFile(planId, entryName, archive, storageEvent);
+			String rasterFileName = rasterStorage.addRasterFile(planId, entryName, entryNameGeoref, archive,
+					storageEvent);
 			String rasterId = createRasterId(rasterFileName);
 			rasterIds.add(rasterId);
 			rasterConfigManager.createConfiguration(rasterId, rasterFileName);
@@ -210,13 +212,13 @@ public class XPlanRasterManager {
 		return dataFileName.replaceAll(".tiff?", "");
 	}
 
-	private void logScanFiles(long begin, List<String> scanFiles) {
+	private void logScanFiles(long begin, List<RasterReference> rasterRefs) {
 		long elapsed = System.currentTimeMillis() - begin;
 		LOG.info("OK [{} ms]", elapsed);
-		if (!scanFiles.isEmpty()) {
+		if (!rasterRefs.isEmpty()) {
 			LOG.info("Rasterscans:");
-			for (String scanFile : scanFiles) {
-				LOG.info(" - {}", scanFile);
+			for (RasterReference rasterRef : rasterRefs) {
+				LOG.info(" - {}/{}", rasterRef.getReferenzUrl(), rasterRef.getGeoRefUrl());
 			}
 		}
 	}

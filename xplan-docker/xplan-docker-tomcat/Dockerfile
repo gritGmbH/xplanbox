@@ -24,7 +24,7 @@ USER root
 ENV TZ=Europe/Berlin
 
 # see https://github.com/adoptium/temurin-build/issues/693
-RUN apt-get update && apt-get -y install fontconfig
+RUN apt-get update && apt-get -y install fontconfig wget
 
 RUN chmod o+w /opt/bitnami/tomcat/bin/setenv.sh \
 	&& chmod o+w /opt/bitnami/tomcat/logs/ \

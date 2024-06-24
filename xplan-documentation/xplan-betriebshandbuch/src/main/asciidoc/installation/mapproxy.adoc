@@ -3,8 +3,8 @@
 
 Die Installation von MapProxy ist optional und erfordert zusätzlich die Installation von https://www.python.org/[Python] in der Version 3.10 oder höher.
 
-Weitere Informationen zur Installation sind in der https://mapproxy.org/documentation[Dokumentation] beschrieben.
+Weitere Informationen zur Installation sind in der https://mapproxy.github.io/mapproxy/latest/index.html[Dokumentation] beschrieben.
 
-Die Konfigurationsdateien _mapproxy.yaml_ und _seed.yaml_ sind im Distributionspaket _xplan-mapproxy-config-<VERSION>.zip_ enthalten und müssen in das entsprechende Verzeichnis kopiert werden.
+Die Konfigurationsdateien _mapproxy.yaml_ und _seed.yaml_ sind im Distributionspaket _xplan-mapproxy-config-<VERSION>.zip_ enthalten und müssen in das entsprechende Verzeichnis kopiert werden. Für die Verwendung der Konfigurationsdateien ist ein <<s3-storage,S3-Objektspeicher>> erforderlich.
 
-In der http://mapproxy.github.io/mapproxy/seed.html[Dokumention von MapProxy] ist auch die Verwendung des Skripts `mapproxy-seed` beschrieben, um nach einer Änderung des Datenbestands den Cache des MapProxy zu aktualisieren.
+In der https://mapproxy.github.io/mapproxy/latest/seed.html[Dokumention von MapProxy Seeding] ist auch die Verwendung des Skripts `seed.yaml` beschrieben, um nach einer Änderung des Datenbestands den Cache des MapProxy zu aktualisieren.

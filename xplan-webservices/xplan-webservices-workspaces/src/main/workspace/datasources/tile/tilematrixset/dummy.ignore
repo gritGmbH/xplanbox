@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<GDALTileMatrixSet xmlns="http://www.deegree.org/datasource/tile/tilematrixset/gdal">
-    <StorageCRS>EPSG:25832</StorageCRS>
-    <File>../../../data/dummy.png</File>
-</GDALTileMatrixSet>

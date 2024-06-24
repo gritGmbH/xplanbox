@@ -28,9 +28,7 @@ Die ZIP-Archive mit den Konfigurationen für die XPlanManager und XPlanValidator
 Um den Betrieb der verschiedenen im Abschnitt
 <<systemarchitektur-und-schnittstellen, Systemarchitektur und Schnittstellen>> beschriebenen
 Komponenten zu gewährleisten, wird eine Trennung der Dienste,
-Anwendungskomponenten und der REST-API empfohlen. Zwingend erforderlich ist die Trennung beim
-Einsatz von GDAL (s. <<installation-gdal>>). Dann müssen die Web-Anwendungen getrennt voneinander
-betrieben werden. Im Folgenden ist beschrieben, wie eine Installation der Komponenten auf drei Tomcat-Instanzen erfolgen kann. Werden drei Tomcat-Instanzen auf einem Server betrieben, dann sollte der Server die im Kapitel <<empfohlene-systemkonfiguration>> beschriebenen Anforderungen erfüllen.
+Anwendungskomponenten und der REST-API empfohlen. Im Folgenden ist beschrieben, wie eine Installation der Komponenten auf drei Tomcat-Instanzen erfolgen kann. Werden drei Tomcat-Instanzen auf einem Server betrieben, dann sollte der Server die im Kapitel <<empfohlene-systemkonfiguration>> beschriebenen Anforderungen erfüllen.
 
 Die folgenden WAR-Archive (s. <<installationskomponenten>>) müssen in das Verzeichnis _<CATALINA_HOME>/webapps_ der Tomcat-Instanz _Dienste-Tomcat_ (z. B. auf Port: 8080) kopiert werden:
 
@@ -77,7 +75,7 @@ Die Kommandozeilenkomponent (s. <<installationskomponenten>>) kann an beliebiger
 
 TIP: Um das Kommandozeilenwerkzeug von einem beliebigen Ort aufrufen zu können, empfiehlt es sich, die Pfade in die `PATH` Variable mit aufzunehmen.
 
-IMPORTANT: Je nach Kommando des Kommandozeilenwerkzeugs müssen über Umgebungsvariablen wie z. B. `DEEGREE_WORKSPACE_ROOT` der Pfad zum deegree Workspace und mit `LD_LIBRARY_PATH` der Pfad zum Installationsverzeichnis von GDAL gesetzt werden (siehe auch <<installation-gdal>>).
+IMPORTANT: Je nach Kommando des Kommandozeilenwerkzeugs müssen über Umgebungsvariablen wie z. B. `DEEGREE_WORKSPACE_ROOT` der Pfad zum deegree Workspace gesetzt werden.
 
 Folgende Kommandos sind Teil des XPlanCLI Kommandozeilenwerkzeugs:
 
@@ -89,6 +87,11 @@ Folgende Kommandos sind Teil des XPlanCLI Kommandozeilenwerkzeugs:
 ** Subkommando `resynthesize`: _xpb admin resynthesize_ - ermöglicht die Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `help` liefert Hinweise zur Verwendung.
 ** Subkommando `sortdate-update`: _xpb admin sortDateUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Sortierfelder und die Sortierung der Rasterdaten in der Themes Konfiguration, sofern deegree für die Bereitstellung der Rasterdaten verwendet wird. Der Aufruf des Tools mit `help` liefert Hinweise zur Verwendung.
 ** Subkommando `evaluation-db-update`: _xpb admin evaluation-db-update_ - das Kommando erzeugt ein weiteres Datenbankschema für die Auswertung und kann die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas synchronisieren. Das Auswerteschema unterscheidet sich zum XPlanSyn-Schema dadurch, dass die GML-Geometrien (wie z.B. Kreisbögen) aus dem XPlanGML zusätzlich zu den https://www.ogc.org/standards/sfa[Simple Features Geometrien] abgelegt sind.
+
+[[installation-xplanevaluationschema]]
+===== Konfiguration für das Auswerteschema
+
+Für die Ausführung des Subkommando `evaluation-db-update` ist die Installation von Python 3 auf dem Server erforderlich, auf dem das XPlanCLI ausgeführt wird. Informationen zur Installation auf verschiedenen Betriebssystemen sind in der https://wiki.python.org/moin/BeginnersGuide/Download[Installationsanleitung von Python] zu finden.
 
 [[xplanevaluationschema]]
 ===== Konfiguration für das Auswerteschema

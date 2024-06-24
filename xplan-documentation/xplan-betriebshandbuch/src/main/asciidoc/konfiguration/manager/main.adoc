@@ -17,9 +17,9 @@ include::editor.adoc[]
 
 include::absicherung.adoc[]
 
-include::workspacereload.adoc[]
+include::geotiff.adoc[]
 
-include::gdal.adoc[]
+include::workspacereload.adoc[]
 
 include::mapserver.adoc[]
 

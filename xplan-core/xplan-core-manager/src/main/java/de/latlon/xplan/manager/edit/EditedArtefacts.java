@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Access to {@link EditedArtefact} with filters
@@ -83,7 +84,8 @@ public class EditedArtefacts {
 		return editedArtefacts.stream()
 			.filter(editedArtefact -> Arrays.stream(artefactType).anyMatch(at -> editedArtefact.getArtefactType() == at)
 					&& editedArtefact.getEditType() == editType)
-			.map(editedArtefact -> editedArtefact.getFileName())
+			.flatMap(editedArtefact -> Stream.of(editedArtefact.getFileName(), editedArtefact.getGeorefFileName()))
+			.filter(fileName -> fileName != null)
 			.collect(Collectors.toList());
 	}
 

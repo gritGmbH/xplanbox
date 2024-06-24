@@ -22,37 +22,42 @@ package de.latlon.xplan.manager.wmsconfig.raster;
 
 import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
-import org.apache.commons.io.IOUtils;
+import org.apache.tika.Tika;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.apache.commons.io.IOUtils.close;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class RasterUtils {
 
-	public static List<ArchiveEntry> findRasterplanZipEntries(XPlanArchiveContentAccess archive,
-			List<String> scanFiles) {
-		List<ArchiveEntry> entries = new ArrayList<>();
-		for (String scanFile : scanFiles) {
-			if (scanFile != null) {
-				ArchiveEntry entry = archive.getEntry(scanFile);
-				if (entry == null) {
-					throw new RuntimeException("Rasterscan-Datei:" + scanFile + " ist nicht im Archiv vorhanden.");
-				}
-				entries.add(entry);
-			}
+	private RasterUtils() {
+	}
+
+	/**
+	 * @param archive to search for the entry
+	 * @param scanFile name of the entry, never <code>null</code>
+	 * @return the {@link ArchiveEntry} with the passed name (scanFile)
+	 * @throws IllegalArgumentException if the scanFile does not exist in the archive
+	 */
+	public static ArchiveEntry findRasterplanZipEntry(XPlanArchiveContentAccess archive, String scanFile) {
+		ArchiveEntry entry = archive.getEntry(scanFile);
+		if (entry == null) {
+			throw new IllegalArgumentException("Rasterscan-Datei '" + scanFile + "' ist nicht im Archiv vorhanden.");
 		}
-		return entries;
+		return entry;
+	}
+
+	public static RasterType detectRasterType(XPlanArchiveContentAccess archive, String scanFile) {
+		try (InputStream entryStream = archive.retrieveInputStreamFor(scanFile)) {
+			String mediaType = new Tika().detect(entryStream);
+			return RasterType.fromMediaType(mediaType);
+		}
+		catch (IOException e) {
+			throw new IllegalArgumentException("Rasterscan-Datei '" + scanFile + "' ist nicht im Archiv vorhanden.");
+
+		}
 	}
 
 }
