@@ -205,9 +205,9 @@ else
   find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/<!--<LayerStoreId>mapserver/<LayerStoreId>mapserver/g' {} \;
   find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/mapserver<\/LayerStoreId>-->/mapserver<\/LayerStoreId>/g' {} \;
   find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/<!--<Layer layerStore="mapserver"/<Layer layerStore="mapserver"/g' {} \;
-  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planrasterarchive<\/Layer>-->/planrasterarchive<\/Layer>/g' {} \;
-  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planrasterpre<\/Layer>-->/planrasterpre<\/Layer>/g' {} \;
-  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planraster<\/Layer>-->/planraster<\/Layer>/g' {} \;
+  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/_rasterarchive<\/Layer>-->/_rasterarchive<\/Layer>/g' {} \;
+  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/_rasterpre<\/Layer>-->/_rasterpre<\/Layer>/g' {} \;
+  find xplan-workspaces/xplan-services-wms-workspace/themes -iname *raster.xml -exec sed -i 's/_raster<\/Layer>-->/_raster<\/Layer>/g' {} \;
   sed -i 's|http://localhost:8080/mapserver|'$XPLAN_MAPSERVER_URL_INTERNAL'/mapserver|g' xplan-workspaces/xplan-services-wms-workspace/datasources/remoteows/mapserver.xml
 fi
 

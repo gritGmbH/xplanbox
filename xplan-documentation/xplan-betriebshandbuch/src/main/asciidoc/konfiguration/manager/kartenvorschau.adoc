@@ -71,19 +71,19 @@ Des Weiteren können die Layer für die Bebauungspläne, Flächennutzungspläne,
 Vektorlayer:
 
 ----
-bpLayer=BP_Planvektor
-fpLayer=FP_Planvektor
-lpLayer=LP_Planvektor
-rpLayer=RP_Planvektor
-soLayer=SO_Planvektor
+bpLayer=bp_objekte
+fpLayer=fp_objekte
+lpLayer=lp_objekte
+rpLayer=rp_objekte
+soLayer=so_objekte
 ----
 
 Rasterlayer:
 
 ----
-bpRasterLayer=BP_Planraster
-fpRasterLayer=FP_Planraster
-lpRasterLayer=LP_Planraster
-rpRasterLayer=RP_Planraster
-soRasterLayer=SO_Planraster
+bpRasterLayer=bp_raster
+fpRasterLayer=fp_raster
+lpRasterLayer=lp_raster
+rpRasterLayer=rp_raster
+soRasterLayer=so_raster
 ----

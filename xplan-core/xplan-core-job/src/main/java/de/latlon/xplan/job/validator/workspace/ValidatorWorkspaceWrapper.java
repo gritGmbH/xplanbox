@@ -45,7 +45,7 @@ public class ValidatorWorkspaceWrapper {
 
 	private static final String XPLAN_VALIDATOR_WORKSPACE = "xplan-validator-workspace";
 
-	private static final String SQLFEATURESTORE_ID = "xplanvalidator";
+	private static final String SQLFEATURESTORE_ID = "xplansyn";
 
 	private static final String JDBC_POOL_ID = "xplan";
 

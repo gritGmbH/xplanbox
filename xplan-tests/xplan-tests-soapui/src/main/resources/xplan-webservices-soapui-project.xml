@@ -67,7 +67,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+//wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -199,9 +199,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>BP_Planvektor,FP_Planvektor,LP_Planvektor,RP_Planvektor,SO_Planvektor</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -274,7 +274,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+//wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -406,9 +406,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>BP_Planvektor,FP_Planvektor,LP_Planvektor,RP_Planvektor,SO_Planvektor</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -482,7 +482,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+//wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -614,9 +614,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>BP_Planvektor,FP_Planvektor,LP_Planvektor,RP_Planvektor,SO_Planvektor</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -788,9 +788,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -962,9 +962,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -1136,9 +1136,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -1310,9 +1310,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -1484,9 +1484,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -1658,9 +1658,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -1832,9 +1832,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -2006,9 +2006,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -2180,9 +2180,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -2354,9 +2354,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -2529,9 +2529,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -2704,9 +2704,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -2879,9 +2879,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -3054,9 +3054,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -3229,9 +3229,9 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -3405,7 +3405,7 @@ exists(/wms:WMS_Capabilities)</path>
               <con:name>LAYERS</con:name>
               <con:value>bp_plan</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -3423,7 +3423,7 @@ exists(/wms:WMS_Capabilities)</path>
               <con:name>QUERY_LAYERS</con:name>
               <con:value>bp_plan</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>INFO_FORMAT</con:name>
@@ -4005,9 +4005,9 @@ exists(ogc:ServiceExceptionReport)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>BP_Planvektor</con:value>
+              <con:value>bp_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -4435,7 +4435,7 @@ exists(ogc:ServiceExceptionReport)</path>
               <con:name>LAYERS</con:name>
               <con:value>bp_baugebteilfl</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -4453,7 +4453,7 @@ exists(ogc:ServiceExceptionReport)</path>
               <con:name>QUERY_LAYERS</con:name>
               <con:value>bp_baugebteilfl</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>INFO_FORMAT</con:name>
@@ -4581,7 +4581,7 @@ if (documentUrl != null){
               <con:name>LAYERS</con:name>
               <con:value>bp_plan</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -4599,7 +4599,7 @@ if (documentUrl != null){
               <con:name>QUERY_LAYERS</con:name>
               <con:value>bp_plan</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>INFO_FORMAT</con:name>
@@ -4776,7 +4776,7 @@ if (documentUrl != null){
               <con:name>LAYERS</con:name>
               <con:value>bp_baugebteilfl</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -4794,7 +4794,7 @@ if (documentUrl != null){
               <con:name>QUERY_LAYERS</con:name>
               <con:value>bp_baugebteilfl</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>INFO_FORMAT</con:name>
@@ -11832,165 +11832,165 @@ exists(/wms:WMS_Capabilities)</path>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplanraster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bp_raster">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='bplanraster'])</path>
+exists(//wms:Layer[wms:Name='bp_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplanrasterpre">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bp_rasterpre">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='bplanrasterpre'])</path>
+exists(//wms:Layer[wms:Name='bp_rasterpre'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplanrasterarchive">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bp_rasterarchive">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='bplanrasterarchive'])</path>
+exists(//wms:Layer[wms:Name='bp_rasterarchive'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplanraster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fp_raster">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='fplanraster'])</path>
+exists(//wms:Layer[wms:Name='fp_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplanrasterpre">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fp_rasterpre">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='fplanrasterpre'])</path>
+exists(//wms:Layer[wms:Name='fp_rasterpre'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplanrasterarchive">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fp_rasterarchive">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='fplanrasterarchive'])</path>
+exists(//wms:Layer[wms:Name='fp_rasterarchive'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplanraster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lp_raster">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='lplanraster'])</path>
+exists(//wms:Layer[wms:Name='lp_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplanrasterpre">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lp_rasterpre">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='lplanrasterpre'])</path>
+exists(//wms:Layer[wms:Name='lp_rasterpre'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplanrasterarchive">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lp_rasterarchive">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='lplanrasterarchive'])</path>
+exists(//wms:Layer[wms:Name='lp_rasterarchive'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplanraster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rp_raster">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='rplanraster'])</path>
+exists(//wms:Layer[wms:Name='rp_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplanrasterpre">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rp_rasterpre">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='rplanrasterpre'])</path>
+exists(//wms:Layer[wms:Name='rp_rasterpre'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplanrasterarchive">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rp_rasterarchive">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='rplanrasterarchive'])</path>
+exists(//wms:Layer[wms:Name='rp_rasterarchive'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplanraster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer so_raster">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='soplanraster'])</path>
+exists(//wms:Layer[wms:Name='so_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplanrasterpre">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer so_rasterpre">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='soplanrasterpre'])</path>
+exists(//wms:Layer[wms:Name='so_rasterpre'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplanrasterarchive">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer so_rasterarchive">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='soplanrasterarchive'])</path>
+exists(//wms:Layer[wms:Name='so_rasterarchive'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -12104,9 +12104,9 @@ exists(//wms:Layer[wms:Name='soplanrasterarchive'])</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bplanraster,fplanraster,lplanraster,rplanraster,soplanraster</con:value>
+              <con:value>bp_raster,fp_raster,lp_raster,rp_raster,so_raster</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -12180,110 +12180,110 @@ exists(/wms:WMS_Capabilities)</path>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplan_raster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bp_raster">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='bplan_raster'])</path>
+exists(//wms:Layer[wms:Name='bp_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplan_vektor">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bp_objekte">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='bplan_vektor'])</path>
+exists(//wms:Layer[wms:Name='bp_objekte'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplan_raster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fp_raster">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='fplan_raster'])</path>
+exists(//wms:Layer[wms:Name='fp_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplan_vektor">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fp_objekte">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='fplan_vektor'])</path>
+exists(//wms:Layer[wms:Name='fp_objekte'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplan_raster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lp_raster">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='lplan_raster'])</path>
+exists(//wms:Layer[wms:Name='lp_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplan_vektor">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lp_objekte">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='lplan_vektor'])</path>
+exists(//wms:Layer[wms:Name='lp_objekte'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplan_raster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rp_raster">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='rplan_raster'])</path>
+exists(//wms:Layer[wms:Name='rp_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplan_vektor">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rp_objekte">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='rplan_vektor'])</path>
+exists(//wms:Layer[wms:Name='rp_objekte'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplan_raster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer so_raster">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='soplan_raster'])</path>
+exists(//wms:Layer[wms:Name='so_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplan_vektor">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer so_objekte">
             <con:configuration>
               <path>declare namespace wms='http://www.opengis.net/wms';
 
-exists(//wms:Layer[wms:Name='soplan_vektor'])</path>
+exists(//wms:Layer[wms:Name='so_objekte'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -12397,9 +12397,9 @@ exists(//wms:Layer[wms:Name='soplan_vektor'])</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bplan_raster,fplan_raster,lplan_raster,rplan_raster,soplan_raster</con:value>
+              <con:value>bp_raster,fp_raster,lp_raster,rp_raster,so_raster</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -12514,9 +12514,9 @@ exists(//wms:Layer[wms:Name='soplan_vektor'])</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>bplan_vektor,fplan_vektor,lplan_vektor,rplan_vektor,soplan_vektor</con:value>
+              <con:value>bp_objekte,fp_objekte,lp_objekte,rp_objekte,so_objekte</con:value>
               <con:style>QUERY</con:style>
-              <con:default>BP_Planvektor</con:default>
+              <con:default>bp_objekte</con:default>
             </con:parameter>
             <con:parameter>
               <con:name>STYLES</con:name>
@@ -12590,120 +12590,120 @@ exists(/wmts:Capabilities)</path>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplan_raster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bp_raster">
             <con:configuration>
               <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
 declare namespace ows='http://www.opengis.net/ows/1.1'
 
-exists(//wmts:Layer[ows:Identifier='bplan_raster'])</path>
+exists(//wmts:Layer[ows:Identifier='bp_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplan_vektor">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bp_objekte">
             <con:configuration>
               <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
 declare namespace ows='http://www.opengis.net/ows/1.1'
 
-exists(//wmts:Layer[ows:Identifier='bplan_vektor'])</path>
+exists(//wmts:Layer[ows:Identifier='bp_objekte'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplan_raster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fp_raster">
             <con:configuration>
               <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
 declare namespace ows='http://www.opengis.net/ows/1.1'
 
-exists(//wmts:Layer[ows:Identifier='fplan_raster'])</path>
+exists(//wmts:Layer[ows:Identifier='fp_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplan_vektor">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fp_objekte">
             <con:configuration>
               <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
 declare namespace ows='http://www.opengis.net/ows/1.1'
 
-exists(//wmts:Layer[ows:Identifier='fplan_vektor'])</path>
+exists(//wmts:Layer[ows:Identifier='fp_objekte'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplan_raster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lp_raster">
             <con:configuration>
               <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
 declare namespace ows='http://www.opengis.net/ows/1.1'
 
-exists(//wmts:Layer[ows:Identifier='lplan_raster'])</path>
+exists(//wmts:Layer[ows:Identifier='lp_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplan_vektor">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lp_objekte">
             <con:configuration>
               <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
 declare namespace ows='http://www.opengis.net/ows/1.1'
 
-exists(//wmts:Layer[ows:Identifier='lplan_vektor'])</path>
+exists(//wmts:Layer[ows:Identifier='lp_objekte'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplan_raster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rp_raster">
             <con:configuration>
               <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
 declare namespace ows='http://www.opengis.net/ows/1.1'
 
-exists(//wmts:Layer[ows:Identifier='rplan_raster'])</path>
+exists(//wmts:Layer[ows:Identifier='rp_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplan_vektor">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rp_objekte">
             <con:configuration>
               <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
 declare namespace ows='http://www.opengis.net/ows/1.1'
 
-exists(//wmts:Layer[ows:Identifier='rplan_vektor'])</path>
+exists(//wmts:Layer[ows:Identifier='rp_objekte'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplan_raster">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer so_raster">
             <con:configuration>
               <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
 declare namespace ows='http://www.opengis.net/ows/1.1'
 
-exists(//wmts:Layer[ows:Identifier='soplan_raster'])</path>
+exists(//wmts:Layer[ows:Identifier='so_raster'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplan_vektor">
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer so_objekte">
             <con:configuration>
               <path>declare namespace wmts='http://www.opengis.net/wmts/1.0';
 declare namespace ows='http://www.opengis.net/ows/1.1'
 
-exists(//wmts:Layer[ows:Identifier='soplan_vektor'])</path>
+exists(//wmts:Layer[ows:Identifier='so_objekte'])</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -12743,9 +12743,9 @@ exists(//wmts:Layer[ows:Identifier='soplan_vektor'])</path>
     </con:testCase>
     <con:testCase id="0477e58b-8722-454e-9fbc-e71fdb5ae836" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetTile" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:settings/>
-      <con:testStep type="httprequest" name="GetTile - bplan_raster" id="60bd1a9f-2155-4f75-bd87-8d9fc309edc9">
+      <con:testStep type="httprequest" name="GetTile - bp_raster" id="60bd1a9f-2155-4f75-bd87-8d9fc309edc9">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="GetTile - bplan_raster" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="GetTile - bp_raster" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
@@ -12799,7 +12799,7 @@ exists(//wmts:Layer[ows:Identifier='soplan_vektor'])</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYER</con:name>
-              <con:value>bplan_vektor</con:value>
+              <con:value>bp_raster</con:value>
               <con:style>QUERY</con:style>
               <con:default>bplan_raster</con:default>
               <con:path xsi:nil="true"/>
@@ -12856,9 +12856,9 @@ exists(//wmts:Layer[ows:Identifier='soplan_vektor'])</path>
           </con:parameters>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="GetTile - bplan_vektor" id="4653916d-4d91-4f9c-b453-a2fdc51db108">
+      <con:testStep type="httprequest" name="GetTile - bp_objekte" id="4653916d-4d91-4f9c-b453-a2fdc51db108">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="GetTile - bplan_vektor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="GetTile - bp_objekte" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
@@ -12912,7 +12912,7 @@ exists(//wmts:Layer[ows:Identifier='soplan_vektor'])</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYER</con:name>
-              <con:value>bplan_raster</con:value>
+              <con:value>bp_objekte</con:value>
               <con:style>QUERY</con:style>
               <con:default>bplan_raster</con:default>
               <con:path xsi:nil="true"/>
@@ -12969,13 +12969,13 @@ exists(//wmts:Layer[ows:Identifier='soplan_vektor'])</path>
           </con:parameters>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="REST GetTile - bplan_raster" id="f0ebbf6d-8143-430b-aa7f-bf7831e55115">
+      <con:testStep type="httprequest" name="REST GetTile - bp_raster" id="f0ebbf6d-8143-430b-aa7f-bf7831e55115">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="REST GetTile - bplan_raster" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="REST GetTile - bp_raster" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrlMapProxy}/wmts/bplan_raster/gdi_de_25832/6/2050/1148.png</con:endpoint>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wmts/bp_raster/gdi_de_25832/6/2050/1148.png</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="6f5f2a6d-d21d-476b-84d8-69b271ab5021" name="Valid HTTP Status Codes">
             <con:configuration>
@@ -13001,13 +13001,13 @@ exists(//wmts:Layer[ows:Identifier='soplan_vektor'])</path>
           <con:parameters/>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="REST GetTile - bplan_vektor" id="16fa6248-6d25-4906-92ca-12b79fa8e63c">
+      <con:testStep type="httprequest" name="REST GetTile - bp_objekte" id="16fa6248-6d25-4906-92ca-12b79fa8e63c">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="REST GetTile - bplan_vektor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="2abb02e5-f0c7-4202-9f6f-b760b042f42e" name="REST GetTile - bp_objekte" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>${#Project#baseUrlMapProxy}/wmts/bplan_vektor/gdi_de_25832/6/2050/1148.png</con:endpoint>
+          <con:endpoint>${#Project#baseUrlMapProxy}/wmts/bp_objekte/gdi_de_25832/6/2050/1148.png</con:endpoint>
           <con:request/>
           <con:assertion type="Valid HTTP Status Codes" id="6f5f2a6d-d21d-476b-84d8-69b271ab5021" name="Valid HTTP Status Codes">
             <con:configuration>

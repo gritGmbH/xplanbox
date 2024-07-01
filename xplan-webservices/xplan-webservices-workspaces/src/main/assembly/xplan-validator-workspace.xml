@@ -31,12 +31,16 @@
       <directory>${basedir}/src/main/workspace</directory>
       <includes>
         <include>jdbc/xplan.xml</include>
-        <include>datasources/feature/xplanvalidator.xml</include>
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>
       </excludes>
       <outputDirectory>.</outputDirectory>
+      <filtered>false</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/datasources/feature/validator-wms/sql</directory>
+      <outputDirectory>datasources/feature</outputDirectory>
       <filtered>false</filtered>
     </fileSet>
   </fileSets>

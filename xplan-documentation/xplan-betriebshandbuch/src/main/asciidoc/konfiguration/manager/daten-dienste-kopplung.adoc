@@ -7,15 +7,15 @@ Um diese Funktion zu aktivieren, muss die Konfiguration in der Datei _<XPLANBOX_
 ---------
 #Daten-Dienste-Kopplung
 planWerkWmsBaseUrl=http://localhost:8083/xplan-planwerk-wms/
-planWerkWmsGetMapLayers_BP_Plan=BP_Planvektor
+planWerkWmsGetMapLayers_BP_Plan=bp_objekte
 planWerkWmsGetMapStyles_BP_Plan=
-planWerkWmsGetMapLayers_FP_Plan=FP_Planvektor
+planWerkWmsGetMapLayers_FP_Plan=fp_objekte
 planWerkWmsGetMapStyles_FP_Plan=
-planWerkWmsGetMapLayers_RP_Plan=RP_Planvektor
+planWerkWmsGetMapLayers_RP_Plan=rp_objekte
 planWerkWmsGetMapStyles_RP_Plan=
-planWerkWmsGetMapLayers_LP_Plan=LP_Planvektor
+planWerkWmsGetMapLayers_LP_Plan=lp_objekte
 planWerkWmsGetMapStyles_LP_Plan=
-planWerkWmsGetMapLayers_SO_Plan=SO_Planvektor
+planWerkWmsGetMapLayers_SO_Plan=so_objekt
 planWerkWmsGetMapStyles_SO_Plan=
 planWerkWmsGetMapWidth=750
 planWerkWmsGetMapHeight=750
@@ -27,7 +27,7 @@ directoryToStoreMetadata=/tmp/
 Erläuterung der einzelnen Properties:
 
  * *planWerkWmsBaseUrl*: Die öffentliche Basis-URL des XPlanWerkWMS, z. B. http://xplanbox.lat-lon.de/xplan-services-wms/
- * *planWerkWmsGetMapLayers_BP_Plan* und *planWerkWmsGetMapStyles_BP_Plan*: Angabe der zu verwendenen Layer und Styles, die in der GetMap Anfrage (GraphicOverview) angegeben werden sollen
+ * *planWerkWmsGetMapLayers_BP_Plan* und *planWerkWmsGetMapStyles_BP_Plan*: Angabe der zu verwendenden Layer und Styles, die in der GetMap Anfrage (GraphicOverview) angegeben werden sollen
  * *planWerkWmsGetMapWidth* und *planWerkWmsGetMapHeight*: Angabe der zu verwendenden Höhe und Breite des Kartenbildes in Pixeln, die in der GetMap Anfrage (GraphicOverview) angegeben werden sollen
  * *cswUrlProvidingDatasetMetadata*: GetCapabilities URL des CSW, der Daten-Metadatensätze zu einem Plan bereitstellt
  * *directoryToStoreMetadata*: Verzeichnis in dem die erstellten Service-Metadatensätze abgelegt werden (das Verzeichnis muss beim Start des Tomcat-Servers, in dem sich die xplanwebapp-manager-web befindet, existieren). Unter Windows muss das Zeichen "\" als Pfad-Trennzeichen verwendet werden (z. B. "C:\tmp\").

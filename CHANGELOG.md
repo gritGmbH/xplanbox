@@ -2,6 +2,89 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+
+## Version 8.0 (2024-XX-XX)
+
+### Breaking Changes
+
+An den Kartendiensten wurden Änderungen vorgenommen, die eine Anpassung an der Konfiguration von aufrufenden Clienten erfordern können. Bitte beachten Sie dazu die folgenden Hinweise.
+
+Im XPlanWMS und XPlanWerkWMS wurde ein neuer Gruppierungslayer `vektordaten` hinzugefügt und folgende Layer umbenannt:
+
+| Alt             | Neu          |
+|-----------------|--------------|
+| `BP_Planvektor` | `bp_objekte` |
+| `BP_Planraster` | `bp_raster`  |
+| `FP_Planvektor` | `fp_objekte` |
+| `FP_Planraster` | `fp_raster`  |
+| `LP_Planvektor` | `lp_objekte` |
+| `LP_Planraster` | `lp_raster`  |
+| `RP_Planvektor` | `rp_objekte` |
+| `RP_Planraster` | `rp_raster`  |
+| `SO_Planvektor` | `so_objekte` |
+| `SO_Planraster` | `so_raster`  |
+
+Im XPlanArtWMS wurden folgende Layer umbenannt:
+
+| Alt             | Neu              |
+|-----------------|------------------|
+| `BP_Planvektor` | `bp_vektordaten` |
+| `bp`            | `bp_objekte`     |
+| `FP_Planvektor` | `fp_vektordaten` |
+| `fp`            | `fp_objekte`     |
+| `LP_Planvektor` | `lp_vektordaten` |
+| `lp`            | `lp_objekte`     |
+| `RP_Planvektor` | `rp_vektordaten` |
+| `rp`            | `rp_objekte`     |
+| `SO_Planvektor` | `so_vektordaten` |
+| `so`            | `so_objekte`     |
+
+Im XPlanValidatorWMS wurde ein neuer Gruppierungslayer `vektordaten` hinzugefügt und folgende Layer umbenannt: 
+
+| Alt             | Neu              |
+|-----------------|------------------|
+| `BP_Planvektor` | `bp_objekte`     |
+| `FP_Planvektor` | `fp_objekte`     |
+| `LP_Planvektor` | `lp_objekte`     |
+| `RP_Planvektor` | `rp_objekte`     |
+| `SO_Planvektor` | `so_objekte`     |
+
+Im MapServer wurden folgende Layer umbenannt:
+
+| Alt                   | Neu                |
+|-----------------------|--------------------|
+| `bplanraster`         | `bp_raster`        |
+| `bplanrasterarchive`  | `bp_rasterarchive` |
+| `bplanrasterpre`      | `bp_rasterpre`     |
+| `fplanraster`         | `fp_raster`        |
+| `fplanrasterarchive`  | `fp_rasterarchive` |
+| `fplanrasterpre`      | `fp_rasterpre`     |
+| `lplanraster`         | `lp_raster`        |
+| `lplanrasterarchive`  | `lp_rasterarchive` |
+| `lplanrasterpre`      | `lp_rasterpre`     |
+| `rplanraster`         | `rp_raster`        |
+| `rplanrasterarchive`  | `rp_rasterarchive` |
+| `rplanrasterpre`      | `rp_rasterpre`     |
+| `soplanraster`        | `so_raster`        |
+| `soplanrasterarchive` | `so_rasterarchive` |
+| `soplanrasterpre`     | `so_rasterpre`     |
+
+Im MapProxy wurden folgende Layer umbenannt:
+
+| Alt             | Neu          |
+|-----------------|--------------|
+| `xplan_bplan`   | `bplan`      |
+| `bplan_raster`  | `bp_raster`  |
+| `bplan_vektor`  | `bp_objekte` |
+| `fplan_raster`  | `fp_raster`  |
+| `fplan_vektor`  | `fp_objekte` |
+| `lplan_raster`  | `lp_raster`  |
+| `lplan_vektor`  | `lp_objekte` |
+| `rplan_raster`  | `rp_raster`  |
+| `rplan_vektor`  | `rp_objekte` |
+| `soplan_raster` | `so_raster`  |
+| `soplan_vektor` | `so_objekte` |
+
 ## Version 7.2.1 (2024-05-29)
 
 ### Fehlerbehebungen
@@ -18,6 +101,8 @@ Die folgenden Funktionen sind veraltet und werden in einer zukünftigen Version 
 ## Version 7.2 (2024-05-14)
 
 Neben Fehlerbehebungen sowie Erweiterungen und Verbesserungen an den Komponenten der xPlanBox wurden alle Kommandozeilenwerkzeuge zu einem Tool zusammengefasst. Auch wird für die Einrichtung und Aktualisierung des Datenbankschemas der XPlanDB ab der Version 7.2 das Werkzeug Liquibase eingesetzt. Bitte beachten Sie dazu die Hinweise im Betriebshandbuch, Abschnitt Installation.
+
+### Breaking Changes
 
 Folgende Webmodule wurden umbenannt:
 
@@ -40,7 +125,7 @@ Folgende Container Images wurden umbenannt:
 | `xplan-root`           | `xplan-webpages`                   |
 | `xplan-validator-wms`  | `xplan-webservices-validator-wms`  |
 
-Folgende Workspace und Konfigurationsordner wurden umbenannt:
+Folgende Workspace- und Konfigurationsordner wurden umbenannt:
 
 | Alt                   | Neu                             |
 |-----------------------|---------------------------------|

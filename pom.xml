@@ -499,6 +499,7 @@
                     <ignoreClass>org.apache.commons.logging.*</ignoreClass>
                     <ignoreClass>org.eclipse.jdt.*</ignoreClass>
                     <ignoreClass>org.w3c.dom.*</ignoreClass>
+                    <ignoreClass>org.apache.logging.slf4j.package-info.class</ignoreClass>
                   </ignoreClasses>
                   <scopes>
                     <scope>compile</scope>
@@ -1255,6 +1256,12 @@
         <version>${project.version}</version>
         <classifier>validator-html</classifier>
         <type>zip</type>
+      </dependency>
+      <dependency>
+        <groupId>de.latlon.product.xplanbox</groupId>
+        <artifactId>xplan-core-tests</artifactId>
+        <version>${project.version}</version>
+        <scope>test</scope>
       </dependency>
       <!-- cli -->
       <dependency>

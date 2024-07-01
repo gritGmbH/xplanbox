@@ -55,6 +55,7 @@
         <include>themes/lplan*</include>
         <include>themes/rplan*</include>
         <include>themes/soplan*</include>
+        <include>themes/vektor*</include>
         <include>themes/planart-wms/**</include>
       </includes>
       <excludes>

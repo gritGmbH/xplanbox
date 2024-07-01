@@ -36,8 +36,21 @@ Wenn die erzeugten deegree Konfigurationsdateien für Layer und Themes leere XML
 ==== Lösungsansätze
 
 - Für die Erzeugung der deegree Konfigurationsdateien muss zwingend die Bibliothek Apache Xalan 2.7.3 verwendet werden.
-- Zusätzlich muss sichergestellt sein, dass im Java Classpath des Prozesses, der den XPlanManagerCLI aufruft, keine anderen JAXP (SAX/DOM) Implementierungen vorhanden sind als die Dateien _Saxon-HE-9.9.x.jar_ und _xalan-2.7.2.jar_.
+- Zusätzlich muss sichergestellt sein, dass im Java Classpath des Prozesses, der den XPlanManagerCLI aufruft, keine anderen JAXP (SAX/DOM) Implementierungen vorhanden sind als die Dateien _Saxon-HE-9.9.x.jar_ und _xalan-2.7.x.jar_.
 - Eine Umgehung des Fehlers ist möglich, wenn die leeren XML-Namensraum-Attribute manuell entfernt werden. Dann ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
+
+[[troubleshooting-validatorwms-jobs]]
+=== Betrieb mit mehreren Instanzen des XPlanValidatorWMS
+
+==== Problembeschreibung
+
+Werden mehrere Instanzen des XPlanValidatorWMS betrieben, so können die zum Löschen der Pläne im Scheduler konfigurierten Jobs (siehe <<konfiguration-xplanvalidatorwms-scheduler>>) sich ggf. gegenseitig blockieren.
+
+==== Lösungsansätze
+
+- Verwendung der Konfiguration für die temporäre Datenhaltung im Arbeitsspeicher für alle Instanzen des XPlanValidatorWMS (siehe <<konfiguration-xplanvalidatorwms>>).
+- Festlegung einer primären Instanz des XPlanValidatorWMS auf dem der Scheduler aktiviert ist und Deaktivierung des Scheduler auf allen anderen sekundären Instanzen bei Verwendung der XPlanDB als temporäre Datenhaltung (siehe <<konfiguration-xplanvalidatorwms>>).
+
 
 [[troubleshooting-resources]]
 === Kapazitätsbezogene Einschränkungen

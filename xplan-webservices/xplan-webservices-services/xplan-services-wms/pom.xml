@@ -123,6 +123,14 @@
       <version>4.5.14</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>de.latlon.product.xplanbox</groupId>
+      <artifactId>xplan-core-tests</artifactId>
+    </dependency>
   </dependencies>
 
 </project>

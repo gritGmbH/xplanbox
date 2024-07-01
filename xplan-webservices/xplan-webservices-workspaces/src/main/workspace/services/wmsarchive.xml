@@ -26,11 +26,7 @@
     <wms:DefaultLayerOptions>
       <wms:FeatureInfoRadius>10</wms:FeatureInfoRadius>
     </wms:DefaultLayerOptions>
-    <wms:ThemeId>bplanarchive</wms:ThemeId>
-    <wms:ThemeId>fplanarchive</wms:ThemeId>
-    <wms:ThemeId>lplanarchive</wms:ThemeId>
-    <wms:ThemeId>rplanarchive</wms:ThemeId>
-    <wms:ThemeId>soplanarchive</wms:ThemeId>
+    <wms:ThemeId>vektorarchive</wms:ThemeId>
     <wms:ThemeId>bplanarchiveraster</wms:ThemeId>
     <wms:ThemeId>fplanarchiveraster</wms:ThemeId>
     <wms:ThemeId>lplanarchiveraster</wms:ThemeId>

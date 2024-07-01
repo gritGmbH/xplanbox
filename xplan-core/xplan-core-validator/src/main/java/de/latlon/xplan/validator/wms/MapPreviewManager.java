@@ -20,6 +20,9 @@
  */
 package de.latlon.xplan.validator.wms;
 
+import javax.xml.stream.XMLStreamException;
+import java.io.File;
+
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
@@ -36,9 +39,6 @@ import org.deegree.geometry.Envelope;
 import org.deegree.geometry.GeometryTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.xml.stream.XMLStreamException;
-import java.io.File;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -82,7 +82,7 @@ public class MapPreviewManager {
 				.build()
 				.parseXPlanFeatureCollection(archive);
 			int managerId = this.validatorWmsManager.insert(featureCollection);
-			String configFileName = this.configWriter.createMasterportalConfig(managerId, archive.getType());
+			String configFileName = this.configWriter.createMasterportalConfig(managerId);
 
 			Envelope envelope = transformBboxTo25832(featureCollection.getBboxIn4326());
 			XPlanEnvelope xPlanEnvelope = new XPlanEnvelope(envelope.getMin().get0(), envelope.getMin().get1(),

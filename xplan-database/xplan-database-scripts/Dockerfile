@@ -1,4 +1,5 @@
-FROM liquibase/liquibase:4.28.0
+# latest liquibase/liquibase:4.28.0 on 25.06.24 
+FROM liquibase/liquibase@sha256:7c813a2cb861f8b4718a09375c5265909127f4cb99f56bb95c956175c9b91525
 ARG BUILD_DATE=?
 ARG DOCKER_IMAGE_NAME=?
 ARG GIT_REVISION=?

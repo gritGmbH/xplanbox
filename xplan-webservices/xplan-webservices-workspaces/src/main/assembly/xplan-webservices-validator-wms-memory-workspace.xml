@@ -38,7 +38,6 @@
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>
-        <exclude>wms_metadata.xml</exclude>
       </excludes>
       <outputDirectory>.</outputDirectory>
       <filtered>false</filtered>
@@ -60,9 +59,15 @@
       <directory>${basedir}/src/main/workspace/services/validator-wms</directory>
       <outputDirectory>services/</outputDirectory>
       <filtered>false</filtered>
+      <excludes>
+        <exclude>wms_metadata.xml</exclude>
+      </excludes>
     </fileSet>
     <fileSet>
-      <directory>${basedir}/src/main/workspace/themes/validator-wms/memory</directory>
+      <directory>${basedir}/src/main/workspace/themes</directory>
+      <includes>
+        <include>vektor.xml</include>
+      </includes>
       <outputDirectory>themes/</outputDirectory>
       <filtered>false</filtered>
     </fileSet>

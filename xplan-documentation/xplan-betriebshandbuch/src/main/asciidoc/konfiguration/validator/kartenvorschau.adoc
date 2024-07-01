@@ -36,7 +36,7 @@ Im XPlanValidatorWMS werden die im XPlanValidator hochgeladenen XPlanGML-Dateien
 
 Mit der Workspace-Konfiguration _xplan-webservices-validator-wms-memory-workspace_ wird der XPlanValidatorWMS so konfiguriert, dass die Daten ausschliesslich im Arbeitsspeicher vorgehalten werden.
 
-Mit dem _xplan-webservices-validator-wms-sql-workspace_ kann stattdessen die XPlanDB als Datenhaltung für den XPlanValidatorWMS konfiguriert werden. Dabei muss ein separates Schema für den XPlanValidatorWMS in der XPlanDB angelegt werden (weitere Informationen zur Einrichtung der XPlanDB im Kapitel <<konfiguration-der-datenbank>>). Wenn diese Workspace-Konfiguration gewählt wird, muss zusätzlich auch der der _xplan-validator-workspace.zip_ im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ abgelegt werden.
+Mit dem _xplan-webservices-validator-wms-sql-workspace_ kann stattdessen die XPlanDB als Datenhaltung für den XPlanValidatorWMS konfiguriert werden. Dabei muss ein separates Schema für den XPlanValidatorWMS in der XPlanDB angelegt werden (weitere Informationen zur Einrichtung der XPlanDB im Kapitel <<konfiguration-der-datenbank>>). Wenn diese Workspace-Konfiguration gewählt wird, muss zusätzlich auch der _xplan-validator-workspace.zip_ im Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ abgelegt werden.
 
 Die Aktivierung der gewünschten Workspace-Konfiguration erfolgt über die Datei _<DEEGREE_WORKSPACE_ROOT>/webapps.properties_ (siehe <<installation-webapp-properties>>).
 
@@ -54,6 +54,7 @@ Um die Kartenvorschau zu aktivieren, muss zusätzlich die Umgebungsvariable `spr
 * Für die Speicherung der Daten in der XPlanDB: `spring_profiles_active=validatorwmssql`
 ====
 
+[[konfiguration-xplanvalidatorwms-scheduler]]
 ==== Konfiguration des Löschens von Daten aus dem XPlanValidatorWMS
 
 Standardmäßig werden Pläne fünf Minuten nach der Validierung wieder aus dem XPlanValidatorWMS entfernt und sind in der Kartenvorschau nicht mehr sichtbar.

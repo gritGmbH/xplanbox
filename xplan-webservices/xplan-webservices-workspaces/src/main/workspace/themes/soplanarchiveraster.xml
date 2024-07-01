@@ -24,15 +24,15 @@
   <!--<LayerStoreId>dummyrasterlayer</LayerStoreId>-->
   <!--<LayerStoreId>mapserver</LayerStoreId>-->
   <Theme>
-    <Identifier>SO_Planraster</Identifier>
-    <d:Title>SOPlan Raster</d:Title>
+    <Identifier>so_raster</Identifier>
+    <d:Title>SO Raster</d:Title>
     <d:Abstract>Rasterdaten SOPlan</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <Theme>
       <Identifier>soplanraster_sortiert</Identifier>
-      <d:Title>SOPlan Raster Theme</d:Title>
+      <d:Title>SO Raster Theme</d:Title>
       <!--<Layer layerStore="dummyrasterlayer">dummyraster</Layer>-->
-      <!--<Layer layerStore="mapserver">soplanrasterarchive</Layer>-->
+      <!--<Layer layerStore="mapserver">so_rasterarchive</Layer>-->
     </Theme>
   </Theme>
 </Themes>

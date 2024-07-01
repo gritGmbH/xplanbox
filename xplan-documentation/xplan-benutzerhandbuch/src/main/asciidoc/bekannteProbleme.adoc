@@ -100,31 +100,31 @@ Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständi
 
 Im XPlanWMS ist der Umfang der Darstellung von Präsentationsobjekten nur eingeschränkt implementiert. Über die folgenden Layer werden diese angezeigt:
 
- * BP_Plan
+ * Für die Planart BP_Plan:
  ** bp_xp_fpo
  ** bp_xp_lpo
  ** bp_xp_lto
  ** bp_xp_ppo
  ** bp_xp_pto
- * FP_Plan
+ * Für die Planart FP_Plan:
  ** fp_xp_fpo
  ** fp_xp_lpo
  ** fp_xp_lto
  ** fp_xp_ppo
  ** fp_xp_pto
- * LP_Plan
+ * Für die Planart LP_Plan:
  ** lp_xp_fpo
  ** lp_xp_lpo
  ** lp_xp_lto
  ** lp_xp_ppo
  ** lp_xp_pto
- * RP_Plan
+ * Für die Planart RP_Plan:
  ** rp_xp_fpo
  ** rp_xp_lpo
  ** rp_xp_lto
  ** rp_xp_ppo
  ** rp_xp_pto
- * SO_Plan
+ * Für die Planart SO_Plan:
  ** so_xp_fpo
  ** so_xp_lpo
  ** so_xp_lto

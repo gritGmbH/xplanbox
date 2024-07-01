@@ -29,9 +29,13 @@
     <fileSet>
       <directory>${basedir}/src/main/workspace</directory>
       <includes>
-        <include>jdbc/xplan.xml</include>
-        <include>datasources/feature/xplanvalidator.xml</include>
+        <include>layers/bplan.xml</include>
+        <include>layers/fplan.xml</include>
+        <include>layers/lplan.xml</include>
+        <include>layers/rplan.xml</include>
+        <include>layers/soplan.xml</include>
         <include>services/html.gfi</include>
+        <include>jdbc/xplan.xml</include>
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>
@@ -40,19 +44,9 @@
       <filtered>false</filtered>
     </fileSet>
     <fileSet>
-      <directory>${basedir}/src/main/workspace/layers/validator-wms/sql</directory>
-      <outputDirectory>layers/planart-wms/</outputDirectory>
-    </fileSet>
-    <fileSet>
-      <directory>${basedir}/src/main/workspace/themes/planart-wms</directory>
-      <outputDirectory>themes/</outputDirectory>
-      <includes>
-        <include>bplan.xml</include>
-        <include>fplan.xml</include>
-        <include>lplan.xml</include>
-        <include>rplan.xml</include>
-        <include>soplan.xml</include>
-      </includes>
+      <directory>${basedir}/src/main/workspace/datasources/feature/validator-wms/sql</directory>
+      <outputDirectory>datasources/feature/</outputDirectory>
+      <filtered>false</filtered>
     </fileSet>
     <fileSet>
       <directory>${basedir}/src/main/workspace/services/validator-wms</directory>
@@ -69,6 +63,14 @@
       <excludes>
         <exclude>wms_metadata.xml</exclude>
       </excludes>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/themes</directory>
+      <includes>
+        <include>vektor.xml</include>
+      </includes>
+      <outputDirectory>themes/</outputDirectory>
+      <filtered>false</filtered>
     </fileSet>
     <fileSet>
       <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-xplansyn</directory>

@@ -76,6 +76,7 @@ Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versione
 | 7.1.3 (<<aktualisierung-version-7.1.3, Details>>)     | ja   | nein
 | 7.2   (<<aktualisierung-version-7.2, Details>>)       | ja   | ja
 | 7.2.1 (<<aktualisierung-version-7.2.1, Details>>)     | nein | nein
+| 8.0   (<<aktualisierung-version-8.0, Details>>)       | ja   | ja
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |===
 
@@ -261,3 +262,14 @@ Bei unerwartetem Verhalten der xPlanBox nach einer Aktualisierung können folgen
 * Löschen des Verzeichnisses _<CATALINA_HOME>/work/_ des Tomcat-Servers. Der Tomcat-Server muss zuvor gestoppt und anschließend neu gestartet werden.
 * Reload der Workspaces der XPlanDienste.
 * Löschen des Browser-Caches.
+
+[[aktualisierung-version-8.0]]
+=== Aktualisierung auf die Version 8.0 der xPlanBox
+
+Für die Aktualisierung auf die Version 8.0 sind folgende Schritte auszuführen:
+
+* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+* Aktualisierung der Datenbank:
+** Ausführen der Liquibase-Skripte, wie im Abschnitt <<konfiguration-xplandb-liquibase, Liquibase>> beschrieben
+
+NOTE: Die Namen der Layer im XPlanWMS, XPlanArtWM, XPlanWerkWMS, XPlanValidatorWMS, MapServer und MapProxy haben sich geändert. Im https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/main/CHANGELOG.md[CHANGELOG.md] sind die Änderungen aufgelistet. Die Konfigurationen der GIS Clients, die die WMS-Dienste einbinden, müssen ggf. angepasst werden. Weiterhin müssen aufgrund der Änderungen alle Service-Metadatensätze neu generiert und in den verwendeten CSW importiert werden (s. dazu den Abschnitt zur <<konfiguration-daten-dienste-kopplung, automatisierten Erstellung von Service-Metadatensätzen>>.

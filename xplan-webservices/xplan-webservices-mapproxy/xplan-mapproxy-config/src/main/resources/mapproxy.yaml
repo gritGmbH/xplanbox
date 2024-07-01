@@ -86,10 +86,10 @@ services:
       abstract: WMTS zur Visualisierung von XPlanungsdaten
       <<: *md_cfg
 layers:
-  - name: xplan_bplan
+  - name: bplan
     title: XPlanung Bebauungspläne
     layers:
-      - name: bplan_raster
+      - name: bp_raster
         title: Rasterdarstellung der Bebauungspläne
         sources: [bplan_raster_cache_25832,bplan_raster_cache_3857]
         tile_sources: [bplan_raster_cache_25832,bplan_raster_cache_3857]
@@ -100,7 +100,7 @@ layers:
             - url: ${XPLAN_SERVICES_METADATA_URL}
               type: ISO19115:2003
               format: application/xml
-      - name: bplan_vektor
+      - name: bp_objekte
         title: Vektordarstellung der Bebauungspläne
         sources: [bplan_vektor_cache_25832,bplan_vektor_cache_3857]
         tile_sources: [bplan_vektor_cache_25832,bplan_vektor_cache_3857]
@@ -111,10 +111,10 @@ layers:
             - url: ${XPLAN_SERVICES_METADATA_URL}
               type: ISO19115:2003
               format: application/xml
-  - name: xplan_fplan
+  - name: fplan
     title: XPlanung Flächennutzungspläne
     layers:
-      - name: fplan_raster
+      - name: fp_raster
         title: Rasterdarstellung der Flächennutzungspläne
         sources: [fplan_raster_cache_25832,fplan_raster_cache_3857]
         tile_sources: [fplan_raster_cache_25832,fplan_raster_cache_3857]
@@ -125,7 +125,7 @@ layers:
             - url: ${XPLAN_SERVICES_METADATA_URL}
               type: ISO19115:2003
               format: application/xml
-      - name: fplan_vektor
+      - name: fp_objekte
         title: Vektordarstellung der Flächennutzungspläne
         sources: [fplan_vektor_cache_25832,fplan_vektor_cache_3857]
         tile_sources: [fplan_vektor_cache_25832,fplan_vektor_cache_3857]
@@ -136,10 +136,10 @@ layers:
             - url: ${XPLAN_SERVICES_METADATA_URL}
               type: ISO19115:2003
               format: application/xml
-  - name: xplan_lplan
+  - name: lplan
     title: XPlanung Landschaftspläne
     layers:
-      - name: lplan_raster
+      - name: lp_raster
         title: Rasterdarstellung der Landschaftspläne
         sources: [lplan_raster_cache_25832,lplan_raster_cache_3857]
         tile_sources: [lplan_raster_cache_25832,lplan_raster_cache_3857]
@@ -150,7 +150,7 @@ layers:
             - url: ${XPLAN_SERVICES_METADATA_URL}
               type: ISO19115:2003
               format: application/xml
-      - name: lplan_vektor
+      - name: lp_objekte
         title: Vektordarstellung der Landschaftspläne
         sources: [lplan_vektor_cache_25832,lplan_vektor_cache_3857]
         tile_sources: [lplan_vektor_cache_25832,lplan_vektor_cache_3857]
@@ -161,10 +161,10 @@ layers:
             - url: ${XPLAN_SERVICES_METADATA_URL}
               type: ISO19115:2003
               format: application/xml
-  - name: xplan_rplan
+  - name: rplan
     title: XPlanung Regionalpläne
     layers:
-      - name: rplan_raster
+      - name: rp_raster
         title: Rasterdarstellung der Regionalpläne
         sources: [rplan_raster_cache_25832,rplan_raster_cache_3857]
         tile_sources: [rplan_raster_cache_25832,rplan_raster_cache_3857]
@@ -175,7 +175,7 @@ layers:
             - url: ${XPLAN_SERVICES_METADATA_URL}
               type: ISO19115:2003
               format: application/xml
-      - name: rplan_vektor
+      - name: rp_objekte
         title: Vektordarstellung der Regionalpläne
         sources: [rplan_vektor_cache_25832,rplan_vektor_cache_3857]
         tile_sources: [rplan_vektor_cache_25832,rplan_vektor_cache_3857]
@@ -186,10 +186,10 @@ layers:
             - url: ${XPLAN_SERVICES_METADATA_URL}
               type: ISO19115:2003
               format: application/xml
-  - name: xplan_soplan
+  - name: soplan
     title: XPlanung sonstige raumbezogene Pläne
     layers:
-      - name: soplan_raster
+      - name: so_raster
         title: Rasterdarstellung der sonstigen raumbezogenen Pläne
         sources: [soplan_raster_cache_25832,soplan_raster_cache_3857]
         tile_sources: [soplan_raster_cache_25832,soplan_raster_cache_3857]
@@ -200,7 +200,7 @@ layers:
             - url: ${XPLAN_SERVICES_METADATA_URL}
               type: ISO19115:2003
               format: application/xml
-      - name: soplan_vektor
+      - name: so_objekte
         title: Vektordarstellung der sonstigen raumbezogenen Pläne
         sources: [soplan_vektor_cache_25832,soplan_vektor_cache_3857]
         tile_sources: [soplan_vektor_cache_25832,soplan_vektor_cache_3857]
@@ -217,121 +217,121 @@ caches:
     cache:
       directory: /bplan_raster/25832/
       type: s3
-    sources: ['xplan-mapserver:bplanraster']
+    sources: ['xplan-mapserver:bp_raster']
   bplan_vektor_cache_25832:
     <<: *cache_cfg_25832
     cache:
       directory: /bplan_vektor/25832/
       type: s3
-    sources: ['bplan-wms:BP_Planvektor']
+    sources: ['bplan-wms:bp_objekte']
   fplan_raster_cache_25832:
     <<: *cache_cfg_25832
     cache:
       directory: /fplan_raster/25832/
       type: s3
-    sources: ['xplan-mapserver:fplanraster']
+    sources: ['xplan-mapserver:fp_raster']
   fplan_vektor_cache_25832:
     <<: *cache_cfg_25832
     cache:
       directory: /fplan_vektor/25832/
       type: s3
-    sources: ['fplan-wms:FP_Planvektor']
+    sources: ['fplan-wms:fp_objekte']
   lplan_raster_cache_25832:
     <<: *cache_cfg_25832
     cache:
       directory: /lplan_raster/25832/
       type: s3
-    sources: ['xplan-mapserver:lplanraster']
+    sources: ['xplan-mapserver:lp_raster']
   lplan_vektor_cache_25832:
     <<: *cache_cfg_25832
     cache:
       directory: /lplan_vektor/25832/
       type: s3
-    sources: ['lplan-wms:LP_Planvektor']
+    sources: ['lplan-wms:lp_objekte']
   rplan_raster_cache_25832:
     <<: *cache_cfg_25832
     cache:
       directory: /rplan_raster/25832/
       type: s3
-    sources: ['xplan-mapserver:rplanraster']
+    sources: ['xplan-mapserver:rp_raster']
   rplan_vektor_cache_25832:
     <<: *cache_cfg_25832
     cache:
       directory: /rplan_vektor/25832/
       type: s3
-    sources: ['rplan-wms:RP_Planvektor']
+    sources: ['rplan-wms:rp_objekte']
   soplan_raster_cache_25832:
     <<: *cache_cfg_25832
     cache:
       directory: /soplan_raster/25832/
       type: s3
-    sources: ['xplan-mapserver:soplanraster']
+    sources: ['xplan-mapserver:so_raster']
   soplan_vektor_cache_25832:
     <<: *cache_cfg_25832
     cache:
       directory: /soplan_vektor/25832/
       type: s3
-    sources: ['soplan-wms:SO_Planvektor']
+    sources: ['soplan-wms:so_objekte']
   bplan_raster_cache_3857:
     <<: *cache_cfg_3857
     cache:
       directory: /bplan_raster/3857/
       type: s3
-    sources: [ 'xplan-mapserver:bplanraster' ]
+    sources: [ 'xplan-mapserver:bp_raster' ]
   bplan_vektor_cache_3857:
     <<: *cache_cfg_3857
     cache:
       directory: /bplan_vektor/3857/
       type: s3
-    sources: [ 'bplan-wms:BP_Planvektor' ]
+    sources: [ 'bplan-wms:bp_objekte' ]
   fplan_raster_cache_3857:
     <<: *cache_cfg_3857
     cache:
       directory: /fplan_raster/3857/
       type: s3
-    sources: [ 'xplan-mapserver:fplanraster' ]
+    sources: [ 'xplan-mapserver:fp_raster' ]
   fplan_vektor_cache_3857:
     <<: *cache_cfg_3857
     cache:
       directory: /fplan_vektor/3857/
       type: s3
-    sources: [ 'fplan-wms:FP_Planvektor' ]
+    sources: [ 'fplan-wms:fp_objekte' ]
   lplan_raster_cache_3857:
     <<: *cache_cfg_3857
     cache:
       directory: /lplan_raster/3857/
       type: s3
-    sources: [ 'xplan-mapserver:lplanraster' ]
+    sources: [ 'xplan-mapserver:lp_raster' ]
   lplan_vektor_cache_3857:
     <<: *cache_cfg_3857
     cache:
       directory: /lplan_vektor/3857/
       type: s3
-    sources: [ 'lplan-wms:LP_Planvektor' ]
+    sources: [ 'lplan-wms:lp_objekte' ]
   rplan_raster_cache_3857:
     <<: *cache_cfg_3857
     cache:
       directory: /rplan_raster/3857/
       type: s3
-    sources: [ 'xplan-mapserver:rplanraster' ]
+    sources: [ 'xplan-mapserver:rp_raster' ]
   rplan_vektor_cache_3857:
     <<: *cache_cfg_3857
     cache:
       directory: /rplan_vektor/3857/
       type: s3
-    sources: [ 'rplan-wms:RP_Planvektor' ]
+    sources: [ 'rplan-wms:rp_objekte' ]
   soplan_raster_cache_3857:
     <<: *cache_cfg_3857
     cache:
       directory: /soplan_raster/3857/
       type: s3
-    sources: [ 'xplan-mapserver:soplanraster' ]
+    sources: [ 'xplan-mapserver:so_raster' ]
   soplan_vektor_cache_3857:
     <<: *cache_cfg_3857
     cache:
       directory: /soplan_vektor/3857/
       type: s3
-    sources: [ 'soplan-wms:SO_Planvektor' ]
+    sources: [ 'soplan-wms:so_objekte' ]
 sources:
   xplan-mapserver:
     <<: *wms_cfg

@@ -194,16 +194,16 @@ public class CoupledResourceConfiguration {
 	private static String getDefaultValue(XPlanType type) {
 		switch (type) {
 			case RP_Plan:
-				return "RP_Planvektor,RP_Planraster";
+				return "rp_objekte,rp_raster";
 			case LP_Plan:
-				return "LP_Planvektor,LP_Planraster";
+				return "lp_objekte,lp_raster";
 			case FP_Plan:
-				return "FP_Planvektor,FP_Planraster";
+				return "fp_objekte,fp_raster";
 			case SO_Plan:
-				return "SO_Planvektor,SO_Planraster";
+				return "so_objekte,so_raster";
 			case BP_Plan:
 			default:
-				return "BP_Planvektor,BP_Planraster";
+				return "bp_objekte,bp_raster";
 		}
 
 	}

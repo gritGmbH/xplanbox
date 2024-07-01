@@ -26,11 +26,7 @@
     <wms:DefaultLayerOptions>
       <wms:FeatureInfoRadius>10</wms:FeatureInfoRadius>
     </wms:DefaultLayerOptions>
-    <wms:ThemeId>bplanpre</wms:ThemeId>
-    <wms:ThemeId>fplanpre</wms:ThemeId>
-    <wms:ThemeId>lplanpre</wms:ThemeId>
-    <wms:ThemeId>rplanpre</wms:ThemeId>
-    <wms:ThemeId>soplanpre</wms:ThemeId>
+    <wms:ThemeId>vektorpre</wms:ThemeId>
     <wms:ThemeId>bplanpreraster</wms:ThemeId>
     <wms:ThemeId>fplanpreraster</wms:ThemeId>
     <wms:ThemeId>lplanpreraster</wms:ThemeId>

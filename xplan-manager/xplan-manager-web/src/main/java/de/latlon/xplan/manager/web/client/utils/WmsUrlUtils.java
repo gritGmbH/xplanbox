@@ -135,15 +135,15 @@ public final class WmsUrlUtils {
 
 	private static String createLayerValue(String planType) {
 		if ("bp_plan".equals(planType.toLowerCase()))
-			return "BP_Planvektor,BP_Planraster";
+			return "bp_objekte,bp_raster";
 		if ("fp_plan".equals(planType.toLowerCase()))
-			return "FP_Planvektor,FP_Planraster";
+			return "fp_objekte,fp_raster";
 		if ("lp_plan".equals(planType.toLowerCase()))
-			return "LP_Planvektor,LP_Planraster";
+			return "lp_objekte,lp_raster";
 		if ("rp_plan".equals(planType.toLowerCase()))
-			return "RP_Planvektor,RP_Planraster";
+			return "rp_objekte,rp_raster";
 		if ("so_plan".equals(planType.toLowerCase()))
-			return "SO_Planvektor,SO_Planraster";
+			return "so_objekte,so_raster";
 		return null;
 	}
 

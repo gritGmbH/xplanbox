@@ -22,7 +22,7 @@
         xmlns:s="http://www.deegree.org/metadata/spatial">
   <!--<LayerStoreId>dummyrasterlayer</LayerStoreId>-->
   <Theme>
-    <Identifier>BP_Planraster</Identifier>
+    <Identifier>bp_raster</Identifier>
     <d:Title>BPlan Raster</d:Title>
     <d:Abstract>Rasterdaten BPlan</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>

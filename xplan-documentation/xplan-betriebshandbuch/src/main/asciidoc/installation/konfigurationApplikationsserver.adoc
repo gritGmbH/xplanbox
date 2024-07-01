@@ -22,7 +22,7 @@ TIP: Es wird empfohlen die Zeitzone im _Anwendungs-Tomcat_ auf "Europe/Berlin" z
 [[anwendungs-tomcat-linux]]
 ===== Linux
 
-Unter Linux muss im Verzeichnis _<CATALINA_HOME>/bin_ der Instanz _Anwendungs-Tomcat_ ggfs. eine neue Datei mit dem Namen _setenv.sh_ angelegt werden.
+Unter Linux muss im Verzeichnis _<CATALINA_HOME>/bin_ der Instanz _Anwendungs-Tomcat_ ggf. eine neue Datei mit dem Namen _setenv.sh_ angelegt werden.
 
 In dieser Datei wird die Variable `CATALINA_OPTS` wie folgt erweitert:
 
@@ -35,7 +35,7 @@ Falls bereits ein Export von `CATALINA_OPTS` in dieser Datei vorhanden ist, muss
 [[anwendungs-tomcat-windows]]
 ===== Windows
 
-Unter Windows muss im Verzeichnis _<CATALINA_HOME>/bin_ der Instanz _Anwendungs-Tomcat_ ggfs. eine neue Datei mit dem Namen _setenv.bat_ angelegt werden.
+Unter Windows muss im Verzeichnis _<CATALINA_HOME>/bin_ der Instanz _Anwendungs-Tomcat_ ggf. eine neue Datei mit dem Namen _setenv.bat_ angelegt werden.
 
 In dieser Datei wird die Variable `CATALINA_OPTS` wie folgt erweitert:
 

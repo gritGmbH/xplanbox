@@ -20,9 +20,8 @@
  */
 package de.latlon.xplan.validator.wms;
 
-import de.latlon.xplan.commons.XPlanType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static java.nio.file.Files.readAllBytes;
+import static org.apache.commons.io.IOUtils.closeQuietly;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,8 +35,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 
-import static java.nio.file.Files.readAllBytes;
-import static org.apache.commons.io.IOUtils.closeQuietly;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -55,6 +54,8 @@ public class MasterportalConfigWriter {
 	private static final String SERVICES_JSON = "services-internet.json";
 
 	private static final String CONFIG_FILENAME_TEMPLATE = "config.%s.json";
+
+	private static final String VEKTOR_LAYER_NAME = "vektordaten";
 
 	private final String configTemplate;
 
@@ -81,11 +82,11 @@ public class MasterportalConfigWriter {
 		this.servicesTemplate = readTemplate(templateDirectory, SERVICES_TEMPLATE);
 	}
 
-	String createMasterportalConfig(int managerId, XPlanType type) throws MapPreviewCreationException {
+	String createMasterportalConfig(int managerId) throws MapPreviewCreationException {
 		String id = UUID.randomUUID().toString();
 		Path configFile = configDirectory.resolve(String.format(CONFIG_FILENAME_TEMPLATE, id));
 		createConfigJson(id, configFile);
-		addToServicesJson(id, managerId, type);
+		addToServicesJson(id, managerId);
 		return configFile.getFileName().toString();
 	}
 
@@ -105,9 +106,9 @@ public class MasterportalConfigWriter {
 		}
 	}
 
-	private void addToServicesJson(String id, int managerId, XPlanType type) throws MapPreviewCreationException {
+	private void addToServicesJson(String id, int managerId) throws MapPreviewCreationException {
 		try {
-			String serviceConfigSection = createServiceConfigFromTemplate(id, managerId, type);
+			String serviceConfigSection = createServiceConfigFromTemplate(id, managerId);
 			idToServiceConfig.put(id, serviceConfigSection);
 			String servicesConfigSection = createServicesConfigFromTemplate();
 			synchronized (servicesConfigFile) {
@@ -120,27 +121,11 @@ public class MasterportalConfigWriter {
 		}
 	}
 
-	private String createServiceConfigFromTemplate(String id, int managerId, XPlanType type) {
-		String bp_planvektor = getLayerNameByType(type);
+	private String createServiceConfigFromTemplate(String id, int managerId) {
 		return serviceTemplate.replace("${PLANID}", id)
 			.replace("${WMSURL}", validatorWmsEndpoint)
 			.replace("${MANAGERID}", Integer.toString(managerId))
-			.replace("${LAYERS}", bp_planvektor);
-	}
-
-	private String getLayerNameByType(XPlanType type) {
-		switch (type) {
-			case FP_Plan:
-				return "FP_Planvektor";
-			case LP_Plan:
-				return "LP_Planvektor";
-			case RP_Plan:
-				return "RP_Planvektor";
-			case SO_Plan:
-				return "SO_Planvektor";
-			default:
-				return "BP_Planvektor";
-		}
+			.replace("${LAYERS}", VEKTOR_LAYER_NAME);
 	}
 
 	private String createServicesConfigFromTemplate() {

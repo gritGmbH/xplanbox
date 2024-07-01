@@ -16,7 +16,7 @@
  You should have received a copy of the GNU Affero General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  #L%-->
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 23.05.2024, 11:03:01-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 19.06.2024, 15:42:01-->
 <wfs:StoredQueryDefinition xmlns:wfs="http://www.opengis.net/wfs/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd" id="urn:ogc:def:query:OGC-WFS::PlanName">
   <wfs:Title>planName</wfs:Title>
   <wfs:Abstract>Es koennen alle zu dem PlanNamen gehoerenden Features im XPlanSyn-Schema heruntergeladen werden.</wfs:Abstract>

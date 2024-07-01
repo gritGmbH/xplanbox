@@ -170,14 +170,14 @@ unterstützen.
 
 *XPlanWMS*
 ----
-http://<host>:<port>/xplan-services-wms/services/wms?request=GetMap&Service=WMS&Version=1.1.1&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Srs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
-http://<host>:<port>/xplan-services-wms/services/wms?request=GetMap&Service=WMS&Version=1.3.0&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Crs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
+http://<host>:<port>/xplan-services-wms/services/wms?request=GetMap&Service=WMS&Version=1.1.1&Layers=bp_objekte&Format=image/png&Transparent=true&Styles=&Srs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
+http://<host>:<port>/xplan-services-wms/services/wms?request=GetMap&Service=WMS&Version=1.3.0&Layers=bp_objekte&Format=image/png&Transparent=true&Styles=&Crs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
 ----
 
 *XPlanWerkWMS*
 ----
-http://<host>:<port>/xplan-services-wms/services/planwerkwms/planname/<PLANNAME>?request=GetMap&Service=WMS&Version=1.1.1&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Srs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
-http://<host>:<port>/xplan-services-wms/services/planwerkwms/planname/<PLANNAME>?request=GetMap&Service=WMS&Version=1.3.0&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Crs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
+http://<host>:<port>/xplan-services-wms/services/planwerkwms/planname/<PLANNAME>?request=GetMap&Service=WMS&Version=1.1.1&Layers=bp_objekte&Format=image/png&Transparent=true&Styles=&Srs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
+http://<host>:<port>/xplan-services-wms/services/planwerkwms/planname/<PLANNAME>?request=GetMap&Service=WMS&Version=1.3.0&Layers=bp_objekte&Format=image/png&Transparent=true&Styles=&Crs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
 ----
 
 [[xplanwms-styles]]

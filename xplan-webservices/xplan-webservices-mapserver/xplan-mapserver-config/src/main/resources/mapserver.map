@@ -106,13 +106,13 @@ MAP
 	  TYPE POLYGON
    END # LAYER
    LAYER
-	  NAME "bplanraster"
+	  NAME "bp_raster"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "bplanrastertindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "BPlan Raster (Festgestellt)"
+	     "wms_title" "BP Raster (Festgestellt)"
 		 "wms_metadataurl_list" "xml"
          "wms_metadataurl_xml_format" "application/xml"
 		 "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -155,13 +155,13 @@ MAP
    END # LAYER
 
    LAYER
-	  NAME "bplanrasterpre"
+	  NAME "bp_rasterpre"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "bplanrasterpretindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "BPlan Raster (In Aufstellung)"
+	     "wms_title" "BP Raster (In Aufstellung)"
 		 "wms_metadataurl_list" "xml"
 		 "wms_metadataurl_xml_format" "application/xml"
 		 "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -204,13 +204,13 @@ MAP
    END # LAYER
 
    LAYER
-	  NAME "bplanrasterarchive"
+	  NAME "bp_rasterarchive"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "bplanrasterarchivetindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "BPlan Raster (Archiviert)"
+	     "wms_title" "BP Raster (Archiviert)"
 		 "wms_metadataurl_list" "xml"
 		 "wms_metadataurl_xml_format" "application/xml"
 		 "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -252,13 +252,13 @@ MAP
 	  TYPE POLYGON
    END # LAYER
    LAYER
-	  NAME "fplanraster"
+	  NAME "fp_raster"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "fplanrastertindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "FPlan Raster (Festgestellt)"
+	     "wms_title" "FP Raster (Festgestellt)"
 	     "wms_metadataurl_list" "xml"
 		 "wms_metadataurl_xml_format" "application/xml"
 		 "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -301,13 +301,13 @@ MAP
    END # LAYER
 
    LAYER
-	  NAME "fplanrasterpre"
+	  NAME "fp_rasterpre"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "fplanrasterpretindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "FPlan Raster (In Aufstellung)"
+	     "wms_title" "FP Raster (In Aufstellung)"
 		 "wms_metadataurl_list" "xml"
 		 "wms_metadataurl_xml_format" "application/xml"
 		 "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -350,13 +350,13 @@ MAP
    END # LAYER
 
    LAYER
-	  NAME "fplanrasterarchive"
+	  NAME "fp_rasterarchive"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "fplanrasterarchivetindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "FPlan Raster (Archiviert)"
+	     "wms_title" "FP Raster (Archiviert)"
 	     "wms_metadataurl_list" "xml"
 	     "wms_metadataurl_xml_format" "application/xml"
 	     "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -398,13 +398,13 @@ MAP
 	  TYPE POLYGON
    END # LAYER
    LAYER
-	  NAME "lplanraster"
+	  NAME "lp_raster"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "lplanrastertindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "LPlan Raster (Festgestellt)"
+	     "wms_title" "LP Raster (Festgestellt)"
 		 "wms_metadataurl_list" "xml"
 		 "wms_metadataurl_xml_format" "application/xml"
 		 "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -447,13 +447,13 @@ MAP
    END # LAYER
 
    LAYER
-	  NAME "lplanrasterpre"
+	  NAME "lp_rasterpre"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "lplanrasterpretindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "LPlan Raster (In Aufstellung)"
+	     "wms_title" "LP Raster (In Aufstellung)"
 		 "wms_metadataurl_list" "xml"
 		 "wms_metadataurl_xml_format" "application/xml"
 		 "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -496,13 +496,13 @@ MAP
    END # LAYER
 
    LAYER
-	  NAME "lplanrasterarchive"
+	  NAME "lp_rasterarchive"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "lplanrasterarchivetindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "LPlan Raster (Archiviert)"
+	     "wms_title" "LP Raster (Archiviert)"
 		 "wms_metadataurl_list" "xml"
 		 "wms_metadataurl_xml_format" "application/xml"
 		 "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -544,13 +544,13 @@ MAP
 	  TYPE POLYGON
    END # LAYER
    LAYER
-	  NAME "rplanraster"
+	  NAME "rp_raster"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "rplanrastertindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "RPlan Raster (Festgestellt)"
+	     "wms_title" "RP Raster (Festgestellt)"
 	     "wms_metadataurl_list" "xml"
 	     "wms_metadataurl_xml_format" "application/xml"
 		 "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -593,13 +593,13 @@ MAP
    END # LAYER
 
    LAYER
-	  NAME "rplanrasterpre"
+	  NAME "rp_rasterpre"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "rplanrasterpretindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "RPlan Raster (In Aufstellung)"
+	     "wms_title" "RP Raster (In Aufstellung)"
 		 "wms_metadataurl_list" "xml"
 		 "wms_metadataurl_xml_format" "application/xml"
 		 "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -642,13 +642,13 @@ MAP
    END # LAYER
 
    LAYER
-	  NAME "rplanrasterarchive"
+	  NAME "rp_rasterarchive"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "rplanrasterarchivetindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "RPlan Raster (Archiviert)"
+	     "wms_title" "RP Raster (Archiviert)"
 	     "wms_metadataurl_list" "xml"
 	     "wms_metadataurl_xml_format" "application/xml"
 	     "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -690,13 +690,13 @@ MAP
 	  TYPE POLYGON
    END # LAYER
    LAYER
-	  NAME "soplanraster"
+	  NAME "so_raster"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "soplanrastertindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "SOPlan Raster (Festgestellt)"
+	     "wms_title" "SO Raster (Festgestellt)"
          "wms_metadataurl_list" "xml"
 		 "wms_metadataurl_xml_format" "application/xml"
 		 "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -739,13 +739,13 @@ MAP
    END # LAYER
 
    LAYER
-	  NAME "soplanrasterpre"
+	  NAME "so_rasterpre"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "soplanrasterpretindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "SOPlan Raster (In Aufstellung)"
+	     "wms_title" "SO Raster (In Aufstellung)"
 	     "wms_metadataurl_list" "xml"
 		 "wms_metadataurl_xml_format" "application/xml"
 		 "wms_metadataurl_xml_type" "ISO19115:2003"
@@ -788,13 +788,13 @@ MAP
    END # LAYER
 
    LAYER
-	  NAME "soplanrasterarchive"
+	  NAME "so_rasterarchive"
 	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
 	  STATUS ON
 	  TILEINDEX "soplanrasterarchivetindex"
 	  TILEITEM "location"
 	  METADATA
-	     "wms_title" "SOPlan Raster (Archiviert)"
+	     "wms_title" "SO Raster (Archiviert)"
 		 "wms_metadataurl_list" "xml"
 		 "wms_metadataurl_xml_format" "application/xml"
 		 "wms_metadataurl_xml_type" "ISO19115:2003"

@@ -23,15 +23,15 @@
   <!--<LayerStoreId>dummyrasterlayer</LayerStoreId>-->
   <!--<LayerStoreId>mapserver</LayerStoreId>-->
   <Theme>
-    <Identifier>BP_Planraster</Identifier>
-    <d:Title>BPlan Raster</d:Title>
+    <Identifier>bp_raster</Identifier>
+    <d:Title>BP Raster</d:Title>
     <d:Abstract>Rasterdaten BPlan</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <Theme>
       <Identifier>bplanraster_sortiert</Identifier>
-      <d:Title>BPlan Raster Theme</d:Title>
+      <d:Title>BP Raster Theme</d:Title>
       <!--<Layer layerStore="dummyrasterlayer">dummyraster</Layer>-->
-      <!--<Layer layerStore="mapserver">bplanraster</Layer>-->
+      <!--<Layer layerStore="mapserver">bp_raster</Layer>-->
     </Theme>
   </Theme>
 </Themes>

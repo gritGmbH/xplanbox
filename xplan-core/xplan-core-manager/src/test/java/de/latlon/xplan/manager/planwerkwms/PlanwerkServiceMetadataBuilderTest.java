@@ -58,7 +58,7 @@ public class PlanwerkServiceMetadataBuilderTest {
 
 	private final String planWerkBaseUrl = "http://localhost:8080/xplan-planwerk-wms";
 
-	private final String layer = "BP_Planvektor";
+	private final String layer = "bp_objekte";
 
 	private final String style = "";
 
