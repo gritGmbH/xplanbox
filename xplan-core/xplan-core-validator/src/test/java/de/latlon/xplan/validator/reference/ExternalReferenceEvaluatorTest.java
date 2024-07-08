@@ -20,20 +20,20 @@
  */
 package de.latlon.xplan.validator.reference;
 
+import static de.latlon.xplan.validator.report.reference.ExternalReferenceStatus.AVAILABLE;
+import static de.latlon.xplan.validator.report.reference.ExternalReferenceStatus.MISSING;
+import static de.latlon.xplan.validator.report.reference.ExternalReferenceStatus.UNCHECKED;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import java.io.InputStream;
+
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
 import org.junit.Test;
-
-import java.io.InputStream;
-
-import static de.latlon.xplan.validator.report.reference.ExternalReferenceStatus.AVAILABLE;
-import static de.latlon.xplan.validator.report.reference.ExternalReferenceStatus.MISSING;
-import static de.latlon.xplan.validator.report.reference.ExternalReferenceStatus.UNCHECKED;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -54,6 +54,7 @@ public class ExternalReferenceEvaluatorTest {
 		assertThat(externalReferenceReport.getReferencesAndStatus().size(), is(2));
 		assertThat(externalReferenceReport.getReferencesAndStatus().get("Blankenese29.png"), is(AVAILABLE));
 		assertThat(externalReferenceReport.getReferencesAndStatus().get("Blankenese29.pgw"), is(AVAILABLE));
+		assertThat(externalReferenceReport.hasMissingReferences(), is(false));
 	}
 
 	@Test
@@ -69,6 +70,7 @@ public class ExternalReferenceEvaluatorTest {
 		assertThat(externalReferenceReport.getReferencesAndStatus().size(), is(2));
 		assertThat(externalReferenceReport.getReferencesAndStatus().get("Blankenese29.png"), is(MISSING));
 		assertThat(externalReferenceReport.getReferencesAndStatus().get("Blankenese29.pgw"), is(MISSING));
+		assertThat(externalReferenceReport.hasMissingReferences(), is(true));
 	}
 
 	@Test

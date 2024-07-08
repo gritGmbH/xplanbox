@@ -20,12 +20,14 @@
  */
 package de.latlon.xplan.validator.report.reference;
 
-import de.latlon.xplan.validator.report.ReportUtils.SkipCode;
+import static de.latlon.xplan.validator.report.reference.ExternalReferenceStatus.MISSING;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import de.latlon.xplan.validator.report.ReportUtils.SkipCode;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -59,6 +61,24 @@ public class ExternalReferenceReport {
 
 	public Map<String, ExternalReferenceStatus> getReferencesAndStatus() {
 		return referencesAndStatus;
+	}
+
+	public boolean hasMissingReferences() {
+		if (referencesAndStatus != null) {
+			return referencesAndStatus.values().stream().anyMatch(status -> MISSING.equals(status));
+		}
+		return false;
+	}
+
+	public List<String> getMissingReferences() {
+		if (referencesAndStatus != null) {
+			return referencesAndStatus.entrySet()
+				.stream()
+				.filter(status -> MISSING.equals(status.getValue()))
+				.map(status -> status.getKey())
+				.collect(Collectors.toUnmodifiableList());
+		}
+		return List.of();
 	}
 
 }

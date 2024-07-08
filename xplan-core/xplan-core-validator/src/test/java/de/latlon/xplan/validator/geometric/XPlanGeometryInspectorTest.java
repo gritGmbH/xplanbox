@@ -20,20 +20,6 @@
  */
 package de.latlon.xplan.validator.geometric;
 
-import de.latlon.xplan.validator.geometric.report.BadGeometry;
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
-import org.deegree.geometry.Geometry;
-import org.deegree.geometry.io.WKTWriter;
-import org.deegree.geometry.primitive.Point;
-import org.deegree.geometry.primitive.Ring;
-import org.deegree.geometry.primitive.patches.PolygonPatch;
-import org.deegree.gml.GMLInputFactory;
-import org.junit.Test;
-import org.mockito.Mockito;
-
-import java.net.URL;
-import java.util.List;
-
 import static org.deegree.gml.GMLVersion.GML_32;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -43,6 +29,19 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+
+import java.net.URL;
+import java.util.List;
+
+import de.latlon.xplan.validator.geometric.report.BadGeometry;
+import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
+import org.deegree.geometry.Geometry;
+import org.deegree.geometry.primitive.Point;
+import org.deegree.geometry.primitive.Ring;
+import org.deegree.geometry.primitive.patches.PolygonPatch;
+import org.deegree.gml.GMLInputFactory;
+import org.junit.Test;
+import org.mockito.Mockito;
 
 /**
  * Tests for <link>XPlanGeometryInspector</link>.
@@ -228,6 +227,16 @@ public class XPlanGeometryInspectorTest {
 	@Test
 	public void testInspect_InvalidOrientation_skipOrientation() throws Exception {
 		Geometry geometryToInspect = readGeometry("polygon-orientation-invalid.gml");
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream(true);
+		inspector.inspect(geometryToInspect);
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		assertThat(badGeometries.size(), is(0));
+	}
+
+	@Test
+	public void testInspect_CompositeCurve() throws Exception {
+		Geometry geometryToInspect = readGeometry("compositecurve.gml");
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream(true);
 		inspector.inspect(geometryToInspect);
 

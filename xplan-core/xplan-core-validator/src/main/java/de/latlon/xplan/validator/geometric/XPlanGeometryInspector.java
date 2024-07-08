@@ -20,6 +20,20 @@
  */
 package de.latlon.xplan.validator.geometric;
 
+import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
+import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
+import static org.deegree.geometry.primitive.segments.CurveSegment.CurveSegmentType.LINE_STRING_SEGMENT;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
+
 import de.latlon.xplan.commons.jts.JtsParser;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
@@ -58,20 +72,6 @@ import org.locationtech.jts.geomgraph.EdgeIntersection;
 import org.locationtech.jts.geomgraph.GeometryGraph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
-
-import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
-import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
-import static org.deegree.geometry.primitive.segments.CurveSegment.CurveSegmentType.LINE_STRING_SEGMENT;
 
 /**
  * Validiert die aus XPlan-Dokumenten geparsten Geometrien und prüft sie auf topologische
@@ -257,6 +257,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 		checkSegmentContinuity(geom);
 		switch (geom.getCurveType()) {
 			case Curve:
+			case CompositeCurve:
 			case LineString: {
 				break;
 			}

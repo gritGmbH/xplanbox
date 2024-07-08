@@ -35,11 +35,13 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ValidatorReport;
+import de.latlon.xplan.validator.report.reference.ExternalReferenceStatus;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.commons.exception.InvalidPlanIdSyntax;
 import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
+import de.latlon.xplanbox.api.manager.exception.InvalidPlanReferences;
 import de.latlon.xplanbox.api.manager.v1.model.Bereich;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import org.apache.commons.lang3.StringUtils;
@@ -53,6 +55,7 @@ import javax.ws.rs.core.StreamingOutput;
 import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
@@ -97,6 +100,10 @@ public class PlanHandler {
 				xFileName);
 		if (!validatorReport.isReportValid()) {
 			throw new InvalidPlan(validatorReport, xFileName);
+		}
+		if (validatorReport.getExternalReferenceReport() != null
+				&& validatorReport.getExternalReferenceReport().hasMissingReferences()) {
+			throw new InvalidPlanReferences(validatorReport.getExternalReferenceReport().getMissingReferences());
 		}
 		LOG.info("Plan is valid. Importing plan into storage for '{}'", StringUtils.normalizeSpace(planStatus));
 		AdditionalPlanData metadata = createAdditionalPlanData(xPlanArchive, planStatus);

@@ -27,7 +27,6 @@ import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.report.ValidatorReport;
-import de.latlon.xplan.validator.report.reference.ExternalReferenceStatus;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.core.gwt.commons.client.service.ValidationService;
 import de.latlon.xplanbox.core.gwt.commons.server.service.ValidationUtils;
@@ -127,9 +126,7 @@ public class XPlanMgrValidationServiceImpl extends XsrfProtectedServiceServlet i
 		planToVerify.setHasMultipleXPlanElements(report.hasMultipleXPlanElements());
 		boolean hasUnresolvedReferences = false;
 		if (report.getExternalReferenceReport() != null)
-			hasUnresolvedReferences = report.getExternalReferenceReport()
-				.getReferencesAndStatus()
-				.containsValue(ExternalReferenceStatus.MISSING);
+			hasUnresolvedReferences = report.getExternalReferenceReport().hasMissingReferences();
 		planToVerify.setHasUnresolvedReferences(hasUnresolvedReferences);
 	}
 

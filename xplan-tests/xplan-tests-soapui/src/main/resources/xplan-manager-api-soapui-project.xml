@@ -3033,13 +3033,6 @@ assert actualHeader != null</scriptText>
                 <codes>400</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="Simple Contains" id="14c9d9cf-d328-416b-be7d-497f82e0ee3a" name="Valid Fehlermeldung">
-              <con:configuration>
-                <token>Validierung wurde aufgrund von Referenz-Fehlern abgebrochen</token>
-                <ignoreCase>false</ignoreCase>
-                <useRegEx>false</useRegEx>
-              </con:configuration>
-            </con:assertion>
             <con:credentials>
               <con:username>${#Project#username}</con:username>
               <con:password>${#Project#password}</con:password>
@@ -3054,6 +3047,153 @@ assert actualHeader != null</scriptText>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_5.2_MissingReference.zip</con:contentId>
               <con:url>${projectDir}/xplan-manager-api/plans/BP_5.2_MissingReference.zip</con:url>
+              <con:id>a526c4cd-2d6b-4eb3-b02b-f58ee92a871f</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>internalId</con:entry>
+              <con:entry>planStatus</con:entry>
+              <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 5.2 XX importPlanAsGmlMissingReferenceExpectError" id="0ba59ea0-125e-4482-a710-dbf086819ebd">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.2 XX importPlanAsGmlMissingReferenceExpectError" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="text/xml" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/vnd.xplanbox.api+json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-manager-api/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_5.2_Laufrichtungsfehler.zip</con:name>
+              <con:contentType>text/xml</con:contentType>
+              <con:contentId>BP_5.2_MissingReference.gml</con:contentId>
+              <con:url>${projectDir}/xplan-manager-api/plans/BP_5.2_MissingReference.gml</con:url>
+              <con:id>a526c4cd-2d6b-4eb3-b02b-f58ee92a871f</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>internalId</con:entry>
+              <con:entry>planStatus</con:entry>
+              <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 5.2 XX importPlanHttpReferenceExpectError" id="526320b1-6c43-4e9e-89d7-e6398ead0ce8">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.2 XX importPlanHttpReferenceExpectError" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/vnd.xplanbox.api+json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-manager-api/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>500</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_5.2_Laufrichtungsfehler.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>BP_5.2_HttpReference.zip</con:contentId>
+              <con:url>${projectDir}/xplan-manager-api/plans/BP_5.2_HttpReference.zip</con:url>
+              <con:id>a526c4cd-2d6b-4eb3-b02b-f58ee92a871f</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>internalId</con:entry>
+              <con:entry>planStatus</con:entry>
+              <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 5.2 XX importPlanAsGmlHttpReferenceExpectError" id="dd552137-b2f5-4cb3-837c-70470ad5e684">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.2 XX importPlanAsGmlHttpReferenceExpectError" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="text/xml" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/vnd.xplanbox.api+json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-manager-api/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>500</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username>${#Project#username}</con:username>
+              <con:password>${#Project#password}</con:password>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_5.2_Laufrichtungsfehler.zip</con:name>
+              <con:contentType>text/xml</con:contentType>
+              <con:contentId>BP_5.2_HttpReference.gml</con:contentId>
+              <con:url>${projectDir}/xplan-manager-api/plans/BP_5.2_HttpReference.gml</con:url>
               <con:id>a526c4cd-2d6b-4eb3-b02b-f58ee92a871f</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>

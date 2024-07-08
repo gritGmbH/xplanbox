@@ -20,18 +20,13 @@
  */
 package de.latlon.xplan.manager.export;
 
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
-import de.latlon.xplan.core.manager.db.model.Artefact;
-import de.latlon.xplan.core.manager.db.model.ArtefactId;
-import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.cs.persistence.CRSManager;
-import org.deegree.feature.FeatureCollection;
-import org.junit.Test;
-import org.xmlunit.builder.Input;
-import org.xmlunit.matchers.ValidationMatcher;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
+import static org.apache.commons.io.IOUtils.copyLarge;
+import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -43,13 +38,19 @@ import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
-import static org.apache.commons.io.IOUtils.copyLarge;
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
+import de.latlon.xplan.core.manager.db.model.Artefact;
+import de.latlon.xplan.core.manager.db.model.ArtefactId;
+import org.deegree.cs.coordinatesystems.ICRS;
+import org.deegree.cs.persistence.CRSManager;
+import org.deegree.feature.FeatureCollection;
+import org.hamcrest.CoreMatchers;
+import org.junit.Test;
+import org.xmlunit.builder.Input;
+import org.xmlunit.matchers.ValidationMatcher;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -61,7 +62,7 @@ public class XPlanExporterTest {
 	public void testExport() throws Exception {
 		XPlanExporter exporter = new XPlanExporter();
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		List<Artefact> artefacts = creatertefactStream();
+		List<Artefact> artefacts = createArtefacts();
 		exporter.export(outputStream, artefacts);
 
 		List<String> exportedFiles = readExportedContent(outputStream);
@@ -75,7 +76,7 @@ public class XPlanExporterTest {
 		XPlanExporter xplanExporter = new XPlanExporter();
 
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		List<Artefact> artefacts = creatertefactStream();
+		List<Artefact> artefacts = createArtefacts();
 		xplanExporter.export(outputStream, artefacts);
 
 		List<String> exportedFiles = readExportedContent(outputStream);
@@ -97,7 +98,20 @@ public class XPlanExporterTest {
 		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(XPLAN_60.getSchemaUrl().toURI())));
 	}
 
-	private List<Artefact> creatertefactStream() throws Exception {
+	@Test
+	public void testExport_DecimalNumbers() throws Exception {
+		FeatureCollection featureCollection = readFeatureCollection("xplan60/BP_6.0_DecimalNumbers.gml");
+
+		XPlanExporter planExporter = new XPlanExporter();
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		planExporter.export(outputStream, XPLAN_60, featureCollection, null);
+
+		String exportedPlan = new String(outputStream.toByteArray());
+
+		assertThat(exportedPlan, CoreMatchers.containsString("564984.1281112354 "));
+	}
+
+	private List<Artefact> createArtefacts() throws Exception {
 		Artefact artefact1 = artefact("1.xml");
 		Artefact artefact2 = artefact("2.xml");
 		return List.of(artefact1, artefact2);
@@ -132,6 +146,8 @@ public class XPlanExporterTest {
 	private XPlanArchive createArchive(String testArchiveName) throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		InputStream archiveResource = getClass().getResourceAsStream("/testdata/" + testArchiveName);
+		if (testArchiveName.endsWith(".gml"))
+			return archiveCreator.createXPlanArchiveFromGml(testArchiveName, archiveResource);
 		return archiveCreator.createXPlanArchiveFromZip(testArchiveName, archiveResource);
 	}
 

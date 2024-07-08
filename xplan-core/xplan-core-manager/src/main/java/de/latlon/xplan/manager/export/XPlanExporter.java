@@ -20,18 +20,9 @@
  */
 package de.latlon.xplan.manager.export;
 
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.core.manager.db.model.Artefact;
-import org.deegree.commons.xml.stax.IndentingXMLStreamWriter;
-import org.deegree.cs.exceptions.TransformationException;
-import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.feature.Feature;
-import org.deegree.feature.FeatureCollection;
-import org.deegree.geometry.Envelope;
-import org.deegree.geometry.io.DecimalCoordinateFormatter;
-import org.deegree.gml.GMLStreamWriter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static javax.xml.stream.XMLOutputFactory.IS_REPAIRING_NAMESPACES;
+import static org.deegree.commons.xml.CommonNamespaces.XLNNS;
+import static org.deegree.gml.GMLOutputFactory.createGMLStreamWriter;
 
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -48,9 +39,17 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import static javax.xml.stream.XMLOutputFactory.IS_REPAIRING_NAMESPACES;
-import static org.deegree.commons.xml.CommonNamespaces.XLNNS;
-import static org.deegree.gml.GMLOutputFactory.createGMLStreamWriter;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.core.manager.db.model.Artefact;
+import org.deegree.commons.xml.stax.IndentingXMLStreamWriter;
+import org.deegree.cs.exceptions.TransformationException;
+import org.deegree.cs.exceptions.UnknownCRSException;
+import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
+import org.deegree.geometry.Envelope;
+import org.deegree.gml.GMLStreamWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Exports the content of a plan as zip archive.
@@ -100,7 +99,7 @@ public class XPlanExporter {
 			writer.writeComment(comment);
 		GMLStreamWriter encoder = createGMLStreamWriter(version.getGmlVersion(), writer);
 		encoder.setGenerateBoundedByForFeatures(true);
-		encoder.setCoordinateFormatter(new DecimalCoordinateFormatter(3));
+		encoder.setCoordinateFormatter(v -> Double.toString(v));
 		String xplanNs = version.getNamespace();
 		writer.setPrefix("xplan", xplanNs);
 		writer.setPrefix("xlink", XLNNS);
@@ -109,7 +108,7 @@ public class XPlanExporter {
 		writer.writeStartElement(xplanNs, "XPlanAuszug");
 		String id = fc.getId();
 		if (id == null)
-			id = "AUSZUG_" + UUID.randomUUID().toString();
+			id = "AUSZUG_" + UUID.randomUUID();
 		writer.writeAttribute("gml", gmlNs, "id", id);
 		exportEnvelope(encoder, fc, writer, gmlNs);
 		for (Feature feature : fc) {

@@ -599,28 +599,9 @@ interpolation is fixed to "planar", i.e. an interpolation shall return points on
 			<enumeration value="clothoid"/>
 			<enumeration value="conic"/>
 			<enumeration value="polynomialSpline"/>
-			<enumeration value="cubicSpline"/>
 			<enumeration value="rationalSpline"/>
 		</restriction>
 	</simpleType>
-	<!-- ================================================= -->
-	<element name="CubicSpline" type="gml:CubicSplineType"
-		substitutionGroup="gml:AbstractCurveSegment"/>
-	<!-- ================================================= -->
-	<complexType name="CubicSplineType">
-		<complexContent>
-			<extension base="gml:AbstractCurveSegmentType">
-				<sequence>
-					<element ref="gml:posList"/>
-					<element name="vectorAtStart" type="gml:VectorType"/>
-					<element name="vectorAtEnd" type="gml:VectorType"/>
-				</sequence>
-				<attribute name="interpolation" type="gml:CurveInterpolationType"
-					fixed="cubicSpline"/>
-				<attribute name="degree" type="integer" fixed="3"/>
-			</extension>
-		</complexContent>
-	</complexType>
 	<!-- ================================================= -->
 	<complexType name="VectorType">
 		<simpleContent>

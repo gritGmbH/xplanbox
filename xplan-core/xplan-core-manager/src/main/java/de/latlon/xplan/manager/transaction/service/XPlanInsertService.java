@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.transaction.service;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.manager.database.XPlanManagerDao;
@@ -67,6 +68,7 @@ public class XPlanInsertService {
 		PlanStatus planStatus = planToImport.getPlanStatus();
 		AdditionalPlanData xPlanMetadata = planToImport.getxPlanMetadata();
 		ExternalReferenceInfo externalReferenceInfo = parseExternalReferencesInfo(archive, xPlanFeatureCollection);
+		checkHttpReferencesToRaster(externalReferenceInfo);
 		int planId = xplanDao.insert(archive, xPlanFeatureCollection, planStatus, xPlanMetadata.getStartDateTime(),
 				xPlanMetadata.getEndDateTime(), planToImport.getSortDate(), planToImport.getInternalId());
 		insertDocuments(planId, externalReferenceInfo, archive);
@@ -80,6 +82,20 @@ public class XPlanInsertService {
 		if (xPlanDocumentManager != null) {
 			xPlanDocumentManager.importDocuments(planId, externalReferenceInfo, archive);
 		}
+	}
+
+	private void checkHttpReferencesToRaster(ExternalReferenceInfo externalReferenceInfo) {
+		List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferenceInfo.getRasterPlanBaseAndUpdateScans();
+		for (ExternalReference rasterScan : rasterPlanBaseAndUpdateScans) {
+			if (isHttp(rasterScan.getReferenzUrl()) || isHttp(rasterScan.getGeoRefUrl())) {
+				throw new IllegalArgumentException(
+						"HTTP Referenzen in Rasterdateien werden derzeit nicht unterstuetzt!");
+			}
+		}
+	}
+
+	private static boolean isHttp(String url) {
+		return url != null && url.startsWith("http");
 	}
 
 	private ExternalReferenceInfo parseExternalReferencesInfo(XPlanArchive archive,

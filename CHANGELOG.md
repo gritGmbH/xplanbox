@@ -2,6 +2,16 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+
+## Version 7.2.2 (2024-07-03)
+
+### Fehlerbehebungen
+- Fehler durch Kürzen von Nachkommastellen in Geometrien beim Import und Editieren im XPlanManager behoben
+- Verwendung von CubicSplines wird in allen XPlanGML-Versionen als syntaktischer Fehler ausgegeben
+- Verwendung von CompositeCurve wird in allen XPlanGML-Versionen erlaubt
+- Fehler beim Import von Plänen mit externen Referenzen auf Rasterdaten über die XPlanManagerAPI behoben
+- Aktualisierung der Validierungsregeln auf v1.1.9
+
 ## Version 7.2.1 (2024-05-29)
 
 ### Fehlerbehebungen

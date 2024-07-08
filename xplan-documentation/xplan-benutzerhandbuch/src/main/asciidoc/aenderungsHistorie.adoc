@@ -2,6 +2,16 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
+[[Aenderungshistorie-7.2.2]]
+=== Version 7.2.2
+
+==== Fehlerbehebungen
+- Fehler durch Kürzen von Nachkommastellen in Geometrien beim Import und Editieren im XPlanManager behoben
+- Verwendung von CubicSplines wird in allen XPlanGML-Versionen als syntaktischer Fehler ausgegeben
+- Verwendung von CompositeCurve wird in allen XPlanGML-Versionen erlaubt
+- Fehler beim Import von Plänen mit externen Referenzen auf Rasterdaten über die XPlanManagerAPI behoben
+- Aktualisierung der Validierungsregeln auf v1.1.9
+
 [[Aenderungshistorie-7.2.1]]
 === Version 7.2.1
 
