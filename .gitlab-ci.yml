@@ -10,7 +10,7 @@ workflow:
   - when: always
 
 variables:
-  MAVEN_OPTS: "-Xmx500m -XX:+UseSerialGC -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN"
+  MAVEN_OPTS: "-Xmx1000m -XX:+UseSerialGC -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN"
   MAVEN_CLI_OPTS: "--batch-mode -DskipDeployBigArtefact=true -s $CI_PROJECT_DIR/ci_settings.xml"
   MAIN_BRANCH: 'main'
 
