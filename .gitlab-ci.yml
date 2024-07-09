@@ -16,9 +16,9 @@ variables:
 
 stages:
 - build
-#- build:jvm
-#- build:java4docker
-#- build:docker
+- build:jvm
+- build:java4docker
+- build:docker
 - deploy
 
 maven-build:
